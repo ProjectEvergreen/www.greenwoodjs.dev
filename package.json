@@ -13,6 +13,13 @@
     "node": "^18.12.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf public .greenwood",
+    "build": "greenwood build",
+    "dev": "greenwood develop",
+    "serve": "yarn clean && yarn build && greenwood serve"
+  },
+  "devDependencies": {
+    "@greenwood/cli": "^0.28.5",
+    "rimraf": "^5.0.5"
   }
 }
