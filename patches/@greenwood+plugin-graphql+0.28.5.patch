@@ -1,0 +1,92 @@
+diff --git a/node_modules/@greenwood/plugin-graphql/src/core/client.js b/node_modules/@greenwood/plugin-graphql/src/core/client.js
+index 0e6881c..f07b11c 100644
+--- a/node_modules/@greenwood/plugin-graphql/src/core/client.js
++++ b/node_modules/@greenwood/plugin-graphql/src/core/client.js
+@@ -1,4 +1,4 @@
+-import { getQueryHash } from '@greenwood/plugin-graphql/core/common';
++import { getQueryHash } from './common.js';
+ 
+ const client = {
+   query: (params) => {
+@@ -18,7 +18,7 @@ const client = {
+   }
+ };
+ 
+-const APOLLO_STATE = window.__APOLLO_STATE__; // eslint-disable-line no-underscore-dangle
++const APOLLO_STATE = globalThis.__APOLLO_STATE__; // eslint-disable-line no-underscore-dangle
+ const backupQuery = client.query;
+ 
+ client.query = (params) => {
+diff --git a/node_modules/@greenwood/plugin-graphql/src/index.js b/node_modules/@greenwood/plugin-graphql/src/index.js
+index cf0c4cb..64e0e46 100644
+--- a/node_modules/@greenwood/plugin-graphql/src/index.js
++++ b/node_modules/@greenwood/plugin-graphql/src/index.js
+@@ -3,16 +3,16 @@ import { graphqlServer } from './core/server.js';
+ import { mergeImportMap } from '@greenwood/cli/src/lib/walker-package-ranger.js';
+ import { ResourceInterface } from '@greenwood/cli/src/lib/resource-interface.js';
+ import { ServerInterface } from '@greenwood/cli/src/lib/server-interface.js';
+-import rollupPluginAlias from '@rollup/plugin-alias';
++// TODO can delete this dep import rollupPluginAlias from '@rollup/plugin-alias';
+ 
+ const importMap = {
+   '@greenwood/cli/src/lib/hashing-utils.js': '/node_modules/@greenwood/cli/src/lib/hashing-utils.js',
+-  '@greenwood/plugin-graphql/core/client': '/node_modules/@greenwood/plugin-graphql/src/core/client.js',
+-  '@greenwood/plugin-graphql/core/common': '/node_modules/@greenwood/plugin-graphql/src/core/common.js',
+-  '@greenwood/plugin-graphql/queries/children': '/node_modules/@greenwood/plugin-graphql/src/queries/children.gql',
+-  '@greenwood/plugin-graphql/queries/config': '/node_modules/@greenwood/plugin-graphql/src/queries/config.gql',
+-  '@greenwood/plugin-graphql/queries/graph': '/node_modules/@greenwood/plugin-graphql/src/queries/graph.gql',
+-  '@greenwood/plugin-graphql/queries/menu': '/node_modules/@greenwood/plugin-graphql/src/queries/menu.gql'
++  '@greenwood/plugin-graphql/src/core/client.js': '/node_modules/@greenwood/plugin-graphql/src/core/client.js',
++  '@greenwood/plugin-graphql/src/core/common.js': '/node_modules/@greenwood/plugin-graphql/src/core/common.js',
++  '@greenwood/plugin-graphql/src/queries/children.gql': '/node_modules/@greenwood/plugin-graphql/src/queries/children.gql',
++  '@greenwood/plugin-graphql/src/queries/config.gql': '/node_modules/@greenwood/plugin-graphql/src/queries/config.gql',
++  '@greenwood/plugin-graphql/src/queries/graph.gql': '/node_modules/@greenwood/plugin-graphql/src/queries/graph.gql',
++  '@greenwood/plugin-graphql/src/queries/menu.gql': '/node_modules/@greenwood/plugin-graphql/src/queries/menu.gql'
+ };
+ 
+ class GraphQLResource extends ResourceInterface {
+@@ -22,6 +22,7 @@ class GraphQLResource extends ResourceInterface {
+     this.contentType = ['text/javascript', 'text/html'];
+   }
+ 
++  // TODO check for type=gql
+   async shouldServe(url) {
+     return url.protocol === 'file:' && this.extensions.indexOf(url.pathname.split('.').pop()) >= 0;
+   }
+@@ -89,21 +90,21 @@ const greenwoodPluginGraphQL = (options = {}) => {
+     type: 'resource',
+     name: 'plugin-graphql:resource',
+     provider: (compilation) => new GraphQLResource(compilation, options)
+-  }, {
+-    type: 'rollup',
+-    name: 'plugin-graphql:rollup',
+-    provider: () => {
+-      const aliasEntries = Object.keys(importMap).map(key => {
+-        return {
+-          find: key,
+-          replacement: importMap[key].replace('/node_modules/', '')
+-        };
+-      });
+-
+-      return [
+-        rollupPluginAlias({ entries: aliasEntries })
+-      ];
+-    }
++  // }, {
++  //   type: 'rollup',
++  //   name: 'plugin-graphql:rollup',
++  //   provider: () => {
++  //     const aliasEntries = Object.keys(importMap).map(key => {
++  //       return {
++  //         find: key,
++  //         replacement: importMap[key].replace('/node_modules/', '')
++  //       };
++  //     });
++
++  //     return [
++  //       rollupPluginAlias({ entries: aliasEntries })
++  //     ];
++  //   }
+   }];
+ };
+ 
