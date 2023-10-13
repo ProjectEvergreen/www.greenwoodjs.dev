@@ -1,2 +1,3 @@
 # www.greenwoodjs.dev
-Website for Greenwood
+
+Documentation website for Greenwood
