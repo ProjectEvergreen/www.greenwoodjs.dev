@@ -1,0 +1,13 @@
+[build]
+  publish = "public/"
+  command = "npm run build"
+
+[build.processing]
+  skip_processing = true
+
+[build.environment]
+  NODE_VERSION = "18.15.0"
+
+[[redirects]]
+  from = "/docs/tech-stack/"
+  to = "/about/tech-stack/"
