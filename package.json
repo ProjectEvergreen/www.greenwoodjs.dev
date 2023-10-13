@@ -1,6 +1,7 @@
 {
   "name": "www.greenwoodjs.dev",
   "version": "0.0.1",
+  "type": "module",
   "description": "Documentation website for Greenwood",
   "repository": "https://github.com/ProjectEvergreen/www.greenwoodjs.dev",
   "author": "Owen Buckley <owen@thegreenhouse.io>",
