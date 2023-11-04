@@ -15,12 +15,12 @@
   },
   "scripts": {
     "clean": "rm -rf public .greenwood",
-    "build": "greenwood build",
+    "build": "node --experimental-loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/.bin/greenwood build",
     "dev": "greenwood develop",
     "serve": "npm run clean && npm run build && npm run serve"
   },
   "devDependencies": {
-    "@greenwood/cli": "^0.28.5",
+    "@greenwood/cli": "^0.29.0-alpha.6",
     "rimraf": "^5.0.5"
   }
 }
