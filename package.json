@@ -17,7 +17,7 @@
     "clean": "rm -rf public .greenwood",
     "build": "greenwood build",
     "dev": "greenwood develop",
-    "serve": "npm run clean && npm run build && npm run serve"
+    "serve": "npm run clean && npm run build && greenwood serve"
   },
   "devDependencies": {
     "@greenwood/cli": "^0.28.5",
