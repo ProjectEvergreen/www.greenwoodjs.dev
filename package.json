@@ -15,12 +15,13 @@
   },
   "scripts": {
     "clean": "rm -rf public .greenwood",
-    "build": "greenwood build",
-    "dev": "greenwood develop",
-    "serve": "yarn clean && yarn build && greenwood serve"
+    "build": "node --experimental-loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/.bin/greenwood build",
+    "dev": "node --experimental-loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/.bin/greenwood develop",
+    "serve": "yarn clean && yarn build && node --experimental-loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/.bin/greenwood serve"
   },
   "devDependencies": {
-    "@greenwood/cli": "^0.28.5",
+    "@greenwood/cli": "^0.29.0-alpha.6",
+    "@greenwood/plugin-graphql": "^0.29.0-alpha.6",
     "rimraf": "^5.0.5"
   }
 }
