@@ -79,9 +79,49 @@
         }
       }
 
-      .go {
+      .banner {
         text-align: center;
         font-weight: bold;
+        font-size: 2em;
+      }
+
+      button {
+        display: inline-block;
+        background-color: beige;
+        font-size: 1.5em;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      pre {
+        background-color: gray;
+        font-family: monospace;
+        color: white;
+        text-align: left;
+        width: 40%;
+        font-size: 2em;
+        padding: 20px 0 0;
+        margin: 20px auto;
+        border-radius: 10px;
+      }
+
+      ul.features-list {
+        width: 80%;
+        margin: 0 auto;
+        list-style-type: none;
+
+        & img {
+          width: 6%;
+        }
+
+        & li {
+          text-align: center;
+          font-size: 2em;
+          vertical-align: top;
+          width: 49%;
+          margin: 10px auto;
+          display: inline-block;
+        }
       }
     </style>
   </head>
@@ -103,25 +143,31 @@
 
     <div class="hero">
       <h2>The full-stack web is <u><i>here</i></u></h2>
-      <p>Greenwood embraces web standards from the ground up, empowering your stack from front to back, to run anywhere the web can run.</p>
+      <p>Greenwood is your workbench for the web, embracing web standards from the ground up to empower your stack from front to back, allowing you to run anywhere the web can run.</p>
       <br/>
-      <p><i>When you have the web, why use somebody else's API?</i></p>
+      <a href="#">
+        <button>Get Started</button>
+      </a>
+      <br/>
+      <pre>
+        $ npx @greenwood/init
+      </pre>
     </div>
     
     <div class="card">
-      <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-based routing and easily get static and dynamic pages side-by-side.</h3>
+      <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-based routing to easily achieve static and dynamic pages side-by-side.</h3>
       <!-- pages/index.html --> 
       <img class="shadow-right" src="/assets/walkthrough/step1.png">
     </div>
     
     <div class="card">
       <!-- pages/products.js -->  
-      <img class="shadow-left" src="/assets/walkthrough/step2.png"> 
+      <img class="shadow-left" src="/assets/walkthrough/step2.png">
       <h3>Server rendered pages are just custom elements ("Web Server Components"), that can of course consume other Web Components for entirely standards based server-side rendering with <i>no</i> JavaScript by default.</h3>
     </div>
     
     <div class="card">
-      <h3>Web Components are fully isomorphic in Greenwood and so the same definition can be used on the client and the server!  And with the power WCC, you can use real standards based Web Components, meaning you are free to use Light DOM <i>or</i> Shadow DOM.</h3>
+      <h3>Web Components are fully isomorphic in Greenwood and so the same definition can be used on the client and the server!  With the power of WCC, you can use real standards based Web Components, meaning you are free to use Light DOM <i>or</i> Shadow DOM.</h3>
       <!-- components/cards.js -->
       <img class="shadow-right" src="/assets/walkthrough/step3.png"> 
     </div>
@@ -129,12 +175,37 @@
     <div class="card">
       <!-- api/search.js -->
       <img class="shadow-left" src="/assets/walkthrough/step4.png"> 
-      <h3>Include API Routes for easy client side data loading using the latest in web standards like Fetch, FormData, and Request and Response and both the frontend and the backend.  You can even return HTML rendered out from Web Components.  Don't be scared it's just HTML, you got this!</h3>
+      <h3>Include API Routes for easy client side data loading using the latest in web standards like Fetch, FormData, and Request and Response on both the frontend and the backend.  You can even return HTML rendered out from Web Components.  Don't be scared it's just HTML, you got this!</h3>
     </div>
     
-    <h3 class="go">Now, just build and go!</h3>
-    <!-- SSG (Netlify, Github Pages, CloudFlare pages, self hosted (NodeJS logo), serverless partners (Netlify, Vercel) -->
-    <!-- and more ! -->
+    <h3 class="banner">Now, just build and go! 🚀</h3>
+
+    <div class="card">
+      <h3>Greenwood can handle SSG, SPA, SSR output to any static or server hosting, as well as serverless hosting providers like Netlify and Vercel.</h3>
+      <img class="shadow-left" style="width: 25%; margin: 0 auto; display: inline-block" src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png"> 
+      <img class="shadow-left" style="width: 25%; margin: 0 auto; display: inline-block" src="https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png"> 
+    </div>
+
+    <p class="banner"><i>When you have the web, why use somebody else's API?</i></p>
+    
+    <ul class="features-list">
+      <li>
+        <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+        <span>Fast, unbundled, local development workflow</span>
+      </li>
+      <li>
+        <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+        <span>Focus on your work, not the framework</span>
+      </li>
+      <li>
+        <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+        <span>Works great with libraries like Lit and htmx</span>
+      </li>
+      <li>
+        <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+        <span>Ship your source</span>
+      </li>
+    </ul>
   </body>
 
 </html>
