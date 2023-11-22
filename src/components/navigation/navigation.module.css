@@ -1,0 +1,9 @@
+.nav {
+  color: red;
+  text-align: center;
+  list-style-type: none;
+}
+
+.listItem {
+  display: inline;
+}
