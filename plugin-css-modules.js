@@ -11,7 +11,9 @@ import { ResourceInterface } from '@greenwood/cli/src/lib/resource-interface.js'
 import * as acornWalk from 'acorn-walk';
 import * as acorn from 'acorn';
 
-function walkAllImportsForCssModules(scriptUrl, sheets) {
+const cssModulesMap = new Map();
+
+function walkAllImportsForCssModules(scriptUrl, sheets, scope) {
   const scriptContents = fs.readFileSync(scriptUrl, 'utf-8');
 
   acornWalk.simple(acorn.parse(scriptContents, {
@@ -26,9 +28,37 @@ function walkAllImportsForCssModules(scriptUrl, sheets) {
       if(value.endsWith('.module.css') && specifiers.length === 1 && specifiers[0].local.name === 'styles') {
         console.log('WE GOT A WINNER!!!', value);
         const cssModuleUrl = new URL(value, scriptUrl);
+        const scope = cssModuleUrl.pathname.split('/').pop().split('.')[0];
         const cssContents = fs.readFileSync(cssModuleUrl, 'utf-8');
+        const classNameMap = {};
+        let scopedCssContents = cssContents;
 
-        sheets.push(cssContents);
+        const ast = parse(cssContents, {
+          onParseError(error) {
+            console.log(error.formattedMessage);
+          }
+        });
+
+        walk(ast, {
+          enter: function (node) {
+            if(node.type === 'ClassSelector') {
+              const { name } = node;
+              const scopedClassName = `${scope}-${name}`;
+              classNameMap[name] = scopedClassName;
+
+              scopedCssContents = scopedCssContents.replace(`\.${name}`, `\.${scopedClassName}`);
+            }
+          }
+        });
+
+        // TODO could we convert this module into an instance of CSSStylesheet to grab values?
+        // https://web.dev/articles/constructable-stylesheets
+        // or just use postcss-modules plugin?
+        cssModulesMap.set(cssModuleUrl.pathname, {
+          module: classNameMap,
+          contents: scopedCssContents
+        })
+        // sheets.push(cssContents);
       } else if(node.source.value.endsWith('.js')) {
         console.log('go recursive for', value);
         const recursiveScriptUrl = new URL(value, scriptUrl);
@@ -52,27 +82,7 @@ class CssModulesResource extends ResourceInterface {
   }
 
   async serve(url) {
-    // TODO could we convert this into an instance of CSSStylesheet to grab values?
-    // https://web.dev/articles/constructable-stylesheets
-    // or just use postcss-modules plugin?
-    const body = await fs.promises.readFile(url, 'utf-8');
-    const classNameMap = {};
-    const ast = parse(body, {
-      onParseError(error) {
-        console.log(error.formattedMessage);
-      }
-    });
-
-    walk(ast, {
-      enter: function (node) {
-        if(node.type === 'ClassSelector') {
-          const { name } = node;
-          classNameMap[name] = name;
-        }
-      }
-    });
-
-    const cssModule = `export default ${JSON.stringify(classNameMap)}`; // `export default { heading: 'heading' }`;
+    const cssModule = `export default ${JSON.stringify(cssModulesMap.get(url.pathname).module)}`;
 
     return new Response(cssModule, {
       headers: {
@@ -81,7 +91,7 @@ class CssModulesResource extends ResourceInterface {
     });
   }
 
-  // TODO this only works with the patch to greenwood/cli
+  // this happens "first" as the HTML is returned, to find viable references to CSS Modules
   async shouldIntercept(url) {
     return url.pathname.endsWith('/');
   }
@@ -102,6 +112,10 @@ class CssModulesResource extends ResourceInterface {
         walkAllImportsForCssModules(scriptUrl, sheets);
       }
     }
+
+    cssModulesMap.forEach(module => {
+      sheets.push(module.contents);
+    });
 
     const newBody = body.replace('</head>', `
         <style>
