@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og:http://ogp.me/ns#">
+
+  <head>
+    <title>Greenwood</title>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 20px;
+      }
+
+      body {
+        max-width: 80%;
+        margin: 0 auto;
+      }
+
+      header a img {
+        margin-left: 5%;
+        width: 20%;
+      }
+
+      header nav {
+        display: inline-block;
+        vertical-align: top;
+        text-align: right;
+        width: 65%;
+      }
+
+      header nav ul {
+        list-style-type: none;
+      }
+
+      header nav ul li {
+        width: 10%;
+        text-align: center;
+        display: inline-block;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .column {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        flex: 1;
+      }
+
+      .sidebar {
+        overflow-y: scroll;
+        max-height: 100vh;
+        width: 40%;
+        flex: 1;
+      }
+
+      .content {
+        flex: 2;
+      }
+
+      ul {
+        list-style-type: square;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="/">
+        <img src="https://www.greenwoodjs.io/assets/greenwood-logo-1500w.webp">
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="/docs/">Docs</a></li>
+          <li><a href="/guides/">Guides</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="row">
+      <div class="column sidebar">
+        <h2>Introduction</h2>
+        <ul>
+          <li><a href="/docs/introduction/quick-start/">Quick Start</a></li>
+          <li><a href="/docs/introduction/vision/">Vision</a></li>
+          <li><a href="/docs/introduction/web-standards/">Web Standards</a></li>
+        </ul>
+
+        <h2>Routing</h2>
+        <ul>
+          <li>Pages</li>
+          <li>Layouts</li>
+          <li>Hybrid Routing</li>
+          <li>SPA</li>
+          <li>Not Found</li>
+        </ul>
+
+        <h2>Resources</h2>
+        <ul>
+          <li>Scripts</li>
+          <li>Styles</li>
+          <li>Assets</li>
+          <li>Custom Imports</li>
+        </ul>
+
+        <h2>Server Rendering</h2>
+        <ul>
+          <li>Usage (WCC)</li>
+          <li>Data Loading (WSCs)</li>
+          <li>Prerender</li>
+        </ul>
+
+        <h2>API Routes</h2>
+        <ul>
+          <li>Usage (WCC)</li>
+        </ul>
+
+        <h2>Deploy</h2>
+        <ul>
+          <li>SSG</li>
+          <li>SSR</li>
+          <li>Serverless</li>
+        </ul>
+
+        <h2>Markdown</h2>
+        <ul>
+          <li>Frontmatter</li>
+          <li>Imports</li>
+        </ul>
+
+        <h2>Content as Data</h2>
+        <ul>
+          <li>Data</li>
+          <li>Menu</li>
+          <li>Compilation</li>
+        </ul>
+
+        <h2>Plugins</h2>
+        <!-- Build table of contents and page content from repo -->
+        <ul>
+          <li>API</li>
+          <li>Adapter Vercel</li>
+          <li>Import CSS</li>
+          <li>Import JSON</li>
+          <li>...</li>
+        </ul>
+
+        <h2>Configuration</h2>
+        <ul>
+          <li>Dev Server</li>
+          <li>Interpolate Frontmatter</li>
+          <li>Markdown</li>
+          <li>Optimization</li>
+          <li>Pages</li>
+          <li>Port</li>
+          <li>Prerender</li>
+          <li>Static Router</li>
+          <li>Templates Directory</li>
+          <li>Workspace</li>
+        </ul>
+      </div>
+      <div class="column content">
+        <h2>Quick Start</h2>
+        <pre>
+          $ npx @greenwood/init
+        </pre>
+      </div>  
+    </div>
+
+  </body>
+
+</html>
