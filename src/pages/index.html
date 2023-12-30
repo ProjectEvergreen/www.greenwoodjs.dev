@@ -4,8 +4,48 @@
   <head>
     <title>Greenwood</title>
     <style>
+      :root {
+        --color-primary: '';
+        --color-secondary: #003554;
+        /* --color-accent: #e2725b; */
+        /* --color-accent: #e57757; */
+        --color-accent: #c2452d;
+        --color-white: white;
+        --color-yellow: #fffaca;
+        --color-green: #04724d;
+      }
+
+      @font-face {
+        font-family: "Geist-Sans";
+        src: url('../../node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2') format("truetype");
+      }
+
+      @font-face {
+        font-family: "Geist-Mono";
+        src: url('../../node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.woff2') format("truetype");
+      }
+
       * {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Geist-Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        color: var(--color-accent)
+      }
+
+      header {
+        background-color: var(--color-secondary);
+        margin: 0;
+        padding: 20px;
+      }
+
+      header a {
+        color: var(--color-white);
       }
 
       header a img {
@@ -25,9 +65,11 @@
       }
 
       header nav ul li {
-        width: 10%;
+        min-width: 10%;
+        padding: 5px;
         text-align: center;
         display: inline-block;
+        font-size: 1.5em;
       }
   
       .hero {
@@ -39,6 +81,10 @@
         font-size: 3em;
       }
 
+      .hero h2 i {
+        color: var(--color-accent);
+      }
+
       .hero p {
         width: 60%;
         padding: 0;
@@ -47,56 +93,63 @@
       }
 
       .card {
-        border: solid 1px;
+        border: solid 3px var(--color-secondary);
         padding: 30px;
         margin: 30px auto;
         border-radius: 10px;
-        width: 80%;
+        width: 60%;
         min-height: 300px;
-        background-color: beige;
+        color: var(--color-white);
+        background-color: var(--color-accent);
       }
 
       .card h3 {
         padding: 0 20px;
         display: inline-block;
         width: 45%;
-        font-size: 1.5em;
+        font-size: 1.8em;
         vertical-align: top;
       }
 
       .card img {
-        width: 49%;
+        width: 50%;
         border-radius: 5px;
       }
 
       .card img.shadow-right {
-        filter: drop-shadow(5px 10px 4px grey);
+        filter: drop-shadow(5px 10px 4px var(--color-secondary));
       }
 
       .card img.shadow-left {
-        filter: drop-shadow(-5px 10px 4px grey);
+        filter: drop-shadow(-5px 10px 4px var(--color-secondary));
       }
 
       .banner {
         text-align: center;
         font-weight: bold;
         font-size: 2em;
+        width: 60%;
+        background-color: var(--color-secondary);
+        color: var(--color-white);
+        padding: 30px;
+        margin: 80px auto 10px;
+        border-radius: 10px;
       }
 
       button {
         display: inline-block;
-        background-color: beige;
+        background-color: var(--color-accent);
         font-size: 1.5em;
         padding: 10px;
         border-radius: 10px;
       }
 
       pre {
-        background-color: gray;
-        font-family: monospace;
+        background-color: var(--color-secondary);
+        font-family: 'Geist-Mono', monospace;
         color: white;
-        text-align: left;
-        width: 40%;
+        text-align: center;
+        width: 60%;
         font-size: 2em;
         padding: 20px 0 0;
         margin: 20px auto;
@@ -104,7 +157,7 @@
       }
 
       ul.features-list {
-        width: 80%;
+        width: 60%;
         margin: 0 auto;
         list-style-type: none;
       }
@@ -153,7 +206,7 @@
     </div>
     
     <div class="card">
-      <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-based routing to easily achieve static and dynamic pages side-by-side.</h3>
+      <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.</h3>
       <!-- pages/index.html --> 
       <img class="shadow-right" src="/assets/walkthrough/step1.png">
     </div>
@@ -161,7 +214,7 @@
     <div class="card">
       <!-- pages/products.js -->  
       <img class="shadow-left" src="/assets/walkthrough/step2.png">
-      <h3>Server rendered pages are just custom elements ("Web Server Components"), that can of course consume other Web Components for entirely standards based server-side rendering with <i>no</i> JavaScript by default.</h3>
+      <h3>Server rendered pages are just custom elements ("Web Server Components"), that can of course consume other Web Components for entirely standards based server-side rendering with <i>no</i> client-side JavaScript by default.</h3>
     </div>
     
     <div class="card">
@@ -175,8 +228,10 @@
       <img class="shadow-left" src="/assets/walkthrough/step4.png"> 
       <h3>Include API Routes for easy client side data loading using the latest in web standards like Fetch, FormData, and Request and Response on both the frontend and the backend.  You can even return HTML rendered out from Web Components.  Don't be scared it's just HTML, you got this!</h3>
     </div>
+
+    <!-- stackblitz link here of everything from above? Should this just be the getting started? -->
     
-    <h3 class="banner">Now, just build and go! 🚀</h3>
+    <h3 class="banner">Now, just build and deploy! 🚀</h3>
 
     <div class="card">
       <h3>Greenwood can handle SSG, SPA, SSR output to any static or server hosting, as well as serverless hosting providers like Netlify and Vercel.</h3>
@@ -197,7 +252,7 @@
       </li>
       <li>
         <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
-        <span>Works great with libraries like Lit and htmx</span>
+        <span>Works great with libraries like <a href="/guides/ecosystem/lit/">Lit</a> and <a href="/guides/ecosystem/htmx/">htmx</a></span>
       </li>
       <li>
         <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
