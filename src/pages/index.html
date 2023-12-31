@@ -35,7 +35,7 @@
       }
 
       a {
-        color: var(--color-accent)
+        color: var(--color-accent);
       }
 
       header {
@@ -139,21 +139,25 @@
       button {
         display: inline-block;
         background-color: var(--color-accent);
+        color: var(--color-white);
         font-size: 1.5em;
-        padding: 10px;
+        padding: 14px;
         border-radius: 10px;
+        cursor: pointer;
       }
 
-      pre {
+      div.code {
         background-color: var(--color-secondary);
         font-family: 'Geist-Mono', monospace;
         color: white;
         text-align: center;
-        width: 60%;
-        font-size: 2em;
-        padding: 20px 0 0;
+        min-width: 50%;
+        max-width: 60%;
+        font-size: 1.6em;
+        padding: 15px 0;
         margin: 20px auto;
         border-radius: 10px;
+        display: block;
       }
 
       ul.features-list {
@@ -199,14 +203,17 @@
       <a href="#">
         <button>Get Started</button>
       </a>
+      <a href="#">
+        <button>View in Stackblitz</button>
+      </a>
       <br/>
-      <pre>
+      <div class="code">
         $ npx @greenwood/init
-      </pre>
+      </div>
     </div>
     
     <div class="card">
-      <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.</h3>
+      <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.  Markdown is also supported.</h3>
       <!-- pages/index.html --> 
       <img class="shadow-right" src="/assets/walkthrough/step1.png">
     </div>
