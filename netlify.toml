@@ -6,7 +6,7 @@
   skip_processing = true
 
 [build.environment]
-  NODE_VERSION = "18.15.0"
+  NODE_VERSION = "21.1.0"
 
 [[redirects]]
   from = "/docs/tech-stack/"
