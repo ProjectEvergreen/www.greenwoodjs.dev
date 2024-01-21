@@ -23,7 +23,7 @@
     "geist": "^1.2.0"
   },
   "devDependencies": {
-    "@greenwood/cli": "^0.29.1",
+    "@greenwood/cli": "^0.29.2",
     "rimraf": "^5.0.5"
   }
 }
