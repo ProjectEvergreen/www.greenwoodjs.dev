@@ -84,7 +84,11 @@
   export default class Card extends HTMLElement {
 
     selectItem() {
+<<<<<<< HEAD
       alert(`selected item is => ${this.title}`);
+=======
+      alert(`selected item is => ${this.getAttribute('title')}!`);
+>>>>>>> e1430c2 (converting code samples from images to markdown)
     }
 
     connectedCallback() {
@@ -101,9 +105,14 @@
             <h3>${title}</h3>
             <img src="${thumbnail}" alt="${title}">
 
+<<<<<<< HEAD
             <button
               onclick="this.parentNode.parentNode.host.selectItem()">
                 View Item Details
+=======
+            <button onclick="this.parentNode.parentNode.host.selectItem()">
+              View Item Details
+>>>>>>> e1430c2 (converting code samples from images to markdown)
             </button>
           </div>
         `;
@@ -129,7 +138,11 @@
 
   export async function handler(request) {
     const formData = await request.formData();
+<<<<<<< HEAD
     const searchTerm = formData.get('term') ?? '';
+=======
+    const searchTerm = formData.has('term') ? formData.get('term') : '';
+>>>>>>> e1430c2 (converting code samples from images to markdown)
     const products = await getProducts(searchTerm);
     let body = 'No results found.';
 
