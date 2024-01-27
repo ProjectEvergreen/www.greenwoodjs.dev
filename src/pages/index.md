@@ -84,7 +84,7 @@
   export default class Card extends HTMLElement {
 
     selectItem() {
-      alert(`selected item is => ${this.getAttribute('title')}!`);
+      alert(`selected item is => ${this.title}`);
     }
 
     connectedCallback() {
@@ -101,8 +101,9 @@
             <h3>${title}</h3>
             <img src="${thumbnail}" alt="${title}">
 
-            <button onclick="this.parentNode.parentNode.host.selectItem()">
-              View Item Details
+            <button
+              onclick="this.parentNode.parentNode.host.selectItem()">
+                View Item Details
             </button>
           </div>
         `;
@@ -128,7 +129,7 @@
 
   export async function handler(request) {
     const formData = await request.formData();
-    const searchTerm = formData.has('term') ? formData.get('term') : '';
+    const searchTerm = formData.get('term') ?? '';
     const products = await getProducts(searchTerm);
     let body = 'No results found.';
 
