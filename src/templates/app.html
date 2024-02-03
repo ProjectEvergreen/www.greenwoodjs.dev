@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og:http://ogp.me/ns#">
+
+  <head>
+    <title>Greenwood</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/node_modules/prismjs/themes/prism-tomorrow.css"></link>
+    <style>
+      :root {
+        --color-primary: '';
+        --color-secondary: #003554;
+        /* --color-accent: #e2725b; */
+        /* --color-accent: #e57757; */
+        --color-accent: #c2452d;
+        --color-white: white;
+        --color-yellow: #fffaca;
+        --color-green: #04724d;
+      }
+
+      @font-face {
+        font-family: "Geist-Sans";
+        src: url('../../node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2') format("truetype");
+      }
+
+      @font-face {
+        font-family: "Geist-Mono";
+        src: url('../../node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.woff2') format("truetype");
+      }
+
+      * {
+        font-family: 'Geist-Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      /* tweaks for PrismJS */
+      code[class*="language-"],
+      pre[class*="language-"],
+      span.token {
+        font-family: 'Geist-Mono', monospace;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        color: var(--color-accent);
+      }
+
+      header {
+        background-color: var(--color-secondary);
+        margin: 0;
+        padding: 20px;
+      }
+
+      header a {
+        color: var(--color-white);
+      }
+
+      header a img {
+        margin-left: 5%;
+        width: 20%;
+      }
+
+      header nav {
+        display: inline-block;
+        vertical-align: top;
+        text-align: right;
+        width: 65%;
+      }
+
+      header nav ul {
+        list-style-type: none;
+      }
+
+      header nav ul li {
+        min-width: 10%;
+        padding: 5px;
+        text-align: center;
+        display: inline-block;
+        font-size: 1.5em;
+      }
+  
+      .hero {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .hero h2 {
+        font-size: 3em;
+      }
+
+      .hero h2 i {
+        color: var(--color-accent);
+      }
+
+      .hero p {
+        width: 60%;
+        padding: 0;
+        margin: 0 auto;
+        font-size: 1.5em;
+      }
+
+      .hero pre {
+        text-align: center;
+        min-width: 50%;
+        max-width: 60%;
+        font-size: 1.6em;
+        padding: 15px 0;
+        margin: 20px auto;
+        border-radius: 10px;
+        display: block;
+      }
+
+      .card {
+        border: solid 3px var(--color-secondary);
+        padding: 30px;
+        margin: 30px auto;
+        border-radius: 10px;
+        width: 60%;
+        min-height: 300px;
+        color: var(--color-white);
+        background-color: var(--color-accent);
+      }
+
+      .card h3 {
+        padding: 0 20px;
+        display: inline-block;
+        width: 40%;
+        font-size: 1.5em;
+        vertical-align: top;
+      }
+
+      .card pre {
+        display: inline-block;
+        width: 50%;
+        border-radius: 10px;
+      }
+
+      .card pre:nth-child(odd) {
+        filter: drop-shadow(5px 10px 4px var(--color-secondary));
+      }
+
+      .card pre:nth-child(even) {
+        filter: drop-shadow(-5px 10px 4px var(--color-secondary));
+      }
+
+      .banner {
+        text-align: center;
+        font-weight: bold;
+        font-size: 2em;
+        width: 60%;
+        background-color: var(--color-secondary);
+        color: var(--color-white);
+        padding: 10px;
+        margin: 40px auto;
+        border-radius: 10px;
+        font-style: italic;
+      }
+
+      button {
+        display: inline-block;
+        background-color: var(--color-accent);
+        color: var(--color-white);
+        font-size: 1.5em;
+        padding: 14px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      ul.features-list {
+        width: 60%;
+        margin: 0 auto;
+        list-style-type: none;
+      }
+
+      ul.features-list img {
+        width: 6%;
+      }
+
+      ul.features-list li {
+        text-align: center;
+        font-size: 2em;
+        vertical-align: top;
+        width: 49%;
+        margin: 10px auto;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="/">
+        <img src="https://www.greenwoodjs.io/assets/greenwood-logo-1500w.webp">
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="/docs/">Docs</a></li>
+          <li><a href="/guides/">Guides</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <page-outlet></page-outlet>
+    </main>
+  </body>
+
+</html>

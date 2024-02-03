@@ -20,10 +20,12 @@
     "serve": "npm run clean && npm run build && greenwood serve"
   },
   "dependencies": {
-    "geist": "^1.2.0"
+    "geist": "^1.2.0",
+    "prismjs": "^1.21.0"
   },
   "devDependencies": {
     "@greenwood/cli": "^0.29.0",
+    "@mapbox/rehype-prism": "^0.5.0",
     "rimraf": "^5.0.5"
   }
 }
