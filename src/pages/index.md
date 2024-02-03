@@ -199,7 +199,7 @@
   </li>
   <li>
     <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
-    <span>Works great with libraries like <a href="/guides/ecosystem/lit/">Lit</a> and <a href="/guides/ecosystem/htmx/">htmx</a></span>
+    <span>Works great with libraries like <a href="/guides/ecosystem/lit/">Lit</a>, <a href="/guides/ecosystem/htmx/">htmx</a> and <a href="/guides/ecosystem/tailwind/">Tailwind</a></span>
   </li>
   <li>
     <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
