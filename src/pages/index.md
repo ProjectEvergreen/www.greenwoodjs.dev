@@ -184,7 +184,7 @@
 
 <div class="banner">
 
-  ### When you have the web, why use somebody else's API?
+  ### When you have the <u><i>web</i></u>, why use somebody else's API?
 
 </div>
 
