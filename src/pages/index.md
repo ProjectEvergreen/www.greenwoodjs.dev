@@ -138,7 +138,6 @@
         ${
           products.map((item, idx) => {
             const { title, thumbnail } = item;
-
             return `
               <app-card
                 title="${idx + 1}) ${title}"
