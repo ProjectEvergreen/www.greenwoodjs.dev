@@ -15,7 +15,26 @@
 
 </div>
 
-<div class="card">
+
+<div class="walkthrough">
+  <div class="banner" style="width:100%">
+    <h2> Go from zero to fullstack with web standards! 🚀</h2>
+  </div>
+
+  <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.  Markdown is also supported.</h3>
+  <div>
+    <ol>
+      <li>1) HTML First</li>
+      <li>2) Server Side Rendering</li>
+      <li>3) Web Components</li>
+      <li>4) API Routes</li>
+    </ol>
+    <pre>
+    </pre>
+  </div>
+</div>
+
+<div class="walkthrough-card card card1">
 
   ### Greenwood is HTML first by design.  Start from just an _index.html_ file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.  Markdown is also supported.
 
@@ -41,7 +60,7 @@
 
 </div>
 
-<div class="card">
+<div class="walkthrough-card card card2">
 
   ### Server rendered pages are just custom elements ("Web Server Components"), that can of course consume other Web Components for entirely standards based server-side rendering with <i>no</i> client-side JavaScript by default.
 
@@ -75,7 +94,7 @@
 
 </div>
 
-<div class="card">
+<div class="walkthrough-card card card3">
 
   ### Web Components are fully isomorphic in Greenwood and so the same definition can be used on the client and the server!  With the power of WCC, you can use real standards based Web Components, meaning you are free to use Light DOM <i>or</i> Shadow DOM
 
@@ -118,9 +137,9 @@
 
 </div>
 
-<div class="card">
+<div class="walkthrough-card card card4">
 
-  ### Include API Routes for easy client side data loading using the latest in web standards like Fetch, FormData, and Request and Response on both the frontend and the backend.  You can even return HTML rendered out from Web Components.  Don't be scared it's just HTML, you got this!
+  ### Include API Routes for easy client side data loading using the latest in web standards like Fetch, FormData, and Request and Response on both the frontend and the backend.  You can even return HTML rendered out from Web Components.  HTML, ftw!
 
   ```js
   // api/search.js
