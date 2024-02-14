@@ -4,17 +4,19 @@
   <head>
     <title>Greenwood</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/node_modules/prismjs/themes/prism-tomorrow.css"></link>
+    <link rel="stylesheet" href="/node_modules/prism-themes/themes/prism-nord.css"></link>
+    <!-- <link rel="stylesheet" href="/node_modules/prismjs/themes/prism-tomorrow.css"></link> -->
     <style>
       :root {
         --color-primary: '';
         --color-secondary: #003554;
         /* --color-accent: #e2725b; */
         /* --color-accent: #e57757; */
-        --color-accent: #c2452d;
+        --color-accent: var(--color-green);
         --color-white: white;
         --color-yellow: #fffaca;
-        --color-green: #04724d;
+        --color-green: #006342;
+        --color-accent-background: #eaebf0;
       }
 
       @font-face {
@@ -98,15 +100,24 @@
         width: 60%;
         padding: 0;
         margin: 0 auto;
-        font-size: 1.5em;
+        font-size: 1.8em;
+      }
+
+      .hero button {
+        display: inline-block;
+        background-color: var(--color-accent);
+        color: var(--color-white);
+        font-size: 1em;
+        padding: 14px;
+        border-radius: 10px;
+        cursor: pointer;
       }
 
       .hero pre {
         text-align: center;
-        min-width: 50%;
-        max-width: 60%;
+        width: 25%;
         font-size: 1.6em;
-        padding: 15px 0;
+        padding: 13px 0;
         margin: 20px auto;
         border-radius: 10px;
         display: block;
@@ -118,9 +129,9 @@
         margin: 30px auto;
         border-radius: 10px;
         width: 60%;
-        min-height: 300px;
-        color: var(--color-white);
-        background-color: var(--color-accent);
+        min-height: 800px;
+        color: var(--color-secondary);
+        background-color: var(--color-accent-background);
       }
 
       .walkthrough h3 {
@@ -146,14 +157,20 @@
         display: inline-block;
         width: 30%;
         vertical-align: top;
-        font-size: 1.5rem;
       }
 
       .walkthrough ol li {
         cursor: pointer;
+        font-size: 1.7rem;
+        margin: 10px 0;
+      }
+
+      .walkthrough ol li:hover {
+        padding-left: 5px;
       }
 
       .walkthrough ol li.active {
+        color: var(--color-white);
         background-color: var(--color-secondary);
         border-radius: 5px;
         padding-left: 5px;
@@ -163,21 +180,72 @@
         display: none;
       }
 
+      /* https://alvarotrigo.com/blog/css-text-animations/ */
+      .line {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+
+      .lineUp {
+        animation: 1.5s anim-lineUp ease-out;
+      }
+      @keyframes anim-lineUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30%);
+        }
+        20% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+
+      .lineDown {
+        animation: 1.5s anim-lineDown ease-out;
+      }
+      @keyframes anim-lineDown {
+        0% {
+          opacity: 0;
+          transform: translateY(-10%);
+        }
+        20% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+
       .card {
         border: solid 3px var(--color-secondary);
         padding: 30px;
-        margin: 30px auto;
+        margin: 50px auto!important;
         border-radius: 10px;
         width: 60%;
+        margin: 0 auto;
         min-height: 300px;
-        color: var(--color-white);
-        background-color: var(--color-accent);
+        color: var(--color-secondary);
+        text-align: center;
+        background-color: var(--color-accent-background);
       }
 
       .card h3 {
         padding: 0 20px;
         display: inline-block;
-        width: 40%;
+        width: 100%;
         font-size: 1.5em;
         vertical-align: top;
       }
@@ -200,29 +268,32 @@
         text-align: center;
         font-weight: bold;
         font-size: 2em;
-        width: 60%;
         background-color: var(--color-secondary);
         color: var(--color-white);
-        padding: 10px;
-        margin: 40px auto;
-        border-radius: 10px;
+        padding: 1px 0;
+        margin: 60px auto;
         font-style: italic;
       }
 
-      button {
-        display: inline-block;
-        background-color: var(--color-accent);
-        color: var(--color-white);
-        font-size: 1.5em;
-        padding: 14px;
-        border-radius: 10px;
-        cursor: pointer;
+      .banner-left {
+        border: 15px solid;
+        border-image-slice: 1;
+        border-width: 5px;
+        border-radius: 20px;
+        border-image-source: linear-gradient(to left, var(--color-green), #e2725b);
+      }
+
+      .banner-right {
+        border: 15px solid;
+        border-image-slice: 1;
+        border-width: 5px;
+        border-radius: 20px;
+        border-image-source: linear-gradient(to right, var(--color-green), #e2725b);
       }
 
       ul.features-list {
-        width: 60%;
         margin: 0 auto;
-        list-style-type: none;
+        list-style-type: disc;
       }
 
       ul.features-list img {
@@ -233,6 +304,7 @@
         text-align: center;
         font-size: 2em;
         vertical-align: top;
+        list-style-type: disc;
         width: 49%;
         margin: 10px auto;
         display: inline-block;
@@ -245,6 +317,13 @@
 
       h3 u i {
         color: var(--color-white);
+      }
+
+      img.deploy {
+        width: 15%;
+        margin: 0 auto;
+        padding: 35px;
+        display: inline-block;
       }
     </style>
 
@@ -271,7 +350,13 @@
             targetCode.innerHTML = fromCode.innerHTML;
 
             item.classList.add('active');
+            targetCode.classList.add('lineDown');
+            targetHeading.classList.add('lineUp');
             index = idx;
+            setTimeout(() => {
+              targetHeading.classList.remove('lineUp');
+              targetCode.classList.remove('lineDown');
+            }, 2000)
           })
         })
       })

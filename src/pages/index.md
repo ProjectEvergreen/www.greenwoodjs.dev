@@ -1,8 +1,10 @@
 <div class="hero">
 
-  ## The full-stack web is <u><i>here</i></u>
+  ## The fullstack web is <u><i>here</i></u>
 
-  Greenwood is your workbench for the web, embracing web standards from the ground up to empower your stack from front to back, allowing you to run anywhere the web can run.
+  Greenwood is your workbench for the web, embracing web standards from the ground up to empower your stack from front to back.
+  
+  <!-- , allowing you to run anywhere the web can run. -->
 
   <br/>
 
@@ -15,13 +17,13 @@
 
 </div>
 
+<div class="banner banner-left">
+  <h2>Go from zero to fullstack with web standards 🚀</h2>
+</div>
 
 <div class="walkthrough">
-  <div class="banner" style="width:100%">
-    <h2> Go from zero to fullstack with web standards! 🚀</h2>
-  </div>
 
-  <h3>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.  Markdown is also supported.</h3>
+  <h3 class="line">Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.  Markdown is also supported.</h3>
   <div>
     <ol>
       <li>1) HTML First</li>
@@ -184,44 +186,51 @@
 </div>
 
 
-<!-- stackblitz link here of everything from above? Should this just be the getting started? -->
-<div class="banner">
-
-  ### Now, just build and deploy! 🚀
-
+<div class="banner banner-right">
+  <h2>Build and deploy with your favorite providers</h2>
 </div>
 
 <div class="card">
 
-  ### Greenwood can handle SSG, SPA, SSR output to any static or server hosting, as well as serverless hosting providers like Netlify and Vercel.
+  <h3>Greenwood can produce SSG, SPA, or SSR output for any static or server hosting, as well as serverless hosting providers like Netlify and Vercel.</h3>
+  
+  <img class="deploy" src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png">
 
-  <img class="shadow-left" style="width: 25%; margin: 0 auto; display: inline-block" src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png">
+  <img class="deploy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png">
 
-  <img class="shadow-left" style="width: 25%; margin: 0 auto; display: inline-block" src="https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png">
-
-</div>
-
-<div class="banner">
-
-  ### When you have the <u><i>web</i></u>, why use somebody else's API?
+  <img class="deploy" src="https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png"/>
 
 </div>
 
-<ul class="features-list">
-  <li>
-    <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
-    <span>Fast, unbundled, local development workflow</span>
-  </li>
-  <li>
-    <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
-    <span>Focus on your work, not the framework</span>
-  </li>
-  <li>
-    <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
-    <span>Works great with libraries like <a href="/guides/ecosystem/lit/">Lit</a>, <a href="/guides/ecosystem/htmx/">htmx</a> and <a href="/guides/ecosystem/tailwind/">Tailwind</a></span>
-  </li>
-  <li>
-    <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
-    <span>Ship your source</span>
-  </li>
-</ul>
+<div class="banner banner-left">
+  <h2>When you have the <u><i>web</i></u>, why use somebody else's API?</h2>
+</div>
+
+<!-- TODO use "real" icons -->
+<div class="card">
+  <ul class="features-list">
+    <li>
+      <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+      <span>Fast, unbundled, local development workflow</span>
+    </li>
+    <li>
+      <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+      <span>Focus on your work, not the framework</span>
+    </li>
+    <li>
+      <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+      <span>Works great with your favorite tools like <a href="/guides/ecosystem/lit/">Lit</a>, <a href="/guides/ecosystem/htmx/">htmx</a> and <a href="/guides/ecosystem/tailwind/">Tailwind</a></span>
+    </li>
+    <li>
+      <img src="https://www.greenwoodjs.io/assets/greenwood-logo-og.png">
+      <span>Ship your source</span>
+    </li>
+  </ul>
+</div>
+
+<!-- TODO update vibes -->
+<img src="/assets/vibes-check.png" style="width:100%;"/>
+
+<!-- <div class="banner banner-right">
+  <h2>Greenwood loves the web</h2>
+</div> -->
