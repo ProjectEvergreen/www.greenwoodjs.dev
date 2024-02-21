@@ -15,8 +15,8 @@ class ImportHtmlResource extends ResourceInterface {
 
   async shouldServe(url, request) {
     const { pathname } = url;
-    console.log({ url, request });
-    console.log(request.headers);
+    // console.log({ url, request });
+    // console.log(request.headers);
 
     // TODO better way to test for import attributes via URL, e.g. force attributes as query params somehow?
     return pathname.endsWith(this.extensions[0]); // || (request.headers.get('Content-Type') || '').includes(this.contentType);
@@ -27,8 +27,15 @@ class ImportHtmlResource extends ResourceInterface {
     const contents = await fs.readFile(url, 'utf-8');
     // TODO do we need all these?
     // console.log({ contents })
-    const htmlInJsBody = `const html = \`${contents.replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\')}\`;\nexport default html;`;
-    console.log('url', { url });
+    // const htmlInJsBody = `const html = \`${contents.replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\')}\`;\nexport default html;`;
+    const htmlInJsBody = `
+      const template = document.createElement('template');
+
+      template.innerHTML = \`${contents.replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\')}\`;
+
+      export default template;
+    `;
+    // console.log('url', { url });
     // console.log({ htmlInJsBody });
     return new Response(htmlInJsBody, {
       headers: new Headers({
