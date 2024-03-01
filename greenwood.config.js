@@ -35,24 +35,24 @@ class CodeBlockComponentEscapingResource extends ResourceInterface {
 }
 
 export default {
-  plugins: [{
-  //   type: 'resource',
-  //   name: 'plugin-resource-code-block-escaping',
-  //   provider: (compilation) => new CodeBlockComponentEscapingResource(compilation)
-  // }, {
-    // TODO get this functionality from Greenwood itself
-    // https://github.com/ProjectEvergreen/greenwood/issues/1199
-    type: 'copy',
-    name: 'plugin-geist-font',
-    provider: (compilation) => {
-      const { outputDir, projectDirectory } = compilation.context;
+  // plugins: [{
+  // //   type: 'resource',
+  // //   name: 'plugin-resource-code-block-escaping',
+  // //   provider: (compilation) => new CodeBlockComponentEscapingResource(compilation)
+  // // }, {
+  //   // TODO get this functionality from Greenwood itself
+  //   // https://github.com/ProjectEvergreen/greenwood/issues/1199
+  //   type: 'copy',
+  //   name: 'plugin-geist-font',
+  //   provider: (compilation) => {
+  //     const { outputDir, projectDirectory } = compilation.context;
 
-      return [{
-        from: new URL('./node_modules/geist/dist/fonts/', projectDirectory),
-        to: new URL('./node_modules/geist/dist/fonts/', outputDir)
-      }];
-    }
-  }],
+  //     return [{
+  //       from: new URL('./node_modules/geist/dist/fonts/', projectDirectory),
+  //       to: new URL('./node_modules/geist/dist/fonts/', outputDir)
+  //     }];
+  //   }
+  // }],
   markdown: {
     plugins: [
       '@mapbox/rehype-prism'

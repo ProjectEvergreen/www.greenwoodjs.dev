@@ -1,0 +1,83 @@
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+index d52c723..46d4068 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+@@ -5,10 +5,11 @@
+  *
+  */
+ import fs from 'fs';
++import path from 'path';
+ import { parse, walk } from 'css-tree';
+ import { ResourceInterface } from '../../lib/resource-interface.js';
+ 
+-function bundleCss(body, url, projectDirectory) {
++function bundleCss(body, url, projectDirectory, outputDirectory) {
+   const ast = parse(body, {
+     onParseError(error) {
+       console.log(error.formattedMessage);
+@@ -19,8 +20,10 @@ function bundleCss(body, url, projectDirectory) {
+   walk(ast, {
+     enter: function (node, item) { // eslint-disable-line complexity
+       const { type, name, value } = node;
+-
++      console.log({ type, name, value });
++      console.log()
+       if ((type === 'String' || type === 'Url') && this.atrulePrelude && this.atrule.name === 'import') {
++        console.log('1111')
+         const { value } = node;
+ 
+         if (value.indexOf('.') === 0 || value.indexOf('/node_modules') === 0) {
+@@ -29,10 +32,32 @@ function bundleCss(body, url, projectDirectory) {
+             : new URL(value, url);
+           const importContents = fs.readFileSync(resolvedUrl, 'utf-8');
+ 
+-          optimizedCss += bundleCss(importContents, url, projectDirectory);
++          optimizedCss += bundleCss(importContents, url, projectDirectory, outputDirectory);
+         } else {
+           optimizedCss += `@import url('${value}');`;
+         }
++      } else if (type === 'Url' && this.atrule.name !== 'import') {
++        console.log('222')
++        console.log('WINNER!!!!', { url });
++        console.log({ type, name, value });
++        const root = value.replace(/\.\.\//g, '').replace('./', '');
++
++        console.log({ root });
++        if(root.startsWith('node_modules')) {
++          fs.mkdirSync(path.dirname(new URL(`./${root}`, outputDirectory).pathname), {
++            recursive: true
++          });
++
++          fs.promises.copyFile(
++            new URL(`./${root}`, projectDirectory),
++            new URL(`./${root}`, outputDirectory)
++          )
++          // TODO replace references
++          // optimizedCss = optimizedCss.replace(value, `/${root}`);
++          optimizedCss += `url('./${root}')`;
++        } else {
++          // TODO
++        }
+       } else if (type === 'Atrule' && name !== 'import') {
+         optimizedCss += `@${name} `;
+       } else if (type === 'TypeSelector') {
+@@ -98,6 +123,7 @@ function bundleCss(body, url, projectDirectory) {
+       } else if (type === 'Declaration') {
+         optimizedCss += `${node.property}:`;
+       } else if (type === 'Url' && this.atrule?.name !== 'import') {
++        console.log('3333')
+         optimizedCss += `url('${node.value}')`;
+       } else if (type === 'Identifier' || type === 'Hash' || type === 'Dimension' || type === 'Number' || (type === 'String' && (this.atrule?.type !== 'import')) || type === 'Operator' || type === 'Raw' || type === 'Percentage') { // eslint-disable-line max-len
+         if (item && item.prev && type !== 'Operator' && item.prev.data.type !== 'Operator') {
+@@ -238,8 +264,10 @@ class StandardCssResource extends ResourceInterface {
+ 
+   async optimize(url, response) {
+     const body = await response.text();
+-    const optimizedBody = bundleCss(body, url, this.compilation.context.projectDirectory);
++    const { projectDirectory, outputDir } = this.compilation.context;
++    const optimizedBody = bundleCss(body, url, projectDirectory, outputDir);
+ 
++    console.log({ optimizedBody });
+     return new Response(optimizedBody);
+   }
+ }
