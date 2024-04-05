@@ -40,7 +40,17 @@ $ npm run story:dev
 
 #### Testing
 
-TODO
+To run tests in watch mode, you can use:
+
+```sh
+$ npm run test:tdd
+```
+
+Otherwise all tests can be run once with:
+
+```sh
+$ npm run test
+```
 
 ### Guidelines
 

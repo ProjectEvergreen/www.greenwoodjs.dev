@@ -11,7 +11,7 @@ export default class Footer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <footer>
-        <h4>GreenwoodJS &copy;${new Date().getFullYear()}
+        <h4>GreenwoodJS &copy;${new Date().getFullYear()}</h4>
       </footer>
     `;
   }
