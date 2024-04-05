@@ -8,7 +8,8 @@
   "license": "MIT",
   "keywords": [
     "Greenwood",
-    "Project Evergreen"
+    "Project Evergreen",
+    "Documentation"
   ],
   "engines": {
     "node": "^18.12.1"
