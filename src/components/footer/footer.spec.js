@@ -19,10 +19,6 @@ describe('Components/Footer', () => {
 
     it('should have the expected footer text', () => {
       const heading = document.querySelector('h4');
-      // <footer>
-      //   <h4>GreenwoodJS &copy;${new Date().getFullYear()}<h4>
-      // </footer>
-      // const links = document.querySelectorAll('a');
 
       expect(heading.textContent).to.equal(`GreenwoodJS ©${new Date().getFullYear()}`);
     });
