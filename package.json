@@ -15,13 +15,27 @@
     "node": "^18.12.1"
   },
   "scripts": {
-    "clean": "rm -rf public .greenwood",
+    "clean": "rimraf public .greenwood storybook-static",
     "build": "greenwood build",
     "dev": "greenwood develop",
-    "serve": "npm run clean && npm run build && greenwood serve"
+    "serve": "npm run clean && npm run build && greenwood serve",
+    "story:dev": "storybook dev -p 6006",
+    "story:build": "storybook build",
+    "story:serve": "npm run clean && npm run story:build && http-server ./storybook-static"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.3.1",
     "@greenwood/cli": "^0.29.0",
-    "rimraf": "^5.0.5"
+    "@storybook/addon-essentials": "^8.0.6",
+    "@storybook/addon-links": "^8.0.6",
+    "@storybook/blocks": "^8.0.6",
+    "@storybook/test": "^8.0.6",
+    "@storybook/web-components": "^8.0.6",
+    "@storybook/web-components-vite": "^8.0.6",
+    "http-server": "^14.1.1",
+    "lit": "^3.1.2",
+    "rimraf": "^5.0.5",
+    "storybook": "^8.0.6",
+    "vite": "^5.2.8"
   }
 }
