@@ -6,3 +6,6 @@
 coverage/
 node_modules/
 public/
+reports/
+storybook-static/
+*storybook.log
