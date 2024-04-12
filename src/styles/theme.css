@@ -1,4 +1,4 @@
-body {
+/* body {
   color: green;
 }
 
@@ -6,3 +6,33 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: black;
 }
+*/
+
+
+@font-face {
+  font-family: 'Geist';
+  src: url('');
+}
+
+
+:root {
+    --color-primary: #016341;
+    --color-secondary: #0E0F0C;
+    --color-tertiary: #151818;
+    --color-accent: #C3DDBA;
+    --color-gray: #F5F5F5;
+    --color-gray-inner: #EDEFEC;
+    --color-header: #0E0F0C;
+    --color-text: #4D4D4D;
+    --color-white: #FFFFFF;
+    --font-primary: 'Geist', 'sans-serif';
+    --font-size-base: 16px;
+    --container-radius: 6rem;
+    --hero-big: 9.25rem;
+    --hero-body: 2rem;
+    --header-1: 4rem;
+    --header-2: 2rem;
+    --heading-body: 1.5rem;
+    --body-text: 1.25rem;
+  }
+  
