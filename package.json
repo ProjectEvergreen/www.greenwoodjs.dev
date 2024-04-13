@@ -23,7 +23,8 @@
     "story:build": "storybook build",
     "story:serve": "npm run clean && npm run story:build && http-server ./storybook-static",
     "test": "wtr",
-    "test:tdd": "npm run test -- --watch"
+    "test:tdd": "npm run test -- --watch",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "geist": "^1.2.0"
@@ -42,6 +43,7 @@
     "@web/test-runner-junit-reporter": "^0.7.1",
     "http-server": "^14.1.1",
     "lit": "^3.1.2",
+    "patch-package": "^8.0.0",
     "rimraf": "^5.0.5",
     "storybook": "^8.0.6",
     "vite": "^5.2.8"
