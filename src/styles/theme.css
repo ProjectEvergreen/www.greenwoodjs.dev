@@ -25,4 +25,5 @@ h1, h2, h3, h4, h5, h6 {
   --color-gray-inner: #EDEFEC;
   --font-primary: 'Geist', 'sans-serif';
   --font-size-base: 16px;
+  --spacing-unit: 8px;
 }
