@@ -6,17 +6,6 @@
       --size: 50px;
     }
 
-    h2 {
-      text-decoration: underline;
-    }
-
-    .palette-box {
-      width: var(--size);
-      height: var(--size);
-      display: block;
-      margin: 0 auto;
-    }
-
     .palette-primary {
       background-color: var(--color-primary);
     }
@@ -37,22 +26,18 @@
       background-color: var(--color-white);
     }
 
-    .palette-black {
-      background-color: var(--color-black);
-    }
-
     .typography {
-      font-size: 1.4rem;
+      font-size: 1rem;
     }
 
-    .typography-primary {
+    .typography-header {
       font-family: var(--font-primary);
-      color: var(--color-primary);
+      color: var(--color-secondary);
     }
 
-    .typography-secondary {
-      font-family: var(--font-secondary);
-      color: var(--color-primary);
+    .typography-body {
+      font-family: var(--font-primary);
+      color: var(--color-text);
     }
   `}
 </style>
@@ -91,6 +76,8 @@ The following theme colors available are:
 
 ## Typography
 The whole website uses Vercel's **Geist** font in the following sizes:
+
+`--font-primary`
 
 
 
