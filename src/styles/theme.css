@@ -22,8 +22,10 @@ h1, h2, h3, h4, h5, h6 {
   --color-tertiary: #151818;
   --color-accent: #C3DDBA;
   --color-gray: #F5F5F5;
+  --color-white: #FFFFFF;
   --color-gray-inner: #EDEFEC;
-  --font-primary: 'Geist', 'sans-serif';
+  --font-primary: 'Geist-Sans';
+  --font-secondary: 'Geist-Mono';
   --font-size-base: 16px;
   --spacing-unit: 8px;
 }
