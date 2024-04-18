@@ -1,8 +1,24 @@
 import { Meta } from '@storybook/addon-docs';
 
+<Meta title="Overview/Styleguide" />
 
 <style>
   {`
+    :root {
+      --size: 50px;
+    }
+
+    h2 {
+      text-decoration: underline;
+    }
+
+    .palette-box {
+      width: var(--size);
+      height: var(--size);
+      display: block;
+      margin: 0 auto;
+    }
+
     .palette-primary {
       background-color: var(--color-primary);
     }
@@ -23,25 +39,37 @@ import { Meta } from '@storybook/addon-docs';
       background-color: var(--color-white);
     }
 
+    .palette-black {
+      background-color: var(--color-black);
+    }
+
+    .palette-gray {
+      background-color: var(--color-gray);
+    }
+
+    .palette-inner-gray {
+      background-color: var(--color-inner-gray);
+    }
+
     .typography {
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
 
-    .typography-header {
+    .typography-primary {
       font-family: var(--font-primary);
-      color: var(--color-secondary);
+      color: var(--color-primary);
     }
 
-    .typography-body {
-      font-family: var(--font-primary);
-      color: var(--color-text);
+    .typography-secondary {
+      font-family: var(--font-secondary);
+      color: var(--color-primary);
     }
   `}
 </style>
 
 ---
-# Welcome to the GreenwoodJS style guide
 
+# Welcome to the GreenwoodJS style guide
 
 ### The GreenwoodJS website styleguide breaks down into the following sections:
 
@@ -50,51 +78,75 @@ import { Meta } from '@storybook/addon-docs';
 3. Spacing
 4. Components
 
-
-
 ## Colors
+
 The following theme colors available are:
 
-`--color-primary`
+### `--color-primary`
 
-`--color-secondary`
+<span class="palette-box palette-primary"></span>
 
-`--color-tertiary`
+### `--color-secondary`
 
-`--color-accent`
+<span class="palette-box palette-secondary"></span>
 
-`--color-gray`
+### `--color-tertiary`
 
-`--color-text`
+<span class="palette-box palette-tertiary"></span>
 
-`--color-white`
+### `--color-accent`
+
+<span class="palette-box palette-accent"></span>
+
+### `--color-white`
+
+<span class="palette-box palette-white"></span>
+
+### `--color-black`
+
+<span class="palette-box palette-black"></span>
+
+### `--color-gray`
+
+<span class="palette-box palette-gray"></span>
 
 
+### `--color-inner-gray`
+
+<span class="palette-box palette-inner-gray"></span>
 
 
 ## Typography
-The whole website uses Vercel's **Geist** font in Sans and Mono:
 
-`--font-primary`
+The whole website uses [Vercel's **Geist** font](https://vercel.com/font) in Sans and Mono:
 
-`--font-secondary`
+### `--font-primary`
 
+This is the primary font for the website.
 
+<span class="typography typography-primary">The quick brown fox jumped over the lazy dog.</span>
 
+### `--font-secondary`
+
+This is the font intended to be used for code samples.
+
+<span class="typography typography-secondary">The quick brown fox jumped over the lazy dog.</span>
 
 ## Spacing
+
 The whole website is built on an 8pt Grid, and spacing is always in multiples of 8px
 
-`--spacing-unit`
+### `--spacing-unit`
 
-> E.g Adding a 40px spacing will look like this;
-`.spacing-40 {
+Adding a 40px spacing will look like this;
+```css
+.hero {
   margin: calc(5 * var(--spacing-unit)); 
-}`
-
-
+}
+```
 
 ## Components
+
 👈 All available components can be found on the left sidebar of the Storybook site.
 
 
