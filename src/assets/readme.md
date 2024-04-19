@@ -12,6 +12,6 @@ This is used to draw emphasis on the npm code bash in the hero section
 - **White-Grid.svg**:
 This is used as a background image in `--color-secondary` backgrounds.
 
-`--color-gray-inner`:
-This is used in any —color-gray container to create a subtle contrast.
+- `--color-gray-inner`:
+This is used in any `—color-gray` container to create a subtle contrast.
 
