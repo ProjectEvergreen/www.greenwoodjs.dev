@@ -22,9 +22,9 @@ jobs:
       - name: Format
         run: |
           npm run format:check
-    # - name: Lint
-    #   run: |
-    #     npm run lint
+      # - name: Lint
+      #   run: |
+      #     npm run lint
       - name: Test
         run: |
           npm run test
