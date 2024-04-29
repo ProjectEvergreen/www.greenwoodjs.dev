@@ -1,5 +1,5 @@
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
-index d52c723..2aedcc3 100644
+index d52c723..73e64ee 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 @@ -5,10 +5,14 @@
@@ -60,7 +60,23 @@ index d52c723..2aedcc3 100644
        } else if (type === 'Atrule' && name !== 'import') {
          optimizedCss += `@${name} `;
        } else if (type === 'TypeSelector') {
-@@ -238,7 +272,7 @@ class StandardCssResource extends ResourceInterface {
+@@ -54,6 +88,7 @@ function bundleCss(body, url, projectDirectory) {
+           case 'nth-last-child':
+           case 'nth-of-type':
+           case 'nth-last-of-type':
++          case 'where':
+             optimizedCss += '(';
+             break;
+           default:
+@@ -163,6 +198,7 @@ function bundleCss(body, url, projectDirectory) {
+             case 'nth-last-child':
+             case 'nth-last-of-type':
+             case 'nth-of-type':
++            case 'where':
+               optimizedCss += ')';
+               break;
+             default:
+@@ -238,7 +274,7 @@ class StandardCssResource extends ResourceInterface {
  
    async optimize(url, response) {
      const body = await response.text();

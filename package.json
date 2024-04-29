@@ -27,7 +27,8 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "geist": "^1.2.0"
+    "geist": "^1.2.0",
+    "open-props": "^1.7.4"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.1",

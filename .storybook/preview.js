@@ -1,4 +1,5 @@
 import '../src/styles/theme.css';
+import '../src/styles/main.css';
 
 /** @type { import('@storybook/web-components').Preview } */
 const preview = {
