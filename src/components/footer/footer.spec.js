@@ -20,7 +20,9 @@ describe('Components/Footer', () => {
     it('should have the expected footer text', () => {
       const heading = document.querySelector('h4');
 
-      expect(heading.textContent).to.equal(`GreenwoodJS ©${new Date().getFullYear()}`);
+      expect(heading.textContent).to.equal(
+        `GreenwoodJS ©${new Date().getFullYear()}`,
+      );
     });
   });
 
@@ -28,5 +30,4 @@ describe('Components/Footer', () => {
     footer.remove();
     footer = null;
   });
-
 });

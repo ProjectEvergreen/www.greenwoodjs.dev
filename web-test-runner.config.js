@@ -1,4 +1,3 @@
-
 import { defaultReporter } from '@web/test-runner';
 import { junitReporter } from '@web/test-runner-junit-reporter';
 import path from 'path';
@@ -9,12 +8,12 @@ export default {
   reporters: [
     defaultReporter({ reportTestResults: true, reportTestProgress: true }),
     junitReporter({
-      outputPath: './reports/test-results.xml'
-    })
+      outputPath: './reports/test-results.xml',
+    }),
   ],
   coverage: true,
   coverageConfig: {
-    reportDir: './reports'
+    reportDir: './reports',
   },
   middleware: [
     function rewriteIndex(context, next) {
@@ -25,6 +24,6 @@ export default {
       }
 
       return next();
-    }
-  ]
+    },
+  ],
 };

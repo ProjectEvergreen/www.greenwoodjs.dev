@@ -1,7 +1,7 @@
 import './footer.js';
 
 export default {
-  title: 'Components/Footer'
+  title: 'Components/Footer',
 };
 
 const Template = () => '<app-footer></app-footer>';
