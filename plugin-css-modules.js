@@ -60,10 +60,12 @@ function walkAllImportsForCssModules(scriptUrl, sheets, scope) {
         })
         // sheets.push(cssContents);
       } else if(node.source.value.endsWith('.js')) {
-        console.log('go recursive for', value);
+        console.log('go recursive for', {scriptUrl, value});
         const recursiveScriptUrl = new URL(value, scriptUrl);
 
-        walkAllImportsForCssModules(recursiveScriptUrl, sheets);
+        if(fs.existsSync(recursiveScriptUrl)) {
+          walkAllImportsForCssModules(recursiveScriptUrl, sheets);
+        }
       }
     },
   });
