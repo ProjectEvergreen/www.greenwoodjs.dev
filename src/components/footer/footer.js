@@ -9,8 +9,7 @@
 
 export default class Footer extends HTMLElement {
   connectedCallback() {
-    const year 
-    = `${new Date().getFullYear()}`
+    const year = `${new Date().getFullYear()}`;
 
     this.innerHTML = `
       <footer>

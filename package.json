@@ -24,7 +24,9 @@
     "story:serve": "npm run clean && npm run story:build && http-server ./storybook-static",
     "test": "wtr",
     "test:tdd": "npm run test -- --watch",
-    "lint": "eslint && stylelint \"./src/**/*.css\"",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint",
+    "lint:css": "stylelint \"./src/**/*.css\"",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "prepare": "husky install",
@@ -61,13 +63,8 @@
     "vite": "^5.2.8"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.css": "stylelint --fix",
-    "*.--write": "prettier --write"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "*.js": "npm run lint:js",
+    "*.css": "npm run lint:css",
+    "**/*": "npm run format"
   }
 }
