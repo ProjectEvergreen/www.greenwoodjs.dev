@@ -24,6 +24,7 @@
     "story:serve": "npm run clean && npm run story:build && http-server ./storybook-static",
     "test": "wtr",
     "test:tdd": "npm run test -- --watch",
+    "lint": "eslint",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "postinstall": "patch-package"
@@ -44,6 +45,8 @@
     "@storybook/web-components-vite": "^8.0.6",
     "@web/test-runner": "^0.18.1",
     "@web/test-runner-junit-reporter": "^0.7.1",
+    "eslint": "^9.1.1",
+    "eslint-config-prettier": "^9.1.0",
     "http-server": "^14.1.1",
     "lit": "^3.1.2",
     "patch-package": "^8.0.0",
