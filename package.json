@@ -64,5 +64,10 @@
     "*.js": "eslint --cache --fix",
     "*.css": "stylelint --fix",
     "*.--write": "prettier --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
