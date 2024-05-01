@@ -1,20 +1,22 @@
 # www.greenwoodjs.dev
 
-Documentation website for [**GreenwoodJS**](https://www.greenwoodjs.dev/), using GreenwoodJS for development.
+Documentation website for [**GreenwoodJS**](https://www.greenwoodjs.dev/), using GreenwoodJS for development, naturally. Site is hosted on Netlify.
 
-## Contributing
-
-To contribute to the project, please do the following:
+## Setup
 
 1. Clone the repo
-1. If you have **nvm** installed, run `nvm use` to get right version of NodeJS
+1. Have NodeJS LTS installed. (If using **nvm**, run `nvm use` instead)
 1. Run `npm ci`
 
-### Workflows
+> [!IMPORTANT]
+> To contribute to this project, please see our [Contributing guidelines](./CONTRIBUTING.md)
 
+## Workflows
+
+> [!TIP]  
 > _See `package.json#scripts` for all available commands._
 
-#### Local Dev
+### Development
 
 To run the site locally for development, run
 
@@ -22,15 +24,15 @@ To run the site locally for development, run
 $ npm run dev
 ```
 
-#### Production
+### Production
 
-To build the locally for production and view it, run:
+To build the site for production and view it locally, run:
 
 ```sh
 $ npm run serve
 ```
 
-#### Storybook
+### Storybook
 
 To build storybook for local development, you can run:
 
@@ -38,9 +40,9 @@ To build storybook for local development, you can run:
 $ npm run story:dev
 ```
 
-#### Testing
+### Testing
 
-To run tests in watch mode, you can use:
+To run tests in watch mode, you can run:
 
 ```sh
 $ npm run test:tdd
@@ -50,32 +52,4 @@ Otherwise all tests can be run once with:
 
 ```sh
 $ npm run test
-```
-
-### Guidelines
-
-#### Project Structure
-
-- _/components/_ - Custom Element web components to be used throughout the projects
-- _/pages/_ - File based routing as provided by Greenwood
-- _/stories/- General developer documentation about the project for developers
-
-#### Storybook
-
-For each component, an accompanying Storybook file should be made, e.g.
-
-```sh
-footer/
-  footer.js
-  footer.stories.js
-```
-
-#### Testing
-
-For each component, an accompanying test file should be made, e.g.
-
-```sh
-footer/
-  footer.js
-  footer.spec.js
 ```

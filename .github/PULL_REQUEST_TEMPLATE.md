@@ -5,7 +5,7 @@ We love contributions and appreciate any help you can offer!
 
 ## Related Issue
 
-<!-- Include a link to the issue (e.g. Resolves #12) -->
+<!-- Include a link to the issue (e.g. Resolves #12).  If this is to document a Greenwood feature, please link that issue here. -->
 
 ## Summary of Changes
 
