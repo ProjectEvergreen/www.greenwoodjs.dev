@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to the GreenwoodJS website!  This document aims to help guide contributions into the project.
+Thanks for contributing to the GreenwoodJS website!  This document aims to help guide contributions into this project.
 
 ## Project Structure
 
@@ -51,18 +51,29 @@ As this project is a static site, all Web Components will generally be authored 
 ```js
 export default class MyComponent extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = '<p>Hello from my component!</p>'
+    this.innerHTML = `
+      <p class="my-component">Hello from my component!</p>
+    `;
   }
 }
 ```
 
 ```html
 <!-- static optimization applied to remove this script tag at build time -->
-<script src="../components/my-component/my-component.js" type="module">
+<script src="../components/my-component/my-component.js" type="module" data-gwd-opt="static">
 ```
 
 > [!TIP]
 > _For highly interactive components **without** a strong need for static content and / or SEO, Declarative Shadow DOM can be used instead._
+
+The CSS for any Light DOM components should go into _src/styles/main.css_
+
+```css
+.my-component {
+  color: var(--color-primary);
+  box-shadow: var(--shadow-3);
+}
+```
 
 
 ### Testing
@@ -78,7 +89,7 @@ components/
 
 ### Storybook
 
-For each component, a Storybook file should be included to demonstrate basic functionality, living alongside the component in its directory.  Generally a default story is sufficient.
+For each component, a Storybook file should be included to demonstrate basic functionality, living alongside the component in its directory.  Generally a default story should be sufficient.
 
 ```sh
 components/
@@ -89,4 +100,4 @@ components/
 
 ## Hosting and Deployment
 
-This project is hosted on Netlify and automatically deploy on each merge into main.  Release branches will be curated over the course of a Greenwood release cycle and then merged at the time the new Greenwood release is published to NPM.
+This project is hosted on Netlify and automatically deploys on each merge into main.  Release branches will be curated over the course of a Greenwood release cycle and then merged at the time the new Greenwood release is published to NPM.
