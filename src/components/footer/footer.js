@@ -9,12 +9,14 @@
 
 export default class Footer extends HTMLElement {
   connectedCallback() {
+    const year = `${new Date().getFullYear()}`;
+
     this.innerHTML = `
       <footer>
-        <h4>GreenwoodJS &copy;${new Date().getFullYear()}</h4>
+        <h4>GreenwoodJS &copy;${year}</h4>
       </footer>
     `;
   }
 }
 
-customElements.define('app-footer', Footer);
+customElements.define("app-footer", Footer);

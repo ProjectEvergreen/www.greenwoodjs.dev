@@ -1,0 +1,24 @@
+ls:
+  .config.js: kebabcase
+  .spec.js: kebabcase
+  .stories.js: kebabcase
+  .js: kebabcase
+  .json: kebabcase
+  .css: kebabcase
+  .html: kebabcase
+  .ico: kebabcase
+  .jpg: kebabcase
+  .png: kebabcase
+  .webp: kebabcase
+  .svg: kebabcase
+  .tff: kebabcase
+  .woff: kebabcase
+  .woff2: kebabcase
+
+ignore:
+  - .git
+  - .greenwood
+  - node_modules
+  - public
+  - reports
+  - storybook-static
