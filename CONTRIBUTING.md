@@ -12,7 +12,8 @@ The layout of the project is as follows:
 - _/stories/_ - General developer documentation about the project for developers
 - _/styles/_ - Global theme and styles
 
-> [!NOTE] > _Please review the documentation contained in this project's Storybook by running `npm run story:dev` and going through the content in the **Overview** section_
+> [!NOTE]  
+> _Please review the documentation contained in this project's Storybook by running `npm run story:dev` and going through the content in the **Overview** section_
 
 ## Documentation Changes
 
@@ -61,7 +62,8 @@ export default class MyComponent extends HTMLElement {
 <script src="../components/my-component/my-component.js" type="module" data-gwd-opt="static">
 ```
 
-> [!TIP] > _For highly interactive components **without** a strong need for static content and / or SEO, Declarative Shadow DOM can be used instead._
+> [!TIP]  
+> _For highly interactive components **without** a strong need for static content and / or SEO, Declarative Shadow DOM can be used instead._
 
 The CSS for any Light DOM components should go into _src/styles/main.css_
 
