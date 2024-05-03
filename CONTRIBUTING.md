@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to the GreenwoodJS website!  This document aims to help guide contributions into this project.
+Thanks for contributing to the GreenwoodJS website! This document aims to help guide contributions into this project.
 
 ## Project Structure
 
@@ -12,14 +12,13 @@ The layout of the project is as follows:
 - _/stories/_ - General developer documentation about the project for developers
 - _/styles/_ - Global theme and styles
 
-> [!NOTE]
-> _Please review the documentation contained in this project's Storybook by running `npm run story:dev` and going through the content in the **Overview** section_
+> [!NOTE] > _Please review the documentation contained in this project's Storybook by running `npm run story:dev` and going through the content in the **Overview** section_
 
 ## Documentation Changes
 
 ### Greenwood Features
 
-Documentation changes specific to an in progress / unreleased feature in Greenwood should be made to the corresponding feature branch in this repository aligning with that Greenwood release.  This can be determined at the time of submitting your PR to Greenwood in coordination with the maintainers.
+Documentation changes specific to an in progress / unreleased feature in Greenwood should be made to the corresponding feature branch in this repository aligning with that Greenwood release. This can be determined at the time of submitting your PR to Greenwood in coordination with the maintainers.
 
 For example, if the next release your feature is targeting for Greenwood is 1.1.0, the git workflow would be as follows:
 
@@ -31,10 +30,9 @@ $ git checkout -b content/issue-xxx-the-feature
 
 Where `issue-xxx` is the corresponding issue in the GreenwoodJS project.
 
-
 ### Website
 
-General changes to the website can be made by submitting a PR directly to the main branch.  This includes typos, style changes, and general enhancements to the website as a whole.
+General changes to the website can be made by submitting a PR directly to the main branch. This includes typos, style changes, and general enhancements to the website as a whole.
 
 ## Development
 
@@ -42,7 +40,7 @@ General changes to the website can be made by submitting a PR directly to the ma
 
 All global theming and general styles should go in _src/styles/theme.css_, like font family and CSS custom properties to be used throughout the site.
 
-[Open Props](https://open-props.style/) are used in this project to provide a set of consistent and re-usable design system tokens.  Please review these first before creating any new custom values or variables.
+[Open Props](https://open-props.style/) are used in this project to provide a set of consistent and re-usable design system tokens. Please review these first before creating any new custom values or variables.
 
 ### Components
 
@@ -63,8 +61,7 @@ export default class MyComponent extends HTMLElement {
 <script src="../components/my-component/my-component.js" type="module" data-gwd-opt="static">
 ```
 
-> [!TIP]
-> _For highly interactive components **without** a strong need for static content and / or SEO, Declarative Shadow DOM can be used instead._
+> [!TIP] > _For highly interactive components **without** a strong need for static content and / or SEO, Declarative Shadow DOM can be used instead._
 
 The CSS for any Light DOM components should go into _src/styles/main.css_
 
@@ -74,7 +71,6 @@ The CSS for any Light DOM components should go into _src/styles/main.css_
   box-shadow: var(--shadow-3);
 }
 ```
-
 
 ### Testing
 
@@ -89,7 +85,7 @@ components/
 
 ### Storybook
 
-For each component, a Storybook file should be included to demonstrate basic functionality, living alongside the component in its directory.  Generally a default story should be sufficient.
+For each component, a Storybook file should be included to demonstrate basic functionality, living alongside the component in its directory. Generally a default story should be sufficient.
 
 ```sh
 components/
@@ -100,4 +96,4 @@ components/
 
 ## Hosting and Deployment
 
-This project is hosted on Netlify and automatically deploys on each merge into main.  Release branches will be curated over the course of a Greenwood release cycle and then merged at the time the new Greenwood release is published to NPM.
+This project is hosted on Netlify and automatically deploys on each merge into main. Release branches will be curated over the course of a Greenwood release cycle and then merged at the time the new Greenwood release is published to NPM.
