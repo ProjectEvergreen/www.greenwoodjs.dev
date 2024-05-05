@@ -1,6 +1,3 @@
-import HeaderComponent from './src/components/header/header.js';
-
-
 
 export default class HeaderComponent extends HTMLElement {
     constructor() {
