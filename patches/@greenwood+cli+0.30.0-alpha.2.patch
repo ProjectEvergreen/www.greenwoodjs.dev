@@ -1,0 +1,20 @@
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+index 64c1ba0..d1cc0fb 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+@@ -88,6 +88,7 @@ function bundleCss(body, url, compilation) {
+           case 'nth-last-child':
+           case 'nth-of-type':
+           case 'nth-last-of-type':
++          case 'where':
+             optimizedCss += '(';
+             break;
+           default:
+@@ -197,6 +198,7 @@ function bundleCss(body, url, compilation) {
+             case 'nth-last-child':
+             case 'nth-last-of-type':
+             case 'nth-of-type':
++            case 'where':
+               optimizedCss += ')';
+               break;
+             default:
