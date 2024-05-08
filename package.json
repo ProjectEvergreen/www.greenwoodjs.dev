@@ -71,5 +71,8 @@
     "*.js": "npm run lint:js",
     "*.css": "npm run lint:css",
     "**/*": "npm run lint:ls && npm run format"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.17.2"
   }
 }
