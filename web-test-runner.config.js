@@ -36,6 +36,20 @@ export default {
           };
         }
       },
+    }, {
+      name: "css-modules",
+      async transform(context) {
+        const url = new URL(`.${context.request.url}`, import.meta.url);
+
+        if (url.href.endsWith("module.css")) {
+          return {
+            body: "export default {};",
+            headers: {
+              "Content-Type": "text/javascript",
+            },
+          };
+        }
+      },
     },
   ],
   middleware: [
