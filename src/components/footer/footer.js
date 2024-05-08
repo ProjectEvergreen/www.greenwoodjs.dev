@@ -1,3 +1,5 @@
+// TODO test with {type: css} compat
+import styles from './footer.module.css';
 // TODO - nice to have - https://github.com/ProjectEvergreen/greenwood-getting-started/pull/85#discussion_r1549999231
 // const template = document.createElement('template');
 
@@ -12,7 +14,7 @@ export default class Footer extends HTMLElement {
     const year = `${new Date().getFullYear()}`;
 
     this.innerHTML = `
-      <footer>
+      <footer class="${styles.footer}">
         <h4>GreenwoodJS &copy;${year}</h4>
       </footer>
     `;
