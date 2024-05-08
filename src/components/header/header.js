@@ -139,7 +139,7 @@ export default class HeaderComponent extends HTMLElement {
             }
 
           
-            <!-- Mobile Break-point -->
+            /* ---Mobile Breakpoint ---*/
             @media (max-width: 600px) {
             
                 header {
