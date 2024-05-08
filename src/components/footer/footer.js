@@ -1,5 +1,5 @@
 // TODO test with {type: css} compat
-import styles from './footer.module.css';
+import styles from "./footer.module.css";
 // TODO - nice to have - https://github.com/ProjectEvergreen/greenwood-getting-started/pull/85#discussion_r1549999231
 // const template = document.createElement('template');
 

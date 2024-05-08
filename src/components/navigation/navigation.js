@@ -1,4 +1,4 @@
-import styles from './navigation.module.css';
+import styles from "./navigation.module.css";
 
 export default class Navigation extends HTMLElement {
   connectedCallback() {
@@ -14,4 +14,4 @@ export default class Navigation extends HTMLElement {
   }
 }
 
-customElements.define('app-navigation', Navigation);
+customElements.define("app-navigation", Navigation);
