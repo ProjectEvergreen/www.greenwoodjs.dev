@@ -139,7 +139,7 @@ export default class HeaderComponent extends HTMLElement {
             }
 
           
-            /* ---Mobile Breakpoint ---*/
+            /* ---MOBILE SCREENS---*/
             @media (max-width: 600px) {
             
                 header {
@@ -211,6 +211,47 @@ export default class HeaderComponent extends HTMLElement {
                     cursor: pointer;
                     color: var(--color-secondary); 
                 }
+            }
+
+            
+            /*-----TABLET SCREENS-----------*/
+            @media screen and (min-width: 768px) and (max-width: 960px) {
+
+            header {
+                height: 5.5rem;
+                width: auto;
+                border: 1px dotted #989898ca;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                margin: 0;
+            } 
+
+            }
+
+
+            /*-----FOLD SCREENS-----------*/
+            @media (max-width: 280px) {
+                header {
+                    height: 5.5rem;
+                    width: fit-content;
+                    border: 1px dotted #989898ca;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                    margin: 0;
+                } 
+
+                .greenwood-logo {
+                    width: 80%;
+                }
+                   
+                
+
             }
 
         </style>
