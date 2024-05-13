@@ -1,0 +1,155 @@
+header {
+  box-sizing: border-box;
+  height: 5.5rem;
+  width: auto;
+  border: 1px dotted #989898ca;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 11rem;
+  padding-right: 11rem;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-bar-menu {
+  display: flex;
+  gap: 1.5rem;
+  list-style-type: none;
+}
+
+.nav-bar-menu-item {
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-bar-menu-item:hover {
+  font-weight: bold;
+}
+
+.social-tray {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+  background-color: var(--color-gray);
+  width: fit-content;
+  border: 1px solid #4d4d4d45;
+  border-radius: 7.5rem;
+  padding: 0.4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobile-menu,
+.mobile-menu.active,
+.mobile-menu-items,
+.mobile-menu-items.active,
+.close-button {
+  display: none;
+}
+
+/* ---MOBILE SCREENS---*/
+@media (max-width: 600px) {
+  header {
+    height: 4rem;
+    width: 100vw;
+    border: 1px dotted #989898ca;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-bar-menu {
+    display: none;
+  }
+  .mobile-menu-items {
+    display: none;
+  }
+  .mobile-menu.active + .mobile-menu-items {
+    display: flex;
+    flex-direction: Column;
+    list-style-type: none;
+  }
+  .mobile-menu {
+    display: flex;
+    cursor: pointer;
+  }
+  .mobile-menu-items.active {
+    position: fixed;
+    top: 6rem;
+    left: 1.5rem;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: 1rem;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: none;
+  }
+  .close-button {
+    position: absolute;
+    top: 1.2rem;
+    right: 2.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-secondary);
+  }
+}
+
+/*-----TABLET SCREENS-----------*/
+@media screen and (min-width: 768px) and (max-width: 960px) {
+  header {
+    height: 5.5rem;
+    width: auto;
+    border: 1px dotted #989898ca;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin: 0;
+  }
+}
+/*-----FOLD SCREENS-----------*/
+@media (max-width: 280px) {
+  header {
+    height: 5.5rem;
+    width: fit-content;
+    border: 1px dotted #989898ca;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin: 0;
+  }
+  .greenwood-logo {
+    width: 80%;
+  }
+}

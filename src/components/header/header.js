@@ -1,8 +1,8 @@
-export default class Header extends HTMLElement {
-  constructor() {
-    super();
+import sheet from "./header.css" with { type: "css" };
 
-    if(!this.shadowRoot) {
+export default class Header extends HTMLElement {
+  connectedCallback() {
+    if (!this.shadowRoot) {
       this.attachShadow({ mode: "open" });
       this.shadowRoot.innerHTML = `
         <header>
@@ -66,191 +66,20 @@ export default class Header extends HTMLElement {
 
         <!-- Close button -->
         <button class="close-button">×</button>
-
-        <style>
-
-          * {
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            box-sizing: border-box;
-          }
-      
-          header {
-            height: 5.5rem;
-            width: auto;
-            border: 1px dotted #989898ca;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-left: 11rem;
-            padding-right: 11rem;
-            margin: 0;
-          } 
-          
-          .nav-bar {
-            display: flex;
-            align-items: center;
-            gap: var(--size-5);
-          }
-          
-          .nav-bar-menu {
-            display: flex;
-            gap: var(--size-5);
-            list-style-type: none;
-          }
-      
-          .nav-bar-menu-item {
-            text-decoration: none;
-            cursor: pointer;
-          }
-
-          .nav-bar-menu-item:hover {
-            font-weight: bold;
-          }
-          
-          .social-tray {
-            display: flex;
-            gap: var(--size-3);
-            list-style-type: none;
-            background-color: var(--color-gray);
-            width: fit-content;
-            border: 1px solid #4d4d4d45;
-            border-radius: var(--size-11);
-            padding: 0.4rem;
-            padding-left: var(--size-3);
-            padding-right: var(--size-3);
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-          }
-          
-          .mobile-menu, .mobile-menu.active, .mobile-menu-items, .mobile-menu-items.active, .close-button{
-            display: none;
-          }
-
-        
-          /* ---MOBILE SCREENS---*/
-          @media (max-width: 600px) {
-            header {
-              height: var(--size-9);
-              width: 100vw;
-              border: 1px dotted #989898ca;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding-left: var(--size-5);
-              padding-right: var(--size-5);
-            } 
-        
-            .nav-bar {
-              display: flex;
-              align-items: center;
-              gap: var(--size-2);
-            }
-        
-            .nav-bar-menu {
-              display: none;
-            }
-
-            .mobile-menu-items {
-              display: none;
-            }
-
-            .mobile-menu.active + .mobile-menu-items {
-              display: flex;
-              flex-direction: Column;
-              list-style-type: none;
-            }
-
-            .mobile-menu {
-              display: flex;
-              cursor: pointer;
-            }
-
-            .mobile-menu-items.active {
-              position: fixed;
-              top: 6rem;
-              left: var(--size-5);
-              width: 100%;
-              height: 100%;
-              z-index: 999; 
-              display: flex; 
-              flex-direction: column; 
-              list-style-type: none;
-              gap: var(--size-3);
-            }
-
-            .overlay {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              z-index: -1;
-              display: none; 
-            }
-
-            .close-button {
-              position: absolute;
-              top: var(--size-4);
-              right: 2.5rem;
-              background: none;
-              border: none;
-              font-size: var(--font-size-4);
-              cursor: pointer;
-              color: var(--color-secondary); 
-            }
-          }
-
-          /*-----TABLET SCREENS-----------*/
-          @media screen and (min-width: 768px) and (max-width: 960px) {
-
-            header {
-              height: 5.5rem;
-              width: auto;
-              border: 1px dotted #989898ca;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding-left: var(--size-5);
-              padding-right: var(--size-5);
-              margin: 0;
-            } 
-          }
-
-          /*-----FOLD SCREENS-----------*/
-          @media (max-width: 280px) {
-            header {
-              height: 5.5rem;
-              width: fit-content;
-              border: 1px dotted #989898ca;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding-left: var(--size-2);
-              padding-right: var(--size-2);
-              margin: 0;
-            } 
-
-            .greenwood-logo {
-                width: 80%;
-            }
-          }
-        </style>
       `;
     }
 
-    // Mobile menu toggle
-    const mobileMenu = this.shadowRoot?.querySelector(".mobile-menu");
-    const mobileMenuItems = this.shadowRoot?.querySelector(".mobile-menu-items");
-    const overlay = this.shadowRoot?.querySelector(".overlay");
-    const closeButton = this.shadowRoot?.querySelector(".close-button");
-    const socialTray = this.shadowRoot?.querySelector(".social-tray");
-    const menuButton = this.shadowRoot?.querySelector(".mobile-menu");
+    this.shadowRoot.adoptedStyleSheets = [sheet];
 
-    mobileMenu.addEventListener("click", function () {
+    // Mobile menu toggle
+    const mobileMenu = this.shadowRoot.querySelector(".mobile-menu");
+    const mobileMenuItems = this.shadowRoot.querySelector(".mobile-menu-items");
+    const overlay = this.shadowRoot.querySelector(".overlay");
+    const closeButton = this.shadowRoot.querySelector(".close-button");
+    const socialTray = this.shadowRoot.querySelector(".social-tray");
+    const menuButton = this.shadowRoot.querySelector(".mobile-menu");
+
+    mobileMenu?.addEventListener("click", function () {
       mobileMenuItems.classList.toggle("active");
       overlay.classList.toggle("active");
       closeButton.style.display = overlay.classList.contains("active") ? "block" : "none";
@@ -258,7 +87,7 @@ export default class Header extends HTMLElement {
       menuButton.style.display = overlay.classList.contains("active") ? "none" : "flex";
     });
 
-    closeButton.addEventListener("click", function () {
+    closeButton?.addEventListener("click", function () {
       mobileMenuItems.classList.remove("active");
       overlay.classList.remove("active");
       closeButton.style.display = "none";
