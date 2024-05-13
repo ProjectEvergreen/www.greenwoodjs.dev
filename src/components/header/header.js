@@ -83,7 +83,7 @@ export default class Header extends HTMLElement {
         <div class="overlay"></div>
 
         <!-- Close button -->
-        <button class="close-button">×</button>
+        <button class="close-button">&times;</button>
       `;
     }
 
