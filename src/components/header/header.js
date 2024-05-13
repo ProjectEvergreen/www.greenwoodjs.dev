@@ -100,12 +100,12 @@ export default class HeaderComponent extends HTMLElement {
             .nav-bar {
                 display: flex;
                 align-items: center;
-                gap: 1.5rem;
+                gap: var(--size-5);
             }
             
             .nav-bar-menu {
                 display: flex;
-                gap: 1.5rem;
+                gap: var(--size-5);
                 list-style-type: none;
             }
         
@@ -120,15 +120,15 @@ export default class HeaderComponent extends HTMLElement {
             
             .social-tray {
                 display: flex;
-                gap: 1rem;
+                gap: var(--size-3);
                 list-style-type: none;
                 background-color: var(--color-gray);
                 width: fit-content;
                 border: 1px solid #4d4d4d45;
-                border-radius: 7.5rem;
+                border-radius: var(--size-11);
                 padding: 0.4rem;
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding-left: var(--size-3);
+                padding-right: var(--size-3);
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
@@ -143,20 +143,20 @@ export default class HeaderComponent extends HTMLElement {
             @media (max-width: 600px) {
             
                 header {
-                    height: 4rem;
+                    height: var(--size-9);
                     width: 100vw;
                     border: 1px dotted #989898ca;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding-left: 1.5rem;
-                    padding-right: 1.5rem;
+                    padding-left: var(--size-5);
+                    padding-right: var(--size-5);
                 } 
             
                 .nav-bar {
                     display: flex;
                     align-items: center;
-                    gap: 0.5rem;
+                    gap: var(--size-2);
                 }
             
                 .nav-bar-menu {
@@ -181,14 +181,14 @@ export default class HeaderComponent extends HTMLElement {
                 .mobile-menu-items.active {
                     position: fixed;
                     top: 6rem;
-                    left: 1.5rem;
+                    left: var(--size-5);
                     width: 100%;
                     height: 100%;
                     z-index: 999; 
                     display: flex; 
                     flex-direction: column; 
                     list-style-type: none;
-                    gap: 1rem
+                    gap: var(--size-3);
                 }
 
                 .overlay {
@@ -203,11 +203,11 @@ export default class HeaderComponent extends HTMLElement {
 
                 .close-button {
                     position: absolute;
-                    top: 1.2rem;
+                    top: var(--size-4);
                     right: 2.5rem;
                     background: none;
                     border: none;
-                    font-size: 1.5rem;
+                    font-size: var(--font-size-4);
                     cursor: pointer;
                     color: var(--color-secondary); 
                 }
@@ -224,8 +224,8 @@ export default class HeaderComponent extends HTMLElement {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+                padding-left: var(--size-5);
+                padding-right: var(--size-5);
                 margin: 0;
             } 
 
@@ -241,8 +241,8 @@ export default class HeaderComponent extends HTMLElement {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding-left: 0.5rem;
-                    padding-right: 0.5rem;
+                    padding-left: var(--size-2);
+                    padding-right: var(--size-2);
                     margin: 0;
                 } 
 
