@@ -1,4 +1,4 @@
-import sheet from "./header.css" with { type: "css" };
+import sheet from "./header.css";
 import discordIcon from "../../assets/discord.svg?type=raw";
 import githubIcon from "../../assets/github.svg?type=raw";
 import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
@@ -76,50 +76,49 @@ export default class Header extends HTMLElement {
 
     this.shadowRoot.adoptedStyleSheets = [sheet];
 
-// Mobile menu toggle
-const mobileMenu = this.shadowRoot.querySelector(".mobile-menu");
-const mobileMenuItems = this.shadowRoot.querySelector(".mobile-menu-items");
-const overlay = this.shadowRoot.querySelector(".overlay");
-const closeButton = this.shadowRoot.querySelector(".close-button");
-const socialTray = this.shadowRoot.querySelector(".social-tray");
+    // Mobile menu toggle
+    const mobileMenu = this.shadowRoot.querySelector(".mobile-menu");
+    const mobileMenuItems = this.shadowRoot.querySelector(".mobile-menu-items");
+    const overlay = this.shadowRoot.querySelector(".overlay");
+    const closeButton = this.shadowRoot.querySelector(".close-button");
+    const socialTray = this.shadowRoot.querySelector(".social-tray");
 
-let isMobileMenuActive = false;
+    let isMobileMenuActive = false;
 
-function toggleMobileMenu() {
-    isMobileMenuActive = !isMobileMenuActive;
-    mobileMenuItems.classList.toggle("active", isMobileMenuActive);
-    overlay.classList.toggle("active", isMobileMenuActive);
-    closeButton.style.display = isMobileMenuActive ? "block" : "none";
-    mobileMenu.style.display = isMobileMenuActive ? "none" : "block";
-    socialTray.style.display = isMobileMenuActive ? "none" : "flex";
-}
-
-mobileMenu.addEventListener("click", function() {
-    toggleMobileMenu();
-});
-
-closeButton.addEventListener("click", function() {
-    toggleMobileMenu();
-});
-
-function handleResize() {
-    const isMobileView = window.innerWidth < 600;
-
-    if (isMobileView) {
-        mobileMenu.style.display = isMobileMenuActive ? "none" : "block"; 
-        socialTray.style.display = isMobileMenuActive ? "none" : "flex"; 
-    } else {
-        if (isMobileMenuActive) {
-            toggleMobileMenu(); 
-        }
-        mobileMenu.style.display = "none"; 
-        socialTray.style.display = "flex"; 
+    function toggleMobileMenu() {
+      isMobileMenuActive = !isMobileMenuActive;
+      mobileMenuItems.classList.toggle("active", isMobileMenuActive);
+      overlay.classList.toggle("active", isMobileMenuActive);
+      closeButton.style.display = isMobileMenuActive ? "block" : "none";
+      mobileMenu.style.display = isMobileMenuActive ? "none" : "block";
+      socialTray.style.display = isMobileMenuActive ? "none" : "flex";
     }
-}
 
-window.addEventListener("resize", handleResize);
-handleResize();
+    mobileMenu.addEventListener("click", function () {
+      toggleMobileMenu();
+    });
 
+    closeButton.addEventListener("click", function () {
+      toggleMobileMenu();
+    });
+
+    function handleResize() {
+      const isMobileView = window.innerWidth < 600;
+
+      if (isMobileView) {
+        mobileMenu.style.display = isMobileMenuActive ? "none" : "block";
+        socialTray.style.display = isMobileMenuActive ? "none" : "flex";
+      } else {
+        if (isMobileMenuActive) {
+          toggleMobileMenu();
+        }
+        mobileMenu.style.display = "none";
+        socialTray.style.display = "flex";
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
   }
 }
 
