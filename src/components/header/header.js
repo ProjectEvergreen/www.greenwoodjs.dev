@@ -76,30 +76,50 @@ export default class Header extends HTMLElement {
 
     this.shadowRoot.adoptedStyleSheets = [sheet];
 
-    // Mobile menu toggle
-    const mobileMenu = this.shadowRoot.querySelector(".mobile-menu");
-    const mobileMenuItems = this.shadowRoot.querySelector(".mobile-menu-items");
-    const overlay = this.shadowRoot.querySelector(".overlay");
-    const closeButton = this.shadowRoot.querySelector(".close-button");
-    const socialTray = this.shadowRoot.querySelector(".social-tray");
-    const menuButton = this.shadowRoot.querySelector(".mobile-menu");
+// Mobile menu toggle
+const mobileMenu = this.shadowRoot.querySelector(".mobile-menu");
+const mobileMenuItems = this.shadowRoot.querySelector(".mobile-menu-items");
+const overlay = this.shadowRoot.querySelector(".overlay");
+const closeButton = this.shadowRoot.querySelector(".close-button");
+const socialTray = this.shadowRoot.querySelector(".social-tray");
 
-    mobileMenu?.addEventListener("click", function () {
-      mobileMenuItems.classList.toggle("active");
-      overlay.classList.toggle("active");
-      closeButton.style.display = overlay.classList.contains("active") ? "block" : "none";
-      socialTray.style.display = overlay.classList.contains("active") ? "none" : "flex";
-      menuButton.style.display = overlay.classList.contains("active") ? "none" : "flex";
-    });
+let isMobileMenuActive = false;
 
-    closeButton?.addEventListener("click", function () {
-      mobileMenuItems.classList.remove("active");
-      overlay.classList.remove("active");
-      closeButton.style.display = "none";
-      socialTray.style.display = "flex";
-      menuButton.style.display = "";
-      mobileMenuItems.style.display = "none";
-    });
+function toggleMobileMenu() {
+    isMobileMenuActive = !isMobileMenuActive;
+    mobileMenuItems.classList.toggle("active", isMobileMenuActive);
+    overlay.classList.toggle("active", isMobileMenuActive);
+    closeButton.style.display = isMobileMenuActive ? "block" : "none";
+    mobileMenu.style.display = isMobileMenuActive ? "none" : "block";
+    socialTray.style.display = isMobileMenuActive ? "none" : "flex";
+}
+
+mobileMenu.addEventListener("click", function() {
+    toggleMobileMenu();
+});
+
+closeButton.addEventListener("click", function() {
+    toggleMobileMenu();
+});
+
+function handleResize() {
+    const isMobileView = window.innerWidth < 600;
+
+    if (isMobileView) {
+        mobileMenu.style.display = isMobileMenuActive ? "none" : "block"; 
+        socialTray.style.display = isMobileMenuActive ? "none" : "flex"; 
+    } else {
+        if (isMobileMenuActive) {
+            toggleMobileMenu(); 
+        }
+        mobileMenu.style.display = "none"; 
+        socialTray.style.display = "flex"; 
+    }
+}
+
+window.addEventListener("resize", handleResize);
+handleResize();
+
   }
 }
 
