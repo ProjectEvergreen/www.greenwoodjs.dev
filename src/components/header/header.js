@@ -5,6 +5,11 @@ import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
 import mobileMenuIcon from "../../assets/tile.svg?type=raw";
 
 export default class Header extends HTMLElement {
+  constructor() {
+    super();
+    this.isMobileMenuActive = false;
+  }
+
   connectedCallback() {
     if (!this.shadowRoot) {
       this.attachShadow({ mode: "open" });
@@ -76,49 +81,52 @@ export default class Header extends HTMLElement {
 
     this.shadowRoot.adoptedStyleSheets = [sheet];
 
-    // Mobile menu toggle
-    const mobileMenu = this.shadowRoot.querySelector(".mobile-menu");
-    const mobileMenuItems = this.shadowRoot.querySelector(".mobile-menu-items");
-    const overlay = this.shadowRoot.querySelector(".overlay");
-    const closeButton = this.shadowRoot.querySelector(".close-button");
-    const socialTray = this.shadowRoot.querySelector(".social-tray");
+    this.mobileMenu = this.shadowRoot?.querySelector(".mobile-menu");
+    this.mobileMenuItems = this.shadowRoot?.querySelector(".mobile-menu-items");
+    this.overlay = this.shadowRoot?.querySelector(".overlay");
+    this.closeButton = this.shadowRoot?.querySelector(".close-button");
+    this.socialTray = this.shadowRoot?.querySelector(".social-tray");
 
-    let isMobileMenuActive = false;
+    this.mobileMenu?.addEventListener("click", this.toggleMobileMenu.bind(this));
+    this.closeButton?.addEventListener("click", this.toggleMobileMenu.bind(this));
+    globalThis.addEventListener("resize", this.resizeMobileMenu.bind(this));
 
-    function toggleMobileMenu() {
-      isMobileMenuActive = !isMobileMenuActive;
-      mobileMenuItems.classList.toggle("active", isMobileMenuActive);
-      overlay.classList.toggle("active", isMobileMenuActive);
-      closeButton.style.display = isMobileMenuActive ? "block" : "none";
-      mobileMenu.style.display = isMobileMenuActive ? "none" : "block";
-      socialTray.style.display = isMobileMenuActive ? "none" : "flex";
+    this.toggleMobileMenu();
+    this.resizeMobileMenu();
+  }
+
+  toggleMobileMenu() {
+    if (
+      this.mobileMenuItems &&
+      this.overlay &&
+      this.closeButton &&
+      this.mobileMenu &&
+      this.socialTray
+    ) {
+      this.isMobileMenuActive = !this.isMobileMenuActive;
+      this.mobileMenuItems.classList.toggle("active", this.isMobileMenuActive);
+      this.overlay.classList.toggle("active", this.isMobileMenuActive);
+      this.closeButton.style.display = this.isMobileMenuActive ? "block" : "none";
+      this.mobileMenu.style.display = this.isMobileMenuActive ? "none" : "block";
+      this.socialTray.style.display = this.isMobileMenuActive ? "none" : "flex";
     }
+  }
 
-    mobileMenu.addEventListener("click", function () {
-      toggleMobileMenu();
-    });
-
-    closeButton.addEventListener("click", function () {
-      toggleMobileMenu();
-    });
-
-    function handleResize() {
-      const isMobileView = window.innerWidth < 600;
+  resizeMobileMenu() {
+    if (this.mobileMenu && this.socialTray) {
+      const isMobileView = globalThis?.innerWidth < 600;
 
       if (isMobileView) {
-        mobileMenu.style.display = isMobileMenuActive ? "none" : "block";
-        socialTray.style.display = isMobileMenuActive ? "none" : "flex";
+        this.mobileMenu.style.display = this.isMobileMenuActive ? "none" : "block";
+        this.socialTray.style.display = this.isMobileMenuActive ? "none" : "flex";
       } else {
-        if (isMobileMenuActive) {
-          toggleMobileMenu();
+        if (this.isMobileMenuActive) {
+          this.toggleMobileMenu();
         }
-        mobileMenu.style.display = "none";
-        socialTray.style.display = "flex";
+        this.mobileMenu.style.display = "none";
+        this.socialTray.style.display = "flex";
       }
     }
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
   }
 }
 
