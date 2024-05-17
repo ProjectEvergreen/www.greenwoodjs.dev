@@ -16,10 +16,10 @@ export default class Header extends HTMLElement {
       this.shadowRoot.innerHTML = `
         <header>
           <div class="logo-bar">
-            <img class="greenwood-logo" src="/assets/greenwood-logo.svg" alt="Logo">
+            <img class="greenwood-logo" src="/assets/greenwood-logo.svg" alt="Greenwood Logo">
           </div>
 
-          <div class="nav-bar">
+          <nav class="nav-bar">
             <ul class="nav-bar-menu">
               <li class="nav-bar-menu-item">
                 <a href="/docs/" title="Documentation">Docs</a>
@@ -55,20 +55,21 @@ export default class Header extends HTMLElement {
             <div class="mobile-menu">
               ${mobileMenuIcon}
             </div>
-
-            <ul class="mobile-menu-items">
-              <li class="nav-bar-menu-item">
-                <a href="/docs/" title="Documentation">Docs</a>
-              </li>
-              <li class="nav-bar-menu-item">
-                <a href="/guides/" title="Guides">Guides</a>
-              </li>
-              <li class="nav-bar-menu-item">
-                <a href="/blog/" title="Blog">Blog</a>
-              </li>
-            </ul>
-                  
-          </div>
+            
+            <nav class="nav-bar-mobile">
+              <ul class="mobile-menu-items">
+                <li class="nav-bar-menu-item">
+                  <a href="/docs/" title="Documentation">Docs</a>
+                </li>
+                <li class="nav-bar-menu-item">
+                  <a href="/guides/" title="Guides">Guides</a>
+                </li>
+                <li class="nav-bar-menu-item">
+                  <a href="/blog/" title="Blog">Blog</a>
+                </li>
+              </ul>
+            </nav>
+          </nav>
         </header>
 
         <!-- Mobile menu Overlay -->
