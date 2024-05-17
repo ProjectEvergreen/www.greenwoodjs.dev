@@ -36,6 +36,27 @@ index 73ddb24..2b3cbb2 100644
  
        for (const resource of compilation.resources.values()) {
          const resourceKey = normalizePathnameForWindows(resource.sourcePathURL);
+diff --git a/node_modules/@greenwood/cli/src/lib/resource-utils.js b/node_modules/@greenwood/cli/src/lib/resource-utils.js
+index a08cd9c..005f690 100644
+--- a/node_modules/@greenwood/cli/src/lib/resource-utils.js
++++ b/node_modules/@greenwood/cli/src/lib/resource-utils.js
+@@ -89,10 +89,15 @@ async function checkResourceExists(url) {
+ // * and a nested path in the template - ../../styles/theme.css
+ // so will get resolved as `${rootUrl}/styles/theme.css`
+ async function resolveForRelativeUrl(url, rootUrl) {
++  console.log('resolveForRelativeUrl', url, rootUrl)
+   const search = url.search || '';
+   let reducedUrl;
+ 
+-  if (await checkResourceExists(new URL(`.${url.pathname}`, rootUrl))) {
++  if(!rootUrl) {
++    return url;
++  }
++
++  if (url.protocol !== 'file:' && await checkResourceExists(new URL(`.${url.pathname}`, rootUrl))) {
+     return new URL(`.${url.pathname}${search}`, rootUrl);
+   }
+ 
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
 index 6201ea8..855c3fd 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/serve.js
@@ -50,7 +71,7 @@ index 6201ea8..855c3fd 100644
        }
  
 diff --git a/node_modules/@greenwood/cli/src/loader.js b/node_modules/@greenwood/cli/src/loader.js
-index 5d347bc..6c1cba0 100644
+index 5d347bc..a96c69c 100644
 --- a/node_modules/@greenwood/cli/src/loader.js
 +++ b/node_modules/@greenwood/cli/src/loader.js
 @@ -3,7 +3,8 @@ import { readAndMergeConfig as initConfig } from './lifecycles/config.js';
@@ -63,8 +84,50 @@ index 5d347bc..6c1cba0 100644
    },
    config: {
      devServer: {}
+@@ -11,22 +12,37 @@ const resourcePlugins = config.plugins.filter(plugin => plugin.type === 'resourc
+   graph: []
+ }));
+ 
+-async function getCustomLoaderResponse(url, checkOnly = false) {
++async function getCustomLoaderResponse(initUrl, checkOnly = false) {
++  console.log('CUSTOM LOADER RESPONSE', { initUrl })
+   const headers = {
+     'Accept': 'text/javascript',
+     'Sec-Fetch-Dest': 'empty'
+   };
+-  const request = new Request(url, { headers });
+   const initResponse = new Response('');
++  let request = new Request(initUrl, { headers });
++  let url = initUrl;
+   let response = initResponse.clone();
+   let shouldHandle = false;
+ 
++
++  for (const plugin of resourcePlugins) {
++    if (initUrl.protocol === 'file:' && plugin.shouldResolve && await plugin.shouldResolve(url, request)) {
++      shouldHandle = true;
++
++      if (!checkOnly) {
++        request = await plugin.resolve(url, request);
++        console.log('checking....', request.url);
++        // url =  request.url;
++      }
++    }
++  }
++
+   for (const plugin of resourcePlugins) {
+-    if (plugin.shouldServe && await plugin.shouldServe(url, request)) {
++    if (plugin.shouldServe && await plugin.shouldServe(initUrl, request)) {
+       shouldHandle = true;
+ 
+       if (!checkOnly) {
+-        response = await plugin.serve(url, request);
++        response = await plugin.serve(initUrl, request);
+       }
+     }
+   }
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
-index 64c1ba0..4018125 100644
+index 64c1ba0..09147f9 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 @@ -88,6 +88,7 @@ function bundleCss(body, url, compilation) {
@@ -83,13 +146,34 @@ index 64c1ba0..4018125 100644
                optimizedCss += ')';
                break;
              default:
-@@ -265,7 +267,8 @@ class StandardCssResource extends ResourceInterface {
+@@ -265,10 +267,12 @@ class StandardCssResource extends ResourceInterface {
      const { pathname, searchParams } = url;
      const ext = pathname.split('.').pop();
  
--    return url.protocol === 'file:' && ext === this.extensions[0] && request.headers.get('Accept')?.indexOf('text/javascript') >= 0 && !searchParams.has('type');
 +    // TODO how to make sure this isn't clashing with other CSS in JS types...
-+    return url.protocol === 'file:' && ext === this.extensions[0] && request.headers.get('Accept')?.indexOf('text/javascript') >= 0 && !searchParams.has('type') && pathname.indexOf('module.css') < 0;
+     return url.protocol === 'file:' && ext === this.extensions[0] && request.headers.get('Accept')?.indexOf('text/javascript') >= 0 && !searchParams.has('type');
    }
  
    async intercept(url, request, response) {
++    console.log('INTERCEPT', { url });
+     const contents = (await response.text()).replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\');
+     const body = `const sheet = new CSSStyleSheet();sheet.replaceSync(\`${contents}\`);export default sheet;`;
+ 
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-user-workspace.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-user-workspace.js
+index 38fb656..5843fe0 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-user-workspace.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-user-workspace.js
+@@ -16,10 +16,12 @@ class UserWorkspaceResource extends ResourceInterface {
+     const { userWorkspace } = this.compilation.context;
+     const extension = url.pathname.split('.').pop();
+     const hasExtension = extension !== '' && !extension.startsWith('/');
++    const exists = await resolveForRelativeUrl(url, userWorkspace);
+ 
+     return hasExtension
++      && !url.protocal !== 'file:'
+       && !url.pathname.startsWith('/node_modules')
+-      && await resolveForRelativeUrl(url, userWorkspace);
++      && exists;
+   }
+ 
+   async resolve(url) {

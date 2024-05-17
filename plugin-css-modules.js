@@ -65,7 +65,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
           const cssModulesMap = JSON.parse(
             fs.readFileSync(new URL("./__css-modules-map.json", compilation.context.scratchDir)),
           );
-          console.log("UPDATE MAP!", cssModulesMap);
+          console.log("UPDATE MAP!", { cssModulesMap, cssModuleUrl, scriptUrl });
           fs.writeFileSync(
             new URL("./__css-modules-map.json", compilation.context.scratchDir),
             JSON.stringify({
@@ -119,7 +119,32 @@ class CssModulesResource extends ResourceInterface {
     }
   }
 
+  async shouldResolve(url) {    
+    return url.pathname.endsWith('module.css');
+  }
+
+  async resolve(url) {
+    console.log({ url });
+    const { projectDirectory, userWorkspace } = this.compilation.context;
+    const { pathname, searchParams } = url;
+    const params = url.searchParams.size > 0
+      ? `${searchParams.toString()}&type=css-module`
+      : 'type=css-module';
+    const root = url.protocol === 'file:'
+      ? new URL(`file://${pathname}`).href
+      : pathname.startsWith('/node_modules')
+        ? new URL(`.${pathname}`, projectDirectory).href
+        : new URL(`.${pathname}`, userWorkspace).href
+
+    console.log('DOOT DOOT', { root, params });
+    const matchedUrl = new URL(`${root}?${params}`);
+
+    return new Request(matchedUrl);
+  }
+
   async shouldServe(url) {
+    const { pathname, protocol } = url;
+    const mapKey = `${protocol}//${pathname}`;
     // console.log(this.compilation.context.scratchDir)
     // console.log(new URL('./__css-modules-map.json', this.compilation.context.scratchDir));
     const cssModulesMap = JSON.parse(
@@ -128,20 +153,22 @@ class CssModulesResource extends ResourceInterface {
         "utf-8",
       ),
     );
+    console.log('shouldServer', { cssModulesMap, url })
     return (
-      url.protocol === "file:" &&
-      url.pathname.endsWith(this.extensions[0]) &&
-      cssModulesMap[url.href]
+      protocol === "file:" &&
+      pathname.endsWith(this.extensions[0]) &&
+      cssModulesMap[mapKey]
     );
   }
 
   async serve(url) {
-    // console.log(url, globalThis.cssModulesMap)
+    const { pathname, protocol } = url;
+    const mapKey = `${protocol}//${pathname}`;
     const cssModulesMap = JSON.parse(
       fs.readFileSync(new URL("./__css-modules-map.json", this.compilation.context.scratchDir)),
     );
     console.log("@@@@@@", { url, cssModulesMap });
-    const cssModule = `export default ${JSON.stringify(cssModulesMap[url.href].module)}`;
+    const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
 
     console.log("@@@@@@", { cssModule });
     return new Response(cssModule, {
@@ -240,6 +267,7 @@ class CssModulesResource extends ResourceInterface {
 
             Object.values(cssModulesMap).forEach((value) => {
               const { importer, module } = value;
+              console.log('$$$$$$$', { importer, url });
 
               if (importer === url.href) {
                 Object.keys(module).forEach((key) => {
