@@ -25,7 +25,7 @@ function transformConstructableStylesheetsPlugin() {
       }
     },
     load: async (id) => {
-      if (id?.indexOf("/src/components/") >= 0 && id.endsWith(".css.type")) {
+      if (id.endsWith(".css.type")) {
         const filename = id.slice(0, -5);
         const contents = fs.readFileSync(filename, "utf-8");
         const response = await standardCssResource.intercept(null, null, new Response(contents));
