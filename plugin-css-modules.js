@@ -71,7 +71,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
               [`${cssModuleUrl.href}`]: {
                 module: classNameMap,
                 contents: scopedCssContents,
-                importer: scriptUrl
+                importer: scriptUrl,
               },
             }),
           );
@@ -205,13 +205,15 @@ class CssModulesResource extends ResourceInterface {
     const contents = await response.text();
 
     // fuzzy search for now, we'll do a full AST walk through in optimize
-    return contents.indexOf('module.css') >= 0
-      && (response.headers?.get('Content-Type') || '').indexOf('text/javascript') >= 0;
+    return (
+      contents.indexOf("module.css") >= 0 &&
+      (response.headers?.get("Content-Type") || "").indexOf("text/javascript") >= 0
+    );
   }
 
   async optimize(url, response) {
     const { context } = this.compilation;
-    let contents = await (response.clone()).text();
+    let contents = await response.clone().text();
 
     acornWalk.simple(
       acorn.parse(contents, {
@@ -222,14 +224,14 @@ class CssModulesResource extends ResourceInterface {
         ImportDeclaration(node) {
           const { specifiers = [], source = {}, start, end } = node;
           const { value = "" } = source;
-  
+
           if (
             value.endsWith(".module.css") &&
             specifiers.length === 1 &&
             specifiers[0].local.name === "styles"
           ) {
             console.log("WE GOT A WINNER!!!", value);
-            contents = `${contents.slice(0, start)} \n ${contents.slice(end)}`
+            contents = `${contents.slice(0, start)} \n ${contents.slice(end)}`;
             const cssModulesMap = JSON.parse(
               fs.readFileSync(new URL("./__css-modules-map.json", context.scratchDir)),
             );
@@ -237,14 +239,17 @@ class CssModulesResource extends ResourceInterface {
             Object.values(cssModulesMap).forEach((value) => {
               const { importer, module } = value;
 
-              if(importer === url.href) {
+              if (importer === url.href) {
                 Object.keys(module).forEach((key) => {
-                  contents = contents.replace(new RegExp(String.raw`\$\{styles.${key}\}`, 'g'), module[key])
-                })
+                  contents = contents.replace(
+                    new RegExp(String.raw`\$\{styles.${key}\}`, "g"),
+                    module[key],
+                  );
+                });
               }
-            })
+            });
           }
-        }
+        },
       },
     );
 
