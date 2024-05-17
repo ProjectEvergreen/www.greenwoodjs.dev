@@ -119,24 +119,24 @@ class CssModulesResource extends ResourceInterface {
     }
   }
 
-  async shouldResolve(url) {    
-    return url.pathname.endsWith('module.css');
+  async shouldResolve(url) {
+    return url.pathname.endsWith("module.css");
   }
 
   async resolve(url) {
     console.log({ url });
     const { projectDirectory, userWorkspace } = this.compilation.context;
     const { pathname, searchParams } = url;
-    const params = url.searchParams.size > 0
-      ? `${searchParams.toString()}&type=css-module`
-      : 'type=css-module';
-    const root = url.protocol === 'file:'
-      ? new URL(`file://${pathname}`).href
-      : pathname.startsWith('/node_modules')
-        ? new URL(`.${pathname}`, projectDirectory).href
-        : new URL(`.${pathname}`, userWorkspace).href
+    const params =
+      url.searchParams.size > 0 ? `${searchParams.toString()}&type=css-module` : "type=css-module";
+    const root =
+      url.protocol === "file:"
+        ? new URL(`file://${pathname}`).href
+        : pathname.startsWith("/node_modules")
+          ? new URL(`.${pathname}`, projectDirectory).href
+          : new URL(`.${pathname}`, userWorkspace).href;
 
-    console.log('DOOT DOOT', { root, params });
+    console.log("DOOT DOOT", { root, params });
     const matchedUrl = new URL(`${root}?${params}`);
 
     return new Request(matchedUrl);
@@ -153,12 +153,8 @@ class CssModulesResource extends ResourceInterface {
         "utf-8",
       ),
     );
-    console.log('shouldServer', { cssModulesMap, url })
-    return (
-      protocol === "file:" &&
-      pathname.endsWith(this.extensions[0]) &&
-      cssModulesMap[mapKey]
-    );
+    console.log("shouldServer", { cssModulesMap, url });
+    return protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey];
   }
 
   async serve(url) {
@@ -267,7 +263,7 @@ class CssModulesResource extends ResourceInterface {
 
             Object.values(cssModulesMap).forEach((value) => {
               const { importer, module } = value;
-              console.log('$$$$$$$', { importer, url });
+              console.log("$$$$$$$", { importer, url });
 
               if (importer === url.href) {
                 Object.keys(module).forEach((key) => {
