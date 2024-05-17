@@ -9,6 +9,7 @@ import { parse, walk } from "css-tree";
 import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 import * as acornWalk from "acorn-walk";
 import * as acorn from "acorn";
+import { hashString } from "@greenwood/cli/src/lib/hashing-utils.js";
 
 // let cssModulesMap = {};
 
@@ -36,6 +37,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
           const cssModuleUrl = new URL(value, scriptUrl);
           const scope = cssModuleUrl.pathname.split("/").pop().split(".")[0];
           const cssContents = fs.readFileSync(cssModuleUrl, "utf-8");
+          const hash = hashString(cssContents);
           const classNameMap = {};
           let scopedCssContents = cssContents;
 
@@ -49,7 +51,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
             enter: function (node) {
               if (node.type === "ClassSelector") {
                 const { name } = node;
-                const scopedClassName = `${scope}-${name}`;
+                const scopedClassName = `${scope}-${hash}-${name}`;
                 classNameMap[name] = scopedClassName;
 
                 scopedCssContents = scopedCssContents.replace(`\.${name}`, `\.${scopedClassName}`);
