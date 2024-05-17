@@ -1,3 +1,41 @@
+diff --git a/node_modules/@greenwood/cli/src/config/rollup.config.js b/node_modules/@greenwood/cli/src/config/rollup.config.js
+index 73ddb24..2b3cbb2 100644
+--- a/node_modules/@greenwood/cli/src/config/rollup.config.js
++++ b/node_modules/@greenwood/cli/src/config/rollup.config.js
+@@ -44,7 +44,7 @@ function greenwoodResourceLoader (compilation) {
+       };
+ 
+       // filter first for any bare specifiers
+-      if (await checkResourceExists(idUrl) && extension !== 'js') {
++      if (await checkResourceExists(idUrl)) {
+         for (const plugin of resourcePlugins) {
+           if (plugin.shouldResolve && await plugin.shouldResolve(idUrl)) {
+             idUrl = new URL((await plugin.resolve(idUrl)).url);
+@@ -74,6 +74,12 @@ function greenwoodResourceLoader (compilation) {
+           }
+         }
+ 
++        for (const plugin of resourcePlugins) {
++          if (plugin.shouldOptimize && await plugin.shouldOptimize(idUrl, response.clone())) {
++            response = await plugin.optimize(idUrl, response.clone());
++          }
++        }
++
+         return await response.text();
+       }
+     }
+@@ -85,6 +91,11 @@ function greenwoodSyncPageResourceBundlesPlugin(compilation) {
+     name: 'greenwood-sync-page-resource-bundles-plugin',
+     async writeBundle(outputOptions, bundles) {
+       const { outputDir } = compilation.context;
++      const resourcePlugins = compilation.config.plugins.filter((plugin) => {
++        return plugin.type === 'resource';
++      }).map((plugin) => {
++        return plugin.provider(compilation);
++      });
+ 
+       for (const resource of compilation.resources.values()) {
+         const resourceKey = normalizePathnameForWindows(resource.sourcePathURL);
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
 index 6201ea8..855c3fd 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/serve.js

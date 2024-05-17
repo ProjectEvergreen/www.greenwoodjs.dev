@@ -2,7 +2,6 @@ import styles from "./navigation.module.css";
 
 export default class Navigation extends HTMLElement {
   connectedCallback() {
-    console.log({ styles });
     this.innerHTML = `
       <nav>
         <ul class="${styles.nav}">

@@ -71,6 +71,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
               [`${cssModuleUrl.href}`]: {
                 module: classNameMap,
                 contents: scopedCssContents,
+                importer: scriptUrl
               },
             }),
           );
@@ -198,6 +199,56 @@ class CssModulesResource extends ResourceInterface {
     );
 
     return new Response(newBody);
+  }
+
+  async shouldOptimize(url, response) {
+    const contents = await response.text();
+
+    // fuzzy search for now, we'll do a full AST walk through in optimize
+    return contents.indexOf('module.css') >= 0
+      && (response.headers?.get('Content-Type') || '').indexOf('text/javascript') >= 0;
+  }
+
+  async optimize(url, response) {
+    const { context } = this.compilation;
+    let contents = await (response.clone()).text();
+
+    acornWalk.simple(
+      acorn.parse(contents, {
+        ecmaVersion: "2020",
+        sourceType: "module",
+      }),
+      {
+        ImportDeclaration(node) {
+          const { specifiers = [], source = {}, start, end } = node;
+          const { value = "" } = source;
+  
+          if (
+            value.endsWith(".module.css") &&
+            specifiers.length === 1 &&
+            specifiers[0].local.name === "styles"
+          ) {
+            console.log("WE GOT A WINNER!!!", value);
+            contents = `${contents.slice(0, start)} \n ${contents.slice(end)}`
+            const cssModulesMap = JSON.parse(
+              fs.readFileSync(new URL("./__css-modules-map.json", context.scratchDir)),
+            );
+
+            Object.values(cssModulesMap).forEach((value) => {
+              const { importer, module } = value;
+
+              if(importer === url.href) {
+                Object.keys(module).forEach((key) => {
+                  contents = contents.replace(new RegExp(String.raw`\$\{styles.${key}\}`, 'g'), module[key])
+                })
+              }
+            })
+          }
+        }
+      },
+    );
+
+    return new Response(contents, { headers: response.headers });
   }
 }
 
