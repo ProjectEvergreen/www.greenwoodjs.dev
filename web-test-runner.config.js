@@ -1,6 +1,10 @@
 import { defaultReporter } from "@web/test-runner";
+import fs from "fs";
+import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 import { junitReporter } from "@web/test-runner-junit-reporter";
 import path from "path";
+
+const rawResource = greenwoodPluginImportRaw()[0].provider({});
 
 export default {
   files: "./src/**/*.spec.js",
@@ -15,6 +19,25 @@ export default {
   coverageConfig: {
     reportDir: "./reports",
   },
+  plugins: [
+    {
+      name: "import-raw",
+      async transform(context) {
+        const { url } = context.request;
+
+        if (url.endsWith("?type=raw")) {
+          const contents = fs.readFileSync(new URL(`.${url}`, import.meta.url), "utf-8");
+          const response = await rawResource.intercept(null, null, new Response(contents));
+          const body = await response.text();
+
+          return {
+            body,
+            headers: { "Content-Type": "application/javascript" },
+          };
+        }
+      },
+    },
+  ],
   middleware: [
     function rewriteIndex(context, next) {
       const { url } = context.request;

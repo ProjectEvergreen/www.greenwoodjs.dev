@@ -1,18 +1,31 @@
 import eslintConfigPrettier from "eslint-config-prettier";
+import babelParser from "@babel/eslint-parser";
 
 export default [
   {
     languageOptions: {
+      parser: babelParser,
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: "module",
+        requireConfigFile: false,
+        babelOptions: {
+          plugins: ["@babel/plugin-syntax-import-assertions"],
+        },
       },
       globals: {
         browser: true,
         node: true,
       },
     },
-    ignores: [".greenwood/*", "node_modules/*", "public/*", "reports/*"],
+    ignores: [
+      ".greenwood/*",
+      "node_modules/*",
+      "public/*",
+      "reports/*",
+      "storybook-static/**",
+      "patches/**",
+    ],
     rules: {
       "comma-dangle": [2, "never"],
       "no-cond-assign": 2,
