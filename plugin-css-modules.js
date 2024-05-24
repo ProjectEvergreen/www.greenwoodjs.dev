@@ -10,6 +10,7 @@ import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js"
 import * as acornWalk from "acorn-walk";
 import * as acorn from "acorn";
 import { hashString } from "@greenwood/cli/src/lib/hashing-utils.js";
+import { importAttributes } from 'acorn-import-attributes'; // comes from Greenwood
 
 function getCssModulesMap(compilation) {
   const locationUrl = new URL("./__css-modules-map.json", compilation.context.scratchDir);
@@ -26,7 +27,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
   const scriptContents = fs.readFileSync(scriptUrl, "utf-8");
 
   acornWalk.simple(
-    acorn.parse(scriptContents, {
+    acorn.Parser.extend(importAttributes).parse(scriptContents, {
       ecmaVersion: "2020",
       sourceType: "module",
     }),
@@ -236,7 +237,7 @@ class CssModulesResource extends ResourceInterface {
     let contents = await response.clone().text();
 
     acornWalk.simple(
-      acorn.parse(contents, {
+      acorn.Parser.extend(importAttributes).parse(contents, {
         ecmaVersion: "2020",
         sourceType: "module",
       }),

@@ -71,10 +71,13 @@ index 6201ea8..855c3fd 100644
        }
  
 diff --git a/node_modules/@greenwood/cli/src/loader.js b/node_modules/@greenwood/cli/src/loader.js
-index 5d347bc..5cefb92 100644
+index 5d347bc..99e3cff 100644
 --- a/node_modules/@greenwood/cli/src/loader.js
 +++ b/node_modules/@greenwood/cli/src/loader.js
-@@ -3,7 +3,8 @@ import { readAndMergeConfig as initConfig } from './lifecycles/config.js';
+@@ -1,9 +1,11 @@
+ import { readAndMergeConfig as initConfig } from './lifecycles/config.js';
++import { mergeResponse } from './lib/resource-utils.js';
+ 
  const config = await initConfig();
  const resourcePlugins = config.plugins.filter(plugin => plugin.type === 'resource').map(plugin => plugin.provider({
    context: {
@@ -84,7 +87,7 @@ index 5d347bc..5cefb92 100644
    },
    config: {
      devServer: {}
-@@ -11,22 +12,37 @@ const resourcePlugins = config.plugins.filter(plugin => plugin.type === 'resourc
+@@ -11,22 +13,37 @@ const resourcePlugins = config.plugins.filter(plugin => plugin.type === 'resourc
    graph: []
  }));
  
@@ -104,13 +107,13 @@ index 5d347bc..5cefb92 100644
  
 +
 +  for (const plugin of resourcePlugins) {
-+    if (initUrl.protocol === 'file:' && plugin.shouldResolve && await plugin.shouldResolve(url, request)) {
++    if (initUrl.protocol === 'file:' && plugin.shouldResolve && await plugin.shouldResolve(initUrl, request)) {
 +      shouldHandle = true;
 +
 +      if (!checkOnly) {
-+        request = await plugin.resolve(url, request);
++        // request = await plugin.resolve(url, request);
 +        // console.log('checking....', request.url);
-+        // url =  request.url;
++        url =  new URL((await plugin.resolve(url, request)).url);
 +      }
 +    }
 +  }
@@ -122,7 +125,25 @@ index 5d347bc..5cefb92 100644
  
        if (!checkOnly) {
 -        response = await plugin.serve(url, request);
-+        response = await plugin.serve(initUrl, request);
++        response = mergeResponse(response, await plugin.serve(initUrl, request));
+       }
+     }
+   }
+@@ -36,7 +53,7 @@ async function getCustomLoaderResponse(url, checkOnly = false) {
+       shouldHandle = true;
+ 
+       if (!checkOnly) {
+-        response = await plugin.preIntercept(url, request, response.clone());
++        response = mergeResponse(response, await plugin.preIntercept(url, request, response.clone()));
+       }
+     }
+ 
+@@ -44,7 +61,7 @@ async function getCustomLoaderResponse(url, checkOnly = false) {
+       shouldHandle = true;
+ 
+       if (!checkOnly) {
+-        response = await plugin.intercept(url, request, response.clone());
++        response = mergeResponse(response, await plugin.intercept(url, request, response.clone()));
        }
      }
    }
