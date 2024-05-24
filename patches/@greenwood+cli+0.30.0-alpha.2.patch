@@ -37,14 +37,14 @@ index 73ddb24..2b3cbb2 100644
        for (const resource of compilation.resources.values()) {
          const resourceKey = normalizePathnameForWindows(resource.sourcePathURL);
 diff --git a/node_modules/@greenwood/cli/src/lib/resource-utils.js b/node_modules/@greenwood/cli/src/lib/resource-utils.js
-index a08cd9c..005f690 100644
+index a08cd9c..bbc8161 100644
 --- a/node_modules/@greenwood/cli/src/lib/resource-utils.js
 +++ b/node_modules/@greenwood/cli/src/lib/resource-utils.js
 @@ -89,10 +89,15 @@ async function checkResourceExists(url) {
  // * and a nested path in the template - ../../styles/theme.css
  // so will get resolved as `${rootUrl}/styles/theme.css`
  async function resolveForRelativeUrl(url, rootUrl) {
-+  console.log('resolveForRelativeUrl', url, rootUrl)
++  // console.log('resolveForRelativeUrl', url, rootUrl)
    const search = url.search || '';
    let reducedUrl;
  
@@ -71,7 +71,7 @@ index 6201ea8..855c3fd 100644
        }
  
 diff --git a/node_modules/@greenwood/cli/src/loader.js b/node_modules/@greenwood/cli/src/loader.js
-index 5d347bc..a96c69c 100644
+index 5d347bc..5cefb92 100644
 --- a/node_modules/@greenwood/cli/src/loader.js
 +++ b/node_modules/@greenwood/cli/src/loader.js
 @@ -3,7 +3,8 @@ import { readAndMergeConfig as initConfig } from './lifecycles/config.js';
@@ -90,7 +90,7 @@ index 5d347bc..a96c69c 100644
  
 -async function getCustomLoaderResponse(url, checkOnly = false) {
 +async function getCustomLoaderResponse(initUrl, checkOnly = false) {
-+  console.log('CUSTOM LOADER RESPONSE', { initUrl })
++  // console.log('CUSTOM LOADER RESPONSE', { initUrl })
    const headers = {
      'Accept': 'text/javascript',
      'Sec-Fetch-Dest': 'empty'
@@ -109,7 +109,7 @@ index 5d347bc..a96c69c 100644
 +
 +      if (!checkOnly) {
 +        request = await plugin.resolve(url, request);
-+        console.log('checking....', request.url);
++        // console.log('checking....', request.url);
 +        // url =  request.url;
 +      }
 +    }
@@ -127,7 +127,7 @@ index 5d347bc..a96c69c 100644
      }
    }
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
-index 64c1ba0..09147f9 100644
+index 64c1ba0..6e14cd4 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 @@ -88,6 +88,7 @@ function bundleCss(body, url, compilation) {
@@ -155,7 +155,7 @@ index 64c1ba0..09147f9 100644
    }
  
    async intercept(url, request, response) {
-+    console.log('INTERCEPT', { url });
++    // console.log('INTERCEPT', { url });
      const contents = (await response.text()).replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\');
      const body = `const sheet = new CSSStyleSheet();sheet.replaceSync(\`${contents}\`);export default sheet;`;
  
