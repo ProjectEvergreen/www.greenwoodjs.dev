@@ -19,7 +19,11 @@ function transformConstructableStylesheetsPlugin() {
     name: "transform-css-module-scripts",
     enforce: "pre",
     resolveId: (id, importer) => {
-      if (importer?.indexOf("/src/components/") >= 0 && id.endsWith(".css") && !id.endsWith(".module.css")) {
+      if (
+        importer?.indexOf("/src/components/") >= 0 &&
+        id.endsWith(".css") &&
+        !id.endsWith(".module.css")
+      ) {
         // add .type so CSS modules are not precessed by the default pipeline
         return path.join(path.dirname(importer), `${id}.type`);
       }

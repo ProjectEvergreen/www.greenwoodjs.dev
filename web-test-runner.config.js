@@ -36,7 +36,8 @@ export default {
           };
         }
       },
-    }, {
+    },
+    {
       name: "css-modules",
       async transform(context) {
         const url = new URL(`.${context.request.url}`, import.meta.url);

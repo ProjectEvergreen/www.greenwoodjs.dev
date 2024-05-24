@@ -10,7 +10,7 @@ import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js"
 import * as acornWalk from "acorn-walk";
 import * as acorn from "acorn";
 import { hashString } from "@greenwood/cli/src/lib/hashing-utils.js";
-import { importAttributes } from 'acorn-import-attributes'; // comes from Greenwood
+import { importAttributes } from "acorn-import-attributes"; // comes from Greenwood
 
 function getCssModulesMap(compilation) {
   const locationUrl = new URL("./__css-modules-map.json", compilation.context.scratchDir);
