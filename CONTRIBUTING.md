@@ -63,7 +63,7 @@ customElements.define("app-greeting", Banner);
 
 #### Static Components (Light DOM)
 
-Since most of the content for this project is static content, Light DOM based HTML is preferred, rendering directly into `innerHTML`.  For styling these components, a [Greenwood based implementation of CSS Modules](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-css-modules) is used, that will link the class names at build time yet still emit static CSS in the `<head>` of the page.
+Since most of the content for this project is static content, Light DOM based HTML is preferred, rendering directly into `innerHTML`. For styling these components, a [Greenwood based implementation of CSS Modules](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-css-modules) is used, that will link the class names at build time yet still emit static CSS in the `<head>` of the page.
 
 ```css
 /* greeting.module.css */
@@ -88,6 +88,7 @@ customElements.define("app-greeting", Greeting);
 ```
 
 This would emit the following generated HTML
+
 ```html
 <app-greeting>
   <p class="greeting-1234321-wrapper">Hello from the greeting component!</p>
@@ -96,6 +97,7 @@ This would emit the following generated HTML
 
 > [!IMPORTANT]  
 > When adding these components to a page, we would want to optimize them as static; `data-gwd-opt="static"`
+>
 > ```html
 > <script src="../components/greeting/greeting.js" type="module" data-gwd-opt="static">
 > ```
@@ -103,7 +105,6 @@ This would emit the following generated HTML
 #### Interactive Components (Declarative Shadow DOM)
 
 For interactive components that would require client side interactivity, like for event handlers, these component should be authored rendering into a Shadow Root with [Declarative Shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) and using [Constructable Stylesheets](https://web.dev/articles/constructable-stylesheets).
-
 
 ```css
 /* card.css */
@@ -117,7 +118,6 @@ For interactive components that would require client side interactivity, like fo
 import sheet from "./card.css" with { type: "css" };
 
 export default class Card extends HTMLElement {
-
   selectItem() {
     // do the thing
   }
@@ -139,9 +139,8 @@ export default class Card extends HTMLElement {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    this.shadowRoot.adoptedStylesheets = [ sheet ];
-    this.shadowRoot?.querySelector("button")
-      .addEventListener("click", this.selectItem.bind(this));
+    this.shadowRoot.adoptedStylesheets = [sheet];
+    this.shadowRoot?.querySelector("button").addEventListener("click", this.selectItem.bind(this));
   }
 }
 
@@ -149,22 +148,23 @@ customElements.define("app-card", Card);
 ```
 
 This would emit the following generated HTML
+
 ```html
 <app-card title="My Title" thumbnail="/image.png">
   <template shadowrootmode="open">
     <div>
       <h3>My Title</h3>
-      <img src="/image.png" alt="My Title" loading="lazy" width="100%">
+      <img src="/image.png" alt="My Title" loading="lazy" width="100%" />
       <button>View Item Details</button>
     </div>
   </template>
 </app-card>
 ```
 
-----
+---
 
 > [!TIP]  
-> If the component _does not need_ client side JavaScript, use a **Light DOM** component.  If it _will need_ client side JavaScript, use a **Shadow DOM** component.
+> If the component _does not need_ client side JavaScript, use a **Light DOM** component. If it _will need_ client side JavaScript, use a **Shadow DOM** component.
 
 ### Testing
 
