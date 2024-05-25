@@ -1,0 +1,30 @@
+---
+title: Playlist
+collection: "nav"
+order: 4
+name: "My Cool Playlist"
+songs:
+  - title: You Can Close Your Eyes
+    url: http://archive.org/download/james-taylor-montreux-jazz-fest-1988-rsr/01 You Can Close Your Eyes.mp3
+  - title: Country Road
+    url: http://archive.org/download/james-taylor-montreux-jazz-fest-1988-rsr/09 Country Road.mp3
+---
+
+<!doctype html>
+<html lang="en" prefix="og:http://ogp.me/ns#">
+  <head>
+    <title>Playlist</title>
+    <script type="module" src="../components/footer/footer.js" data-gwd-opt="static"></script>
+    <script type="module" src="../components/header/header.js"></script>
+    <script type="module" src="../components/player.js"></script>
+    <link rel="stylesheet" href="../styles/theme.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+
+  <body>
+    <app-header></app-header>
+    <h1>Welcome to the Player!</h1>
+    <app-player title="${globalThis.page.name}" playlist='${globalThis.page.songs}'></app-player>
+    <app-footer></app-footer>
+  </body>
+</html>
