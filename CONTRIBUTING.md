@@ -39,9 +39,12 @@ General changes to the website can be made by submitting a PR directly to the ma
 
 ### Styling
 
-All global theming and general styles should go in _src/styles/theme.css_, like font family and CSS custom properties to be used throughout the site, or for anything that may not be easily "componentized".
+All global theming and general styles should go in _src/styles/theme.css_, like font family and CSS custom properties to be used throughout the site.
 
-[Open Props](https://open-props.style/) are used in this project to provide a set of consistent and re-usable design system tokens. Please review these first before creating any new custom values or variables.
+For anything that may not be easily "componentized" or is very general like for markdown based content, it should go in _src/styles/main.css_.
+
+> [!NOTE]  
+> [Open Props](https://open-props.style/) are used in this project to provide a set of consistent and re-usable design system tokens. Please review these first before creating any new custom values or variables.
 
 ### Components
 
@@ -55,12 +58,12 @@ export default class Greeting extends HTMLElement {
 }
 
 // we use app- as the tag name prefix
-customElements.define('app-greeting', Banner);
+customElements.define("app-greeting", Banner);
 ```
 
 #### Static Components (Light DOM)
 
-Since most of the content for this project is static content, Light DOM based HTML is preferred, rendering directly into `innerHTML`.  For styling these components, a [Greenwood based implementation of CSS Modules](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-css-modules) is used, that will link the styles at build time yet still emit static CSS in the `<head>` of the page.
+Since most of the content for this project is static content, Light DOM based HTML is preferred, rendering directly into `innerHTML`.  For styling these components, a [Greenwood based implementation of CSS Modules](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-css-modules) is used, that will link the class names at build time yet still emit static CSS in the `<head>` of the page.
 
 ```css
 /* greeting.module.css */
@@ -71,7 +74,7 @@ Since most of the content for this project is static content, Light DOM based HT
 ```
 
 ```js
-import styles from './greeting.module.css';
+import styles from "./greeting.module.css";
 
 export default class Greeting extends HTMLElement {
   connectedCallback() {
@@ -81,7 +84,7 @@ export default class Greeting extends HTMLElement {
   }
 }
 
-customElements.define('app-greeting', Greeting);
+customElements.define("app-greeting", Greeting);
 ```
 
 This would emit the following generated HTML
@@ -99,7 +102,7 @@ This would emit the following generated HTML
 
 #### Interactive Components (Declarative Shadow DOM)
 
-For interactive components that would require client side interactivity, like for event handlers, the component should be authored rendering into a Shadow Root with [Declarative Shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) and using [Constructable Stylesheets](https://web.dev/articles/constructable-stylesheets).
+For interactive components that would require client side interactivity, like for event handlers, these component should be authored rendering into a Shadow Root with [Declarative Shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) and using [Constructable Stylesheets](https://web.dev/articles/constructable-stylesheets).
 
 
 ```css
@@ -111,7 +114,7 @@ For interactive components that would require client side interactivity, like fo
 ```
 
 ```js
-import sheet from './card.css' with { type: 'css' };
+import sheet from "./card.css" with { type: "css" };
 
 export default class Card extends HTMLElement {
 
@@ -121,9 +124,9 @@ export default class Card extends HTMLElement {
 
   connectedCallback() {
     if (!this.shadowRoot) {
-      const thumbnail = this.getAttribute('thumbnail');
-      const title = this.getAttribute('title');
-      const template = document.createElement('template');
+      const thumbnail = this.getAttribute("thumbnail");
+      const title = this.getAttribute("title");
+      const template = document.createElement("template");
 
       template.innerHTML = `
         <div class="card">
@@ -132,7 +135,7 @@ export default class Card extends HTMLElement {
           <button>View Item Details</button>
         </div>
       `;
-      this.attachShadow({ mode: 'open' });
+      this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
@@ -142,7 +145,7 @@ export default class Card extends HTMLElement {
   }
 }
 
-customElements.define('app-card', Card);
+customElements.define("app-card", Card);
 ```
 
 This would emit the following generated HTML
@@ -161,7 +164,7 @@ This would emit the following generated HTML
 ----
 
 > [!TIP]  
-> If the component _does not need_ client side JavaScript, use a **Light DOM** component.  If it _will need_ client side JavaScript, uses a **Shadow DOM** component.
+> If the component _does not need_ client side JavaScript, use a **Light DOM** component.  If it _will need_ client side JavaScript, use a **Shadow DOM** component.
 
 ### Testing
 
