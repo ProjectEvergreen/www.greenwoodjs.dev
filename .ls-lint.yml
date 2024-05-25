@@ -1,5 +1,6 @@
 ls:
   .config.js: kebabcase
+  .module.css: kebabcase
   .spec.js: kebabcase
   .stories.js: kebabcase
   .js: kebabcase
