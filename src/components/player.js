@@ -19,9 +19,9 @@ export default class Player extends HTMLElement {
       template.innerHTML = `
         <div style="text-align: left; width: 30%; margin:0 auto;">
           <h1>${this.title}</h1>
-          <ul>
+          <ol>
             ${list}
-          </ul>
+          </ol>
           <button>Start Playlist</button>
         </div>
       `;
