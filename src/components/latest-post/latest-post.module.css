@@ -1,0 +1,15 @@
+.pill {
+  display: inline-block;
+  border-radius: var(--radius-4);
+  padding: var(--size-fluid-1);
+  border: var(--radius-1) solid var(--color-gray-background);
+  box-shadow: var(--shadow-2);
+  text-align: left;
+}
+
+.new {
+  background-color: #c3ddba;
+  border-radius: var(--radius-4);
+  padding: var(--size-2);
+  margin-right: var(--size-fluid-1);
+}

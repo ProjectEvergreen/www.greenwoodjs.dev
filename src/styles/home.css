@@ -7,3 +7,13 @@ pre {
   width: 30%;
   overflow: scroll;
 }
+
+app-latest-post, app-hero-banner {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.walkthrough-card {
+  display: none;
+}
