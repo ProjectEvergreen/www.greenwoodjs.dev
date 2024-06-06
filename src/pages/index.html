@@ -3,11 +3,13 @@
   <head>
     <title>Greenwood</title>
     <script type="module" src="../components/footer/footer.js" data-gwd-opt="static"></script>
+    <script type="module" src="../components/header/header.js"></script>
     <link rel="stylesheet" href="../styles/theme.css" />
     <link rel="stylesheet" href="../styles/main.css" />
   </head>
 
   <body>
+    <app-header nav='${globalThis.collection.nav}'></app-header>
     <h1>Welcome to Greenwood!</h1>
     <app-footer></app-footer>
   </body>

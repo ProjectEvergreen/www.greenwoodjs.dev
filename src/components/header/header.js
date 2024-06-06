@@ -11,6 +11,11 @@ export default class Header extends HTMLElement {
   }
 
   connectedCallback() {
+    const nav = JSON.parse(this.getAttribute("nav") || "[]").sort((a, b) =>
+      a.data.order > b.data.order ? 1 : -1,
+    );
+    console.log({ nav });
+
     if (!this.shadowRoot) {
       this.attachShadow({ mode: "open" });
       this.shadowRoot.innerHTML = `
@@ -21,15 +26,16 @@ export default class Header extends HTMLElement {
 
           <nav class="nav-bar">
             <ul class="nav-bar-menu">
-              <li class="nav-bar-menu-item">
-                <a href="/docs/" title="Documentation">Docs</a>
-              </li>
-              <li class="nav-bar-menu-item">
-                <a href="/guides/" title="Guides">Guides</a>
-              </li>
-              <li class="nav-bar-menu-item">
-                <a href="/blog/" title="Blog">Blog</a>
-              </li>
+              ${nav
+                .map((item) => {
+                  const { label, title, route } = item;
+                  return `
+                    <li class="nav-bar-menu-item">
+                      <a href="${route}" title="${title}">${label}</a>
+                    </li>
+                  `;
+                })
+                .join("\n")}
             </ul>
 
             <div class="social-tray">
@@ -58,15 +64,16 @@ export default class Header extends HTMLElement {
             
             <nav class="nav-bar-mobile">
               <ul class="mobile-menu-items">
-                <li class="nav-bar-menu-item">
-                  <a href="/docs/" title="Documentation">Docs</a>
-                </li>
-                <li class="nav-bar-menu-item">
-                  <a href="/guides/" title="Guides">Guides</a>
-                </li>
-                <li class="nav-bar-menu-item">
-                  <a href="/blog/" title="Blog">Blog</a>
-                </li>
+              ${nav
+                .map((item) => {
+                  const { label, route, title } = item;
+                  return `
+                    <li class="nav-bar-menu-item">
+                      <a href="${route}" title="${title}">${label}</a>
+                    </li>
+                  `;
+                })
+                .join("\n")}
               </ul>
             </nav>
           </nav>

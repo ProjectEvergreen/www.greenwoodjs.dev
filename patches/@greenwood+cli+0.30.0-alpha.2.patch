@@ -45,6 +45,36 @@ index a08cd9c..bd993b5 100644
      return new URL(`.${url.pathname}${search}`, rootUrl);
    }
  
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/graph.js b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+index 227c87a..5e791d0 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/graph.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+@@ -28,6 +28,7 @@ const generateGraph = async (compilation) => {
+ 
+       const walkDirectoryForPages = async function(directory, pages = []) {
+         const files = await fs.readdir(directory);
++        const collections = {};
+ 
+         for (const filename of files) {
+           const filenameUrl = new URL(`./${filename}`, directory);
+@@ -231,6 +232,17 @@ const generateGraph = async (compilation) => {
+               isolation,
+               hydration
+             });
++
++            const _collection = customData.collection;
++              if (_collection) {
++                if(!collections[_collection]) {
++                  collections[_collection] = [];
++                }
++              
++              collections[_collection].push(pages[pages.length - 1]);
++            }
++
++            compilation.collections = collections;
+           }
+         }
+ 
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
 index 6201ea8..855c3fd 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/serve.js
@@ -183,3 +213,54 @@ index 64c1ba0..6e14cd4 100644
      const contents = (await response.text()).replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\');
      const body = `const sheet = new CSSStyleSheet();sheet.replaceSync(\`${contents}\`);export default sheet;`;
  
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+index cf3c1cf..7e762c4 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+@@ -42,6 +42,7 @@ class StandardHtmlResource extends ResourceInterface {
+     const isSpaRoute = this.compilation.graph.find(node => node.isSPA);
+     const matchingRoute = this.compilation.graph.find((node) => node.route === pathname) || {};
+     const filePath = !matchingRoute.external ? matchingRoute.path : '';
++    const extension = (matchingRoute?.filename || '').split('.').pop();
+     const isMarkdownContent = (matchingRoute?.filename || '').split('.').pop() === 'md';
+ 
+     let customImports = [];
+@@ -74,7 +75,7 @@ class StandardHtmlResource extends ResourceInterface {
+       }
+ 
+       const settings = config.markdown.settings || {};
+-      const fm = frontmatter(markdownContents);
++      const fm = frontmatter(markdownContents); // TODO we already got this once in the graph phase...
+ 
+       processedMarkdown = await unified()
+         .use(remarkParse, settings) // parse markdown into AST
+@@ -195,11 +196,29 @@ class StandardHtmlResource extends ResourceInterface {
+     }
+ 
+     if (interpolateFrontmatter) {
++      console.log({ frontMatter, matchingRoute })
++      // TODO consolidate this
++      for (const fm in matchingRoute.data) {
++        console.log('11', { fm });
++        const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
++        // TODO handle escaping nested " and / or '" when stringifying
++        const needle = typeof matchingRoute.data[fm] === 'string' ? matchingRoute.data[fm] : JSON.stringify(matchingRoute.data[fm]);
++        console.log('replace', needle);
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), needle);
++      }
++      
+       for (const fm in frontMatter) {
+         const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
+       
+         body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), frontMatter[fm]);
+       }
++      
++      for (const collection in this.compilation.collections) {
++        const interpolatedFrontmatter = '\\$\\{globalThis.collection.' + collection + '\\}';
++      
++        // TODO handle escaping nested " and / or '" when stringifying
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), JSON.stringify(this.compilation.collections[collection]));
++      }
+     }
+ 
+     // give the user something to see so they know it works, if they have no content

@@ -3,5 +3,6 @@ import { greenwoodPluginCssModules } from "./plugin-css-modules.js";
 
 export default {
   prerender: true,
+  interpolateFrontmatter: true,
   plugins: [greenwoodPluginImportRaw(), greenwoodPluginCssModules()],
 };
