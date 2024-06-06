@@ -58,7 +58,7 @@ export default class Greeting extends HTMLElement {
 }
 
 // we use app- as the tag name prefix
-customElements.define("app-greeting", Banner);
+customElements.define("app-greeting", Greeting);
 ```
 
 #### Static Components (Light DOM)
