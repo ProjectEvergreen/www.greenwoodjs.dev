@@ -1,4 +1,4 @@
-import styles from './hero-banner.module.css';
+import styles from "./hero-banner.module.css";
 
 export default class HeroBanner extends HTMLElement {
   connectedCallback() {
@@ -20,8 +20,8 @@ export default class HeroBanner extends HTMLElement {
           <pre>$ npx @greenwood/cli@latest</pre>
         </div>
       <div>
-    `
+    `;
   }
 }
 
-customElements.define('app-hero-banner', HeroBanner);
+customElements.define("app-hero-banner", HeroBanner);
