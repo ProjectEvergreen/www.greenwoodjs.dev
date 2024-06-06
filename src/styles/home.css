@@ -1,13 +1,3 @@
-h1 {
-  text-align: center;
-}
-
-pre {
-  margin: 0 auto !important;
-  width: 30%;
-  overflow: scroll;
-}
-
 app-latest-post, app-hero-banner {
   display: block;
   margin: 0 auto;
