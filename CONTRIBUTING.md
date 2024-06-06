@@ -13,7 +13,7 @@ The layout of the project is as follows:
 - _/styles/_ - Global theme and styles
 
 > [!NOTE]  
-> _Please review the documentation contained in this project's Storybook by running `npm run story:dev` and going through the content in the **Overview** section_
+> Please review the documentation contained in this project's Storybook by running `npm run story:dev` and going through the content in the **Overview** section.
 
 ## Documentation Changes
 
@@ -41,38 +41,130 @@ General changes to the website can be made by submitting a PR directly to the ma
 
 All global theming and general styles should go in _src/styles/theme.css_, like font family and CSS custom properties to be used throughout the site.
 
-[Open Props](https://open-props.style/) are used in this project to provide a set of consistent and re-usable design system tokens. Please review these first before creating any new custom values or variables.
+For anything that may not be easily "componentized" or is very general like for markdown based content, it should go in _src/styles/main.css_.
+
+> [!NOTE]  
+> [Open Props](https://open-props.style/) are used in this project to provide a set of consistent and re-usable design system tokens. Please review these first before creating any new custom values or variables.
 
 ### Components
 
-As this project is a static site, all Web Components will generally be authored as content rendering into the light dom, which will then be pre-rendered at build time to static HTML.
+This project leverage Web Components (custom elements) as the mechanism for all templating and / or interactivity, with pre-rendering of the content occurring during the build (SSG).
 
 ```js
-export default class MyComponent extends HTMLElement {
+export default class Greeting extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
-      <p class="my-component">Hello from my component!</p>
-    `;
+    // ...
   }
 }
+
+// we use app- as the tag name prefix
+customElements.define("app-greeting", Greeting);
 ```
 
-```html
-<!-- static optimization applied to remove this script tag at build time -->
-<script src="../components/my-component/my-component.js" type="module" data-gwd-opt="static">
-```
+#### Static Components (Light DOM)
 
-> [!TIP]  
-> _For highly interactive components **without** a strong need for static content and / or SEO, Declarative Shadow DOM can be used instead._
-
-The CSS for any Light DOM components should go into _src/styles/main.css_
+Since most of the content for this project is static content, Light DOM based HTML is preferred, rendering directly into `innerHTML`. For styling these components, a [Greenwood based implementation of CSS Modules](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-css-modules) is used, that will link the class names at build time yet still emit static CSS in the `<head>` of the page.
 
 ```css
-.my-component {
+/* greeting.module.css */
+.wrapper {
   color: var(--color-primary);
   box-shadow: var(--shadow-3);
 }
 ```
+
+```js
+import styles from "./greeting.module.css";
+
+export default class Greeting extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <p class="${styles.wrapper}">Hello from the greeting component!</p>
+    `;
+  }
+}
+
+customElements.define("app-greeting", Greeting);
+```
+
+This would emit the following generated HTML
+
+```html
+<app-greeting>
+  <p class="greeting-1234321-wrapper">Hello from the greeting component!</p>
+</app-greeting>
+```
+
+> [!IMPORTANT]  
+> When adding these components to a page, we would want to optimize them as static; `data-gwd-opt="static"`
+>
+> ```html
+> <script src="../components/greeting/greeting.js" type="module" data-gwd-opt="static">
+> ```
+
+#### Interactive Components (Declarative Shadow DOM)
+
+For interactive components that would require client side interactivity, like for event handlers, these component should be authored rendering into a Shadow Root with [Declarative Shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) and using [Constructable Stylesheets](https://web.dev/articles/constructable-stylesheets).
+
+```css
+/* card.css */
+.card {
+  color: var(--color-primary);
+  box-shadow: var(--shadow-3);
+}
+```
+
+```js
+import sheet from "./card.css" with { type: "css" };
+
+export default class Card extends HTMLElement {
+  selectItem() {
+    // do the thing
+  }
+
+  connectedCallback() {
+    if (!this.shadowRoot) {
+      const thumbnail = this.getAttribute("thumbnail");
+      const title = this.getAttribute("title");
+      const template = document.createElement("template");
+
+      template.innerHTML = `
+        <div class="card">
+          <h3>${title}</h3>
+          <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
+          <button>View Item Details</button>
+        </div>
+      `;
+      this.attachShadow({ mode: "open" });
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    this.shadowRoot.adoptedStylesheets = [sheet];
+    this.shadowRoot?.querySelector("button").addEventListener("click", this.selectItem.bind(this));
+  }
+}
+
+customElements.define("app-card", Card);
+```
+
+This would emit the following generated HTML
+
+```html
+<app-card title="My Title" thumbnail="/image.png">
+  <template shadowrootmode="open">
+    <div>
+      <h3>My Title</h3>
+      <img src="/image.png" alt="My Title" loading="lazy" width="100%" />
+      <button>View Item Details</button>
+    </div>
+  </template>
+</app-card>
+```
+
+---
+
+> [!TIP]  
+> If the component _does not need_ client side JavaScript, use a **Light DOM** component. If it _will need_ client side JavaScript, use a **Shadow DOM** component.
 
 ### Testing
 
