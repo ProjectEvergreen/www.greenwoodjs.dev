@@ -46,29 +46,42 @@ index a08cd9c..bd993b5 100644
    }
  
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/graph.js b/node_modules/@greenwood/cli/src/lifecycles/graph.js
-index 227c87a..5e791d0 100644
+index 227c87a..a73f7aa 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/graph.js
 +++ b/node_modules/@greenwood/cli/src/lifecycles/graph.js
-@@ -28,6 +28,7 @@ const generateGraph = async (compilation) => {
- 
-       const walkDirectoryForPages = async function(directory, pages = []) {
-         const files = await fs.readdir(directory);
-+        const collections = {};
- 
-         for (const filename of files) {
-           const filenameUrl = new URL(`./${filename}`, directory);
-@@ -231,6 +232,17 @@ const generateGraph = async (compilation) => {
+@@ -12,6 +12,7 @@ const generateGraph = async (compilation) => {
+       const { context, config } = compilation;
+       const { basePath } = config;
+       const { apisDir, pagesDir, projectDirectory, userWorkspace } = context;
++      const collections = {};
+       let graph = [{
+         outputPath: '/index.html',
+         filename: 'index.html',
+@@ -209,7 +210,7 @@ const generateGraph = async (compilation) => {
+              * isolation: if this should be run in isolated mode
+              * hydration: if this page needs hydration support
+              */
+-            pages.push({
++            const page = {
+               data: customData || {},
+               filename,
+               id,
+@@ -230,7 +231,20 @@ const generateGraph = async (compilation) => {
+               prerender,
                isolation,
                hydration
-             });
+-            });
++            };
++
++            pages.push(page);
 +
 +            const _collection = customData.collection;
-+              if (_collection) {
-+                if(!collections[_collection]) {
-+                  collections[_collection] = [];
-+                }
++            if (_collection) {
++              if(!collections[_collection]) {
++                collections[_collection] = [];
++              }
 +              
-+              collections[_collection].push(pages[pages.length - 1]);
++              collections[_collection].push(page);
 +            }
 +
 +            compilation.collections = collections;
@@ -223,7 +236,7 @@ index 64c1ba0..c0c2189 100644
      const body = `const sheet = new CSSStyleSheet();sheet.replaceSync(\`${contents}\`);export default sheet;`;
  
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
-index cf3c1cf..7e762c4 100644
+index cf3c1cf..444e3b5 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 @@ -42,6 +42,7 @@ class StandardHtmlResource extends ResourceInterface {
@@ -260,7 +273,7 @@ index cf3c1cf..7e762c4 100644
 +      
        for (const fm in frontMatter) {
          const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
-       
+ 
          body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), frontMatter[fm]);
        }
 +      
