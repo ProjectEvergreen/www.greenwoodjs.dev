@@ -11,35 +11,36 @@ export default class Walkthrough extends HTMLElement {
   }
 
   connectedCallback() {
-    if (!this.shadowRoot) {
-      this.cards = globalThis.document?.querySelectorAll(".walkthrough-card") || [];
+    this.cards = globalThis.document?.querySelectorAll(".walkthrough-card") || [];
 
+    if (this.cards.length > 0) {
       template.innerHTML = `
         <div class="walkthrough">
-          <h3>${this.cards[this.index]?.querySelector("p").innerHTML}</h3>
+          <h3>${this.cards[this.index].querySelector("p").innerHTML}</h3>
 
           <ol>
             ${Array.from(this.cards)
               .map((card, idx) => {
-                const label = card?.querySelector("span").innerHTML;
+                const label = card.querySelector("span").innerHTML;
 
                 return `<li data-idx="${idx}">${label}</li>`;
               })
               .join("")}
           </ol>
 
-          <div class="snippet">${this.cards[this.index]?.querySelector("pre").innerHTML}</div>
+          <div class="snippet">${this.cards[this.index].querySelector("pre").innerHTML}</div>
         </div>
       `;
 
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+      this.shadowRoot.adoptedStyleSheets = [theme, sheet];
+      this.shadowRoot
+        .querySelectorAll("li")
+        .forEach((item) => item.addEventListener("click", this.selectItem.bind(this)));
+    } else {
+      console.debug("no walkthrough content cards detected");
     }
-
-    this.shadowRoot.adoptedStyleSheets = [theme, sheet];
-    this.shadowRoot
-      .querySelectorAll("li")
-      ?.forEach((item) => item.addEventListener("click", this.selectItem.bind(this)));
   }
 
   selectItem(event) {
