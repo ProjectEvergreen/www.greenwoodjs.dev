@@ -1,6 +1,8 @@
 @import "../../node_modules/open-props/src/props.borders.css";
+/* @import "../../node_modules/open-props/src/props.fonts.css"; */
 @import "../../node_modules/open-props/src/props.shadows.css";
 @import "../../node_modules/open-props/src/props.sizes.css";
+@import "../../node_modules/prism-themes/themes/prism-nord.css";
 
 @font-face {
   font-family: "Geist-Sans";
@@ -31,4 +33,11 @@
   font-family: var(--font-primary);
   font-size: var(--size-px-3);
   box-sizing: border-box;
+}
+
+/* tweaks for PrismJS */
+code[class*="language-"],
+pre[class*="language-"],
+span.token {
+  font-family: "Geist-Mono", monospace;
 }
