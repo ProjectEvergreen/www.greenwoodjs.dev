@@ -1,5 +1,5 @@
 @import "../../node_modules/open-props/src/props.borders.css";
-/* @import "../../node_modules/open-props/src/props.fonts.css"; */
+@import "../../node_modules/open-props/src/props.fonts.css";
 @import "../../node_modules/open-props/src/props.shadows.css";
 @import "../../node_modules/open-props/src/props.sizes.css";
 @import "../../node_modules/prism-themes/themes/prism-nord.css";
