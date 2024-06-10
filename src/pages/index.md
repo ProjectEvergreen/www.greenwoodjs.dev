@@ -6,9 +6,9 @@ imports:
 # Welcome to Greenwood!
 
 ```js
-return new Response('<h1>Hello World</h1>', {
+return new Response("<h1>Hello World</h1>", {
   headers: {
-    'Content-Type': 'text/html'
-  }
-})
+    "Content-Type": "text/html",
+  },
+});
 ```
