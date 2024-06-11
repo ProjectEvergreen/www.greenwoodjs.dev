@@ -4,6 +4,7 @@ imports:
   - ../components/hero-banner/hero-banner.js data-gwd-opt="static"
   - ../components/latest-post/latest-post.js data-gwd-opt="static"
   - ../components/walkthrough/walkthrough.js
+  - ../styles/home.css
 ---
 
 <app-latest-post link="/blog/release/v0.30.0/" title="We just launched v0.30.0"></app-latest-post>
