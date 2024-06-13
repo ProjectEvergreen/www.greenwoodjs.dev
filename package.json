@@ -35,7 +35,8 @@
   },
   "dependencies": {
     "geist": "^1.2.0",
-    "open-props": "^1.7.4"
+    "open-props": "^1.7.4",
+    "prism-themes": "^1.9.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.5",
@@ -45,6 +46,7 @@
     "@greenwood/cli": "^0.30.0-alpha.2",
     "@greenwood/plugin-import-raw": "^0.30.0-alpha.2",
     "@ls-lint/ls-lint": "^1.10.0",
+    "@mapbox/rehype-prism": "^0.9.0",
     "@storybook/addon-essentials": "^8.0.6",
     "@storybook/addon-links": "^8.0.6",
     "@storybook/blocks": "^8.0.6",
