@@ -58,15 +58,13 @@ export default class Walkthrough extends HTMLElement {
 
   selectItem(event) {
     const cards = this.shadowRoot.querySelectorAll(".card");
-    const index = this.index = event.currentTarget.dataset.idx;
+    const index = (this.index = event.currentTarget.dataset.idx);
 
     this.shadowRoot.querySelector(".snippet").innerHTML =
-    this.cards[this.index].querySelector("pre").outerHTML;
+      this.cards[this.index].querySelector("pre").outerHTML;
 
     cards.forEach((card) => {
-      card.dataset.idx === index
-        ? card.classList.add('active')
-        : card.classList.remove('active')
+      card.dataset.idx === index ? card.classList.add("active") : card.classList.remove("active");
     });
   }
 }
