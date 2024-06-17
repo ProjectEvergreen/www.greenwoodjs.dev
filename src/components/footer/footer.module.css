@@ -1,6 +1,31 @@
 .footer {
-  text-align: center;
-  border-radius: var(--radius-4);
-  padding: var(--size-fluid-3);
-  box-shadow: var(--shadow-4);
+  background-color: var(--color-tertiary);
+  border-radius: var(--radius-5);
+  padding: 0 var(--size-fluid-3);
+  margin: var(--size-2) 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.logo {
+  padding-left: var(--size-fluid-1);
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  justify-content: center;
+}
+
+.socialTray {
+  display: flex;
+  gap: var(--size-3);
+  list-style-type: none;
+  background-color: var(--color-gray);
+  border: var(--border-size-1) solid #4d4d4d45;
+  border-radius: var(--radius-6);
+  padding: var(--size-2) var(--size-3);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
