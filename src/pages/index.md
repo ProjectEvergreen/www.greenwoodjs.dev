@@ -2,6 +2,9 @@
 imports:
   - ../components/hero-banner/hero-banner.js data-gwd-opt="static"
   - ../components/latest-post/latest-post.js data-gwd-opt="static"
+  - ../components/run-anywhere/run-anywhere.js data-gwd-opt="static"
+  - ../components/why-greenwood/why-greenwood.js data-gwd-opt="static"
+  - ../components/build-with-friends/build-with-friends.js data-gwd-opt="static"
   - ../components/walkthrough/walkthrough.js
   - ../styles/home.css
 ---
@@ -156,3 +159,9 @@ export async function handler(request) {
 ```
 
 </div>
+
+<app-why-greenwood></app-why-greenwood>
+
+<app-run-anywhere></app-run-anywhere>
+
+<app-build-with-friends></app-build-with-friends>
