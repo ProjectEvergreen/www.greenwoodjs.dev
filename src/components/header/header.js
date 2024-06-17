@@ -35,7 +35,7 @@ export default class Header extends HTMLElement {
               </li>
             </ul>
 
-            <div class="social-tray">
+            <ul class="social-tray">
               <li class="social-icon">
                 <a href="https://github.com/ProjectEvergreen/greenwood" title="GitHub">
                   ${githubIcon}
@@ -53,7 +53,7 @@ export default class Header extends HTMLElement {
                   ${twitterIcon}
                 </a>
               </li>
-            </div>
+            </ul>
 
             <div class="mobile-menu">
               ${mobileMenuIcon}
