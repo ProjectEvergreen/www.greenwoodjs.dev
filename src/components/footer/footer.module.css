@@ -22,7 +22,7 @@
   gap: var(--size-3);
   list-style-type: none;
   background-color: var(--color-gray);
-  border: var(--border-size-1) solid #4d4d4d45;
+  border: var(--border-size-1) solid var(--color-black);
   border-radius: var(--radius-6);
   padding: var(--size-2) var(--size-3);
   align-items: center;
