@@ -14,6 +14,7 @@ imports:
 
 <div class="walkthrough-card card1">
   <span>HTML First</span>
+  <i>html.svg</i>
   <p>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.</p>
 
 ```html
@@ -38,6 +39,7 @@ imports:
 
 <div class="walkthrough-card card2">
   <span>Server Rendering</span>
+  <i>build-ssg.svg</i>
   <p>Yay SSR!  Lorum...</p>
 
 ```js
@@ -74,6 +76,7 @@ export default class ProductsPage extends HTMLElement {
 
 <div class="walkthrough-card card3">
   <span>Web Components</span>
+  <i>web-components.svg</i>
   <p>Yay Web Components!  Lorum...</p>
 
 ```js
@@ -108,6 +111,7 @@ customElements.define("app-card", Card);
 
 <div class="walkthrough-card card4">
   <span>API Routes</span>
+  <i>api-routes.svg</i>
   <p>Yay API Routes!  Lorum...</p>
 
 ```js

@@ -23,7 +23,20 @@
 
 .card {
   border-radius: var(--radius-4);
-  padding: 5px;
+  padding: var(--font-size-fluid-1);
+  cursor: pointer;
+  width: 94%;
+  margin: var(--font-size-1) 0;
+}
+
+.card:hover {
+  background-color: var(--color-accent);
+  color: var(--color-black);
+}
+
+.active {
+  background-color: var(--color-accent);
+  color: var(--color-black);
 }
 
 h2 {
@@ -39,7 +52,6 @@ h4 {
   font-size: var(--font-size-fluid-1);
   font-weight: bold;
   margin: 5px 0;
-  cursor: pointer;
 }
 
 p {
@@ -48,8 +60,11 @@ p {
   width: 90%;
   text-align: left;
   font-size: var(--font-size-1);
-  background-color: #151818;
   min-height: 100px;
-  color: var(--color-gray);
   border-radius: var(--radius-2);
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
 }
