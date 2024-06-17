@@ -1,5 +1,4 @@
 ---
-title: Greenwood
 imports:
   - ../components/hero-banner/hero-banner.js data-gwd-opt="static"
   - ../components/latest-post/latest-post.js data-gwd-opt="static"
