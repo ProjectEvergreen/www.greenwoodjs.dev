@@ -25,10 +25,14 @@ export default class Walkthrough extends HTMLElement {
                 .map((card, idx) => {
                   const title = card.querySelector("span").innerHTML;
                   const text = card.querySelector("p").innerHTML;
+                  const icon = card.querySelector("i").textContent;
 
                   return `
-                    <div class="card">
-                      <h4 data-idx="${idx}">${title}</h4>
+                    <div class="card" data-idx="${idx}">
+                      <h4>
+                        <img src="/assets/${icon}" alt="${text} icon"/>
+                        ${title}
+                      </h4>
                       <p>${text}</p>
                     </div>
                   `;
@@ -45,7 +49,7 @@ export default class Walkthrough extends HTMLElement {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       this.shadowRoot.adoptedStyleSheets = [theme, sheet];
       this.shadowRoot
-        .querySelectorAll(".card h4")
+        .querySelectorAll(".card")
         .forEach((item) => item.addEventListener("click", this.selectItem.bind(this)));
     } else {
       console.debug("no walkthrough content cards detected");
@@ -53,9 +57,17 @@ export default class Walkthrough extends HTMLElement {
   }
 
   selectItem(event) {
-    this.index = event.currentTarget.dataset.idx;
+    const cards = this.shadowRoot.querySelectorAll(".card");
+    const index = this.index = event.currentTarget.dataset.idx;
+
     this.shadowRoot.querySelector(".snippet").innerHTML =
-      this.cards[this.index].querySelector("pre").outerHTML;
+    this.cards[this.index].querySelector("pre").outerHTML;
+
+    cards.forEach((card) => {
+      card.dataset.idx === index
+        ? card.classList.add('active')
+        : card.classList.remove('active')
+    });
   }
 }
 
