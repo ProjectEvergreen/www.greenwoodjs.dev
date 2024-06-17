@@ -32,8 +32,8 @@ describe("Components/Footer", () => {
       expect(footer.querySelectorAll("footer").length).equal(1);
     });
 
-    xit("should have the Greenwood logo", () => {
-      const logo = footer.querySelectorAll("img[alt='Greenwood Logo'");
+    it("should have the Greenwood logo", () => {
+      const logo = footer.querySelectorAll("div svg");
 
       expect(logo.length).equal(1);
       expect(logo[0]).not.equal(undefined);
