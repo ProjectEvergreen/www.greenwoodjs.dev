@@ -1,7 +1,7 @@
 app-latest-post,
 app-hero-banner {
   display: block;
-  margin: 0 auto;
+  margin: var(--size-fluid-1) auto;
   width: 70%;
 }
 

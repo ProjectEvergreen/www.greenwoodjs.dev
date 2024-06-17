@@ -1,8 +1,11 @@
 .container {
   text-align: left;
-  max-width: 60%;
   margin: 0;
   padding: 0;
+
+  @media (width >= 1080px) {
+    max-width: 60%;
+  }
 }
 
 .heading {
@@ -37,6 +40,7 @@
   min-width: var(--size-px-13);
   color: var(--color-white);
   box-shadow: var(--shadow-4);
+  margin-top: var(--size-fluid-1);
 }
 
 .linkStarted {
