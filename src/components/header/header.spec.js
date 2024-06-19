@@ -47,7 +47,7 @@ describe("Components/Header", () => {
     });
 
     it("should have the Greenwood logo", () => {
-      const logo = header.shadowRoot.querySelectorAll("img[alt='Greenwood Logo'");
+      const logo = header.shadowRoot.querySelectorAll(".logo-bar svg");
 
       expect(logo.length).equal(1);
       expect(logo[0]).not.equal(undefined);
