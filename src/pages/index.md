@@ -1,11 +1,11 @@
 ---
 imports:
-  - ../components/hero-banner/hero-banner.js data-gwd-opt="static"
   - ../components/latest-post/latest-post.js data-gwd-opt="static"
-  - ../components/run-anywhere/run-anywhere.js data-gwd-opt="static"
-  - ../components/why-greenwood/why-greenwood.js data-gwd-opt="static"
-  - ../components/build-with-friends/build-with-friends.js data-gwd-opt="static"
+  - ../components/hero-banner/hero-banner.js data-gwd-opt="static"
   - ../components/walkthrough/walkthrough.js
+  - ../components/why-greenwood/why-greenwood.js data-gwd-opt="static"
+  - ../components/run-anywhere/run-anywhere.js data-gwd-opt="static"
+  - ../components/build-with-friends/build-with-friends.js data-gwd-opt="static"
   - ../styles/home.css
 ---
 
@@ -18,7 +18,7 @@ imports:
 <div class="walkthrough-card card1">
   <span>HTML First</span>
   <i>html.svg</i>
-  <p>Greenwood is HTML first by design.  Start from just an <i>index.html</i> file or leverage hybrid, file-system based routing to easily achieve static and dynamic pages side-by-side.</p>
+  <p>Greenwood is HTML first by design.  Start from just an <em>index.html</em> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.</p>
 
 ```html
 <!-- pages/index.html -->

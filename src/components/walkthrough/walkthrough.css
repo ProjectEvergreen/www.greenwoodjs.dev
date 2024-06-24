@@ -29,9 +29,25 @@
   margin: var(--font-size-1) 0;
 }
 
+.card strong {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.card em,
+.card strong {
+  font-size: var(--font-size-1);
+}
+
 .card:hover {
   background-color: var(--color-accent);
   color: var(--color-black);
+}
+
+.card:hover strong,
+.active strong {
+  color: var(--color-white);
+  font-weight: bold;
 }
 
 .active {
