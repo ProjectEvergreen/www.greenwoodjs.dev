@@ -17,7 +17,7 @@ export default class HeroBanner extends HTMLElement {
         </button>
         
         <div class="${styles.snippet}">
-          <pre>$ npx @greenwood/cli@latest</pre>
+          <pre>$ npx @greenwood/init@latest</pre>
         </div>
       <div>
     `;
