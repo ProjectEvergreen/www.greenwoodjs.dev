@@ -151,7 +151,7 @@ index 5d347bc..ea11358 100644
      }
    }
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
-index 64c1ba0..6e14cd4 100644
+index 64c1ba0..c0c2189 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 @@ -88,6 +88,7 @@ function bundleCss(body, url, compilation) {
@@ -162,6 +162,15 @@ index 64c1ba0..6e14cd4 100644
              optimizedCss += '(';
              break;
            default:
+@@ -96,7 +97,7 @@ function bundleCss(body, url, compilation) {
+         }
+       } else if (type === 'Function') {
+         /* ex: border-left: 3px solid var(--color-secondary); */
+-        if (this.declaration && item.prev && item.prev.data.type === 'Identifier') {
++        if (this.declaration && item.prev && (item.prev.data.type !== 'Operator' && item.prev.data.type !== 'Url')) {
+           optimizedCss += ' ';
+         }
+         optimizedCss += `${name}(`;
 @@ -197,6 +198,7 @@ function bundleCss(body, url, compilation) {
              case 'nth-last-child':
              case 'nth-last-of-type':

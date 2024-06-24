@@ -48,6 +48,10 @@ header {
   cursor: pointer;
 }
 
+.social-icon svg {
+  fill: var(--color-secondary);
+}
+
 .mobile-menu,
 .mobile-menu.active,
 .mobile-menu-items,
