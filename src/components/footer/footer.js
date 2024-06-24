@@ -18,13 +18,13 @@ export default class Footer extends HTMLElement {
             </a>
           </li>
 
-          <li class="social-icon">
+          <li class="${styles.socialIcon}">
             <a href="https://discord.gg/bsy9jvWh" title="Discord">
               ${discordIcon}
             </a>
           </li>
 
-          <li class="social-icon">
+          <li class="${styles.socialIcon}">
             <a href="https://twitter.com/PrjEvergreen" title="Twitter">
               ${twitterIcon}
             </a>
