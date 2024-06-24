@@ -15,6 +15,7 @@
   flex-basis: 100%;
   flex: 1;
   justify-content: center;
+  color: var(--color-gray);
 }
 
 .socialTray {

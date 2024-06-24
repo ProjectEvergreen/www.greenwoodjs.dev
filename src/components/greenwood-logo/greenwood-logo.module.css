@@ -1,4 +1,24 @@
+.logo {
+  color: inherit;
+  align-items: center;
+  line-height: 100%;
+  vertical-align: middle;
+  padding-top: 10px;
+}
+
 .logo svg {
   fill: #00b68f;
   width: 50px;
+}
+
+.capital {
+  margin: 0 0 0 -44px;
+  padding-top: 5px;
+  font-size: var(--size-px-7);
+}
+
+.letters {
+  margin-left: 12px;
+  font-size: var(--size-5);
+  letter-spacing: var(--font-letterspacing-2);
 }

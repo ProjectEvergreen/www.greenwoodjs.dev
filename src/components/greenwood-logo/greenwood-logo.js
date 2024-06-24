@@ -6,7 +6,8 @@ export default class GreenwoodLogo extends HTMLElement {
     this.innerHTML = `
       <span class="${styles.logo}">
         ${greenwoodLogo}
-      <span>
+      </span>
+      <span class="${styles.capital}">G</span><span class="${styles.letters}">reenwood</span>
     `;
   }
 }
