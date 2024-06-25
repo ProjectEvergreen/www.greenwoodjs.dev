@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Vercel",
+    "icon": "/assets/vercel.svg",
+    "link": "#"
+  },
+  {
+    "name": "Netlify",
+    "icon": "/assets/netlify.png",
+    "link": "#"
+  },
+  {
+    "name": "NodeJS",
+    "icon": "/assets/node.png",
+    "link": "#"
+  },
+  {
+    "name": "GitHub",
+    "icon": "/assets/github.svg",
+    "link": "#"
+  }
+]
