@@ -26,7 +26,7 @@ export default class Walkthrough extends HTMLElement {
                   const title = card.querySelector("span").innerHTML;
                   const text = card.querySelector("p").innerHTML;
                   const icon = card.querySelector("i").textContent;
-                  const isActiveClass = idx === this.index ? ' active' : '';
+                  const isActiveClass = idx === this.index ? " active" : "";
 
                   return `
                     <div class="card${isActiveClass}" data-idx="${idx}">
