@@ -1,4 +1,4 @@
-import greenwoodLogo from "../../assets/greenwood-logo.svg?type=raw";
+import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
 import styles from "./greenwood-logo.module.css";
 
 export default class GreenwoodLogo extends HTMLElement {
@@ -7,7 +7,6 @@ export default class GreenwoodLogo extends HTMLElement {
       <span class="${styles.logo}">
         ${greenwoodLogo}
       </span>
-      <span class="${styles.capital}">G</span><span class="${styles.letters}">reenwood</span>
     `;
   }
 }
