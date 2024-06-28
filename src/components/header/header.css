@@ -60,6 +60,14 @@ header {
   display: none;
 }
 
+svg.greenwood-logo-full {
+  width: 50%;
+}
+
+svg.greenwood-logo-full g.letters {
+  fill: var(--color-logo-shade-dark);
+}
+
 /* ---MOBILE SCREENS---*/
 @media (max-width: 600px) {
   header {
@@ -171,8 +179,5 @@ header {
     padding-left: var(--size-2);
     padding-right: var(--size-2);
     margin: 0;
-  }
-  .greenwood-logo {
-    width: 80%;
   }
 }

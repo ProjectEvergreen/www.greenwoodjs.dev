@@ -15,6 +15,15 @@
   flex-basis: 100%;
   flex: 1;
   justify-content: center;
+  color: var(--color-gray);
+}
+
+.logo svg {
+  width: 150px;
+}
+
+.logo svg g.letters {
+  fill: var(--color-white);
 }
 
 .socialTray {
