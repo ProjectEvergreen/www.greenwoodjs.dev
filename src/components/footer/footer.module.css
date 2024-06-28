@@ -18,6 +18,10 @@
   color: var(--color-gray);
 }
 
+.logo svg {
+  width: 150px;
+}
+
 .socialTray {
   display: flex;
   gap: var(--size-3);
