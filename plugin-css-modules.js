@@ -59,12 +59,20 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
 
           walk(ast, {
             enter: function (node) {
-              if (node.type === "ClassSelector") {
-                const { name } = node;
-                const scopedClassName = `${scope}-${hash}-${name}`;
-                classNameMap[name] = scopedClassName;
+              // drill down from a SelectorList to its first Selector
+              // and check its first child to see if it is a ClassSelector
+              // and if so, hash that initial class selector
+              if (node.type === "SelectorList") {
+                if(node.children?.head?.data?.type === 'Selector') {
+                  if(node.children?.head?.data?.children?.head?.data?.type === 'ClassSelector') {
+                    const { name } = node.children.head.data.children.head.data;
 
-                scopedCssContents = scopedCssContents.replace(`\.${name}`, `\.${scopedClassName}`);
+                    const scopedClassName = `${scope}-${hash}-${name}`;
+                    classNameMap[name] = scopedClassName;
+
+                    scopedCssContents = scopedCssContents.replace(`\.${name}`, `\.${scopedClassName}`);
+                  }
+                }
               }
             },
           });

@@ -22,6 +22,10 @@
   width: 150px;
 }
 
+.logo svg g.letters {
+  fill: var(--color-white);
+}
+
 .socialTray {
   display: flex;
   gap: var(--size-3);
