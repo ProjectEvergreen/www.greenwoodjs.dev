@@ -1,3 +1,32 @@
 .container {
   background-color: var(--color-gray);
+  text-align: left;
+  padding: 100px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-9);
+}
+
+.icon {
+  display: inline-block;
+  text-align: center;
+  background-color: var(--color-white);
+  border-radius: var(--radius-5);
+  padding: var(--size-fluid-1) var(--size-fluid-2);
+  margin: var(--size-fluid-1);
+  height: 100px;
+  vertical-align: middle;
+}
+
+.icon svg {
+  height: 50px;
+}
+
+.icon span {
+  vertical-align: middle;
+  font-weight: var(--font-weight-9);
 }
