@@ -13,6 +13,12 @@
   font-weight: var(--font-weight-9);
 }
 
+.subHeading {
+  width: 50%;
+  text-align: center;
+  margin: 0px auto 30px;
+}
+
 .platformColumn {
   display: flex;
   flex: 1;
