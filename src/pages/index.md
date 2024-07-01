@@ -6,6 +6,7 @@ imports:
   - ../components/why-greenwood/why-greenwood.js data-gwd-opt="static"
   - ../components/run-anywhere/run-anywhere.js data-gwd-opt="static"
   - ../components/build-with-friends/build-with-friends.js data-gwd-opt="static"
+  - ../components/get-started/get-started.js data-gwd-opt="static"
   - ../styles/home.css
 ---
 
@@ -165,3 +166,5 @@ export async function handler(request) {
 <app-run-anywhere></app-run-anywhere>
 
 <app-build-with-friends></app-build-with-friends>
+
+<app-get-started></app-get-started>
