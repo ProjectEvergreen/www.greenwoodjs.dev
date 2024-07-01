@@ -1,9 +1,11 @@
 .container {
   background-color: var(--color-gray);
+  border: var(--border-size-1) solid var(--color-black);
+  border-radius: var(--radius-5);
   text-align: left;
-  padding: 100px;
-  width: 80%;
-  margin: 0 auto;
+  padding: 50px;
+  width: 90%;
+  margin: 20px auto;
 }
 
 .heading {

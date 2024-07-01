@@ -1,10 +1,13 @@
 .container {
-  background-color: var(--color-gray);
+  border-left: 2px solid var(--color-gray);
+  border-right: 2px solid var(--color-gray);
+  width: 80%;
+  margin: 0 auto;
   text-align: center;
 }
 
 .iconContainer {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
 }
 

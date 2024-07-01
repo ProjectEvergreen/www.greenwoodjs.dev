@@ -12,7 +12,9 @@ export default class BuildWithFriends extends HTMLElement {
     this.innerHTML = `
       <div class="${styles.container}">
         <h3 class="${styles.heading}">Build With Friends</h3>
-        <p>Greenwood and Web Components work great with all your favorite tools in the web ecosystem.</p>
+
+        <p>Greenwood and Web Components work great with all of your favorite tools in the web ecosystem.</p>
+
         <span class="${styles.icon}">
           ${litIcon}
         </span>
