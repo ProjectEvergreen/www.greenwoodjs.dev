@@ -48,9 +48,15 @@ header {
   cursor: pointer;
 }
 
+.social-icon {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment */
+}
+
 .social-icon svg {
   fill: var(--color-secondary);
 }
+
 
 .mobile-menu,
 .mobile-menu.active,

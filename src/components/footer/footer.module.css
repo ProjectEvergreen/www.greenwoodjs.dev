@@ -30,6 +30,11 @@
   cursor: pointer;
 }
 
+.socialIcon {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment */
+}
+
 .socialIcon svg {
   fill: var(--color-gray);
 }
