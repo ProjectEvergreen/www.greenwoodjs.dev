@@ -2,14 +2,31 @@ app-latest-post,
 app-hero-banner {
   display: block;
   margin: var(--size-fluid-1) auto;
-  width: 70%;
 }
 
 .walkthrough-card {
   display: none;
 }
 
-app-footer {
+app-get-started {
   display: block;
-  margin-top: -150px;
+  padding-bottom: 160px;
+}
+
+app-get-started {
+  display: block;
+  margin-bottom: -300px;
+}
+
+@media (min-width: 768px) {
+  app-hero-banner,
+  app-latest-post {
+    width: 70%;
+  }
+
+  app-run-anywhere {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+  }
 }

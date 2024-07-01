@@ -49,12 +49,20 @@
 }
 
 .snippet {
-  margin: var(--size-4) 0;
-  display: inline-block;
+  display: block;
+  width: fit-content;
   border-radius: var(--radius-4);
-  padding: 0 var(--size-4);
+  padding: 0 2px;
   border: var(--radius-1) solid var(--color-primary);
   box-shadow: var(--shadow-4);
-  text-align: left;
-  letter-spacing: var(--font-letterspacing-4);
+  margin: 5px 0;
+}
+
+@media (min-width: 768px) {
+  .snippet {
+    display: block;
+    letter-spacing: var(--font-letterspacing-3);
+    padding: 0 var(--size-4);
+    margin: 10px 0;
+  }
 }

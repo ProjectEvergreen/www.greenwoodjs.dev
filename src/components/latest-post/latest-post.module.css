@@ -13,3 +13,7 @@
   padding: var(--size-2);
   margin-right: var(--size-fluid-1);
 }
+
+.link {
+  line-height: 50px;
+}

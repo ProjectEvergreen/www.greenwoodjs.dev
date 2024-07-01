@@ -1,13 +1,12 @@
 .container {
   border-left: 2px solid var(--color-gray);
   border-right: 2px solid var(--color-gray);
-  width: 80%;
   margin: 0 auto;
   text-align: center;
 }
 
 .iconContainer {
-  width: 60%;
+  max-width: 80%;
   margin: 0 auto;
 }
 
@@ -17,9 +16,9 @@
 }
 
 .subHeading {
-  width: 50%;
   text-align: center;
   margin: 0px auto 30px;
+  padding: 20px;
 }
 
 .platformColumn {
@@ -27,18 +26,6 @@
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
-}
-
-@media (max-width: 767px) {
-  .platformColumn {
-    flex-basis: calc(50% - 12px);
-  }
-}
-
-@media (max-width: 460px) {
-  .platformColumn {
-    flex-basis: 100%;
-  }
 }
 
 .platformBox {
@@ -73,4 +60,26 @@
   color: var(--color-black);
   padding: 10px 20px;
   text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .platformColumn {
+    flex-basis: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 460px) {
+  .platformColumn {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 767px) {
+  .iconContainer {
+    max-width: 60%;
+  }
+
+  .subHeading {
+    max-width: 50%;
+  }
 }
