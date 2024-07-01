@@ -1,3 +1,58 @@
 .container {
   background-color: var(--color-gray);
+  border: var(--border-size-1) solid var(--color-black);
+  border-radius: var(--radius-5);
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 100px 50px 20px;
+}
+
+.heading {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-9);
+}
+
+.subHeading {
+  width: 60%;
+  margin: 10px auto 30px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  background-color: var(--color-white);
+  border-radius: var(--radius-5);
+}
+
+.card {
+  display: inline-block;
+  text-align: left;
+  margin: 10px 10px 10px;
+  padding: 20px;
+  border-radius: var(--radius-5);
+  background-color: var(--color-gray);
+}
+
+.card h3 {
+  padding: 20px;
+  border-radius: var(--radius-5);
+  background-color: var(--color-gray-background);
+  line-height: 50px;
+}
+
+.card svg {
+  vertical-align: middle;
+}
+
+.card a {
+  display: inline-block;
+  margin-left: 40px;
+  width: 100px;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: var(--radius-5);
+  border: var(--border-size-1) solid var(--color-black);
 }
