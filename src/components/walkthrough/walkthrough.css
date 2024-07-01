@@ -1,0 +1,86 @@
+:host .walkthrough {
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: var(--radius-5);
+  width: 98%;
+  min-height: 1000px;
+  color: var(--color-white);
+  background-color: var(--color-secondary);
+}
+
+.row {
+  display: flex;
+}
+
+.column-left {
+  flex: 40%;
+}
+
+.column-right {
+  flex: 60%;
+  width: 60%;
+}
+
+.card {
+  border-radius: var(--radius-4);
+  padding: var(--font-size-fluid-1);
+  cursor: pointer;
+  width: 94%;
+  margin: var(--font-size-1) 0;
+}
+
+.card strong {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.card em,
+.card strong {
+  font-size: var(--font-size-1);
+}
+
+.card:hover {
+  background-color: var(--color-accent);
+  color: var(--color-black);
+}
+
+.card:hover strong,
+.active strong {
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.active {
+  background-color: var(--color-accent);
+  color: var(--color-black);
+}
+
+h2 {
+  font-size: var(--font-size-fluid-3);
+  font-weight: bold;
+}
+
+h3 {
+  color: var(--color-gray);
+}
+
+h4 {
+  font-size: var(--font-size-fluid-1);
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+p {
+  margin: 0;
+  padding: 15px;
+  width: 90%;
+  text-align: left;
+  font-size: var(--font-size-1);
+  min-height: 100px;
+  border-radius: var(--radius-2);
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+}

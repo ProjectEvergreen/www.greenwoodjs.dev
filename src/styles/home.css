@@ -1,9 +1,32 @@
-h1 {
-  text-align: center;
+app-latest-post,
+app-hero-banner {
+  display: block;
+  margin: var(--size-fluid-1) auto;
 }
 
-pre {
-  margin: 0 auto !important;
-  width: 30%;
-  overflow: scroll;
+.walkthrough-card {
+  display: none;
+}
+
+app-get-started {
+  display: block;
+  padding-bottom: 160px;
+}
+
+app-get-started {
+  display: block;
+  margin-bottom: -300px;
+}
+
+@media (min-width: 768px) {
+  app-hero-banner,
+  app-latest-post {
+    width: 70%;
+  }
+
+  app-run-anywhere {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+  }
 }

@@ -1,8 +1,18 @@
 diff --git a/node_modules/wc-compiler/src/dom-shim.js b/node_modules/wc-compiler/src/dom-shim.js
-index be289a3..dd4692a 100644
+index be289a3..2c97d0e 100644
 --- a/node_modules/wc-compiler/src/dom-shim.js
 +++ b/node_modules/wc-compiler/src/dom-shim.js
-@@ -102,6 +102,9 @@ class ShadowRoot extends DocumentFragment {
+@@ -83,6 +83,9 @@ class Document extends Node {
+   createDocumentFragment(html) {
+     return new DocumentFragment(html);
+   }
++
++  querySelector() { }
++  querySelectorAll() { }
+ }
+ 
+ // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement
+@@ -102,6 +105,9 @@ class ShadowRoot extends DocumentFragment {
      super();
      this.mode = options.mode || 'closed';
      this.adoptedStyleSheets = [];

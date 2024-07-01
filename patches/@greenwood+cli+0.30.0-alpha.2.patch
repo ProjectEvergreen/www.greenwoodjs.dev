@@ -45,6 +45,36 @@ index a08cd9c..bd993b5 100644
      return new URL(`.${url.pathname}${search}`, rootUrl);
    }
  
+diff --git a/node_modules/@greenwood/cli/src/lib/templating-utils.js b/node_modules/@greenwood/cli/src/lib/templating-utils.js
+index f9e83b7..e202a9d 100644
+--- a/node_modules/@greenwood/cli/src/lib/templating-utils.js
++++ b/node_modules/@greenwood/cli/src/lib/templating-utils.js
+@@ -141,15 +141,21 @@ async function getAppTemplate(pageTemplateContents, context, customImports = [],
+     const mergedStyles = [
+       ...appRoot.querySelectorAll('head style'),
+       ...[...(pageRoot && pageRoot.querySelectorAll('head style')) || []],
+-      ...customImports.filter(resource => resource.split('.').pop() === 'css')
+-        .map(resource => `<link rel="stylesheet" href="${resource}"></link>`)
++      ...customImports.filter(resource => resource.split(' ')[0].split('.').pop() === 'css')
++        .map((resource) => {
++          const [href, attributes = ''] = resource.split(' ');
++          return `<link rel="stylesheet" href="${href}" ${attributes}></link>`;
++        })
+     ].join('\n');
+ 
+     const mergedScripts = [
+       ...appRoot.querySelectorAll('head script'),
+       ...[...(pageRoot && pageRoot.querySelectorAll('head script')) || []],
+-      ...customImports.filter(resource => resource.split('.').pop() === 'js')
+-        .map(resource => `<script src="${resource}" type="module"></script>`)
++      ...customImports.filter(resource => resource.split(' ')[0].split('.').pop() === 'js')
++        .map((resource) => {
++          const [src, attributes = ''] = resource.split(' ');
++          return `<script src="${src}" type="module" "${attributes}"></script>`;
++        })
+     ].join('\n');
+ 
+     const finalBody = pageTemplateContents
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
 index 6201ea8..855c3fd 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/serve.js
@@ -192,3 +222,41 @@ index 64c1ba0..c0c2189 100644
      const contents = (await response.text()).replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\');
      const body = `const sheet = new CSSStyleSheet();sheet.replaceSync(\`${contents}\`);export default sheet;`;
  
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+index cf3c1cf..ae4e193 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+@@ -17,6 +17,7 @@ import { getUserScripts, getPageTemplate, getAppTemplate } from '../../lib/templ
+ import { requestAsObject } from '../../lib/resource-utils.js';
+ import unified from 'unified';
+ import { Worker } from 'worker_threads';
++import htmlparser  from 'node-html-parser';
+ 
+ class StandardHtmlResource extends ResourceInterface {
+   constructor(compilation, options) {
+@@ -230,8 +231,14 @@ class StandardHtmlResource extends ResourceInterface {
+       const keyedResource = this.compilation.resources.get(pageResource);
+       const { contents, src, type, optimizationAttr, optimizedFileContents, optimizedFileName, rawAttributes } = keyedResource;
+ 
++      const root = htmlparser.parse(body, {
++        script: true,
++        style: true
++      });
++
+       if (src) {
+         if (type === 'script') {
++          // console.log({ keyedResource });
+           if (!optimizationAttr && optimization === 'default') {
+             const optimizedFilePath = `${basePath}/${optimizedFileName}`;
+ 
+@@ -249,7 +256,9 @@ class StandardHtmlResource extends ResourceInterface {
+               </script>
+             `);
+           } else if (optimizationAttr === 'static' || optimization === 'static') {
+-            body = body.replace(`<script ${rawAttributes}></script>`, '');
++            const tag = root.querySelectorAll('script').find(script => script.getAttribute('src') === src);
++
++            body = body.replace(`<script ${tag.rawAttrs}></script>`, '');
+           }
+         } else if (type === 'link') {
+           if (!optimizationAttr && (optimization !== 'none' && optimization !== 'inline')) {
