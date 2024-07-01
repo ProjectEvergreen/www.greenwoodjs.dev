@@ -8,3 +8,8 @@ app-hero-banner {
 .walkthrough-card {
   display: none;
 }
+
+app-footer {
+  display: block;
+  margin-top: -150px;
+}
