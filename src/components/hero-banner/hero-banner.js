@@ -4,7 +4,7 @@ export default class HeroBanner extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div class="${styles.container}">
-        <h1 class="${styles.heading}">The Fullstack web is here<h1>
+        <h1 class="${styles.heading}">The Fullstack web is here</h1>
 
         <p class="${styles.headingSub}">Greenwood is your workbench for the web, embracing web standards from the ground up to empower your stack from front to back.</p>
 
@@ -19,7 +19,7 @@ export default class HeroBanner extends HTMLElement {
         <div class="${styles.snippet}">
           <pre>$ npx @greenwood/init@latest</pre>
         </div>
-      <div>
+      </div>
     `;
   }
 }

@@ -15,28 +15,30 @@ export default class BuildWithFriends extends HTMLElement {
 
         <p>Greenwood and Web Components work great with all of your favorite tools in the web ecosystem.</p>
 
-        <span class="${styles.icon}">
-          ${litIcon}
-        </span>
-        <span class="${styles.icon}">
-          ${storybookIcon}
-        </span>
-        <span class="${styles.icon}">
-          ${tailwindIcon}
-        </span>
-        <span class="${styles.icon}">
-          ${typescriptIcon}
-        </span>
-        <span class="${styles.icon}">
-          ${htmxIcon}
-        </span>
-        <span class="${styles.icon}">
-          <span>${wtrIcon}</span>
-          <span>Web Test Runner</span>
-        </span>
-        <span class="${styles.icon}">
-          ${wccIcon}
-        </span>
+        <span class="${styles.icons}">
+          <span class="${styles.icon}">
+            ${litIcon}
+          </span>
+          <span class="${styles.icon}">
+            ${storybookIcon}
+          </span>
+          <span class="${styles.icon}">
+            ${tailwindIcon}
+          </span>
+          <span class="${styles.icon}">
+            ${typescriptIcon}
+          </span>
+          <span class="${styles.icon}">
+            ${htmxIcon}
+          </span>
+          <span class="${styles.icon}">
+            <span>${wtrIcon}</span>
+            <span>Web Test Runner</span>
+          </span>
+          <span class="${styles.icon}">
+            ${wccIcon}
+          </span>
+        </div>
       </div>
     `;
   }

@@ -7,7 +7,7 @@ export default class RunAnywhere extends HTMLElement {
       <div class="${styles.container}">
         <h3 class="${styles.heading}">Run anywhere the web can run</h3>
         
-        <p class="${styles.subHeading}">Greenwood helps you take your application further by embracing platforms that embrace web standards for both static and dynamic needs.</p>
+        <p class="${styles.subHeading}">Greenwood helps you take your application further by embracing platforms that embrace web standards.</p>
 
         <div class="${styles.iconContainer}">
           <div class="${styles.platformColumn}">

@@ -2,8 +2,7 @@
   background-color: var(--color-gray);
   border: var(--border-size-1) solid var(--color-black);
   border-radius: var(--radius-5);
-  text-align: left;
-  padding: 50px;
+  padding: 10px 20px;
   width: 90%;
   margin: 20px auto;
 }
@@ -13,15 +12,18 @@
   font-weight: var(--font-weight-9);
 }
 
+.icons {
+  text-align: center;
+  width: 80%;
+}
+
 .icon {
-  display: inline-block;
+  display: block;
   text-align: center;
   background-color: var(--color-white);
   border-radius: var(--radius-5);
-  padding: var(--size-fluid-1) var(--size-fluid-2);
+  padding: var(--size-fluid-1) var(--size-fluid-1);
   margin: var(--size-fluid-1);
-  height: 100px;
-  vertical-align: middle;
 }
 
 .icon svg {
@@ -31,4 +33,11 @@
 .icon span {
   vertical-align: middle;
   font-weight: var(--font-weight-9);
+}
+
+@media (min-width: 600px) {
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }

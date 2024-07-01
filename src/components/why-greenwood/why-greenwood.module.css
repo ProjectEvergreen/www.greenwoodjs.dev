@@ -3,9 +3,8 @@
   border: var(--border-size-1) solid var(--color-black);
   border-radius: var(--radius-5);
   text-align: center;
-  width: 90%;
   margin: 0 auto;
-  padding: 100px 50px 20px;
+  padding: 20px 20px;
 }
 
 .heading {
@@ -14,15 +13,10 @@
 }
 
 .subHeading {
-  width: 60%;
   margin: 10px auto 30px;
 }
 
 .cardContainer {
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(1, 1fr);
   background-color: var(--color-white);
   border-radius: var(--radius-5);
 }
@@ -55,4 +49,12 @@
   text-align: center;
   border-radius: var(--radius-5);
   border: var(--border-size-1) solid var(--color-black);
+}
+
+@media (min-width: 1024px) {
+  .card {
+    display: inline-block;
+    margin: 20px 10px 20px 20px;
+    width: 29%;
+  }
 }
