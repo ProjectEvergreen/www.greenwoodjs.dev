@@ -19,8 +19,8 @@ export default class Walkthrough extends HTMLElement {
           <h2>Go from Zero to Fullstack with web standards</h2>
           <h3>Lorum Ipsum...</h3>
 
-          <div class="row">
-            <div class="column-left">
+          <nav class="cards">
+            <ul>
               ${Array.from(this.cards)
                 .map((card, idx) => {
                   const title = card.querySelector("span").innerHTML;
@@ -29,22 +29,56 @@ export default class Walkthrough extends HTMLElement {
                   const isActiveClass = idx === this.index ? " active" : "";
 
                   return `
-                    <div class="card${isActiveClass}" data-idx="${idx}">
+                    <li class="card${isActiveClass}" data-idx="${idx}">
                       <h4>
                         <img src="/assets/${icon}" alt="${text} icon"/>
                         ${title}
                       </h4>
-                      <p>${text}</p>
-                    </div>
+                    </li>
                   `;
                 })
                 .join("")}
-            </div>
+            </ul>
+          </nav>
 
-            <div class="snippet column-right">${this.cards[this.index].querySelector("pre").outerHTML}</div>
-          </div>
+          <p>${this.cards[this.index].querySelector("p").innerHTML}</p>
+          <div class="snippet">${this.cards[this.index].querySelector("pre").outerHTML}</div>
         </div>
       `;
+
+      // TODO if going with the above option, rename cards related classes
+      // if (this.cards.length > 0) {
+      //   template.innerHTML = `
+      //     <div class="walkthrough">
+      //       <h2>Go from Zero to Fullstack with web standards</h2>
+      //       <h3>Lorum Ipsum...</h3>
+
+      //       <div class="row">
+      //         <div class="column-left">
+      //           ${Array.from(this.cards)
+      //             .map((card, idx) => {
+      //               const title = card.querySelector("span").innerHTML;
+      //               const text = card.querySelector("p").innerHTML;
+      //               const icon = card.querySelector("i").textContent;
+      //               const isActiveClass = idx === this.index ? " active" : "";
+
+      //               return `
+      //                 <div class="card${isActiveClass}" data-idx="${idx}">
+      //                   <h4>
+      //                     <img src="/assets/${icon}" alt="${text} icon"/>
+      //                     ${title}
+      //                   </h4>
+      //                   <p>${text}</p>
+      //                 </div>
+      //               `;
+      //             })
+      //             .join("")}
+      //         </div>
+
+      //         <div class="snippet column-right">${this.cards[this.index].querySelector("pre").outerHTML}</div>
+      //       </div>
+      //     </div>
+      //   `;
 
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -63,6 +97,9 @@ export default class Walkthrough extends HTMLElement {
 
     this.shadowRoot.querySelector(".snippet").innerHTML =
       this.cards[this.index].querySelector("pre").outerHTML;
+
+    this.shadowRoot.querySelector("p").innerHTML =
+      this.cards[this.index].querySelector("p").innerHTML;
 
     cards.forEach((card) => {
       card.dataset.idx === index ? card.classList.add("active") : card.classList.remove("active");

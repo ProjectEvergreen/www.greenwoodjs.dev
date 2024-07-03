@@ -1,5 +1,6 @@
 app-latest-post,
-app-hero-banner {
+app-hero-banner,
+app-walkthrough {
   display: block;
   margin: var(--size-fluid-1) auto;
 }
