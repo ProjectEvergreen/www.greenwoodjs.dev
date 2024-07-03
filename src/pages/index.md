@@ -10,7 +10,7 @@ imports:
   - ../styles/home.css
 ---
 
-<app-latest-post link="/blog/release/v0.30.0/" title="We just launched v0.30.0"></app-latest-post>
+<app-latest-post link="/blog/release/v0.30.0/" title="We just released v0.30.0"></app-latest-post>
 
 <app-hero-banner></app-hero-banner>
 
