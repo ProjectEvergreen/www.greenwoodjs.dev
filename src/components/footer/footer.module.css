@@ -28,7 +28,7 @@
 
 .socialTray {
   display: flex;
-  gap: var(--size-3);
+  gap: var(--size-2);
   list-style-type: none;
   background-color: var(--color-secondary);
   border: var(--border-size-1) solid var(--color-black);

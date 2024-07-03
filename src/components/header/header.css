@@ -1,13 +1,7 @@
 header {
-  box-sizing: border-box;
-  height: var(--size-10);
-  width: auto;
-  border: var(--border-size-1) dotted #989898ca;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-left: var(--size-12);
-  padding-right: var(--size-12);
+  padding: 0 var(--size-4);
   margin: 0;
 }
 
@@ -66,30 +60,14 @@ header {
 }
 
 svg.greenwood-logo-full {
-  width: 50%;
+  width: 70%;
 }
 
 svg.greenwood-logo-full g.letters {
   fill: var(--color-logo-shade-dark);
 }
 
-/* ---MOBILE SCREENS---*/
 @media (max-width: 600px) {
-  header {
-    height: var(--size-9);
-    width: 100vw;
-    border: var(--border-size-1) dotted #989898ca;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: var(--size-5);
-    padding-right: var(--size-5);
-  }
-
-  .logo-bar {
-    z-index: 999;
-  }
-
   .nav-bar {
     display: flex;
     align-items: center;
@@ -157,32 +135,13 @@ svg.greenwood-logo-full g.letters {
   }
 }
 
-/*-----TABLET SCREENS-----------*/
-@media screen and (min-width: 768px) and (max-width: 960px) {
+@media screen and (min-width: 768px) {
   header {
-    height: var(--size-10);
-    width: auto;
-    border: var(--border-size-1) dotted #989898ca;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: var(--size-5);
-    padding-right: var(--size-5);
-    margin: 0;
+    padding: 0 var(--size-10);
   }
-}
 
-/*-----FOLD SCREENS-----------*/
-@media (max-width: 280px) {
-  header {
-    height: var(--size-10);
-    width: fit-content;
-    border: var(--border-size-1) dotted #989898ca;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: var(--size-2);
-    padding-right: var(--size-2);
-    margin: 0;
+  ul.nav-bar-menu {
+    font-size: var(--font-size-4);
+    padding: 0 var(--size-px-2);
   }
 }
