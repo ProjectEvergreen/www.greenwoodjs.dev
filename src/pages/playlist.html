@@ -14,17 +14,11 @@ songs:
 <html lang="en" prefix="og:http://ogp.me/ns#">
   <head>
     <title>Playlist</title>
-    <script type="module" src="../components/footer/footer.js" data-gwd-opt="static"></script>
-    <script type="module" src="../components/header/header.js"></script>
     <script type="module" src="../components/player.js"></script>
-    <link rel="stylesheet" href="../styles/theme.css" />
-    <link rel="stylesheet" href="../styles/main.css" />
   </head>
 
   <body>
-    <app-header></app-header>
     <h1>Welcome to the Player!</h1>
     <app-player name="${globalThis.page.name}" playlist='${globalThis.page.songs}'></app-player>
-    <app-footer></app-footer>
   </body>
 </html>
