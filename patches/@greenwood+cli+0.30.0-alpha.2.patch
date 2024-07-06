@@ -303,10 +303,10 @@ index 5d347bc..ea11358 100644
    }
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
 new file mode 100644
-index 0000000..8b191e5
+index 0000000..a8cd5c5
 --- /dev/null
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
-@@ -0,0 +1,54 @@
+@@ -0,0 +1,51 @@
 +import { mergeImportMap } from '../../lib/walker-package-ranger.js';
 +import { ResourceInterface } from '../../lib/resource-interface.js';
 +
@@ -322,14 +322,11 @@ index 0000000..8b191e5
 +  }
 +
 +  async shouldIntercept(url, request, response) {
-+    console.log('ContentAsDataResource.shouldIntercept', { url })
 +    return response.headers.get('Content-Type')?.indexOf(this.contentType[0]) >= 0;
 +  }
 +
 +  async intercept(url, request, response) {
-+    console.log('ContentAsDataResource.intercept', { url })
 +    const body = await response.text();
-+    console.log({ body });
 +    const newBody = mergeImportMap(body, importMap);
 +
 +    return new Response(newBody);
