@@ -22,6 +22,7 @@ export default class BlogPostsList extends HTMLElement {
           `;
         }).join('')}
       </ol>
+      <p>(^^^ Custom Element  using CSR + getCollection w/ prerender)</p>
     `;
   }
 }

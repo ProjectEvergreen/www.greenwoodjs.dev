@@ -22,10 +22,13 @@ export default class Header extends HTMLElement {
       this.shadowRoot.innerHTML = `
         <header>
           <div class="logo-bar">
-            ${greenwoodLogo}
+            <a href="/">
+              ${greenwoodLogo}
+            </a>
           </div>
 
           <nav class="nav-bar">
+            <p style="text-align:right">(Custom Element using using active frontmatter from a layout.html =>)</p>
             <ul class="nav-bar-menu">
               ${nav
                 .map((item) => {
