@@ -6,8 +6,8 @@
 }
 
 .iconContainer {
-  max-width: 80%;
   margin: 0 auto;
+  width: 60%;
 }
 
 .heading {
@@ -74,12 +74,12 @@
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 1024px) {
   .iconContainer {
-    max-width: 60%;
+    max-width: 80%;
   }
 
   .subHeading {
-    max-width: 50%;
+    max-width: 70%;
   }
 }
