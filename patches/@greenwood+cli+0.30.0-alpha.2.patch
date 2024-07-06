@@ -25,10 +25,10 @@ index 73ddb24..14d2467 100644
      }
 diff --git a/node_modules/@greenwood/cli/src/data/queries.js b/node_modules/@greenwood/cli/src/data/queries.js
 new file mode 100644
-index 0000000..ed040af
+index 0000000..093cea3
 --- /dev/null
 +++ b/node_modules/@greenwood/cli/src/data/queries.js
-@@ -0,0 +1,70 @@
+@@ -0,0 +1,73 @@
 +// async function getCollection(collection = '') {
 +//   return (await fetch(`${globalThis.location.origin}/graph.json`)
 +//     .then(resp => resp.json()))
@@ -41,14 +41,17 @@ index 0000000..ed040af
 +//     .filter(page => page?.route.startsWith(route));
 +// }
 +
++const host = 'localhost';
++const port = 1985;
++
 +async function getCollection(collection = '') {
-+  return (await fetch(`http://localhost:1984/graph.json`)
++  return (await fetch(`http://${host}:${port}/graph.json`)
 +    .then(resp => resp.json()))
 +    .filter(page => page?.data?.collection === collection);
 +}
 +
 +async function getCollectionByRoute(route = '') {
-+  return (await fetch(`http://localhost:1984/graph.json`)
++  return (await fetch(`http://${host}:${port}/graph.json`)
 +    .then(resp => resp.json()))
 +    .filter(page => page?.route.startsWith(route));
 +}
@@ -470,3 +473,76 @@ index cf3c1cf..444e3b5 100644
      }
  
      // give the user something to see so they know it works, if they have no content
+diff --git a/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js b/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js
+new file mode 100644
+index 0000000..2434b6e
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js
+@@ -0,0 +1,46 @@
++import Koa from 'koa';
++import { ServerInterface } from '../../lib/server-interface.js';
++import { Readable } from 'stream';
++
++class ContentServer extends ServerInterface {
++  constructor(compilation, options = {}) {
++    super(compilation, options);
++  }
++
++  async start() {
++    const app = new Koa();
++
++    app.use(async (ctx, next) => {
++      try {
++        if (ctx.request.path.startsWith('/graph.json')) {
++          const { graph } = this.compilation;
++
++          ctx.body = Readable.from(JSON.stringify(graph));
++          ctx.status = 200;
++          ctx.message = 'OK';
++          
++          ctx.set('Content-Type', 'application/json');
++          ctx.set('Access-Control-Allow-Origin', '*');
++        }
++      } catch (e) {
++        ctx.status = 500;
++        console.error(e);
++      }
++  
++      await next();
++    });
++
++    await app.listen('1985', () => {
++      console.log('Started content server at => http://localhost:1985');
++    });
++  }
++}
++
++// TODO remove graph.json resolution from regular dev server?
++const greenwoodPluginContentServer = {
++  type: 'server',
++  name: 'plugin-content-server',
++  provider: (compilation) => new ContentServer(compilation)
++};
++
++export { greenwoodPluginContentServer };
+\ No newline at end of file
+diff --git a/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js b/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
+index e3303e6..0a25621 100644
+--- a/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
++++ b/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
+@@ -40,12 +40,11 @@ class LiveReloadServer extends ServerInterface {
+     const liveReloadServer = livereload.createServer({
+       exts: allExtensions.filter((ext, idx) => idx === allExtensions.indexOf(ext)),
+       applyCSSLive: false // https://github.com/napcs/node-livereload/issues/33#issuecomment-693707006
+-    });
+-
+-    liveReloadServer.watch(userWorkspace.pathname, () => {
++    }, () => {
+       console.info(`Now watching directory "${userWorkspace}" for changes.`);
+-      return Promise.resolve(true);
+     });
++
++    liveReloadServer.watch(userWorkspace.pathname);
+   }
+ }
+ 
