@@ -23,6 +23,114 @@ index 73ddb24..14d2467 100644
          return await response.text();
        }
      }
+diff --git a/node_modules/@greenwood/cli/src/data/queries.js b/node_modules/@greenwood/cli/src/data/queries.js
+new file mode 100644
+index 0000000..ed040af
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/data/queries.js
+@@ -0,0 +1,70 @@
++// async function getCollection(collection = '') {
++//   return (await fetch(`${globalThis.location.origin}/graph.json`)
++//     .then(resp => resp.json()))
++//     .filter(page => page?.data?.collection === collection);
++// }
++
++// async function getCollectionByRoute(route = '') {
++//   return (await fetch(`${globalThis.location.origin}/graph.json`)
++//     .then(resp => resp.json()))
++//     .filter(page => page?.route.startsWith(route));
++// }
++
++async function getCollection(collection = '') {
++  return (await fetch(`http://localhost:1984/graph.json`)
++    .then(resp => resp.json()))
++    .filter(page => page?.data?.collection === collection);
++}
++
++async function getCollectionByRoute(route = '') {
++  return (await fetch(`http://localhost:1984/graph.json`)
++    .then(resp => resp.json()))
++    .filter(page => page?.route.startsWith(route));
++}
++
++
++export { getCollection, getCollectionByRoute }
++// import { getQueryHash } from './common.js';
++
++// const client = {
++//   query: (params) => {
++//     const { query, variables = {} } = params;
++
++//     return fetch('http://localhost:4000/graphql', {
++//       method: 'POST',
++//       headers: {
++//         'Content-Type': 'application/json',
++//         'Accept': 'application/json'
++//       },
++//       body: JSON.stringify({
++//         query,
++//         variables
++//       })
++//     }).then((response) => response.json());
++//   }
++// };
++
++// const APOLLO_STATE = globalThis.__APOLLO_STATE__; // eslint-disable-line no-underscore-dangle
++// const BASE_PATH = globalThis.__GWD_BASE_PATH__; // eslint-disable-line no-underscore-dangle
++// const backupQuery = client.query;
++
++// client.query = (params) => {
++//   if (APOLLO_STATE) {
++//     // __APOLLO_STATE__ defined, in production mode
++//     const queryHash = getQueryHash(params.query, params.variables);
++//     const cachePath = `${BASE_PATH}/${queryHash}-cache.json`;
++
++//     return fetch(cachePath)
++//       .then(response => response.json())
++//       .then((response) => {
++//         return {
++//           data: response
++//         };
++//       });
++//   } else {
++//     // __APOLLO_STATE__ NOT defined, in development mode
++//     return backupQuery(params);
++//   }
++// };
++
++// export default client;
+\ No newline at end of file
+diff --git a/node_modules/@greenwood/cli/src/index.js b/node_modules/@greenwood/cli/src/index.js
+index 22fc77c..585b4f2 100755
+--- a/node_modules/@greenwood/cli/src/index.js
++++ b/node_modules/@greenwood/cli/src/index.js
+@@ -58,6 +58,10 @@ const run = async() => {
+   process.env.__GWD_COMMAND__ = command;
+   const compilation = await generateCompilation();
+ 
++  globalThis.location = {
++    origin: `http://localhost:${compilation.config.devServer.port}`
++  }
++
+   try {
+     console.info(`Running Greenwood with the ${command} command.`);
+ 
+diff --git a/node_modules/@greenwood/cli/src/lib/execute-route-module.js b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+index 1d3746a..1257e3d 100644
+--- a/node_modules/@greenwood/cli/src/lib/execute-route-module.js
++++ b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+@@ -1,6 +1,11 @@
+ import { renderToString, renderFromHTML } from 'wc-compiler';
+ 
++
+ async function executeRouteModule({ moduleUrl, compilation, page = {}, prerender = false, htmlContents = null, scripts = [], request }) {
++  globalThis.location = {
++    origin: `http://localhost:${compilation.config.devServer.port}`
++  }
++  
+   const data = {
+     template: null,
+     body: null,
 diff --git a/node_modules/@greenwood/cli/src/lib/resource-utils.js b/node_modules/@greenwood/cli/src/lib/resource-utils.js
 index a08cd9c..bd993b5 100644
 --- a/node_modules/@greenwood/cli/src/lib/resource-utils.js
@@ -193,6 +301,85 @@ index 5d347bc..ea11358 100644
        }
      }
    }
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
+new file mode 100644
+index 0000000..8b191e5
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
+@@ -0,0 +1,54 @@
++import { mergeImportMap } from '../../lib/walker-package-ranger.js';
++import { ResourceInterface } from '../../lib/resource-interface.js';
++
++const importMap = {
++  '@greenwood/cli/src/data/queries.js': '/node_modules/@greenwood/cli/src/data/queries.js',
++};
++
++class ContentAsDataResource extends ResourceInterface {
++  constructor(compilation, options = {}) {
++    super(compilation, options);
++    // this.extensions = ['gql'];
++    this.contentType = ['text/html'];
++  }
++
++  async shouldIntercept(url, request, response) {
++    console.log('ContentAsDataResource.shouldIntercept', { url })
++    return response.headers.get('Content-Type')?.indexOf(this.contentType[0]) >= 0;
++  }
++
++  async intercept(url, request, response) {
++    console.log('ContentAsDataResource.intercept', { url })
++    const body = await response.text();
++    console.log({ body });
++    const newBody = mergeImportMap(body, importMap);
++
++    return new Response(newBody);
++  }
++
++  // async shouldOptimize(url, response) {
++  //   return response.headers.get('Content-Type').indexOf(this.contentType[1]) >= 0;
++  // }
++
++  // async optimize(url, response) {
++  //   let body = await response.text();
++
++  //   body = body.replace('<head>', `
++  //     <head>
++  //       <script data-state="apollo" data-gwd-opt="none">
++  //         window.__APOLLO_STATE__ = true;
++  //       </script>
++  //   `);
++
++  //   return new Response(body);
++  // }
++}
++
++
++const greenwoodPluginContentAsData = {
++  type: 'resource',
++  name: 'plugin-content-as-data:resource',
++  provider: (compilation) => new ContentAsDataResource(compilation)
++};
++
++export { greenwoodPluginContentAsData };
+\ No newline at end of file
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
+index ff05c44..e00e9e7 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
+@@ -68,11 +68,11 @@ class NodeModulesResource extends ResourceInterface {
+     });
+   }
+ 
+-  async shouldIntercept(url, request, response) {
++  async shouldPreIntercept(url, request, response) {
+     return response.headers.get('Content-Type')?.indexOf('text/html') >= 0;
+   }
+ 
+-  async intercept(url, request, response) {
++  async preIntercept(url, request, response) {
+     const { context } = this.compilation;
+     let body = await response.text();
+     const hasHead = body.match(/\<head>(.*)<\/head>/s);
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 index 64c1ba0..c0c2189 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
