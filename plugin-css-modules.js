@@ -11,6 +11,7 @@ import * as acornWalk from "acorn-walk";
 import * as acorn from "acorn";
 import { hashString } from "@greenwood/cli/src/lib/hashing-utils.js";
 import { importAttributes } from "acorn-import-attributes"; // comes from Greenwood
+import { resolveForRelativeUrl } from '@greenwood/cli/src/lib/resource-utils.js';
 
 function getCssModulesMap(compilation) {
   const locationUrl = new URL("./__css-modules-map.json", compilation.context.scratchDir);
@@ -130,17 +131,17 @@ class CssModulesResource extends ResourceInterface {
   }
 
   async resolve(url) {
-    // console.log({ url });
     const { projectDirectory, userWorkspace } = this.compilation.context;
     const { pathname, searchParams } = url;
     const params =
       url.searchParams.size > 0 ? `${searchParams.toString()}&type=css-module` : "type=css-module";
+    const workspaceUrl = await resolveForRelativeUrl(new URL(`.${pathname}`, userWorkspace), userWorkspace);
     const root =
       url.protocol === "file:"
         ? new URL(`file://${pathname}`).href
-        : pathname.startsWith("/node_modules")
+        : pathname.indexOf("/node_modules/") >= 0
           ? new URL(`.${pathname}`, projectDirectory).href
-          : new URL(`.${pathname}`, userWorkspace).href;
+          : workspaceUrl.href;
 
     // console.log("DOOT DOOT", { root, params });
     const matchedUrl = new URL(`${root}?${params}`);

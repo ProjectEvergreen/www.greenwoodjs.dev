@@ -1,0 +1,27 @@
+---
+title: Blog
+collection: nav
+order: 3
+label: Blog
+---
+
+<html>
+  <head>
+    <title>Greenwood - ${globalThis.page.title}</title>
+    <script type="module" src="../../components/blog-posts-list/blog-posts-list.js"></script>
+    <style>
+      .content {
+        margin: 0 auto;
+        text-align: left;
+        vertical-align: top;
+        width: 75%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="content">
+      <app-blog-posts-list></app-blog-posts-list>
+    </main>
+  </body>
+</html>

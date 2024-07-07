@@ -23,6 +23,117 @@ index 73ddb24..14d2467 100644
          return await response.text();
        }
      }
+diff --git a/node_modules/@greenwood/cli/src/data/queries.js b/node_modules/@greenwood/cli/src/data/queries.js
+new file mode 100644
+index 0000000..093cea3
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/data/queries.js
+@@ -0,0 +1,73 @@
++// async function getCollection(collection = '') {
++//   return (await fetch(`${globalThis.location.origin}/graph.json`)
++//     .then(resp => resp.json()))
++//     .filter(page => page?.data?.collection === collection);
++// }
++
++// async function getCollectionByRoute(route = '') {
++//   return (await fetch(`${globalThis.location.origin}/graph.json`)
++//     .then(resp => resp.json()))
++//     .filter(page => page?.route.startsWith(route));
++// }
++
++const host = 'localhost';
++const port = 1985;
++
++async function getCollection(collection = '') {
++  return (await fetch(`http://${host}:${port}/graph.json`)
++    .then(resp => resp.json()))
++    .filter(page => page?.data?.collection === collection);
++}
++
++async function getCollectionByRoute(route = '') {
++  return (await fetch(`http://${host}:${port}/graph.json`)
++    .then(resp => resp.json()))
++    .filter(page => page?.route.startsWith(route));
++}
++
++
++export { getCollection, getCollectionByRoute }
++// import { getQueryHash } from './common.js';
++
++// const client = {
++//   query: (params) => {
++//     const { query, variables = {} } = params;
++
++//     return fetch('http://localhost:4000/graphql', {
++//       method: 'POST',
++//       headers: {
++//         'Content-Type': 'application/json',
++//         'Accept': 'application/json'
++//       },
++//       body: JSON.stringify({
++//         query,
++//         variables
++//       })
++//     }).then((response) => response.json());
++//   }
++// };
++
++// const APOLLO_STATE = globalThis.__APOLLO_STATE__; // eslint-disable-line no-underscore-dangle
++// const BASE_PATH = globalThis.__GWD_BASE_PATH__; // eslint-disable-line no-underscore-dangle
++// const backupQuery = client.query;
++
++// client.query = (params) => {
++//   if (APOLLO_STATE) {
++//     // __APOLLO_STATE__ defined, in production mode
++//     const queryHash = getQueryHash(params.query, params.variables);
++//     const cachePath = `${BASE_PATH}/${queryHash}-cache.json`;
++
++//     return fetch(cachePath)
++//       .then(response => response.json())
++//       .then((response) => {
++//         return {
++//           data: response
++//         };
++//       });
++//   } else {
++//     // __APOLLO_STATE__ NOT defined, in development mode
++//     return backupQuery(params);
++//   }
++// };
++
++// export default client;
+\ No newline at end of file
+diff --git a/node_modules/@greenwood/cli/src/index.js b/node_modules/@greenwood/cli/src/index.js
+index 22fc77c..585b4f2 100755
+--- a/node_modules/@greenwood/cli/src/index.js
++++ b/node_modules/@greenwood/cli/src/index.js
+@@ -58,6 +58,10 @@ const run = async() => {
+   process.env.__GWD_COMMAND__ = command;
+   const compilation = await generateCompilation();
+ 
++  globalThis.location = {
++    origin: `http://localhost:${compilation.config.devServer.port}`
++  }
++
+   try {
+     console.info(`Running Greenwood with the ${command} command.`);
+ 
+diff --git a/node_modules/@greenwood/cli/src/lib/execute-route-module.js b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+index 1d3746a..1257e3d 100644
+--- a/node_modules/@greenwood/cli/src/lib/execute-route-module.js
++++ b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+@@ -1,6 +1,11 @@
+ import { renderToString, renderFromHTML } from 'wc-compiler';
+ 
++
+ async function executeRouteModule({ moduleUrl, compilation, page = {}, prerender = false, htmlContents = null, scripts = [], request }) {
++  globalThis.location = {
++    origin: `http://localhost:${compilation.config.devServer.port}`
++  }
++  
+   const data = {
+     template: null,
+     body: null,
 diff --git a/node_modules/@greenwood/cli/src/lib/resource-utils.js b/node_modules/@greenwood/cli/src/lib/resource-utils.js
 index a08cd9c..bd993b5 100644
 --- a/node_modules/@greenwood/cli/src/lib/resource-utils.js
@@ -45,6 +156,49 @@ index a08cd9c..bd993b5 100644
      return new URL(`.${url.pathname}${search}`, rootUrl);
    }
  
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/graph.js b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+index 227c87a..a73f7aa 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/graph.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+@@ -12,6 +12,7 @@ const generateGraph = async (compilation) => {
+       const { context, config } = compilation;
+       const { basePath } = config;
+       const { apisDir, pagesDir, projectDirectory, userWorkspace } = context;
++      const collections = {};
+       let graph = [{
+         outputPath: '/index.html',
+         filename: 'index.html',
+@@ -209,7 +210,7 @@ const generateGraph = async (compilation) => {
+              * isolation: if this should be run in isolated mode
+              * hydration: if this page needs hydration support
+              */
+-            pages.push({
++            const page = {
+               data: customData || {},
+               filename,
+               id,
+@@ -230,7 +231,20 @@ const generateGraph = async (compilation) => {
+               prerender,
+               isolation,
+               hydration
+-            });
++            };
++
++            pages.push(page);
++
++            const _collection = customData.collection;
++            if (_collection) {
++              if(!collections[_collection]) {
++                collections[_collection] = [];
++              }
++              
++              collections[_collection].push(page);
++            }
++
++            compilation.collections = collections;
+           }
+         }
+ 
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
 index 6201ea8..855c3fd 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/serve.js
@@ -59,10 +213,10 @@ index 6201ea8..855c3fd 100644
        }
  
 diff --git a/node_modules/@greenwood/cli/src/loader.js b/node_modules/@greenwood/cli/src/loader.js
-index 5d347bc..ea11358 100644
+index 5d347bc..8e83f63 100644
 --- a/node_modules/@greenwood/cli/src/loader.js
 +++ b/node_modules/@greenwood/cli/src/loader.js
-@@ -1,42 +1,63 @@
+@@ -1,42 +1,64 @@
  import { readAndMergeConfig as initConfig } from './lifecycles/config.js';
 +import { mergeResponse } from './lib/resource-utils.js';
  
@@ -84,6 +238,7 @@ index 5d347bc..ea11358 100644
 +  .filter(plugin => plugin.name !== 'plugin-user-workspace')
 +  .map(plugin => plugin.provider({
 +    context: {
++      userWorkspace: config.workspace,
 +      projectDirectory: new URL(`file://${process.cwd()}/`),
 +      scratchDir: new URL(`file://${process.cwd()}/.greenwood/`)
 +    },
@@ -141,7 +296,7 @@ index 5d347bc..ea11358 100644
        }
      }
  
-@@ -44,7 +65,7 @@ async function getCustomLoaderResponse(url, checkOnly = false) {
+@@ -44,7 +66,7 @@ async function getCustomLoaderResponse(url, checkOnly = false) {
        shouldHandle = true;
  
        if (!checkOnly) {
@@ -150,6 +305,91 @@ index 5d347bc..ea11358 100644
        }
      }
    }
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
+new file mode 100644
+index 0000000..a8cd5c5
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
+@@ -0,0 +1,51 @@
++import { mergeImportMap } from '../../lib/walker-package-ranger.js';
++import { ResourceInterface } from '../../lib/resource-interface.js';
++
++const importMap = {
++  '@greenwood/cli/src/data/queries.js': '/node_modules/@greenwood/cli/src/data/queries.js',
++};
++
++class ContentAsDataResource extends ResourceInterface {
++  constructor(compilation, options = {}) {
++    super(compilation, options);
++    // this.extensions = ['gql'];
++    this.contentType = ['text/html'];
++  }
++
++  async shouldIntercept(url, request, response) {
++    return response.headers.get('Content-Type')?.indexOf(this.contentType[0]) >= 0;
++  }
++
++  async intercept(url, request, response) {
++    const body = await response.text();
++    const newBody = mergeImportMap(body, importMap);
++
++    return new Response(newBody);
++  }
++
++  // async shouldOptimize(url, response) {
++  //   return response.headers.get('Content-Type').indexOf(this.contentType[1]) >= 0;
++  // }
++
++  // async optimize(url, response) {
++  //   let body = await response.text();
++
++  //   body = body.replace('<head>', `
++  //     <head>
++  //       <script data-state="apollo" data-gwd-opt="none">
++  //         window.__APOLLO_STATE__ = true;
++  //       </script>
++  //   `);
++
++  //   return new Response(body);
++  // }
++}
++
++
++const greenwoodPluginContentAsData = {
++  type: 'resource',
++  name: 'plugin-content-as-data:resource',
++  provider: (compilation) => new ContentAsDataResource(compilation)
++};
++
++export { greenwoodPluginContentAsData };
+\ No newline at end of file
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
+index ff05c44..73b8caf 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
+@@ -22,7 +22,7 @@ class NodeModulesResource extends ResourceInterface {
+   }
+ 
+   async shouldResolve(url) {
+-    return url.pathname.indexOf('/node_modules/') === 0;
++    return url.pathname.indexOf('/node_modules/') >= 0;
+   }
+ 
+   // TODO convert node modules util to URL
+@@ -68,11 +68,11 @@ class NodeModulesResource extends ResourceInterface {
+     });
+   }
+ 
+-  async shouldIntercept(url, request, response) {
++  async shouldPreIntercept(url, request, response) {
+     return response.headers.get('Content-Type')?.indexOf('text/html') >= 0;
+   }
+ 
+-  async intercept(url, request, response) {
++  async preIntercept(url, request, response) {
+     const { context } = this.compilation;
+     let body = await response.text();
+     const hasHead = body.match(/\<head>(.*)<\/head>/s);
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 index 64c1ba0..c0c2189 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
@@ -191,4 +431,128 @@ index 64c1ba0..c0c2189 100644
 +    // console.log('INTERCEPT', { url });
      const contents = (await response.text()).replace(/\r?\n|\r/g, ' ').replace(/\\/g, '\\\\');
      const body = `const sheet = new CSSStyleSheet();sheet.replaceSync(\`${contents}\`);export default sheet;`;
+ 
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+index cf3c1cf..444e3b5 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+@@ -42,6 +42,7 @@ class StandardHtmlResource extends ResourceInterface {
+     const isSpaRoute = this.compilation.graph.find(node => node.isSPA);
+     const matchingRoute = this.compilation.graph.find((node) => node.route === pathname) || {};
+     const filePath = !matchingRoute.external ? matchingRoute.path : '';
++    const extension = (matchingRoute?.filename || '').split('.').pop();
+     const isMarkdownContent = (matchingRoute?.filename || '').split('.').pop() === 'md';
+ 
+     let customImports = [];
+@@ -74,7 +75,7 @@ class StandardHtmlResource extends ResourceInterface {
+       }
+ 
+       const settings = config.markdown.settings || {};
+-      const fm = frontmatter(markdownContents);
++      const fm = frontmatter(markdownContents); // TODO we already got this once in the graph phase...
+ 
+       processedMarkdown = await unified()
+         .use(remarkParse, settings) // parse markdown into AST
+@@ -195,11 +196,29 @@ class StandardHtmlResource extends ResourceInterface {
+     }
+ 
+     if (interpolateFrontmatter) {
++      console.log({ frontMatter, matchingRoute })
++      // TODO consolidate this
++      for (const fm in matchingRoute.data) {
++        console.log('11', { fm });
++        const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
++        // TODO handle escaping nested " and / or '" when stringifying
++        const needle = typeof matchingRoute.data[fm] === 'string' ? matchingRoute.data[fm] : JSON.stringify(matchingRoute.data[fm]);
++        console.log('replace', needle);
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), needle);
++      }
++      
+       for (const fm in frontMatter) {
+         const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
+ 
+         body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), frontMatter[fm]);
+       }
++      
++      for (const collection in this.compilation.collections) {
++        const interpolatedFrontmatter = '\\$\\{globalThis.collection.' + collection + '\\}';
++      
++        // TODO handle escaping nested " and / or '" when stringifying
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), JSON.stringify(this.compilation.collections[collection]));
++      }
+     }
+ 
+     // give the user something to see so they know it works, if they have no content
+diff --git a/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js b/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js
+new file mode 100644
+index 0000000..2434b6e
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js
+@@ -0,0 +1,46 @@
++import Koa from 'koa';
++import { ServerInterface } from '../../lib/server-interface.js';
++import { Readable } from 'stream';
++
++class ContentServer extends ServerInterface {
++  constructor(compilation, options = {}) {
++    super(compilation, options);
++  }
++
++  async start() {
++    const app = new Koa();
++
++    app.use(async (ctx, next) => {
++      try {
++        if (ctx.request.path.startsWith('/graph.json')) {
++          const { graph } = this.compilation;
++
++          ctx.body = Readable.from(JSON.stringify(graph));
++          ctx.status = 200;
++          ctx.message = 'OK';
++          
++          ctx.set('Content-Type', 'application/json');
++          ctx.set('Access-Control-Allow-Origin', '*');
++        }
++      } catch (e) {
++        ctx.status = 500;
++        console.error(e);
++      }
++  
++      await next();
++    });
++
++    await app.listen('1985', () => {
++      console.log('Started content server at => http://localhost:1985');
++    });
++  }
++}
++
++// TODO remove graph.json resolution from regular dev server?
++const greenwoodPluginContentServer = {
++  type: 'server',
++  name: 'plugin-content-server',
++  provider: (compilation) => new ContentServer(compilation)
++};
++
++export { greenwoodPluginContentServer };
+\ No newline at end of file
+diff --git a/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js b/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
+index e3303e6..0a25621 100644
+--- a/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
++++ b/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
+@@ -40,12 +40,11 @@ class LiveReloadServer extends ServerInterface {
+     const liveReloadServer = livereload.createServer({
+       exts: allExtensions.filter((ext, idx) => idx === allExtensions.indexOf(ext)),
+       applyCSSLive: false // https://github.com/napcs/node-livereload/issues/33#issuecomment-693707006
+-    });
+-
+-    liveReloadServer.watch(userWorkspace.pathname, () => {
++    }, () => {
+       console.info(`Now watching directory "${userWorkspace}" for changes.`);
+-      return Promise.resolve(true);
+     });
++
++    liveReloadServer.watch(userWorkspace.pathname);
+   }
+ }
  

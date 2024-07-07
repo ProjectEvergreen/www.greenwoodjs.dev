@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Greenwood - ${globalThis.page.title}</title>
+    <script type="module" src="../components/side-nav/side-nav.js"></script>
+    <style>
+      .content {
+        margin: 0 auto;
+        text-align: left;
+        vertical-align: top;
+        width: 75%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="content">
+      <article>
+        <content-outlet></content-outlet>
+      </article>
+
+      <span><a href="/blog/">&#8592; back to the blog</a></span>
+    </main>
+  </body>
+</html>
