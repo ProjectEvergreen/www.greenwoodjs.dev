@@ -1,5 +1,5 @@
 ---
-title: Documentation
+title: Docs
 collection: nav
 order: 1
 ---

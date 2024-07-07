@@ -32,10 +32,10 @@ export default class Header extends HTMLElement {
             <ul class="nav-bar-menu">
               ${nav
                 .map((item) => {
-                  const { label, title, route } = item;
+                  const { title, route } = item;
                   return `
                     <li class="nav-bar-menu-item">
-                      <a href="${route}" title="${title}">${label}</a>
+                      <a href="${route}" title="${title} Page">${title}</a>
                     </li>
                   `;
                 })
