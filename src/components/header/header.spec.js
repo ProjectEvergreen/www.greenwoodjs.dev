@@ -53,6 +53,15 @@ describe("Components/Header", () => {
       expect(logo[0]).not.equal(undefined);
     });
 
+    it("should have an anchor tag wrapping the logo", () => {
+      const anchor = header.shadowRoot.querySelector("header a");
+      const logo = anchor.querySelector(".logo-bar svg");
+
+      expect(anchor).to.not.equal(undefined);
+      expect(anchor.getAttribute("href")).to.equal("/");
+      expect(logo).to.not.equal(undefined);
+    });
+
     it("should have the expected desktop navigation links", () => {
       const links = header.shadowRoot.querySelectorAll("nav ul:not(.mobile-menu-items) li a");
 
