@@ -47,7 +47,7 @@ export default class SideNav extends HTMLElement {
           `;
         })
         .join("")}
-      <p>^^^ custom element usign getCollection + attributes</p>
+      <p>^^^ custom element using getCollection + attributes</p>
     `;
   }
 }
