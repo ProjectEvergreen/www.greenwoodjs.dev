@@ -4,7 +4,7 @@ export default class GetStarted extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div class="${styles.container}">
-        <h3 class="${styles.heading}">Get Started in seconds</h3>
+        <h3 class="${styles.heading}">Get started in seconds 🚀</h3>
 
         <div class="${styles.snippet}">
           <pre>$ npx @greenwood/init@latest</pre>

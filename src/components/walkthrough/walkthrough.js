@@ -16,7 +16,7 @@ export default class Walkthrough extends HTMLElement {
     if (this.cards.length > 0) {
       template.innerHTML = `
         <div class="walkthrough">
-          <h2>Go from Zero to Fullstack with web standards</h2>
+          <h2>Go from zero to fullstack with web standards</h2>
           <h3>Lorum Ipsum...</h3>
 
           <nav class="cards">

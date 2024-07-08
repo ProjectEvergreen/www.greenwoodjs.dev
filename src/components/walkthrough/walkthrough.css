@@ -1,5 +1,5 @@
 :host .walkthrough {
-  padding: 30px;
+  padding: 50px;
   border-radius: var(--radius-5);
   color: var(--color-white);
   background-color: var(--color-secondary);
@@ -16,7 +16,7 @@
 
 .card {
   display: inline-block;
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-5);
   cursor: pointer;
   margin: var(--font-size-1) 0;
   padding: 10px 20px;
@@ -37,9 +37,14 @@
   color: var(--color-black);
 }
 
+.snippet pre {
+  border-radius: var(--radius-3);
+}
+
 h2 {
   font-size: var(--font-size-fluid-3);
   font-weight: bold;
+  margin: 0;
 }
 
 h3 {
@@ -92,6 +97,14 @@ img {
 }
 
 @media (min-width: 760px) {
+  :host .walkthrough {
+    padding: 50px 100px;
+  }
+
+  .snippet pre {
+    border-radius: var(--radius-1);
+  }
+
   .card {
     padding: 20px;
     margin-right: 20px;

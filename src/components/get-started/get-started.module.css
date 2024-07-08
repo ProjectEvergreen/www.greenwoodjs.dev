@@ -57,9 +57,9 @@
   text-decoration: none;
 }
 
-@media (min-width: 821px) {
+@media (min-width: 1024px) {
   .container {
-    padding: 160px 0;
+    padding: var(--size-px-10) 0 var(--size-px-13) 0;
   }
 
   .snippet {

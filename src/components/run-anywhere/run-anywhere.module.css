@@ -7,7 +7,6 @@
 
 .iconContainer {
   margin: 0 auto;
-  width: 60%;
 }
 
 .heading {
@@ -21,27 +20,14 @@
   padding: 20px;
 }
 
-.platformColumn {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.platformBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  flex-direction: column;
-}
-
 .iconBox {
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-2);
   background-color: var(--color-white);
   width: 150px;
   line-height: 150px;
+  margin: 0 auto;
+  display: inline-block;
 }
 
 .icon {
@@ -60,25 +46,21 @@
   color: var(--color-black);
   padding: 10px 20px;
   text-decoration: none;
+  line-height: 100%;
 }
 
-@media (max-width: 767px) {
-  .platformColumn {
-    flex-basis: calc(50% - 12px);
+@media (min-width: 768px) {
+  .platformBox {
+    display: inline-block;
   }
-}
 
-@media (max-width: 460px) {
-  .platformColumn {
-    flex-basis: 100%;
+  .iconLink {
+    display: block;
+    margin: 0 var(--size-px-6);
   }
 }
 
 @media (min-width: 1024px) {
-  .iconContainer {
-    max-width: 80%;
-  }
-
   .subHeading {
     max-width: 70%;
   }
