@@ -53,13 +53,12 @@ describe("Components/Header", () => {
       expect(logo[0]).not.equal(undefined);
     });
 
-    it("should have an anchor tag wrapping the logo", () => {
+    it("should have an anchor tag with title attribute wrapping the logo", () => {
       const anchor = header.shadowRoot.querySelector("header a");
-      const logo = anchor.querySelector(".logo-bar svg");
 
       expect(anchor).to.not.equal(undefined);
       expect(anchor.getAttribute("href")).to.equal("/");
-      expect(logo).to.not.equal(undefined);
+      expect(anchor.getAttribute("title")).to.equal("Greenwood Home Page");
     });
 
     it("should have the expected desktop navigation links", () => {
