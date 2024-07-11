@@ -1,12 +1,12 @@
 ---
 imports:
-  - ../components/latest-post/latest-post.js data-gwd-opt="static"
-  - ../components/hero-banner/hero-banner.js data-gwd-opt="static"
-  - ../components/walkthrough/walkthrough.js
-  - ../components/why-greenwood/why-greenwood.js data-gwd-opt="static"
-  - ../components/run-anywhere/run-anywhere.js data-gwd-opt="static"
-  - ../components/build-with-friends/build-with-friends.js data-gwd-opt="static"
-  - ../components/get-started/get-started.js data-gwd-opt="static"
+  - ../components/latest-post/latest-post.js data-gwd-opt="static" type="module"
+  - ../components/hero-banner/hero-banner.js data-gwd-opt="static" type="module"
+  - ../components/walkthrough/walkthrough.js type="module"
+  - ../components/why-greenwood/why-greenwood.js data-gwd-opt="static" type="module"
+  - ../components/run-anywhere/run-anywhere.js data-gwd-opt="static" type="module"
+  - ../components/build-with-friends/build-with-friends.js data-gwd-opt="static" type="module"
+  - ../components/get-started/get-started.js data-gwd-opt="static" type="module"
   - ../styles/home.css
 ---
 
