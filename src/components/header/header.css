@@ -50,13 +50,12 @@ header {
 
 .social-icon {
   display: flex;
-  align-items: center; /* Ensures vertical alignment */
+  align-items: center;
 }
 
 .social-icon svg {
   fill: var(--color-secondary);
 }
-
 
 .mobile-menu,
 .mobile-menu.active,

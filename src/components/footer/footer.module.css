@@ -32,7 +32,7 @@
 
 .socialIcon {
   display: flex;
-  align-items: center; /* Ensures vertical alignment */
+  align-items: center;
 }
 
 .socialIcon svg {
