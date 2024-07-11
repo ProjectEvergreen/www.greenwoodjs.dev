@@ -43,3 +43,9 @@ pre[class*="language-"],
 span.token {
   font-family: "Geist-Mono", monospace;
 }
+
+[popover] {
+  border: none; /* Popovers have borders? */
+  padding: 0;
+  margin: 0;
+}
