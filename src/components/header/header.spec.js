@@ -62,7 +62,7 @@ describe("Components/Header", () => {
     });
 
     it("should have the expected desktop navigation links", () => {
-      const links = header.shadowRoot.querySelectorAll("nav ul:not(.mobile-menu-items) li a");
+      const links = header.shadowRoot.querySelectorAll("nav ul.nav-bar-menu li a");
 
       Array.from(links).forEach((link) => {
         const navItem = NAV.find(
