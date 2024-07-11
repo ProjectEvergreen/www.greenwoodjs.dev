@@ -16,10 +16,10 @@ export default class Header extends HTMLElement {
       this.attachShadow({ mode: "open" });
       this.shadowRoot.innerHTML = `
         <header>
-        <a href="/" title="Greenwood Home Page">
-          <div class="logo-bar">
-            ${greenwoodLogo}
-          </div>
+          <a href="/" title="Greenwood Home Page">
+            <div class="logo-bar">
+              ${greenwoodLogo}
+            </div>
           </a>
 
           <nav class="nav-bar">
