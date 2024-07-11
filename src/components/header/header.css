@@ -5,6 +5,10 @@ header {
   margin: 0;
 }
 
+.logo-link {
+  display: flex;
+}
+
 .nav-bar {
   display: flex;
   align-items: center;
