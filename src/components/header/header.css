@@ -48,6 +48,11 @@ header {
   cursor: pointer;
 }
 
+.social-icon {
+  display: flex;
+  align-items: center;
+}
+
 .social-icon svg {
   fill: var(--color-secondary);
 }
