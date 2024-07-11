@@ -45,7 +45,7 @@ span.token {
 }
 
 [popover] {
-  border: none; /* Popovers have borders? */
+  border: none; /* Popovers have borders it seems? */
   padding: 0;
   margin: 0;
 }
