@@ -64,13 +64,13 @@ export default class Header extends HTMLElement {
             
             <nav role="navigation" aria-label="Mobile">
               <ul class="${styles.mobileMenuList}">
-                <li class="${styles.mobileMenuItem}">
+                <li class="${styles.mobileMenuListItem}">
                   <a href="/docs/" title="Documentation">Docs</a>
                 </li>
-                <li class="${styles.mobileMenuItem}">
+                <li class="${styles.mobileMenuListItem}">
                   <a href="/guides/" title="Guides">Guides</a>
                 </li>
-                <li class="${styles.mobileMenuItem}">
+                <li class="${styles.mobileMenuListItem}">
                   <a href="/blog/" title="Blog">Blog</a>
                 </li>
               </ul>
