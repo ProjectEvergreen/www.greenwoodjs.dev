@@ -1,8 +1,8 @@
 import discordIcon from "../../assets/discord.svg?type=raw";
 import githubIcon from "../../assets/github.svg?type=raw";
-import greenwoodLogo from "../../assets/greenwood-logo.svg?type=raw";
 import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
 import styles from "./footer.module.css";
+import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
 
 export default class Footer extends HTMLElement {
   connectedCallback() {

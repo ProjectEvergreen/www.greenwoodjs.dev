@@ -15,11 +15,20 @@
   flex-basis: 100%;
   flex: 1;
   justify-content: center;
+  color: var(--color-gray);
+}
+
+.logo svg {
+  width: 150px;
+}
+
+.logo svg g.letters {
+  fill: var(--color-white);
 }
 
 .socialTray {
   display: flex;
-  gap: var(--size-3);
+  gap: var(--size-2);
   list-style-type: none;
   background-color: var(--color-secondary);
   border: var(--border-size-1) solid var(--color-black);

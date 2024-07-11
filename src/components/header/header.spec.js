@@ -54,7 +54,7 @@ describe("Components/Header", () => {
     });
 
     it("should have an anchor tag with title attribute wrapping the logo", () => {
-      const anchor = header.shadowRoot.querySelector("header a");
+      const anchor = header.shadowRoot.querySelector("header .logo-link");
 
       expect(anchor).to.not.equal(undefined);
       expect(anchor.getAttribute("href")).to.equal("/");
