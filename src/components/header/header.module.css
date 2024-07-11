@@ -88,6 +88,7 @@
   background: transparent;
   font-size: var(--font-size-5);
   border: none;
+  cursor: pointer;
 }
 
 .mobileMenuList {
