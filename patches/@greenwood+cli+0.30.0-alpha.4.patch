@@ -49,3 +49,93 @@ index 21636a9..7a01fe0 100644
  
        await fs.writeFile(new URL(`.${outputPath}`, outputDir), body);
      })
+diff --git a/node_modules/@greenwood/cli/src/loader.js b/node_modules/@greenwood/cli/src/loader.js
+index 657ab4e..792f43c 100644
+--- a/node_modules/@greenwood/cli/src/loader.js
++++ b/node_modules/@greenwood/cli/src/loader.js
+@@ -7,6 +7,7 @@ const resourcePlugins = config.plugins
+   .filter(plugin => plugin.name !== 'plugin-node-modules:resource' && plugin.name !== 'plugin-user-workspace')
+   .map(plugin => plugin.provider({
+     context: {
++      outputDir: new URL(`file://${process.cwd()}/public`),
+       projectDirectory: new URL(`file://${process.cwd()}/`),
+       scratchDir: new URL(`file://${process.cwd()}/.greenwood/`)
+     },
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+index b0cdbcb..b04c744 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+@@ -49,23 +49,27 @@ function bundleCss(body, url, compilation) {
+           barePath = barePath.replace('/', '');
+         }
+ 
+-        const locationUrl = barePath.startsWith('node_modules')
++        const locationUrl = barePath.indexOf('node_modules/') >= 0
+           ? new URL(`./${barePath}`, projectDirectory)
+           : new URL(`./${barePath}`, userWorkspace);
+ 
+         if (fs.existsSync(locationUrl)) {
+           const hash = hashString(fs.readFileSync(locationUrl, 'utf-8'));
+           const ext = barePath.split('.').pop();
+-          const hashedRoot = barePath.replace(`.${ext}`, `.${hash}.${ext}`);
+-
+-          fs.mkdirSync(new URL(`./${path.dirname(barePath)}/`, outputDir), {
+-            recursive: true
+-          });
+-
+-          fs.promises.copyFile(
+-            locationUrl,
+-            new URL(`./${hashedRoot}`, outputDir)
+-          );
++          const hashedRoot = process.env.__GWD_COMMAND__ === 'develop'
++            ? barePath
++            : barePath.replace(`.${ext}`, `.${hash}.${ext}`)
++
++          if (process.env.__GWD_COMMAND__ !== 'develop') {
++            fs.mkdirSync(new URL(`./${path.dirname(hashedRoot)}/`, outputDir), {
++              recursive: true
++            });
++
++            fs.promises.copyFile(
++              locationUrl,
++              new URL(`./${hashedRoot}`, outputDir)
++            );
++          }
+ 
+           optimizedCss += `url('${basePath}${hashedRoot}')`;
+         } else {
+@@ -295,8 +299,9 @@ class StandardCssResource extends ResourceInterface {
+ 
+   async serve(url) {
+     const body = await fs.promises.readFile(url, 'utf-8');
++    const optimizedBody = bundleCss(body, url, this.compilation)
+ 
+-    return new Response(body, {
++    return new Response(optimizedBody, {
+       headers: {
+         'Content-Type': this.contentType
+       }
+@@ -321,15 +326,15 @@ class StandardCssResource extends ResourceInterface {
+     });
+   }
+ 
+-  async shouldOptimize(url, response) {
+-    const { protocol, pathname, searchParams } = url;
+-    const isValidCss = pathname.split('.').pop() === this.extensions[0]
+-      && protocol === 'file:'
+-      && response.headers.get('Content-Type').indexOf(this.contentType) >= 0
+-      && searchParams.get('type') !== 'css';
++  // async shouldOptimize(url, response) {
++  //   const { protocol, pathname, searchParams } = url;
++  //   const isValidCss = pathname.split('.').pop() === this.extensions[0]
++  //     && protocol === 'file:'
++  //     && response.headers.get('Content-Type').indexOf(this.contentType) >= 0
++  //     && searchParams.get('type') !== 'css';
+ 
+-    return this.compilation.config.optimization !== 'none' && isValidCss;
+-  }
++  //   return this.compilation.config.optimization !== 'none' && isValidCss;
++  // }
+ 
+   async optimize(url, response) {
+     const body = await response.text();
