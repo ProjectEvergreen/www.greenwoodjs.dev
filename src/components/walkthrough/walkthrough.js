@@ -1,5 +1,5 @@
-import theme from '../../styles/theme.css' with { type: "css" };
-import sheet from './walkthrough.css' with { type: "css" };
+import sheet from "./walkthrough.css" with { type: "css" };
+import theme from "../../styles/theme.css" with { type: "css" };
 
 const template = document.createElement("template");
 

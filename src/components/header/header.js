@@ -1,9 +1,9 @@
+import sheet from "./header.css" with { type: "css" };
 import discordIcon from "../../assets/discord.svg?type=raw";
 import githubIcon from "../../assets/github.svg?type=raw";
 import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
 import mobileMenuIcon from "../../assets/tile.svg?type=raw";
 import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
-import sheet from "./header.css" with { type: "css" };
 
 export default class Header extends HTMLElement {
   constructor() {
