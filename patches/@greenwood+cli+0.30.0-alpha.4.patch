@@ -1,5 +1,5 @@
 diff --git a/node_modules/@greenwood/cli/src/config/rollup.config.js b/node_modules/@greenwood/cli/src/config/rollup.config.js
-index 7771d11..9f338e1 100644
+index 7771d11..28cf85c 100644
 --- a/node_modules/@greenwood/cli/src/config/rollup.config.js
 +++ b/node_modules/@greenwood/cli/src/config/rollup.config.js
 @@ -21,7 +21,7 @@ function greenwoodResourceLoader (compilation) {
@@ -19,7 +19,7 @@ index 7771d11..9f338e1 100644
 -          return normalizePathnameForWindows(userWorkspaceUrl);
 +        // console.log('1111', { id, importer, userWorkspaceUrl });
 +        if (await checkResourceExists(new URL(id, `file://${importer}`))) {
-+          const external = userWorkspaceUrl.pathname.endsWith('.css');
++          const external = userWorkspaceUrl.pathname.endsWith('.css') || userWorkspaceUrl.pathname.endsWith('.json');
 +          // console.log({ external });
 +
 +          return {
@@ -37,7 +37,7 @@ index 7771d11..9f338e1 100644
      generateBundle(options, bundles) {
        for (const bundle in bundles) {
          const bundleExtension = bundle.split('.').pop();
-@@ -398,6 +406,180 @@ function greenwoodImportMetaUrl(compilation) {
+@@ -398,6 +406,120 @@ function greenwoodImportMetaUrl(compilation) {
    };
  }
  
@@ -54,65 +54,6 @@ index 7771d11..9f338e1 100644
 +
 +  return {
 +    name: 'greenwood-sync-import-attributes',
-+
-+    // transform doesn't have assert keyword at this point, so we just want inject bundle ref for one-off routes
-+    // transform(code, id) {
-+    //   console.log('@@@@ sync import attributes#transform', id);
-+    //   const transformUrl = new URL(`file://${id}`);
-+
-+    //   if (transformUrl.pathname.endsWith('.js')) {
-+    //     const ast = this.parse(code);
-+    //     const transformedCode = code;
-+
-+    //     walk.simple(ast, {
-+    //       // TOOO should really get import attributes through the actual AST, not sure if possible though...
-+    //       ImportDeclaration(node) {
-+    //         console.log('ImportDeclaration ########', node.source.raw);
-+    //         const statement = code.slice(node.start, node.end);
-+    //         const { value } = node.source;
-+    //         console.log({ value, statement });
-+
-+    //         // TODO will this also happen to module.css, need to filter somehow?
-+    //         if (value.endsWith('.css')) {
-+    //           // Rollup currently emits externals with assert keyword
-+    //           let preBundled = false;
-+    //           // transformedCode = bundles[bundle].code.replace(/assert{/g, 'with{');
-+
-+    //           // check for app level assets, like say a shared theme.css
-+    //           compilation.resources.forEach((resource, key) => {
-+    //             if (resource.sourcePathURL.pathname === new URL(value, compilation.context.projectDirectory).pathname) {
-+    //               // console.log('$$$ found pre-bundled CSS!!!', resource.optimizedFileName);
-+    //               // bundles[bundle].code = bundles[bundle].code.replace(value, `/${resource.optimizedFileName}`);
-+    //               preBundled = true;
-+    //             }
-+    //           });
-+
-+    //           // otherwise emit "one-offs" as Rollup assets
-+    //           if (!preBundled) {
-+    //             console.log('#### not pre bundled', { value, id });
-+    //             const source = fs.readFileSync(new URL(value, compilation.context.projectDirectory), 'utf-8')
-+    //             // TODO otherwise emit "one-offs" as Rollup assets
-+    //             const type = 'asset';
-+    //             const emitConfig = { type, name: value.split('/').pop(), source };
-+    //             const ref = that.emitFile(emitConfig);
-+    //             const importRef = `import.meta.ROLLUP_FILE_URL_${ref}`;
-+
-+    //             console.log({ importRef });
-+    //             transformedCode = transformedCode.replace(value, `/${importRef}`);
-+    //             // modifiedCode = code
-+    //             //   .replace(`'${relativeAssetPath}'`, importRef)
-+    //             //   .replace(`"${relativeAssetPath}"`, importRef);   
-+    //           }
-+    //         }
-+    //       }
-+    //     });
-+
-+    //     return {
-+    //       code: transformedCode,
-+    //       map: null
-+    //     };
-+    //   }
-+    // },
 +
 +    generateBundle(options, bundles) {
 +      // TODO do we need to run all resource lifecycles  here?
@@ -134,7 +75,7 @@ index 7771d11..9f338e1 100644
 +              console.log({ value, statement });
 +
 +              // TODO will this also happen to module.css, need to filter somehow?
-+              if (value.endsWith('.css')) {
++              if (value.endsWith('.css') || value.endsWith('.json')) {
 +                // Rollup currently emits externals with assert keyword
 +                let preBundled = false;
 +                bundles[bundle].code = bundles[bundle].code.replace(/assert{/g, 'with{');
@@ -152,7 +93,6 @@ index 7771d11..9f338e1 100644
 +                if (!preBundled) {
 +                  console.log('#### not pre bundled', { value, bundle });
 +                  const source = fs.readFileSync(new URL(value, compilation.context.projectDirectory), 'utf-8')
-+                  // TODO otherwise emit "one-offs" as Rollup assets
 +                  const type = 'asset';
 +                  const emitConfig = { type, name: value.split('/').pop(), source, needsCodeReference: true };
 +                  const ref = that.emitFile(emitConfig);
@@ -195,7 +135,7 @@ index 7771d11..9f338e1 100644
 +          // console.log(bundles[bundle])
 +          console.log('CHECKING....', { bundle, fileName, name, key })
 +
-+          if(bundle?.startsWith(`assets/${key}`)) {
++          if(bundle?.startsWith(`assets/${key}`) && ext === fileName.split('.').pop()) {
 +            console.log('MONEY!!!!!!', unbundledAssetsRefMapper[asset], fileName);
 +
 +            unbundledAssetsRefMapper[asset].importers.forEach((importer, idx) => {
@@ -218,7 +158,7 @@ index 7771d11..9f338e1 100644
  const getRollupConfigForScriptResources = async (compilation) => {
    const { outputDir } = compilation.context;
    const input = [...compilation.resources.values()]
-@@ -421,6 +603,7 @@ const getRollupConfigForScriptResources = async (compilation) => {
+@@ -421,6 +543,7 @@ const getRollupConfigForScriptResources = async (compilation) => {
      plugins: [
        greenwoodResourceLoader(compilation),
        greenwoodSyncPageResourceBundlesPlugin(compilation),
