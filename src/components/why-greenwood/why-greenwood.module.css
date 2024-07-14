@@ -37,6 +37,10 @@
   line-height: 50px;
 }
 
+.card p {
+  min-height: 200px;
+}
+
 .card svg {
   vertical-align: middle;
 }

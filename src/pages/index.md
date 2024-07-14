@@ -17,26 +17,18 @@ imports:
 <app-capabilities></app-capabilities>
 
 <div class="capabilities-content item1">
-  <span>HTML First</span>
+  <span>Hybrid Routing</span>
   <i>html.svg</i>
   <p>Greenwood is HTML first by design.  Start from just an <em>index.html</em> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.</p>
 
-```html
-<!-- pages/index.html -->
-<html>
-  <head>
-    <title>My Site</title>
-  </head>
-
-  <body>
-    <h1>Welcome to our site!</h1>
-    <p>
-      Feel free to browse around or
-      <a href="/contact/">contact us</a>
-      if you have any questions.
-    </p>
-  </body>
-</html>
+```shell
+src/
+  pages/
+    api/
+      search.js       # API Routes
+    index.html        # Static (SSG)
+    products.js       # Dynamic (SSR), or emit as static with pre-rendering
+    about.md          # markdown also supported
 ```
 
 </div>
@@ -44,12 +36,12 @@ imports:
 <div class="capabilities-content item2">
   <span>Server Rendering</span>
   <i>build-ssg.svg</i>
-  <p>Yay SSR!  Lorum...</p>
+  <p>Greenwood believes Web Components are not only a great component model, but also a great templating model for generating static HTML.  Below is dynamic page powered by the <em>Custom Elements</em> API.</p>
 
 ```js
-// pages/products.js
+// src/pages/products.js
+import { getProducts } from "../lib/db.js";
 import "../components/card.js";
-import { getProducts } from "../services/products.js";
 
 export default class ProductsPage extends HTMLElement {
   async connectedCallback() {
@@ -81,10 +73,11 @@ export default class ProductsPage extends HTMLElement {
 <div class="capabilities-content item3">
   <span>Web Components</span>
   <i>web-components.svg</i>
-  <p>Yay Web Components!  Lorum...</p>
+  <p>Web Components, combined with APIs like <em>Constructable StyleSheets</em>, make a compelling solution as the web's own component model.  Greenwood makes it possible to have fully isomorphic Web Components for both client-side and server-side rendering scenarios.</p>
 
 ```js
-// components/card.js
+// src/components/card.js
+import theme from "../styles/theme.js" with { type: "css" };
 import sheet from "./card.js" with { type: "css" };
 
 export default class Card extends HTMLElement {
@@ -104,7 +97,7 @@ export default class Card extends HTMLElement {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    this.shadowRoot.adoptedStyleSheets = [sheet];
+    this.shadowRoot.adoptedStyleSheets = [theme, sheet];
   }
 }
 
@@ -116,42 +109,36 @@ customElements.define("app-card", Card);
 <div class="capabilities-content item4">
   <span>API Routes</span>
   <i>api-routes.svg</i>
-  <p>Yay API Routes!  Lorum...</p>
+  <p>Need client side data fetching or mutations?  Greenwood provides API routes out of the box that are fully invested in web standards like <em>Fetch</em> and <em>FormData</em>.  Of course it is all fully compatible with server-rendering Web Components; a perfect companion for HTML over the wire solutions!</p>
 
 ```js
-// api/search.js
+// src/pages/api/search.js
 import { renderFromHTML } from "wc-compiler";
-import { getProducts } from "../services/products.js";
+import { getProducts } from "../lib/db.js";
 
 export async function handler(request) {
   const formData = await request.formData();
   const searchTerm = formData.has("term") ? formData.get("term") : "";
   const products = await getProducts(searchTerm);
-  let body = "No results found.";
+  const { html } = await renderFromHTML(
+    `
+    ${products
+      .map((item, idx) => {
+        const { title, thumbnail } = item;
 
-  if (products.length > 0) {
-    const { html } = await renderFromHTML(
-      `
-      ${products
-        .map((item, idx) => {
-          const { title, thumbnail } = item;
+        return `
+          <app-card
+            title="${idx + 1}) ${title}"
+            thumbnail="${thumbnail}"
+          ></app-card>
+        `;
+      })
+      .join("")}
+  `,
+    [new URL("../components/card.js", import.meta.url)],
+  );
 
-          return `
-            <app-card
-              title="${idx + 1}) ${title}"
-              thumbnail="${thumbnail}"
-            ></app-card>
-          `;
-        })
-        .join("")}
-      `,
-      [new URL("../components/card.js", import.meta.url)],
-    );
-
-    body = html;
-  }
-
-  return new Response(body, {
+  return new Response(html, {
     headers: new Headers({
       "Content-Type": "text/html",
     }),

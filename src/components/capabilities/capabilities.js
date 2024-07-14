@@ -17,7 +17,7 @@ export default class Capabilities extends HTMLElement {
       template.innerHTML = `
         <div class="capabilities">
           <h2>Go from zero to fullstack with web standards</h2>
-          <h3>Lorum Ipsum...</h3>
+          <h3>Greenwood loves the web and so where possible we borrow, promote and adapt powerful web standards like Web Components, Fetch (and friends), and Import Attributes to provide a refreshingly predictable developer experience.
 
           <nav class="sections">
             <ul>
