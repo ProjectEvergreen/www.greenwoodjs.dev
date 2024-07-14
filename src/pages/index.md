@@ -2,7 +2,7 @@
 imports:
   - ../components/latest-post/latest-post.js data-gwd-opt="static" type="module"
   - ../components/hero-banner/hero-banner.js data-gwd-opt="static" type="module"
-  - ../components/walkthrough/walkthrough.js type="module"
+  - ../components/capabilities/capabilities.js type="module"
   - ../components/why-greenwood/why-greenwood.js data-gwd-opt="static" type="module"
   - ../components/run-anywhere/run-anywhere.js data-gwd-opt="static" type="module"
   - ../components/build-with-friends/build-with-friends.js data-gwd-opt="static" type="module"
@@ -14,9 +14,9 @@ imports:
 
 <app-hero-banner></app-hero-banner>
 
-<app-walkthrough></app-walkthrough>
+<app-capabilities></app-capabilities>
 
-<div class="walkthrough-card card1">
+<div class="capabilities-content item1">
   <span>HTML First</span>
   <i>html.svg</i>
   <p>Greenwood is HTML first by design.  Start from just an <em>index.html</em> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.</p>
@@ -41,7 +41,7 @@ imports:
 
 </div>
 
-<div class="walkthrough-card card2">
+<div class="capabilities-content item2">
   <span>Server Rendering</span>
   <i>build-ssg.svg</i>
   <p>Yay SSR!  Lorum...</p>
@@ -78,7 +78,7 @@ export default class ProductsPage extends HTMLElement {
 
 </div>
 
-<div class="walkthrough-card card3">
+<div class="capabilities-content item3">
   <span>Web Components</span>
   <i>web-components.svg</i>
   <p>Yay Web Components!  Lorum...</p>
@@ -113,7 +113,7 @@ customElements.define("app-card", Card);
 
 </div>
 
-<div class="walkthrough-card card4">
+<div class="capabilities-content item4">
   <span>API Routes</span>
   <i>api-routes.svg</i>
   <p>Yay API Routes!  Lorum...</p>

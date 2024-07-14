@@ -1,20 +1,20 @@
-:host .walkthrough {
+:host .capabilities {
   padding: 50px;
   border-radius: var(--radius-5);
   color: var(--color-white);
   background-color: var(--color-secondary);
 }
 
-.walkthrough em,
-.walkthrough strong {
+.capabilities em,
+.capabilities strong {
   font-size: var(--font-size-1);
 }
 
-.cards {
+.sections {
   overflow-x: auto;
 }
 
-.card {
+.section {
   display: inline-block;
   border-radius: var(--radius-5);
   cursor: pointer;
@@ -22,11 +22,11 @@
   padding: 10px 20px;
 }
 
-.card:hover {
+.section:hover {
   border: 2px dotted var(--color-accent);
 }
 
-.card:hover strong,
+.section:hover strong,
 .active strong {
   color: var(--color-white);
   font-weight: bold;
@@ -97,7 +97,7 @@ img {
 }
 
 @media (min-width: 760px) {
-  :host .walkthrough {
+  :host .capabilities {
     padding: 50px 100px;
   }
 
@@ -105,12 +105,12 @@ img {
     border-radius: var(--radius-1);
   }
 
-  .card {
+  .section {
     padding: 20px;
     margin-right: 20px;
   }
 
-  .card:hover {
+  .section:hover {
     padding: 18px;
   }
 
