@@ -1,11 +1,11 @@
 app-latest-post,
 app-hero-banner,
-app-walkthrough {
+app-capabilities {
   display: block;
   margin: var(--size-fluid-1) auto;
 }
 
-.walkthrough-card {
+.capabilities-content {
   display: none;
 }
 
