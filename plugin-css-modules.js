@@ -52,6 +52,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
           let scopedCssContents = cssContents;
 
           const ast = parse(cssContents, {
+            // positions: true,
             onParseError(error) {
               console.log(error.formattedMessage);
             },
@@ -66,14 +67,21 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
                 if (node.children?.head?.data?.type === "Selector") {
                   if (node.children?.head?.data?.children?.head?.data?.type === "ClassSelector") {
                     const { name } = node.children.head.data.children.head.data;
-
                     const scopedClassName = `${scope}-${hash}-${name}`;
                     classNameMap[name] = scopedClassName;
 
-                    scopedCssContents = scopedCssContents.replace(
-                      `\.${name}`,
-                      `\.${scopedClassName}`,
-                    );
+                    /*
+                     * bit of a hacky solution since as we are walking class names one at a time, if we have multiple uses of .heading (for example)
+                     * then by the end we could have .my-component-111-header.my-component-111-header.etc, since we want to replace all instances (e.g. the g flag in Regex)
+                     *
+                     * csstree supports loc so we _could_ target the class replacement down to start / end points, but that unfortunately slows things down a lot
+                     */
+                    if(scopedCssContents.indexOf(`.${scopedClassName} `) < 0 && scopedCssContents.indexOf(`.${scopedClassName}{`) < 0) {
+                      scopedCssContents = scopedCssContents.replace(
+                        new RegExp(String.raw`.${name}`, 'g'),
+                        `.${scope}-${hash}-${name}`,
+                      );
+                    }
                   }
                 }
               }
