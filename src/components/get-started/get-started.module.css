@@ -64,4 +64,8 @@
   .snippet {
     max-width: 50%;
   }
+
+  .snippet pre {
+    font-size: var(--font-size-1);
+  }
 }
