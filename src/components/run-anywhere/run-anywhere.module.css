@@ -1,44 +1,50 @@
 .container {
-  border-left: 2px solid var(--color-gray);
-  border-right: 2px solid var(--color-gray);
-  margin: 0 auto;
+  background-color: var(--color-gray);
+  padding: var(--size-fluid-2);
   text-align: center;
-}
-
-.iconContainer {
-  margin: 0 auto;
 }
 
 .heading {
   font-size: var(--font-size-5);
   font-weight: var(--font-weight-9);
+  margin: 0;
+  padding: var(--size-fluid-1) 0;
+  text-align: center;
 }
 
 .subHeading {
-  text-align: center;
   margin: 0px auto 30px;
-  padding: 20px;
+  padding: var(--size-fluid-1) 0;
+  text-align: left;
+}
+
+.platformsContainer {
+  margin: 0 auto;
+}
+
+.platformBox {
+  width: 45%;
+  max-width: 200px;
+  margin: var(--size-fluid-1) auto;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .iconBox {
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-2);
   background-color: var(--color-white);
-  width: 150px;
-  line-height: 150px;
-  margin: 0 auto;
-  display: inline-block;
+  height: 150px;
+  align-content: center;
+  padding: var(--size-fluid-2);
 }
 
 .icon {
   width: 100px;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 100%;
 }
 
 .iconLink {
-  display: inline-block;
+  display: block;
   margin: var(--size-px-2) 0 var(--size-px-4);
   border-radius: var(--radius-3);
   border: 1px solid #bababa;
@@ -50,18 +56,34 @@
 }
 
 @media (min-width: 768px) {
-  .platformBox {
-    display: inline-block;
+  .container {
+    padding: var(--size-fluid-4);
+    margin: 0 auto;
   }
 
-  .iconLink {
-    display: block;
-    margin: 0 var(--size-px-6);
+  .heading {
+    text-align: right;
+  }
+
+  .subHeading {
+    text-align: right;
+  }
+
+  .platformBox {
+    width: 35%;
   }
 }
 
 @media (min-width: 1024px) {
+  .heading,
   .subHeading {
-    max-width: 70%;
+    padding: var(--size-fluid-1) 0;
+    text-align: center;
+  }
+
+  .platformBox {
+    display: inline-block;
+    width: 16%;
+    margin: 0 var(--size-fluid-2);
   }
 }

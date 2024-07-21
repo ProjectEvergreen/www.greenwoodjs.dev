@@ -16,33 +16,35 @@ export default class Capabilities extends HTMLElement {
     if (this.contentItems.length > 0) {
       template.innerHTML = `
         <div class="capabilities">
-          <h2>Go from zero to fullstack with web standards</h2>
-          <h3>Greenwood loves the web and so where possible we borrow, promote and adapt powerful web standards like Web Components, Fetch (and friends), and Import Attributes to provide a refreshingly predictable developer experience.
+          <div class="container">
+            <h2>Go from zero to fullstack with web standards</h2>
+            <!-- <h3>Greenwood loves the web and so where possible we borrow, promote and adapt powerful web standards like Web Components, Fetch (and friends), and Import Attributes to provide a refreshingly predictable developer experience.</h3> -->
 
-          <nav class="sections">
-            <ul>
-              ${Array.from(this.contentItems)
-                .map((item, idx) => {
-                  const title = item.querySelector("span").innerHTML;
-                  const text = item.querySelector("p").innerHTML;
-                  const icon = item.querySelector("i").textContent;
-                  const isActiveClass = idx === this.index ? " active" : "";
+            <nav class="sections">
+              <ul>
+                ${Array.from(this.contentItems)
+                  .map((item, idx) => {
+                    const title = item.querySelector("span").innerHTML;
+                    const text = item.querySelector("p").innerHTML;
+                    const icon = item.querySelector("i").textContent;
+                    const isActiveClass = idx === this.index ? " active" : "";
 
-                  return `
-                    <li class="section${isActiveClass}" data-idx="${idx}">
-                      <h4>
-                        <img src="/assets/${icon}" alt="${text} icon"/>
-                        ${title}
-                      </h4>
-                    </li>
-                  `;
-                })
-                .join("")}
-            </ul>
-          </nav>
+                    return `
+                      <li class="section${isActiveClass}" data-idx="${idx}">
+                        <h4>
+                          <img src="/assets/${icon}" alt="${text} icon"/>
+                          ${title}
+                        </h4>
+                      </li>
+                    `;
+                  })
+                  .join("")}
+              </ul>
+            </nav>
 
-          <p>${this.contentItems[this.index].querySelector("p").innerHTML}</p>
-          <div class="snippet">${this.contentItems[this.index].querySelector("pre").outerHTML}</div>
+            <p>${this.contentItems[this.index].querySelector("p").innerHTML}</p>
+            <div class="snippet">${this.contentItems[this.index].querySelector("pre").outerHTML}</div>
+          </div>
         </div>
       `;
 

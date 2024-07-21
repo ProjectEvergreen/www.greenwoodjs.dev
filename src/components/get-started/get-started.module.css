@@ -1,6 +1,5 @@
 .container {
-  padding: 20px 0 160px;
-  border-radius: var(--radius-5);
+  padding: var(--size-fluid-3) var(--size-fluid-2);
   color: var(--color-white);
   background-color: var(--color-tertiary);
   text-align: center;
@@ -57,10 +56,14 @@
   text-decoration: none;
 }
 
+.snippet pre {
+  padding: 20px 2px;
+}
+
 @media (min-width: 1024px) {
-  .container {
+  /* .container {
     padding: var(--size-px-10) 0 var(--size-px-13) 0;
-  }
+  } */
 
   .snippet {
     max-width: 50%;

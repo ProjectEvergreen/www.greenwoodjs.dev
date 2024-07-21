@@ -1,6 +1,5 @@
 :host .capabilities {
-  padding: 50px;
-  border-radius: var(--radius-5);
+  /* border-radius: var(--radius-5); */
   color: var(--color-white);
   background-color: var(--color-secondary);
 }
@@ -8,6 +7,14 @@
 .capabilities em,
 .capabilities strong {
   font-size: var(--font-size-1);
+}
+
+.capabilities h2 {
+  font-size: var(--font-size-4);
+}
+
+.container {
+  padding: var(--size-fluid-2);
 }
 
 .sections {
@@ -63,8 +70,7 @@ nav {
   white-space: nowrap;
   border-top: 1px solid var(--color-accent);
   border-bottom: 1px solid var(--color-accent);
-  padding: 15px 0 0;
-  margin: 10px 0;
+  margin: var(--font-size-1) 0;
 }
 
 ul {
@@ -77,11 +83,8 @@ ul {
 
 p {
   margin: 0;
-  padding: 10px;
   text-align: left;
   font-size: var(--font-size-1);
-  min-height: 100px;
-  border-radius: var(--radius-2);
 }
 
 img {
@@ -89,21 +92,26 @@ img {
   vertical-align: middle;
 }
 
+pre {
+  margin: 0;
+}
+
 @media (max-width: 760px) {
   code[class*="language-"],
   pre[class*="language-"],
   .token {
-    font-size: 12px;
+    font-size: 0.9rem;
   }
 }
 
-@media (min-width: 760px) {
-  :host .capabilities {
-    padding: 50px 100px;
+@media (min-width: 768px) {
+  .container {
+    padding: var(--size-fluid-4);
+    margin: 0 auto;
   }
 
-  .snippet pre {
-    border-radius: var(--radius-1);
+  .capabilities h2 {
+    font-size: var(--font-size-7);
   }
 
   .section {
@@ -114,15 +122,16 @@ img {
   .section:hover {
     padding: 18px;
   }
-
-  nav {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-  }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1025px) {
+  .container {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+
   p {
-    width: 60%;
+    width: 80%;
   }
 }

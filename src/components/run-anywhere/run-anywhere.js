@@ -6,16 +6,14 @@ export default class RunAnywhere extends HTMLElement {
     this.innerHTML = `
       <div class="${styles.container}">
         <h3 class="${styles.heading}">Run anywhere the web can run</h3>
-        
-        <p class="${styles.subHeading}">Greenwood helps you take your application further by embracing platforms that embrace web standards.</p>
+        <p class="${styles.subHeading}">Greenwood helps you take your application to production by embracing platforms that embrace web standards.</p>
 
-        <div class="${styles.iconContainer}">
-          <div class="${styles.platformColumn}">
-            ${platforms
-              .map((platform) => {
-                const { name, icon, link } = platform;
+        <div class="${styles.platformsContainer}">
+          ${platforms
+            .map((platform) => {
+              const { name, icon, link } = platform;
 
-                return `
+              return `
                 <div class="${styles.platformBox}">
                   <div class="${styles.iconBox}">
                     <img class="${styles.icon}" src="${icon}" alt="${name} logo"/>
@@ -24,9 +22,8 @@ export default class RunAnywhere extends HTMLElement {
                   <a class="${styles.iconLink}" href="${link}">${name}</a>
                 </div>
               `;
-              })
-              .join("")}
-          </div>
+            })
+            .join("")}
         </div>
       </div>
     `;
