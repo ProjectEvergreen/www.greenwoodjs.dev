@@ -78,13 +78,16 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
                      */
                     // TODO this is a pretty ugly find / replace technique...
                     // will definitely want to refactor and test this well
-                    if(scopedCssContents.indexOf(`.${scopedClassName} `) < 0 && scopedCssContents.indexOf(`.${scopedClassName} {`) < 0) {
+                    if (
+                      scopedCssContents.indexOf(`.${scopedClassName} `) < 0 &&
+                      scopedCssContents.indexOf(`.${scopedClassName} {`) < 0
+                    ) {
                       scopedCssContents = scopedCssContents.replace(
-                        new RegExp(String.raw`.${name} `, 'g'),
+                        new RegExp(String.raw`.${name} `, "g"),
                         `.${scope}-${hash}-${name} `,
                       );
                       scopedCssContents = scopedCssContents.replace(
-                        new RegExp(String.raw`.${name},`, 'g'),
+                        new RegExp(String.raw`.${name},`, "g"),
                         `.${scope}-${hash}-${name},`,
                       );
                     }
