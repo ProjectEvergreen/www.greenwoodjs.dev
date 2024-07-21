@@ -36,6 +36,8 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-3);
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 /* tweaks for PrismJS */

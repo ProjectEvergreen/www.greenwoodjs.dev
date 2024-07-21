@@ -19,13 +19,13 @@ imports:
 <div class="capabilities-content item1">
   <span>Hybrid Routing</span>
   <i>html.svg</i>
-  <p>Greenwood is HTML first by design.  Start from just an <em>index.html</em> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.</p>
+  <p>Greenwood is HTML first by design.  Start from just an <em>index.html</em> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.  Single Page Applications (SPA) also supported.</p>
 
 ```shell
 src/
   pages/
     api/
-      search.js       # API Routes
+      search.js       # API route
     index.html        # Static (SSG)
     products.js       # Dynamic (SSR), or emit as static with pre-rendering
     about.md          # markdown also supported
@@ -36,7 +36,7 @@ src/
 <div class="capabilities-content item2">
   <span>Server Rendering</span>
   <i>build-ssg.svg</i>
-  <p>Greenwood believes Web Components are not only a great component model, but also a great templating model for generating static HTML.  Below is dynamic page powered by the <em>Custom Elements</em> API.</p>
+  <p>Web Components are not only a great component model, but also a great templating model for generating static HTML.  Below is a dynamic page in Greenwood powered by the <em>Custom Elements</em> API and server-rendering an imported custom element.</p>
 
 ```js
 // src/pages/products.js
@@ -73,12 +73,12 @@ export default class ProductsPage extends HTMLElement {
 <div class="capabilities-content item3">
   <span>Web Components</span>
   <i>web-components.svg</i>
-  <p>Web Components, combined with APIs like <em>Constructable StyleSheets</em>, make a compelling solution as the web's own component model.  Greenwood makes it possible to have fully isomorphic Web Components for both client-side and server-side rendering scenarios.</p>
+  <p>Greenwood makes it possible to author real isomorphic Web Components, using Light or Shadow DOM, re-using that same definition across the server and client side.  Combined with Web APIs like <em>Constructable Stylesheets</em> and <em>Import Attributes</em>, Web Components make for a compelling solution as the web's own component model.</p>
 
 ```js
 // src/components/card.js
-import theme from "../styles/theme.js" with { type: "css" };
-import sheet from "./card.js" with { type: "css" };
+import themeSheet from "../styles/theme.css" with { type: "css" };
+import cardSheet from "./card.js" with { type: "css" };
 
 export default class Card extends HTMLElement {
   connectedCallback() {
@@ -93,11 +93,12 @@ export default class Card extends HTMLElement {
           <img src="${thumbnail}" alt="${title}">
         </div>
       `;
+
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    this.shadowRoot.adoptedStyleSheets = [theme, sheet];
+    this.shadowRoot.adoptedStyleSheets = [themeSheet, cardSheet];
   }
 }
 
@@ -148,10 +149,10 @@ export async function handler(request) {
 
 </div>
 
+<app-build-with-friends></app-build-with-friends>
+
 <app-why-greenwood></app-why-greenwood>
 
 <app-run-anywhere></app-run-anywhere>
-
-<app-build-with-friends></app-build-with-friends>
 
 <app-get-started></app-get-started>

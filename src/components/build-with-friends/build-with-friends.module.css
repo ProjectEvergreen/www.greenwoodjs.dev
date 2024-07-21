@@ -1,14 +1,18 @@
 .container {
   background-color: var(--color-gray);
-  border: var(--border-size-1) solid var(--color-black);
-  border-radius: var(--radius-5);
+  /* border: var(--border-size-1) solid var(--color-black); */
+  /* border-radius: var(--radius-5); */
   padding: var(--size-px-5) var(--size-px-5);
-  margin: 20px auto;
+  /* margin: 20px auto; */
 }
 
 .heading {
   font-size: var(--font-size-5);
   font-weight: var(--font-weight-9);
+}
+
+.subHeading {
+  padding: var(--size-fluid-1) 0;
 }
 
 .icons {
@@ -41,12 +45,19 @@
   }
 }
 
+@media (min-width: 768px) {
+  .container {
+    padding: var(--size-fluid-4);
+    margin: 0 auto;
+  }
+}
+
 @media (min-width: 1440px) {
   .icons {
     max-width: 80%;
   }
 
   .container {
-    padding: var(--size-px-10) var(--size-px-11);
+    padding: var(--size-px-10) var(--size-px-13);
   }
 }
