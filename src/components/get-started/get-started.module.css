@@ -51,9 +51,9 @@
   margin-top: var(--size-fluid-1);
 }
 
-.linkStarted {
+.buttonStarted a,
+.buttonBlitz a {
   color: var(--color-white);
-  text-decoration: none;
 }
 
 .snippet pre {
@@ -61,10 +61,6 @@
 }
 
 @media (min-width: 1024px) {
-  /* .container {
-    padding: var(--size-px-10) 0 var(--size-px-13) 0;
-  } */
-
   .snippet {
     max-width: 50%;
   }
