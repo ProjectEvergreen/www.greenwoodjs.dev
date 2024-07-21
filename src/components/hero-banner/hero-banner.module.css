@@ -29,7 +29,7 @@
   background-color: transparent;
   padding: var(--size-fluid-1);
   width: 100%;
-  color: var(--color-black);
+  color: var(--color-white);
   box-shadow: var(--shadow-2);
 }
 
@@ -45,9 +45,18 @@
   margin-top: var(--size-fluid-1);
 }
 
+.buttonStarted a {
+  color: var(--color-white);
+}
+
 .linkStarted {
   color: var(--color-white);
   text-decoration: none;
+}
+
+.buttonStarted a:hover,
+.linkStarted a:hover {
+  text-decoration: underline;
 }
 
 .snippet {

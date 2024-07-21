@@ -40,6 +40,16 @@
   margin: 0;
 }
 
+a,
+a:visited {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /* tweaks for PrismJS */
 code[class*="language-"],
 pre[class*="language-"],
