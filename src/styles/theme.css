@@ -15,7 +15,8 @@
     format("truetype");
 }
 
-:root {
+:root,
+:host {
   --color-primary: #016341;
   --color-secondary: #0e0f0c;
   --color-tertiary: #151818;
@@ -33,8 +34,20 @@
 
 * {
   font-family: var(--font-primary);
-  font-size: var(--size-px-3);
+  font-size: var(--font-size-3);
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /* tweaks for PrismJS */
