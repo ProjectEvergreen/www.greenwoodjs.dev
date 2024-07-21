@@ -76,10 +76,16 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
                      *
                      * csstree supports loc so we _could_ target the class replacement down to start / end points, but that unfortunately slows things down a lot
                      */
-                    if(scopedCssContents.indexOf(`.${scopedClassName} `) < 0 && scopedCssContents.indexOf(`.${scopedClassName}{`) < 0) {
+                    // TODO this is a pretty ugly find / replace technique...
+                    // will definitely want to refactor and test this well
+                    if(scopedCssContents.indexOf(`.${scopedClassName} `) < 0 && scopedCssContents.indexOf(`.${scopedClassName} {`) < 0) {
                       scopedCssContents = scopedCssContents.replace(
-                        new RegExp(String.raw`.${name}`, 'g'),
-                        `.${scope}-${hash}-${name}`,
+                        new RegExp(String.raw`.${name} `, 'g'),
+                        `.${scope}-${hash}-${name} `,
+                      );
+                      scopedCssContents = scopedCssContents.replace(
+                        new RegExp(String.raw`.${name},`, 'g'),
+                        `.${scope}-${hash}-${name},`,
                       );
                     }
                   }
