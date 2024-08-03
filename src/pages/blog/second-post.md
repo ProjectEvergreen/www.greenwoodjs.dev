@@ -4,18 +4,18 @@ published: "2023-07-03"
 template: blog
 ---
 
-## Second Post
+# Second Post
 
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-### Section One
+## Section One
 
 one one one
 
-### Section Two
+## Section Two
 
 two two two
 
-### Section Three
+## Section Three
 
 three three three

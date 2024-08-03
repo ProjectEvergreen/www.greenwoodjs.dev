@@ -5,4 +5,4 @@ order: 2
 template: "guide"
 ---
 
-## Welcome to our guides!
+# Welcome to our Guides

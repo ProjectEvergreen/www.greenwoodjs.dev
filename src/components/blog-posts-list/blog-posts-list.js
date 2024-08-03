@@ -1,11 +1,10 @@
-import { getCollection, getCollectionByRoute } from "@greenwood/cli/src/data/queries.js";
+import { getCollectionByRoute } from "@greenwood/cli/src/data/queries.js";
 
 export default class BlogPostsList extends HTMLElement {
   async connectedCallback() {
     const posts = (await getCollectionByRoute("/blog")).filter(
       (page) => page.label !== "Index" && page.label !== "Blog",
     );
-    console.log("NAV", await getCollection("nav"));
     console.log("BlogPostList", { posts });
 
     this.innerHTML = `

@@ -4,11 +4,11 @@ export default class SideNav extends HTMLElement {
   async connectedCallback() {
     const heading = this.getAttribute("heading") || "";
     const route = this.getAttribute("route") || "";
-    const guides = (await getCollectionByRoute(route)).filter((page) => page.label !== "Index");
+    const content = (await getCollectionByRoute(route)).filter((page) => page.label !== "Index");
     const sections = {};
 
-    guides.forEach((guide) => {
-      const segments = guide.route.replace("/guides/", "").split("/");
+    content.forEach((item) => {
+      const segments = item.route.replace(`${route}`, "").split("/");
 
       segments.forEach((segment, idx) => {
         if (segment && segment !== "") {
@@ -17,13 +17,12 @@ export default class SideNav extends HTMLElement {
               sections[segment] = [];
             }
 
-            sections[segment].push(guide);
+            sections[segment].push(item);
           }
         }
       });
     });
-    console.log({ guides });
-    console.log({ sections });
+    console.log('SIDE NAV', { content, sections });
 
     this.innerHTML = `
       <h2>${heading}</h2>

@@ -12,14 +12,14 @@ export default class Header extends HTMLElement {
   }
 
   connectedCallback() {
-    const nav = JSON.parse(this.getAttribute("nav") || "[]").sort((a, b) =>
-      a.data.order > b.data.order ? 1 : -1,
-    );
-    console.log({ nav });
-
     if (!this.shadowRoot) {
-      this.attachShadow({ mode: "open" });
-      this.shadowRoot.innerHTML = `
+      const nav = JSON.parse(this.getAttribute("nav") || "[]").sort((a, b) =>
+        a.data.order > b.data.order ? 1 : -1,
+      );
+      console.log('HEADER NAV', { nav });
+      const template = document.createElement('template');
+
+      template.innerHTML = `
         <header>
           <div class="logo-bar">
             <a href="/">
@@ -89,6 +89,9 @@ export default class Header extends HTMLElement {
         <!-- Close button -->
         <button class="close-button">&times;</button>
       `;
+
+      this.attachShadow({ mode: "open" });
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
     this.shadowRoot.adoptedStyleSheets = [sheet];

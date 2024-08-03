@@ -3,4 +3,4 @@ title: htmx
 template: guide
 ---
 
-## htmx
+# htmx
