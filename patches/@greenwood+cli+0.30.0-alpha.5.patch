@@ -1,0 +1,35 @@
+diff --git a/node_modules/@greenwood/cli/src/config/rollup.config.js b/node_modules/@greenwood/cli/src/config/rollup.config.js
+index 1354e66..e50e2aa 100644
+--- a/node_modules/@greenwood/cli/src/config/rollup.config.js
++++ b/node_modules/@greenwood/cli/src/config/rollup.config.js
+@@ -530,8 +530,8 @@ function greenwoodSyncImportAttributes(compilation) {
+               // since we can't do async work inside a sync AST operation
+               if (!asset.preBundled) {
+                 const assetUrl = unbundledAssetsRefMapper[asset].sourceURL;
+-                const request = new Request(assetUrl, { headers: { 'Content-Type': 'text/css' } });
+-                let response = new Response(unbundledAssetsRefMapper[asset].source);
++                const request = new Request(assetUrl, { headers: { 'Accept': 'text/css' } });
++                let response = new Response(unbundledAssetsRefMapper[asset].source, { headers: { 'Content-Type': 'text/css' } });
+ 
+                 for (const plugin of resourcePlugins) {
+                   if (plugin.shouldPreIntercept && await plugin.shouldPreIntercept(assetUrl, request, response.clone())) {
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+index d8409ea..27bfbce 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+@@ -306,11 +306,13 @@ class StandardCssResource extends ResourceInterface {
+     });
+   }
+ 
+-  async shouldIntercept(url) {
++  async shouldIntercept(url, request, response) {
+     const { pathname } = url;
+     const ext = pathname.split('.').pop();
+ 
+-    return url.protocol === 'file:' && ext === this.extensions[0];
++    return url.protocol === 'file:'
++      && ext === this.extensions[0]
++      && (response.headers.get('Content-Type')?.indexOf('text/css') >= 0 || request.headers.get('Accept')?.indexOf('text/javascript') >= 0);
+   }
+ 
+   async intercept(url, request, response) {
