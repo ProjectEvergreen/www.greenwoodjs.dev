@@ -2,7 +2,7 @@
 title: Guides
 collection: nav
 order: 2
-template: "guide"
+template: guides
 ---
 
 # Welcome to our Guides

@@ -2,7 +2,7 @@
 title: Docs
 collection: nav
 order: 1
-template: doc
+template: docs
 ---
 
 # Welcome to our Documentation

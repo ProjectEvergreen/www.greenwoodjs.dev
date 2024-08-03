@@ -1,6 +1,6 @@
 ---
 title: Netlify
-template: guide
+template: guides
 ---
 
 # Netlify

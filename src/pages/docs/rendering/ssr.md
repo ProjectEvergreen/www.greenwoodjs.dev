@@ -1,8 +1,19 @@
 ---
 title: SSR
-template: doc
+label: SSR
+template: docs
+linkheadings: 2
 ---
 
 # SSR
 
-Lorem ipsum dolor sit amet
+## Routing
+
+Just use a _.js_ file!
+
+```shell
+src/
+  pages/
+    index.html
+    products.js
+```

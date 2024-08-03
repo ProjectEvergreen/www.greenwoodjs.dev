@@ -25,10 +25,10 @@ index 73ddb24..14d2467 100644
      }
 diff --git a/node_modules/@greenwood/cli/src/data/queries.js b/node_modules/@greenwood/cli/src/data/queries.js
 new file mode 100644
-index 0000000..093cea3
+index 0000000..c9ea484
 --- /dev/null
 +++ b/node_modules/@greenwood/cli/src/data/queries.js
-@@ -0,0 +1,73 @@
+@@ -0,0 +1,77 @@
 +// async function getCollection(collection = '') {
 +//   return (await fetch(`${globalThis.location.origin}/graph.json`)
 +//     .then(resp => resp.json()))
@@ -56,8 +56,12 @@ index 0000000..093cea3
 +    .filter(page => page?.route.startsWith(route));
 +}
 +
++async function getContent() {
++  return (await fetch(`http://${host}:${port}/graph.json`)
++    .then(resp => resp.json()))
++}
 +
-+export { getCollection, getCollectionByRoute }
++export { getContent, getCollection, getCollectionByRoute }
 +// import { getQueryHash } from './common.js';
 +
 +// const client = {

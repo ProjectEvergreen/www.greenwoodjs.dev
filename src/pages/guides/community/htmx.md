@@ -1,6 +1,6 @@
 ---
 title: htmx
-template: guide
+template: guides
 ---
 
 # htmx

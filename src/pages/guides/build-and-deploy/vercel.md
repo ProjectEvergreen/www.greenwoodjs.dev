@@ -1,6 +1,6 @@
 ---
 title: Vercel
-template: guide
+template: guides
 ---
 
 # Vercel

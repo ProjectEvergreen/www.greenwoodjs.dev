@@ -2,11 +2,14 @@
   <head>
     <title>Greenwood - ${globalThis.page.title}</title>
     <script type="module" src="../components/side-nav/side-nav.js" data-gwd-opt="static"></script>
+    <script type="module" src="../components/table-of-contents/table-of-contents.js" data-gwd-opt="static"></script>
     <style>
       .sidebar,
-      .content {
+      .content,
+      .toc {
         display: inline-block;
         padding-left: 2rem;
+        vertical-align: top;
       }
 
       .sidebar {
@@ -17,7 +20,16 @@
       .content {
         text-align: left;
         vertical-align: top;
-        width: 75%;
+        width: 50%;
+      }
+
+      .toc {
+        width: 20%
+      }
+
+      app-toc {
+        float: right;
+        margin-right: 2rem;
       }
     </style>
   </head>
@@ -28,6 +40,11 @@
     </div>
     <div class="content">
       <content-outlet></content-outlet>
+      <!-- would be nice if we could use other content as data, e.g. -->
+      <!-- <app-toc route="${globalThis.page.route}"></app-toc> -->
+    </div>
+    <div class="toc">
+      <app-toc title="${globalThis.page.title}"></app-toc>
     </div>
   </body>
 </html>

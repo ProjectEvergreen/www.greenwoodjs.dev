@@ -1,6 +1,6 @@
 ---
 title: Lit
-template: guide
+template: guides
 ---
 
 # Lit

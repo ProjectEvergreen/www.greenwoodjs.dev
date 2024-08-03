@@ -1,6 +1,6 @@
 ---
 title: AWS
-template: guide
+template: guides
 ---
 
 # AWS
