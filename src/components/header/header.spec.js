@@ -43,26 +43,25 @@ describe("Components/Header", () => {
   describe("Default Behavior", () => {
     it("should not be null", () => {
       expect(header).not.equal(undefined);
-      expect(header.shadowRoot.querySelectorAll("header").length).equal(1);
+      expect(header.querySelectorAll("header").length).equal(1);
+    });
+
+    it("should have an anchor tag with title attribute wrapping the logo", () => {
+      const anchor = header.querySelector("a[title='Greenwood Home Page']");
+
+      expect(anchor).to.not.equal(undefined);
+      expect(anchor.getAttribute("href")).to.equal("/");
     });
 
     it("should have the Greenwood logo", () => {
-      const logo = header.shadowRoot.querySelectorAll(".logo-bar svg");
+      const logo = header.querySelectorAll("a[title='Greenwood Home Page'] svg");
 
       expect(logo.length).equal(1);
       expect(logo[0]).not.equal(undefined);
     });
 
-    it("should have an anchor tag with title attribute wrapping the logo", () => {
-      const anchor = header.shadowRoot.querySelector("header .logo-link");
-
-      expect(anchor).to.not.equal(undefined);
-      expect(anchor.getAttribute("href")).to.equal("/");
-      expect(anchor.getAttribute("title")).to.equal("Greenwood Home Page");
-    });
-
     it("should have the expected desktop navigation links", () => {
-      const links = header.shadowRoot.querySelectorAll("nav ul.nav-bar-menu li a");
+      const links = header.querySelectorAll("nav[aria-label='Main'] ul li a");
 
       Array.from(links).forEach((link) => {
         const navItem = NAV.find(
@@ -76,8 +75,8 @@ describe("Components/Header", () => {
     });
 
     it("should have the expected social link icons", () => {
-      const links = header.shadowRoot.querySelectorAll(".social-tray li a");
-      const icons = header.shadowRoot.querySelectorAll(".social-tray li a svg");
+      const links = header.querySelectorAll("nav[aria-label='Social'] ul li a");
+      const icons = header.querySelectorAll("nav[aria-label='Social'] ul li a svg");
 
       expect(links.length).to.equal(3);
       expect(icons.length).to.equal(3);
@@ -92,8 +91,36 @@ describe("Components/Header", () => {
   });
 
   describe("Mobile Menu", () => {
-    it("should have the expected mobile navigation links", () => {
-      const links = header.shadowRoot.querySelectorAll("nav.nav-bar-mobile ul li a");
+    const popoverTarget = "mobile-menu";
+
+    it("should have the expected mobile menu icon button", () => {
+      const mobileIconButton = header.querySelectorAll(
+        "button[aria-label='Mobile Menu Icon Button']",
+      );
+
+      expect(mobileIconButton.length).to.equal(1);
+      expect(mobileIconButton[0].getAttribute("popovertarget")).to.equal(popoverTarget);
+    });
+
+    it("should have the expected popover overlay container", () => {
+      const overlay = header.querySelectorAll(`#${popoverTarget}`);
+
+      expect(overlay.length).to.equal(1);
+      expect(overlay[0].getAttribute("popover")).to.equal("manual");
+    });
+
+    it("should have the expected close button", () => {
+      const mobileCloseButton = header.querySelectorAll(
+        "button[aria-label='Mobile Menu Close Button']",
+      );
+
+      expect(mobileCloseButton.length).to.equal(1);
+      expect(mobileCloseButton[0].getAttribute("popovertarget")).to.equal(popoverTarget);
+      expect(mobileCloseButton[0].getAttribute("popovertargetaction")).to.equal("hide");
+    });
+
+    it("should have the expected navigation links", () => {
+      const links = header.querySelectorAll("nav[aria-label='Mobile'] ul li a");
 
       Array.from(links).forEach((link) => {
         const navItem = NAV.find(
@@ -104,18 +131,6 @@ describe("Components/Header", () => {
         expect(link.textContent).to.equal(navItem.label);
         expect(link.getAttribute("title")).to.equal(navItem.title);
       });
-    });
-
-    it("should have the expected overlay container", () => {
-      const overlay = header.shadowRoot.querySelectorAll(".overlay");
-
-      expect(overlay.length).to.equal(1);
-    });
-
-    it("should have the expected close button", () => {
-      const button = header.shadowRoot.querySelectorAll("button");
-
-      expect(button.length).to.equal(1);
     });
   });
 
