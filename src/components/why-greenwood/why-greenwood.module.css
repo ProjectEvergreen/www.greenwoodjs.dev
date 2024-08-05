@@ -27,19 +27,14 @@
   margin: 10px 10px 10px;
   padding: var(--size-fluid-3);
   border-radius: var(--radius-5);
-  /* background-color: var(--color-secondary); */
   background-image: linear-gradient(to top left, var(--color-secondary), #2e3440);
   vertical-align: top;
 }
 
 .card h3 {
-  /* margin: var(--size-fluid-1); */
   padding: 4px 6px;
-  /* margin: var(--size-fluid-1); */
   border-radius: var(--radius-5);
   border: 1px solid var(--color-primary);
-  /* background-color: var(--color-black); */
-  /* background-color: var(--color-accent); */
   background-color: var(--color-gray);
   line-height: 50px;
   text-align: center;
@@ -47,13 +42,7 @@
 
 .card p {
   margin: var(--size-fluid-1);
-  min-height: fit-content;
   color: var(--color-white);
-}
-
-.card h3 svg {
-  vertical-align: middle;
-  stroke: var(--color-black);
 }
 
 @media (min-width: 768px) {
@@ -70,7 +59,6 @@
 @media (min-width: 1024px) {
   .card {
     display: inline-block;
-    /* padding: var(--size-fluid-1); */
     margin: 30px 10px 20px 20px;
     width: 80%;
     height: fit-content;
@@ -79,8 +67,6 @@
   .card h3 {
     margin: 0 auto;
     width: 80%;
-    /* text-align: left;
-    display: inline-block; */
   }
 
   .card p {
@@ -98,7 +84,6 @@
     margin: 10px;
     width: 70%;
     min-height: fit-content;
-    /* min-height: 520px; */
   }
 }
 
@@ -106,7 +91,6 @@
   .card {
     display: inline-block;
     width: 29%;
-    /* min-height: fit-content; */
     min-height: 440px;
   }
 }
