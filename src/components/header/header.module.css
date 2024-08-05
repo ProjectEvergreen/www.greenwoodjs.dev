@@ -85,8 +85,7 @@
   background: transparent;
   font-size: var(--font-size-5);
   cursor: pointer;
-  border-radius: 50%;
-  border: 2px solid var(--color-black);
+  border: none;
   padding: 0 12px;
 }
 
