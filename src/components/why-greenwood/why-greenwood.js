@@ -1,5 +1,4 @@
 import styles from "./why-greenwood.module.css";
-import placeholderIcon from "../../assets/api-routes.svg?type=raw";
 
 export default class WhyGreenwood extends HTMLElement {
   connectedCallback() {
@@ -12,20 +11,20 @@ export default class WhyGreenwood extends HTMLElement {
         <div class="${styles.cardContainer}">
           <div class="${styles.card}">
             <!-- Independent -->
-            <h3>${placeholderIcon} Open Standards</h3>
+            <h3>Open Standards</h3>
             <p>We believe a tech stack aligned to web standards can benefit from needing fewer dependencies and toolchains, lowered design and decision fatigue, and reduced layers of abstraction.  <em>Magic is a zero interest rate phenomenon.</em></p>
           </div>
 
           <div class="${styles.card}">
             <!-- Transparent -->
-            <h3>${placeholderIcon} Ship Your Source</h3>
+            <h3>Ship Your Source</h3>
             <p>We strive to ensure that you can ship exactly the code you wrote and combined with a fast, unbundled, local development experience, Greenwood will have you shipping in no time.  <em>Greenwood aims to externalize the framework.</em></p>
           </div>
 
           <div class="${styles.card}">
             <!-- Resilient -->
-            <h3>${placeholderIcon} Build to the Future</h3>
-            <p>Having benefited so much from the web, we feel compelled to participate in its future growth and community groups, to help fill in the gaps <em>so the web can be an even better platform out of the box for everyone.</em></p>
+            <h3>Build to the Future</h3>
+            <p>Having benefited so much from the web, we feel compelled and motivated to participate in its future growth and community groups, to help fill in the gaps <em>so the web can be an even better platform out of the box for everyone.</em></p>
           </div>
         </div>
       </div>
