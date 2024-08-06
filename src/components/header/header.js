@@ -4,6 +4,7 @@ import githubIcon from "../../assets/github.svg?type=raw";
 import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
 import mobileMenuIcon from "../../assets/tile.svg?type=raw";
 import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
+import data from "./header.json" with { type: "json" };
 
 export default class Header extends HTMLElement {
   constructor() {
@@ -73,6 +74,7 @@ export default class Header extends HTMLElement {
               </ul>
             </nav>
           </nav>
+        <p>!!! ${data.message} !!!</p>
         </header>
 
         <!-- Mobile menu Overlay -->
