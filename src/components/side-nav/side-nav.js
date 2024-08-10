@@ -22,7 +22,7 @@ export default class SideNav extends HTMLElement {
         }
       });
     });
-    console.log('SIDE NAV', { content, sections });
+    console.log("SIDE NAV", { content, sections });
 
     this.innerHTML = `
       <h2>${heading}</h2>

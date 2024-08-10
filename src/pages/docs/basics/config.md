@@ -19,7 +19,7 @@ Change the port
 ```js
 export default {
   devServer: {
-    port: 4001
-  }
-}
+    port: 4001,
+  },
+};
 ```

@@ -16,8 +16,8 @@ export default class Header extends HTMLElement {
       const nav = JSON.parse(this.getAttribute("nav") || "[]").sort((a, b) =>
         a.data.order > b.data.order ? 1 : -1,
       );
-      console.log('HEADER NAV', { nav });
-      const template = document.createElement('template');
+      console.log("HEADER NAV", { nav });
+      const template = document.createElement("template");
 
       template.innerHTML = `
         <header>
