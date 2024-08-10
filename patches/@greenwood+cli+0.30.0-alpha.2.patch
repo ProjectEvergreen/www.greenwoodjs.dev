@@ -437,7 +437,7 @@ index 64c1ba0..c0c2189 100644
      const body = `const sheet = new CSSStyleSheet();sheet.replaceSync(\`${contents}\`);export default sheet;`;
  
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
-index cf3c1cf..444e3b5 100644
+index cf3c1cf..a96a2a8 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 @@ -42,6 +42,7 @@ class StandardHtmlResource extends ResourceInterface {
@@ -467,7 +467,7 @@ index cf3c1cf..444e3b5 100644
 +        console.log('11', { fm });
 +        const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
 +        // TODO handle escaping nested " and / or '" when stringifying
-+        const needle = typeof matchingRoute.data[fm] === 'string' ? matchingRoute.data[fm] : JSON.stringify(matchingRoute.data[fm]);
++        const needle = typeof matchingRoute.data[fm] === 'string' ? matchingRoute.data[fm] : JSON.stringify(matchingRoute.data[fm]).replace(/"/g, '&quot;');
 +        console.log('replace', needle);
 +        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), needle);
 +      }
@@ -482,7 +482,7 @@ index cf3c1cf..444e3b5 100644
 +        const interpolatedFrontmatter = '\\$\\{globalThis.collection.' + collection + '\\}';
 +      
 +        // TODO handle escaping nested " and / or '" when stringifying
-+        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), JSON.stringify(this.compilation.collections[collection]));
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), JSON.stringify(this.compilation.collections[collection]).replace(/"/g, '&quot;'));
 +      }
      }
  
@@ -541,21 +541,51 @@ index 0000000..2434b6e
 +export { greenwoodPluginContentServer };
 \ No newline at end of file
 diff --git a/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js b/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
-index e3303e6..0a25621 100644
+index e3303e6..fdf4fd9 100644
 --- a/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
 +++ b/node_modules/@greenwood/cli/src/plugins/server/plugin-livereload.js
-@@ -40,12 +40,11 @@ class LiveReloadServer extends ServerInterface {
+@@ -9,7 +9,7 @@ class LiveReloadServer extends ServerInterface {
+   }
+ 
+   async start() {
+-    const { userWorkspace } = this.compilation.context;
++    const { userWorkspace, projectDirectory } = this.compilation.context;
+     const standardPluginsDirectoryPath = new URL('../resource/', import.meta.url);
+     const standardPluginsNames = (await fs.readdir(standardPluginsDirectoryPath))
+       .filter(filename => filename.indexOf('plugin-standard') === 0);
+@@ -34,18 +34,28 @@ class LiveReloadServer extends ServerInterface {
+       ...customPluginsExtensions,
+       ...this.compilation.config.devServer.extensions
+     ]
+-      .filter((ext) => ext !== '*' || ext !== '')
+-      .map((ext) => ext.replace('.', ''));
++      .filter((ext) => ext !== '*' || ext !== '') // basic filter for false postives
++      .filter((ext, idx, array) => array.indexOf(ext) === idx) // dedupe
++      .map((ext) => ext.startsWith('.') ? ext.replace('.', '') : ext); // trim . from all entries
+ 
      const liveReloadServer = livereload.createServer({
-       exts: allExtensions.filter((ext, idx) => idx === allExtensions.indexOf(ext)),
-       applyCSSLive: false // https://github.com/napcs/node-livereload/issues/33#issuecomment-693707006
--    });
--
--    liveReloadServer.watch(userWorkspace.pathname, () => {
+-      exts: allExtensions.filter((ext, idx) => idx === allExtensions.indexOf(ext)),
+-      applyCSSLive: false // https://github.com/napcs/node-livereload/issues/33#issuecomment-693707006
++      exts: allExtensions,
++      applyCSSLive: false, // https://github.com/napcs/node-livereload/issues/33#issuecomment-693707006
++      applyImgLive: false // 
 +    }, () => {
-       console.info(`Now watching directory "${userWorkspace}" for changes.`);
--      return Promise.resolve(true);
++      // console.log({ userWorkspace, projectDirectory });
++      // console.log(userWorkspace.pathname.split('/'))
++      // console.log(userWorkspace.pathname.split('/').slice(-1))
++      // const abridgedWorkspacePath = userWorkspace.pathname
++      //   .split('/')
++      //   .filter(segment => segment !== '')
++      //   .slice(-2)
++      //   .join('/');
++      const abridgedWorkspacePath = userWorkspace.pathname.replace(projectDirectory.pathname, '').replace('/', '');
++      console.info(`Now watching workspace directory (./${abridgedWorkspacePath}) for changes...`);
      });
-+
+ 
+-    liveReloadServer.watch(userWorkspace.pathname, () => {
+-      console.info(`Now watching directory "${userWorkspace}" for changes.`);
+-      return Promise.resolve(true);
+-    });
 +    liveReloadServer.watch(userWorkspace.pathname);
    }
  }
