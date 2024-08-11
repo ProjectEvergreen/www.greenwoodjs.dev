@@ -38,6 +38,7 @@
   background-color: var(--color-gray);
   line-height: 50px;
   text-align: center;
+  margin: 0 auto;
 }
 
 .card p {
@@ -51,46 +52,51 @@
     margin: 0 auto;
   }
 
-  .subHeading {
+  .cardContainer {
     width: 80%;
+    margin: 0 auto;
   }
 }
 
 @media (min-width: 1024px) {
+  .subHeading {
+    width: 80%;
+  }
+
+  .cardContainer {
+    display: block;
+  }
+
   .card {
     display: inline-block;
     margin: 30px 10px 20px 20px;
-    width: 80%;
     height: fit-content;
-  }
-
-  .card h3 {
-    margin: 0 auto;
-    width: 80%;
   }
 
   .card p {
     margin: var(--size-fluid-2) 0;
   }
-
-  .subHeading {
-    width: 60%;
-    text-align: center;
-  }
 }
 
 @media (min-width: 1280px) {
+  .cardContainer {
+    width: 100%;
+  }
+
   .card {
-    margin: 10px;
-    width: 70%;
-    min-height: fit-content;
+    display: inline-block;
+    width: 30%;
+    height: 540px;
+  }
+
+  .card h3 {
+    width: 100%;
   }
 }
 
 @media (min-width: 1440px) {
   .card {
-    display: inline-block;
-    width: 29%;
     min-height: 440px;
+    height: fit-content;
   }
 }

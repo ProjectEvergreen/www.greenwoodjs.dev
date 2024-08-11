@@ -10,8 +10,8 @@ export default class WhyGreenwood extends HTMLElement {
 
         <div class="${styles.cardContainer}">
           <div class="${styles.card}">
-            <!-- Independent -->
-            <h3>Open Standards</h3>
+            <!-- Independent / DIY -->
+            <h3>Less is More</h3>
             <p>We believe a tech stack aligned to web standards can benefit from needing fewer dependencies and toolchains, lowered design and decision fatigue, and reduced layers of abstraction.  <em>Magic is a zero interest rate phenomenon.</em></p>
           </div>
 
