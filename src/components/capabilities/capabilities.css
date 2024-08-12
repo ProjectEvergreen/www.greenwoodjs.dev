@@ -19,6 +19,8 @@
 
 .sections {
   overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray) transparent;
 }
 
 .section {
@@ -49,6 +51,8 @@
   animation: slide-up-fade-in ease 1s;
   animation-iteration-count: 1;
   transform-origin: 50% 50%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray) transparent;
 }
 
 h2 {
