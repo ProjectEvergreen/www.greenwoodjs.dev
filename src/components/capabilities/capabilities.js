@@ -1,7 +1,6 @@
 import sheet from "./capabilities.css" with { type: "css" };
 import theme from "../../styles/theme.css" with { type: "css" };
 import api from "../../assets/api-routes.svg?type=raw";
-// import json from '../../assets/json.svg?type=raw'; //  TODO use this for API routes
 import ssg from "../../assets/build-ssg.svg?type=raw";
 import html from "../../assets/html.svg?type=raw";
 import webComponents from "../../assets/web-components.svg?type=raw";
