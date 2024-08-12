@@ -2,7 +2,7 @@ import styles from "./get-started.module.css";
 
 export default class GetStarted extends HTMLElement {
   connectedCallback() {
-    const code = 'npx @greenwood/init@latest';
+    const code = "npx @greenwood/init@latest";
 
     this.innerHTML = `
       <div class="${styles.container}">
