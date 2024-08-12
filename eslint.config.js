@@ -3,6 +3,17 @@ import babelParser from "@babel/eslint-parser";
 
 export default [
   {
+    // https://github.com/eslint/eslint/discussions/18304#discussioncomment-9069706
+    ignores: [
+      ".greenwood/*",
+      "node_modules/*",
+      "public/*",
+      "reports/*",
+      "storybook-static/**",
+      "patches/**",
+    ],
+  },
+  {
     languageOptions: {
       parser: babelParser,
       parserOptions: {
@@ -18,14 +29,6 @@ export default [
         node: true,
       },
     },
-    ignores: [
-      ".greenwood/*",
-      "node_modules/*",
-      "public/*",
-      "reports/*",
-      "storybook-static/**",
-      "patches/**",
-    ],
     rules: {
       "comma-dangle": [2, "never"],
       "no-cond-assign": 2,
