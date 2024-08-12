@@ -22,6 +22,11 @@
   margin: var(--size-px-2) 0;
 }
 
+.ctaContainer {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .buttonBlitz {
   display: inline-block;
   cursor: pointer;
@@ -59,67 +64,103 @@
   text-decoration: underline;
 }
 
+.snippetContainer {
+  width: 100%;
+}
+
 .snippet {
-  display: block;
   border-radius: var(--radius-4);
-  border: var(--radius-1) solid var(--color-primary);
+  border: var(--radius-1) solid #c1d3cd;
   box-shadow: var(--shadow-4);
-  margin: var(--size-px-4) 0;
+  margin: var(--size-px-2) 0;
   text-align: center;
+  padding: 8px;
+  display: block;
 }
 
 .snippet pre {
-  font-size: var(--font-size-2);
-  padding: 20px 2px;
+  font-size: 18px;
+  display: inline-block;
+  height: 46px;
+  align-content: center;
+}
+
+.snippet app-ctc {
+  display: inline-block;
+  text-align: right;
+  vertical-align: baseline;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+
+.emphasisCorner {
+  display: none;
+  vertical-align: middle;
+  margin-left: -60px;
 }
 
 @media (min-width: 768px) {
   .buttonBlitz,
   .buttonStarted {
-    min-width: 25%;
+    width: 45%;
   }
 
   .snippet {
-    text-align: center;
-    display: inline-block;
-    letter-spacing: var(--font-letterspacing-2);
-    padding: 0 var(--size-4);
-    width: 100%;
+    width: 90%;
+    margin: 10px auto;
   }
 
-  .heading {
-    font-size: var(--font-size-8);
-  }
-
-  .headingEmphasis {
-    font-size: var(--font-size-8);
+  .snippet pre {
+    padding: 0 10px;
   }
 }
 
 @media (min-width: 1024px) {
+  .ctaContainer {
+    margin: 0 auto;
+    text-align: left;
+  }
+
   .buttonBlitz,
   .buttonStarted {
-    display: inline-block;
-    width: 48%;
+    max-width: fit-content;
   }
 
   .snippet {
     display: inline-block;
-    width: 100%;
+    width: auto;
+  }
+
+  .snippetContainer {
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .emphasisCorner {
+    display: inline-block;
   }
 }
 
 @media (min-width: 1440px) {
   .container {
-    max-width: 80%;
+    max-width: 90%;
   }
 
-  .buttonBlitz,
-  .buttonStarted {
-    max-width: fit-content;
+  .headingSub {
+    width: 80%;
   }
 
   .snippet {
-    max-width: fit-content;
+    width: auto;
+  }
+
+  .snippetContainer {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .emphasisCorner {
+    display: inline-block;
   }
 }

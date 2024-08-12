@@ -48,11 +48,17 @@
   margin: var(--size-px-2) 0 var(--size-px-4);
   border-radius: var(--radius-3);
   border: 1px solid #bababa;
-  background-color: var(--gray-background);
-  color: var(--color-black);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
   padding: 10px 20px;
   text-decoration: none;
   line-height: 100%;
+}
+
+.platformBox a,
+.platformBox a:visited,
+.platformBox a:hover {
+  color: var(--color-white);
 }
 
 @media (min-width: 768px) {

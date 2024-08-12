@@ -1,0 +1,12 @@
+/* :host {
+  cursor: pointer;
+} */
+
+#icon {
+  background-color: transparent;
+  padding: var(--size-2);
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-3);
+  background-color: var(--color-green-pale);
+}

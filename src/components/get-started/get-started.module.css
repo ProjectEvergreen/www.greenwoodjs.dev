@@ -13,7 +13,7 @@
 .snippet {
   display: inline-block;
   border-radius: var(--radius-4);
-  padding: 0 var(--size-4);
+  padding: 0 var(--size-1);
   box-shadow: var(--shadow-4);
   letter-spacing: var(--font-letterspacing-3);
   background-color: var(--color-white);
@@ -58,6 +58,10 @@
 
 .snippet pre {
   padding: 20px 2px;
+}
+
+.snippet app-ctc {
+  vertical-align: middle;
 }
 
 @media (min-width: 1024px) {

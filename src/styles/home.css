@@ -8,10 +8,18 @@ app-hero-banner {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   app-hero-banner,
   app-latest-post {
-    width: 70%;
+    width: 85%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1220px) {
+  app-hero-banner,
+  app-latest-post {
+    width: 80%;
     margin: 0 auto;
   }
 }
