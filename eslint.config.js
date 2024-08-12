@@ -11,7 +11,7 @@ export default [
       "reports/*",
       "storybook-static/**",
       "patches/**",
-    ],    
+    ],
   },
   {
     languageOptions: {

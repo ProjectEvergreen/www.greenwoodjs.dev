@@ -6,9 +6,9 @@ import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 
 const compilation = {
   context: {
-    projectDirectory: import.meta.url
-  }
-}
+    projectDirectory: import.meta.url,
+  },
+};
 const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
 const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
@@ -37,13 +37,13 @@ function transformConstructableStylesheetsPlugin() {
       if (id.endsWith(".css.type")) {
         const filename = id.slice(0, -5);
         const contents = fs.readFileSync(filename, "utf-8");
-        const url = new URL(`file://${id.replace('.type', '')}`);
+        const url = new URL(`file://${id.replace(".type", "")}`);
         // "coerce" native conststructable stylesheets into inline JS so Vite / Rollup do not complain
         const request = new Request(url, {
           headers: {
-            'Accept': 'text/javascript' 
-          }
-        })
+            Accept: "text/javascript",
+          },
+        });
         const response = await standardCssResource.intercept(url, request, new Response(contents));
         const body = await response.text();
 
