@@ -1,7 +1,22 @@
 import sheet from "./capabilities.css" with { type: "css" };
 import theme from "../../styles/theme.css" with { type: "css" };
+import api from "../../assets/api-routes.svg?type=raw";
+// import json from '../../assets/json.svg?type=raw'; //  TODO use this for API routes
+import ssg from "../../assets/build-ssg.svg?type=raw";
+import html from "../../assets/html.svg?type=raw";
+import webComponents from "../../assets/web-components.svg?type=raw";
 
 const template = document.createElement("template");
+
+// front-loading these so we can use "real" SVG content in our component instead of <img>
+// as styling for hover states can be entirely through CSS
+// as a result yes, these images are hardcoded here, but oh well
+const availableIconSVGs = {
+  "api-routes.svg": api,
+  "html.svg": html,
+  "build-ssg.svg": ssg,
+  "web-components.svg": webComponents,
+};
 
 export default class Capabilities extends HTMLElement {
   constructor() {
@@ -25,15 +40,14 @@ export default class Capabilities extends HTMLElement {
                 ${Array.from(this.contentItems)
                   .map((item, idx) => {
                     const title = item.querySelector("span").innerHTML;
-                    const text = item.querySelector("p").innerHTML;
                     const icon = item.querySelector("i").textContent;
                     const isActiveClass = idx === this.index ? " active" : "";
 
                     return `
                       <li class="section${isActiveClass}" data-idx="${idx}">
                         <h4>
-                          <img src="/assets/${icon}" alt="${text} icon"/>
-                          ${title}
+                          ${availableIconSVGs[icon]}
+                          <span>${title}</span>
                         </h4>
                       </li>
                     `;

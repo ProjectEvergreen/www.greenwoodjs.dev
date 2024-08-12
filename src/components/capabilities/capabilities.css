@@ -1,5 +1,4 @@
 :host .capabilities {
-  /* border-radius: var(--radius-5); */
   color: var(--color-white);
   background-color: var(--color-secondary);
 }
@@ -31,6 +30,10 @@
   padding: 10px 20px;
 }
 
+.section svg {
+  stroke: var(--color-gray);
+}
+
 .section:hover {
   border: 2px dotted var(--color-accent);
 }
@@ -44,6 +47,10 @@
 .active {
   background-color: var(--color-accent);
   color: var(--color-black);
+}
+
+.active svg {
+  stroke: var(--color-black);
 }
 
 .snippet pre {
@@ -70,6 +77,10 @@ h4 {
   font-weight: bold;
   margin: 5px 0;
   display: inline-block;
+}
+
+h4 svg {
+  vertical-align: middle;
 }
 
 nav {
