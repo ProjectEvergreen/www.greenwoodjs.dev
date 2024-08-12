@@ -1,5 +1,5 @@
 import copy from "../../assets/copy-button.svg?type=raw";
-import copySheet from "./copy-to-clipboard.css";
+import copySheet from "./copy-to-clipboard.css" with {type: 'css' };
 
 const template = document.createElement("template");
 
