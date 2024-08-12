@@ -46,6 +46,9 @@
 
 .snippet pre {
   border-radius: var(--radius-3);
+  animation: slide-up-fade-in ease 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
 }
 
 h2 {
@@ -133,5 +136,17 @@ pre {
 
   p {
     width: 80%;
+  }
+}
+
+/* https://codepen.io/katienelson/pen/KwXEzN */
+@keyframes slide-up-fade-in {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
   }
 }
