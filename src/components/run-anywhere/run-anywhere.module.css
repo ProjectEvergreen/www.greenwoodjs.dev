@@ -32,6 +32,7 @@
 
 .iconBox {
   border-radius: var(--radius-3);
+  border: 1px solid #c1d3cd;
   box-shadow: var(--shadow-2);
   background-color: var(--color-white);
   height: 150px;
@@ -45,7 +46,7 @@
 
 .iconLink {
   display: block;
-  margin: var(--size-px-2) 0 var(--size-px-4);
+  margin: var(--size-px-4) 0 var(--size-px-4);
   border-radius: var(--radius-3);
   border: 1px solid #bababa;
   background-color: var(--color-secondary);
