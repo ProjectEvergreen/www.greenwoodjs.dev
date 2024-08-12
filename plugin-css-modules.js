@@ -154,7 +154,7 @@ class CssModulesResource extends ResourceInterface {
   }
 
   async shouldResolve(url) {
-    return url.pathname.endsWith("module.css");
+    return url.protocol === 'file:' && url.pathname.endsWith("module.css");
   }
 
   async resolve(url) {
