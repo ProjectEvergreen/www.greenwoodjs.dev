@@ -48,7 +48,7 @@
   display: block;
   margin: var(--size-px-4) 0 var(--size-px-4);
   border-radius: var(--radius-3);
-  border: 1px solid #bababa;
+  border: 1px solid var(--color-border);
   background-color: var(--color-secondary);
   color: var(--color-white);
   padding: 10px 20px;

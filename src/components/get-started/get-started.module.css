@@ -29,31 +29,38 @@
 
 .buttonBlitz {
   display: inline-block;
-  cursor: pointer;
   border-radius: var(--radius-3);
   border: var(--border-size-1) solid var(--color-white);
   background-color: transparent;
   padding: var(--size-fluid-1) var(--size-fluid-2);
   min-width: var(--size-px-13);
-  color: var(--color-black);
+  color: var(--color-white) !important;
   box-shadow: var(--shadow-2);
+  height: fit-content;
 }
 
 .buttonStarted {
   display: inline-block;
-  cursor: pointer;
   border-radius: var(--radius-3);
   padding: var(--size-fluid-1) var(--size-fluid-2);
   background-color: var(--color-primary);
   min-width: var(--size-px-13);
-  color: var(--color-white);
+  color: var(--color-white) !important;
   box-shadow: var(--shadow-4);
   margin-top: var(--size-fluid-1);
+  height: fit-content;
 }
 
-.buttonStarted a,
-.buttonBlitz a {
-  color: var(--color-white);
+.buttonBlitz:hover {
+  background-color: var(--color-gray);
+  text-decoration: none;
+  color: var(--color-black) !important;
+}
+
+.buttonStarted:hover {
+  background-color: var(--color-accent);
+  text-decoration: none;
+  color: var(--color-black) !important;
 }
 
 .snippet pre {

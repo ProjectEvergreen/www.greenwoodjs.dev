@@ -12,14 +12,14 @@ export default class HeroBanner extends HTMLElement {
         <p class="${styles.headingSub}">Greenwood is your workbench for the web, embracing web standards from the ground up to empower your stack from front to back.</p>
 
         <div class="${styles.ctaContainer}">
-          <button class="${styles.buttonBlitz}">
-            <a href="#">View in Stackblitz</a>
-          </button>
+          <a href="#" class="${styles.buttonBlitz}">
+            <span>View in Stackblitz</span>
+          </a>
           
-          <button class="${styles.buttonStarted}">
-            <a href="#" class="${styles.linkStarted}">Get Started</a>
-          </button>
-          
+          <a href="#" class="${styles.buttonStarted}">
+            <span>Get Started</span>
+          </a>
+
           <div class="${styles.snippetContainer}">
             <div class="${styles.snippet}">
               <pre>${code}</pre>

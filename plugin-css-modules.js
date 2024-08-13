@@ -90,6 +90,10 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
                         new RegExp(String.raw`.${name},`, "g"),
                         `.${scope}-${hash}-${name},`,
                       );
+                      scopedCssContents = scopedCssContents.replace(
+                        new RegExp(String.raw`.${name}:`, "g"),
+                        `.${scope}-${hash}-${name}:`,
+                      );
                     }
                   }
                 }

@@ -30,39 +30,36 @@
 
 .buttonBlitz {
   display: inline-block;
-  cursor: pointer;
   border-radius: var(--radius-3);
   background-color: transparent;
   padding: var(--size-fluid-2);
+  border: 1px solid var(--color-border);
   width: 100%;
-  color: var(--color-white);
+  height: fit-content;
   box-shadow: var(--shadow-2);
 }
 
 .buttonStarted {
   display: inline-block;
-  cursor: pointer;
   border-radius: var(--radius-3);
   padding: var(--size-fluid-2);
   background-color: var(--color-primary);
   width: 100%;
-  color: var(--color-white);
+  color: var(--color-white) !important;
   box-shadow: var(--shadow-4);
   margin-top: var(--size-fluid-1);
+  height: fit-content;
 }
 
-.buttonStarted a {
-  color: var(--color-white);
-}
-
-.linkStarted {
-  color: var(--color-white);
+.buttonBlitz:hover {
+  background-color: var(--color-gray);
   text-decoration: none;
 }
 
-.buttonStarted a:hover,
-.linkStarted a:hover {
-  text-decoration: underline;
+.buttonStarted:hover {
+  background-color: var(--color-accent);
+  text-decoration: none;
+  color: var(--color-black) !important;
 }
 
 .snippetContainer {
