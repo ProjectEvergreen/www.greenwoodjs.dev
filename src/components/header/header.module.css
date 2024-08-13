@@ -60,6 +60,7 @@
 .socialIcon {
   display: flex;
   align-items: center;
+  line-height: 100%;
 }
 
 .socialIcon svg {

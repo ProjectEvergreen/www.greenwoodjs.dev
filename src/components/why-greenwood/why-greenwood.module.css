@@ -6,8 +6,9 @@
 }
 
 .heading {
-  font-size: var(--font-size-5);
+  font-size: var(--font-size-6);
   font-weight: var(--font-weight-9);
+  font-style: italic;
 }
 
 .subHeading {

@@ -7,7 +7,7 @@ export default class HeroBanner extends HTMLElement {
 
     this.innerHTML = `
       <div class="${styles.container}">
-        <h1 class="${styles.heading}">The fullstack web is <em class="${styles.headingEmphasis}">here</em></h1>
+        <h1 class="${styles.heading}">The fullstack web is <strong class="${styles.headingEmphasis}">here</strong></h1>
 
         <p class="${styles.headingSub}">Greenwood is your workbench for the web, embracing web standards from the ground up to empower your stack from front to back.</p>
 

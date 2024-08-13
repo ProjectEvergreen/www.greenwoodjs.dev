@@ -18,7 +18,7 @@ export default class WhyGreenwood extends HTMLElement {
           <div class="${styles.card}">
             <!-- Transparent -->
             <h3>Ship Your Source</h3>
-            <p>We strive to ensure that you can ship exactly the code you wrote and combined with a fast, unbundled, local development experience, Greenwood will have you shipping in no time.  <em>Greenwood aims to externalize the framework.</em></p>
+            <p>We strive to ensure that you can ship exactly the code you wrote and, combined with a fast, unbundled, local development experience, Greenwood will have you shipping in no time.  <em>Greenwood aims to externalize the framework.</em></p>
           </div>
 
           <div class="${styles.card}">

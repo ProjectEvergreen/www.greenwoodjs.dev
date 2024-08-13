@@ -9,7 +9,7 @@
 }
 
 .capabilities h2 {
-  font-size: var(--font-size-4);
+  font-size: var(--font-size-6);
 }
 
 .container {
@@ -60,6 +60,7 @@
   transform-origin: 50% 50%;
   scrollbar-width: thin;
   scrollbar-color: var(--color-gray) transparent;
+  min-height: 300px;
 }
 
 h2 {
@@ -133,12 +134,12 @@ pre {
   }
 
   .section {
-    padding: 20px;
+    padding: 10px;
     margin-right: 20px;
   }
 
   .section:hover {
-    padding: 18px;
+    padding: 8px;
   }
 }
 
@@ -149,8 +150,14 @@ pre {
     margin: 0 auto;
   }
 
-  p {
-    width: 80%;
+  p,
+  p strong,
+  p em {
+    font-size: var(--font-size-fluid-1) !important;
+  }
+
+  .snippet pre {
+    min-height: 400px;
   }
 }
 
