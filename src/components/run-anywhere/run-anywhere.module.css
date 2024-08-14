@@ -56,10 +56,14 @@
   line-height: 100%;
 }
 
-.platformBox a,
-.platformBox a:visited,
-.platformBox a:hover {
+.platformBox a {
   color: var(--color-white);
+}
+
+.platformBox a:hover {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
