@@ -1,6 +1,7 @@
 import styles from "./build-with-friends.module.css";
 import htmxIcon from "../../assets/htmx.svg?type=raw";
 import litIcon from "../../assets/lit.svg?type=raw";
+import openPropsIcon from "../../assets/open-props.svg?type=raw";
 import storybookIcon from "../../assets/storybook.svg?type=raw";
 import tailwindIcon from "../../assets/tailwind-logo.svg?type=raw";
 import typescriptIcon from "../../assets/typescript.svg?type=raw";
@@ -37,6 +38,10 @@ export default class BuildWithFriends extends HTMLElement {
           </span>
           <span class="${styles.icon}">
             ${wccIcon}
+          </span>
+          <span class="${styles.icon}">
+            <span>${openPropsIcon}</span>
+            <span>Open Props</span>
           </span>
         </div>
       </div>
