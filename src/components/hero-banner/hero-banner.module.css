@@ -52,7 +52,8 @@
 }
 
 .buttonBlitz:hover {
-  background-color: var(--color-gray);
+  background-color: var(--color-black);
+  color: var(--color-white);
   text-decoration: none;
 }
 
