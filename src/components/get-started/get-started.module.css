@@ -37,6 +37,7 @@
   color: var(--color-white) !important;
   box-shadow: var(--shadow-2);
   height: fit-content;
+  text-decoration: none;
 }
 
 .buttonStarted {
@@ -49,6 +50,7 @@
   box-shadow: var(--shadow-4);
   margin-top: var(--size-fluid-1);
   height: fit-content;
+  text-decoration: none;
 }
 
 .buttonBlitz:hover {

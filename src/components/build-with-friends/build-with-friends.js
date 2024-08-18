@@ -14,7 +14,7 @@ export default class BuildWithFriends extends HTMLElement {
       <div class="${styles.container}">
         <h3 class="${styles.heading}">Build With Friends</h3>
 
-        <p class="${styles.subHeading}">Greenwood and Web Components work great with all of your favorite tools in the web ecosystem.</p>
+        <p class="${styles.subHeading}">Greenwood and Web Components work great with all of your favorite tools in the <a href="/guides/ecosystem/">web ecosystem</a>.</p>
 
         <span class="${styles.icons}">
           <span class="${styles.icon}">

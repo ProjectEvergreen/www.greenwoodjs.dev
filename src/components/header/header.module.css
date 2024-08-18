@@ -39,6 +39,15 @@
   padding: 0;
 }
 
+.navBarMenuItem a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+.navBarMenuItem a:hover {
+  text-decoration: underline;
+}
+
 .navBarMenuItem:hover {
   font-weight: bold;
 }

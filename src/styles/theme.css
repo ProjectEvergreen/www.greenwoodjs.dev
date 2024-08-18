@@ -44,8 +44,8 @@
 
 a,
 a:visited {
-  text-decoration: none;
-  color: var(--color-black);
+  text-decoration: underline;
+  color: var(--color-primary);
 }
 
 a:hover {
