@@ -104,7 +104,11 @@ This would emit the following generated HTML
 
 #### Interactive Components (Declarative Shadow DOM)
 
-For interactive components that would require client side interactivity, like for event handlers, these component should be authored rendering into a Shadow Root with [Declarative Shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) and using [Constructable Stylesheets](https://web.dev/articles/constructable-stylesheets).
+For interactive components that would require client side interactivity, like event handlers, these components should be authored rendering into a Shadow Root using [Declarative Shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) and with Greenwood's [raw plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw).
+
+<details>
+  Ideally we would be using <a href="https://web.dev/articles/constructable-stylesheets">Constructable Stylesheets and Import Attributes</a> but CSS Import Attributes are <a href="https://github.com/ProjectEvergreen/www.greenwoodjs.dev/pull/57#issuecomment-2295349811">not baseline yet</a>. 😞
+</details>
 
 ```css
 /* card.css */
@@ -115,7 +119,7 @@ For interactive components that would require client side interactivity, like fo
 ```
 
 ```js
-import sheet from "./card.css" with { type: "css" };
+import styles from "./card.css?type=raw";
 
 export default class Card extends HTMLElement {
   selectItem() {
@@ -130,6 +134,9 @@ export default class Card extends HTMLElement {
 
       template.innerHTML = `
         <div class="card">
+          <style>
+            ${styles}
+          </style>
           <h3>${title}</h3>
           <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
           <button>View Item Details</button>
@@ -139,7 +146,6 @@ export default class Card extends HTMLElement {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    this.shadowRoot.adoptedStylesheets = [sheet];
     this.shadowRoot?.querySelector("button").addEventListener("click", this.selectItem.bind(this));
   }
 }

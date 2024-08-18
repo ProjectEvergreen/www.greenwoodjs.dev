@@ -1,5 +1,5 @@
-import sheet from "./capabilities.css" with { type: "css" };
-import theme from "../../styles/theme.css" with { type: "css" };
+import styles from "./capabilities.css?type=raw";
+import theme from "../../styles/theme.css?type=raw";
 import api from "../../assets/api-routes.svg?type=raw";
 import ssg from "../../assets/build-ssg.svg?type=raw";
 import html from "../../assets/html.svg?type=raw";
@@ -30,6 +30,10 @@ export default class Capabilities extends HTMLElement {
     if (this.contentItems.length > 0) {
       template.innerHTML = `
         <div class="capabilities">
+          <style>
+            ${theme}
+            ${styles}
+          </style>
           <div class="container">
             <h2>Go from zero to fullstack with web standards</h2>
             <!-- <h3>Greenwood loves the web and so where possible we borrow, promote and adapt powerful web standards like Web Components, Fetch (and friends), and Import Attributes to provide a refreshingly predictable developer experience.</h3> -->
@@ -63,7 +67,6 @@ export default class Capabilities extends HTMLElement {
 
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      this.shadowRoot.adoptedStyleSheets = [theme, sheet];
       this.shadowRoot
         .querySelectorAll(".section")
         .forEach((item) => item.addEventListener("click", this.selectItem.bind(this)));
