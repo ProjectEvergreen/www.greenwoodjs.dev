@@ -35,11 +35,10 @@ export default class Capabilities extends HTMLElement {
             ${styles}
           </style>
           <div class="container">
-            <h2>Go from zero to fullstack with web standards</h2>
-            <!-- <h3>Greenwood loves the web and so where possible we borrow, promote and adapt powerful web standards like Web Components, Fetch (and friends), and Import Attributes to provide a refreshingly predictable developer experience.</h3> -->
+            <h2 class="heading">Go from zero to fullstack with web standards</h2>
 
             <nav class="sections">
-              <ul>
+              <ul class="sections-list">
                 ${Array.from(this.contentItems)
                   .map((item, idx) => {
                     const title = item.querySelector("span").innerHTML;
@@ -59,7 +58,7 @@ export default class Capabilities extends HTMLElement {
               </ul>
             </nav>
 
-            <p>${this.contentItems[this.index].querySelector("p").innerHTML}</p>
+            <p class="content">${this.contentItems[this.index].querySelector("p").innerHTML}</p>
             <div class="snippet">${this.contentItems[this.index].querySelector("pre").outerHTML}</div>
           </div>
         </div>

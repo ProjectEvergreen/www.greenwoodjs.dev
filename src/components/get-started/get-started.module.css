@@ -64,7 +64,7 @@
 }
 
 .snippet pre {
-  padding: 20px 2px;
+  padding: var(--size-px-4) var(--size-px-1);
 }
 
 .snippet app-ctc {

@@ -2,7 +2,7 @@
   background-color: var(--color-white);
   border: var(--border-size-1) solid var(--color-black);
   text-align: center;
-  padding: 20px 10px;
+  padding: var(--size-px-2) var(--size-px-4);
 }
 
 .heading {
@@ -12,8 +12,8 @@
 }
 
 .subHeading {
-  margin: 10px auto 30px;
-  padding: 0 10px;
+  margin: var(--size-px-2) auto var(--size-px-7);
+  padding: 0 var(--size-px-2);
   text-align: left;
 }
 
@@ -25,7 +25,7 @@
 .card {
   display: inline-block;
   text-align: left;
-  margin: 10px 10px 10px;
+  margin: var(--size-px-2);
   padding: var(--size-fluid-3);
   border-radius: var(--radius-5);
   background-image: linear-gradient(to top left, var(--color-secondary), #2e3440);
@@ -70,7 +70,7 @@
 
   .card {
     display: inline-block;
-    margin: 30px 10px 20px 20px;
+    margin: var(--size-px-7) var(--size-px-2) var(--size-px-4) var(--size-px-4);
     height: fit-content;
   }
 

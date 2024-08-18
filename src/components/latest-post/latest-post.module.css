@@ -15,5 +15,5 @@
 }
 
 .link {
-  line-height: 50px;
+  line-height: var(--size-px-8);
 }

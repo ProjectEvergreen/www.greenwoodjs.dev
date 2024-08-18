@@ -13,7 +13,7 @@
 }
 
 .subHeading {
-  margin: 0px auto 30px;
+  margin: 0px auto var(--size-px-6);
   padding: var(--size-fluid-1) 0;
   text-align: left;
 }
@@ -32,7 +32,7 @@
 
 .iconBox {
   border-radius: var(--radius-3);
-  border: 1px solid #c1d3cd;
+  border: 1px solid var(--color-gray-background);
   box-shadow: var(--shadow-2);
   background-color: var(--color-white);
   height: 150px;
@@ -51,7 +51,7 @@
   border: 1px solid var(--color-border);
   background-color: var(--color-secondary);
   color: var(--color-white);
-  padding: 10px 20px;
+  padding: var(--size-px-2) var(--size-px-4);
   text-decoration: none;
   line-height: 100%;
 }
