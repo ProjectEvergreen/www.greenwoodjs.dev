@@ -2,21 +2,21 @@
   {
     "name": "Vercel",
     "icon": "/assets/vercel.svg",
-    "link": "#"
+    "link": "/guide/deploy/vercel/"
   },
   {
     "name": "Netlify",
     "icon": "/assets/netlify.png",
-    "link": "#"
+    "link": "/guide/deploy/netlify/"
   },
   {
     "name": "NodeJS",
     "icon": "/assets/node.png",
-    "link": "#"
+    "link": "/guide/deploy/nodejs/"
   },
   {
     "name": "GitHub",
     "icon": "/assets/github.svg",
-    "link": "#"
+    "link": "/guide/deploy/github-pages/"
   }
 ]
