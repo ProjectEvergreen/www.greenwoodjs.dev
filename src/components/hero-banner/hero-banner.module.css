@@ -82,13 +82,13 @@
   display: inline-block;
   height: 46px;
   align-content: center;
+  display: inline;
 }
 
 .snippet app-ctc {
   display: inline-block;
   text-align: right;
   vertical-align: baseline;
-  float: right;
   position: relative;
   cursor: pointer;
 }
