@@ -48,10 +48,10 @@ export default class Capabilities extends HTMLElement {
 
                     return `
                       <li class="section${isActiveClass}" data-idx="${idx}">
-                        <h4>
+                        <h3 class="capability-heading">
                           ${availableIconSVGs[icon]}
                           <span>${title}</span>
-                        </h4>
+                        </h3>
                       </li>
                     `;
                   })

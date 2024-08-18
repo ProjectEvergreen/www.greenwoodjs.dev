@@ -69,18 +69,14 @@ h2 {
   margin: 0;
 }
 
-h3 {
-  color: var(--color-gray);
-}
-
-h4 {
+.capability-heading {
   font-size: var(--font-size-fluid-1);
   font-weight: bold;
   margin: 5px 0;
   display: inline-block;
 }
 
-h4 svg {
+.capability-heading svg {
   vertical-align: middle;
 }
 
