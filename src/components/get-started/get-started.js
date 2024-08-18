@@ -15,11 +15,11 @@ export default class GetStarted extends HTMLElement {
         </div>
 
         <div>
-          <a href="#" class="${styles.buttonBlitz}">
+          <a href="https://stackblitz.com/github/projectevergreen/greenwood-getting-started" class="${styles.buttonBlitz}">
             <span>View in Stackblitz</span>
           </a>
           
-          <a href="#" class="${styles.buttonStarted}">
+          <a href="/guides/getting-started/" class="${styles.buttonStarted}">
             <span>Get Started</span>
           </a>
         </div>
