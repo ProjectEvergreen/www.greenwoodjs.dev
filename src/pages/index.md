@@ -84,7 +84,7 @@ imports:
   ```js
   // src/components/card.js
   import themeSheet from "../styles/theme.css" with { type: "css" };
-  import cardSheet from "./card.js" with { type: "css" };
+  import cardSheet from "./card.css" with { type: "css" };
 
   export default class Card extends HTMLElement {
     connectedCallback() {
