@@ -110,6 +110,11 @@
   font-size: var(--font-size-5);
 }
 
+.mobileMenuListItem a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
 @media screen and (min-width: 480px) {
   .container {
     padding: 0 var(--size-10);
