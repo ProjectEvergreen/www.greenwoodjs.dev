@@ -55,7 +55,7 @@
 }
 
 .buttonBlitz:hover {
-  background-color: var(--color-black);
+  background-color: var(--color-secondary);
   color: var(--color-white) !important;
   text-decoration: none;
 }
@@ -86,6 +86,7 @@
   height: 46px;
   align-content: center;
   display: inline;
+  vertical-align: text-top;
 }
 
 .snippet app-ctc {
