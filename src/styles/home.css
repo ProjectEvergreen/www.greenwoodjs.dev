@@ -1,25 +1,23 @@
 app-latest-post,
 app-hero-banner {
   display: block;
-  margin: var(--size-fluid-1);
+  margin: var(--size-2) auto;
 }
 
 .capabilities-content {
   display: none;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 760px) {
   app-hero-banner,
   app-latest-post {
-    width: 85%;
-    margin: 0 auto;
+    padding: var(--size-2);
   }
 }
 
-@media (min-width: 1220px) {
+@media (min-width: 1024px) {
   app-hero-banner,
   app-latest-post {
-    width: 80%;
-    margin: 0 auto;
+    width: 70%;
   }
 }
