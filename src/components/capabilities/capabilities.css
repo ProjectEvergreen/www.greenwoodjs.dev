@@ -53,14 +53,16 @@
   stroke: var(--color-black);
 }
 
-.snippet pre {
-  border-radius: var(--radius-3);
-  animation: slide-up-fade-in ease 1s;
-  animation-iteration-count: 1;
-  transform-origin: 50% 50%;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-gray) transparent;
-  min-height: 300px;
+@media (prefers-reduced-motion: no-preference) {
+  .snippet pre {
+    border-radius: var(--radius-3);
+    animation: slide-up-fade-in ease 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray) transparent;
+    min-height: 300px;
+  }
 }
 
 .heading {
