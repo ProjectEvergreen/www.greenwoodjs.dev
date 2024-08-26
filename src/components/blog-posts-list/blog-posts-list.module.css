@@ -1,0 +1,4 @@
+.postsListItem {
+  list-style-type: none;
+  margin: var(--size-2);
+}
