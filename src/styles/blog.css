@@ -60,18 +60,34 @@ blockquote {
   font-style: italic;
 }
 
-@media (max-width: 760px) {
-  code[class*="language-"],
-  pre[class*="language-"],
-  .token {
-    font-size: 0.9rem;
-  }
+h2 > a > span.icon {
+  width: var(--size-4);
+  height: var(--size-4);
+  padding: var(--size-2);
+  display: inline-block;
+  background-image: url(/assets/link.svg);
+  background-size: var(--size-3) var(--size-3);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  vertical-align: text-bottom;
+}
+
+code[class*="language-"],
+pre[class*="language-"],
+.token {
+  font-size: 0.9rem;
 }
 
 @media (min-width: 768px) {
   .content-outlet-container {
-    max-width: 60ch;
+    max-width: 65ch;
     margin: var(--size-2) auto var(--size-4);
+  }
+
+  code[class*="language-"],
+  pre[class*="language-"],
+  .token {
+    font-size: 1rem;
   }
 
   blockquote {
