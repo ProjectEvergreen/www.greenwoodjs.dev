@@ -15,17 +15,20 @@
     format("truetype");
 }
 
-:root {
+:root,
+:host {
   --color-primary: #016341;
   --color-secondary: #0e0f0c;
   --color-tertiary: #151818;
   --color-accent: #c3ddba;
   --color-logo-shade-dark: #00b68f;
   --color-logo-shade-light: #1ad6a9;
+  --color-green-pale: #c3ddba;
   --color-white: #ffffff;
   --color-black: #4d4d4d;
   --color-gray: #f5f5f5;
   --color-gray-background: #edefec;
+  --color-border: #bababa;
   --font-primary: "Geist-Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --font-secondary: "Geist-Mono", monospace;
@@ -33,8 +36,21 @@
 
 * {
   font-family: var(--font-primary);
-  font-size: var(--size-px-3);
+  font-size: var(--font-size-3);
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a,
+a:visited {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+
+a:hover {
+  text-decoration: underline;
+  background-color: transparent;
 }
 
 /* tweaks for PrismJS */
@@ -48,4 +64,9 @@ span.token {
   border: none; /* Popovers have borders it seems? */
   padding: 0;
   margin: 0;
+}
+
+app-header {
+  display: block;
+  margin: 10px 0 0;
 }

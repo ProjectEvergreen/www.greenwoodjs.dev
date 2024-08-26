@@ -52,6 +52,7 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
           let scopedCssContents = cssContents;
 
           const ast = parse(cssContents, {
+            // positions: true,
             onParseError(error) {
               console.log(error.formattedMessage);
             },
@@ -66,14 +67,34 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
                 if (node.children?.head?.data?.type === "Selector") {
                   if (node.children?.head?.data?.children?.head?.data?.type === "ClassSelector") {
                     const { name } = node.children.head.data.children.head.data;
-
                     const scopedClassName = `${scope}-${hash}-${name}`;
                     classNameMap[name] = scopedClassName;
 
-                    scopedCssContents = scopedCssContents.replace(
-                      `\.${name}`,
-                      `\.${scopedClassName}`,
-                    );
+                    /*
+                     * bit of a hacky solution since as we are walking class names one at a time, if we have multiple uses of .heading (for example)
+                     * then by the end we could have .my-component-111-header.my-component-111-header.etc, since we want to replace all instances (e.g. the g flag in Regex)
+                     *
+                     * csstree supports loc so we _could_ target the class replacement down to start / end points, but that unfortunately slows things down a lot
+                     */
+                    // TODO this is a pretty ugly find / replace technique...
+                    // will definitely want to refactor and test this well
+                    if (
+                      scopedCssContents.indexOf(`.${scopedClassName} `) < 0 &&
+                      scopedCssContents.indexOf(`.${scopedClassName} {`) < 0
+                    ) {
+                      scopedCssContents = scopedCssContents.replace(
+                        new RegExp(String.raw`.${name} `, "g"),
+                        `.${scope}-${hash}-${name} `,
+                      );
+                      scopedCssContents = scopedCssContents.replace(
+                        new RegExp(String.raw`.${name},`, "g"),
+                        `.${scope}-${hash}-${name},`,
+                      );
+                      scopedCssContents = scopedCssContents.replace(
+                        new RegExp(String.raw`.${name}:`, "g"),
+                        `.${scope}-${hash}-${name}:`,
+                      );
+                    }
                   }
                 }
               }
@@ -137,7 +158,7 @@ class CssModulesResource extends ResourceInterface {
   }
 
   async shouldResolve(url) {
-    return url.pathname.endsWith("module.css");
+    return url.protocol === "file:" && url.pathname.endsWith("module.css");
   }
 
   async resolve(url) {
@@ -159,78 +180,104 @@ class CssModulesResource extends ResourceInterface {
     return new Request(matchedUrl);
   }
 
-  async shouldServe(url) {
-    const { pathname, protocol } = url;
-    const mapKey = `${protocol}//${pathname}`;
-    // // console.log(this.compilation.context.scratchDir)
-    // // console.log(new URL('./__css-modules-map.json', this.compilation.context.scratchDir));
-    const cssModulesMap = getCssModulesMap(this.compilation);
-    // console.log("shouldServer", { cssModulesMap, url });
-    return protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey];
-  }
+  // async shouldIntercept(url) {
+  //   console.log('css modules intercept', { url });
+  //   const { pathname, protocol } = url;
+  //   const mapKey = `${protocol}//${pathname}`;
+  //   // // console.log(this.compilation.context.scratchDir)
+  //   // // console.log(new URL('./__css-modules-map.json', this.compilation.context.scratchDir));
+  //   const cssModulesMap = getCssModulesMap(this.compilation);
+  //   // console.log("shouldServer", { cssModulesMap, url });
+  //   return protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey];
+  // }
 
-  async serve(url) {
-    const { pathname, protocol } = url;
-    const mapKey = `${protocol}//${pathname}`;
-    const cssModulesMap = getCssModulesMap(this.compilation);
-    // console.log("@@@@@@", { url, cssModulesMap });
-    const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
+  // async intercept(url) {
+  //   console.log('css modules intercept', { url });
+  //   const { pathname, protocol } = url;
+  //   const mapKey = `${protocol}//${pathname}`;
+  //   const cssModulesMap = getCssModulesMap(this.compilation);
+  //   // console.log("@@@@@@", { url, cssModulesMap });
+  //   const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
 
-    // console.log("@@@@@@", { cssModule });
-    return new Response(cssModule, {
-      headers: {
-        "Content-Type": this.contentType,
-      },
-    });
-  }
+  //   // console.log("@@@@@@", { cssModule });
+  //   return new Response(cssModule, {
+  //     headers: {
+  //       "Content-Type": this.contentType,
+  //     },
+  //   });
+  // }
 
   // this happens "first" as the HTML is returned, to find viable references to CSS Modules
   // better way than just checking for /?
   async shouldIntercept(url) {
-    return url.pathname.endsWith("/");
+    const { pathname, protocol } = url;
+    const mapKey = `${protocol}//${pathname}`;
+    const cssModulesMap = getCssModulesMap(this.compilation);
+
+    return (
+      url.pathname.endsWith("/") ||
+      (protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey])
+    );
   }
 
   async intercept(url, request, response) {
-    const body = await response.text();
-    const dom = htmlparser.parse(body, { script: true });
-    const scripts = dom.querySelectorAll("head script");
-    const sheets = []; // TODO use a map here?
-
-    for (const script of scripts) {
-      const type = script.getAttribute("type");
-      const src = script.getAttribute("src");
-      if (src && ["module", "module-shim"].includes(type)) {
-        // console.log("check this file for CSS Modules", src);
-        // await resolveForRelativeUrl(new URL(src, import.meta.url this.compilation.context.userWorkspace)
-        const scriptUrl = new URL(
-          `./${src.replace(/\.\.\//g, "").replace(/\.\//g, "")}`,
-          this.compilation.context.userWorkspace,
-        );
-        walkAllImportsForCssModules(scriptUrl, sheets, this.compilation);
-      }
-    }
-
+    const { pathname, protocol } = url;
+    const mapKey = `${protocol}//${pathname}`;
     const cssModulesMap = getCssModulesMap(this.compilation);
-    // console.log({ cssModulesMap });
 
-    // for(const cssModule of cssModulesMap) {
-    //   // console.log({ cssModule });
-    // }
-    Object.keys(cssModulesMap).forEach((key) => {
-      sheets.push(cssModulesMap[key].contents);
-    });
+    if (url.pathname.endsWith("/")) {
+      const body = await response.text();
+      const dom = htmlparser.parse(body, { script: true });
+      const scripts = dom.querySelectorAll("head script");
+      const sheets = []; // TODO use a map here?
 
-    const newBody = body.replace(
-      "</head>",
-      `
-        <style>
-          ${sheets.join("\n")}
-        </style>
-      </head>
-    `,
-    );
+      for (const script of scripts) {
+        const type = script.getAttribute("type");
+        const src = script.getAttribute("src");
+        if (src && ["module", "module-shim"].includes(type)) {
+          // console.log("check this file for CSS Modules", src);
+          // await resolveForRelativeUrl(new URL(src, import.meta.url this.compilation.context.userWorkspace)
+          const scriptUrl = new URL(
+            `./${src.replace(/\.\.\//g, "").replace(/\.\//g, "")}`,
+            this.compilation.context.userWorkspace,
+          );
+          walkAllImportsForCssModules(scriptUrl, sheets, this.compilation);
+        }
+      }
 
-    return new Response(newBody);
+      const cssModulesMap = getCssModulesMap(this.compilation);
+      // console.log({ cssModulesMap });
+
+      // for(const cssModule of cssModulesMap) {
+      //   // console.log({ cssModule });
+      // }
+      Object.keys(cssModulesMap).forEach((key) => {
+        sheets.push(cssModulesMap[key].contents);
+      });
+
+      const newBody = body.replace(
+        "</head>",
+        `
+          <style>
+            ${sheets.join("\n")}
+          </style>
+        </head>
+      `,
+      );
+
+      return new Response(newBody);
+    } else if (
+      url.pathname.endsWith("/") ||
+      (protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey])
+    ) {
+      const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
+
+      return new Response(cssModule, {
+        headers: {
+          "Content-Type": this.contentType,
+        },
+      });
+    }
   }
 
   async shouldOptimize(url, response) {
