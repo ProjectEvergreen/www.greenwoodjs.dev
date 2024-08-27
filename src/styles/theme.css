@@ -70,3 +70,15 @@ app-header {
   display: block;
   margin: 10px 0 0;
 }
+
+h2 > a > span.icon {
+  width: var(--size-4);
+  height: var(--size-4);
+  padding: var(--size-2);
+  display: inline-block;
+  background-image: url(/assets/link.svg);
+  background-size: var(--size-3) var(--size-3);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  vertical-align: text-bottom;
+}

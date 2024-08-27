@@ -1,7 +1,7 @@
 ---
 title: State of Greenwood (2023)
 layout: blog
-coverImage: "/assets/greenwood-logo-leaf.svg"
+abstract: Come learn what the Greenwood team has been up to over the past year and our plans for the next one!
 ---
 
 # State of Greenwood (2023)

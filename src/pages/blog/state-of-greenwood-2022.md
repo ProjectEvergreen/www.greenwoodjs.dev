@@ -1,6 +1,7 @@
 ---
 title: State of Greenwood (2022)
 layout: blog
+abstract: Come learn what the Greenwood team has been up to over the past year.
 ---
 
 # State of Greenwood (2022)
