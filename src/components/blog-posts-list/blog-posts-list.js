@@ -3,7 +3,12 @@ import styles from "./blog-posts-list.module.css";
 
 export default class BlogPostsList extends HTMLElement {
   async connectedCallback() {
-    const posts = (await getContentByRoute("/blog")).filter((page) => page.label !== "Blog");
+    const posts = (await getContentByRoute("/blog"))
+      .filter((page) => page.data.published)
+      // we sort in reverse chronologic order, e.g. last in, first out (LIFO)
+      .sort((a, b) =>
+        new Date(a.data.published).getTime() > new Date(b.data.published).getTime() ? -1 : 1,
+      );
 
     this.innerHTML = `
       <ul class="${styles.postsList}">

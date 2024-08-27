@@ -1,7 +1,8 @@
 ---
 title: State of Greenwood (2023)
-layout: blog
 abstract: Come learn what the Greenwood team has been up to over the past year and our plans for the next one!
+published: 2023-05-03
+layout: blog
 ---
 
 # State of Greenwood (2023)

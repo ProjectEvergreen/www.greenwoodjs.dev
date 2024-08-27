@@ -1,7 +1,8 @@
 ---
 title: State of Greenwood (2022)
-layout: blog
 abstract: Come learn what the Greenwood team has been up to over the past year.
+published: 2022-03-02
+layout: blog
 ---
 
 # State of Greenwood (2022)
