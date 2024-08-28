@@ -22,7 +22,14 @@ export default class BlogPostsList extends HTMLElement {
 
             return `
               <li class="${styles.postsListItem}">
-                <img class="${styles.postsListItemCoverImage}" src="${coverBackground}" style="padding-left: ${coverBackgroundPadding}"/>
+                <img
+                  alt="${title}"
+                  class="${styles.postsListItemCoverImage}"
+                  height="80"
+                  width="80"
+                  src="${coverBackground}"
+                  style="padding-left: ${coverBackgroundPadding}"
+                />
 
                 <div class="${styles.postsListItemContentContainer}">
                   <h2 class="${styles.postsListItemContentTitle}">
