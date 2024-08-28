@@ -87,7 +87,7 @@ index 0000000..f4b5f15
 +// export default client;
 \ No newline at end of file
 diff --git a/node_modules/@greenwood/cli/src/lib/layout-utils.js b/node_modules/@greenwood/cli/src/lib/layout-utils.js
-index 8dbf281..a3cb477 100644
+index 8dbf281..487d5f2 100644
 --- a/node_modules/@greenwood/cli/src/lib/layout-utils.js
 +++ b/node_modules/@greenwood/cli/src/lib/layout-utils.js
 @@ -108,7 +108,8 @@ async function getPageLayout(filePath, compilation, layout) {
@@ -106,8 +106,8 @@ index 8dbf281..a3cb477 100644
      const pageTitle = pageRoot && pageRoot.querySelector('head title');
 -    const hasInterpolatedFrontmatter = pageTitle && pageTitle.rawText.indexOf('${globalThis.page.title}') >= 0
 -     || appTitle && appTitle.rawText.indexOf('${globalThis.page.title}') >= 0;
-+    const hasActiveFrontmatterTitle = pageTitle && pageTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0
-+     || appTitle && appTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0;
++    const hasActiveFrontmatterTitle = compilation.config.activeFrontmatter && (pageTitle && pageTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0
++     || appTitle && appTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0);
 +    let title;
  
 -    const title = hasInterpolatedFrontmatter // favor frontmatter interpolation first
