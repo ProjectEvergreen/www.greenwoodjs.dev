@@ -2,6 +2,7 @@
 title: State of Greenwood (2022)
 abstract: Come learn what the Greenwood team has been up to over the past year.
 published: 2022-03-02
+coverImage: /assets/greenwood-logo-g.svg
 layout: blog
 ---
 
@@ -99,7 +100,7 @@ This is my own slide content!
 ![my-image](/assets/my-image.png)
 ```
 
-![theme-pack](/assets/greenwood-starter-presentation.png)
+![theme-pack](/assets/blog/greenwood-starter-presentation.png)
 
 > _You can see [this example](https://github.com/thescientist13/knowing-your-tco) of the end user experience of a theme pack I used for a presentation I gave and our [guide on Theme Packs](/guides/theme-packs/) can help you learn more._
 
@@ -241,4 +242,4 @@ For us, it's great to see support for Web Components rising and we hope to be a 
 
 > _We all think different, and so for us the more we thought about our approach and the implications this could have on long term maintainability, knowledge sharing, and just general practicality, has only cemented our motivations even further to optimize for a web first world._
 
-We want to not only be _your workbench for the web_, but a way to build for the web that looks past the **#hypegeist** and instead emphasizes usage of web APIs in an effort to shy away, where possible, from the complexity and magic often found in today's modern (meta) frameworks. Owning your code and owning your content is important to us, and developing for the web isn't the burden it once was. We feel an honest discussion around the efforts to build around and on top of it are worth having. Looking inside your _node_modules_ or network tab should be encouraging of you to ask yourself; _**what can the web do for me now**_? <img style="width: 15px; display: inline-block" src="/assets/evergreen.svg" alt="Project Evergreen logo"/>
+We want to not only be _your workbench for the web_, but a way to build for the web that looks past the **#hypegeist** and instead emphasizes usage of web APIs in an effort to shy away, where possible, from the complexity and magic often found in today's modern (meta) frameworks. Owning your code and owning your content is important to us, and developing for the web isn't the burden it once was. We feel an honest discussion around the efforts to build around and on top of it are worth having. Looking inside your _node_modules_ or network tab should be encouraging of you to ask yourself; _**what can the web do for me now**_? <img style="width: 15px; display: inline-block; margin: 0;" src="/assets/blog/evergreen.svg" alt="Project Evergreen logo"/>

@@ -17,7 +17,7 @@ export default class BlogPostsList extends HTMLElement {
             const { title, route } = post;
             const { coverImage, abstract = "" } = post.data;
             const coverBackground = coverImage ? coverImage : "/assets/greenwood-logo-leaf.svg";
-            const coverBackgroundPadding = coverImage ? "4px" : "14px";
+            const coverBackgroundPadding = coverImage && coverImage !== "/assets/greenwood-logo-g.svg" ? "4px" : "14px";
 
             return `
               <li class="${styles.postsListItem}">
