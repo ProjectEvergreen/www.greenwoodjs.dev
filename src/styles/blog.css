@@ -1,53 +1,55 @@
-.content-outlet-container {
+/* would be nice to have CSS nesting here... */
+.blog-post-content-container {
   max-width: 100ch;
   padding: 0 var(--font-size-1);
 }
 
-h1 {
+.blog-post-content-container h1 {
   font-size: var(--font-size-5);
   margin: var(--size-4) 0 0;
 }
 
-h2 {
+.blog-post-content-container h2 {
   font-size: var(--font-size-4);
   font-weight: bold;
   line-height: 1.8rem;
   margin: var(--size-4) 0 var(--size-2);
 }
 
-h3 {
+.blog-post-content-container h3 {
   font-size: var(--font-size-2);
   margin: var(--size-3) 0;
 }
 
-p,
-em,
-a,
-strong,
-code,
-li {
+.blog-post-content-container p,
+.blog-post-content-container em,
+.blog-post-content-container a,
+.blog-post-content-container strong,
+.blog-post-content-container code,
+.blog-post-content-container li {
   font-size: var(--font-size-1);
 }
 
-p {
+.blog-post-content-container p {
   margin: var(--size-4) 0 var(--size-3);
   line-height: var(--font-lineheight-2);
 }
 
-img {
+.blog-post-content-container img {
   width: 100%;
   margin: var(--size-2) 0;
 }
 
-ul {
+.blog-post-content-container ol,
+.blog-post-content-container ul {
   padding-left: var(--size-4);
 }
 
-li {
+.blog-post-content-container li {
   padding: var(--size-1);
 }
 
-blockquote {
+.blog-post-content-container blockquote {
   padding: var(--size-1);
   background-color: var(--color-accent) !important;
   border-left: var(--size-1) solid var(--color-secondary);
@@ -60,25 +62,25 @@ blockquote {
   font-style: italic;
 }
 
-code[class*="language-"],
-pre[class*="language-"],
-.token {
+.blog-post-content-container code[class*="language-"],
+.blog-post-content-container pre[class*="language-"],
+.blog-post-content-container .token {
   font-size: 0.9rem;
 }
 
 @media (min-width: 768px) {
-  .content-outlet-container {
+  .blog-post-content-container {
     max-width: 65ch;
     margin: var(--size-2) auto var(--size-4);
   }
 
-  code[class*="language-"],
-  pre[class*="language-"],
-  .token {
+  .blog-post-content-container code[class*="language-"],
+  .blog-post-content-container pre[class*="language-"],
+  .blog-post-content-container .token {
     font-size: 1rem;
   }
 
-  blockquote {
+  .blog-post-content-container blockquote {
     margin: var(--size-1);
     padding: var(--size-2);
   }
