@@ -5,15 +5,14 @@
 }
 
 .heading {
-  font-size: var(--font-size-7);
-  font-weight: var(--font-weight-7);
+  font-family: var(--font-primary-bold);
+  font-size: var(--font-size-6);
   margin-block-start: 0;
   margin-block-end: 0;
 }
 
 .headingEmphasis {
-  font-size: var(--font-size-7);
-  font-weight: var(--font-weight-7);
+  font-size: var(--font-size-6);
   font-style: italic;
 }
 
@@ -104,6 +103,11 @@
 }
 
 @media (min-width: 768px) {
+  .heading,
+  .headingEmphasis {
+    font-size: var(--font-size-7);
+  }
+
   .buttonBlitz,
   .buttonStarted {
     width: 45%;

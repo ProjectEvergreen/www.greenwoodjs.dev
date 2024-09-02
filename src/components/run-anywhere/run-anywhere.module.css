@@ -5,8 +5,8 @@
 }
 
 .heading {
+  font-family: var(--font-primary-bold);
   font-size: var(--font-size-5);
-  font-weight: var(--font-weight-9);
   margin: 0;
   padding: var(--size-fluid-1) 0;
   text-align: center;

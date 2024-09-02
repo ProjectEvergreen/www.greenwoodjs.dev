@@ -9,6 +9,7 @@
 }
 
 .heading {
+  font-family: var(--font-primary-bold);
   font-size: var(--font-size-6);
 }
 
