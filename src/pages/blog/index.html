@@ -8,25 +8,33 @@
       data-gwd-opt="static"
     ></script>
     <style>
-      .container {
+      .page-content .container {
         text-align: center;
         margin: var(--size-2);
       }
 
-      .heading {
-        font-size: var(--font-size-6);
+      .page-content .heading {
+        font-size: var(--font-size-5);
+        font-family: var(--font-primary-bold);
       }
 
-      .subHeading {
+      .page-content .subHeading {
         margin: var(--size-4);
         font-size: var(--font-size-2);
       }
+
+      @media (min-width: 768px) {
+        .page-content .heading {
+          font-size: var(--font-size-8);
+        }
+      }
+
     </style>
   </head>
 
   <body>
     <div class="container">
-      <h1 class="heading">News and Announcements</h1>
+      <h1 class="heading">News and <br> Announcements</h1>
       <p class="subHeading">
         Get the latest updates and information about Greenwood releases and activities.
       </p>

@@ -22,22 +22,22 @@ export default class BlogPostsList extends HTMLElement {
 
             return `
               <li class="${styles.postsListItem}">
-                <img
-                  alt="${title}"
-                  class="${styles.postsListItemCoverImage}"
-                  height="80"
-                  width="80"
-                  src="${coverBackground}"
-                  style="padding-left: ${coverBackgroundPadding}"
-                />
+                <a class="${styles.postsListItemContentLink}" href="${route}">
+                  <img
+                    alt="${title}"
+                    class="${styles.postsListItemCoverImage}"
+                    height="80"
+                    width="80"
+                    src="${coverBackground}"
+                    style="padding-left: ${coverBackgroundPadding}"
+                  />
 
-                <div class="${styles.postsListItemContentContainer}">
-                  <h2 class="${styles.postsListItemContentTitle}">
-                    <a class="${styles.postsListItemContentLink}" href="${route}">${title}</a>
-                  </h2>
-                  <p class="${styles.postsListItemContentAbstract}">${abstract}</p>
-                </div>
+                  <div class="${styles.postsListItemContentContainer}">
+                    <h2 class="${styles.postsListItemContentTitle}">${title}</h2>
+                    <p class="${styles.postsListItemContentAbstract}">${abstract}</p>
+                  </div>
 
+                </a>
               </li>
             `;
           })

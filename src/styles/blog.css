@@ -10,8 +10,8 @@
 }
 
 .page-content h2 {
+  font-family: var(--font-family-bold);
   font-size: var(--font-size-4);
-  font-weight: bold;
   line-height: 1.8rem;
   margin: var(--size-4) 0 var(--size-2);
 }
