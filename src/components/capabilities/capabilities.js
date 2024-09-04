@@ -1,5 +1,5 @@
-import styles from "./capabilities.css?type=raw";
-import theme from "../../styles/theme.css?type=raw";
+import sheet from "./capabilities.css" with { type: "css" };
+import themeSheet from "../../styles/theme.css" with { type: "css" };
 import api from "../../assets/api-routes.svg?type=raw";
 import ssg from "../../assets/build-ssg.svg?type=raw";
 import html from "../../assets/html.svg?type=raw";
@@ -30,10 +30,6 @@ export default class Capabilities extends HTMLElement {
     if (this.contentItems.length > 0) {
       template.innerHTML = `
         <div class="capabilities">
-          <style>
-            ${theme}
-            ${styles}
-          </style>
           <div class="container">
             <h2 class="heading">Go from zero to fullstack with web standards</h2>
 
@@ -66,6 +62,7 @@ export default class Capabilities extends HTMLElement {
 
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+      this.shadowRoot.adoptedStyleSheets = [themeSheet, sheet];
       this.shadowRoot
         .querySelectorAll(".section")
         .forEach((item) => item.addEventListener("click", this.selectItem.bind(this)));

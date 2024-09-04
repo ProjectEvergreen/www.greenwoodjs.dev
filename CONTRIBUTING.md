@@ -119,7 +119,7 @@ For interactive components that would require client side interactivity, like ev
 ```
 
 ```js
-import styles from "./card.css?type=raw";
+import sheet from "./card.css" with { type: "css" };
 
 export default class Card extends HTMLElement {
   selectItem() {
@@ -142,10 +142,12 @@ export default class Card extends HTMLElement {
           <button>View Item Details</button>
         </div>
       `;
+
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
+    this.shadowRoot.adoptedStyleSheets = [sheet];
     this.shadowRoot?.querySelector("button").addEventListener("click", this.selectItem.bind(this));
   }
 }

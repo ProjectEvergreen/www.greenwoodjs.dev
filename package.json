@@ -55,6 +55,7 @@
     "@storybook/web-components-vite": "^8.0.6",
     "@web/test-runner": "^0.18.1",
     "@web/test-runner-junit-reporter": "^0.7.1",
+    "acorn-import-attributes": "^1.9.5",
     "eslint": "^9.1.1",
     "eslint-config-prettier": "^9.1.0",
     "http-server": "^14.1.1",
