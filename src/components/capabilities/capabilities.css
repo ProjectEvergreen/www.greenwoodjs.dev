@@ -41,8 +41,8 @@
 
 .section:hover strong,
 .active strong {
+  font-family: var(--font-primary-bold);
   color: var(--color-white);
-  font-weight: bold;
 }
 
 .active {
@@ -68,13 +68,13 @@
 
 .heading {
   font-size: var(--font-size-fluid-3);
-  font-weight: bold;
+  font-family: var(--font-primary-bold);
   margin: 0;
 }
 
 .capability-heading {
   font-size: var(--font-size-fluid-1);
-  font-weight: bold;
+  font-family: var(--font-primary-bold);
   margin: var(--size-px-1) 0;
   display: inline-block;
 }

@@ -123,7 +123,8 @@
   }
 }
 
-@media (min-width: 1024px) {
+/* use 1025 as a quick tweak for iPad Pro breakpoint */
+@media (min-width: 1025px) {
   .ctaContainer {
     margin: 0 auto;
     text-align: left;

@@ -48,10 +48,6 @@
   text-decoration: underline;
 }
 
-.navBarMenuItem:hover {
-  font-weight: bold;
-}
-
 .socialTray {
   display: flex;
   gap: var(--size-3);
