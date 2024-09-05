@@ -13,6 +13,526 @@ index 1354e66..e50e2aa 100644
  
                  for (const plugin of resourcePlugins) {
                    if (plugin.shouldPreIntercept && await plugin.shouldPreIntercept(assetUrl, request, response.clone())) {
+diff --git a/node_modules/@greenwood/cli/src/data/queries.js b/node_modules/@greenwood/cli/src/data/queries.js
+new file mode 100644
+index 0000000..f4b5f15
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/data/queries.js
+@@ -0,0 +1,66 @@
++// TODO how to sync host and port with greenwood config
++const host = 'localhost';
++const port = 1985;
++
++async function getContent() {
++  return await fetch(`http://${host}:${port}/graph.json`)
++    .then(resp => resp.json());
++}
++
++async function getContentByCollection(collection = '') {
++  return (await fetch(`http://${host}:${port}/graph.json`)
++    .then(resp => resp.json()))
++    .filter(page => page?.data?.collection === collection);
++}
++
++async function getContentByRoute(route = '') {
++  return (await fetch(`http://${host}:${port}/graph.json`)
++    .then(resp => resp.json()))
++    .filter(page => page?.route.startsWith(route));
++}
++
++export { getContent, getContentByCollection, getContentByRoute };
++// import { getQueryHash } from './common.js';
++
++// const client = {
++//   query: (params) => {
++//     const { query, variables = {} } = params;
++
++//     return fetch('http://localhost:4000/graphql', {
++//       method: 'POST',
++//       headers: {
++//         'Content-Type': 'application/json',
++//         'Accept': 'application/json'
++//       },
++//       body: JSON.stringify({
++//         query,
++//         variables
++//       })
++//     }).then((response) => response.json());
++//   }
++// };
++
++// const APOLLO_STATE = globalThis.__APOLLO_STATE__; // eslint-disable-line no-underscore-dangle
++// const BASE_PATH = globalThis.__GWD_BASE_PATH__; // eslint-disable-line no-underscore-dangle
++// const backupQuery = client.query;
++
++// client.query = (params) => {
++//   if (APOLLO_STATE) {
++//     // __APOLLO_STATE__ defined, in production mode
++//     const queryHash = getQueryHash(params.query, params.variables);
++//     const cachePath = `${BASE_PATH}/${queryHash}-cache.json`;
++
++//     return fetch(cachePath)
++//       .then(response => response.json())
++//       .then((response) => {
++//         return {
++//           data: response
++//         };
++//       });
++//   } else {
++//     // __APOLLO_STATE__ NOT defined, in development mode
++//     return backupQuery(params);
++//   }
++// };
++
++// export default client;
+\ No newline at end of file
+diff --git a/node_modules/@greenwood/cli/src/lib/layout-utils.js b/node_modules/@greenwood/cli/src/lib/layout-utils.js
+index 8dbf281..487d5f2 100644
+--- a/node_modules/@greenwood/cli/src/lib/layout-utils.js
++++ b/node_modules/@greenwood/cli/src/lib/layout-utils.js
+@@ -108,7 +108,8 @@ async function getPageLayout(filePath, compilation, layout) {
+ }
+ 
+ /* eslint-disable-next-line complexity */
+-async function getAppLayout(pageLayoutContents, compilation, customImports = [], frontmatterTitle) {
++async function getAppLayout(pageLayoutContents, compilation, customImports = [], matchingRoute) {
++  const activeFrontmatterTitleKey = '${globalThis.page.title}';
+   const enableHud = compilation.config.devServer.hud;
+   const { layoutsDir, userLayoutsDir } = compilation.context;
+   const userStaticAppLayoutUrl = new URL('./app.html', userLayoutsDir);
+@@ -193,20 +194,25 @@ async function getAppLayout(pageLayoutContents, compilation, customImports = [],
+     const appBody = appRoot.querySelector('body') ? appRoot.querySelector('body').innerHTML : '';
+     const pageBody = pageRoot && pageRoot.querySelector('body') ? pageRoot.querySelector('body').innerHTML : '';
+     const pageTitle = pageRoot && pageRoot.querySelector('head title');
+-    const hasInterpolatedFrontmatter = pageTitle && pageTitle.rawText.indexOf('${globalThis.page.title}') >= 0
+-     || appTitle && appTitle.rawText.indexOf('${globalThis.page.title}') >= 0;
++    const hasActiveFrontmatterTitle = compilation.config.activeFrontmatter && (pageTitle && pageTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0
++     || appTitle && appTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0);
++    let title;
+ 
+-    const title = hasInterpolatedFrontmatter // favor frontmatter interpolation first
+-      ? pageTitle && pageTitle.rawText
++    if (hasActiveFrontmatterTitle) {
++      const text = pageTitle && pageTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0
+         ? pageTitle.rawText
+-        : appTitle.rawText
+-      : frontmatterTitle // otherwise, work in order of specificity from page -> page layout -> app layout
+-        ? frontmatterTitle
++        : appTitle.rawText;
++
++      title = text.replace(activeFrontmatterTitleKey, matchingRoute.title || matchingRoute.label);
++    } else {
++      title = matchingRoute.title
++        ? matchingRoute.title
+         : pageTitle && pageTitle.rawText
+           ? pageTitle.rawText
+           : appTitle && appTitle.rawText
+             ? appTitle.rawText
+-            : 'My App';
++            : matchingRoute.label;
++    }
+ 
+     const mergedHtml = pageRoot && pageRoot.querySelector('html').rawAttrs !== ''
+       ? `<html ${pageRoot.querySelector('html').rawAttrs}>`
+diff --git a/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js b/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
+index 5ce30c1..fa1bed8 100644
+--- a/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
++++ b/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
+@@ -217,16 +217,41 @@ async function walkPackageJson(packageJson = {}) {
+ 
+ function mergeImportMap(html = '', map = {}) {
+   // es-modules-shims breaks on dangling commas in an importMap :/
+-  const danglingComma = html.indexOf('"imports": {}') > 0 ? '' : ',';
++  const hasImportMap = html.indexOf('"importmap-shim": {') > 0;
++  const danglingComma = hasImportMap && html.indexOf('"imports": {}') > 0 ? '' : ',';
+   const importMap = JSON.stringify(map).replace('}', '').replace('{', '');
+ 
+-  const merged = html.replace('"imports": {', `
+-    "imports": {
+-      ${importMap}${danglingComma}
+-  `);
+-
+-  return merged;
++  // TODO looks like this was never working correctly!? :o
++  if (hasImportMap) {
++    return html.replace('"imports": {', `
++      "imports": {
++        ${importMap}${danglingComma}
++    `);
++  } else {
++    return html.replace('<head>', `
++      <head>
++      <script type="importmap-shim">
++        {
++          "imports": {
++            ${importMap}
++          }
++        }
++      </script>
++    `)
++  }
+ }
++// function mergeImportMap(html = '', map = {}) {
++//   // es-modules-shims breaks on dangling commas in an importMap :/
++//   const danglingComma = html.indexOf('"imports": {}') > 0 ? '' : ',';
++//   const importMap = JSON.stringify(map).replace('}', '').replace('{', '');
++
++//   const merged = html.replace('"imports": {', `
++//     "imports": {
++//       ${importMap}${danglingComma}
++//   `);
++
++//   return merged;
++// }
+ 
+ export {
+   mergeImportMap,
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/bundle.js b/node_modules/@greenwood/cli/src/lifecycles/bundle.js
+index 9c963f7..d5f1a50 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/bundle.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/bundle.js
+@@ -243,7 +243,7 @@ async function bundleSsrPages(compilation, optimizePlugins) {
+     // and before we optimize so that all bundled assets can tracked up front
+     // would be nice to see if this can be done in a single pass though...
+     for (const page of ssrPages) {
+-      const { imports, route, layout, title, relativeWorkspacePagePath } = page;
++      const { imports, route, layout, relativeWorkspacePagePath } = page;
+       const moduleUrl = new URL(`.${relativeWorkspacePagePath}`, pagesDir);
+       const request = new Request(moduleUrl);
+       // TODO getLayout has to be static (for now?)
+@@ -252,7 +252,7 @@ async function bundleSsrPages(compilation, optimizePlugins) {
+       let staticHtml = '';
+ 
+       staticHtml = data.layout ? data.layout : await getPageLayout(staticHtml, compilation, layout);
+-      staticHtml = await getAppLayout(staticHtml, compilation, imports, title);
++      staticHtml = await getAppLayout(staticHtml, compilation, imports, page);
+       staticHtml = await getUserScripts(staticHtml, compilation);
+       staticHtml = await (await interceptPage(new URL(`http://localhost:8080${route}`), new Request(new URL(`http://localhost:8080${route}`)), getPluginInstances(compilation), staticHtml)).text();
+ 
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/compile.js b/node_modules/@greenwood/cli/src/lifecycles/compile.js
+index fb48336..68ce2d0 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/compile.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/compile.js
+@@ -1,8 +1,8 @@
+ import { checkResourceExists } from '../lib/resource-utils.js';
+ import { generateGraph } from './graph.js';
+ import { initContext } from './context.js';
++import { readAndMergeConfig } from './config.js';
+ import fs from 'fs/promises';
+-import { readAndMergeConfig as initConfig } from './config.js';
+ 
+ const generateCompilation = () => {
+   return new Promise(async (resolve, reject) => {
+@@ -20,7 +20,7 @@ const generateCompilation = () => {
+       };
+ 
+       console.info('Initializing project config');
+-      compilation.config = await initConfig();
++      compilation.config = await readAndMergeConfig();
+ 
+       // determine whether to use default layout or user detected workspace
+       console.info('Initializing project workspace contexts');
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/config.js b/node_modules/@greenwood/cli/src/lifecycles/config.js
+index 7ee7fc2..9aa3592 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/config.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/config.js
+@@ -46,7 +46,7 @@ const defaultConfig = {
+   port: 8080,
+   basePath: '',
+   optimization: optimizations[0],
+-  interpolateFrontmatter: false,
++  activeFrontmatter: false,
+   plugins: greenwoodPlugins,
+   markdown: { plugins: [], settings: {} },
+   prerender: false,
+@@ -77,7 +77,7 @@ const readAndMergeConfig = async() => {
+ 
+       if (hasConfigFile) {
+         const userCfgFile = (await import(configUrl)).default;
+-        const { workspace, devServer, markdown, optimization, plugins, port, prerender, basePath, staticRouter, pagesDirectory, layoutsDirectory, interpolateFrontmatter, isolation } = userCfgFile;
++        const { workspace, devServer, markdown, optimization, plugins, port, prerender, basePath, staticRouter, pagesDirectory, layoutsDirectory, activeFrontmatter, isolation } = userCfgFile;
+ 
+         // workspace validation
+         if (workspace) {
+@@ -98,11 +98,11 @@ const readAndMergeConfig = async() => {
+           reject(`Error: provided optimization "${optimization}" is not supported.  Please use one of: ${optimizations.join(', ')}.`);
+         }
+ 
+-        if (interpolateFrontmatter) {
+-          if (typeof interpolateFrontmatter !== 'boolean') {
+-            reject('Error: greenwood.config.js interpolateFrontmatter must be a boolean');
++        if (activeFrontmatter) {
++          if (typeof activeFrontmatter !== 'boolean') {
++            reject('Error: greenwood.config.js activeFrontmatter must be a boolean');
+           }
+-          customConfig.interpolateFrontmatter = interpolateFrontmatter;
++          customConfig.activeFrontmatter = activeFrontmatter;
+         }
+ 
+         if (plugins && plugins.length > 0) {
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/graph.js b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+index a1d16e5..1a8c659 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/graph.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+@@ -5,6 +5,25 @@ import { checkResourceExists, requestAsObject } from '../lib/resource-utils.js';
+ import toc from 'markdown-toc';
+ import { Worker } from 'worker_threads';
+ 
++function getLabelFromRoute(_route) {
++  let route = _route;
++
++  if (route === '/index/') {
++    return 'Home';
++  } else if (route.endsWith('/index/')) {
++    route = route.replace('index/', '');
++  }
++
++  return route
++    .split('/')
++    .filter(part => part !== '')
++    .pop()
++    .split('-')
++    .map((routePart) => {
++      return `${routePart.charAt(0).toUpperCase()}${routePart.substring(1)}`;
++    })
++    .join(' ');
++}
+ const generateGraph = async (compilation) => {
+ 
+   return new Promise(async (resolve, reject) => {
+@@ -12,6 +31,7 @@ const generateGraph = async (compilation) => {
+       const { context, config } = compilation;
+       const { basePath } = config;
+       const { pagesDir, projectDirectory, userWorkspace } = context;
++      const collections = {};
+       const customPageFormatPlugins = config.plugins
+         .filter(plugin => plugin.type === 'resource' && !plugin.isGreenwoodDefaultPlugin)
+         .map(plugin => plugin.provider(compilation));
+@@ -22,8 +42,8 @@ const generateGraph = async (compilation) => {
+         filename: 'index.html',
+         path: '/',
+         route: `${basePath}/`,
+-        id: 'index',
+-        label: 'Index',
++        label: 'Home',
++        title: null,
+         data: {},
+         imports: [],
+         resources: [],
+@@ -91,9 +111,10 @@ const generateGraph = async (compilation) => {
+               });
+             } else if (isPage) {
+               let route = relativePagePath.replace(extension, '');
+-              let id = filename.split('/')[filename.split('/').length - 1].replace(extension, '');
++              let root = filename.split('/')[filename.split('/').length - 1].replace(extension, '');
+               let layout = extension === '.html' ? null : 'page';
+               let title = null;
++              let label = getLabelFromRoute(`${route}/`);
+               let imports = [];
+               let customData = {};
+               let filePath;
+@@ -111,7 +132,7 @@ const generateGraph = async (compilation) => {
+               */
+               if (relativePagePath.lastIndexOf('/') > 0) {
+                 // https://github.com/ProjectEvergreen/greenwood/issues/455
+-                route = id === 'index' || route.replace('/index', '') === `/${id}`
++                route = root === 'index' || route.replace('/index', '') === `/${root}`
+                   ? route.replace('index', '')
+                   : `${route}/`;
+               } else {
+@@ -126,7 +147,7 @@ const generateGraph = async (compilation) => {
+ 
+                 layout = attributes.layout || layout;
+                 title = attributes.title || title;
+-                id = attributes.label || id;
++                label = attributes.label || label;
+                 imports = attributes.imports || [];
+                 filePath = `${relativeWorkspacePath}${filename}`;
+ 
+@@ -207,11 +228,8 @@ const generateGraph = async (compilation) => {
+                     page: JSON.stringify({
+                       servePage: isCustom,
+                       route,
+-                      id,
+-                      label: id.split('-')
+-                        .map((idPart) => {
+-                          return `${idPart.charAt(0).toUpperCase()}${idPart.substring(1)}`;
+-                        }).join(' ')
++                      root,
++                      label
+                     }),
+                     request
+                   });
+@@ -222,6 +240,7 @@ const generateGraph = async (compilation) => {
+                   title = ssrFrontmatter.title || title;
+                   imports = ssrFrontmatter.imports || imports;
+                   customData = ssrFrontmatter.data || customData;
++                  label = ssrFrontmatter.label || label;
+ 
+                   /* Menu Query
+                   * Custom front matter - Variable Definitions
+@@ -241,31 +260,26 @@ const generateGraph = async (compilation) => {
+               *----------------------
+               * data: custom page frontmatter
+               * filename: base filename of the page
+-              * id: filename without the extension
+               * relativeWorkspacePagePath: the file path relative to the user's workspace directory
+-              * label: "pretty" text representation of the filename
++              * label: by default is just a copy of title, otherwise can be overridden by the user
+               * imports: per page JS or CSS file imports to be included in HTML output from frontmatter
+               * resources: sum of all resources for the entire page
+               * outputPath: the filename to write to when generating static HTML
+               * path: path to the file relative to the workspace
+               * route: URL route for a given page on outputFilePath
+               * layout: page layout to use as a base for a generated component
+-              * title: a default value that can be used for <title></title>
++              * title: A way to customize the <title></title> tag of the page, otherwise defaults tot the value of label
+               * isSSR: if this is a server side route
+               * prerender: if this should be statically exported
+               * isolation: if this should be run in isolated mode
+               * hydration: if this page needs hydration support
+               * servePage: signal that this is a custom page file type (static | dynamic)
+               */
+-              pages.push({
++              const page = {
+                 data: customData || {},
+                 filename,
+-                id,
+                 relativeWorkspacePagePath: relativePagePath,
+-                label: id.split('-')
+-                  .map((idPart) => {
+-                    return `${idPart.charAt(0).toUpperCase()}${idPart.substring(1)}`;
+-                  }).join(' '),
++                label,
+                 imports,
+                 resources: [],
+                 outputPath: route === '/404/'
+@@ -280,7 +294,21 @@ const generateGraph = async (compilation) => {
+                 isolation,
+                 hydration,
+                 servePage: isCustom
+-              });
++              };
++
++              pages.push(page);
++
++              const pageCollection = customData.collection;
++
++              if (pageCollection) {
++                if (!collections[pageCollection]) {
++                  collections[pageCollection] = [];
++                }
++
++                collections[pageCollection].push(page);
++              }
++
++              compilation.collections = collections;
+             } else {
+               console.debug(`Unhandled extension (${extension}) for route => ${route}`);
+             }
+@@ -323,8 +351,8 @@ const generateGraph = async (compilation) => {
+               filename: '404.html',
+               route: `${basePath}/404/`,
+               path: '404.html',
+-              id: '404',
+-              label: 'Not Found'
++              label: 'Not Found',
++              title: null
+             }
+           ];
+         }
+diff --git a/node_modules/@greenwood/cli/src/loader.js b/node_modules/@greenwood/cli/src/loader.js
+index 792f43c..fd80928 100644
+--- a/node_modules/@greenwood/cli/src/loader.js
++++ b/node_modules/@greenwood/cli/src/loader.js
+@@ -1,19 +1,16 @@
+-import { readAndMergeConfig as initConfig } from './lifecycles/config.js';
++import { readAndMergeConfig } from './lifecycles/config.js';
++import { initContext } from './lifecycles/context.js';
+ import { mergeResponse } from './lib/resource-utils.js';
+ 
+-const config = await initConfig();
++const config = await readAndMergeConfig();
++const context = await initContext({ config });
++
+ const resourcePlugins = config.plugins
+   .filter(plugin => plugin.type === 'resource')
+   .filter(plugin => plugin.name !== 'plugin-node-modules:resource' && plugin.name !== 'plugin-user-workspace')
+   .map(plugin => plugin.provider({
+-    context: {
+-      outputDir: new URL(`file://${process.cwd()}/public`),
+-      projectDirectory: new URL(`file://${process.cwd()}/`),
+-      scratchDir: new URL(`file://${process.cwd()}/.greenwood/`)
+-    },
+-    config: {
+-      devServer: {}
+-    },
++    context,
++    config,
+     graph: []
+   }));
+ 
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
+new file mode 100644
+index 0000000..5d299de
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
+@@ -0,0 +1,54 @@
++import { mergeImportMap } from '../../lib/walker-package-ranger.js';
++import { ResourceInterface } from '../../lib/resource-interface.js';
++
++const importMap = {
++  '@greenwood/cli/src/data/queries.js': '/node_modules/@greenwood/cli/src/data/queries.js'
++};
++
++class ContentAsDataResource extends ResourceInterface {
++  constructor(compilation, options = {}) {
++    super(compilation, options);
++
++    this.contentType = ['text/html'];
++  }
++
++  async shouldIntercept(url, request, response) {
++    return response.headers.get('Content-Type')?.indexOf(this.contentType[0]) >= 0;
++  }
++
++  async intercept(url, request, response) {
++    const body = await response.text();
++    const newBody = mergeImportMap(body, importMap);
++
++    // TODO how come we need to forward headers, shouldn't mergeResponse do that for us?
++    return new Response(newBody, {
++      headers: response.headers
++    });
++  }
++
++  // TODO graphql based hydration?
++  // async shouldOptimize(url, response) {
++  //   return response.headers.get('Content-Type').indexOf(this.contentType[1]) >= 0;
++  // }
++
++  // async optimize(url, response) {
++  //   let body = await response.text();
++
++  //   body = body.replace('<head>', `
++  //     <head>
++  //       <script data-state="apollo" data-gwd-opt="none">
++  //         window.__APOLLO_STATE__ = true;
++  //       </script>
++  //   `);
++
++  //   return new Response(body);
++  // }
++}
++
++const greenwoodPluginContentAsData = {
++  type: 'resource',
++  name: 'plugin-content-as-data:resource',
++  provider: (compilation) => new ContentAsDataResource(compilation)
++};
++
++export { greenwoodPluginContentAsData };
+\ No newline at end of file
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
 index d8409ea..27bfbce 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
@@ -33,3 +553,166 @@ index d8409ea..27bfbce 100644
    }
  
    async intercept(url, request, response) {
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+index 06223cf..828e3a9 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+@@ -5,7 +5,6 @@
+  * This is a Greenwood default plugin.
+  *
+  */
+-import frontmatter from 'front-matter';
+ import fs from 'fs/promises';
+ import rehypeStringify from 'rehype-stringify';
+ import rehypeRaw from 'rehype-raw';
+@@ -38,7 +37,7 @@ class StandardHtmlResource extends ResourceInterface {
+   async serve(url, request) {
+     const { config, context } = this.compilation;
+     const { pagesDir, userWorkspace } = context;
+-    const { interpolateFrontmatter } = config;
++    const { activeFrontmatter } = config;
+     const { pathname } = url;
+     const isSpaRoute = this.compilation.graph.find(node => node.isSPA);
+     const matchingRoute = this.compilation.graph.find((node) => node.route === pathname) || {};
+@@ -46,9 +45,7 @@ class StandardHtmlResource extends ResourceInterface {
+     const isMarkdownContent = (matchingRoute?.filename || '').split('.').pop() === 'md';
+ 
+     let body = '';
+-    let title = matchingRoute.title || null;
+     let layout = matchingRoute.layout || null;
+-    let frontMatter = matchingRoute.data || {};
+     let customImports = matchingRoute.imports || [];
+     let ssrBody;
+     let ssrLayout;
+@@ -74,7 +71,6 @@ class StandardHtmlResource extends ResourceInterface {
+       }
+ 
+       const settings = config.markdown.settings || {};
+-      const fm = frontmatter(markdownContents);
+ 
+       processedMarkdown = await unified()
+         .use(remarkParse, settings) // parse markdown into AST
+@@ -85,23 +81,6 @@ class StandardHtmlResource extends ResourceInterface {
+         .use(rehypePlugins) // apply userland rehype plugins
+         .use(rehypeStringify) // convert AST to HTML string
+         .process(markdownContents);
+-
+-      // configure via frontmatter
+-      if (fm.attributes) {
+-        frontMatter = fm.attributes;
+-
+-        if (frontMatter.title) {
+-          title = frontMatter.title;
+-        }
+-
+-        if (frontMatter.layout) {
+-          layout = frontMatter.layout;
+-        }
+-
+-        if (frontMatter.imports) {
+-          customImports = frontMatter.imports;
+-        }
+-      }
+     }
+ 
+     if (matchingRoute.isSSR) {
+@@ -144,7 +123,7 @@ class StandardHtmlResource extends ResourceInterface {
+       body = ssrLayout ? ssrLayout : await getPageLayout(filePath, this.compilation, layout);
+     }
+ 
+-    body = await getAppLayout(body, this.compilation, customImports, title);
++    body = await getAppLayout(body, this.compilation, customImports, matchingRoute);
+     body = await getUserScripts(body, this.compilation);
+ 
+     if (processedMarkdown) {
+@@ -171,15 +150,32 @@ class StandardHtmlResource extends ResourceInterface {
+       body = body.replace(/\<content-outlet>(.*)<\/content-outlet>/s, `<!-- greenwood-ssr-start -->${ssrBody.replace(/\$/g, '$$$')}<!-- greenwood-ssr-end -->`);
+     }
+ 
+-    if (interpolateFrontmatter) {
+-      for (const fm in frontMatter) {
++    if (activeFrontmatter) {
++      for (const fm in matchingRoute.data) {
+         const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
++        const needle = typeof matchingRoute.data[fm] === 'string' ? matchingRoute.data[fm] : JSON.stringify(matchingRoute.data[fm]).replace(/"/g, '&quot;');
++
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), needle);
++      }
++
++      // TODO
++      // const activeFrontmatterForwardKeys = ['route', 'label'];
++
++      // for (const key of activeFrontmatterForwardKeys) {
++      //   console.log({ key })
++      //   const interpolatedFrontmatter = '\\$\\{globalThis.page.' + key + '\\}';
++
++      //   body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), matchingRoute[key]);
++      // }
++
++      for (const collection in this.compilation.collections) {
++        const interpolatedFrontmatter = '\\$\\{globalThis.collection.' + collection + '\\}';
+ 
+-        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), frontMatter[fm]);
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), JSON.stringify(this.compilation.collections[collection]).replace(/"/g, '&quot;'));
+       }
+     }
+ 
+-    // clean up placeholder content-outlet
++    // clean up any empty placeholder content-outlet
+     if (body.indexOf('<content-outlet></content-outlet>') > 0) {
+       body = body.replace('<content-outlet></content-outlet>', '');
+     }
+diff --git a/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js b/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js
+new file mode 100644
+index 0000000..5023e6a
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/plugins/server/plugin-content.js
+@@ -0,0 +1,47 @@
++import Koa from 'koa';
++import { ServerInterface } from '../../lib/server-interface.js';
++import { Readable } from 'stream';
++
++class ContentServer extends ServerInterface {
++  constructor(compilation, options = {}) {
++    super(compilation, options);
++  }
++
++  async start() {
++    const app = new Koa();
++
++    app.use(async (ctx, next) => {
++      try {
++        if (ctx.request.path.startsWith('/graph.json')) {
++          const { graph } = this.compilation;
++
++          ctx.body = Readable.from(JSON.stringify(graph));
++          ctx.status = 200;
++          ctx.message = 'OK';
++
++          ctx.set('Content-Type', 'application/json');
++          ctx.set('Access-Control-Allow-Origin', '*');
++        }
++      } catch (e) {
++        ctx.status = 500;
++        console.error(e);
++      }
++
++      await next();
++    });
++
++    // TODO use dev server +1
++    await app.listen('1985', () => {
++      console.log('Started content server at => http://localhost:1985');
++    });
++  }
++}
++
++// TODO remove graph.json resolution from regular dev server?
++const greenwoodPluginContentServer = {
++  type: 'server',
++  name: 'plugin-content-server',
++  provider: (compilation) => new ContentServer(compilation)
++};
++
++export { greenwoodPluginContentServer };
+\ No newline at end of file

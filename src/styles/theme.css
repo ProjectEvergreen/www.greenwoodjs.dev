@@ -15,6 +15,11 @@
     format("truetype");
 }
 
+@font-face {
+  font-family: "Geist-Sans Bold";
+  src: url("../../node_modules/geist/dist/fonts/geist-sans/Geist-Bold.woff2") format("truetype");
+}
+
 :root,
 :host {
   --color-primary: #016341;
@@ -31,6 +36,7 @@
   --color-border: #bababa;
   --font-primary: "Geist-Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-primary-bold: "Geist-Sans Bold";
   --font-secondary: "Geist-Mono", monospace;
 }
 
@@ -69,4 +75,26 @@ span.token {
 app-header {
   display: block;
   margin: 10px 0 0;
+}
+
+/* tweaks for rehype-autolink-headings markdown plugin */
+h2 > a > span.icon,
+h3 > a > span.icon,
+h4 > a > span.icon {
+  display: inline-block;
+  width: var(--size-4);
+  height: var(--size-4);
+  padding: var(--size-2);
+  background-image: url("../assets/link.svg");
+  background-size: var(--size-3) var(--size-3);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  vertical-align: text-bottom;
+  opacity: 0.5;
+}
+
+h2:hover > a > span.icon,
+h3:hover > a > span.icon,
+h4:hover > a > span.icon {
+  opacity: 1;
 }

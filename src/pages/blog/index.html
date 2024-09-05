@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Greenwood - ${globalThis.page.title}</title>
+    <meta property="og:title" content="Greenwood - ${globalThis.page.title}" />
+    <script
+      type="module"
+      src="../../components/blog-posts-list/blog-posts-list.js"
+      data-gwd-opt="static"
+    ></script>
+    <style>
+      .page-content .container {
+        text-align: center;
+        margin: var(--size-2);
+      }
+
+      .page-content .heading {
+        font-size: var(--font-size-5);
+        font-family: var(--font-primary-bold);
+      }
+
+      .page-content .subHeading {
+        margin: var(--size-4);
+        font-size: var(--font-size-2);
+      }
+
+      @media (min-width: 768px) {
+        .page-content .heading {
+          font-size: var(--font-size-8);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="heading">
+        News and <br />
+        Announcements
+      </h1>
+      <p class="subHeading">
+        Get the latest updates and information about Greenwood releases and activities.
+      </p>
+
+      <app-blog-posts-list></app-blog-posts-list>
+    </div>
+  </body>
+</html>

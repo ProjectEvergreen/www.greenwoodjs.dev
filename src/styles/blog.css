@@ -1,0 +1,87 @@
+/* would be nice to have CSS nesting here... */
+.page-content {
+  max-width: 100ch;
+  padding: 0 var(--font-size-1);
+}
+
+.page-content h1 {
+  font-size: var(--font-size-5);
+  margin: var(--size-4) 0 0;
+}
+
+.page-content h2 {
+  font-family: var(--font-family-bold);
+  font-size: var(--font-size-4);
+  line-height: 1.8rem;
+  margin: var(--size-4) 0 var(--size-2);
+}
+
+.page-content h3 {
+  font-size: var(--font-size-2);
+  margin: var(--size-3) 0;
+}
+
+.page-content p,
+.page-content em,
+.page-content a,
+.page-content strong,
+.page-content code,
+.page-content li {
+  font-size: var(--font-size-1);
+}
+
+.page-content p {
+  margin: var(--size-4) 0 var(--size-3);
+  line-height: var(--font-lineheight-2);
+}
+
+.page-content img {
+  width: 100%;
+  margin: var(--size-2) 0;
+}
+
+.page-content ol,
+.page-content ul {
+  padding-left: var(--size-4);
+}
+
+.page-content li {
+  padding: var(--size-1);
+}
+
+.page-content blockquote {
+  padding: var(--size-1);
+  background-color: var(--color-accent) !important;
+  border-left: var(--size-1) solid var(--color-secondary);
+  font-style: italic;
+}
+
+.publishDate {
+  font-size: var(--font-size-1);
+  display: block;
+  font-style: italic;
+}
+
+.page-content code[class*="language-"],
+.page-content pre[class*="language-"],
+.page-content .token {
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .page-content {
+    max-width: 65ch;
+    margin: var(--size-2) auto var(--size-4);
+  }
+
+  .page-content code[class*="language-"],
+  .page-content pre[class*="language-"],
+  .page-content .token {
+    font-size: 1rem;
+  }
+
+  .page-content blockquote {
+    margin: var(--size-1);
+    padding: var(--size-2);
+  }
+}
