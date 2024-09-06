@@ -3,7 +3,7 @@ import { greenwoodPluginCssModules } from "./plugin-css-modules.js";
 
 export default {
   activeFrontmatter: true,
-  
+
   // would be nice if we could customize these plugins, like appending the autolink headings
   // https://github.com/ProjectEvergreen/greenwood/issues/1247
   markdown: {
@@ -16,5 +16,5 @@ export default {
     importAttributes: ["css", "json"],
   },
 
-  prerender: true,  
+  prerender: true,
 };
