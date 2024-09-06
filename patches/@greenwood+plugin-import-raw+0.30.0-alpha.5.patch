@@ -1,0 +1,13 @@
+diff --git a/node_modules/@greenwood/plugin-import-raw/src/index.js b/node_modules/@greenwood/plugin-import-raw/src/index.js
+index 499b7e3..6439c33 100644
+--- a/node_modules/@greenwood/plugin-import-raw/src/index.js
++++ b/node_modules/@greenwood/plugin-import-raw/src/index.js
+@@ -41,7 +41,7 @@ class ImportRawResource extends ResourceInterface {
+     const type = url.searchParams.get('type');
+     const dest = request.headers.get('Sec-Fetch-Dest');
+ 
+-    return (url.protocol === 'file:' && type === 'raw' && dest === 'empty') || matches.length > 0;
++    return (url.protocol === 'file:' && type === 'raw') || matches.length > 0;
+   }
+ 
+   async intercept(url, request, response) {
