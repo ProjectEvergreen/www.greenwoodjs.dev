@@ -1,5 +1,7 @@
 # www.greenwoodjs.dev
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c7837ab5-866a-4bdf-b538-5adbd17d2a20/deploy-status)](https://app.netlify.com/sites/super-tapioca-5987ce/deploys)
+
 Documentation website for [**GreenwoodJS**](https://www.greenwoodjs.dev/), using GreenwoodJS for development, naturally. Site is hosted on Netlify.
 
 ## Setup
