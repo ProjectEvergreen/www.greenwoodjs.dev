@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Greenwood - ${globalThis.page.title}</title>
+    <script type="module" src="../components/side-nav/side-nav.js" data-gwd-opt="static"></script>
+    <script
+      type="module"
+      src="../components/table-of-contents/table-of-contents.js"
+      data-gwd-opt="static"
+    ></script>
+    <style>
+      .sidebar,
+      .content,
+      .toc {
+        display: inline-block;
+        padding-left: 2rem;
+        vertical-align: top;
+      }
+
+      .sidebar {
+        width: 20%;
+        border-right: 1px solid black;
+      }
+
+      .content {
+        text-align: left;
+        vertical-align: top;
+        width: 50%;
+      }
+
+      .toc {
+        width: 20%;
+      }
+
+      app-toc {
+        float: right;
+        margin-right: 2rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <app-side-nav route="/guides/" heading="Guides"></app-side-nav>
+    </div>
+    <div class="content">
+      <content-outlet></content-outlet>
+    </div>
+    <div class="toc">
+      <app-toc route="${globalThis.page.route}"></app-toc>
+    </div>
+  </body>
+</html>

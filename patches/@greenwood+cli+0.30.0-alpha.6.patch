@@ -787,7 +787,7 @@ index 286c2de..a336aed 100644
      return new Response(body);
    }
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
-index 06223cf..ab63448 100644
+index 06223cf..b372e38 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 @@ -5,7 +5,6 @@
@@ -884,7 +884,7 @@ index 06223cf..ab63448 100644
      body = await getUserScripts(body, this.compilation);
  
      if (processedMarkdown) {
-@@ -171,15 +150,32 @@ class StandardHtmlResource extends ResourceInterface {
+@@ -171,15 +150,30 @@ class StandardHtmlResource extends ResourceInterface {
        body = body.replace(/\<content-outlet>(.*)<\/content-outlet>/s, `<!-- greenwood-ssr-start -->${ssrBody.replace(/\$/g, '$$$')}<!-- greenwood-ssr-end -->`);
      }
  
@@ -898,15 +898,13 @@ index 06223cf..ab63448 100644
 +        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), needle);
 +      }
 +
-+      // TODO
-+      // const activeFrontmatterForwardKeys = ['route', 'label'];
++      const activeFrontmatterForwardKeys = ['route', 'label', 'title'];
 +
-+      // for (const key of activeFrontmatterForwardKeys) {
-+      //   console.log({ key })
-+      //   const interpolatedFrontmatter = '\\$\\{globalThis.page.' + key + '\\}';
++      for (const key of activeFrontmatterForwardKeys) {
++        const interpolatedFrontmatter = '\\$\\{globalThis.page.' + key + '\\}';
 +
-+      //   body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), matchingRoute[key]);
-+      // }
++        body = body.replace(new RegExp(interpolatedFrontmatter, 'g'), matchingRoute[key]);
++      }
 +
 +      for (const collection in this.compilation.collections) {
 +        const interpolatedFrontmatter = '\\$\\{globalThis.collection.' + collection + '\\}';
