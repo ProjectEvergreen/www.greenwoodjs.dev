@@ -1,9 +1,11 @@
 import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
+import styles from './side-nav.module.css';
 
 export default class SideNav extends HTMLElement {
   async connectedCallback() {
     const heading = this.getAttribute("heading") || "";
     const route = this.getAttribute("route");
+    const currentRoute = this.getAttribute("current-route") || "";
 
     // TODO on first render, even static attributes are undefined
     // ??? { route: undefined, heading: '' }
@@ -34,29 +36,69 @@ export default class SideNav extends HTMLElement {
       });
 
       this.innerHTML = `
-        <h2>${heading}</h2>
-        ${sections
-          .map((section) => {
-            const { heading, items, link } = section;
+        <div class="${styles.fullMenu}">
+          <h2>${heading}</h2>
+          ${sections
+            .map((section) => {
+              const { heading, items, link } = section;
 
-            return `
-              <h3>
-                <a href="${link}">${heading}</a>
-              </h3>
-              <ul>
-                ${items
-                  .map((item) => {
-                    const { label, route } = item;
+              return `
+                <h3>
+                  <a href="${link}">${heading}</a>
+                </h3>
+                <ul>
+                  ${items
+                    .map((item) => {
+                      const { label, route } = item;
 
-                    return `
-                      <li><a href="${route}">${label}</a></li>
-                    `;
-                  })
-                  .join("")}
-              </ul>
-            `;
-          })
-          .join("")}
+                      return `
+                        <li><a href="${route}">${label}</a></li>
+                      `;
+                    })
+                    .join("")}
+                </ul>
+              `;
+            })
+            .join("")
+          }
+        </div>
+        <div class="${styles.compactMenu}">
+          <button popovertarget="compact-menu" class="${styles.compactMenuPopoverTrigger}" aria-label="Compact Guides Menu">
+            ${heading} &#9660;
+          </button>
+          <div id="compact-menu" class="${styles.compactMenuPopover}" popover>
+            ${
+              sections
+                .map((section) => {
+                  const { heading, items, link } = section;
+
+                  return `
+                    <h3 class="${styles.compactMenuSectionHeading}">
+                      <a href="${link}">${heading}</a>
+                    </h3>
+                    <ul class="${styles.compactMenuSectionList}">
+                      ${items
+                        .map((item) => {
+                          const { label, route } = item;
+                          const isActive = route === currentRoute
+                            ? ' active'
+                            : "";
+
+                          return `
+                            <li class="${styles.compactMenuSectionListItem}${isActive}">
+                              <a href="${route}">${label}</a>
+                            </li>
+                          `;
+                        })
+                        .join("")
+                      }
+                    </ul>
+                  `;
+                })
+              .join("")
+            }
+            </div>
+        </div>
       `;
     }
   }

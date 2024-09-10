@@ -1,0 +1,64 @@
+.fullMenu {
+  display: none;
+}
+
+.compactMenu {
+  background-color: var(--color-gray-background);
+}
+
+.compactMenu a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+.compactMenuPopoverTrigger {
+  background-color: var(--color-white);
+  border: none;
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+}
+
+.compactMenuPopover {
+  top: 150px;
+  width: 100%;
+  padding: var(--size-4);
+  background-color: var(--color-gray-background);
+}
+
+.compactMenuSectionHeading {
+  text-decoration: underline;
+  margin: var(--size-3) 0;
+}
+
+.compactMenuSectionList {
+  list-style: none;
+}
+
+.compactMenuSectionListItem {
+  margin: var(--size-2);
+  padding: 0 var(--size-2);
+  /* background-color: transparent;
+  border: 1px solid var(--color-black);
+  padding: var(--size-1); */
+}
+
+.compactMenuSectionList .active a {
+  border-left: var(--size-1) solid black;
+  border-radius: var(--radius-2);
+  background-color: white;
+  padding: 0 var(--size-2);
+  min-width: 200px;
+  display: inline-block;
+  box-shadow: var(--shadow-3);
+}
+
+@media (min-width: 1024px) {
+  .fullMenu {
+    display: block;
+  }
+
+  .compactMenu {
+    display: none;
+  }
+}

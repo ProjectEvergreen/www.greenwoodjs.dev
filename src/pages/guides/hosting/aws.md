@@ -1,5 +1,6 @@
 ---
 title: AWS
+label: AWS
 layout: guides
 order: 3
 ---

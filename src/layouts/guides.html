@@ -8,7 +8,17 @@
       data-gwd-opt="static"
     ></script>
     <style>
-      .sidebar,
+      .page-content {
+        max-width: 100ch;
+        padding: 0 var(--font-size-1);
+        margin: var(--size-4) 0 0;
+      }
+
+      app-side-nav {
+        display: inline-block;
+        margin: 0 0 var(--size-4);
+      }
+      /* .sidebar,
       .content,
       .toc {
         display: inline-block;
@@ -34,19 +44,19 @@
       app-toc {
         float: right;
         margin-right: 2rem;
-      }
+      } */
     </style>
   </head>
 
   <body>
-    <div class="sidebar">
+    <app-side-nav route="/guides/" heading="Guides" current-route="${globalThis.page.route}"></app-side-nav>
+    <content-outlet></content-outlet>
+    <!-- <div class="sidebar">
       <app-side-nav route="/guides/" heading="Guides"></app-side-nav>
     </div>
     <div class="content">
-      <content-outlet></content-outlet>
-    </div>
-    <div class="toc">
       <app-toc route="${globalThis.page.route}"></app-toc>
-    </div>
+      <content-outlet></content-outlet>
+    </div> -->
   </body>
 </html>
