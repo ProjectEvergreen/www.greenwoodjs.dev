@@ -1,5 +1,5 @@
 import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
-import styles from './side-nav.module.css';
+import styles from "./side-nav.module.css";
 
 export default class SideNav extends HTMLElement {
   async connectedCallback() {
@@ -59,20 +59,18 @@ export default class SideNav extends HTMLElement {
                 </ul>
               `;
             })
-            .join("")
-          }
+            .join("")}
         </div>
         <div class="${styles.compactMenu}">
           <button popovertarget="compact-menu" class="${styles.compactMenuPopoverTrigger}" aria-label="Compact Guides Menu">
             ${heading} &#9660;
           </button>
           <div id="compact-menu" class="${styles.compactMenuPopover}" popover>
-            ${
-              sections
-                .map((section) => {
-                  const { heading, items, link } = section;
+            ${sections
+              .map((section) => {
+                const { heading, items, link } = section;
 
-                  return `
+                return `
                     <h3 class="${styles.compactMenuSectionHeading}">
                       <a href="${link}">${heading}</a>
                     </h3>
@@ -80,9 +78,7 @@ export default class SideNav extends HTMLElement {
                       ${items
                         .map((item) => {
                           const { label, route } = item;
-                          const isActive = route === currentRoute
-                            ? ' active'
-                            : "";
+                          const isActive = route === currentRoute ? " active" : "";
 
                           return `
                             <li class="${styles.compactMenuSectionListItem}${isActive}">
@@ -90,13 +86,11 @@ export default class SideNav extends HTMLElement {
                             </li>
                           `;
                         })
-                        .join("")
-                      }
+                        .join("")}
                     </ul>
                   `;
-                })
-              .join("")
-            }
+              })
+              .join("")}
             </div>
         </div>
       `;

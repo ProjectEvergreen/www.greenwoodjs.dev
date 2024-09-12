@@ -3,7 +3,8 @@
 }
 
 .compactMenu {
-  background-color: var(--color-gray-background);
+  /* background-color: var(--color-gray-background); */
+  /* position: fixed; */
 }
 
 .compactMenu a {
@@ -24,11 +25,15 @@
   width: 100%;
   padding: var(--size-4);
   background-color: var(--color-gray-background);
+  position: fixed;
 }
 
 .compactMenuSectionHeading {
-  text-decoration: underline;
   margin: var(--size-3) 0;
+
+  & a {
+    font-family: var(--font-primary-bold);
+  }
 }
 
 .compactMenuSectionList {
@@ -37,10 +42,6 @@
 
 .compactMenuSectionListItem {
   margin: var(--size-2);
-  padding: 0 var(--size-2);
-  /* background-color: transparent;
-  border: 1px solid var(--color-black);
-  padding: var(--size-1); */
 }
 
 .compactMenuSectionList .active a {

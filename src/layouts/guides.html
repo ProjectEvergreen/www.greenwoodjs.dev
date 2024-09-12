@@ -14,49 +14,33 @@
         margin: var(--size-4) 0 0;
       }
 
-      app-side-nav {
+      app-side-nav,
+      app-toc {
         display: inline-block;
         margin: 0 0 var(--size-4);
       }
-      /* .sidebar,
-      .content,
-      .toc {
-        display: inline-block;
-        padding-left: 2rem;
-        vertical-align: top;
+
+      h2,
+      p {
+        margin: var(--size-4) 0;
       }
 
-      .sidebar {
-        width: 20%;
-        border-right: 1px solid black;
+      hr {
+        margin: 0 0 var(--size-4);
       }
-
-      .content {
-        text-align: left;
-        vertical-align: top;
-        width: 50%;
-      }
-
-      .toc {
-        width: 20%;
-      }
-
-      app-toc {
-        float: right;
-        margin-right: 2rem;
-      } */
     </style>
   </head>
 
   <body>
-    <app-side-nav route="/guides/" heading="Guides" current-route="${globalThis.page.route}"></app-side-nav>
+    <app-side-nav
+      route="/guides/"
+      heading="Guides"
+      current-route="${globalThis.page.route}"
+    ></app-side-nav>
+    <app-toc route="${globalThis.page.route}"></app-toc>
+
+    <hr />
+
     <content-outlet></content-outlet>
-    <!-- <div class="sidebar">
-      <app-side-nav route="/guides/" heading="Guides"></app-side-nav>
-    </div>
-    <div class="content">
-      <app-toc route="${globalThis.page.route}"></app-toc>
-      <content-outlet></content-outlet>
-    </div> -->
   </body>
 </html>

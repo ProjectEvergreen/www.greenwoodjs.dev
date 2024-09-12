@@ -1,0 +1,27 @@
+.tocMenu {
+  top: 150px;
+  width: 100%;
+  padding: var(--size-4);
+  background-color: var(--color-gray-background);
+}
+
+.tocMenuTrigger {
+  background-color: var(--color-white);
+  border: none;
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+}
+
+.tocMenuItem {
+  margin: var(--size-2) var(--size-4);
+  padding: 0 var(--size-2);
+
+  & a {
+    color: var(--color-black);
+  }
+}
+
+.tocMenuHeading {
+  font-family: var(--font-primary-bold);
+}
