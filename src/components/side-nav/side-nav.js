@@ -37,27 +37,29 @@ export default class SideNav extends HTMLElement {
 
       this.innerHTML = `
         <div class="${styles.fullMenu}">
-          <h2>${heading}</h2>
           ${sections
             .map((section) => {
               const { heading, items, link } = section;
 
               return `
-                <h3>
-                  <a href="${link}">${heading}</a>
-                </h3>
-                <ul>
-                  ${items
-                    .map((item) => {
-                      const { label, route } = item;
+                  <h3 class="${styles.compactMenuSectionHeading}">
+                    <a href="${link}">${heading}</a>
+                  </h3>
+                  <ul class="${styles.compactMenuSectionList}">
+                    ${items
+                      .map((item) => {
+                        const { label, route } = item;
+                        const isActive = route === currentRoute ? " active" : "";
 
-                      return `
-                        <li><a href="${route}">${label}</a></li>
-                      `;
-                    })
-                    .join("")}
-                </ul>
-              `;
+                        return `
+                          <li class="${styles.compactMenuSectionListItem}${isActive}">
+                            <a href="${route}">${label}</a>
+                          </li>
+                        `;
+                      })
+                      .join("")}
+                  </ul>
+                `;
             })
             .join("")}
         </div>

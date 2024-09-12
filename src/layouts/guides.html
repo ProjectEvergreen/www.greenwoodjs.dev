@@ -10,8 +10,21 @@
     <style>
       .page-content {
         max-width: 100ch;
-        padding: 0 var(--font-size-1);
+        padding: 0 var(--size-4);
         margin: var(--size-4) 0 0;
+
+        & .content h1 {
+          font-size: var(--font-size-5);
+        }
+
+        & h2,
+        p {
+          margin: var(--size-4) 0;
+        }
+
+        & hr {
+          margin: 0 0 var(--size-4);
+        }
       }
 
       app-side-nav,
@@ -20,13 +33,46 @@
         margin: 0 0 var(--size-4);
       }
 
-      h2,
-      p {
-        margin: var(--size-4) 0;
+      @media (min-width: 1024px) {
+        .page-content {
+          margin: var(--size-6) auto;
+          width: 90%;
+
+          & p {
+            font-size: var(--font-size-2);
+          }
+        }
+
+        hr {
+          display: none;
+        }
+
+        app-side-nav {
+          display: inline-block;
+          width: 25%;
+          vertical-align: top;
+        }
+
+        app-toc {
+          float: right;
+          display: inline-block;
+          width: 20%;
+        }
+
+        .content {
+          display: inline-block;
+          width: 50%;
+        }
       }
 
-      hr {
-        margin: 0 0 var(--size-4);
+      @media (min-width: 1440px) {
+        .page-content {
+          width: 85%;
+
+          & p {
+            font-size: var(--font-size-3);
+          }
+        }
       }
     </style>
   </head>
@@ -41,6 +87,8 @@
 
     <hr />
 
-    <content-outlet></content-outlet>
+    <div class="content">
+      <content-outlet></content-outlet>
+    </div>
   </body>
 </html>

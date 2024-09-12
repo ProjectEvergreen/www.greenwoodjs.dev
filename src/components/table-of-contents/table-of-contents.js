@@ -12,24 +12,42 @@ export default class TableOfContents extends HTMLElement {
     }
 
     this.innerHTML = `
-      <button popovertarget="onthispage" class="${styles.tocMenuTrigger}" aria-label="Table of Contents Menu">
-        On this page &#9660;
-      </button>
-      <div id="onthispage" class="${styles.tocMenu}" popover>
-        <h2 class="${styles.tocMenuHeading}">Table of Contents</h2>
+      <div class="${styles.fullMenu}">
+        <h2>On this page</h2>
         <ol>
         ${tableOfContents
           .map((item) => {
             const { content, slug } = item;
 
             return `
-              <li class="${styles.tocMenuItem}">
-                <a href="#${slug}" popovertarget="onthispage" popovertargetaction="hide">${content}</a>
+              <li class="${styles.compactMenuSectionListItem}">
+                <a href="#${slug}">${content}</a>
               </li>
             `;
           })
           .join("")}
         </ol>
+      </div>
+      <div class="${styles.compactMenu}">
+        <button popovertarget="onthispage" class="${styles.compactMenuTrigger}" aria-label="Table of Contents Menu">
+          On this page &#9660;
+        </button>
+        <div id="onthispage" class="${styles.compactMenuPopover}" popover>
+          <h2 class="${styles.compactMenuHeading}">Table of Contents</h2>
+          <ol>
+          ${tableOfContents
+            .map((item) => {
+              const { content, slug } = item;
+
+              return `
+                <li class="${styles.compactMenuItem}">
+                  <a href="#${slug}" popovertarget="onthispage" popovertargetaction="hide">${content}</a>
+                </li>
+              `;
+            })
+            .join("")}
+          </ol>
+        </div>
       </div>
     `;
   }
