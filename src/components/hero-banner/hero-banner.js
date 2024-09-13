@@ -3,7 +3,7 @@ import emphasis from "../../assets/emphasis-corner.svg?type=raw";
 
 export default class HeroBanner extends HTMLElement {
   connectedCallback() {
-    const code = "npx @greenwood/init@latest";
+    const code = "npx @greenwood/init@latest my-app";
 
     this.innerHTML = `
       <div class="${styles.container}">
