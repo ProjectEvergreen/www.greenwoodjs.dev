@@ -13,7 +13,7 @@ export default class TableOfContents extends HTMLElement {
 
     this.innerHTML = `
       <div class="${styles.fullMenu}">
-        <h2>On this page</h2>
+        <h2>On This Page</h2>
         <ol>
         ${tableOfContents
           .map((item) => {
@@ -30,10 +30,9 @@ export default class TableOfContents extends HTMLElement {
       </div>
       <div class="${styles.compactMenu}">
         <button popovertarget="onthispage" class="${styles.compactMenuTrigger}" aria-label="Table of Contents Menu">
-          On this page &#9660;
+          On This Page &#9660;
         </button>
         <div id="onthispage" class="${styles.compactMenuPopover}" popover>
-          <h2 class="${styles.compactMenuHeading}">Table of Contents</h2>
           <ol>
           ${tableOfContents
             .map((item) => {

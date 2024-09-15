@@ -33,6 +33,7 @@
   --color-black: #4d4d4d;
   --color-gray: #f5f5f5;
   --color-gray-background: #edefec;
+  --color-prism-bg: #2e3440;
   --color-border: #bababa;
   --font-primary: "Geist-Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -62,8 +63,33 @@ a:hover {
 /* tweaks for PrismJS */
 code[class*="language-"],
 pre[class*="language-"],
+code,
+pre,
 span.token {
   font-family: "Geist-Mono", monospace;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  code[class*="language-"],
+  pre[class*="language-"],
+  .token {
+    font-size: 0.9rem;
+  }
+}
+
+/* inline style blocks */
+code,
+pre {
+  background-color: var(--color-prism-bg);
+  color: var(--color-white);
+  padding: var(--size-1) var(--size-2);
+  display: inline-block;
+  border-radius: var(--radius-2);
 }
 
 [popover] {
@@ -97,4 +123,29 @@ h2:hover > a > span.icon,
 h3:hover > a > span.icon,
 h4:hover > a > span.icon {
   opacity: 1;
+}
+
+li {
+  margin: var(--size-2) 0;
+}
+
+.heading-box {
+  background-color: var(--color-gray);
+  padding: var(--size-5) var(--size-3) var(--size-3);
+  border-radius: var(--radius-3);
+
+  & h1 {
+    font-size: var(--font-size-3) !important;
+    background-color: var(--color-white);
+    display: inline-block;
+    padding: var(--size-2) var(--size-4);
+    border-radius: var(--radius-3);
+    box-shadow: var(--shadow-3);
+  }
+
+  & strong {
+    font-family: var(--font-primary-bold);
+    font-weight: 100;
+    text-decoration: underline;
+  }
 }

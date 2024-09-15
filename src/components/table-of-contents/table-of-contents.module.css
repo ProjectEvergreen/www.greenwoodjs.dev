@@ -2,7 +2,8 @@
   display: none;
 
   & h2 {
-    margin: 0 0 var(--size-3);
+    margin: 0 0 var(--size-2);
+    text-decoration: underline;
   }
 }
 
@@ -45,6 +46,7 @@
 
 .compactMenuHeading {
   font-family: var(--font-primary-bold);
+  text-decoration: underline;
 }
 
 @media (min-width: 1024px) {

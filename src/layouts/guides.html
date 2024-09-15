@@ -9,12 +9,23 @@
     ></script>
     <style>
       .page-content {
+        & hr {
+          margin: 0 0 var(--size-4);
+        }
+      }
+      .page-content .content {
         max-width: 100ch;
         padding: 0 var(--size-4);
-        margin: var(--size-4) 0 0;
 
-        & .content h1 {
+        & h1 {
           font-size: var(--font-size-5);
+        }
+
+        & h2 {
+          font-size: var(--font-size-3);
+          font-family: var(--font-primary-bold);
+          font-weight: 100;
+          margin: var(--size-6) 0 0 !important;
         }
 
         & h2,
@@ -22,8 +33,15 @@
           margin: var(--size-4) 0;
         }
 
-        & hr {
-          margin: 0 0 var(--size-4);
+        & ol,
+        & ul {
+          padding-left: var(--size-4);
+        }
+
+        h2 > a > span.icon,
+        h3 > a > span.icon,
+        h4 > a > span.icon {
+          vertical-align: middle;
         }
       }
 
@@ -39,7 +57,7 @@
           width: 90%;
 
           & p {
-            font-size: var(--font-size-2);
+            font-size: var(--font-size-1);
           }
         }
 
@@ -56,12 +74,12 @@
         app-toc {
           float: right;
           display: inline-block;
-          width: 20%;
+          width: 15%;
         }
 
         .content {
           display: inline-block;
-          width: 50%;
+          width: 55%;
         }
       }
 
