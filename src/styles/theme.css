@@ -149,3 +149,10 @@ li {
     text-decoration: underline;
   }
 }
+
+.page-content blockquote {
+  padding: var(--size-1);
+  background-color: var(--color-accent) !important;
+  border-left: var(--size-1) solid var(--color-secondary);
+  font-style: italic;
+}

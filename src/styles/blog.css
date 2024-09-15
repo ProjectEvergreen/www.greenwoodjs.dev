@@ -49,13 +49,6 @@
   padding: var(--size-1);
 }
 
-.page-content blockquote {
-  padding: var(--size-1);
-  background-color: var(--color-accent) !important;
-  border-left: var(--size-1) solid var(--color-secondary);
-  font-style: italic;
-}
-
 .publishDate {
   font-size: var(--font-size-1);
   display: block;
