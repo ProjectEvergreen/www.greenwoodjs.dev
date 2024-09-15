@@ -7,7 +7,7 @@ tocHeading: 2
 
 # Netlify
 
-Greenwood can be deployed to [**Netlify**](https://www.netlify.com/) for either static hosting and / or serverless hosting.  Just connect your [git repository](https://docs.netlify.com/git/overview/) and you're done!
+Greenwood can be deployed to [**Netlify**](https://www.netlify.com/) for either static hosting and / or serverless hosting. Just connect your [git repository](https://docs.netlify.com/git/overview/) and you're done!
 
 > You can see a complete hybrid project example in our [demonstration repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-netlify).
 
@@ -33,11 +33,9 @@ For static hosting, you can apply any build customization [through a _netlify.to
 For serverless hosting of SSR pages and API routes you can read about and install [our adapter plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-netlify) and then add it to your _greenwood.config.js_.
 
 ```js
-import { greenwoodPluginAdapterNetlify } from '@greenwood/plugin-adapter-netlify';
+import { greenwoodPluginAdapterNetlify } from "@greenwood/plugin-adapter-netlify";
 
 export default {
-  plugins: [
-    greenwoodPluginAdapterNetlify()
-  ]
-}
+  plugins: [greenwoodPluginAdapterNetlify()],
+};
 ```
