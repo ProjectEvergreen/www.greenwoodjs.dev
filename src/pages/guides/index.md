@@ -3,6 +3,24 @@ title: Guides
 layout: guides
 ---
 
-# Welcome to our Guides
+<div class="heading-box">
+  <h1>Guides</h1>
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+The set of content on these guide pages is intended to help demonstrate how to extend and leverage Greenwood to bring whatever you want to the table and however you want to run it.
+
+_Want to build with Lit and deploy to Vercel?_ **No problem.**
+</br>
+</br>
+_Deploy a SPA to AWS?_ **No problem.**
+</br>
+</br>
+_Run HTMX on a self-hsoted server?_ **You know you can.**
+
+</div>
+
+The content is broken down across these areas:
+
+- [Getting Started](/guides/getting-started/) - If you are new to Greenwood, start here
+- [Hosting](/guides/hosting/) - How to build and deploy your Greenwood app
+- [Ecosystem](/guides/ecosystem/) - Tailwind? Storybook? Web Test Runner? No problem, all are welcome!
+- [Tutorials](/guides/tutorials/) - Pattern and architectures for the web demonstrated with Greenwood
