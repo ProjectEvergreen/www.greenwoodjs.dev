@@ -6,3 +6,69 @@ tocHeading: 2
 ---
 
 # Lit
+
+[**Lit**](https://lit.dev/) is builds on top Web Components standards adding additional developer experience ergonomics to authoring Web Components like reactivity, declarative templates and overall helping to reduce boilerplate.  Lit also has support for SSR (server-side rendering), which Greenwood supports through a plugin.
+
+> You can see a complete hybrid project example in this [demonstration repo](https://github.com/thescientist13/greenwood-lit-ssr).
+
+## Installation
+
+As with most libraries, just install **lit** with your favorite package manager as a dependency.
+
+```shell
+npm i lit
+```
+
+Now you can start writing Lit based Web Components!
+
+```html
+<html>
+  <head>
+    <script type="module">
+      import { html, css, LitElement } from 'lit';
+
+      export class SimpleGreeting extends LitElement {
+        static styles = css`p { color: blue }`;
+
+        static properties = {
+          name: {type: String},
+        };
+
+        constructor() {
+          super();
+          this.name = 'Somebody';
+        }
+
+        render() {
+          return html`<p>Hello, ${this.name}!</p>`;
+        }
+      }
+      customElements.define('simple-greeting', SimpleGreeting);
+    </script>
+  </head>
+
+  <body>
+    <simple-greeting></simple-greeting>
+    <simple-greeting name="Greenwood"></simple-greeting>
+  </body>
+
+</html>
+```
+
+That's it!
+
+## SSR
+
+For [Lit and SSR](https://lit.dev/docs/ssr/overview/), you can enable this capability by installing a Greenwood [plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit) and adding it to your _greenwood.config.js_.
+
+```js
+import { greenwoodPluginRendererLit } from '@greenwood/plugin-renderer-lit';
+
+export default {
+  plugins: [
+    greenwoodPluginRendererLit()
+  ]
+}
+```
+
+> Please see [the README](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-renderer-lit/README.md) to learn more about full usage details and caveats.

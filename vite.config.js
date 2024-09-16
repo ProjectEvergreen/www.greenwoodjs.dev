@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
@@ -36,7 +36,7 @@ function transformConstructableStylesheetsPlugin() {
     load: async (id) => {
       if (id.endsWith(".css.type")) {
         const filename = id.slice(0, -5);
-        const contents = fs.readFileSync(filename, "utf-8");
+        const contents = await fs.readFile(filename, "utf-8");
         const url = new URL(`file://${id.replace(".type", "")}`);
         // "coerce" native conststructable stylesheets into inline JS so Vite / Rollup do not complain
         const request = new Request(url, {
@@ -60,7 +60,7 @@ function transformRawImports() {
     load: async (id) => {
       if (id.endsWith("?type=raw")) {
         const filename = id.slice(0, -9);
-        const contents = fs.readFileSync(filename, "utf-8");
+        const contents = await fs.readFile(filename, "utf-8");
         const response = await rawResource.intercept(null, null, new Response(contents));
         const body = await response.text();
 

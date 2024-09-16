@@ -1,5 +1,5 @@
 import { defaultReporter } from "@web/test-runner";
-import fs from "fs";
+import fs from "fs/promises";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 import { junitReporter } from "@web/test-runner-junit-reporter";
 import path from "path";
@@ -26,7 +26,7 @@ export default {
         const { url } = context.request;
 
         if (url.endsWith("?type=raw")) {
-          const contents = fs.readFileSync(new URL(`.${url}`, import.meta.url), "utf-8");
+          const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
           const response = await rawResource.intercept(null, null, new Response(contents));
           const body = await response.text();
 

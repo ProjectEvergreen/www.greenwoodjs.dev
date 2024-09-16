@@ -4,12 +4,13 @@ order: 2
 tocHeading: 2
 ---
 
+<!-- prettier-ignore-start -->
 <div class="heading-box">
   <h1>Hosting</h1>
 
-The guides within this section cover some of the hosting options you can use to build and deploy your Greenwood project. Below is a an overview of the deploy targets available for a Greenwood site, with additional target specific pages in the sidebar.
-
+  The guides within this section cover some of the hosting options you can use to build and deploy your Greenwood project. Below is a an overview of the deploy targets available for a Greenwood site, with additional target specific pages in the sidebar.
 </div>
+<!-- prettier-ignore-end -->
 
 ## Building
 
