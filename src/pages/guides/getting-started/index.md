@@ -3,6 +3,14 @@ order: 1
 layout: guides
 ---
 
-# Getting Started
+<!-- prettier-ignore-start -->
+<div class="heading-box">
+  <h1>Getting Started</h1>
 
-Guides on getting started with Greenwood.
+  How to get started using Greenwood...
+
+</div>
+
+<!-- prettier-ignore-end -->
+
+TODO

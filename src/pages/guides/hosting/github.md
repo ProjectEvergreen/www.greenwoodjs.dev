@@ -1,5 +1,6 @@
 ---
 title: GitHub
+label: GitHub
 layout: guides
 order: 5
 tocHeading: 2

@@ -7,9 +7,10 @@ layout: guides
 <div class="heading-box">
   <h1>Ecosystem</h1>
 
-The guides within this section cover examples of using popular libraries and tools that are based on or work well with developing for web standards, and in particular Web Components, when using Greenwood. As Greenwood's philosophy it to stay out of your way, as long as the tool embraces web standards, it should just work out of the box.
+  The guides within this section cover examples of using popular libraries and tools that are based on or work well with developing for web standards, and in particular Web Components, when using Greenwood. As Greenwood's philosophy it to stay out of your way, as long as the tool embraces web standards, it should just work out of the box.
 
 </div>
+
 <!-- prettier-ignore-end -->
 
 In most cases an `npm install` should be all you need to use any third party library and including it in a `<script>` or `<link>` tag or through an ES module. For example, to use jQuery, simply install it from **npm**
