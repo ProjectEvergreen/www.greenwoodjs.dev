@@ -13,7 +13,7 @@ Greenwood can be deployed to [**Vercel**](https://vercel.com/) for either static
 
 ## Static Hosting
 
-For static hosting, just connect your repository to Vercel (or upload files) you can apply any build customization [through _vercel.json_](https://vercel.com/docs/projects/project-configuration) or the Vercel UI accordingly.
+For static hosting, nothing is needed other than just connecting your repository and building your Greenwood project.  You can apply any of your own build customizations [through a _vercel.json_](https://vercel.com/docs/projects/project-configuration) or the Vercel UI.
 
 ```json
 {

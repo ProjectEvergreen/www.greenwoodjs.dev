@@ -13,7 +13,7 @@ Greenwood can be deployed to [**Netlify**](https://www.netlify.com/) for either 
 
 ## Static Hosting
 
-For static hosting, you can apply any build customization [through a _netlify.toml_](https://docs.netlify.com/configure-builds/file-based-configuration/) or the Netlify UI accordingly.
+For static hosting, nothing is needed other than connecting your repository and building your Greenwood project.  You can apply any of your own build customizations [through a _netlify.toml_](https://docs.netlify.com/configure-builds/file-based-configuration/) or the Netlify UI.
 
 ```toml
 [build]
