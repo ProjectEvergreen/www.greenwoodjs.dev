@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Web Test Runner
 
-[**Web Test Runner**](https://modern-web.dev/docs/test-runner/overview/) is a developer tool created by the [Modern Web](https://modern-web.dev/) team that helps with the facilitating of testing Web Components, especially being able to test them in a browser.  This guide will also cover how to customize the runner when using custom Greenwood plugins.
+[**Web Test Runner**](https://modern-web.dev/docs/test-runner/overview/) is a developer tool created by the [Modern Web](https://modern-web.dev/) team that helps with the facilitating of testing Web Components, especially being able to test them in a browser. This guide will also cover how to customize the runner when using custom Greenwood plugins.
 
 > You can see an example project (this website's own repo!) [here](https://github.com/ProjectEvergreen/www.greenwoodjs.dev).
 
@@ -14,65 +14,66 @@ tocHeading: 2
 
 For the sake of this guide, we will be covering a minimal setup but you are free to extends things as much as you need.
 
-1. First, let's install WTR and the junit reporter.  You can use your favorite package manager
+1. First, let's install WTR and the junit reporter. You can use your favorite package manager
 
-    ```shell
-    npm i -D @web/test-runner @web/test-runner-junit-reporter
-    ```
+   ```shell
+   npm i -D @web/test-runner @web/test-runner-junit-reporter
+   ```
+
 1. You'll also want something like [**chai**](https://www.chaijs.com/) to write your assertions with
 
-    ```shell
-    npm i -D @esm-bundle/chai
-    ```
+   ```shell
+   npm i -D @esm-bundle/chai
+   ```
+
 1. Next, create a basic _web-test-runner.config.js_ configuration file
 
-    ```js
-    import path from 'path';
-    import { defaultReporter } from "@web/test-runner";
-    import { junitReporter } from "@web/test-runner-junit-reporter";
+   ```js
+   import path from "path";
+   import { defaultReporter } from "@web/test-runner";
+   import { junitReporter } from "@web/test-runner-junit-reporter";
 
-    export default {
-      // customize your spec pattern here
-      files: "./src/**/*.spec.js",
-      // enable this if you're using npm / node_modules
-      nodeResolve: true,
-      // optionally configure reporters and coverage
-      reporters: [
-        defaultReporter({ reportTestResults: true, reportTestProgress: true }),
-        junitReporter({
-          outputPath: "./reports/test-results.xml",
-        }),
-      ],
-      coverage: true,
-      coverageConfig: {
-        reportDir: "./reports",
-      },
-      // we can use middleware here to resolve assets like images
-      // to your Greenwood workspace to fix any 404s
-      middleware: [
-        function rewriteIndex(context, next) {
-          const { url } = context.request;
+   export default {
+     // customize your spec pattern here
+     files: "./src/**/*.spec.js",
+     // enable this if you're using npm / node_modules
+     nodeResolve: true,
+     // optionally configure reporters and coverage
+     reporters: [
+       defaultReporter({ reportTestResults: true, reportTestProgress: true }),
+       junitReporter({
+         outputPath: "./reports/test-results.xml",
+       }),
+     ],
+     coverage: true,
+     coverageConfig: {
+       reportDir: "./reports",
+     },
+     // we can use middleware here to resolve assets like images
+     // to your Greenwood workspace to fix any 404s
+     middleware: [
+       function rewriteIndex(context, next) {
+         const { url } = context.request;
 
-          if (url.indexOf("/assets") === 0) {
-            context.request.url = path.join(process.cwd(), "src", url);
-          }
+         if (url.indexOf("/assets") === 0) {
+           context.request.url = path.join(process.cwd(), "src", url);
+         }
 
-          return next();
-        },
-      ],
-    };
-    ```
+         return next();
+       },
+     ],
+   };
+   ```
 
 ## Custom Resources
 
 If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need to customize WTR manually through [its plugins option](https://modern-web.dev/docs/test-runner/plugins/) so it can leverage the Greenwood plugins your using to automatically to handle these custom transformations.
 
-
 For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to add a plugin transformation and stub out the signature.
 
 ```js
-import path from 'path';
-import fs from 'fs/promises';
+import path from "path";
+import fs from "fs/promises";
 import { defaultReporter } from "@web/test-runner";
 import { junitReporter } from "@web/test-runner-junit-reporter";
 // 1) import the greenwood plugin
@@ -85,23 +86,25 @@ export default {
   // ...
 
   // 3) customize WTR
-  plugins: [{
-    name: "import-raw",
-    async transform(context) {
-      const { url } = context.request;
+  plugins: [
+    {
+      name: "import-raw",
+      async transform(context) {
+        const { url } = context.request;
 
-      if (url.endsWith("?type=raw")) {
-        const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
-        const response = await rawResourcePlugin.intercept(null, null, new Response(contents));
-        const body = await response.text();
+        if (url.endsWith("?type=raw")) {
+          const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
+          const response = await rawResourcePlugin.intercept(null, null, new Response(contents));
+          const body = await response.text();
 
-        return {
-          body,
-          headers: { "Content-Type": "application/javascript" },
-        };
-      }
+          return {
+            body,
+            headers: { "Content-Type": "application/javascript" },
+          };
+        }
+      },
     },
-  }],
+  ],
 };
 ```
 

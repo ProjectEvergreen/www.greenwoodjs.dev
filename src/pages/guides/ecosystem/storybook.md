@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Storybook
 
-[**Storybook**](https://storybook.js.org/) is a developer tool created for authoring components in isolation.  This guide will also cover how to customize the runner when using custom Greenwood plugins.
+[**Storybook**](https://storybook.js.org/) is a developer tool created for authoring components in isolation. This guide will also cover how to customize the runner when using custom Greenwood plugins.
 
 > You can see an example (this website's own repo!) [here](https://github.com/ProjectEvergreen/www.greenwoodjs.dev).
 
@@ -106,13 +106,11 @@ function transformConstructableStylesheetsPlugin() {
 }
 
 export default defineConfig({
-  plugins: [
-    transformConstructableStylesheetsPlugin()
-  ]
+  plugins: [transformConstructableStylesheetsPlugin()],
 });
 ```
 
-Phew, should be all set now.  😅
+Phew, should be all set now. 😅
 
 ## Custom Resources
 
@@ -163,7 +161,7 @@ export default defineConfig({
   plugins: [
     transformConstructableStylesheetsPlugin(),
     // 4) add it the plugins option
-    transformRawImports()
+    transformRawImports(),
   ],
 });
 ```

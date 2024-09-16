@@ -36,38 +36,35 @@ First we'll create our frontend including htmx in a `<script>` tag and adding a 
   </head>
 
   <body>
-    <form
-      hx-post="/api/greeting"
-      hx-target="#greeting-output"
-    >
+    <form hx-post="/api/greeting" hx-target="#greeting-output">
       <label>
-        <input type="text" name="name" placeholder="your name..." required/>
+        <input type="text" name="name" placeholder="your name..." required />
       </label>
       <button type="submit">Click me for a greeting!</button>
     </form>
-    
+
     <h2 id="greeting-output"></h2>
   </body>
-
 </html>
 ```
 
 ### Backend
 
 Now let's add our API endpoint.
+
 ```js
 // src/pages/api/greeting.js
 export async function handler(request) {
   const formData = await request.formData();
-  const name = formData.has('name') ? formData.get('name') : 'Greenwood';
+  const name = formData.has("name") ? formData.get("name") : "Greenwood";
   const body = `Hello ${name}! 👋`;
 
   return new Response(body, {
     headers: new Headers({
-      'Content-Type': 'text/html'
-    })
+      "Content-Type": "text/html",
+    }),
   });
 }
 ```
 
-Now when the form is submitted, htmx will make a request to our backend API and output the returned HTML to the page.  🎯
+Now when the form is submitted, htmx will make a request to our backend API and output the returned HTML to the page. 🎯
