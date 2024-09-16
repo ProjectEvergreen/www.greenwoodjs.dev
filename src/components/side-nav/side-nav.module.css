@@ -34,13 +34,19 @@
   }
 }
 
+.compactMenuSectionHeading {
+  & a.active {
+    text-decoration: underline;
+  }
+
+  & a.active::before {
+    content: "\027A5";
+  }
+}
+
 .compactMenuSectionList {
   list-style: none;
   margin: 0 0 var(--size-6) 0;
-}
-
-.compactMenuSectionListItem {
-  margin: var(--size-1);
 }
 
 .compactMenuSectionList .active a {
@@ -52,6 +58,10 @@
   display: inline-block;
   box-shadow: var(--shadow-3);
   margin-left: -16px;
+}
+
+.compactMenuSectionListItem {
+  margin: var(--size-1);
 }
 
 @media (min-width: 1024px) {

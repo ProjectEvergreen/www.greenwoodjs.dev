@@ -40,10 +40,43 @@ export default class SideNav extends HTMLElement {
           ${sections
             .map((section) => {
               const { heading, items, link } = section;
+              const isActiveHeading = currentRoute.startsWith(link) ? "active" : "";
 
               return `
+                <h3 class="${styles.compactMenuSectionHeading}">
+                  <a class="${isActiveHeading}" href="${link}">${heading}</a>
+                </h3>
+                <ul class="${styles.compactMenuSectionList}">
+                  ${items
+                    .map((item) => {
+                      const { label, route } = item;
+                      const isActive = route === currentRoute ? " active" : "";
+
+                      return `
+                        <li class="${styles.compactMenuSectionListItem}${isActive}">
+                          <a href="${route}">${label}</a>
+                        </li>
+                      `;
+                    })
+                    .join("")}
+                </ul>
+              `;
+            })
+            .join("")}
+        </div>
+        <div class="${styles.compactMenu}">
+          <button popovertarget="compact-menu" class="${styles.compactMenuPopoverTrigger}" aria-label="Compact Guides Menu">
+            ${heading} &#9660;
+          </button>
+          <div id="compact-menu" class="${styles.compactMenuPopover}" popover>
+            ${sections
+              .map((section) => {
+                const { heading, items, link } = section;
+                const isActiveHeading = currentRoute.startsWith(link) ? "active" : "";
+
+                return `
                   <h3 class="${styles.compactMenuSectionHeading}">
-                    <a href="${link}">${heading}</a>
+                    <a class="${isActiveHeading}" href="${link}">${heading}</a>
                   </h3>
                   <ul class="${styles.compactMenuSectionList}">
                     ${items
@@ -57,43 +90,13 @@ export default class SideNav extends HTMLElement {
                           </li>
                         `;
                       })
-                      .join("")}
+                      .join("")
+                    }
                   </ul>
                 `;
-            })
-            .join("")}
-        </div>
-        <div class="${styles.compactMenu}">
-          <button popovertarget="compact-menu" class="${styles.compactMenuPopoverTrigger}" aria-label="Compact Guides Menu">
-            ${heading} &#9660;
-          </button>
-          <div id="compact-menu" class="${styles.compactMenuPopover}" popover>
-            ${sections
-              .map((section) => {
-                const { heading, items, link } = section;
-
-                return `
-                    <h3 class="${styles.compactMenuSectionHeading}">
-                      <a href="${link}">${heading}</a>
-                    </h3>
-                    <ul class="${styles.compactMenuSectionList}">
-                      ${items
-                        .map((item) => {
-                          const { label, route } = item;
-                          const isActive = route === currentRoute ? " active" : "";
-
-                          return `
-                            <li class="${styles.compactMenuSectionListItem}${isActive}">
-                              <a href="${route}">${label}</a>
-                            </li>
-                          `;
-                        })
-                        .join("")}
-                    </ul>
-                  `;
-              })
-              .join("")}
-            </div>
+              }).join("")
+            }
+          </div>
         </div>
       `;
     }
