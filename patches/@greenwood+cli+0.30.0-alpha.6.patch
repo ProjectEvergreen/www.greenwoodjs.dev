@@ -280,7 +280,7 @@ index 9c31a23..807a79e 100644
  
          if (plugins && plugins.length > 0) {
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/graph.js b/node_modules/@greenwood/cli/src/lifecycles/graph.js
-index a1d16e5..7c9437e 100644
+index a1d16e5..d73c515 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/graph.js
 +++ b/node_modules/@greenwood/cli/src/lifecycles/graph.js
 @@ -5,13 +5,33 @@ import { checkResourceExists, requestAsObject } from '../lib/resource-utils.js';
@@ -480,7 +480,7 @@ index a1d16e5..7c9437e 100644
                      }),
                      request
                    });
-@@ -221,66 +192,93 @@ const generateGraph = async (compilation) => {
+@@ -221,66 +192,97 @@ const generateGraph = async (compilation) => {
                    layout = ssrFrontmatter.layout || layout;
                    title = ssrFrontmatter.title || title;
                    imports = ssrFrontmatter.imports || imports;
@@ -543,9 +543,13 @@ index a1d16e5..7c9437e 100644
 +              customData.tableOfContents = [];
 +
 +              if (fileContents && customData.tocHeading > 0 && customData.tocHeading <= 6) {
++                // console.log({ route, fileContents, customData });
++                // console.log('===========================');
++                // console.log(customData.tocHeading);
 +                // parse markdown for table of contents and output to json
 +                customData.tableOfContents = toc(fileContents).json;
-+                customData.tableOfContents.shift();
++                // not sure why we were shiting here?
++                // customData.tableOfContents.shift();
 +
 +                // parse table of contents for only the pages user wants linked
 +                if (customData.tableOfContents.length > 0 && customData.tocHeading > 0) {
@@ -619,7 +623,7 @@ index a1d16e5..7c9437e 100644
              } else {
                console.debug(`Unhandled extension (${extension}) for route => ${route}`);
              }
-@@ -320,11 +318,11 @@ const generateGraph = async (compilation) => {
+@@ -320,11 +322,11 @@ const generateGraph = async (compilation) => {
              {
                ...oldGraph,
                outputPath: '/404.html',
@@ -634,7 +638,7 @@ index a1d16e5..7c9437e 100644
              }
            ];
          }
-@@ -346,8 +344,7 @@ const generateGraph = async (compilation) => {
+@@ -346,8 +348,7 @@ const generateGraph = async (compilation) => {
              }
  
              graph.push({
