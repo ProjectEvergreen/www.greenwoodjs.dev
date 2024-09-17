@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Full Stack Web Components
 
-This guide will walk through some of the patterns demonstrated in our Vercel adapter repo, in which we server render a web component on the server through a "fragments" API with WCC generating HTML, while also re-using that same custom elements definition on the client so we can use it for interactivity too.  All through the power of web standards.  💯
+This guide will walk through some of the patterns demonstrated in our Vercel adapter repo, in which we server render a web component on the server through a "fragments" API with WCC generating HTML, while also re-using that same custom elements definition on the client so we can use it for interactivity too. All through the power of web standards. 💯
 
 ![full-stack-web-components](/assets/guides/full-stack-web-components.webp)
 
@@ -17,12 +17,13 @@ This guide will walk through some of the patterns demonstrated in our Vercel ada
 As alluded to in the intro, our goal here is to leverage a custom element that we can use on the client (for interactivity) and the server (for templating). For this example, we will be creating a card component that renders content based in attributes set on it, as well as a `<button>` tag that will display the product details when clicked.
 
 We will demonstrate this through two user experiences:
+
 1. _Products Page_ - A dynamically server rendered page listing all the products in a card
 1. _Search Page_ - A static HTML page with a `<form>` for submitting the user's search term to a backend API and render the results to the page
 
 ## Card Component
 
-Let's first start with our card component, which takes `title` and `thumbnail` attributes and generates a custom template from that.  It also pulls in a stylesheet as a CSS Module Script.
+Let's first start with our card component, which takes `title` and `thumbnail` attributes and generates a custom template from that. It also pulls in a stylesheet as a CSS Module Script.
 
 ```css
 /* src/components/card/card.css */
@@ -47,9 +48,9 @@ h3 {
 
 ```js
 // src/components/card/card.js
-import sheet from './card.css' with { type: 'css' };
+import sheet from "./card.css" with { type: "css" };
 
-const template = document.createElement('template');
+const template = document.createElement("template");
 
 export default class Card extends HTMLElement {
   selectItem() {
@@ -59,8 +60,8 @@ export default class Card extends HTMLElement {
 
   connectedCallback() {
     if (!this.shadowRoot) {
-      const thumbnail = this.getAttribute('thumbnail');
-      const title = this.getAttribute('title');
+      const thumbnail = this.getAttribute("thumbnail");
+      const title = this.getAttribute("title");
 
       template.innerHTML = `
         <div>
@@ -70,7 +71,7 @@ export default class Card extends HTMLElement {
           <button onclick="this.getRootNode().host.selectItem()">View Item Details</button>
         </div>
       `;
-      this.attachShadow({ mode: 'open' });
+      this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
@@ -78,32 +79,33 @@ export default class Card extends HTMLElement {
   }
 }
 
-customElements.define('app-card', Card);
+customElements.define("app-card", Card);
 ```
 
 ## Search API
 
-Next we'll make a "fragments" based API route that we'll use on the Search page.  When the user submits the `<form>` on the Search page for a product, a request from the client will be made to this endpoint to filter through the products and if there are any matches, will return the response as an HTML payload from server rendering all the products out to card components.
+Next we'll make a "fragments" based API route that we'll use on the Search page. When the user submits the `<form>` on the Search page for a product, a request from the client will be made to this endpoint to filter through the products and if there are any matches, will return the response as an HTML payload from server rendering all the products out to card components.
 
 ```js
 // src/pages/api/search.js
 // we pull in WCC here to generate HTML fragments for us
-import { renderFromHTML } from 'wc-compiler';
-import { getProductsBySearchTerm } from '../../services/products.js';
+import { renderFromHTML } from "wc-compiler";
+import { getProductsBySearchTerm } from "../../services/products.js";
 
 export async function handler(request) {
   // use the web standard FormData to get the incoming form submission
   const formData = await request.formData();
-  const term = formData.has('term') ? formData.get('term') : '';
+  const term = formData.has("term") ? formData.get("term") : "";
   const products = await getProductsBySearchTerm(term);
-  let body = '';
+  let body = "";
 
   if (products.length === 0) {
-    body = '<span>No results found.</span>';
+    body = "<span>No results found.</span>";
   } else {
-    const { html } = await renderFromHTML(`
-      ${
-        products.map((item, idx) => {
+    const { html } = await renderFromHTML(
+      `
+      ${products
+        .map((item, idx) => {
           const { title, thumbnail } = item;
 
           return `
@@ -112,19 +114,19 @@ export async function handler(request) {
               thumbnail="${thumbnail}"
             ></app-card>
           `;
-        }).join('')
-      }
-    `, [
-      new URL('../components/card/card.js', import.meta.url)
-    ]);
+        })
+        .join("")}
+    `,
+      [new URL("../components/card/card.js", import.meta.url)],
+    );
 
     body = html;
   }
 
   return new Response(body, {
     headers: new Headers({
-      'Content-Type': 'text/html'
-    })
+      "Content-Type": "text/html",
+    }),
   });
 }
 ```
@@ -138,29 +140,29 @@ For the Search page, we'll just need to set the page up with a `<form>` for the 
 <html>
   <head>
     <script>
-      globalThis.addEventListener('DOMContentLoaded', () => {
-        globalThis.document.querySelector('form').addEventListener('submit', async (e) => {
+      globalThis.addEventListener("DOMContentLoaded", () => {
+        globalThis.document.querySelector("form").addEventListener("submit", async (e) => {
           e.preventDefault();
 
           // with FormData we can pass the whole <form> to the constructor
           // and send a URL Encoded request to the API backend
           const formData = new FormData(e.currentTarget);
-          const term = formData.get('term');
-          const html = await fetch('/api/search', {
-            method: 'POST',
+          const term = formData.get("term");
+          const html = await fetch("/api/search", {
+            method: "POST",
             body: new URLSearchParams({ term }).toString(),
             headers: new Headers({
-              'content-type': 'application/x-www-form-urlencoded'
-            })
-          }).then(resp => resp.text());
+              "content-type": "application/x-www-form-urlencoded",
+            }),
+          }).then((resp) => resp.text());
 
           // we use DOMParser to get our response as a DOM element
           // and then inject its contents into the page
-          const fragment = new DOMParser().parseFromString(html, 'text/html', {
-            includeShadowRoots: true
+          const fragment = new DOMParser().parseFromString(html, "text/html", {
+            includeShadowRoots: true,
           });
 
-          document.getElementById('search-products-output').innerHTML = fragment.body.innerHTML;
+          document.getElementById("search-products-output").innerHTML = fragment.body.innerHTML;
         });
       });
     </script>
@@ -171,7 +173,7 @@ For the Search page, we'll just need to set the page up with a `<form>` for the 
 
     <form>
       <label for="term">
-        <input type="search" name="term" placeholder="a product..." required/>
+        <input type="search" name="term" placeholder="a product..." required />
       </label>
       <button type="submit">Search</button>
     </form>
@@ -187,23 +189,25 @@ For the Products page, we just need to get our products and render them out into
 
 ```js
 // src/pages/products.js
-import '../components/card/card.js';
-import { getProducts } from '../services/products.js';
+import "../components/card/card.js";
+import { getProducts } from "../services/products.js";
 
 export default class ProductsPage extends HTMLElement {
   async connectedCallback() {
     const products = await getProducts();
-    const html = products.map((product) => {
-      const { title, thumbnail } = product;
+    const html = products
+      .map((product) => {
+        const { title, thumbnail } = product;
 
-      return `
+        return `
         <app-card
           title="${title}"
           thumbnail="${thumbnail}"
         >
         </app-card>
       `;
-    }).join('');
+      })
+      .join("");
 
     this.innerHTML = `
       <h1>Products Page</h1>
@@ -221,9 +225,8 @@ export default class ProductsPage extends HTMLElement {
 Since we will want to put our card component on all pages, its easiest to create an app layout and include the card component in a `<script>` tag.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" prefix="og:http://ogp.me/ns#">
-
   <head>
     <title>Greenwood Demo - Full Stack Web Components</title>
     <script type="module" src="/components/card/card.js"></script>
@@ -232,11 +235,11 @@ Since we will want to put our card component on all pages, its easiest to create
   <body>
     <!-- header, navigation, footer, etc -->
   </body>
-
 </html>
 ```
 
 So with everything put together, this is what the final project structure would look like.
+
 ```shell
 src/
   components/

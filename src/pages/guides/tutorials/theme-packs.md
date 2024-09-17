@@ -248,6 +248,7 @@ For users, they would just need to do the following:
    ```shell
    $ npm install my-theme-pack --save-dev
    ```
+
 1. Add the plugin to their _greenwood.config.js_
 
    ```js

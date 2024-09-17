@@ -90,12 +90,11 @@ export default class SideNav extends HTMLElement {
                           </li>
                         `;
                       })
-                      .join("")
-                    }
+                      .join("")}
                   </ul>
                 `;
-              }).join("")
-            }
+              })
+              .join("")}
           </div>
         </div>
       `;
