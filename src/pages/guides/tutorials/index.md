@@ -7,10 +7,10 @@ layout: guides
 <div class="heading-box">
   <h1>Tutorials</h1>
 
-  Some fun things you can do with Greenwood...
+  Browse some of the patterns and architectures that can be accomplished with Greenwood.
 
 </div>
 
 <!-- prettier-ignore-end -->
 
-TODO
+Topics include creating theme packs, isomorphic rendering of web components, and more (to come)!
