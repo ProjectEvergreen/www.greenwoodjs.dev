@@ -56,7 +56,7 @@
   width: fit-content;
   border: var(--border-size-1) solid #4d4d4d45;
   border-radius: var(--radius-6);
-  padding: var(--size-2) var(--size-3);
+  padding: var(--size-1);
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -137,6 +137,10 @@
 @media screen and (min-width: 768px) {
   .logoLink svg.greenwood-logo-full {
     width: 60%;
+  }
+
+  .socialTray {
+    padding: var(--size-1) var(--size-2);
   }
 }
 
