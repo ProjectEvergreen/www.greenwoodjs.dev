@@ -133,43 +133,49 @@ index 8dbf281..a6f252e 100644
      const mergedHtml = pageRoot && pageRoot.querySelector('html').rawAttrs !== ''
        ? `<html ${pageRoot.querySelector('html').rawAttrs}>`
 diff --git a/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js b/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
-index 5ce30c1..11195a7 100644
+index 5ce30c1..a92bb3d 100644
 --- a/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
 +++ b/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
-@@ -217,15 +217,30 @@ async function walkPackageJson(packageJson = {}) {
+@@ -215,17 +215,33 @@ async function walkPackageJson(packageJson = {}) {
+   return importMap;
+ }
  
- function mergeImportMap(html = '', map = {}) {
-   // es-modules-shims breaks on dangling commas in an importMap :/
+-function mergeImportMap(html = '', map = {}) {
+-  // es-modules-shims breaks on dangling commas in an importMap :/
 -  const danglingComma = html.indexOf('"imports": {}') > 0 ? '' : ',';
-+  const hasImportMap = html.indexOf('script type="importmap"') > 0;
-+  const danglingComma = hasImportMap && html.indexOf('"imports": {}') > 0 ? '' : ',';
-   const importMap = JSON.stringify(map).replace('}', '').replace('{', '');
- 
+-  const importMap = JSON.stringify(map).replace('}', '').replace('{', '');
+-
 -  const merged = html.replace('"imports": {', `
 -    "imports": {
 -      ${importMap}${danglingComma}
 -  `);
--
++function mergeImportMap(html = '', map = {}, shouldShim = false) {
++  const importMapType = shouldShim ? 'importmap-shim' : 'importmap';
++  const hasImportMap = html.indexOf(`script type="${importMapType}"`) > 0;
++  const danglingComma = hasImportMap ? ',' : '';
++  const importMap = JSON.stringify(map, null, 2).replace('}', '').replace('{', '');
++
++  if (Object.entries(map).length === 0) {
++    return html;
++  }
+ 
 -  return merged;
-+  // TODO looks like this was never working correctly!? :o
-+  // console.log({ hasImportMap, html, map, danglingComma, importMap });
 +  if (hasImportMap) {
 +    return html.replace('"imports": {', `
 +      "imports": {
 +        ${importMap}${danglingComma}
 +    `);
 +  } else {
-+    // TODO this needs tp account for import map shim polyfill config
 +    return html.replace('<head>', `
 +      <head>
-+      <script type="importmap">
++      <script type="${importMapType}">
 +        {
 +          "imports": {
 +            ${importMap}
 +          }
 +        }
 +      </script>
-+    `)
++    `);
 +  }
  }
  
@@ -692,7 +698,7 @@ index 20de63b..6e98d05 100644
      if (process.env.__GWD_COMMAND__ === 'develop') { // eslint-disable-line no-underscore-dangle
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
 new file mode 100644
-index 0000000..5d299de
+index 0000000..36185b1
 --- /dev/null
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-content-as-data.js
 @@ -0,0 +1,54 @@
@@ -711,12 +717,12 @@ index 0000000..5d299de
 +  }
 +
 +  async shouldIntercept(url, request, response) {
-+    return response.headers.get('Content-Type')?.indexOf(this.contentType[0]) >= 0;
++    return response.headers.get('Content-Type')?.indexOf(this.contentType[0]) >= 0 && process.env.__GWD_COMMAND__ === 'develop'; // eslint-disable-line no-underscore-dangle
 +  }
 +
 +  async intercept(url, request, response) {
 +    const body = await response.text();
-+    const newBody = mergeImportMap(body, importMap);
++    const newBody = mergeImportMap(body, importMap, this.compilation.config.polyfills.importMaps);
 +
 +    // TODO how come we need to forward headers, shouldn't mergeResponse do that for us?
 +    return new Response(newBody, {
@@ -752,7 +758,7 @@ index 0000000..5d299de
 +export { greenwoodPluginContentAsData };
 \ No newline at end of file
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
-index 286c2de..a336aed 100644
+index 286c2de..bd662ae 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
 @@ -10,7 +10,7 @@ import replace from '@rollup/plugin-replace';
@@ -764,32 +770,31 @@ index 286c2de..a336aed 100644
  
  let importMap;
  
-@@ -98,15 +98,16 @@ class NodeModulesResource extends ResourceInterface {
+@@ -75,7 +75,6 @@ class NodeModulesResource extends ResourceInterface {
+   async intercept(url, request, response) {
+     const { context, config } = this.compilation;
+     const { importMaps } = config.polyfills;
+-    const importMapType = importMaps ? 'importmap-shim' : 'importmap';
+     const importMapShimScript = importMaps ? '<script defer src="/node_modules/es-module-shims/dist/es-module-shims.js"></script>' : '';
+     let body = await response.text();
+     const hasHead = body.match(/\<head>(.*)<\/head>/s);
+@@ -97,15 +96,10 @@ class NodeModulesResource extends ResourceInterface {
+       ? await walkPackageJson(userPackageJson)
        : importMap || {};
  
-     // apply import map and shim for users
--    body = body.replace('<head>', `
--      <head>
--        ${importMapShimScript}
+-    // apply import map and shim for users
++    body = mergeImportMap(body, importMap, importMaps);
+     body = body.replace('<head>', `
+       <head>
+         ${importMapShimScript}
 -        <script type="${importMapType}">
 -          {
 -            "imports": ${JSON.stringify(importMap, null, 1)}
 -          }
 -        </script>
--    `);
-+    body = mergeImportMap(body, importMap);
-+    // body = body.replace('<head>', `
-+    //   <head>
-+    //     ${importMapShimScript}
-+    //     <script type="${importMapType}">
-+    //       {
-+    //         "imports": ${JSON.stringify(importMap, null, 1)}
-+    //       }
-+    //     </script>
-+    // `);
+     `);
  
      return new Response(body);
-   }
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 index 06223cf..b372e38 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
