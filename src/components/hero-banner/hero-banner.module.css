@@ -5,15 +5,15 @@
 }
 
 .heading {
-  font-size: var(--font-size-7);
-  font-weight: var(--font-weight-7);
+  font-family: var(--font-primary-bold);
+  font-size: var(--font-size-6);
   margin-block-start: 0;
   margin-block-end: 0;
 }
 
 .headingEmphasis {
-  font-size: var(--font-size-7);
-  font-weight: var(--font-weight-7);
+  font-size: var(--font-size-6);
+  font-family: var(--font-primary-bold);
   font-style: italic;
 }
 
@@ -104,6 +104,11 @@
 }
 
 @media (min-width: 768px) {
+  .heading,
+  .headingEmphasis {
+    font-size: var(--font-size-7);
+  }
+
   .buttonBlitz,
   .buttonStarted {
     width: 45%;
@@ -119,7 +124,8 @@
   }
 }
 
-@media (min-width: 1024px) {
+/* use 1025 as a quick tweak for iPad Pro breakpoint */
+@media (min-width: 1025px) {
   .ctaContainer {
     margin: 0 auto;
     text-align: left;

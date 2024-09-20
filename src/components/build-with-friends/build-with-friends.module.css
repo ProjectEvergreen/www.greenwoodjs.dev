@@ -4,8 +4,8 @@
 }
 
 .heading {
+  font-family: var(--font-primary-bold);
   font-size: var(--font-size-6);
-  font-weight: var(--font-weight-9);
 }
 
 .subHeading {
@@ -32,7 +32,6 @@
 
 .icon span {
   vertical-align: middle;
-  font-weight: var(--font-weight-9);
   display: inline-block;
 }
 

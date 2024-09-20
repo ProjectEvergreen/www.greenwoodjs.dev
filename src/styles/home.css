@@ -18,6 +18,13 @@ app-hero-banner {
 @media (min-width: 1024px) {
   app-hero-banner,
   app-latest-post {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1440px) {
+  app-hero-banner,
+  app-latest-post {
     width: 70%;
   }
 }
