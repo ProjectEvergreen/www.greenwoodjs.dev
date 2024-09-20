@@ -1,5 +1,16 @@
 import platforms from "./platforms.json" with { type: "json" };
+import githubLogo from "../../assets/github.svg?type=raw";
+import netlifyLogo from "../../assets/netlify.svg?type=raw";
+import nodejsLogo from "../../assets/nodejs.svg?type=raw";
+import vercelLogo from "../../assets/vercel.svg?type=raw";
 import styles from "./run-anywhere.module.css";
+
+const platformImageMapper = {
+  github: githubLogo,
+  netlify: netlifyLogo,
+  nodejs: nodejsLogo,
+  vercel: vercelLogo,
+};
 
 export default class RunAnywhere extends HTMLElement {
   connectedCallback() {
@@ -16,7 +27,7 @@ export default class RunAnywhere extends HTMLElement {
               return `
                 <div class="${styles.platformBox}">
                   <div class="${styles.iconBox}">
-                    <img class="${styles.icon}" src="${icon}" alt="${name} logo"/>
+                    ${platformImageMapper[icon]}
                   </div>
 
                   <a class="${styles.iconLink}" href="${link}">${name}</a>
