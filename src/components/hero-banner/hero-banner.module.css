@@ -81,7 +81,7 @@
 }
 
 .snippet pre {
-  font-size: var(--font-size-1);
+  font-size: 18px;
   display: inline-block;
   height: 46px;
   align-content: center;
