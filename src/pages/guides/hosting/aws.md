@@ -8,94 +8,94 @@ tocHeading: 2
 
 # AWS
 
-Greenwood can be automatically deployed to [**AWS**](https://aws.amazon.com/) for static hosting using [**S3**](https://aws.amazon.com/s3/) and [**Cloudfront**](https://aws.amazon.com/cloudfront/) with GitHub Actions. This requires having an **AWS** account.
+Greenwood can be automatically deployed to [**AWS**](https://aws.amazon.com/) for static hosting using [**S3**](https://aws.amazon.com/s3/) and [**Cloudfront**](https://aws.amazon.com/cloudfront/) with GitHub Actions.
+
+> You can see a complete hybrid project example in our [demonstration repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws).
+
+## Static Hosting
+
+In this section, we'll share the steps for up S3 and Cloudfront together for static web hosting.
+
+1. Configure S3 by following [these steps](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.SimpleDistribution.html)
+1. Once you have followed those steps, run `greenwood build` in your project and upload the contents of the _public/_ directory to the bucket
+1. Finally, setup Cloudfront to use this bucket as an origin by [following these steps](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.SimpleDistribution.html#GettingStartedCreateDistribution):
+
+> Keep an eye out for prompts from AWS to enable IAM rules for your function and make sure to invalidate the Cloudfront distribution between tests, since error pages / responses will get cached.
+
+You should now be able to access your site at `http://<your-dist>.cloudfront.net/`! 🏆
+
+Now at this point, if you have any routes like `/search/`, you'll notice they are not working unless _index.html_ is appended to the path.  To enable routing (URL rewriting) for cleaner URLs, follow the _Configure Trigger_ section of [this guide](https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/) on the Lambda function as a [**Lambda@Edge**](https://aws.amazon.com/lambda/edge/) function to run on every incoming request.
+
+Below is a sample Edge function for doing the rewrites:
+
+```js
+export const handler = async (event, context, callback) => {
+  const { request } = event.Records[0].cf;
+
+  // re-write "clean" URLs to have index.html appended
+  // to support routing for Cloudfront <> S3
+  if (request.uri.endsWith('/')) {
+    request.uri = `${request.uri}index.html`;
+  }
+
+  callback(null, request);    
+};
+```
+
+> At this point, you'll probably want to use Route 53 to [put your domain in front of your Cloudfront distribution](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html).
+
+
+## Serverless
+
+Coming soon!
 
 > There is no adapter plugin yet for serverless hosting, though it is on [our roadmap](https://github.com/ProjectEvergreen/greenwood/issues/1142).
 
-## Setup S3
+## GitHub Actions
 
-1. Create a new bucket in S3
-1. Upload the contents of your 'public' directory (drag and drop all the files and folders, using the interface only grabs files).
-1. Within your bucket click the "Properties" tab and select "Static website hosting"
-1. Check "Use this bucket to host a website" and enter `index.html` to the "index document" input
-1. Go to "Permissions" tab and edit "Block Public Access" to turn those off and save
-1. Still in (or click on) the "Permissions" tab, click "Bucket Policy" and add the following snippet (putting in your buckets name) and save.
-   ```json
-   {
-     "Version": "2012-10-17",
-     "Statement": [
-       {
-         "Sid": "PublicReadGetObject",
-         "Effect": "Allow",
-         "Principal": "*",
-         "Action": "s3:GetObject",
-         "Resource": "arn:aws:s3:::your-bucket-name-here/*"
-       }
-     ]
-   }
+If you're using GitHub, you can use GitHub Actions to automate the pushing of build files on commits to a GitHub repo.  This action will also invalidate your Cloudfront cache on each publish.
+
+1. In your AWS account, create and / or add an AWS Secret Access Key (`AWS_SECRET_ACCESS_KEY`) and Access Key ID (`AWS_SECRET_ACCESS_KEY_ID`) and add them to your repository as [GitHub secrets](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions).
+1. We also recommend adding your bucket name as secret too, e.g. `AWS_BUCKET_NAME`
+1. At the root of your repo add a GitHub Action called _.github/workflows/publish.yml_ and adapt as needed for your own branch, build commands, and package manager.
+    ```yml
+    name: Upload Website to S3
+
+    on:
+      push:
+        branches:
+          - main
+
+    jobs:
+      build:
+        runs-on: ubuntu-20.04
+
+        # match to your version of NodeJS
+        steps:
+          - uses: actions/checkout@v2
+          - uses: actions/setup-node@v3
+            with:
+              node-version: 18.20.2
+
+          - name: Install Dependencies
+            run: |
+              npm ci
+
+          # use your greenwood build script
+          - name: Run Build
+            run: |
+              npm run build
+
+          - name: Upload to S3 and invalidate CDN
+            uses: opspresso/action-s3-sync@master
+            env:
+              AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+              AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              # make sure this matches your bucket's region
+              AWS_REGION: "us-east-1"
+              FROM_PATH: "./public"
+              # your target s3 bucket name goes here
+              DEST_PATH: s3://${{ secrets.AWS_BUCKET_NAME }}
    ```
 
-Your site will now be at the address visible in the "Static website hosting" card.
-
-## Setup CloudFront
-
-1. Navigate to CloudFront in your AWS account.
-1. Click "get started" in the web section.
-1. In the "Origin Domain Name" input, select the bucket you are setting up.
-1. Further down that form find "Default Root Object" and enter `index.html`
-1. Click "Create Distribution", then just wait for the Status to update to "deployed".
-
-Your site is now hosted on S3 with a CloudFront CDN! 🏆
-
-## Enable GitHub Actions
-
-1. You'll want to add your AWS Secret Access Key (`AWS_SECRET_ACCESS_KEY`) and Access Key ID (`AWS_SECRET_ACCESS_KEY_ID`) to the repositories as [GitHub secrets](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions).
-1. At the root of your repo add a GitHub Action called _.github/workflows/deploy.yml_ and adapt as needed for your own branch and package manager. (Using npm here)
-
-   ```yml
-   name: Upload Website to S3
-
-   on:
-     push:
-       branches:
-         # configure your branch accordingly
-         - main
-
-   jobs:
-     build:
-       runs-on: ubuntu-20.04
-
-       # match to your version of NodeJS
-       steps:
-         - uses: actions/checkout@v2
-         - uses: actions/setup-node@v3
-           with:
-             node-version: 18.20.2
-
-         - name: Navigate to repo
-           run: |
-             cd $GITHUB_WORKSPACE
-
-         # or replace with yarn, pnpm, etc
-         - name: Install Dependencies
-           run: |
-             npm ci
-
-         # use your greenwood build script
-         - name: Run Build
-           run: |
-             npm run build
-
-         - name: Deploy to S3
-           uses: opspresso/action-s3-sync@master
-           env:
-             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-             AWS_REGION: "us-east-2"
-             FROM_PATH: "./public"
-             # your target s3 bucket name goes here
-             DEST_PATH: "s3://your-s3-bucket-name"
-             OPTIONS: "--acl public-read"
-   ```
-
-1. Push your updates to your repo and the action will begin automatically.
+Now when you push changes to your repo, the action will run an the build files will automatically be uploaded.
