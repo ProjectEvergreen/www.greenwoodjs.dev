@@ -152,6 +152,7 @@ li {
 
 .page-content {
   & blockquote {
+    margin: var(--size-6) 0 0 var(--size-2);
     padding: var(--size-1);
     background-color: var(--color-accent) !important;
     border-left: var(--size-1) solid var(--color-secondary);

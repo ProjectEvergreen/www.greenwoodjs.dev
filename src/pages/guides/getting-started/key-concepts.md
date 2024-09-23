@@ -65,7 +65,7 @@ As an example
 
 ## Scripts and Styles
 
-As demonstrated above, we can create an inline `<style>` tag for our home page. As your application grows, you'll want to put script and style content in external files from within your project.
+As demonstrated above, we can create an inline `<style>` tag for our home page. As your application grows, you'll probably want to put script and style content in external files from within your project.
 
 ```html
 <!-- src/pages/index.html -->
@@ -102,7 +102,7 @@ src/
       second-post.md
 ```
 
-> Greenwood is smart enough to follow the references from the `<script>` and `<link>` tags and will bundle them and all their imports at build time.
+> These additional files and directories can be called whatever you want.  Greenwood is smart enough to follow the references from the `href` and `src` attributes and resolve all their imports as well as bundle them at build time.
 
 ## Layouts
 

@@ -11,7 +11,7 @@ The set of content on these guide pages is intended to help demonstrate how to e
 _Want to build with Lit and deploy to Vercel?_ **No problem.**
 </br>
 </br>
-_Deploy a SPA to AWS?_ **No problem.**
+_Deploy a SPA to AWS?_ **Sure thing.**
 </br>
 </br>
 _Run HTMX on a self-hosted server?_ **You know you can.**

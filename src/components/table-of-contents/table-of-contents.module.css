@@ -55,12 +55,16 @@
     border-left: 2px solid var(--color-gray);
     border-top: 2px solid var(--color-gray);
     border-bottom: 2px solid var(--color-gray);
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--shadow-4);
     padding: var(--size-2) 0 0 var(--size-7);
 
     & a,
     & li {
       font-size: var(--font-size-1);
+    }
+
+    & a:hover {
+      opacity: 0.7;
     }
   }
 
