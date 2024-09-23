@@ -102,7 +102,7 @@ src/
       second-post.md
 ```
 
-> These additional files and directories can be called whatever you want.  Greenwood is smart enough to follow the references from the `href` and `src` attributes and resolve all their imports as well as bundle them at build time.
+> These additional files and directories can be called whatever you want. Greenwood is smart enough to follow the references from the `href` and `src` attributes and resolve all their imports as well as bundle them at build time.
 
 ## Layouts
 
