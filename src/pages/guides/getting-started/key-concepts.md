@@ -161,15 +161,20 @@ src/
 
 Although it can be used in HTML files too, frontmatter is a YAML based set of configuration that can be used to provide additional metadata for markdown files. As demonstrated up to this point, Greenwood supports markdown as demonstrated so far, and so if wanted a layout to specifically wrap our blog posts, we can specify the name of a layout file in our markdown files.
 
+<!-- prettier formats the frontmatter fences to ## :/ -->
+<!-- prettier-ignore-start -->
 ```md
-## <!-- src/pages/blog/first-post.md -->
-
-## layout: 'blog'
+<!-- src/pages/blog/first-post.md -->
+---
+layout: 'blog'
+---
 
 ## My First Blog Post
 
 This is my first post, I hope you like it.
 ```
+
+<!-- prettier-ignore-end -->
 
 And now we can create a layout just for these particular pages, which themselves will get wrapped by the _app.html_ layout, if applicable.
 
