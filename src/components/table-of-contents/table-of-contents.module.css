@@ -49,12 +49,33 @@
   text-decoration: underline;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .fullMenu {
     display: block;
+    border-left: 2px solid var(--color-gray);
+    border-top: 2px solid var(--color-gray);
+    border-bottom: 2px solid var(--color-gray);
+    box-shadow: var(--shadow-2);
+    padding: var(--size-2) 0 0 var(--size-7);
+
+    & a,
+    & li {
+      font-size: var(--font-size-1);
+    }
   }
 
   .compactMenu {
     display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .fullMenu {
+    display: block;
+
+    & a,
+    & li {
+      font-size: var(--font-size-3);
+    }
   }
 }

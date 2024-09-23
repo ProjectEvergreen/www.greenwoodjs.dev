@@ -14,7 +14,7 @@ _Want to build with Lit and deploy to Vercel?_ **No problem.**
 _Deploy a SPA to AWS?_ **No problem.**
 </br>
 </br>
-_Run HTMX on a self-hsoted server?_ **You know you can.**
+_Run HTMX on a self-hosted server?_ **You know you can.**
 
 </div>
 

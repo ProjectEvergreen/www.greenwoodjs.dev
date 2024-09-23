@@ -67,7 +67,7 @@
   margin: var(--size-1);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .fullMenu {
     display: block;
   }

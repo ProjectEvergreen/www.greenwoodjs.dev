@@ -15,7 +15,6 @@
       }
 
       .page-content .content {
-        max-width: 100ch;
         padding: 0 var(--size-4);
 
         & h1 {
@@ -56,14 +55,15 @@
         margin: 0 0 var(--size-4);
       }
 
-      @media (min-width: 1024px) {
+      @media (min-width: 1200px) {
         .page-content {
           margin: var(--size-6) auto;
-          width: 90%;
+        }
 
-          & p {
-            font-size: var(--font-size-1);
-          }
+        .content {
+          display: inline-block;
+          width: 45%;
+          font-size: var(--font-size-1);
         }
 
         hr {
@@ -72,29 +72,37 @@
 
         app-side-nav {
           display: inline-block;
-          width: 25%;
+          width: 20%;
+          min-width: 25%;
           vertical-align: top;
+          padding: var(--size-4) 0 var(--size-10) var(--size-fluid-5);
+          background-color: var(--color-gray);
+          border-radius: var(--radius-3);
         }
 
         app-toc {
           float: right;
           display: inline-block;
-          width: 15%;
-        }
-
-        .content {
-          display: inline-block;
-          width: 55%;
+          width: 20%;
+          position: sticky;
+          top: var(--size-4);
         }
       }
 
       @media (min-width: 1440px) {
-        .page-content {
-          width: 85%;
+        .page-content .content {
+          width: 49%;
+          font-size: var(--font-size-3);
+        }
 
-          & p {
-            font-size: var(--font-size-3);
-          }
+        app-side-nav {
+          padding: var(--size-4) 0 var(--size-10) var(--size-fluid-7);
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .page-content .content {
+          width: 54%;
         }
       }
     </style>

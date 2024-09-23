@@ -1,8 +1,9 @@
 .container {
   display: flex;
   justify-content: space-between;
-  padding: 0 var(--size-4);
+  padding: 0 var(--size-4) var(--size-2);
   margin: 0;
+  border-bottom: 2px dotted var(--color-gray);
 }
 
 .logoLink {
@@ -113,7 +114,7 @@
 
 @media screen and (min-width: 480px) {
   .container {
-    padding: 0 var(--size-10);
+    padding: 0 var(--size-10) var(--size-2);
   }
 }
 
