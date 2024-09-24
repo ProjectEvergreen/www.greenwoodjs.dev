@@ -22,9 +22,12 @@
 
 .compactMenuPopover {
   top: 150px;
-  width: 100%;
-  padding: var(--size-4);
-  background-color: var(--color-gray-background);
+  width: auto;
+  min-height: 150px;
+  margin: 0 var(--size-2);
+  border: var(--size-1) solid var(--color-gray);
+  box-shadow: var(--shadow-4);
+  padding: var(--size-2);
 }
 
 .compactMenuTrigger {

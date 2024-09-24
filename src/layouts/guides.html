@@ -8,6 +8,10 @@
       data-gwd-opt="static"
     ></script>
     <style>
+      body:has(#compact-menu:popover-open) {
+        overflow-y: hidden;
+      }
+
       .page-content {
         & hr {
           margin: 0 0 var(--size-4);
@@ -29,7 +33,7 @@
         }
 
         & h2,
-        p {
+        & p {
           margin: var(--size-4) 0;
         }
 
@@ -52,7 +56,11 @@
       app-side-nav,
       app-toc {
         display: inline-block;
-        margin: 0 0 var(--size-4);
+        margin: 0 auto var(--size-4);
+      }
+
+      app-side-nav {
+        padding: 0 0 0 var(--size-4);
       }
 
       @media (min-width: 1200px) {
@@ -64,10 +72,6 @@
           display: inline-block;
           width: 45%;
           font-size: var(--font-size-1);
-        }
-
-        hr {
-          display: none;
         }
 
         app-side-nav {
@@ -116,8 +120,6 @@
       current-route="${globalThis.page.route}"
     ></app-side-nav>
     <app-toc route="${globalThis.page.route}"></app-toc>
-
-    <hr />
 
     <div class="content">
       <content-outlet></content-outlet>

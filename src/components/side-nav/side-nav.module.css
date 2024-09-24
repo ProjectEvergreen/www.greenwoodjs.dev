@@ -23,7 +23,8 @@
   width: 100%;
   padding: var(--size-4);
   background-color: var(--color-gray-background);
-  position: fixed;
+  overflow-y: scroll;
+  height: auto;
 }
 
 .compactMenuSectionHeading {
