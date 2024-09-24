@@ -30,7 +30,8 @@ export default class TableOfContents extends HTMLElement {
       </div>
       <div class="${styles.compactMenu}">
         <button popovertarget="onthispage" class="${styles.compactMenuTrigger}" aria-label="Table of Contents Menu">
-          On This Page &#9660;
+          On This Page
+          <span id="indicator">&#9660;</span>
         </button>
         <div id="onthispage" class="${styles.compactMenuPopover}" popover>
           <ol>

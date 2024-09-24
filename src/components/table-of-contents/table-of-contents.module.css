@@ -36,6 +36,27 @@
   padding: var(--size-2);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-3);
+
+  & #indicator {
+    display: inline-block;
+  }
+}
+
+.compactMenu:has(#onthispage:popover-open) {
+  & #indicator {
+    animation: rotateindicatoropen 1s ease;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes rotateindicatoropen {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
 }
 
 .compactMenuItem {

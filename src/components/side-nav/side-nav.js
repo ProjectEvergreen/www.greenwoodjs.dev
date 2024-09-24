@@ -66,7 +66,8 @@ export default class SideNav extends HTMLElement {
         </div>
         <div class="${styles.compactMenu}">
           <button popovertarget="compact-menu" class="${styles.compactMenuPopoverTrigger}" aria-label="Compact Guides Menu">
-            ${heading} &#9660;
+            ${heading}
+            <span id="indicator">&#9660;</span>
           </button>
           <div id="compact-menu" class="${styles.compactMenuPopover}" popover>
             ${sections
