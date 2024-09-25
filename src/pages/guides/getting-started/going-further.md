@@ -13,23 +13,35 @@ TODO
 <!--
 ## Prerendering
 
+## Optimizations
+
+static / pre-render
+
+we should now see the script tags gone.  full HTML!
+
+(pre-render in development on the roadmap,  track in the issue)
+
 - pre-rendering (optimizing) / templating / global CSS
 - raw plugin
-
-## Theming
-
-- CSS Modules
-- styling strategies (light vs shadow dom)
-Light DOM and Shadow DOM
-- import attributes / constructable stylesheets (shared theming)
-
 
 ## Content as Data
 
 - content as data
 - active frontmatter
 
-## Next Steps
+
+## Light vs Shadow DOM
+
+- CSS Modules, content vs interactivity dynamic
+
+## Theming
+
+- styling strategies (light vs shadow dom)
+Light DOM and Shadow DOM
+- import attributes / constructable stylesheets (shared theming)
+
+
+## Next Section
 
 Let's [wrap up](/guides/getting-started/next-steps/) our guide and get you onto building something great with Greenwood!
 -->

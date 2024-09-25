@@ -18,7 +18,7 @@
         }
       }
 
-      .page-content .content {
+      .page-content .content-outlet {
         padding: 0 var(--size-4);
 
         & h1 {
@@ -68,7 +68,7 @@
           margin: var(--size-6) auto;
         }
 
-        .content {
+        .content-outlet {
           display: inline-block;
           width: 45%;
           font-size: var(--font-size-1);
@@ -95,7 +95,7 @@
       }
 
       @media (min-width: 1440px) {
-        .page-content .content {
+        .page-content .content-outlet {
           width: 49%;
           font-size: var(--font-size-3);
         }
@@ -106,7 +106,7 @@
       }
 
       @media (min-width: 1440px) {
-        .page-content .content {
+        .page-content .content-outlet {
           width: 54%;
         }
       }
@@ -121,7 +121,7 @@
     ></app-side-nav>
     <app-toc route="${globalThis.page.route}"></app-toc>
 
-    <div class="content">
+    <div class="content-outlet">
       <content-outlet></content-outlet>
     </div>
   </body>

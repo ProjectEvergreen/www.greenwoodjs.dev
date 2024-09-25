@@ -8,7 +8,7 @@ tocHeading: 2
 <div class="heading-box">
   <h1>Getting Started</h1>
 
-  Greenwood aims to leverage the web platform as much as possible, with just a little extra added on top for some nice conveniences.  The contents of this section will provide a high level overview of the basics of Greenwood and a light introduction to some of its advanced capabilities and patterns.
+  Greenwood aims to leverage the web platform as much as possible, with just a little extra convenience added on top.  This section of our Guides content will take you through a high level overview of the basics of Greenwood, with a light introduction of some of its more advanced capabilities and patterns.
 
 </div>
 
@@ -16,9 +16,9 @@ tocHeading: 2
 
 ## What to Expect
 
-This _Getting Started_ guide will walk you through creating a basic static content (blog) site, touching upon the following topics:
+This _Getting Started_ guide will walk you through creating a basic static content (blog) site, touching upon the following areas:
 
-1. Creating markdown pages
+1. Creating content (pages)
 1. Shared layouts and styles
 1. Web Components for templating
 
@@ -79,9 +79,9 @@ Then setup some npm scripts in your _package.json_ for running Greenwwod and mak
 }
 ```
 
-## Jumping Right In
+## Jump Right In
 
-If you want to jump to the final results right now, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with the companion repo in the Stackblitz below. 👇
+If you want to jump to the final results right now, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with it in your browser using the Stackblitz below. 👇
 
 <iframe src="https://stackblitz.com/github/projectevergreen/greenwood-getting-started?embed=1" class="stackblitz" loading="lazy"></iframe>
 

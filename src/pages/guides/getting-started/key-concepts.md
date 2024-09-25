@@ -7,11 +7,11 @@ tocHeading: 2
 
 # Key Concepts
 
-Now that we have our project [ready to go](/guides/getting-started/#setup), let's prepare by reviewing a few key concepts to be aware of for Greenwood and this guide in general.
+Now that we have our project [ready to go](/guides/getting-started/#setup), let's prepare by reviewing a few key concepts to get any Greenwood project started.
 
 ## File Based Routing
 
-Greenwood leverages file-based routing to map files in the _pages/_ directory of your project's workspace to URLs that can be accessed from a browser.
+Greenwood leverages file-based routing to map files in a _pages/_ directory inside your project's workspace to URLs that can be accessed from a browser.
 
 As an example, this project structure
 
@@ -25,20 +25,18 @@ src/
       second-post.md
 ```
 
-Would yield the following four routes:
+Would yield the following routes:
 
 - `/` - mapped from _index.html_
 - `/blog/` - mapped from _blog/index.html_
 - `/blog/first-post/` - mapped from _blog/first-post.md_
 - `/blog/first-post/` - mapped from _blog/second-post.md_
 
-> Notice we can mix and match HTML and markdown authored content in our filesystem. We can apply this to server rendering (SSR) as well. 👀
+> Notice we can mix and match HTML and markdown authored content in our filesystem. As we'll cover later on in this guide, you can of course create dynamic server rendered pages (SSR), API routes, and more! All your static and dynamic content happily living side-by-side. 👀
 
 ## Pages
 
-For the sake of this guide, pages can just be HTML, using just... normal HTML. You can include any `<script>`, `<style>`, `<link>`, etc tags you want.
-
-As an example
+For the sake of this guide, pages can just be HTML, using just... normal HTML! You can include any `<script>`, `<style>`, `<link>`, etc tags you want.
 
 ```html
 <!-- src/index.html -->
@@ -61,11 +59,9 @@ As an example
 </html>
 ```
 
-> As we'll cover later on in this guide, you can of course create dynamic server rendered pages, API routes, and more!
-
 ## Scripts and Styles
 
-As demonstrated above, we can create an inline `<style>` tag for our home page. As your application grows, you'll probably want to put script and style content in external files from within your project.
+As demonstrated above, we can create an inline `<style>` tag for our page instead, As your application grows, you'll probably want to put JavaScript and CSS content in their own files, including the `<script>` tag for our custom element tag `<app-header></app-header>`.
 
 ```html
 <!-- src/pages/index.html -->
@@ -87,7 +83,7 @@ As demonstrated above, we can create an inline `<style>` tag for our home page. 
 </html>
 ```
 
-Our file structure would now look like this
+Our file structure would now look like this:
 
 ```shell
 src/
@@ -102,13 +98,13 @@ src/
       second-post.md
 ```
 
-> These additional files and directories can be called whatever you want. Greenwood is smart enough to follow the references from the `href` and `src` attributes and resolve all their imports as well as bundle them at build time.
+> These additional files and directories can be put whatever you want in the _src/_ directory. Greenwood is smart enough to follow the path references from the `href` and `src` attributes and resolve them and all their imports, as well as bundle them at build time.
 
 ## Layouts
 
-One thing to notice from our _index.html_ example above is that we were including a global _theme.css_ and header component onto the page. However, you will probably want those scripts and styles on _all_ your pages. Greenwood supports a _layouts/_ directory that will allow us to wrap pages in shared HTML.
+One thing to notice from our _index.html_ example above is that we were including a _theme.css_ and header component onto the page. However, you will probably want these kind of scripts and styles on _all_ your pages. To share HTML _across_ pages, Greenwood supports a _layouts/_ directory that will wrap pages in shared HTML.
 
-In this case, we can create an _app.html_ which Greenwood will use to wrap all pages. We can use `<page-outlet>` to specify where we want the content's of the page to appear.
+In this case, we can create an _app.html_ which Greenwood will use to wrap all pages. We can use `<page-outlet></page-outlet>` to specify where we want the content's of each page to appear.
 
 ```html
 <!-- src/layouts/app.html -->
@@ -129,7 +125,7 @@ In this case, we can create an _app.html_ which Greenwood will use to wrap all p
 </html>
 ```
 
-And now our _index.html_ can just be this
+And now our _index.html_ can just be this:
 
 ```html
 <!-- src/pages/index.html -->
@@ -140,7 +136,7 @@ And now our _index.html_ can just be this
 </html>
 ```
 
-And so now we can see the _layouts/_ directory added to our project.
+And so now we can see the _layouts/_ directory added to our project:
 
 ```shell
 src/
@@ -157,21 +153,23 @@ src/
     app.html
 ```
 
+> What's that, code splitting you say? Yes! In Greenwood, we just call it a script tag. In this way, entry points for bundles are defined by your pages and layouts automatically.
+
 ## Markdown and Frontmatter
 
-Although it can be used in HTML files too, frontmatter is a YAML based set of configuration that can be used to provide additional metadata for markdown files. As demonstrated up to this point, Greenwood supports markdown as demonstrated so far, and so if wanted a layout to specifically wrap our blog posts, we can specify the name of a layout file in our markdown files.
+Although it can be used in HTML files too, frontmatter is a YAML based set of content commonly used in markdown files used to provide additional metadata about the file not rendered to the final output. Frontmatter is an example of how we could define a layout for a markdown file. So if wanted a layout to specifically wrap our blog posts, we can specify the name of a layout file in our markdown files.
 
 <!-- prettier formats the frontmatter fences to ## :/ -->
 <!-- prettier-ignore-start -->
 ```md
 <!-- src/pages/blog/first-post.md -->
 ---
-layout: 'blog'
+layout: blog
 ---
 
 ## My First Blog Post
 
-This is my first post, I hope you like it.
+This is my first post, I hope you like it!
 ```
 
 <!-- prettier-ignore-end -->
@@ -210,4 +208,4 @@ src/
 
 ## Next Section
 
-Ok, so with the key concepts of workspaces, layouts and pages covered, you're now ready to start [creating content](/getting-started/creating-content/) and developing your first Greenwood site!
+Ok, so with the basics of managing our workspace covered, we're now ready to start [the walkthrough](/guides/getting-started/walkthrough/) and developing your first Greenwood site!
