@@ -6,11 +6,11 @@ tocHeading: 2
 
 # Storybook
 
-[**Storybook**](https://storybook.js.org/) is a developer tool created for authoring components in isolation. This guide will also cover how to customize the runner when using custom Greenwood plugins.
+[**Storybook**](https://storybook.js.org/) is a developer tool created for helping author components in isolation with interactive demonstrations and documentation. This guide will give a high level over of setting up Storybook and integrating with any Greenwood specific capabilities.
 
 > You can see an example (this website's own repo!) [here](https://github.com/ProjectEvergreen/www.greenwoodjs.dev).
 
-## Installation
+## Setup
 
 We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/instal) to setup a project from scratch.
 
@@ -39,10 +39,44 @@ We were not able to detect the right builder for your project. Please select one
     Webpack 5
 ```
 
-To help with resolving static assets, you'll want to configure [`staticDirs`](https://storybook.js.org/docs/api/main-config/main-config-static-dirs) in your _.storybook/main.js_ to point to your Greenwood workspace.
+## Usage
+
+You should now be good to start writing your first story! 📚
 
 ```js
-/** @type { import('@storybook/web-components-vite').StorybookConfig } */
+// src/components/footer/footer.js
+export default class Footer extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <footer>
+        <h4>Greenwood</h4>
+        <img src="/assets/my-logo.webp" />
+      </footer>
+    `;
+  }
+}
+
+customElements.define("app-footer", Footer);
+```
+
+```js
+// src/components/footer/footer.stories.js
+import "./footer.js";
+
+export default {
+  title: "Components/Footer",
+};
+
+const Template = () => "<app-footer></app-footer>";
+
+export const Primary = Template.bind({});
+```
+
+## Static Assets
+
+To help with resolving any static assets used in your stories, you can configure [`staticDirs`](https://storybook.js.org/docs/api/main-config/main-config-static-dirs) to point to your Greenwood workspace.
+
+```js
 const config = {
   //...
 
@@ -52,9 +86,11 @@ const config = {
 export default config;
 ```
 
-## Vite Config
+## Import Attributes
 
-Additionally, we'll need to create a _vite.config.js_ config file and provide a [custom plugin](https://vitejs.dev/guide/api-plugin) to handle Import Attributes as [Vite does not support them](https://github.com/vitejs/vite/issues/14674).
+As [Vite does not support Import Attributes](https://github.com/vitejs/vite/issues/14674), we will need to create a _vite.config.js_ and write a [custom plugin](https://vitejs.dev/guide/api-plugin) to work around this.
+
+In this example we are handling for CSS Module scripts:
 
 ```js
 import { defineConfig } from "vite";
@@ -112,9 +148,9 @@ export default defineConfig({
 
 Phew, should be all set now. 😅
 
-## Custom Resources
+## Resource Plugins
 
-If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need to augment the custom _vite.config.js_ so it can leverage the Greenwood plugins your using to automatically to handle these custom transformations.
+If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need a _vite.config.js_ that we can configure to have it leverage Greenwood plugins you're using to automatically handle these custom transformations.
 
 For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to add a plugin transformation and stub out the signature.
 
@@ -166,37 +202,58 @@ export default defineConfig({
 });
 ```
 
-## Usage
+## Content as Data
 
-With everything install and configured, you should now be good to start writing your first story ! 🏆
+If you are using any of Greenwood's [content as data](/docs/content-as-data/) features, you'll want to configure Storybook for mocking of `fetch` calls in your stories.
 
-```js
-// src/components/footer/footer.js
-import greenwoodLogo from "./assets/greenwood-logo-full.svg?type=raw";
+1. First, install the [**storybook-addon-fetch-mock**](https://storybook.js.org/addons/storybook-addon-fetch-mock) addon
+   ```shell
+   $ npm i -D storybook-addon-fetch-mock
+   ```
+1. Then add it to your _.storybook/main.js_ configuration file as an **addon**
 
-export default class Footer extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <footer>
-        <h4>Greenwood</h4>
-        ${greenwoodLogo}
-      </footer>
-    `;
-  }
-}
+   ```js
+   const config = {
+     // ...
 
-customElements.define("app-footer", Footer);
-```
+     addons: [
+       // your plugins here...
+       "storybook-addon-fetch-mock",
+     ],
+   };
 
-```js
-// src/components/footer/footer.stories.js
-import "./footer.js";
+   export default config;
+   ```
 
-export default {
-  title: "Components/Footer",
-};
+1. Then in your story files, configure your Story to return mock data
 
-const Template = () => "<app-footer></app-footer>";
+   ```js
+   import "./blog-posts-list.js";
+   import pages from "../../stories/mocks/graph.json";
 
-export const Primary = Template.bind({});
-```
+   export default {
+     // ...
+
+     // configure fetchMock
+     parameters: {
+       fetchMock: {
+         mocks: [
+           {
+             matcher: {
+               url: "http://localhost:1985/graph.json",
+               response: {
+                 body: pages,
+               },
+             },
+           },
+         ],
+       },
+     },
+   };
+
+   const Template = () => "<app-blog-posts-list></app-blog-posts-list>";
+
+   export const Primary = Template.bind({});
+   ```
+
+> To quickly get a "mock" graph to use in your stories, you can run `greenwood build` and copy the _graph.json_ file from the build output directory.

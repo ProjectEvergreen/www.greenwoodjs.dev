@@ -6,15 +6,15 @@ tocHeading: 2
 
 # Web Test Runner
 
-[**Web Test Runner**](https://modern-web.dev/docs/test-runner/overview/) is a developer tool created by the [Modern Web](https://modern-web.dev/) team that helps with the facilitating of testing Web Components, especially being able to test them in a browser. This guide will also cover how to customize the runner when using custom Greenwood plugins.
+[**Web Test Runner**](https://modern-web.dev/docs/test-runner/overview/) is a developer tool created by the [Modern Web](https://modern-web.dev/) team that helps with facilitating the testing Web Components, especially being able to test them in a real browser. This guide will give a high level over of setting up WTR and integrating with any Greenwood specific capabilities.
 
 > You can see an example project (this website's own repo!) [here](https://github.com/ProjectEvergreen/www.greenwoodjs.dev).
 
-## Installation
+## Setup
 
 For the sake of this guide, we will be covering a minimal setup but you are free to extends things as much as you need.
 
-1. First, let's install WTR and the junit reporter. You can use your favorite package manager
+1. First, let's install WTR and the JUnit Reporter. You can use your favorite package manager
 
    ```shell
    npm i -D @web/test-runner @web/test-runner-junit-reporter
@@ -49,23 +49,103 @@ For the sake of this guide, we will be covering a minimal setup but you are free
      coverageConfig: {
        reportDir: "./reports",
      },
-     // we can use middleware here to resolve assets like images
-     // to your Greenwood workspace to fix any 404s
-     middleware: [
-       function rewriteIndex(context, next) {
-         const { url } = context.request;
-
-         if (url.indexOf("/assets") === 0) {
-           context.request.url = path.join(process.cwd(), "src", url);
-         }
-
-         return next();
-       },
-     ],
    };
    ```
 
-## Custom Resources
+## Usage
+
+With everything install and configured, you should now be good to start writing your tests! 🏆
+
+```js
+// src/components/footer/footer.js
+export default class Footer extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <footer>
+        <h4 class="heading">Greenwood</h4>
+        <img src="/assets/my-logo.webp" />
+      </footer>
+    `;
+  }
+}
+
+customElements.define("app-footer", Footer);
+```
+
+```js
+// src/components/footer/footer.spec.js
+describe("Components/Footer", () => {
+  let footer;
+
+  before(async () => {
+    footer = document.createElement("app-footer");
+    document.body.appendChild(footer);
+
+    await footer.updateComplete;
+  });
+
+  describe("Default Behavior", () => {
+    it("should not be null", () => {
+      expect(footer).not.equal(undefined);
+      expect(footer.querySelectorAll("footer").length).equal(1);
+    });
+
+    it("should have the expected heading", () => {
+      const header = footer.querySelectorAll("footer .heading");
+
+      expect(header.length).equal(1);
+      expect(header[0].textContent).to.equal("Greenwood");
+    });
+
+    it("should have the expected logo image", () => {
+      const logo = footer.querySelectorAll("footer img[src]");
+
+      expect(logo.length).equal(1);
+      expect(logo[0]).not.equal(undefined);
+    });
+  });
+
+  after(() => {
+    footer.remove();
+    footer = null;
+  });
+});
+```
+
+## Static Assets
+
+If you are seeing logging about static assets returning 404
+
+```shell
+ 🚧 404 network requests:
+    - assets/my-image.png
+```
+
+You can create a custom middleware in your _web-test-runner.config.js_ to resolve these requests to your local workspace:
+
+```js
+import path from "path";
+import { defaultReporter } from "@web/test-runner";
+import { junitReporter } from "@web/test-runner-junit-reporter";
+
+export default {
+  // ...
+
+  middleware: [
+    function resolveAssets(context, next) {
+      const { url } = context.request;
+
+      if (url.startsWith("/assets")) {
+        context.request.url = path.join(process.cwd(), "src", url);
+      }
+
+      return next();
+    },
+  ],
+};
+```
+
+## Resource Plugins
 
 If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need to customize WTR manually through [its plugins option](https://modern-web.dev/docs/test-runner/plugins/) so it can leverage the Greenwood plugins your using to automatically to handle these custom transformations.
 
@@ -108,64 +188,51 @@ export default {
 };
 ```
 
-## Usage
+## Content as Data
 
-With everything install and configured, you should now be good to start writing your tests! 🏆
-
-```js
-// src/components/footer/footer.js
-import greenwoodLogo from "./assets/greenwood-logo-full.svg?type=raw";
-
-export default class Footer extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <footer>
-        <h4>Greenwood</h4>
-        ${greenwoodLogo}
-      </footer>
-    `;
-  }
-}
-
-customElements.define("app-footer", Footer);
-```
+If you are using any of Greenwood's [content as data](/docs/content-as-data/) features, you'll want to have your tests handle mocking of `fetch` calls. This can be done with a simple override of `window.fetch`
 
 ```js
-// src/components/footer/footer.spec.js
-describe("Components/Footer", () => {
-  let footer;
+import { expect } from "@esm-bundle/chai";
+import graph from "../../stories/mocks/graph.json" with { type: "json" };
+import "./blog-posts-list.js";
+
+// override fetch to return a promise that resolves to our mock data
+window.fetch = function () {
+  return new Promise((resolve) => {
+    resolve(new Response(JSON.stringify(graph)));
+  });
+};
+
+// now we can test components as normal
+describe("Components/Blog Posts List", () => {
+  let list;
 
   before(async () => {
-    footer = document.createElement("app-footer");
-    document.body.appendChild(footer);
+    list = document.createElement("app-blog-posts-list");
+    document.body.appendChild(list);
 
-    await footer.updateComplete;
+    await list.updateComplete;
   });
 
   describe("Default Behavior", () => {
     it("should not be null", () => {
-      expect(footer).not.equal(undefined);
-      expect(footer.querySelectorAll("footer").length).equal(1);
+      expect(list).not.equal(undefined);
     });
 
-    it("should have the expected footer heading text", () => {
-      const header = footer.querySelectorAll("footer h4");
-
-      expect(header.length).equal(1);
-      expect(header[0].textContent).to.equal("Greenwood");
+    it("should render list items for all our blog posts", () => {
+      expect(list.querySelectorAll("ul").length).to.be.equal(1);
+      expect(list.querySelectorAll("ul li").length).to.be.greaterThan(1);
     });
 
-    it("should have the expected logo SVG", () => {
-      const logo = footer.querySelectorAll("footer svg");
-
-      expect(logo.length).equal(1);
-      expect(logo[0]).not.equal(undefined);
-    });
+    // ...
   });
 
   after(() => {
-    footer.remove();
-    footer = null;
+    list.remove();
+    list = null;
   });
 });
 ```
+
+> To quickly get a "mock" graph to use in your stories, you can run `greenwood build` and copy the _graph.json_ file from the build output directory.

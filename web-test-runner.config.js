@@ -54,10 +54,10 @@ export default {
     },
   ],
   middleware: [
-    function rewriteIndex(context, next) {
+    function resolveAssets(context, next) {
       const { url } = context.request;
 
-      if (url.indexOf("/assets") === 0) {
+      if (url.startsWith("/assets")) {
         context.request.url = path.join(process.cwd(), "src", url);
       }
 
