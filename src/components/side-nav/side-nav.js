@@ -36,14 +36,14 @@ export default class SideNav extends HTMLElement {
       });
 
       this.innerHTML = `
-        <div class="${styles.fullMenu}">
+        <div class="${styles.fullMenu}" role="full-menu">
           ${sections
             .map((section) => {
               const { heading, items, link } = section;
               const isActiveHeading = currentRoute.startsWith(link) ? "active" : "";
 
               return `
-                <h3 class="${styles.compactMenuSectionHeading}">
+                <h3 class="${styles.compactMenuSectionHeading}" role="heading">
                   <a class="${isActiveHeading}" href="${link}">${heading}</a>
                 </h3>
                 <ul class="${styles.compactMenuSectionList}">
@@ -67,7 +67,7 @@ export default class SideNav extends HTMLElement {
             })
             .join("")}
         </div>
-        <div class="${styles.compactMenu}">
+        <div class="${styles.compactMenu}" role="compact-menu">
           <button popovertarget="compact-menu" class="${styles.compactMenuPopoverTrigger}" aria-label="Compact Guides Menu">
             ${heading}
             <span id="indicator">&#9660;</span>
@@ -79,17 +79,20 @@ export default class SideNav extends HTMLElement {
                 const isActiveHeading = currentRoute.startsWith(link) ? "active" : "";
 
                 return `
-                  <h3 class="${styles.compactMenuSectionHeading}">
+                  <h3 class="${styles.compactMenuSectionHeading}" role="heading">
                     <a class="${isActiveHeading}" href="${link}">${heading}</a>
                   </h3>
                   <ul class="${styles.compactMenuSectionList}">
                     ${items
                       .map((item) => {
                         const { label, route } = item;
-                        const isActive = route === currentRoute ? " active" : "";
+                        const itemClass =
+                          route === currentRoute
+                            ? styles.compactMenuSectionListItemActive
+                            : styles.compactMenuSectionListItem;
 
                         return `
-                          <li class="${styles.compactMenuSectionListItem}${isActive}">
+                          <li class="${itemClass}">
                             <a href="${route}">${label}</a>
                           </li>
                         `;

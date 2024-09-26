@@ -12,8 +12,8 @@ export default class TableOfContents extends HTMLElement {
     }
 
     this.innerHTML = `
-      <div class="${styles.fullMenu}">
-        <h2>On This Page</h2>
+      <div class="${styles.fullMenu}" role="full-menu">
+        <h2 role="heading">On This Page</h2>
         <ol>
         ${tableOfContents
           .map((item) => {
@@ -28,7 +28,7 @@ export default class TableOfContents extends HTMLElement {
           .join("")}
         </ol>
       </div>
-      <div class="${styles.compactMenu}">
+      <div class="${styles.compactMenu}"  role="compact-menu">
         <button popovertarget="onthispage" class="${styles.compactMenuTrigger}" aria-label="Table of Contents Menu">
           On This Page
           <span id="indicator">&#9660;</span>
@@ -41,7 +41,7 @@ export default class TableOfContents extends HTMLElement {
 
               return `
                 <li class="${styles.compactMenuItem}">
-                  <a href="#${slug}" popovertarget="onthispage" popovertargetaction="hide">${content}</a>
+                  <a href="#${slug}">${content}</a>
                 </li>
               `;
             })
