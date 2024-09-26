@@ -50,10 +50,13 @@ export default class SideNav extends HTMLElement {
                   ${items
                     .map((item) => {
                       const { label, route } = item;
-                      const isActive = route === currentRoute ? " active" : "";
+                      const itemClass =
+                        route === currentRoute
+                          ? styles.compactMenuSectionListItemActive
+                          : styles.compactMenuSectionListItem;
 
                       return `
-                        <li class="${styles.compactMenuSectionListItem}${isActive}">
+                        <li class="${itemClass}">
                           <a href="${route}">${label}</a>
                         </li>
                       `;

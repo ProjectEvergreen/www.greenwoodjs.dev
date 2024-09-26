@@ -76,7 +76,7 @@
   }
 }
 
-.compactMenuSectionList .active {
+.compactMenuSectionListItemActive {
   & a {
     border-left: var(--size-1) solid black;
     border-radius: var(--radius-2);
