@@ -3,12 +3,13 @@ import fs from "fs/promises";
 import path from "path";
 import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 
-const compilation = {
-  context: {
-    projectDirectory: import.meta.url,
-  },
-};
+// bootstrap custom plugin transforms from Greenwood
+const config = await readAndMergeConfig();
+const context = await initContext({ config });
+const compilation = { context, config };
 const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
 const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
@@ -69,6 +70,22 @@ function transformRawImports() {
     },
   };
 }
+
+// function resolveGlobalStyles() {
+//   return {
+//     name: "resolve-global-styles",
+//     resolveId: (id, importer) => {
+//       console.log('resolve theme.css', { id, importer });
+//       if (
+//         importer?.indexOf("/src/styles/") >= 0 &&
+//         id.endsWith(".css") &&
+//         !id.endsWith(".module.css")
+//       ) {
+//         return path.join(path.dirname(importer), `${id}.type`);
+//       }
+//     },
+//   };
+// }
 
 export default defineConfig({
   plugins: [transformConstructableStylesheetsPlugin(), transformRawImports()],

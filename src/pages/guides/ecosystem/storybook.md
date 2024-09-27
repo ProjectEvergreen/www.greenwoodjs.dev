@@ -96,16 +96,20 @@ In this example we are handling for CSS Module scripts:
 import { defineConfig } from "vite";
 import fs from "fs/promises";
 import path from "path";
+// 1) import the greenwood plugin and lifecycle helpers
 import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
+import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 
-// dependency inject Greenwood's internal context
-const compilation = {
-  context: {
-    projectDirectory: import.meta.url,
-  },
-};
+// 2) initialize Greenwood lifecycles
+const config = await readAndMergeConfig();
+const context = await initContext({ config });
+const compilation = { context, config };
+
+// 3) initialize the plugin
 const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
 
+// 4) customize Vite
 function transformConstructableStylesheetsPlugin() {
   return {
     name: "transform-constructable-stylesheets",
@@ -142,6 +146,7 @@ function transformConstructableStylesheetsPlugin() {
 }
 
 export default defineConfig({
+  // 5) add it the plugins option
   plugins: [transformConstructableStylesheetsPlugin()],
 });
 ```
@@ -159,23 +164,20 @@ import { defineConfig } from "vite";
 import fs from "fs/promises";
 import path from "path";
 import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
-// 1) import the greenwood plugin
+// 1) import the greenwood plugin and lifecycle helpers
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 
-const compilation = {
-  context: {
-    projectDirectory: import.meta.url,
-  },
-};
-const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
-// 2) initialize it
+// 2) initialize Greenwood lifecycles
+const config = await readAndMergeConfig();
+const context = await initContext({ config });
+const compilation = { context, config };
+
+// 3) initialize the plugin
 const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
-function transformConstructableStylesheetsPlugin() {
-  // ...
-}
-
-// 3) customize Vite
+// 4) customize Vite
 function transformRawImports() {
   return {
     name: "transform-raw-imports",
@@ -194,11 +196,8 @@ function transformRawImports() {
 }
 
 export default defineConfig({
-  plugins: [
-    transformConstructableStylesheetsPlugin(),
-    // 4) add it the plugins option
-    transformRawImports(),
-  ],
+  // 5) add it the plugins option
+  plugins: [transformRawImports()],
 });
 ```
 
