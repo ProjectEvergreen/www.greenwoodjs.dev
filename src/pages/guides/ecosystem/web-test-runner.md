@@ -156,16 +156,23 @@ import path from "path";
 import fs from "fs/promises";
 import { defaultReporter } from "@web/test-runner";
 import { junitReporter } from "@web/test-runner-junit-reporter";
-// 1) import the greenwood plugin
+// 1) import the greenwood plugin and lifecycle helpers
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 
-// 2) initialize it
-const rawResourcePlugin = greenwoodPluginImportRaw()[0].provider({});
+// 2) initialize Greenwood lifecycles
+const config = await readAndMergeConfig();
+const context = await initContext({ config });
+const compilation = { context, config };
+
+// 3) initialize the plugin
+const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
 export default {
   // ...
 
-  // 3) customize WTR
+  // 4) add it the plugins option
   plugins: [
     {
       name: "import-raw",

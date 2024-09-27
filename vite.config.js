@@ -71,22 +71,6 @@ function transformRawImports() {
   };
 }
 
-// function resolveGlobalStyles() {
-//   return {
-//     name: "resolve-global-styles",
-//     resolveId: (id, importer) => {
-//       console.log('resolve theme.css', { id, importer });
-//       if (
-//         importer?.indexOf("/src/styles/") >= 0 &&
-//         id.endsWith(".css") &&
-//         !id.endsWith(".module.css")
-//       ) {
-//         return path.join(path.dirname(importer), `${id}.type`);
-//       }
-//     },
-//   };
-// }
-
 export default defineConfig({
   plugins: [transformConstructableStylesheetsPlugin(), transformRawImports()],
 });

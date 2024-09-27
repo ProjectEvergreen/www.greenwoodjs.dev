@@ -1,10 +1,16 @@
 import { defaultReporter } from "@web/test-runner";
 import fs from "fs/promises";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 import { junitReporter } from "@web/test-runner-junit-reporter";
 import path from "path";
 
-const rawResource = greenwoodPluginImportRaw()[0].provider({});
+// bootstrap custom plugin transforms from Greenwood
+const config = await readAndMergeConfig();
+const context = await initContext({ config });
+const compilation = { context, config };
+const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
 export default {
   files: "./src/**/*.spec.js",
