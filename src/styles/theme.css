@@ -130,9 +130,10 @@ li {
 }
 
 .heading-box {
-  background-color: var(--color-gray);
+  background-color: var(--color-prism-bg);
   padding: var(--size-5) var(--size-3) var(--size-3);
   border-radius: var(--radius-3);
+  color: var(--color-white);
 
   & h1 {
     font-size: var(--font-size-3) !important;
@@ -141,6 +142,7 @@ li {
     padding: var(--size-2) var(--size-4);
     border-radius: var(--radius-3);
     box-shadow: var(--shadow-3);
+    color: var(--color-black);
   }
 
   & strong {
