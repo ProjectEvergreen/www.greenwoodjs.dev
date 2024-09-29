@@ -8,7 +8,7 @@ tocHeading: 2
 <div class="heading-box">
   <h1>Getting Started</h1>
 
-  Greenwood aims to leverage the web platform as much as possible, with just a little extra convenience added on top.  This section of our Guides content will take you through a high level overview of the basics of Greenwood, with a light introduction of some of its more advanced capabilities and patterns.
+  Greenwood aims to leverage the web platform as much as possible, with just a little extra convenience added on top.  This section of our Guides content will take you through a high level overview of the basics of Greenwood, with a light introduction to some of its more advanced capabilities and patterns.
 
 </div>
 
@@ -59,14 +59,14 @@ Or you can also initialize a repository manually by installing the Greenwood CLI
 $ mkdir my-app
 $ cd my-app
 
-# initialize a _package.json (you can accept all defaults)
+# initialize a package.json (you can accept all defaults)
 $ npm init
 
 # install Greenwood as a devDependency
 $ npm i -D @greenwood/cli@latest
 ```
 
-Then setup some npm scripts in your _package.json_ for running Greenwwod and make sure to set the `type` to **module**
+Then setup some npm scripts in your _package.json_ for running Greenwood and make sure to set the `type` to **module**:
 
 ```json
 {
@@ -81,9 +81,9 @@ Then setup some npm scripts in your _package.json_ for running Greenwwod and mak
 
 ## Jump Right In
 
-If you want to jump to the final results right now, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with it in your browser using the Stackblitz below. 👇
+If you want to jump to the final results right away, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with it in your browser using the Stackblitz below. 👇
 
-<iframe src="https://stackblitz.com/github/projectevergreen/greenwood-getting-started?embed=1" class="stackblitz" loading="lazy"></iframe>
+<iframe src="https://stackblitz.com/github/projectevergreen/greenwood-getting-started?embed=1" loading="lazy"></iframe>
 
 ## Next Section
 

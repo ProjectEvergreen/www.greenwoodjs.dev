@@ -6,19 +6,19 @@ tocHeading: 2
 
 # Storybook
 
-[**Storybook**](https://storybook.js.org/) is a developer tool created for helping author components in isolation with interactive demonstrations and documentation. This guide will give a high level over of setting up Storybook and integrating with any Greenwood specific capabilities.
+[**Storybook**](https://storybook.js.org/) is a developer tool for authoring components in isolation with interactive demonstrations and documentation. This guide will give a high level overview of setting up Storybook and integrating with any Greenwood specific features.
 
 > You can see an example (this website's own repo!) [here](https://github.com/ProjectEvergreen/www.greenwoodjs.dev).
 
 ## Setup
 
-We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/instal) to setup a project from scratch.
+We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/instal) to setup a project from scratch:
 
 ```shell
 npx storybook@latest init
 ```
 
-As part of the prompts, we suggest the following answers to project type (**web_components**) and builder (**Vite**).
+As part of the prompts, we suggest the following answers to project type (**web_components**) and builder (**Vite**):
 
 ```shell
 ✔ Do you want to manually choose a Storybook project type to install? … yes
@@ -151,13 +151,13 @@ export default defineConfig({
 });
 ```
 
-Phew, should be all set now. 😅
+Phew, should be all set now.
 
 ## Resource Plugins
 
-If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need a _vite.config.js_ that we can configure to have it leverage Greenwood plugins you're using to automatically handle these custom transformations.
+If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need a _vite.config.js_ so we can create a custom transformation plugin that can leverage Greenwood's plugins to automatically handle custom transformations.
 
-For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to add a plugin transformation and stub out the signature.
+For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to add a Vite plugin to handle this transformation.
 
 ```js
 import { defineConfig } from "vite";
@@ -203,7 +203,7 @@ export default defineConfig({
 
 ## Content as Data
 
-If you are using any of Greenwood's [content as data](/docs/content-as-data/) features, you'll want to configure Storybook for mocking of `fetch` calls in your stories.
+If you are using any of Greenwood's [content as data](/docs/content-as-data/) features, you'll want to configure Storybook for mocking `fetch` calls in your stories.
 
 1. First, install the [**storybook-addon-fetch-mock**](https://storybook.js.org/addons/storybook-addon-fetch-mock) addon
    ```shell

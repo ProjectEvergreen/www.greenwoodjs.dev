@@ -84,7 +84,7 @@ customElements.define("app-card", Card);
 
 ## Search API
 
-Next we'll make a "fragments" based API route that we'll use on the Search page. When the user submits the `<form>` on the Search page for a product, a request from the client will be made to this endpoint to filter through the products and if there are any matches, will return the response as an HTML payload from server rendering all the products out to card components.
+Next we'll make a "fragments" based API route that we'll call to on the Search page. When the user submits the `<form>` on the Search page for a product, a request from the client will be made to this endpoint to filter through the products and if there are any matches, will return the response as an HTML payload by server rendering all the products out to card components.
 
 ```js
 // src/pages/api/search.js
@@ -200,12 +200,12 @@ export default class ProductsPage extends HTMLElement {
         const { title, thumbnail } = product;
 
         return `
-        <app-card
-          title="${title}"
-          thumbnail="${thumbnail}"
-        >
-        </app-card>
-      `;
+          <app-card
+            title="${title}"
+            thumbnail="${thumbnail}"
+          >
+          </app-card>
+        `;
       })
       .join("");
 
@@ -249,6 +249,8 @@ src/
   layouts/
     app.html
   pages/
+    api/
+      search.js
     products.js
     search.html
 ```
@@ -260,5 +262,3 @@ In this tutorial we demonstrated a hybrid rendered application in Greenwood, lev
 ![full-stack-web-components](/assets/guides/full-stack-web-components.webp)
 
 If you like this approach, make sure to check out our [full demo repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel) and [our guide on using something like **htmx**](/guides/ecosystem/htmx/) to further embrace this more hypermedia focused architecture.
-
-Whatever you decide, make sure to share with us whatever you end up building with Greenwood! 💚

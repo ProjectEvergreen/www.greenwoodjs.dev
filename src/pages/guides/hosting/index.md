@@ -8,7 +8,7 @@ tocHeading: 2
 <div class="heading-box">
   <h1>Hosting</h1>
 
-  The guides within this section cover some of the hosting options you can use to build and deploy your Greenwood project. Below is a an overview of the deploy targets available for a Greenwood site, with additional target specific pages in the sidebar.
+  This section of our Guides content will cover some of the hosting options you can use to deploy your Greenwood project. Below is a an overview of the general purpose deploy targets available out of the box with Greenwood, with additional vendor specific sections in the sidebar.
 
 </div>
 
@@ -28,7 +28,7 @@ Generally you will want to setup build (**npm**) scripts for running Greenwood a
 }
 ```
 
-By default when running `greenwood build`, all your build assets will be output into a directory called _public/_ and will include all your static HTML and assets (JS, CSS, images) as well as code needed for serving dynamic content.
+By default when running `greenwood build`, all your build assets will be output into a directory called _public/_ and will include all your static HTML and assets (JS, CSS, images) as well as code needed for serving dynamic content (SSR pages, API routes).
 
 ```shell
 # hybrid build output example
@@ -62,13 +62,13 @@ You can of course run your Greenwood application anywhere you can install NodeJS
 
 ## Serverless
 
-For deploying SSR pages and API routes to serverless hosting providers, you can use (or create your own) an adapter plugin like for Vercel or Netlify.
+For deploying SSR pages and API routes to serverless hosting providers, you can use (or create your own) adapter plugins like for Vercel or Netlify.
 
 > You can see our [docs on adapter plugins](/docs/plugins/) to learn more about creating (or contributing!) your own.
 
 ## Docker
 
-[Docker](https://www.docker.com/) is a widely supported developer tool for standardizing the deployment pipeline for applications. You can easily adapt the [baseline NodeJS Docker image](https://github.com/docker/docker-nodejs-sample) (like we did) and fine-tune it for Greenwood with just a couple steps. We have [a demo repo](https://github.com/ProjectEvergreen/greenwood-demo-platform-docker) that you can clone or fork and customize to your needs.
+[Docker](https://www.docker.com/) is a widely supported developer tool for standardizing the deployment pipeline for applications. You can easily adapt the [baseline NodeJS Docker image](https://github.com/docker/docker-nodejs-sample) and fine-tune it for Greenwood with just a couple steps. We have [a demo repo](https://github.com/ProjectEvergreen/greenwood-demo-platform-docker) that you can clone or fork and customize to your needs.
 
 ![Greenwood running in Docker Desktop](/assets/guides/greenwood-docker-desktop.webp)
 

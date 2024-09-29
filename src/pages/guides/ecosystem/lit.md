@@ -7,7 +7,7 @@ tocHeading: 2
 
 # Lit
 
-[**Lit**](https://lit.dev/) is builds on top Web Components standards adding additional developer experience ergonomics to authoring Web Components like reactivity, declarative templates and overall helping to reduce boilerplate. Lit also has support for SSR (server-side rendering), which Greenwood supports through a plugin.
+[**Lit**](https://lit.dev/) builds on top of the Web Components standards, adding additional developer experience ergonomics like reactivity, declarative templates and reducing boilerplate. Lit also has support for SSR (server-side rendering), which Greenwood supports through a plugin.
 
 > You can see a complete hybrid project example in this [demonstration repo](https://github.com/thescientist13/greenwood-lit-ssr).
 
@@ -62,7 +62,7 @@ That's it!
 
 ## SSR
 
-For [Lit and SSR](https://lit.dev/docs/ssr/overview/), you can enable this capability by installing a Greenwood [plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit) and adding it to your _greenwood.config.js_.
+To enable [Lit and SSR](https://lit.dev/docs/ssr/overview/) you can install our Greenwood [plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit) and add it to your _greenwood.config.js_.
 
 ```js
 import { greenwoodPluginRendererLit } from "@greenwood/plugin-renderer-lit";
@@ -72,4 +72,4 @@ export default {
 };
 ```
 
-> Please see [the README](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-renderer-lit/README.md) to learn more about full usage details and caveats.
+> Please see the [README](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-renderer-lit/README.md) to learn more about full usage details and caveats.

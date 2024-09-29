@@ -24,7 +24,7 @@ In this section, we'll share the steps for up S3 and Cloudfront together for sta
 
 You should now be able to access your site at `http://<your-dist>.cloudfront.net/`! 🏆
 
-Now at this point, if you have any routes like `/search/`, you'll notice they are not working unless _index.html_ is appended to the path. To enable routing (URL rewriting) for cleaner URLs, follow the _Configure Trigger_ section of [this guide](https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/) on the Lambda function as a [**Lambda@Edge**](https://aws.amazon.com/lambda/edge/) function to run on every incoming request.
+Now at this point, if you have any routes like `/search/`, you'll notice they are not working unless _index.html_ is appended to the path. To enable routing (URL rewriting) for cleaner URLs, follow the _Configure Trigger_ section of [this guide](https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/) to attach the Lambda as a [**Lambda@Edge**](https://aws.amazon.com/lambda/edge/) function that will run on every incoming request.
 
 Below is a sample Edge function for doing the rewrites:
 

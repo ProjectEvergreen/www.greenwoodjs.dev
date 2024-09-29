@@ -12,21 +12,21 @@ tocHeading: 2
 
 ## Installation
 
-As Tailwind is a PostCSS plugin, you'll need to a couple extra steps to get things setup, but for the most part you can follow the steps listed on the [Tailwind website](https://tailwindcss.com/docs/installation/using-postcss).
+As Tailwind is a PostCSS plugin, you'll need to take a couple of extra steps to get things setup for the first time, but for the most part you can just follow the steps listed on the [Tailwind docs](https://tailwindcss.com/docs/installation/using-postcss).
 
-1. Let's install Tailwind and needed dependencies into our project, including our [PostCSS plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-postcss)
+1. Let's install Tailwind and needed dependencies into our project, including Greenwood's [PostCSS plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-postcss)
 
    ```shell
    npm install -D @greenwood/plugin-postcss tailwindcss autoprefixer
    ```
 
-1. Now run the Tailwind CLI
+1. Now run the Tailwind CLI to initialize our project with Tailwind
 
    ```shell
    npx tailwindcss init
    ```
 
-1. Create two PostCSS configuration files (needed in Greenwood for ESM / CJS interop)
+1. Create _**two**_ PostCSS configuration files (two files are needed in Greenwood to support ESM / CJS interop)
 
    ```js
    // postcss.config.cjs (CJS)

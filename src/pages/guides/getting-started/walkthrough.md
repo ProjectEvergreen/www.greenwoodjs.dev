@@ -37,7 +37,7 @@ Let's scaffold out a couple pages to get things going. For this guide, we'll wan
 - A home page
 - Two blog post pages
 
-Our home page will be simple landing page with links to our blog post pages.
+Our home page will be simple landing page with links to our blog post pages:
 
 ```html
 <html>
@@ -162,7 +162,7 @@ a {
 }
 ```
 
-Now we can add a `<link>` tag pointing to this CSS file into our app layout. Easy! 💥
+Now we can add a `<link>` tag pointing to this CSS file into our _app.html_ layout. Easy! 💥
 
 ```html
 <!-- src/layouts/app.html -->
@@ -187,7 +187,7 @@ Now we can add a `<link>` tag pointing to this CSS file into our app layout. Eas
 
 To create the header and footer for our site, we'll be using [Web Components](https://www.webcomponents.org/introduction). Web Components are the web platform's [native way](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) to create custom HTML behaviors that (can) encapsulate their own styles, are light weight, and make for a great templating solution.
 
-Combined with [Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom), Web Components can also benefit from SSR and can tap into hydration techniques, all built in to the browser!
+Combined with [Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom), Web Components can also benefit from SSR and can tap into hydration techniques that are all built in to the browser!
 
 Let's use the footer component for this guide as an example:
 
@@ -240,13 +240,13 @@ customElements.define("app-footer", FooterComponent);
 
 What we've done is:
 
-1. Create a `class FooterComponent` that `extends HTMLElement`
+1. Create a `FooterComponent` class that extends `HTMLElement`
 1. If no shadow root is detected, create a `<template>` element
 1. We add some styles and HTML into the template
 1. We instantiate a shadow root and append that to the template
 1. We then define a tag for our new `<app-footer>` and pass a reference to our class
 
-From there, we can reference this in our App layout with a `<script>` tag and then add the `<app-footer>` tag to the bottom of the layout.
+From there, we can reference this in our App layout with a `<script>` tag and then add the `<app-footer>` tag to the bottom of the layout:
 
 ```html
 <html>
@@ -273,7 +273,7 @@ From there, we can reference this in our App layout with a `<script>` tag and th
 
 ## Final Build
 
-Now that we have everything we developed working, we should generate a production build and verify that output locally. For that, we just need to run Greenwood's `build` command, followed by its `serve` command:
+Now that we have all our content everything we developed working, we should generate a production build and verify that output locally. For that, we just need to run Greenwood's `build` command, followed by its `serve` command:
 
 ```shell
 $ npm run build
@@ -287,4 +287,4 @@ If all goes well, you should be able to open `http://localhost:8080` in your bro
 
 Phew!
 
-Good work, now you have a Greenwood project ready to [publish and deploy](/getting-started/guides/hosting/). Before we wrap up, let's explore a few ways you can [take Greenwood further](/guides/getting-started/going-further/) and push its capabilities to meet the needs of your project.
+Good work, now you have a Greenwood project ready to [publish and deploy](/guides/hosting/). Before we wrap up, let's explore a few ways you can [take Greenwood further](/guides/getting-started/going-further/) by demonstrating some additional use cases.

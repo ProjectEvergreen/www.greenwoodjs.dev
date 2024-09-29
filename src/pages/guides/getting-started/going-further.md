@@ -6,21 +6,21 @@ tocHeading: 2
 
 # Going Further
 
-Now that you've had a chance to introduce some of the [basics](/guides/getting-started/key-concepts/) Greenwood has to offer and having [walked through](/guides/getting-started/walkthrough/) putting together a basic site, let's take a moment showcase some of the additional capabilities and patterns you can leverage in Greenwood.
+Now that we've had a chance to introduce some of the [basics](/guides/getting-started/key-concepts/) of Greenwood and having [walked through](/guides/getting-started/walkthrough/) putting together a basic site, let's take a moment showcase some of the additional capabilities and use cases you can leverage in Greenwood.
 
 ## Prerendering
 
-A fair observation from the walkthrough might be that the header and footer are really just producing static content.  While the footer calculates a year, that really only needs to be done once at build time. Since Greenwood can easily server render Web Components leaning on [DOM based hydration techniques](https://web.dev/articles/declarative-shadow-dom#component_hydration), we can make a couple useful optimizations here.
+A fair observation from the walkthrough might be that the header and footer are really just producing static content. While the footer calculates a year, that really only needs to be done once at build time. Since Greenwood can easily server render Web Components leaning on [DOM based hydration techniques](https://web.dev/articles/declarative-shadow-dom#component_hydration), we can make a couple useful optimizations here.
 
 First, we can enable the [`prerender`](/docs/config/#prerender) flag in a _greenwood.config.js_ file which will do a one-time server render for any custom element tags in our HTML.
 
 ```js
 export default {
-  prerender: true
-}
+  prerender: true,
+};
 ```
 
-Now if we look in the HTML output for any of our pages, we will see pre-rendered HTML for the footer inside a `<template>` tag (this is Declarative Shadow DOM in action):
+Now if we look in the HTML output for any of our pages, we will see pre-rendered HTML for the footer inside a `<template>` tag (this is Declarative Shadow DOM in action!):
 
 ```html
 <app-footer>
@@ -44,7 +44,7 @@ We can go one step further and instruct Greenwood to strip out the `<script>` ta
 <script type="module" src="../components/header/header.js" data-gwd-opt="static"></script>
 ```
 
-And now, no JS bundles in the network tab either and with that we just got the best of both worlds; JavaScript for developers, HTML for users.  💚
+And now, no JS bundles in the network tab either! With that, we just got the best of both worlds; JavaScript for developers, HTML for users. 💚
 
 ![getting-started-going-further-prerendering](/assets/guides/getting-started-going-further-prerendering.webp)
 
@@ -52,7 +52,7 @@ And now, no JS bundles in the network tab either and with that we just got the b
 
 ## Light DOM
 
-While most of the examples so far have favored using Shadow DOM, Greenwood is equally capable and encouraging of using Light DOM to render your (static / pre-rendered) Web Components.  This is a great pattern to pair with when using something like [Tailwind](/guides/ecosystem/tailwind/) or our [CSS Modules plugin](/docs/plugins/css-modules/).
+While most of the examples so far have been using Shadow DOM, Greenwood is equally capable and encouraging of using Light DOM to render your (static / pre-rendered) Web Components. This is a great pattern to pair with when using something like [Tailwind](/guides/ecosystem/tailwind/) or our [CSS Modules plugin](/docs/plugins/css-modules/).
 
 Instead of rendering into a Shadow Root, you can just render into `innerHTML`:
 
@@ -79,7 +79,7 @@ export default class Header extends HTMLElement {
   }
 }
 
-customElements.define('x-header', Header);
+customElements.define("x-header", Header);
 ```
 
 There is also the pattern of [**HTML Web Components**](https://blog.jim-nielsen.com/2023/html-web-components/), which can be another great option for combining global styles with "slotted" Light DOM content.
@@ -87,7 +87,7 @@ There is also the pattern of [**HTML Web Components**](https://blog.jim-nielsen.
 ```js
 export default class PictureFrame extends HTMLElement {
   connectedCallback() {
-    const title = this.getAttribute('title');
+    const title = this.getAttribute("title");
 
     this.innerHTML = `
       <div class="picture-frame">
@@ -98,7 +98,7 @@ export default class PictureFrame extends HTMLElement {
   }
 }
 
-customElements.define('app-picture-frame', PictureFrame);
+customElements.define("app-picture-frame", PictureFrame);
 ```
 
 ```html
@@ -108,12 +108,16 @@ customElements.define('app-picture-frame', PictureFrame);
     <style>
       .picture-frame {
         width: fit-content;
+
+        & h6 {
+          text-decoration: underline;
+        }
       }
     </style>
   </head>
   <body>
     <app-picture-frame title="My Logo">
-      <img src="/assets/my-logo.webp" width="200" height="200"/>
+      <img src="/assets/my-logo.webp" width="200" height="200" />
     </app-picture-frame>
   </body>
 </html>
@@ -121,14 +125,15 @@ customElements.define('app-picture-frame', PictureFrame);
 
 > As a general rule of thumb, if you need interactivity / hydration use Shadow DOM, if it's just for templating out static content, use a combination Light DOM + pre-rendering + static optimizations.
 >
-> It's your DOM, use it how you need it.
+> Either way it's **your** DOM, use it how you need it.
 
 ## Content as Data
 
-Greenwood also provides some general purpose helpers for more static driven sites (e.g. SSG) through [content as data](/docs/content-as-data/) including a programmatic `Fetch` based API.  When combined with [`activeFrontmatter`](/docs/config/) this enables HTML-first templating which can then be used to initialize attributes for custom element tags on a per page basis.  Very useful for creating navigation menus and other sorts of collections of content.
+Greenwood also provides some general purpose helpers for more static driven sites (e.g. SSG) through our [content as data](/docs/content-as-data/) features, including a programmatic `Fetch` based API. When combined with [`activeFrontmatter`](/docs/config/) this enables HTML-first templating which can then be used to initialize attributes for custom element tags on a per page basis. Very useful for creating navigation menus and other sorts of collections of content, even with active link highlighting, no runtime JS needed! 💯
 
 For example, we can define some frontmatter in a markdown file:
 
+<!-- prettier-ignore-start -->
 ```md
 <!-- src/pages/blog/first-post.md -->
 ---
@@ -141,6 +146,7 @@ published: 2025-01-01
 
 Lorum Ipsum
 ```
+<!-- prettier-ignore-end -->
 
 And access these values through HTML, like in a layout file:
 
@@ -168,9 +174,9 @@ And the component might look like this:
 ```js
 export default class BlogPost extends HTMLElement {
   connectedCallback() {
-    const title = this.getAttribute('title');
-    const author = this.getAttribute('author');
-    const published = this.getAttribute('published');
+    const title = this.getAttribute("title");
+    const author = this.getAttribute("author");
+    const published = this.getAttribute("published");
 
     this.innerHTML = `
       <div class="blog-post">
@@ -188,7 +194,7 @@ export default class BlogPost extends HTMLElement {
   }
 }
 
-customElements.define('app-blog-post', BlogPost);
+customElements.define("app-blog-post", BlogPost);
 ```
 
 ## Next Section

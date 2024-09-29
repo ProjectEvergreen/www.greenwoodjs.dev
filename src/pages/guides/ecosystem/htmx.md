@@ -8,13 +8,13 @@ tocHeading: 2
 
 # htmx
 
-[**htmx**](https://htmx.org/) is a JavaScript library for enhancing existing HTML elements with ["hypermedia controls"](https://htmx.org/essays/hypermedia-clients/), which effectively allows any element to make requests (like a `<form>` or `<a>`) and update the page with HTML as needed.
+[**htmx**](https://htmx.org/) is a JavaScript library for enhancing existing HTML elements with ["hypermedia controls"](https://htmx.org/essays/hypermedia-clients/), which effectively allows any element to make requests (like a `<form>` or `<a>` natively can) and update the page with HTML as needed.
 
 > You can see a complete hybrid project example in this [demonstration repo](https://github.com/thescientist13/greenwood-htmx/).
 
 ## Installation
 
-As with most libraries, just install **htmx.org** with your favorite package manager as a dependency.
+As with most libraries, just install **htmx.org** as a dependency using your favorite package manager:
 
 ```shell
 npm i htmx.org
@@ -22,11 +22,11 @@ npm i htmx.org
 
 ## Example
 
-As a basic example, let's create a `<form>` in the client side that can send a request to an API route as `FormData` and send a custom HTML response back.
+As a basic example, let's create a `<form>` in the client side that can send a request to an API route as `FormData`, which sends an HTML response back.
 
 ### Frontend
 
-First we'll create our frontend including htmx in a `<script>` tag and adding a `<form>` to the page.
+First we'll create our frontend including htmx in a `<script>` tag and adding a `<form>` to the page:
 
 ```html
 <!-- src/pages/index.html -->
@@ -50,7 +50,7 @@ First we'll create our frontend including htmx in a `<script>` tag and adding a 
 
 ### Backend
 
-Now let's add our API endpoint.
+Now let's add our API endpoint:
 
 ```js
 // src/pages/api/greeting.js

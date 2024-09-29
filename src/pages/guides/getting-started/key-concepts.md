@@ -7,13 +7,13 @@ tocHeading: 2
 
 # Key Concepts
 
-Now that we have our project [ready to go](/guides/getting-started/#setup), let's prepare by reviewing a few key concepts to get any Greenwood project started.
+Now that we have our project [ready to go](/guides/getting-started/#setup), let's prepare by reviewing a few key concepts familiar to all Greenwood project types.
 
 ## File Based Routing
 
-Greenwood leverages file-based routing to map files in a _pages/_ directory inside your project's workspace to URLs that can be accessed from a browser.
+Greenwood leverages file-based routing to map files in a _pages/_ directory to URLs that can be accessed from a browser.
 
-As an example, this project structure
+As an example, this project structure:
 
 ```shell
 src/
@@ -32,11 +32,11 @@ Would yield the following routes:
 - `/blog/first-post/` - mapped from _blog/first-post.md_
 - `/blog/first-post/` - mapped from _blog/second-post.md_
 
-> Notice we can mix and match HTML and markdown authored content in our filesystem. As we'll cover later on in this guide, you can of course create dynamic server rendered pages (SSR), API routes, and more! All your static and dynamic content happily living side-by-side. 👀
+> Notice we can mix and match HTML and markdown authored content in our filesystem. You can of course create dynamic server rendered pages (SSR), API routes, and more, with all your static and dynamic content happily living side-by-side. 👀
 
 ## Pages
 
-For the sake of this guide, pages can just be HTML, using just... normal HTML! You can include any `<script>`, `<style>`, `<link>`, etc tags you want.
+For the sake of this guide, pages can just be HTML, using just... normal HTML! You can include any `<script>`, `<style>`, `<link>`, etc tags you need.
 
 ```html
 <!-- src/index.html -->
@@ -61,7 +61,9 @@ For the sake of this guide, pages can just be HTML, using just... normal HTML! Y
 
 ## Scripts and Styles
 
-As demonstrated above, we can create an inline `<style>` tag for our page instead, As your application grows, you'll probably want to put JavaScript and CSS content in their own files, including the `<script>` tag for our custom element tag `<app-header></app-header>`.
+As demonstrated above, we can create an inline `<style>` tag for our page instead, As your application grows, you'll probably want to put JavaScript and CSS content in their own files.
+
+This includes the `<script>` tag for our custom element tag `<app-header>`:
 
 ```html
 <!-- src/pages/index.html -->
@@ -83,7 +85,7 @@ As demonstrated above, we can create an inline `<style>` tag for our page instea
 </html>
 ```
 
-Our file structure would now look like this:
+With that new component file, our project structure would now look like this:
 
 ```shell
 src/
@@ -153,11 +155,13 @@ src/
     app.html
 ```
 
-> What's that, code splitting you say? Yes! In Greenwood, we just call it a script tag. In this way, entry points for bundles are defined by your pages and layouts automatically.
+> What's that, code splitting you say? Yes! In Greenwood, we just call it a `<script>` tag. In this way, entry points for bundles are defined by your pages and layouts automatically.
 
 ## Markdown and Frontmatter
 
-Although it can be used in HTML files too, frontmatter is a YAML based set of content commonly used in markdown files used to provide additional metadata about the file not rendered to the final output. Frontmatter is an example of how we could define a layout for a markdown file. So if wanted a layout to specifically wrap our blog posts, we can specify the name of a layout file in our markdown files.
+Although it can be used in HTML files too, frontmatter is a YAML powered set of content commonly used in markdown files that can provide additional metadata about the file and that are not rendered to the final output. Frontmatter is an example of how we could define a layout for a markdown file.
+
+So if wanted a layout to specifically wrap our blog posts, we can specify the name of a layout file in our markdown files:
 
 <!-- prettier formats the frontmatter fences to ## :/ -->
 <!-- prettier-ignore-start -->
