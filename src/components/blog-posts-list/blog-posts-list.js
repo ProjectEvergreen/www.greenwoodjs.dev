@@ -15,7 +15,9 @@ export default class BlogPostsList extends HTMLElement {
         ${posts
           .map((post) => {
             const { title, route } = post;
-            const { coverImage, abstract = "" } = post.data;
+            const { coverImage, abstract = "", published } = post.data;
+            const date = new Date(published);
+            const time = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
             const coverBackground = coverImage ? coverImage : "/assets/greenwood-logo-leaf.svg";
             const coverBackgroundPadding =
               coverImage && coverImage !== "/assets/greenwood-logo-g.svg" ? "4px" : "14px";
@@ -33,7 +35,10 @@ export default class BlogPostsList extends HTMLElement {
                   />
 
                   <div class="${styles.postsListItemContentContainer}">
-                    <h2 class="${styles.postsListItemContentTitle}">${title}</h2>
+                    <h2 class="${styles.postsListItemContentTitle}">
+                      ${title}
+                      <span class="${styles.postsListItemContentPublished}">(${time})</span>
+                    </h2>
                     <p class="${styles.postsListItemContentAbstract}">${abstract}</p>
                   </div>
 

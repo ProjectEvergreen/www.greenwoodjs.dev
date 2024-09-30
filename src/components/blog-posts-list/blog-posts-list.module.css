@@ -47,8 +47,18 @@
 .postsListItemContentTitle {
   font-family: var(--font-primary-bold);
   font-size: var(--font-size-2);
-  display: inline-flex;
+  /* display: inline-flex; */
+  display: block;
   margin: 0 0 var(--size-1);
+}
+
+.postsListItemContentPublished {
+  /* font-family: var(--font-primary-bold); */
+  font-size: 16px;
+  display: block;
+  /* display: inline-flex; */
+  /* display: block;
+  margin: 0 0 var(--size-1); */
 }
 
 .postsListItemContentAbstract {
@@ -72,6 +82,15 @@
 
   .postsListItemCoverImage {
     margin: var(--size-1);
+  }
+
+  .postsListItemContentTitle {
+    display: inline-flex;
+  }
+
+  .postsListItemContentPublished {
+    font-size: var(--font-size-1);
+    display: contents;
   }
 }
 
