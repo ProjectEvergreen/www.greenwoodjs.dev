@@ -36,7 +36,7 @@ export default class SideNav extends HTMLElement {
       });
 
       this.innerHTML = `
-        <div class="${styles.fullMenu}" role="full-menu">
+        <div class="${styles.fullMenu}" data-full>
           ${sections
             .map((section) => {
               const { heading, items, link } = section;
@@ -67,7 +67,7 @@ export default class SideNav extends HTMLElement {
             })
             .join("")}
         </div>
-        <div class="${styles.compactMenu}" role="compact-menu">
+        <div class="${styles.compactMenu}" data-compact>
           <button popovertarget="compact-menu" class="${styles.compactMenuPopoverTrigger}" aria-label="Compact Guides Menu">
             ${heading}
             <span id="indicator">&#9660;</span>

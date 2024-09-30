@@ -32,7 +32,7 @@ describe("Components/Table of Contents", () => {
     let fullMenu;
 
     before(async () => {
-      fullMenu = toc.querySelector("[role='full-menu']");
+      fullMenu = toc.querySelector("[data-full]");
     });
 
     it("should not be null", () => {
@@ -71,7 +71,7 @@ describe("Components/Table of Contents", () => {
     let popoverSelector = "onthispage";
 
     before(async () => {
-      compactMenu = toc.querySelector("[role='compact-menu']");
+      compactMenu = toc.querySelector("[data-compact]");
     });
 
     it("should not be null", () => {

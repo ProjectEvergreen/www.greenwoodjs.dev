@@ -42,7 +42,7 @@ describe("Components/Side Nav", () => {
     let fullMenu;
 
     before(async () => {
-      fullMenu = nav.querySelector("[role='full-menu']");
+      fullMenu = nav.querySelector("[data-full]");
     });
 
     it("should not be null", () => {
@@ -97,7 +97,7 @@ describe("Components/Side Nav", () => {
     let popoverSelector = "compact-menu";
 
     before(async () => {
-      compactMenu = nav.querySelector("[role='compact-menu']");
+      compactMenu = nav.querySelector("[data-compact]");
     });
 
     it("should not be null", () => {

@@ -12,7 +12,7 @@ export default class TableOfContents extends HTMLElement {
     }
 
     this.innerHTML = `
-      <div class="${styles.fullMenu}" role="full-menu">
+      <div class="${styles.fullMenu}" data-full>
         <h2 role="heading">On This Page</h2>
         <ol>
         ${tableOfContents
@@ -28,7 +28,7 @@ export default class TableOfContents extends HTMLElement {
           .join("")}
         </ol>
       </div>
-      <div class="${styles.compactMenu}"  role="compact-menu">
+      <div class="${styles.compactMenu}" data-compact>
         <button popovertarget="onthispage" class="${styles.compactMenuTrigger}" aria-label="Table of Contents Menu">
           On This Page
           <span id="indicator">&#9660;</span>
