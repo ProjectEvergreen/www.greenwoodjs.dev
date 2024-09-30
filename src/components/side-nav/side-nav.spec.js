@@ -105,16 +105,26 @@ describe("Components/Side Nav", () => {
     });
 
     it("should have the expected popover trigger element", () => {
-      const trigger = compactMenu.querySelectorAll(`[popovertarget="${popoverSelector}"]`);
+      const trigger = compactMenu.querySelectorAll(
+        `[popovertarget="${popoverSelector}"]:not([popovertargetaction])`,
+      );
 
       expect(trigger.length).to.equal(1);
       expect(trigger[0].textContent).to.contain(HEADING);
     });
 
     it("should have the expected popover element", () => {
-      const popover = compactMenu.querySelectorAll(`#${popoverSelector}[popover]`);
+      const popover = compactMenu.querySelectorAll(`#${popoverSelector}[popover="manual"]`);
 
       expect(popover.length).to.equal(1);
+    });
+
+    it("should have the expected popover close button", () => {
+      const closeButton = compactMenu.querySelectorAll(
+        `[popover="manual"] [popovertarget="${popoverSelector}"]`,
+      );
+
+      expect(closeButton.length).to.equal(1);
     });
 
     it("should have the expected number of section heading links", () => {

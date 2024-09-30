@@ -72,7 +72,10 @@ export default class SideNav extends HTMLElement {
             ${heading}
             <span id="indicator">&#9660;</span>
           </button>
-          <div id="compact-menu" class="${styles.compactMenuPopover}" popover>
+          <div id="compact-menu" class="${styles.compactMenuPopover}" popover="manual">
+            <button class="${styles.compactMenuCloseButton}" popovertarget="compact-menu" popovertargetaction="hide" aria-label="Compact Menu Close Button">
+              &times;
+            </button>
             ${sections
               .map((section) => {
                 const { heading, items, link } = section;

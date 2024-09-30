@@ -73,6 +73,16 @@
   text-decoration: underline;
 }
 
+.compactMenuCloseButton {
+  background: transparent;
+  font-size: var(--font-size-5);
+  cursor: pointer;
+  border: none;
+  padding: 0 12px;
+  width: 100%;
+  text-align: right;
+}
+
 @media (min-width: 1200px) {
   .fullMenu {
     display: block;

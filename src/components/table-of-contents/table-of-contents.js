@@ -33,7 +33,10 @@ export default class TableOfContents extends HTMLElement {
           On This Page
           <span id="indicator">&#9660;</span>
         </button>
-        <div id="onthispage" class="${styles.compactMenuPopover}" popover>
+        <div id="onthispage" class="${styles.compactMenuPopover}" popover="manual">
+          <button class="${styles.compactMenuCloseButton}" popovertarget="onthispage" popovertargetaction="hide" aria-label="Compact Menu Close Button">
+            &times;
+          </button>
           <ol>
           ${tableOfContents
             .map((item) => {
