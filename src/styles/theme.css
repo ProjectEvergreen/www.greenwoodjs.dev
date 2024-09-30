@@ -129,29 +129,6 @@ li {
   margin: var(--size-2) 0;
 }
 
-.heading-box {
-  background-color: var(--color-prism-bg);
-  padding: var(--size-5) var(--size-3) var(--size-3);
-  border-radius: var(--radius-3);
-  color: var(--color-white);
-
-  & h1 {
-    font-size: var(--font-size-3) !important;
-    background-color: var(--color-white);
-    display: inline-block;
-    padding: var(--size-2) var(--size-4);
-    border-radius: var(--radius-3);
-    box-shadow: var(--shadow-3);
-    color: var(--color-black);
-  }
-
-  & strong {
-    font-family: var(--font-primary-bold);
-    font-weight: 100;
-    text-decoration: underline;
-  }
-}
-
 .page-content {
   & blockquote {
     margin: var(--size-6) 0 0 var(--size-2);

@@ -4,15 +4,9 @@ order: 2
 tocHeading: 2
 ---
 
-<!-- prettier-ignore-start -->
-<div class="heading-box">
-  <h1>Hosting</h1>
-
-  This section of our Guides content will cover some of the hosting options you can use to deploy your Greenwood project. Below is a an overview of the general purpose deploy targets available out of the box with Greenwood, with additional vendor specific sections in the sidebar.
-
-</div>
-
-<!-- prettier-ignore-end -->
+<app-heading-box heading="Hosting">
+  <p>This section of our Guides content will cover some of the hosting options you can use to deploy your Greenwood project. Below is a an overview of the general purpose deploy targets available out of the box with Greenwood, with additional vendor specific sections in the sidebar.</p>
+</app-heading-box>
 
 ## Building
 

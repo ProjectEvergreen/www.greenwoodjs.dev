@@ -3,23 +3,15 @@ title: Guides
 layout: guides
 ---
 
-<!-- prettier-ignore-start -->
-<div class="heading-box">
-  <h1>Guides</h1>
-
-  Our Guides content serves to help educate on what is possible with Greenwood and how to leverage it to achieve the kind of application you're trying to make.
-
-  _Want to build with Lit and deploy to Vercel?_ **No problem.**
-  </br>
-  </br>
-  _Deploy a SPA to AWS?_ **Sure thing.**
-  </br>
-  </br>
-  _Run HTMX on a self-hosted server?_ **You know you can.**
-
-</div>
-
-<!-- prettier-ignore-end -->
+<app-heading-box heading="Guides">
+  <p>Our Guides content serves to help educate on what is possible with Greenwood and how to leverage it to achieve the kind of application you're trying to make.</p>
+  <span class="question">Want to build with Lit and deploy to Vercel?</span><span class="answer">No problem.</span>
+  <span class="spacer"></span>
+  <span class="question">Deploy a SPA to AWS?</span><span class="answer">Sure thing.</span>
+  <span class="spacer"></span>
+  <span class="question">Run HTMX on a self-hosted server?</span><span class="answer">You know you can.</span>
+  <span class="spacer"></span>
+</app-heading-box>
 
 The content is broken down across these sections:
 

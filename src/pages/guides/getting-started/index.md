@@ -4,15 +4,9 @@ layout: guides
 tocHeading: 2
 ---
 
-<!-- prettier-ignore-start -->
-<div class="heading-box">
-  <h1>Getting Started</h1>
-
-  Greenwood aims to leverage the web platform as much as possible, with just a little extra convenience added on top.  This section of our Guides content will take you through a high level overview of the basics of Greenwood, with a light introduction to some of its more advanced capabilities and patterns.
-
-</div>
-
-<!-- prettier-ignore-end -->
+<app-heading-box heading="Getting Started">
+  <p>Greenwood aims to leverage the web platform as much as possible, with just a little extra convenience added on top.  This section of our Guides content will take you through a high level overview of the basics of Greenwood, with a light introduction to some of its more advanced capabilities and patterns.</p>
+</app-heading-box>
 
 ## What to Expect
 

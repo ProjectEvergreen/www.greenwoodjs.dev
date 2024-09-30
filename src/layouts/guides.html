@@ -1,6 +1,11 @@
 <html>
   <head>
     <title>Greenwood - ${globalThis.page.title}</title>
+    <script
+      type="module"
+      src="../components/heading-box/heading-box.js"
+      data-gwd-opt="static"
+    ></script>
     <script type="module" src="../components/side-nav/side-nav.js" data-gwd-opt="static"></script>
     <script
       type="module"
@@ -57,6 +62,26 @@
         & h3 > a > span.icon,
         & h4 > a > span.icon {
           vertical-align: text-top;
+        }
+      }
+
+      app-heading-box {
+        & .spacer {
+          display: block;
+          margin: var(--size-1);
+        }
+
+        & .question {
+          font-style: italic;
+          margin: 0 var(--size-2) 0 0;
+        }
+
+        & .answer {
+          font-family: var(--font-primary-bold);
+          font-weight: 100;
+          text-decoration: underline;
+          margin-bottom: 20px;
+          display: inline-block;
         }
       }
 

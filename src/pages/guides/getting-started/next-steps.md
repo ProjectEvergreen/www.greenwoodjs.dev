@@ -4,15 +4,9 @@ layout: guides
 tocHeading: 2
 ---
 
-<!-- prettier-ignore-start -->
-<div class="heading-box">
-  <h1>Next Steps</h1>
-
-  Before closing out this guide, we hope you now have a good overview of Greenwood and its mechanics and how rooted Greenwood is in the web. This is why we say Greenwood is **your workbench for web**; we want to _enable you to build however you want, with whatever you want, and wherever you want_. Go all vanilla, or bring some friends along. Either way, viva la web!
-
-</div>
-
-<!-- prettier-ignore-end -->
+<app-heading-box heading="Next Steps">
+  <p>Before closing out this guide, we hope you now have a good overview of Greenwood and its mechanics and how rooted Greenwood is in the web. This is why we say Greenwood is your workbench for web; we want to enable you to build however you want, with whatever you want, and wherever you want. Go all vanilla, or bring some friends along. Either way, viva la web!</p>
+</app-heading-box>
 
 To continue your Greenwood journey, here are some links we think you may want to check out next:
 

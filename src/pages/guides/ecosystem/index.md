@@ -3,15 +3,9 @@ order: 3
 layout: guides
 ---
 
-<!-- prettier-ignore-start -->
-<div class="heading-box">
-  <h1>Ecosystem</h1>
-
-  This section of our Guides content will cover examples of using libraries and tools that are based on, or work well with developing for web standards, and in particular Web Components. As is Greenwood's philosophy, we want stay out of your way, and as long as the tool embraces web standards, it should just work out of the box.
-
-</div>
-
-<!-- prettier-ignore-end -->
+<app-heading-box heading="Ecosystem">
+  <p>This section of our Guides content will cover examples of using libraries and tools that are based on, or work well with developing for web standards, and in particular Web Components. As is Greenwood's philosophy, we want stay out of your way, and as long as the tool embraces web standards, it should just work out of the box.</p>
+</app-heading-box>
 
 In most cases an `npm install` should be all you need to use any third party library and then include it in a `<script>` or `<link>` tag or through an ES module. For example, to use jQuery, simply install it from **npm**
 
