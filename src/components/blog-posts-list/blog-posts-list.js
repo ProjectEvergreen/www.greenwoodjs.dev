@@ -17,7 +17,7 @@ export default class BlogPostsList extends HTMLElement {
             const { title, route } = post;
             const { coverImage, abstract = "", published } = post.data;
             const date = new Date(published);
-            const time = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+            const time = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
             const coverBackground = coverImage ? coverImage : "/assets/greenwood-logo-leaf.svg";
             const coverBackgroundPadding =
               coverImage && coverImage !== "/assets/greenwood-logo-g.svg" ? "4px" : "14px";
