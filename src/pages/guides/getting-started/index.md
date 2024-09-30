@@ -75,9 +75,9 @@ Then setup some npm scripts in your _package.json_ for running Greenwood and mak
 
 ## Jump Right In
 
-If you want to jump to the final results right away, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with it in your browser using the Stackblitz below. 👇
+If you want to jump to the final results right away, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with it directly in your browser on [Stackblitz](https://stackblitz.com/github/projectevergreen/greenwood-getting-started).
 
-<iframe src="https://stackblitz.com/github/projectevergreen/greenwood-getting-started?embed=1" loading="lazy"></iframe>
+<iframe class="stackblitz" src="https://stackblitz.com/github/projectevergreen/greenwood-getting-started?embed=1" loading="lazy"></iframe>
 
 ## Next Section
 

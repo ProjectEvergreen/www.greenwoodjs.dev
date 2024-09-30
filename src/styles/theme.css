@@ -137,18 +137,4 @@ li {
     border-left: var(--size-1) solid var(--color-secondary);
     font-style: italic;
   }
-
-  & iframe {
-    width: 100%;
-    height: 800px;
-    display: none;
-  }
-}
-
-@media (min-width: 768px) {
-  .page-content {
-    & iframe {
-      display: block;
-    }
-  }
 }
