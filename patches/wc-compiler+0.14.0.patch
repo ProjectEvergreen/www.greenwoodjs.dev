@@ -24,7 +24,7 @@ index be289a3..db07eb9 100644
  }
  
 diff --git a/node_modules/wc-compiler/src/wcc.js b/node_modules/wc-compiler/src/wcc.js
-index 35884d4..01d4059 100644
+index 35884d4..13e5aaa 100644
 --- a/node_modules/wc-compiler/src/wcc.js
 +++ b/node_modules/wc-compiler/src/wcc.js
 @@ -32,16 +32,27 @@ async function renderComponentRoots(tree, definitions) {
@@ -113,3 +113,12 @@ index 35884d4..01d4059 100644
  
      attrs.forEach((attr) => {
        elementInstance.setAttribute(attr.name, attr.value);
+@@ -207,7 +256,7 @@ async function renderFromHTML(html, elements = []) {
+   const definitions = [];
+ 
+   for (const url of elements) {
+-    await initializeCustomElement(url, undefined, undefined, definitions, true);
++    registerDependencies(url, definitions, 1);
+   }
+ 
+   const elementTree = getParse(html)(html);
