@@ -22,9 +22,17 @@
 }
 
 .snippet pre {
-  font-size: 10px;
+  font-size: 14px;
   text-align: center;
   display: inline-block;
+  padding: var(--size-px-4) var(--size-px-1);
+  background-color: transparent;
+  color: var(--color-black);
+}
+
+.snippet app-ctc {
+  display: none;
+  vertical-align: middle;
 }
 
 .buttonBlitz {
@@ -65,16 +73,6 @@
   color: var(--color-black) !important;
 }
 
-.snippet pre {
-  padding: var(--size-px-4) var(--size-px-1);
-  background-color: transparent;
-  color: var(--color-black);
-}
-
-.snippet app-ctc {
-  vertical-align: middle;
-}
-
 @media (min-width: 1024px) {
   .snippet {
     max-width: 60%;
@@ -82,5 +80,9 @@
 
   .snippet pre {
     font-size: var(--font-size-1);
+  }
+
+  .snippet app-ctc {
+    display: inline-block;
   }
 }
