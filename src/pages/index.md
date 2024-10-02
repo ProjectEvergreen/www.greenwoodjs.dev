@@ -20,7 +20,7 @@ imports:
 <div class="capabilities-content item1">
   <span>Hybrid Routing</span>
   <i>html.svg</i>
-  <p>Greenwood is HTML first by design.  Start from just an <em>index.html</em> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.  Single Page Applications (SPA) also supported.</p>
+  <p>Greenwood is HTML first by design.  Start from just an <code>index.html</code> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.  Single Page Applications (SPA) also supported.</p>
 
   ```shell
   src/
@@ -39,7 +39,7 @@ imports:
 <div class="capabilities-content item2">
   <span>Server Rendering</span>
   <i>build-ssg.svg</i>
-  <p>Web Components are not only a great component model, but also a great templating model for generating static HTML.  Below is a dynamic page in Greenwood powered by the <em>Custom Elements</em> API and server-rendering an imported custom element.</p>
+  <p>Web Components are not only a great component model, but also a great templating model for generating static HTML.  Below is a dynamic page in Greenwood powered by the <strong>Custom Elements</strong> API and server-rendering an imported custom element.</p>
 
   ```js
   // src/pages/products.js
@@ -79,7 +79,7 @@ imports:
 <div class="capabilities-content item3">
   <span>Web Components</span>
   <i>web-components.svg</i>
-  <p>Greenwood makes it possible to author real isomorphic Web Components, using Light or Shadow DOM, re-using that same definition across the server and client side.  Combined with Web APIs like <em>Constructable Stylesheets</em> and <em>Import Attributes</em>, Web Components make for a compelling solution as the web's own component model.</p>
+  <p>Greenwood makes it possible to author real isomorphic Web Components, using Light or Shadow DOM, re-using that same definition across the client <em>and</em> the server.  Combined with Web APIs like <code>Constructable Stylesheets</code> and <code>Import Attributes</code>, Web Components make for a compelling solution as the web's own component model.</p>
 
   ```js
   // src/components/card.js
@@ -119,7 +119,7 @@ imports:
 <div class="capabilities-content item4">
   <span>API Routes</span>
   <i>api-routes.svg</i>
-  <p>Need client side data fetching or mutations?  Greenwood provides API routes out of the box that are fully invested in web standards like <em>Fetch</em> and <em>FormData</em>.  Of course it is all fully compatible with server-rendering Web Components; a perfect companion for HTML over the wire solutions!</p>
+  <p>Need client side data fetching or mutations?  Greenwood provides API routes out of the box that are fully invested in web standards like <code>Fetch</code> and <code>FormData</code>.  Of course it is all fully compatible with server-rendering Web Components; a perfect companion for HTML over the wire solutions!</p>
 
   ```js
   // src/pages/api/search.js
