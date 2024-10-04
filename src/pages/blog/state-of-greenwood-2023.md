@@ -123,6 +123,8 @@ In the [v0.28.0 release](/blog/release-0.28.0/), Greenwood made Node 18 the mini
 
 This was especially beneficial to our [Resource Plugin API](/plugins/resource/) as it was already modeling this request / response paradigm anyway albeit in a very ad-hoc fashion, and so it was a natural fit to adopt these APIs. To give an idea of this what this migration looked like, here is a before snippet of Greenwood's internal plugin for handling CSS.
 
+<!-- eslint-disable no-undef -->
+<!-- eslint-disable no-unused-vars -->
 ```js
 class StandardCssResource extends ResourceInterface {
   constructor(compilation, options) {
@@ -148,6 +150,8 @@ class StandardCssResource extends ResourceInterface {
 
 And here is what it looks like now, now based on Web APIs and standards. ✨
 
+<!-- eslint-disable no-undef -->
+<!-- eslint-disable no-unused-vars -->
 ```js
 class StandardCssResource extends ResourceInterface {
   constructor(compilation, options) {

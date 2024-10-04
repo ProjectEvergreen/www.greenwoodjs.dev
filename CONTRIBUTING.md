@@ -1,5 +1,3 @@
-<!-- eslint-disable markdown/no-missing-label-refs -->
-
 # Contributing
 
 Thanks for contributing to the GreenwoodJS website! This document aims to help guide contributions into this project.
@@ -136,9 +134,6 @@ export default class Card extends HTMLElement {
 
       template.innerHTML = `
         <div class="card">
-          <style>
-            ${styles}
-          </style>
           <h3>${title}</h3>
           <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
           <button>View Item Details</button>
