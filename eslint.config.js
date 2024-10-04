@@ -31,6 +31,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.mocha,
+        ...globals.chai,
         ...globals.node,
       },
     },

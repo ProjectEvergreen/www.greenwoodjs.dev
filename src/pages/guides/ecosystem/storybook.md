@@ -162,8 +162,6 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
 ```js
 import { defineConfig } from "vite";
 import fs from "fs/promises";
-import path from "path";
-import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
 // 1) import the greenwood plugin and lifecycle helpers
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";

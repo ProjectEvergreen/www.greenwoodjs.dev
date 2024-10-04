@@ -96,7 +96,7 @@ describe("Components/Blog Posts List", () => {
       expect(paragraphs.length).to.equal(expectedBlogPosts.length);
 
       paragraphs.forEach((paragraph, i) => {
-        expect(paragraph.textContent.replace(/\'/g, "&apos;")).to.equal(
+        expect(paragraph.textContent.replace(/'/g, "&apos;")).to.equal(
           expectedBlogPosts[i].data.abstract,
         );
       });
