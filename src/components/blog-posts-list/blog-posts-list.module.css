@@ -47,8 +47,20 @@
 .postsListItemContentTitle {
   font-family: var(--font-primary-bold);
   font-size: var(--font-size-2);
-  display: inline-flex;
+  display: block;
   margin: 0 0 var(--size-1);
+}
+
+.postsListItemContentPublished {
+  font-size: 16px;
+  display: block;
+  margin: 0 0 var(--size-3) 0;
+  padding: 0 0 var(--size-2) 0;
+  border-bottom: 1px solid var(--color-black);
+
+  & time {
+    font-size: inherit;
+  }
 }
 
 .postsListItemContentAbstract {
@@ -71,7 +83,10 @@
   }
 
   .postsListItemCoverImage {
-    margin: var(--size-1);
+    margin: 0 var(--size-1);
+    max-width: 12%;
+    max-height: var(--size-9);
+    min-height: var(--size-9);
   }
 }
 
@@ -80,14 +95,6 @@
     padding: var(--size-4);
     width: 80%;
     margin: 0 auto;
-  }
-
-  .postsListItemCoverImage {
-    width: 20%;
-    max-width: 80px;
-    max-height: var(--size-9);
-    min-height: var(--size-9);
-    margin: var(--size-2);
   }
 
   .postsListItemContentTitle {
