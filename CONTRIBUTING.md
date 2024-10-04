@@ -1,4 +1,5 @@
 <!-- eslint-disable markdown/no-missing-label-refs -->
+
 # Contributing
 
 Thanks for contributing to the GreenwoodJS website! This document aims to help guide contributions into this project.

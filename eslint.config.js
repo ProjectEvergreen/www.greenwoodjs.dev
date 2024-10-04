@@ -268,10 +268,11 @@ export default [
     ignores: ["package-lock.json"],
     language: "json/json",
     rules: json.configs.recommended.rules,
-  }, {
+  },
+  {
     files: ["**/*.md"],
     plugins: {
-      markdown
+      markdown,
     },
     language: "markdown/gfm",
     rules: markdown.configs.recommended[0].rules,
