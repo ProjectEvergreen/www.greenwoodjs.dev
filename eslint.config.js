@@ -1,5 +1,7 @@
 import eslintConfigPrettier from "eslint-config-prettier";
 import babelParser from "@babel/eslint-parser";
+import markdown from "@eslint/markdown";
+import json from "@eslint/json";
 
 export default [
   {
@@ -29,6 +31,9 @@ export default [
         node: true,
       },
     },
+    plugins: {
+      json,
+    },
     rules: {
       "comma-dangle": [2, "never"],
       "no-cond-assign": 2,
@@ -56,7 +61,6 @@ export default [
       "no-func-assign": 2,
       "no-inner-declarations": 2,
       "no-invalid-regexp": 0,
-      "no-irregular-whitespace": 2,
       "no-negated-in-lhs": 2,
       "no-obj-calls": 0,
       "no-regex-spaces": 0,
@@ -257,6 +261,20 @@ export default [
       "no-bitwise": [2, { allow: ["~"] }],
       "no-plusplus": 2,
     },
+  },
+  {
+    // https://github.com/eslint/json#recommended-configuration
+    files: ["**/*.json"],
+    ignores: ["package-lock.json"],
+    language: "json/json",
+    rules: json.configs.recommended.rules,
+  }, {
+    files: ["**/*.md"],
+    plugins: {
+      markdown
+    },
+    language: "markdown/gfm",
+    rules: markdown.configs.recommended[0].rules,
   },
   eslintConfigPrettier,
 ];

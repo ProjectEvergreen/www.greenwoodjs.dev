@@ -1,3 +1,4 @@
+<!-- eslint-disable markdown/no-missing-label-refs -->
 # Contributing
 
 Thanks for contributing to the GreenwoodJS website! This document aims to help guide contributions into this project.
@@ -121,6 +122,7 @@ For interactive components that would require client side interactivity, like ev
 ```js
 import sheet from "./card.css" with { type: "css" };
 
+const hello = world();
 export default class Card extends HTMLElement {
   selectItem() {
     // do the thing
