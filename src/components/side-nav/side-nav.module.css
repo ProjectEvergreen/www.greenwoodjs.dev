@@ -30,6 +30,7 @@
   padding: var(--size-2);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-3);
+  color: var(--color-black);
 
   & #indicator {
     display: inline-block;

@@ -18,6 +18,8 @@
       }
 
       .page-content {
+        margin: var(--size-4) auto;
+
         & hr {
           margin: 0 0 var(--size-4);
         }
@@ -100,10 +102,6 @@
       }
 
       @media (min-width: 1200px) {
-        .page-content {
-          margin: var(--size-6) auto;
-        }
-
         .content-outlet {
           display: inline-block;
           width: 45%;
@@ -118,7 +116,7 @@
           padding: var(--size-4) 0 0 var(--size-fluid-5);
           background-color: var(--color-gray);
           border: 1px dotted var(--color-prism-bg);
-          border-radius: 0 var(--radius-3) var(--radius-3) 0;
+          border-radius: 0 var(--radius-2) var(--radius-2) 0;
         }
 
         app-toc {
@@ -131,23 +129,6 @@
         }
       }
 
-      @media (min-width: 1440px) {
-        .page-content .content-outlet {
-          width: 49%;
-          font-size: var(--font-size-3);
-        }
-
-        app-side-nav {
-          padding: var(--size-4) var(--size-1) 0 var(--size-fluid-6);
-        }
-      }
-
-      @media (min-width: 1440px) {
-        .page-content .content-outlet {
-          width: 54%;
-        }
-      }
-
       @media (min-width: 768px) {
         .page-content {
           & iframe.stackblitz {
@@ -155,6 +136,16 @@
             height: 800px;
             display: block;
           }
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .page-content .content-outlet {
+          width: 54%;
+        }
+
+        app-side-nav {
+          padding: var(--size-4) var(--size-1) 0 var(--size-fluid-6);
         }
       }
     </style>
