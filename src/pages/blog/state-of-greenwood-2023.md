@@ -125,6 +125,7 @@ This was especially beneficial to our [Resource Plugin API](/plugins/resource/) 
 
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable no-unused-vars -->
+
 ```js
 class StandardCssResource extends ResourceInterface {
   constructor(compilation, options) {
@@ -152,6 +153,7 @@ And here is what it looks like now, now based on Web APIs and standards. ✨
 
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable no-unused-vars -->
+
 ```js
 class StandardCssResource extends ResourceInterface {
   constructor(compilation, options) {

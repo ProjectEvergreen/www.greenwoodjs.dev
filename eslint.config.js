@@ -37,8 +37,8 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       // turn this off for Prettier
-      'no-irregular-whitespace': 'off'
-    }
+      "no-irregular-whitespace": "off",
+    },
   },
   {
     // https://github.com/eslint/json#recommended-configuration
