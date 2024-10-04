@@ -1,5 +1,5 @@
 .container {
-  padding: var(--size-fluid-3) var(--size-fluid-2);
+  padding: var(--size-fluid-3) var(--size-fluid-1);
   color: var(--color-white);
   background-color: var(--color-tertiary);
   text-align: center;
@@ -19,12 +19,21 @@
   background-color: var(--color-white);
   color: var(--color-black);
   margin: 10px 0;
+  max-width: 98%;
 }
 
 .snippet pre {
-  font-size: 10px;
+  font-size: 13px;
   text-align: center;
   display: inline-block;
+  padding: var(--size-px-4) 0;
+  background-color: transparent;
+  color: var(--color-black);
+}
+
+.snippet app-ctc {
+  display: none;
+  vertical-align: middle;
 }
 
 .buttonBlitz {
@@ -65,22 +74,19 @@
   color: var(--color-black) !important;
 }
 
-.snippet pre {
-  padding: var(--size-px-4) var(--size-px-1);
-  background-color: transparent;
-  color: var(--color-black);
-}
-
-.snippet app-ctc {
-  vertical-align: middle;
-}
-
 @media (min-width: 1024px) {
   .snippet {
-    max-width: 60%;
+    max-width: fit-content;
+    padding: var(--size-2);
+    display: inline-block;
   }
 
   .snippet pre {
     font-size: var(--font-size-1);
+    width: fit-content;
+  }
+
+  .snippet app-ctc {
+    display: inline-block;
   }
 }

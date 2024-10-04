@@ -9,7 +9,7 @@ export default class GetStarted extends HTMLElement {
         <h3 class="${styles.heading}">Get started in seconds 🚀</h3>
 
         <div class="${styles.snippet}">
-          <pre>${code}</pre>
+          <pre>&dollar; ${code}</pre>
           <app-ctc content="${code}">
           </app-ctc>
         </div>
