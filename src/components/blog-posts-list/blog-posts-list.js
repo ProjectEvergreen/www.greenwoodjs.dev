@@ -17,9 +17,12 @@ export default class BlogPostsList extends HTMLElement {
             const { title, route } = post;
             const { coverImage, abstract = "", published } = post.data;
             const date = new Date(published);
-            const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
-            const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-            const time = `${date.getFullYear()}.${month}.${day}`;
+            const month =
+              date.getMonth() + 1 < 10 ? `0${date.getUTCMonth() + 1}` : date.getUTCMonth() + 1;
+            const day = date.getDate() < 10 ? `0${date.getUTCDate()}` : date.getUTCDate();
+            const year = date.getFullYear();
+            const displayTime = `${year}.${month}.${day}`;
+            const dateTime = `${year}-${month}-${day}`;
             const coverBackground = coverImage ? coverImage : "/assets/greenwood-logo-leaf.svg";
             const coverBackgroundPadding =
               coverImage && coverImage !== "/assets/greenwood-logo-g.svg" ? "4px" : "14px";
@@ -38,7 +41,9 @@ export default class BlogPostsList extends HTMLElement {
 
                   <div class="${styles.postsListItemContentContainer}">
                     <h2 class="${styles.postsListItemContentTitle}">${title}</h2>
-                    <span class="${styles.postsListItemContentPublished}">Published: ${time}</span>
+                    <span class="${styles.postsListItemContentPublished}">Published: 
+                      <time datetime="${dateTime}">${displayTime}</time>
+                    </span>
                     <p class="${styles.postsListItemContentAbstract}">${abstract}</p>
                   </div>
 

@@ -78,6 +78,18 @@ describe("Components/Blog Posts List", () => {
       });
     });
 
+    it("should have the expected published time", () => {
+      const published = list.querySelectorAll("[datetime]");
+
+      expect(published.length).to.equal(expectedBlogPosts.length);
+
+      published.forEach((time, i) => {
+        expect(time.textContent).to.equal(
+          expectedBlogPosts[i].data.published.split("T")[0].replace(/-/g, "."),
+        );
+      });
+    });
+
     it("should have the expected abstract with the right content", () => {
       const paragraphs = list.querySelectorAll("p");
 
