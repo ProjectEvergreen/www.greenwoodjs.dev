@@ -20,7 +20,7 @@ imports:
 <div class="capabilities-content item1">
   <span>Hybrid Routing</span>
   <i>html.svg</i>
-  <p>Greenwood is HTML first by design.  Start from just an <code>index.html</code> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.  Single Page Applications (SPA) also supported.</p>
+  <p>Greenwood is HTML first by design.  Start from just an <code>index.html</code> file or leverage <strong>hybrid, file-system based routing</strong> to easily achieve static and dynamic pages side-by-side.  Single Page Applications (SPA) and pre-rendering also supported.</p>
 
   ```shell
   src/
@@ -28,7 +28,7 @@ imports:
       api/
         search.js       # API route
       index.html        # Static (SSG)
-      products.js       # Dynamic (SSR), or emit as static with pre-rendering
+      products.js       # Dynamic (SSR)
       about.md          # markdown also supported
   ```
 </div>
@@ -79,7 +79,7 @@ imports:
 <div class="capabilities-content item3">
   <span>Web Components</span>
   <i>web-components.svg</i>
-  <p>Greenwood makes it possible to author real isomorphic Web Components, using Light or Shadow DOM, re-using that same definition across the client <em>and</em> the server.  Combined with Web APIs like <code>Constructable Stylesheets</code> and <code>Import Attributes</code>, Web Components make for a compelling solution as the web's own component model.</p>
+  <p>Greenwood makes it possible to author real isomorphic Web Components, using Light or Shadow DOM, re-using that same definition across the client <em>and</em> the server.  Combined with Web APIs like <strong>Constructable Stylesheets</strong> and <strong>Import Attributes</strong>, Web Components make for a compelling solution as the web's own component model.</p>
 
   ```js
   // src/components/card.js
