@@ -1,8 +1,9 @@
 .container {
   display: flex;
   justify-content: space-between;
-  padding: 0 var(--size-4);
+  padding: 0 var(--size-4) var(--size-2);
   margin: 0;
+  border-bottom: 2px dotted var(--color-gray);
 }
 
 .logoLink {
@@ -56,7 +57,7 @@
   width: fit-content;
   border: var(--border-size-1) solid #4d4d4d45;
   border-radius: var(--radius-6);
-  padding: var(--size-2) var(--size-3);
+  padding: var(--size-1);
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -113,7 +114,7 @@
 
 @media screen and (min-width: 480px) {
   .container {
-    padding: 0 var(--size-10);
+    padding: 0 var(--size-10) var(--size-3);
   }
 }
 
@@ -137,6 +138,10 @@
 @media screen and (min-width: 768px) {
   .logoLink svg.greenwood-logo-full {
     width: 60%;
+  }
+
+  .socialTray {
+    padding: var(--size-1) var(--size-2);
   }
 }
 

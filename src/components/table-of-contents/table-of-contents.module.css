@@ -1,0 +1,120 @@
+.fullMenu {
+  display: none;
+
+  & h2 {
+    margin: 0 0 var(--size-2);
+    text-decoration: underline;
+  }
+}
+
+.compactMenu,
+.fullMenu {
+  & a {
+    color: var(--color-black);
+    text-decoration: none;
+  }
+
+  & ol {
+    list-style-type: lower-roman;
+    margin: var(--size-2) 0;
+  }
+}
+
+.compactMenuPopover {
+  top: 150px;
+  width: auto;
+  min-height: 150px;
+  margin: 0 var(--size-2);
+  border: 1px solid var(--color-gray);
+  box-shadow: var(--shadow-3);
+  padding: var(--size-2);
+}
+
+.compactMenuTrigger {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: none;
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+
+  & #indicator {
+    display: inline-block;
+  }
+}
+
+.compactMenu:has(#onthispage:popover-open) {
+  & #indicator {
+    animation: rotateindicatoropen 1s ease;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes rotateindicatoropen {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.compactMenuItem {
+  margin: var(--size-2) var(--size-1) var(--size-2) var(--size-6);
+  padding: 0 var(--size-2);
+
+  & a {
+    color: var(--color-black);
+  }
+}
+
+.compactMenuHeading {
+  font-family: var(--font-primary-bold);
+  text-decoration: underline;
+}
+
+.compactMenuCloseButton {
+  background: transparent;
+  font-size: var(--font-size-5);
+  cursor: pointer;
+  border: none;
+  padding: 0 12px;
+  width: 100%;
+  text-align: right;
+}
+
+@media (min-width: 1200px) {
+  .fullMenu {
+    display: block;
+    border-left: 1px solid var(--color-gray);
+    border-top: 1px solid var(--color-gray);
+    border-bottom: 1px solid var(--color-gray);
+    box-shadow: var(--shadow-3);
+    padding: var(--size-2) 0 0 var(--size-7);
+
+    & a,
+    & li {
+      font-size: var(--font-size-1);
+    }
+
+    & a:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .compactMenu {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .fullMenu {
+    display: block;
+
+    & a,
+    & li {
+      font-size: var(--font-size-3);
+    }
+  }
+}

@@ -1,10 +1,16 @@
 import { defaultReporter } from "@web/test-runner";
-import fs from "fs";
+import fs from "fs/promises";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 import { junitReporter } from "@web/test-runner-junit-reporter";
 import path from "path";
 
-const rawResource = greenwoodPluginImportRaw()[0].provider({});
+// bootstrap custom plugin transforms from Greenwood
+const config = await readAndMergeConfig();
+const context = await initContext({ config });
+const compilation = { context, config };
+const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
 export default {
   files: "./src/**/*.spec.js",
@@ -26,7 +32,7 @@ export default {
         const { url } = context.request;
 
         if (url.endsWith("?type=raw")) {
-          const contents = fs.readFileSync(new URL(`.${url}`, import.meta.url), "utf-8");
+          const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
           const response = await rawResource.intercept(null, null, new Response(contents));
           const body = await response.text();
 
@@ -54,10 +60,10 @@ export default {
     },
   ],
   middleware: [
-    function rewriteIndex(context, next) {
+    function resolveAssets(context, next) {
       const { url } = context.request;
 
-      if (url.indexOf("/assets") === 0) {
+      if (url.startsWith("/assets")) {
         context.request.url = path.join(process.cwd(), "src", url);
       }
 

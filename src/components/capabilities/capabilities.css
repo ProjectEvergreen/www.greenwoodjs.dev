@@ -109,14 +109,6 @@ pre {
   margin: 0;
 }
 
-@media (max-width: 760px) {
-  code[class*="language-"],
-  pre[class*="language-"],
-  .token {
-    font-size: 0.9rem;
-  }
-}
-
 @media (min-width: 768px) {
   .container {
     padding: var(--size-fluid-4);

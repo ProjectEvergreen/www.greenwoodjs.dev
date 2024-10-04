@@ -1,3 +1,4 @@
+import "../copy-to-clipboard/copy-to-clipboard.js";
 import "./get-started.js";
 
 export default {

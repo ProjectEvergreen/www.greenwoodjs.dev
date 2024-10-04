@@ -1,0 +1,119 @@
+.fullMenu {
+  display: none;
+}
+
+.compactMenu,
+.fullMenu {
+  & a {
+    color: var(--color-black);
+    text-decoration: none;
+  }
+
+  & a:hover {
+    opacity: 0.7;
+  }
+}
+
+.compactMenuCloseButton {
+  background: transparent;
+  font-size: var(--font-size-5);
+  cursor: pointer;
+  border: none;
+  padding: 0 12px;
+  width: 100%;
+  text-align: right;
+}
+
+.compactMenuPopoverTrigger {
+  background-color: var(--color-white);
+  border: none;
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+  color: var(--color-black);
+
+  & #indicator {
+    display: inline-block;
+  }
+}
+
+.compactMenu:has(#compact-menu:popover-open) {
+  & #indicator {
+    animation: rotateindicatoropen 1s ease;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes rotateindicatoropen {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.compactMenuPopover {
+  top: 150px;
+  width: 100%;
+  padding: var(--size-4);
+  background-color: var(--color-gray);
+  overflow-y: scroll;
+  height: auto;
+}
+
+.compactMenuSectionHeading {
+  margin: 0 0 var(--size-2) 0;
+
+  & a {
+    font-family: var(--font-primary-bold);
+  }
+}
+
+.compactMenuSectionHeading {
+  & a.active,
+  & a:hover {
+    text-decoration: underline;
+  }
+
+  & a.active::before {
+    content: "\027A5";
+  }
+}
+
+.compactMenuSectionList {
+  list-style: none;
+  margin: 0 0 var(--size-6) 0;
+
+  & a:hover {
+    opacity: 0.7;
+  }
+}
+
+.compactMenuSectionListItemActive {
+  & a {
+    border-left: var(--size-1) solid black;
+    border-radius: var(--radius-2);
+    background-color: white;
+    padding: 0 var(--size-2);
+    min-width: 200px;
+    display: inline-block;
+    box-shadow: var(--shadow-3);
+    margin-left: -16px;
+  }
+}
+
+.compactMenuSectionListItem {
+  margin: var(--size-1);
+}
+
+@media (min-width: 1200px) {
+  .fullMenu {
+    display: block;
+  }
+
+  .compactMenu {
+    display: none;
+  }
+}

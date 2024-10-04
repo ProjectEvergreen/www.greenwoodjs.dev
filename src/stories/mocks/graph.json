@@ -1,0 +1,1240 @@
+[
+  {
+    "label": "Blog",
+    "title": null,
+    "route": "/blog/",
+    "layout": null,
+    "data": {
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/index.html",
+    "outputPath": "/blog/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 15 0",
+    "title": "Release - v0.15.0",
+    "route": "/blog/release/v0-15-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "Introducing our newest feature, Theme Packs.  It&apos;s like CSS Zen Garden but as a plugin.",
+      "published": "2021-08-06T00:00:00.000Z",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-15-0.md",
+    "outputPath": "/blog/release/v0-15-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 18 0",
+    "title": "Release - v0.18.0",
+    "route": "/blog/release/v0-18-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "Let&apos;s review the latest enhancements now available in Greenwood.",
+      "published": "2021-10-22T00:00:00.000Z",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-18-0.md",
+    "outputPath": "/blog/release/v0-18-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 19 0",
+    "title": "Release -  v0.19.0",
+    "route": "/blog/release/v0-19-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "This release includes a new scaffolding tool for starting your next Greenwood project.",
+      "published": "2021-11-11T00:00:00.000Z",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-19-0.md",
+    "outputPath": "/blog/release/v0-19-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 20 0",
+    "title": "Release - v0.20.0",
+    "route": "/blog/release/v0-20-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "We&apos;ve migrated to ESM!  Let&apos;s discuss our journey there.",
+      "published": "2021-12-18T00:00:00.000Z",
+      "coverImage": "/assets/blog/nodejs.png",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-20-0.md",
+    "outputPath": "/blog/release/v0-20-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 21 0",
+    "title": "Release - v0.21.0",
+    "route": "/blog/release/v0-21-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "External data sources are now supported in Greenwood and template support to our new project scaffolding CLI.",
+      "published": "2022-01-08T00:00:00.000Z",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-21-0.md",
+    "outputPath": "/blog/release/v0-21-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 23 0",
+    "title": "Release - v0.23.0",
+    "route": "/blog/release/v0-23-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "Server-Side Rendering is now available in Greenwood, so let&apos;s talk all about it.",
+      "published": "2022-02-11T00:00:00.000Z",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-23-0.md",
+    "outputPath": "/blog/release/v0-23-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 24 0",
+    "title": "Release - v0.24.0",
+    "route": "/blog/release/v0-24-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "This release brings some exciting new features for optimizing the local development experience with Greenwood.",
+      "published": "2022-03-06T00:00:00.000Z",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-24-0.md",
+    "outputPath": "/blog/release/v0-24-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 26 0",
+    "title": "Release -  v0.26.0",
+    "route": "/blog/release/v0-26-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "As a follow up to our SSR release, in this release we are excited to share our progress and introduce to you WCC!",
+      "published": "2022-07-26T00:00:00.000Z",
+      "coverImage": "/assets/blog/wcc-logo.png",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-26-0.md",
+    "outputPath": "/blog/release/v0-26-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 27 0",
+    "title": "Release - v0.27.0",
+    "route": "/blog/release/v0-27-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "This release introduces the concept of full-stack Web Components to Greenwood.  Let us share with you what we mean.",
+      "published": "2022-11-23T00:00:00.000Z",
+      "coverImage": "/assets/blog/full-stack-web-components.webp",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-27-0.md",
+    "outputPath": "/blog/release/v0-27-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 28 0",
+    "title": "Release - v0.28.0",
+    "route": "/blog/release/v0-28-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "This is a big one, as we introduce API Routes to Greenwood and update to Node 18.",
+      "published": "2023-04-08T00:00:00.000Z",
+      "coverImage": "/assets/blog/nodejs.png",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-28-0.md",
+    "outputPath": "/blog/release/v0-28-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "V0 29 0",
+    "title": "Release - v0.29.0",
+    "route": "/blog/release/v0-29-0/",
+    "layout": "blog",
+    "data": {
+      "abstract": "Go beyond the server and go serverless with this latest Greenwood release.",
+      "published": "2023-11-08T00:00:00.000Z",
+      "coverImage": "/assets/blog/serverless.webp",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/release/v0-29-0.md",
+    "outputPath": "/blog/release/v0-29-0/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "State Of Greenwood 2022",
+    "title": "State of Greenwood (2022)",
+    "route": "/blog/state-of-greenwood-2022/",
+    "layout": "blog",
+    "data": {
+      "abstract": "Come learn what the Greenwood team has been up to over the past year.",
+      "published": "2022-03-02T00:00:00.000Z",
+      "coverImage": "/assets/greenwood-logo-g.svg",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/state-of-greenwood-2022.md",
+    "outputPath": "/blog/state-of-greenwood-2022/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "State Of Greenwood 2023",
+    "title": "State of Greenwood (2023)",
+    "route": "/blog/state-of-greenwood-2023/",
+    "layout": "blog",
+    "data": {
+      "abstract": "Come learn what the Greenwood team has been up to over the past year and our plans for the next one!",
+      "published": "2023-05-03T00:00:00.000Z",
+      "coverImage": "/assets/greenwood-logo-g.svg",
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./blog/state-of-greenwood-2023.md",
+    "outputPath": "/blog/state-of-greenwood-2023/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "htmx",
+    "title": "htmx",
+    "route": "/guides/ecosystem/htmx/",
+    "layout": "guides",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Installation",
+          "slug": "installation",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Example",
+          "slug": "example",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/ecosystem/htmx.md",
+    "outputPath": "/guides/ecosystem/htmx/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Ecosystem",
+    "title": null,
+    "route": "/guides/ecosystem/",
+    "layout": "guides",
+    "data": {
+      "order": 3,
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/ecosystem/index.md",
+    "outputPath": "/guides/ecosystem/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Lit",
+    "title": "Lit",
+    "route": "/guides/ecosystem/lit/",
+    "layout": "guides",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Installation",
+          "slug": "installation",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "SSR",
+          "slug": "ssr",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/ecosystem/lit.md",
+    "outputPath": "/guides/ecosystem/lit/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Storybook",
+    "title": null,
+    "route": "/guides/ecosystem/storybook/",
+    "layout": "guides",
+    "data": {
+      "order": 4,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Installation",
+          "slug": "installation",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Vite Config",
+          "slug": "vite-config",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Custom Resources",
+          "slug": "custom-resources",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        {
+          "content": "Usage",
+          "slug": "usage",
+          "lvl": 2,
+          "i": 4,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/ecosystem/storybook.md",
+    "outputPath": "/guides/ecosystem/storybook/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Tailwind",
+    "title": null,
+    "route": "/guides/ecosystem/tailwind/",
+    "layout": "guides",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Installation",
+          "slug": "installation",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Usage",
+          "slug": "usage",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/ecosystem/tailwind.md",
+    "outputPath": "/guides/ecosystem/tailwind/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Web Test Runner",
+    "title": null,
+    "route": "/guides/ecosystem/web-test-runner/",
+    "layout": "guides",
+    "data": {
+      "order": 5,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Installation",
+          "slug": "installation",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Custom Resources",
+          "slug": "custom-resources",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Usage",
+          "slug": "usage",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/ecosystem/web-test-runner.md",
+    "outputPath": "/guides/ecosystem/web-test-runner/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Going Further",
+    "title": null,
+    "route": "/guides/getting-started/going-further/",
+    "layout": "guides",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Prerendering",
+          "slug": "prerendering",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Light vs Shadow DOM",
+          "slug": "light-vs-shadow-dom",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Content as Data",
+          "slug": "content-as-data",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        {
+          "content": "Plugins",
+          "slug": "plugins",
+          "lvl": 2,
+          "i": 4,
+          "seen": 0
+        },
+        {
+          "content": "Next Section",
+          "slug": "next-section",
+          "lvl": 2,
+          "i": 5,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/getting-started/going-further.md",
+    "outputPath": "/guides/getting-started/going-further/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Getting Started",
+    "title": null,
+    "route": "/guides/getting-started/",
+    "layout": "guides",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "What to Expect",
+          "slug": "what-to-expect",
+          "lvl": 2,
+          "i": 0,
+          "seen": 0
+        },
+        {
+          "content": "Prerequisites",
+          "slug": "prerequisites",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Setup",
+          "slug": "setup",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Jump Right In",
+          "slug": "jump-right-in",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        {
+          "content": "Next Section",
+          "slug": "next-section",
+          "lvl": 2,
+          "i": 4,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/getting-started/index.md",
+    "outputPath": "/guides/getting-started/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Key Concepts",
+    "title": "Key Concepts",
+    "route": "/guides/getting-started/key-concepts/",
+    "layout": "guides",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "File Based Routing",
+          "slug": "file-based-routing",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Pages",
+          "slug": "pages",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Scripts and Styles",
+          "slug": "scripts-and-styles",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        {
+          "content": "Layouts",
+          "slug": "layouts",
+          "lvl": 2,
+          "i": 4,
+          "seen": 0
+        },
+        {
+          "content": "Markdown and Frontmatter",
+          "slug": "markdown-and-frontmatter",
+          "lvl": 2,
+          "i": 5,
+          "seen": 0
+        },
+        {
+          "content": "Next Section",
+          "slug": "next-section",
+          "lvl": 2,
+          "i": 6,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/getting-started/key-concepts.md",
+    "outputPath": "/guides/getting-started/key-concepts/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Next Steps",
+    "title": null,
+    "route": "/guides/getting-started/next-steps/",
+    "layout": "guides",
+    "data": {
+      "order": 4,
+      "tocHeading": 2,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/getting-started/next-steps.md",
+    "outputPath": "/guides/getting-started/next-steps/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Walkthrough",
+    "title": null,
+    "route": "/guides/getting-started/walkthrough/",
+    "layout": "guides",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Local Development",
+          "slug": "local-development",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Creating Content",
+          "slug": "creating-content",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Styling",
+          "slug": "styling",
+          "lvl": 2,
+          "i": 7,
+          "seen": 0
+        },
+        {
+          "content": "Components",
+          "slug": "components",
+          "lvl": 2,
+          "i": 8,
+          "seen": 0
+        },
+        {
+          "content": "Final Build",
+          "slug": "final-build",
+          "lvl": 2,
+          "i": 9,
+          "seen": 0
+        },
+        {
+          "content": "Next Section",
+          "slug": "next-section",
+          "lvl": 2,
+          "i": 10,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/getting-started/walkthrough.md",
+    "outputPath": "/guides/getting-started/walkthrough/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "AWS",
+    "title": "AWS",
+    "route": "/guides/hosting/aws/",
+    "layout": "guides",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Static Hosting",
+          "slug": "static-hosting",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Serverless",
+          "slug": "serverless",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "GitHub Actions",
+          "slug": "github-actions",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/hosting/aws.md",
+    "outputPath": "/guides/hosting/aws/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Cloudflare",
+    "title": "Cloudflare",
+    "route": "/guides/hosting/cloudflare/",
+    "layout": "guides",
+    "data": {
+      "order": 4,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Pages",
+          "slug": "pages",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Workers",
+          "slug": "workers",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/hosting/cloudflare.md",
+    "outputPath": "/guides/hosting/cloudflare/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "GitHub",
+    "title": "GitHub",
+    "route": "/guides/hosting/github/",
+    "layout": "guides",
+    "data": {
+      "order": 5,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Prerequisites",
+          "slug": "prerequisites",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Setup",
+          "slug": "setup",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Next Steps",
+          "slug": "next-steps",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/hosting/github.md",
+    "outputPath": "/guides/hosting/github/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Hosting",
+    "title": null,
+    "route": "/guides/hosting/",
+    "layout": "guides",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Building",
+          "slug": "building",
+          "lvl": 2,
+          "i": 0,
+          "seen": 0
+        },
+        {
+          "content": "Static Hosting",
+          "slug": "static-hosting",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Self Hosting",
+          "slug": "self-hosting",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Serverless",
+          "slug": "serverless",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        {
+          "content": "Docker",
+          "slug": "docker",
+          "lvl": 2,
+          "i": 4,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/hosting/index.md",
+    "outputPath": "/guides/hosting/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Netlify",
+    "title": "Netlify",
+    "route": "/guides/hosting/netlify/",
+    "layout": "guides",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Static Hosting",
+          "slug": "static-hosting",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Serverless",
+          "slug": "serverless",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/hosting/netlify.md",
+    "outputPath": "/guides/hosting/netlify/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Vercel",
+    "title": "Vercel",
+    "route": "/guides/hosting/vercel/",
+    "layout": "guides",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Static Hosting",
+          "slug": "static-hosting",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Serverless",
+          "slug": "serverless",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/hosting/vercel.md",
+    "outputPath": "/guides/hosting/vercel/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Guides",
+    "title": "Guides",
+    "route": "/guides/",
+    "layout": "guides",
+    "data": {
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/index.md",
+    "outputPath": "/guides/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Full Stack Web Components",
+    "title": null,
+    "route": "/guides/tutorials/full-stack-web-components/",
+    "layout": "guides",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Objective",
+          "slug": "objective",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Card Component",
+          "slug": "card-component",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Search API",
+          "slug": "search-api",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        {
+          "content": "Search Page",
+          "slug": "search-page",
+          "lvl": 2,
+          "i": 4,
+          "seen": 0
+        },
+        {
+          "content": "Products Page",
+          "slug": "products-page",
+          "lvl": 2,
+          "i": 5,
+          "seen": 0
+        },
+        {
+          "content": "App Layout",
+          "slug": "app-layout",
+          "lvl": 2,
+          "i": 6,
+          "seen": 0
+        },
+        {
+          "content": "Conclusion",
+          "slug": "conclusion",
+          "lvl": 2,
+          "i": 7,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/tutorials/full-stack-web-components.md",
+    "outputPath": "/guides/tutorials/full-stack-web-components/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Tutorials",
+    "title": null,
+    "route": "/guides/tutorials/",
+    "layout": "guides",
+    "data": {
+      "order": 4,
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/tutorials/index.md",
+    "outputPath": "/guides/tutorials/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Theme Packs",
+    "title": "Creating a Theme Pack",
+    "route": "/guides/tutorials/theme-packs/",
+    "layout": "guides",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Prerequisites",
+          "slug": "prerequisites",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        {
+          "content": "Project Setup",
+          "slug": "project-setup",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        {
+          "content": "Development",
+          "slug": "development",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        {
+          "content": "Production Testing",
+          "slug": "production-testing",
+          "lvl": 2,
+          "i": 4,
+          "seen": 0
+        },
+        {
+          "content": "Publishing",
+          "slug": "publishing",
+          "lvl": 2,
+          "i": 5,
+          "seen": 0
+        },
+        {
+          "content": "Installation and Usage for Users",
+          "slug": "installation-and-usage-for-users",
+          "lvl": 2,
+          "i": 6,
+          "seen": 0
+        },
+        {
+          "content": "FAQ",
+          "slug": "faq",
+          "lvl": 2,
+          "i": 7,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [],
+    "pagePath": "./guides/tutorials/theme-packs.md",
+    "outputPath": "/guides/tutorials/theme-packs/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "label": "Home",
+    "title": null,
+    "route": "/",
+    "layout": "page",
+    "data": {
+      "tocHeading": 0,
+      "tableOfContents": []
+    },
+    "imports": [
+      "../components/latest-post/latest-post.js data-gwd-opt=\"static\" type=\"module\"",
+      "../components/hero-banner/hero-banner.js data-gwd-opt=\"static\" type=\"module\"",
+      "../components/capabilities/capabilities.js type=\"module\"",
+      "../components/why-greenwood/why-greenwood.js data-gwd-opt=\"static\" type=\"module\"",
+      "../components/run-anywhere/run-anywhere.js data-gwd-opt=\"static\" type=\"module\"",
+      "../components/build-with-friends/build-with-friends.js data-gwd-opt=\"static\" type=\"module\"",
+      "../components/get-started/get-started.js data-gwd-opt=\"static\" type=\"module\"",
+      "../styles/home.css"
+    ],
+    "resources": [],
+    "pagePath": "./index.md",
+    "outputPath": "/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "outputPath": "/404.html",
+    "pagePath": "./src/404.html",
+    "route": "/404/",
+    "label": "Not Found",
+    "title": "Page Not Found",
+    "data": {},
+    "imports": [],
+    "resources": [],
+    "prerender": true,
+    "isolation": false,
+    "path": "404.html"
+  }
+]

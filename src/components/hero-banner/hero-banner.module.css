@@ -87,6 +87,8 @@
   align-content: center;
   display: inline;
   vertical-align: text-top;
+  background-color: transparent;
+  color: var(--color-black);
 }
 
 .snippet app-ctc {

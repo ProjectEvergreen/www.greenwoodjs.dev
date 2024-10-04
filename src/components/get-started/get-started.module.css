@@ -67,6 +67,8 @@
 
 .snippet pre {
   padding: var(--size-px-4) var(--size-px-1);
+  background-color: transparent;
+  color: var(--color-black);
 }
 
 .snippet app-ctc {

@@ -1,0 +1,20 @@
+.container {
+  background-color: var(--color-prism-bg);
+  padding: var(--size-5) var(--size-3) var(--size-3);
+  border-radius: var(--radius-3);
+  color: var(--color-white);
+}
+
+.heading {
+  font-size: var(--font-size-3) !important;
+  background-color: var(--color-white);
+  display: inline-block;
+  padding: var(--size-2) var(--size-4);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-3);
+  color: var(--color-black);
+}
+
+.slotted {
+  margin: var(--size-4) 0 var(--size-1);
+}
