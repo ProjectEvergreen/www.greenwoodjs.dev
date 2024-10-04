@@ -29,7 +29,6 @@ For the sake of this guide, we will be covering a minimal setup but you are free
 1. Next, create a basic _web-test-runner.config.js_ configuration file
 
    ```js
-   import path from "path";
    import { defaultReporter } from "@web/test-runner";
    import { junitReporter } from "@web/test-runner-junit-reporter";
 
@@ -125,8 +124,7 @@ You can create a custom middleware in your _web-test-runner.config.js_ to resolv
 
 ```js
 import path from "path";
-import { defaultReporter } from "@web/test-runner";
-import { junitReporter } from "@web/test-runner-junit-reporter";
+// ...
 
 export default {
   // ...
@@ -152,10 +150,7 @@ If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll ne
 For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to add a plugin transformation and stub out the signature.
 
 ```js
-import path from "path";
 import fs from "fs/promises";
-import { defaultReporter } from "@web/test-runner";
-import { junitReporter } from "@web/test-runner-junit-reporter";
 // 1) import the greenwood plugin and lifecycle helpers
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
@@ -167,7 +162,7 @@ const context = await initContext({ config });
 const compilation = { context, config };
 
 // 3) initialize the plugin
-const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
+const rawResourcePlugin = greenwoodPluginImportRaw()[0].provider(compilation);
 
 export default {
   // ...

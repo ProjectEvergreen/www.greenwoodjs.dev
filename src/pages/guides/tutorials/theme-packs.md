@@ -166,20 +166,19 @@ class MyThemePackDevelopmentResource extends ResourceInterface {
   }
 
   async shouldResolve(url) {
-    const { pathname } = url;
-
     return (
       process.env.__GWD_COMMAND__ === "develop" &&
-      pathname.indexOf(`/node_modules/${packageName}/`) >= 0
+      url.pathname.indexOf(`/node_modules/${packageName}/`) >= 0
     );
   }
 
   async resolve(url) {
     const { userWorkspace } = this.compilation.context;
-    const filePath = this.getBareUrlPath(url).split(`/node_modules/${packageName}/dist/`)[1];
+    const { pathname, searchParams } = url;
+    const workspaceUrl = pathname.split(`/node_modules/${packageName}/dist/`)[1];
     const params = searchParams.size > 0 ? `?${searchParams.toString()}` : "";
 
-    return new URL(`./${filePath}${params}`, userWorkspace, filePath);
+    return new Request(new URL(`./${workspaceUrl}${params}`, userWorkspace));
   }
 }
 

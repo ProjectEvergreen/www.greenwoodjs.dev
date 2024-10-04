@@ -134,9 +134,6 @@ export default class Card extends HTMLElement {
 
       template.innerHTML = `
         <div class="card">
-          <style>
-            ${styles}
-          </style>
           <h3>${title}</h3>
           <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
           <button>View Item Details</button>
