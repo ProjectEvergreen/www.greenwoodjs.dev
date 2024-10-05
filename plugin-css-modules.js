@@ -157,28 +157,28 @@ class CssModulesResource extends ResourceInterface {
     }
   }
 
-  async shouldResolve(url) {
-    return url.protocol === "file:" && url.pathname.endsWith("module.css");
-  }
+  // async shouldResolve(url) {
+  //   return url.protocol === "file:" && url.pathname.endsWith("module.css");
+  // }
 
-  async resolve(url) {
-    // console.log({ url });
-    const { projectDirectory, userWorkspace } = this.compilation.context;
-    const { pathname, searchParams } = url;
-    const params =
-      url.searchParams.size > 0 ? `${searchParams.toString()}&type=css-module` : "type=css-module";
-    const root =
-      url.protocol === "file:"
-        ? new URL(`file://${pathname}`).href
-        : pathname.startsWith("/node_modules")
-          ? new URL(`.${pathname}`, projectDirectory).href
-          : new URL(`.${pathname}`, userWorkspace).href;
+  // async resolve(url) {
+  //   // console.log({ url });
+  //   const { projectDirectory, userWorkspace } = this.compilation.context;
+  //   const { pathname, searchParams } = url;
+  //   const params =
+  //     url.searchParams.size > 0 ? `${searchParams.toString()}&type=css-module` : "type=css-module";
+  //   const root =
+  //     url.protocol === "file:"
+  //       ? new URL(`file://${pathname}`).href
+  //       : pathname.startsWith("/node_modules")
+  //         ? new URL(`.${pathname}`, projectDirectory).href
+  //         : new URL(`.${pathname}`, userWorkspace).href;
 
-    // console.log("DOOT DOOT", { root, params });
-    const matchedUrl = new URL(`${root}?${params}`);
+  //   // console.log("DOOT DOOT", { root, params });
+  //   const matchedUrl = new URL(`${root}?${params}`);
 
-    return new Request(matchedUrl);
-  }
+  //   return new Request(matchedUrl);
+  // }
 
   // async shouldIntercept(url) {
   //   console.log('css modules intercept', { url });
@@ -279,18 +279,40 @@ class CssModulesResource extends ResourceInterface {
       });
     }
   }
+}
 
-  async shouldOptimize(url, response) {
+class StripCssModulesResource extends ResourceInterface {
+  constructor(compilation, options) {
+    super(compilation, options);
+
+    this.extensions = ["module.css"];
+    this.contentType = "text/javascript";
+
+    // // console.log('constructor???')
+    if (!fs.existsSync(this.compilation.context.scratchDir.pathname)) {
+      // // console.log('!!!!!!!!! make it!');
+      fs.mkdirSync(this.compilation.context.scratchDir.pathname, { recursive: true });
+      fs.writeFileSync(
+        new URL("./__css-modules-map.json", this.compilation.context.scratchDir).pathname,
+        JSON.stringify({}),
+      );
+    }
+  }
+
+  async shouldIntercept(url, request, response) {
+    console.log('shouldIntercept!!!!', { url });
     const contents = await response.text();
+    console.log()
 
     // fuzzy search for now, we'll do a full AST walk through in optimize
     return (
-      contents.indexOf("module.css") >= 0 &&
-      (response.headers?.get("Content-Type") || "").indexOf("text/javascript") >= 0
+      contents.indexOf(this.extensions[0]) >= 0 &&
+      (response.headers?.get("Content-Type") || "").indexOf(this.contentType) >= 0
     );
   }
 
-  async optimize(url, response) {
+  async intercept(url, request, response) {
+    console.log('intercept!!!!', { url });
     const { context } = this.compilation;
     let contents = await response.clone().text();
 
@@ -324,6 +346,14 @@ class CssModulesResource extends ResourceInterface {
                     module[key],
                   );
                 });
+
+                Object.keys(module).forEach((key) => {
+                  contents = contents.replace(
+                    // (((?<![-\w\d\W])|(?<=[> \n\r\b]))styles\.compactMenuSectionListItem((?![-\w\d\W])|(?=[ <.,:;!?\n\r\b])))
+                    new RegExp(String.raw`(((?<![-\w\d\W])|(?<=[> \n\r\b]))styles\.${key}((?![-\w\d\W])|(?=[ <.,:;!?\n\r\b])))`, "g"),
+                    `"${module[key]}"`,
+                  );
+                });
               }
             });
           }
@@ -341,7 +371,11 @@ const greenwoodPluginCssModules = () => {
       type: "resource",
       name: "plugin-css-modules",
       provider: (compilation, options) => new CssModulesResource(compilation, options),
-    },
+    }, {
+      type: "resource",
+      name: "plugin-css-modules-strip-modules",
+      provider: (compilation, options) => new StripCssModulesResource(compilation, options),
+    }
   ];
 };
 
