@@ -654,6 +654,27 @@ index a1d16e5..d73c515 100644
                data: {},
                imports: [],
                resources: [],
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/prerender.js b/node_modules/@greenwood/cli/src/lifecycles/prerender.js
+index 67994a3..ab575e2 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/prerender.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/prerender.js
+@@ -30,12 +30,12 @@ async function interceptPage(url, request, plugins, body) {
+   });
+ 
+   for (const plugin of plugins) {
+-    if (plugin.shouldPreIntercept && await plugin.shouldPreIntercept(url, request, response)) {
+-      response = await plugin.preIntercept(url, request, response);
++    if (plugin.shouldPreIntercept && await plugin.shouldPreIntercept(url, request, response.clone())) {
++      response = await plugin.preIntercept(url, request, response.clone());
+     }
+ 
+-    if (plugin.shouldIntercept && await plugin.shouldIntercept(url, request, response)) {
+-      response = await plugin.intercept(url, request, response);
++    if (plugin.shouldIntercept && await plugin.shouldIntercept(url, request, response.clone())) {
++      response = await plugin.intercept(url, request, response.clone());
+     }
+   }
+ 
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
 index ae31a62..f0b95a6 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/serve.js
@@ -758,7 +779,7 @@ index 0000000..36185b1
 +export { greenwoodPluginContentAsData };
 \ No newline at end of file
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
-index 286c2de..bd662ae 100644
+index 286c2de..76faabf 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-node-modules.js
 @@ -10,7 +10,7 @@ import replace from '@rollup/plugin-replace';
