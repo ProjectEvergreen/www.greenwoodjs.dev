@@ -12,25 +12,19 @@
       src="../components/table-of-contents/table-of-contents.js"
       data-gwd-opt="static"
     ></script>
-    <script
-      type="module"
-      src="../components/edit-on-github/edit-on-github.js"
-      data-gwd-opt="static"
-    ></script>
     <link rel="stylesheet" href="../styles/docs.css" />
   </head>
 
   <body>
     <app-side-nav
-      route="/guides/"
-      heading="Guides"
+      route="/docs/"
+      heading="Docs"
       current-route="${globalThis.page.route}"
     ></app-side-nav>
     <app-toc route="${globalThis.page.route}"></app-toc>
 
     <div class="content-outlet">
       <content-outlet></content-outlet>
-      <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
     </div>
   </body>
 </html>

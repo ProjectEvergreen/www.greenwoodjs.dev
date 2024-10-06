@@ -1,0 +1,153 @@
+body:has(#compact-menu:popover-open) {
+  overflow-y: hidden;
+}
+
+.page-content {
+  margin: var(--size-4) auto;
+
+  & hr {
+    margin: 0 0 var(--size-4);
+  }
+}
+
+.page-content .content-outlet {
+  padding: 0 var(--size-4);
+
+  & h1 {
+    font-size: var(--font-size-5);
+  }
+
+  & h2 {
+    font-size: var(--font-size-4);
+    font-family: var(--font-primary-bold);
+    font-weight: 100;
+    margin: var(--size-8) 0 0 !important;
+  }
+
+  & h2,
+  & p {
+    margin: var(--size-4) 0;
+  }
+
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    margin: var(--size-4) 0 var(--size-1);
+  }
+
+  & ol,
+  & ul {
+    padding-left: var(--size-4);
+  }
+
+  & img {
+    width: 100%;
+  }
+
+  & h2 > a > span.icon,
+  & h3 > a > span.icon,
+  & h4 > a > span.icon {
+    vertical-align: text-top;
+  }
+
+  & iframe.stackblitz {
+    display: none;
+  }
+}
+
+app-edit-on-github {
+  display: block;
+  padding: var(--size-3) 0;
+  position: sticky;
+  bottom: 0;
+  text-align: right;
+  margin: var(--size-px-7) 0 var(--size-px-3) 0;
+}
+
+app-heading-box {
+  & .spacer {
+    display: block;
+    margin: var(--size-1);
+  }
+
+  & .question {
+    font-style: italic;
+    margin: 0 var(--size-2) 0 0;
+  }
+
+  & .answer {
+    font-family: var(--font-primary-bold);
+    font-weight: 100;
+    text-decoration: underline;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+}
+
+app-side-nav,
+app-toc {
+  display: inline-block;
+  margin: 0 auto var(--size-4);
+}
+
+app-side-nav {
+  padding: 0 0 0 var(--size-4);
+}
+
+@media (min-width: 1200px) {
+  .content-outlet {
+    display: inline-block;
+    width: 45%;
+    font-size: var(--font-size-1);
+  }
+
+  app-edit-on-github {
+    position: fixed;
+    bottom: var(--size-10);
+    right: var(--size-6);
+  }
+
+  app-side-nav {
+    display: inline-block;
+    width: 20%;
+    min-width: 25%;
+    vertical-align: top;
+  }
+
+  app-side-nav:has(ul) {
+    padding: var(--size-4) 0 0 var(--size-fluid-5);
+    background-color: var(--color-gray);
+    border: 1px dotted var(--color-prism-bg);
+    border-radius: 0 var(--radius-2) var(--radius-2) 0;
+  }
+
+  app-toc {
+    float: right;
+    display: inline-block;
+    width: 20%;
+    position: sticky;
+    top: var(--size-4);
+    margin: 0 var(--size-1) 0 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-content {
+    & iframe.stackblitz {
+      width: 100%;
+      height: 800px;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .page-content .content-outlet {
+    width: 54%;
+  }
+
+  app-side-nav:has(ul) {
+    padding: var(--size-4) var(--size-1) 0 var(--size-fluid-6);
+  }
+}
