@@ -1,8 +1,33 @@
 diff --git a/node_modules/@greenwood/cli/src/config/rollup.config.js b/node_modules/@greenwood/cli/src/config/rollup.config.js
-index 53734d8..fa565a2 100644
+index 53734d8..85c1e13 100644
 --- a/node_modules/@greenwood/cli/src/config/rollup.config.js
 +++ b/node_modules/@greenwood/cli/src/config/rollup.config.js
-@@ -354,7 +354,7 @@ function greenwoodImportMetaUrl(compilation) {
+@@ -62,17 +62,19 @@ function greenwoodResourceLoader (compilation, browser = false) {
+       };
+ 
+       // filter first for any bare specifiers
+-      if (await checkResourceExists(idUrl) && extension !== 'js') {
+-        for (const plugin of resourcePlugins) {
+-          if (plugin.shouldResolve && await plugin.shouldResolve(idUrl)) {
+-            idUrl = new URL((await plugin.resolve(idUrl)).url);
++      if (await checkResourceExists(idUrl) && !id.startsWith('\x00')) {
++        if (extension !== 'js') {
++          for (const plugin of resourcePlugins) {
++            if (plugin.shouldResolve && await plugin.shouldResolve(idUrl)) {
++              idUrl = new URL((await plugin.resolve(idUrl)).url);
++            }
+           }
+         }
+ 
+         const request = new Request(idUrl, {
+           headers
+         });
+-        let response = new Response('');
++        let response = new Response('', { headers: { 'Content-Type': 'text/javascript' }});
+ 
+         for (const plugin of resourcePlugins) {
+           if (plugin.shouldServe && await plugin.shouldServe(idUrl, request)) {
+@@ -354,7 +356,7 @@ function greenwoodImportMetaUrl(compilation) {
            for (const entry of compilation.manifest.apis.keys()) {
              const apiRoute = compilation.manifest.apis.get(entry);
  
@@ -11,7 +36,7 @@ index 53734d8..fa565a2 100644
                const assets = apiRoute.assets || [];
  
                assets.push(assetUrl.url.href);
-@@ -646,7 +646,7 @@ const getRollupConfigForApiRoutes = async (compilation) => {
+@@ -646,7 +648,7 @@ const getRollupConfigForApiRoutes = async (compilation) => {
    const { outputDir, pagesDir, apisDir } = compilation.context;
  
    return [...compilation.manifest.apis.values()]
