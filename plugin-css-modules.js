@@ -234,6 +234,7 @@ class CssModulesResource extends ResourceInterface {
       for (const script of scripts) {
         const type = script.getAttribute("type");
         const src = script.getAttribute("src");
+        // TODO handle module shims
         if (src && ["module", "module-shim"].includes(type)) {
           // console.log("check this file for CSS Modules", src);
           // await resolveForRelativeUrl(new URL(src, import.meta.url this.compilation.context.userWorkspace)
@@ -270,6 +271,7 @@ class CssModulesResource extends ResourceInterface {
       url.pathname.endsWith("/") ||
       (protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey])
     ) {
+      // TODO do we even need this????
       const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
 
       return new Response(cssModule, {
@@ -289,32 +291,47 @@ class StripCssModulesResource extends ResourceInterface {
     this.contentType = "text/javascript";
 
     // // console.log('constructor???')
-    if (!fs.existsSync(this.compilation.context.scratchDir.pathname)) {
-      // // console.log('!!!!!!!!! make it!');
-      fs.mkdirSync(this.compilation.context.scratchDir.pathname, { recursive: true });
-      fs.writeFileSync(
-        new URL("./__css-modules-map.json", this.compilation.context.scratchDir).pathname,
-        JSON.stringify({}),
-      );
+    // if (!fs.existsSync(this.compilation.context.scratchDir.pathname)) {
+    //   // // console.log('!!!!!!!!! make it!');
+    //   fs.mkdirSync(this.compilation.context.scratchDir.pathname, { recursive: true });
+    //   fs.writeFileSync(
+    //     new URL("./__css-modules-map.json", this.compilation.context.scratchDir).pathname,
+    //     JSON.stringify({}),
+    //   );
+    // }
+  }
+
+  async shouldServe(url) {
+    // console.log('shouldServe!!!!', { url });
+    const cssModulesMap = getCssModulesMap(this.compilation);
+    // console.log({ cssModulesMap });
+
+    for (const [, value] of Object.entries(cssModulesMap)) {
+      if(url.href === value.importer) {
+        return true;
+      }
     }
+    
+    // Object.entries(cssModulesMap).forEach((module) => {
+    //   console.log({ module });
+    // });
+    
+    // for(const module in cssModulesMap) {
+    //   console.log({ module });
+    // }
+    // const contents = await response.text();
+
+    // // fuzzy search for now, we'll do a full AST walk through in optimize
+    // return (
+    //   contents.indexOf(this.extensions[0]) >= 0 &&
+    //   (response.headers?.get("Content-Type") || "").indexOf(this.contentType) >= 0
+    // );
   }
 
-  async shouldIntercept(url, request, response) {
-    console.log('shouldIntercept!!!!', { url });
-    const contents = await response.text();
-    console.log()
-
-    // fuzzy search for now, we'll do a full AST walk through in optimize
-    return (
-      contents.indexOf(this.extensions[0]) >= 0 &&
-      (response.headers?.get("Content-Type") || "").indexOf(this.contentType) >= 0
-    );
-  }
-
-  async intercept(url, request, response) {
-    console.log('intercept!!!!', { url });
+  async serve(url) {
+    console.log('serve???', { url });
     const { context } = this.compilation;
-    let contents = await response.clone().text();
+    let contents = await fs.promises.readFile(url); // response.clone().text();
 
     acornWalk.simple(
       acorn.Parser.extend(importAttributes).parse(contents, {
@@ -361,7 +378,8 @@ class StripCssModulesResource extends ResourceInterface {
       },
     );
 
-    return new Response(contents, { headers: response.headers });
+    // console.log({ contents });
+    return new Response(contents); //, { headers: response.headers });
   }
 }
 
