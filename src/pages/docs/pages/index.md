@@ -1,6 +1,6 @@
 ---
-order: 2
 layout: docs
+order: 2
 ---
 
 <app-heading-box heading="Pages">
