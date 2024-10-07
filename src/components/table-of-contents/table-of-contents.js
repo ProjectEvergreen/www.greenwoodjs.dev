@@ -20,7 +20,7 @@ export default class TableOfContents extends HTMLElement {
             const { content, slug } = item;
 
             return `
-              <li class="${styles.compactMenuSectionListItem}">
+              <li>
                 <a href="#${slug}">${content}</a>
               </li>
             `;
