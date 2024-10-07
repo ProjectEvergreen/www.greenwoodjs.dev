@@ -4,7 +4,8 @@
 }
 
 .capabilities em,
-.capabilities strong {
+.capabilities strong,
+.capabilities code {
   font-size: var(--font-size-1);
 }
 
@@ -79,7 +80,8 @@
   display: inline-block;
 }
 
-.capability-heading svg {
+.capability-heading svg,
+.capability-heading span {
   vertical-align: middle;
 }
 
@@ -138,7 +140,8 @@ pre {
 
   .content,
   .content strong,
-  .content em {
+  .content em,
+  .content code {
     font-size: var(--font-size-fluid-1) !important;
   }
 
