@@ -1,6 +1,6 @@
 ---
-order: 6
 layout: docs
+order: 6
 ---
 
 <app-heading-box heading="Server Rendering">

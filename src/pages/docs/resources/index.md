@@ -1,6 +1,6 @@
 ---
-order: 3
 layout: docs
+order: 3
 ---
 
 <app-heading-box heading="Resources">
