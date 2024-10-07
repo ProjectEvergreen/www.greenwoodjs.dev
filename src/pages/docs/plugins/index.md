@@ -1,6 +1,6 @@
 ---
-order: 4
 layout: docs
+order: 4
 ---
 
 <app-heading-box heading="Plugins">
