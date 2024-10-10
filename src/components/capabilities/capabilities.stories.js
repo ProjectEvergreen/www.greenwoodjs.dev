@@ -49,7 +49,32 @@ const Template = () => `
 
     customElements.define("app-card", Card);
     </pre>
+  </div>
+  <div class="capabilities-content item3" style="display: none">
+    <span>API Routes</span>
+    <i>json.svg</i>
+    <span>API Routes</span>
 
+  <p>Need client side data fetching or mutations?  Greenwood provides API routes out of the box that are fully invested in web standards like <code>Fetch</code> and <code>FormData</code>.  Of course it is all fully compatible with server-rendering Web Components; a perfect companion for HTML over the wire solutions!</p>
+  <pre>// src/pages/api/search.js
+import { renderFromHTML } from "wc-compiler";
+import { getProducts } from "../lib/db.js";
+
+export async function handler(request) {
+  const formData = await request.formData();
+  const searchTerm = formData.has("term") ? formData.get("term") : "";
+  const products = await getProducts(searchTerm);
+  const { html } = await renderFromHTML(
+    JS HERE,
+    [new URL("../components/card.js", import.meta.url)],
+  );
+
+  return new Response(html, {
+    headers: new Headers({
+      "Content-Type": "text/html",
+    }),
+  });
+}</pre>
   </div>
 
   <app-capabilities></app-capabilities>
