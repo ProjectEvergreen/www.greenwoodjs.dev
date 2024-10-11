@@ -1,6 +1,5 @@
 import sheet from "./capabilities.css" with { type: "css" };
 import themeSheet from "../../styles/theme.css" with { type: "css" };
-import api from "../../assets/api-routes.svg?type=raw";
 import ssg from "../../assets/build-ssg.svg?type=raw";
 import html from "../../assets/html.svg?type=raw";
 import webComponents from "../../assets/web-components.svg?type=raw";
@@ -12,7 +11,6 @@ const template = document.createElement("template");
 // as styling for hover states can be entirely through CSS
 // as a result yes, these images are hardcoded here, but oh well
 const availableIconSVGs = {
-  "api-routes.svg": api,
   "html.svg": html,
   "build-ssg.svg": ssg,
   "web-components.svg": webComponents,

@@ -94,6 +94,7 @@
   cursor: pointer;
   border: none;
   padding: 0 12px;
+  color: var(--color-black);
 }
 
 .mobileMenuList {
