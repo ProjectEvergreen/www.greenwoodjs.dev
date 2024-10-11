@@ -118,7 +118,7 @@ imports:
 <!-- prettier-ignore-start -->
 <div class="capabilities-content item4">
   <span>API Routes</span>
-  <i>api-routes.svg</i>
+  <i>json.svg</i>
   <p>Need client side data fetching or mutations?  Greenwood provides API routes out of the box that are fully invested in web standards like <code>Fetch</code> and <code>FormData</code>.  Of course it is all fully compatible with server-rendering Web Components; a perfect companion for HTML over the wire solutions!</p>
 
   ```js

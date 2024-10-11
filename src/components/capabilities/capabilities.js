@@ -4,6 +4,7 @@ import api from "../../assets/api-routes.svg?type=raw";
 import ssg from "../../assets/build-ssg.svg?type=raw";
 import html from "../../assets/html.svg?type=raw";
 import webComponents from "../../assets/web-components.svg?type=raw";
+import json from "../../assets/json.svg?type=raw";
 
 const template = document.createElement("template");
 
@@ -15,6 +16,7 @@ const availableIconSVGs = {
   "html.svg": html,
   "build-ssg.svg": ssg,
   "web-components.svg": webComponents,
+  "json.svg": json,
 };
 
 export default class Capabilities extends HTMLElement {
