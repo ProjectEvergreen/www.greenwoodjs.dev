@@ -10,14 +10,22 @@ import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js"
 import * as acornWalk from "acorn-walk";
 import * as acorn from "acorn";
 import { hashString } from "@greenwood/cli/src/lib/hashing-utils.js";
-import { importAttributes } from "acorn-import-attributes"; // comes from Greenwood
+import { importAttributes } from "acorn-import-attributes";
 
+const MODULES_MAP_FILENAME = "__css-modules-map.json";
+/*
+ * we have to write the modules map to a file to preserve the state between static and SSR / prerendering
+ * since if we try and do something like `globalThis.cssModulesMap = globalThis.cssModulesMap ?? {}`
+ * it won't persist across Worker threads.  Maybe if we find a solution to this, we would handle this all in memory.
+ *
+ * https://github.com/ProjectEvergreen/greenwood/discussions/1117
+ */
 function getCssModulesMap(compilation) {
-  const locationUrl = new URL("./__css-modules-map.json", compilation.context.scratchDir);
+  const locationUrl = new URL(`./${MODULES_MAP_FILENAME}`, compilation.context.scratchDir);
   let cssModulesMap = {};
 
-  if (fs.existsSync(locationUrl.pathname)) {
-    cssModulesMap = JSON.parse(fs.readFileSync(locationUrl.pathname));
+  if (fs.existsSync(locationUrl)) {
+    cssModulesMap = JSON.parse(fs.readFileSync(locationUrl));
   }
 
   return cssModulesMap;
@@ -36,14 +44,8 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
         const { specifiers = [], source = {} } = node;
         const { value = "" } = source;
 
-        // console.log({ value, specifiers });
-        // TODO bare specifiers support?
-        if (
-          value.endsWith(".module.css") &&
-          specifiers.length === 1 &&
-          specifiers[0].local.name === "styles"
-        ) {
-          // console.log("WE GOT A WINNER!!!", value);
+        if (value.endsWith(".module.css") && specifiers.length === 1) {
+          const identifier = specifiers[0].local.name;
           const cssModuleUrl = new URL(value, scriptUrl);
           const scope = cssModuleUrl.pathname.split("/").pop().split(".")[0];
           const cssContents = fs.readFileSync(cssModuleUrl, "utf-8");
@@ -52,7 +54,6 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
           let scopedCssContents = cssContents;
 
           const ast = parse(cssContents, {
-            // positions: true,
             onParseError(error) {
               console.log(error.formattedMessage);
             },
@@ -76,8 +77,6 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
                      *
                      * csstree supports loc so we _could_ target the class replacement down to start / end points, but that unfortunately slows things down a lot
                      */
-                    // TODO this is a pretty ugly find / replace technique...
-                    // will definitely want to refactor and test this well
                     if (
                       scopedCssContents.indexOf(`.${scopedClassName} `) < 0 &&
                       scopedCssContents.indexOf(`.${scopedClassName} {`) < 0
@@ -101,33 +100,22 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
             },
           });
 
-          // TODO could we convert this module into an instance of CSSStylesheet to grab values?
-          // https://web.dev/articles/constructable-stylesheets
-          // or just use postcss-modules plugin?
           const cssModulesMap = getCssModulesMap(compilation);
-          // console.log("UPDATE MAP!", { cssModulesMap, cssModuleUrl, scriptUrl });
+
           fs.writeFileSync(
-            new URL("./__css-modules-map.json", compilation.context.scratchDir),
+            new URL(`./${MODULES_MAP_FILENAME}`, compilation.context.scratchDir),
             JSON.stringify({
               ...cssModulesMap,
               [`${cssModuleUrl.href}`]: {
                 module: classNameMap,
                 contents: scopedCssContents,
                 importer: scriptUrl,
+                identifier,
               },
             }),
           );
-          // globalThis.cssModulesMap.set(cssModuleUrl.href, {
-          //   module: classNameMap,
-          //   contents: scopedCssContents
-          // })
-          // console.log(
-          //   "after update",
-          //   getCssModulesMap(compilation)
-          // );
-          // sheets.push(cssContents);
         } else if (node.source.value.endsWith(".js")) {
-          // console.log("go recursive for", { scriptUrl, value });
+          // TODO this will be an issue with say TypeScript...
           const recursiveScriptUrl = new URL(value, scriptUrl);
 
           if (fs.existsSync(recursiveScriptUrl)) {
@@ -139,76 +127,24 @@ function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
   );
 }
 
-class CssModulesResource extends ResourceInterface {
+// this happens 'first' as the HTML is returned, to find viable references to CSS Modules
+// and inline those into a <style> tag on the page
+class ScanForCssModulesResource extends ResourceInterface {
   constructor(compilation, options) {
     super(compilation, options);
 
     this.extensions = ["module.css"];
     this.contentType = "text/javascript";
 
-    // // console.log('constructor???')
-    if (!fs.existsSync(this.compilation.context.scratchDir.pathname)) {
-      // // console.log('!!!!!!!!! make it!');
-      fs.mkdirSync(this.compilation.context.scratchDir.pathname, { recursive: true });
+    if (!fs.existsSync(this.compilation.context.scratchDir)) {
+      fs.mkdirSync(this.compilation.context.scratchDir, { recursive: true });
       fs.writeFileSync(
-        new URL("./__css-modules-map.json", this.compilation.context.scratchDir).pathname,
+        new URL(`./${MODULES_MAP_FILENAME}`, this.compilation.context.scratchDir),
         JSON.stringify({}),
       );
     }
   }
 
-  async shouldResolve(url) {
-    return url.protocol === "file:" && url.pathname.endsWith("module.css");
-  }
-
-  async resolve(url) {
-    // console.log({ url });
-    const { projectDirectory, userWorkspace } = this.compilation.context;
-    const { pathname, searchParams } = url;
-    const params =
-      url.searchParams.size > 0 ? `${searchParams.toString()}&type=css-module` : "type=css-module";
-    const root =
-      url.protocol === "file:"
-        ? new URL(`file://${pathname}`).href
-        : pathname.startsWith("/node_modules")
-          ? new URL(`.${pathname}`, projectDirectory).href
-          : new URL(`.${pathname}`, userWorkspace).href;
-
-    // console.log("DOOT DOOT", { root, params });
-    const matchedUrl = new URL(`${root}?${params}`);
-
-    return new Request(matchedUrl);
-  }
-
-  // async shouldIntercept(url) {
-  //   console.log('css modules intercept', { url });
-  //   const { pathname, protocol } = url;
-  //   const mapKey = `${protocol}//${pathname}`;
-  //   // // console.log(this.compilation.context.scratchDir)
-  //   // // console.log(new URL('./__css-modules-map.json', this.compilation.context.scratchDir));
-  //   const cssModulesMap = getCssModulesMap(this.compilation);
-  //   // console.log("shouldServer", { cssModulesMap, url });
-  //   return protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey];
-  // }
-
-  // async intercept(url) {
-  //   console.log('css modules intercept', { url });
-  //   const { pathname, protocol } = url;
-  //   const mapKey = `${protocol}//${pathname}`;
-  //   const cssModulesMap = getCssModulesMap(this.compilation);
-  //   // console.log("@@@@@@", { url, cssModulesMap });
-  //   const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
-
-  //   // console.log("@@@@@@", { cssModule });
-  //   return new Response(cssModule, {
-  //     headers: {
-  //       "Content-Type": this.contentType,
-  //     },
-  //   });
-  // }
-
-  // this happens "first" as the HTML is returned, to find viable references to CSS Modules
-  // better way than just checking for /?
   async shouldIntercept(url) {
     const { pathname, protocol } = url;
     const mapKey = `${protocol}//${pathname}`;
@@ -229,14 +165,14 @@ class CssModulesResource extends ResourceInterface {
       const body = await response.text();
       const dom = htmlparser.parse(body, { script: true });
       const scripts = dom.querySelectorAll("head script");
-      const sheets = []; // TODO use a map here?
+      const sheets = [];
 
       for (const script of scripts) {
-        const type = script.getAttribute("type");
+        const type = script.getAttribute("type") ?? "";
         const src = script.getAttribute("src");
-        if (src && ["module", "module-shim"].includes(type)) {
-          // console.log("check this file for CSS Modules", src);
-          // await resolveForRelativeUrl(new URL(src, import.meta.url this.compilation.context.userWorkspace)
+
+        // allow module and module-shims attributes
+        if (src && type.startsWith("module")) {
           const scriptUrl = new URL(
             `./${src.replace(/\.\.\//g, "").replace(/\.\//g, "")}`,
             this.compilation.context.userWorkspace,
@@ -246,11 +182,7 @@ class CssModulesResource extends ResourceInterface {
       }
 
       const cssModulesMap = getCssModulesMap(this.compilation);
-      // console.log({ cssModulesMap });
 
-      // for(const cssModule of cssModulesMap) {
-      //   // console.log({ cssModule });
-      // }
       Object.keys(cssModulesMap).forEach((key) => {
         sheets.push(cssModulesMap[key].contents);
       });
@@ -267,9 +199,11 @@ class CssModulesResource extends ResourceInterface {
 
       return new Response(newBody);
     } else if (
-      url.pathname.endsWith("/") ||
-      (protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey])
+      protocol === "file:" &&
+      pathname.endsWith(this.extensions[0]) &&
+      cssModulesMap[mapKey]
     ) {
+      // handle this primarily for SSR / prerendering use case
       const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
 
       return new Response(cssModule, {
@@ -279,20 +213,31 @@ class CssModulesResource extends ResourceInterface {
       });
     }
   }
+}
 
-  async shouldOptimize(url, response) {
-    const contents = await response.text();
+// this process all files that have CssModules content used
+// and strip out the `import` and replace all the references in class attributes with static values
+class StripCssModulesResource extends ResourceInterface {
+  constructor(compilation, options) {
+    super(compilation, options);
 
-    // fuzzy search for now, we'll do a full AST walk through in optimize
-    return (
-      contents.indexOf("module.css") >= 0 &&
-      (response.headers?.get("Content-Type") || "").indexOf("text/javascript") >= 0
-    );
+    this.extensions = ["module.css"];
+    this.contentType = "text/javascript";
   }
 
-  async optimize(url, response) {
+  async shouldIntercept(url) {
+    const cssModulesMap = getCssModulesMap(this.compilation);
+
+    for (const [, value] of Object.entries(cssModulesMap)) {
+      if (url.href === value.importer) {
+        return true;
+      }
+    }
+  }
+
+  async intercept(url, request, response) {
     const { context } = this.compilation;
-    let contents = await response.clone().text();
+    let contents = await response.text();
 
     acornWalk.simple(
       acorn.Parser.extend(importAttributes).parse(contents, {
@@ -304,25 +249,27 @@ class CssModulesResource extends ResourceInterface {
           const { specifiers = [], source = {}, start, end } = node;
           const { value = "" } = source;
 
-          if (
-            value.endsWith(".module.css") &&
-            specifiers.length === 1 &&
-            specifiers[0].local.name === "styles"
-          ) {
-            // console.log("WE GOT A WINNER!!!", value);
+          if (value.endsWith(".module.css") && specifiers.length === 1) {
             contents = `${contents.slice(0, start)} \n ${contents.slice(end)}`;
             const cssModulesMap = getCssModulesMap({ context });
 
             Object.values(cssModulesMap).forEach((value) => {
-              const { importer, module } = value;
-              // console.log("$$$$$$$", { importer, url });
+              const { importer, module, identifier } = value;
 
               if (importer === url.href) {
                 Object.keys(module).forEach((key) => {
-                  contents = contents.replace(
-                    new RegExp(String.raw`\$\{styles.${key}\}`, "g"),
-                    module[key],
+                  const literalUsageRegex = new RegExp(String.raw`\$\{${identifier}.${key}\}`, "g");
+                  // https://stackoverflow.com/a/20851557/417806
+                  const expressionUsageRegex = new RegExp(
+                    String.raw`(((?<![-\w\d\W])|(?<=[> \n\r\b]))${identifier}\.${key}((?![-\w\d\W])|(?=[ <.,:;!?\n\r\b])))`,
+                    "g",
                   );
+
+                  if (literalUsageRegex.test(contents)) {
+                    contents = contents.replace(literalUsageRegex, module[key]);
+                  } else if (expressionUsageRegex.test(contents)) {
+                    contents = contents.replace(expressionUsageRegex, `'${module[key]}'`);
+                  }
                 });
               }
             });
@@ -331,7 +278,7 @@ class CssModulesResource extends ResourceInterface {
       },
     );
 
-    return new Response(contents, { headers: response.headers });
+    return new Response(contents);
   }
 }
 
@@ -339,8 +286,13 @@ const greenwoodPluginCssModules = () => {
   return [
     {
       type: "resource",
-      name: "plugin-css-modules",
-      provider: (compilation, options) => new CssModulesResource(compilation, options),
+      name: "plugin-css-modules:scan",
+      provider: (compilation, options) => new ScanForCssModulesResource(compilation, options),
+    },
+    {
+      type: "resource",
+      name: "plugin-css-modules-strip-modules",
+      provider: (compilation, options) => new StripCssModulesResource(compilation, options),
     },
   ];
 };
