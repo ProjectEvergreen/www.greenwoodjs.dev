@@ -76,6 +76,13 @@
         }
       }
 
+      .content-footer {
+        padding: 1em 0;
+        position: sticky;
+        bottom: 0;
+        margin-top: 26px;
+      }
+
       app-heading-box {
         & .spacer {
           display: block;
@@ -166,7 +173,22 @@
 
     <div class="content-outlet">
       <content-outlet></content-outlet>
-      <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
+      <div class="content-footer">
+        <script>
+          // TODO - convert to a component?
+          if (
+            "IntersectionObserver" in window &&
+            "IntersectionObserverEntry" in window &&
+            "intersectionRatio" in window.IntersectionObserverEntry.prototype
+          ) {
+          let observer = new IntersectionObserver(entries => {
+            console.log('observe', entries);
+          });
+          observer.observe(document.querySelector(".content-outlet"));
+          }
+        </script>
+        <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
+      </div>
     </div>
   </body>
 </html>
