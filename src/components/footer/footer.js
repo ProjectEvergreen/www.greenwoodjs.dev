@@ -7,7 +7,7 @@ import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
 export default class Footer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <footer class="${styles.footer}" id="app-footer">
+      <footer class="${styles.footer}">
         <div class="${styles.logo}">
           ${greenwoodLogo}
         </div>
