@@ -1,6 +1,6 @@
 import styles from "./edit-on-github.module.css";
 
-const REPO_PREFIX = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/";
+const REPO_PREFIX = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/edit/main/src/pages/";
 
 function convertRouteToSubLink(route) {
   if (route === "/") return "index.md"; // root of diretory === index
