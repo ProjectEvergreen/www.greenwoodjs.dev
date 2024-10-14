@@ -1,0 +1,21 @@
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+.container a,
+.container a:active,
+.container a:focus,
+.container a:visited {
+  padding: 0.75em;
+  border-radius: 10px;
+  background-color: var(--color-prism-bg);
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+.container a:hover {
+  background-color: var(--color-prism-bg);
+  text-decoration: underline;
+  color: var(--color-accent);
+}
