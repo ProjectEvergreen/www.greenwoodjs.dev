@@ -16,7 +16,6 @@ function convertRouteToSubLink(route) {
 
 export default class EditOnGitHub extends HTMLElement {
   connectedCallback() {
-    // protect against strigified "undefined"; occurs when the prop value is undefined in JS, but a string in HTML
     const label = "Edit on GitHub";
     const route = this.getAttribute("route");
     const href = `${REPO_PREFIX}${convertRouteToSubLink(route)}`;
