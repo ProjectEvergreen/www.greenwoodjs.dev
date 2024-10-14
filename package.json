@@ -81,8 +81,11 @@
     "@rollup/rollup-linux-x64-gnu": "^4.17.2"
   },
   "lint-staged": {
-    "*.js": "npm run lint:js",
-    "*.css": "npm run lint:css",
-    "**/*": "npm run lint:ls && npm run format"
+    "*.js": [
+      "eslint -c ./eslint.config.js",
+      "prettier . --write"
+    ],
+    "*.css": "stylelint \"./src/**/*.css\"",
+    "*.*": "ls-lint"
   }
 }
