@@ -82,10 +82,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint -c ./eslint.config.js",
-      "prettier . --write"
+      "npm run lint:js --",
+      "npm run format --"
     ],
-    "*.css": "stylelint \"./src/**/*.css\"",
-    "*.*": "ls-lint"
+    "*.css": "npm run lint:css --",
+    "*.*": "npm run lint:ls --"
   }
 }
