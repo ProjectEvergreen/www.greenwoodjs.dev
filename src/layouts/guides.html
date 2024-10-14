@@ -83,6 +83,10 @@
         margin-top: 26px;
       }
 
+      .content-footer a[title="Edit on GitHub"] {
+        box-shadow: 0px 0px 20px -3px #fff;
+      }
+
       app-heading-box {
         & .spacer {
           display: block;
@@ -118,6 +122,12 @@
           display: inline-block;
           width: 45%;
           font-size: var(--font-size-1);
+        }
+
+        .content-footer {
+          position: fixed;
+          bottom: var(--size-10);
+          right: var(--size-6);
         }
 
         app-side-nav {
@@ -174,19 +184,6 @@
     <div class="content-outlet">
       <content-outlet></content-outlet>
       <div class="content-footer">
-        <script>
-          // TODO - convert to a component?
-          if (
-            "IntersectionObserver" in window &&
-            "IntersectionObserverEntry" in window &&
-            "intersectionRatio" in window.IntersectionObserverEntry.prototype
-          ) {
-          let observer = new IntersectionObserver(entries => {
-            console.log('observe', entries);
-          });
-          observer.observe(document.querySelector(".content-outlet"));
-          }
-        </script>
         <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
       </div>
     </div>
