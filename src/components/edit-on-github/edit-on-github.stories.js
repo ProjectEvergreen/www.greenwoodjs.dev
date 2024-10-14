@@ -23,7 +23,7 @@ export default {
 const Template = (props) => {
   return `
     <div style="margin:1em 0;"><p>Linked File: ${props.args.route}</p></div>
-    <app-edit-on-github label="${props.args.label}" route="${props.args.route}"></app-edit-on-github>
+    <app-edit-on-github route="${props.args.route}"></app-edit-on-github>
   `;
 };
 
