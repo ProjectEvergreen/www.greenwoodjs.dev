@@ -3,7 +3,6 @@ import styles from './edit-on-github.module.css';
 const REPO_PREFIX = 'https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/';
 
 function convertRouteToSubLink(route) {
-  console.log('incoming route', route);
   if (route === "/") return "index.md"; // root of diretory === index
 
   const DIRS = [
@@ -25,13 +24,14 @@ function convertRouteToSubLink(route) {
 
 export default class EditOnGitHub extends HTMLElement {
   connectedCallback() {
+    const label = this.getAttribute('label') || 'Edit on GitHub';
     const route = this.getAttribute('route');
-    const subLink = convertRouteToSubLink(route);
+    const href = `${REPO_PREFIX}${convertRouteToSubLink(route)}`;
 
     this.innerHTML = `
       <div class="${styles.container}">
-        <a title="Edit on GitHub" href="${REPO_PREFIX}${subLink}" target="_blank">
-          Edit on GitHub
+        <a title="${label}" href="${href}" target="_blank">
+          ${label}
         </a>
       </div>
     `

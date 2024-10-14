@@ -44,12 +44,12 @@ describe("Components/Edit on GitHub", () => {
     });
 
     it("should render the text 'Edit on GitHub'", () => {
-      // use trim due to allow backtick use
+      // use trim to allow backtick use in code
       expect(editLink.text.trim()).equal("Edit on GitHub");
     });
 
-    describe("when the route is ONLY a leading slash", () => {
-      it("should return root-level ('/') as 'index.md'", () => {
+    describe("when the route is ONLY a slash", () => {
+      it("should return 'index.md' for root-level ('/')", () => {
         const expected = `${EXPECTED_BASE}index.md`;
 
         expect(editLink.getAttribute("href")).equal(expected);
@@ -72,7 +72,7 @@ describe("Components/Edit on GitHub", () => {
         editLink = editWrapper.querySelector("a")
       });
 
-      it("should include a href attribute which includes the index.md filepath", () => {
+      it("should include a href attribute which includes filepath.md", () => {
         const expected = `${EXPECTED_BASE}some/static/filename.md`;
 
         expect(editLink.getAttribute("href")).equal(expected);
@@ -95,7 +95,7 @@ describe("Components/Edit on GitHub", () => {
         editLink = editWrapper.querySelector("a")
       });
 
-      it("should include a href attribute which includes the provided route", () => {
+      it("should include a href attribute which includes index.md", () => {
         const expected = `${EXPECTED_BASE}some/path/to/hosting/index.md`
 
         expect(editLink.getAttribute("href")).equal(expected);
