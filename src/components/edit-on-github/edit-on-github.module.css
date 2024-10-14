@@ -7,8 +7,8 @@
 .container a:active,
 .container a:focus,
 .container a:visited {
-  padding: 0.75em;
-  border-radius: 10px;
+  padding: calc(var(--size-1) + var(--size-2));
+  border-radius: var(--size-px-2);
   background-color: var(--color-prism-bg);
   text-decoration: none;
   color: var(--color-accent);
