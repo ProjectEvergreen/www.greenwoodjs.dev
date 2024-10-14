@@ -41,7 +41,6 @@ export const Root = Template.bind(
   {
     args: {
       route: "/",
-      label: "Edit Root Page",
     },
   },
 );
@@ -51,7 +50,6 @@ export const Directory = Template.bind(
   {
     args: {
       route: "/guides/hosting/",
-      label: "Edit Directory Page",
     },
   },
 );
@@ -61,7 +59,6 @@ export const Static = Template.bind(
   {
     args: {
       route: "/guides/hosting/netlify",
-      label: "Edit Static Page",
     },
   },
 );
