@@ -1,21 +1,26 @@
 import styles from './edit-on-github.module.css';
 
-const REPO_PREFIX = 'https://github.com/ProjectEvergreen/www.greenwoodjs.dev/tree/main/www/pages/';
+const REPO_PREFIX = 'https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/';
 
 function convertRouteToSubLink(route) {
+  console.log('incoming route', route);
   if (route === "/") return "index.md"; // root of diretory === index
+
+  const DIRS = [
+    'guides',
+    'ecosystem',
+    'getting-started',
+    'hosting',
+    'tutorials',
+  ];
   
-  // trim leading slash
-  route = (route.charAt(0) === "/") 
-  ? route.substr(1)
-  : route;
+  const routeParts = route.split('/').filter(param => param !== "");    
+  const trimmedRoute = routeParts.join("/");
+  const isDirectory = DIRS.includes(routeParts[routeParts.length-1]);
   
-  // append 'index.md' when necessary
-  return (route.substr(-3) !== '.md')
-    ? (route.charAt(route.length-1) === "/")
-      ? `${route}index.md`
-      : `${route}/index.md`
-    : route;
+  return isDirectory
+      ? `${trimmedRoute}/index.md` 
+      : `${trimmedRoute}.md`;
 }
 
 export default class EditOnGitHub extends HTMLElement {

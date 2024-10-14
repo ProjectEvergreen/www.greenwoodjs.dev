@@ -32,6 +32,8 @@ describe("Components/Edit on GitHub", () => {
   });
 
   describe("Anchor tag to GitHub", () => {
+    const EXPECTED_BASE = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/"; // including trailing
+
     it("should render an anchor tag targeting a new window", () => {
       expect(editLink).not.equal(undefined);
       expect(editLink.getAttribute("target")).equal("_blank");
@@ -47,21 +49,21 @@ describe("Components/Edit on GitHub", () => {
     });
 
     describe("when the route is ONLY a leading slash", () => {
-      it("should default to 'index.md'", () => {
-        const expected = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/tree/main/www/pages/index.md"
+      it("should return root-level ('/') as 'index.md'", () => {
+        const expected = `${EXPECTED_BASE}index.md`;
 
         expect(editLink.getAttribute("href")).equal(expected);
       });
     });
 
-    describe("when the route DOES NOT contain a markdown file", () => {
-      let missingFilenamePath;
+    describe("when the route IS NOT a directory", () => {
+      let staticFilepath;
 
       before(async () => {
-        missingFilenamePath = 'some/path/without/'; // ie: "guides/getting-started/"
+        staticFilepath = '/some/static/filename/'; // ie: "/guides/hosting/netlify/"
 
         editWrapper = document.createElement("app-edit-on-github");
-        editWrapper.setAttribute("route", missingFilenamePath);
+        editWrapper.setAttribute("route", staticFilepath);
     
         document.body.appendChild(editWrapper);
         
@@ -71,17 +73,17 @@ describe("Components/Edit on GitHub", () => {
       });
 
       it("should include a href attribute which includes the index.md filepath", () => {
-        const expected = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/tree/main/www/pages/some/path/without/index.md"
+        const expected = `${EXPECTED_BASE}some/static/filename.md`;
 
         expect(editLink.getAttribute("href")).equal(expected);
       });
     })
 
-    describe("when the route DOES NOT have a leading slash", () => {
+    describe("when the route IS a directory", () => {
       let missingTrailingPath;
 
       before(async () => {
-        missingTrailingPath = 'some/path/without/leading.md'; // ie: "guides/getting-started/going-further.md"
+        missingTrailingPath = '/some/path/to/hosting/'; // ie: "/guides/hosting/"
 
         editWrapper = document.createElement("app-edit-on-github");
         editWrapper.setAttribute("route", missingTrailingPath);
@@ -94,30 +96,7 @@ describe("Components/Edit on GitHub", () => {
       });
 
       it("should include a href attribute which includes the provided route", () => {
-        const expected = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/tree/main/www/pages/some/path/without/leading.md"
-
-        expect(editLink.getAttribute("href")).equal(expected);
-      });
-    });
-
-    describe("when the route DOES have a trailing slash", () => {
-      let includingTrailingPath;
-
-      before(async () => {
-        includingTrailingPath = '/some/path/without/leading.md'; // ie: "/guides/getting-started/going-further.md"
-
-        editWrapper = document.createElement("app-edit-on-github");
-        editWrapper.setAttribute("route", includingTrailingPath);
-    
-        document.body.appendChild(editWrapper);
-        
-        await editWrapper.updateComplete;
-    
-        editLink = editWrapper.querySelector("a")
-      });
-
-      it("should include a title attribute with the label 'Edit on GitHub'", () => {
-        const expected = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/tree/main/www/pages/some/path/without/leading.md"
+        const expected = `${EXPECTED_BASE}some/path/to/hosting/index.md`
 
         expect(editLink.getAttribute("href")).equal(expected);
       });

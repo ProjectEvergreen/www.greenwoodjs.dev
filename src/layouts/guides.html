@@ -12,6 +12,11 @@
       src="../components/table-of-contents/table-of-contents.js"
       data-gwd-opt="static"
     ></script>
+    <script
+      type="module"
+      src="../components/edit-on-github/edit-on-github.js"
+      data-gwd-opt="static"
+    ></script>
     <style>
       body:has(#compact-menu:popover-open) {
         overflow-y: hidden;
@@ -161,6 +166,7 @@
 
     <div class="content-outlet">
       <content-outlet></content-outlet>
+      <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
     </div>
   </body>
 </html>
