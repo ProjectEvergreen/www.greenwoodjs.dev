@@ -1,31 +1,23 @@
-import styles from './edit-on-github.module.css';
+import styles from "./edit-on-github.module.css";
 
-const REPO_PREFIX = 'https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/';
+const REPO_PREFIX = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/";
 
 function convertRouteToSubLink(route) {
   if (route === "/") return "index.md"; // root of diretory === index
 
-  const DIRS = [
-    'guides',
-    'ecosystem',
-    'getting-started',
-    'hosting',
-    'tutorials',
-  ];
-  
-  const routeParts = route.split('/').filter(param => param !== "");    
+  const DIRS = ["guides", "ecosystem", "getting-started", "hosting", "tutorials"];
+
+  const routeParts = route.split("/").filter((param) => param !== "");
   const trimmedRoute = routeParts.join("/");
-  const isDirectory = DIRS.includes(routeParts[routeParts.length-1]);
-  
-  return isDirectory
-      ? `${trimmedRoute}/index.md` 
-      : `${trimmedRoute}.md`;
+  const isDirectory = DIRS.includes(routeParts[routeParts.length - 1]);
+
+  return isDirectory ? `${trimmedRoute}/index.md` : `${trimmedRoute}.md`;
 }
 
 export default class EditOnGitHub extends HTMLElement {
   connectedCallback() {
-    const label = this.getAttribute('label') || 'Edit on GitHub';
-    const route = this.getAttribute('route');
+    const label = this.getAttribute("label") || "Edit on GitHub";
+    const route = this.getAttribute("route");
     const href = `${REPO_PREFIX}${convertRouteToSubLink(route)}`;
 
     this.innerHTML = `
@@ -34,7 +26,7 @@ export default class EditOnGitHub extends HTMLElement {
           ${label}
         </a>
       </div>
-    `
+    `;
   }
 }
 

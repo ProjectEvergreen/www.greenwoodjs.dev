@@ -10,7 +10,7 @@ window.fetch = function () {
 };
 
 // attributes
-const ROUTE = "/" 
+const ROUTE = "/";
 
 describe("Components/Edit on GitHub", () => {
   let editWrapper;
@@ -21,10 +21,10 @@ describe("Components/Edit on GitHub", () => {
     editWrapper.setAttribute("route", ROUTE);
 
     document.body.appendChild(editWrapper);
-    
+
     await editWrapper.updateComplete;
 
-    editLink = editWrapper.querySelector("a")
+    editLink = editWrapper.querySelector("a");
   });
 
   it("should not be undefined", () => {
@@ -32,7 +32,8 @@ describe("Components/Edit on GitHub", () => {
   });
 
   describe("Anchor tag to GitHub", () => {
-    const EXPECTED_BASE = "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/"; // including trailing
+    const EXPECTED_BASE =
+      "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/"; // including trailing
 
     it("should render an anchor tag targeting a new window", () => {
       expect(editLink).not.equal(undefined);
@@ -60,16 +61,16 @@ describe("Components/Edit on GitHub", () => {
       let staticFilepath;
 
       before(async () => {
-        staticFilepath = '/some/static/filename/'; // ie: "/guides/hosting/netlify/"
+        staticFilepath = "/some/static/filename/"; // ie: "/guides/hosting/netlify/"
 
         editWrapper = document.createElement("app-edit-on-github");
         editWrapper.setAttribute("route", staticFilepath);
-    
+
         document.body.appendChild(editWrapper);
-        
+
         await editWrapper.updateComplete;
-    
-        editLink = editWrapper.querySelector("a")
+
+        editLink = editWrapper.querySelector("a");
       });
 
       it("should include a href attribute which includes filepath.md", () => {
@@ -77,26 +78,26 @@ describe("Components/Edit on GitHub", () => {
 
         expect(editLink.getAttribute("href")).equal(expected);
       });
-    })
+    });
 
     describe("when the route IS a directory", () => {
       let missingTrailingPath;
 
       before(async () => {
-        missingTrailingPath = '/some/path/to/hosting/'; // ie: "/guides/hosting/"
+        missingTrailingPath = "/some/path/to/hosting/"; // ie: "/guides/hosting/"
 
         editWrapper = document.createElement("app-edit-on-github");
         editWrapper.setAttribute("route", missingTrailingPath);
-    
+
         document.body.appendChild(editWrapper);
-        
+
         await editWrapper.updateComplete;
-    
-        editLink = editWrapper.querySelector("a")
+
+        editLink = editWrapper.querySelector("a");
       });
 
       it("should include a href attribute which includes index.md", () => {
-        const expected = `${EXPECTED_BASE}some/path/to/hosting/index.md`
+        const expected = `${EXPECTED_BASE}some/path/to/hosting/index.md`;
 
         expect(editLink.getAttribute("href")).equal(expected);
       });
