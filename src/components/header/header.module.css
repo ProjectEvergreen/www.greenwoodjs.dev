@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 1em;
+  margin: 0 var(--size-3);
   border-bottom: 2px dotted var(--color-gray);
-  gap: 1em;
+  gap: var(--size-3);
 }
 
 .logoLink {
@@ -138,11 +138,7 @@
 @media screen and (min-width: 768px) {
   .navBar {
     display: flex;
-    gap: 1em;
-  }
-
-  .logoLink svg.greenwood-logo-full {
-    /* width: 60%; */
+    gap: var(--size-3);
   }
 
   .socialTray {
