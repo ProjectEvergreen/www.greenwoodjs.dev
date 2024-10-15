@@ -33,7 +33,7 @@ describe("Components/Edit on GitHub", () => {
 
   describe("Anchor tag to GitHub", () => {
     const EXPECTED_BASE =
-      "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/pages/"; // including trailing
+      "https://github.com/ProjectEvergreen/www.greenwoodjs.dev/edit/main/src/pages/"; // including trailing
 
     it("should render an anchor tag targeting a new window", () => {
       expect(editLink).not.equal(undefined);
