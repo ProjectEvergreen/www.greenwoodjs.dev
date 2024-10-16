@@ -113,7 +113,7 @@ In this example, the `<title>` tag will be the value of `title`.
 
 ### Imports
 
-If you want to include scripts or styles on a _per **page** basis_, you can provide filepaths and attributes using the `imports` key. This is great for one off use cases where you don't want to ship a third party lib in all your layouts, or as a demo for a particular blog post.  You can also add attributes by space delimiting them after the path.
+If you want to include scripts or styles on a _per **page** basis_, you can provide filepaths and attributes using the `imports` key. This is great for one off use cases where you don't want to ship a third party lib in all your layouts, or as a demo for a particular blog post. You can also add attributes by space delimiting them after the path.
 
 ```md
 ---

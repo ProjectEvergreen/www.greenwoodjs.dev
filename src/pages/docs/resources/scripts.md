@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Scripts
 
-The page covers usage of JavaScript in Greenwood using all the standard browser conventions like `<script>` tags, ESM, and **npm**.  At build time, Greenwood will use your `<script>` tags as entry points to be bundled and processed for a production deployment.
+The page covers usage of JavaScript in Greenwood using all the standard browser conventions like `<script>` tags, ESM, and **npm**. At build time, Greenwood will use your `<script>` tags as entry points to be bundled and processed for a production deployment.
 
 ## Script Tags
 
@@ -80,26 +80,26 @@ console.log({ sheet, data });
 
 ## NPM
 
-Packages from [**npm**](https://www.npmjs.com/) can be used by installing them with your favorite package manager.  In the browser, Greenwood will automatically build up an import map from any packages defined in the `dependencies` property of your _package.json_.
+Packages from [**npm**](https://www.npmjs.com/) can be used by installing them with your favorite package manager. In the browser, Greenwood will automatically build up an import map from any packages defined in the `dependencies` property of your _package.json_.
 
 Below are some examples:
 
 ```js
 // after having installed Lit
-// npm i lit 
-import {html, LitElement} from 'lit';
+// npm i lit
+import { html, LitElement } from "lit";
 
 export class SimpleGreeting extends LitElement {
   static properties = {
-    name: {type: String},
+    name: { type: String },
   };
 
   render() {
-    return html`<p>Hello, ${this.name ?? 'World'}!</p>`;
+    return html`<p>Hello, ${this.name ?? "World"}!</p>`;
   }
 }
 
-customElements.define('simple-greeting', SimpleGreeting);
+customElements.define("simple-greeting", SimpleGreeting);
 ```
 
 You can reference the **node_modules** directly from a `<script>` tag by starting the path with `/node_modules`:
