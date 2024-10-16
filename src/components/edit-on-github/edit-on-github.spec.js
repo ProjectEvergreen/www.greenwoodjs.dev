@@ -1,13 +1,5 @@
 import { expect } from "@esm-bundle/chai";
 import "./edit-on-github.js";
-import graph from "../../stories/mocks/graph.json" with { type: "json" };
-
-// https://stackoverflow.com/questions/45425169/intercept-fetch-api-requests-and-responses-in-javascript
-window.fetch = function () {
-  return new Promise((resolve) => {
-    resolve(new Response(JSON.stringify(graph)));
-  });
-};
 
 // attributes
 const ROUTE = "/";

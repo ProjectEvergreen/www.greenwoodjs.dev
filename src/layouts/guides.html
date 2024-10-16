@@ -76,16 +76,13 @@
         }
       }
 
-      .content-outlet > div {
+      app-edit-on-github {
+        display: block;
         padding: var(--size-3) 0;
         position: sticky;
         bottom: 0;
         text-align: right;
-        margin: var(--size-px-6) 0 var(--size-px-2) 0;
-      }
-
-      .content-outlet div[class*="edit-on-github"] a {
-        box-shadow: 0 0 calc(var(--size-1) + var(--size-2)) var(--size-px-00) var(--color-white);
+        margin: var(--size-px-7) 0 var(--size-px-3) 0;
       }
 
       app-heading-box {
@@ -125,7 +122,7 @@
           font-size: var(--font-size-1);
         }
 
-        .content-outlet > div {
+        app-edit-on-github {
           position: fixed;
           bottom: var(--size-10);
           right: var(--size-6);
@@ -184,9 +181,7 @@
 
     <div class="content-outlet">
       <content-outlet></content-outlet>
-      <div>
-        <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
-      </div>
+      <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
     </div>
   </body>
 </html>
