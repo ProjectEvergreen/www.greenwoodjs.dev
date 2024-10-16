@@ -6,11 +6,11 @@ tocHeading: 2
 
 # Assets
 
-Greenwood provides handling and support for common web formats and conventions.  This can include images, fonts, PDFs, whatever you need.
+Greenwood provides handling and support for common web formats and conventions. This can include images, fonts, PDFs, whatever you need.
 
 ## Directory
 
-For convenience, **Greenwood** supports an _assets/_ directory wherein anything included in that directory will be automatically copied into the build output directory as is.  This can be useful if you have files that are not bundled through CSS or JavaScript (e.g `import`, `@import`, `<script>`, `<style>` or `<link>`) and can be referenced anywhere as _/assets/path/to/image.png_.
+For convenience, **Greenwood** supports an _assets/_ directory wherein anything included in that directory will be automatically copied into the build output directory as is. This can be useful if you have files that are not bundled through CSS or JavaScript (e.g `import`, `@import`, `<script>`, `<style>` or `<link>`) and can be referenced anywhere as _/assets/path/to/image.png_.
 
 Looking at an example:
 
@@ -44,7 +44,7 @@ In your JavaScript, you can also use a combination of [`new URL`](https://develo
 
 For production builds, Greenwood will generate a unique filename for the asset as well, e.g. _logo-83bc009f.svg_.
 
-Here is an example for reference: 
+Here is an example for reference:
 
 ```js
 // src/components/header.js
@@ -67,14 +67,13 @@ customElements.define("x-header", HeaderComponent);
 
 > _We are looking to improve the developer experience around using `new URL` + `import.meta.url` as part of an overall isomorphic asset bundling strategy. You can visit this [GitHub issue](https://github.com/ProjectEvergreen/greenwood/issues/1163) to follow along._
 
-
 ## Meta Files
 
 By default, Greenwood will automatically detect these "meta" files from the top-level of your workspace and automatically copy them over to the root of the build output directory.
 
 - [_favicon.ico_](https://en.wikipedia.org/wiki/Favicon)
 - [_robots.txt_](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
-- [_sitemap.xml_](https://www.sitemaps.org/protocol.html) 
+- [_sitemap.xml_](https://www.sitemaps.org/protocol.html)
 
 Example:
 
