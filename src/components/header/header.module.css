@@ -116,6 +116,15 @@
   .container {
     justify-content: space-between;
   }
+  .logoLink svg.greenwood-logo-full {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .logoLink svg.greenwood-logo-full {
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -144,10 +153,13 @@
   .socialTray {
     padding: var(--size-1) var(--size-2);
   }
+  .logoLink svg.greenwood-logo-full {
+    width: 70%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .logoLink svg.greenwood-logo-full {
-    width: 70%;
+    width: 100%;
   }
 }
