@@ -12,6 +12,11 @@
       src="../components/table-of-contents/table-of-contents.js"
       data-gwd-opt="static"
     ></script>
+    <script
+      type="module"
+      src="../components/edit-on-github/edit-on-github.js"
+      data-gwd-opt="static"
+    ></script>
     <style>
       body:has(#compact-menu:popover-open) {
         overflow-y: hidden;
@@ -71,6 +76,15 @@
         }
       }
 
+      app-edit-on-github {
+        display: block;
+        padding: var(--size-3) 0;
+        position: sticky;
+        bottom: 0;
+        text-align: right;
+        margin: var(--size-px-7) 0 var(--size-px-3) 0;
+      }
+
       app-heading-box {
         & .spacer {
           display: block;
@@ -106,6 +120,12 @@
           display: inline-block;
           width: 45%;
           font-size: var(--font-size-1);
+        }
+
+        app-edit-on-github {
+          position: fixed;
+          bottom: var(--size-10);
+          right: var(--size-6);
         }
 
         app-side-nav {
@@ -161,6 +181,7 @@
 
     <div class="content-outlet">
       <content-outlet></content-outlet>
+      <app-edit-on-github route="${globalThis.page.route}"></app-edit-on-github>
     </div>
   </body>
 </html>

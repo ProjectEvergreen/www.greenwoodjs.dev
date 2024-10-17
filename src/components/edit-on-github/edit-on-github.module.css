@@ -1,0 +1,20 @@
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+.container a,
+.container a:active,
+.container a:focus,
+.container a:visited {
+  padding: calc(var(--size-1) + var(--size-2));
+  border-radius: var(--size-px-2);
+  background-color: var(--color-prism-bg);
+  color: var(--color-accent);
+  text-decoration: none;
+  box-shadow: 0 0 calc(var(--size-1) + var(--size-2)) var(--size-px-00) var(--color-white);
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
