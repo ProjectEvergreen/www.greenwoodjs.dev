@@ -12,16 +12,16 @@ const Template = (props) => {
   `;
 };
 
-export const Root = Template.bind(
+export const PageRoot = Template.bind(
   {},
   {
     args: {
-      route: "/",
+      route: "/guides/",
     },
   },
 );
 
-export const Directory = Template.bind(
+export const SectionRoot = Template.bind(
   {},
   {
     args: {
@@ -30,11 +30,11 @@ export const Directory = Template.bind(
   },
 );
 
-export const Static = Template.bind(
+export const Section = Template.bind(
   {},
   {
     args: {
-      route: "/guides/hosting/netlify",
+      route: "/guides/hosting/netlify/",
     },
   },
 );
