@@ -40,24 +40,15 @@
 
   & #indicator {
     display: inline-block;
+    transition: transform 1s ease;
   }
 }
 
-.compactMenu:has(#onthispage:popover-open) {
-  & #indicator {
-    animation: rotateindicatoropen 1s ease;
-    animation-fill-mode: forwards;
-  }
+.compactMenu:not(:has(#onthispage:popover-open)) #indicator {
+  transform: rotate(0deg);
 }
-
-@keyframes rotateindicatoropen {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(180deg);
-  }
+.compactMenu:has(#onthispage:popover-open) #indicator {
+  transform: rotate(180deg);
 }
 
 .compactMenuItem {
