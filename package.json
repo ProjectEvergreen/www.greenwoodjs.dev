@@ -74,18 +74,10 @@
     "storybook": "^8.0.6",
     "storybook-addon-fetch-mock": "^2.0.1",
     "stylelint": "^16.4.0",
-    "stylelint-prettier": "^5.0.0",
+    "stylelint-config-recommended": "^14.0.1",
     "vite": "^5.2.8"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.17.2"
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint:js --",
-      "npm run format --"
-    ],
-    "*.css": "npm run lint:css --",
-    "*.*": "npm run lint:ls --"
   }
 }
