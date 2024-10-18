@@ -17,4 +17,8 @@
 
 .slotted {
   margin: var(--size-4) 0 var(--size-1);
+
+  & a {
+    color: var(--color-accent);
+  }
 }
