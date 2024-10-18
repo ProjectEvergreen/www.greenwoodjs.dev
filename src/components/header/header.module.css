@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 var(--size-3);
+  padding: 0 0 var(--size-2) 0;
+  margin: 0 var(--size-3) var(--size-2);
   border-bottom: 2px dotted var(--color-gray);
   gap: var(--size-3);
 }
