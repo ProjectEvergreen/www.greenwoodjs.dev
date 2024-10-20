@@ -1,9 +1,9 @@
-import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
+import { getContentByRoute } from "@greenwood/cli/src/data/client.js";
 import styles from "./blog-posts-list.module.css";
 
 export default class BlogPostsList extends HTMLElement {
   async connectedCallback() {
-    const posts = (await getContentByRoute("/blog"))
+    const posts = (await getContentByRoute("/blog/"))
       .filter((page) => page.data.published)
       // we sort in reverse chronologic order, e.g. last in, first out (LIFO)
       .sort((a, b) =>

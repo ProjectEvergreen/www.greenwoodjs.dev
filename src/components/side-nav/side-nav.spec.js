@@ -5,7 +5,7 @@ import graph from "../../stories/mocks/graph.json" with { type: "json" };
 // https://stackoverflow.com/questions/45425169/intercept-fetch-api-requests-and-responses-in-javascript
 window.fetch = function () {
   return new Promise((resolve) => {
-    resolve(new Response(JSON.stringify(graph)));
+    resolve(new Response(JSON.stringify(graph.filter((page) => page.route.startsWith(ROUTE)))));
   });
 };
 
@@ -14,7 +14,7 @@ const ROUTE = "/guides/";
 const HEADING = "Guides";
 const CURRENT_ROUTE = "/guides/getting-started/key-concepts/";
 
-describe("Components/Side Nav", () => {
+describe.only("Components/Side Nav", () => {
   let nav;
   let expectedGuidesContent = [];
   let expectedHeadingsContent = [];

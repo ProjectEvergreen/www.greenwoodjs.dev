@@ -8,7 +8,7 @@ export default {
       mocks: [
         {
           matcher: {
-            url: "http://localhost:1985/graph.json",
+            url: "http://localhost:1984/___graph.json",
             response: {
               body: pages,
             },

@@ -1,8 +1,8 @@
+import { greenwoodPluginCssModules } from "@greenwood/plugin-css-modules";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
-import { greenwoodPluginCssModules } from "./plugin-css-modules.js";
 
 export default {
-  activeFrontmatter: true,
+  activeContent: true,
 
   // would be nice if we could customize these plugins, like appending the autolink headings
   // https://github.com/ProjectEvergreen/greenwood/issues/1247

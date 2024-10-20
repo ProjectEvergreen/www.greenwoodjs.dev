@@ -1,6 +1,8 @@
 import "./blog-posts-list.js";
 import pages from "../../stories/mocks/graph.json";
 
+const ROUTE = "/blog/";
+
 export default {
   title: "Components/Blog Posts List",
   parameters: {
@@ -8,9 +10,9 @@ export default {
       mocks: [
         {
           matcher: {
-            url: "http://localhost:1985/graph.json",
+            url: "http://localhost:1984/___graph.json",
             response: {
-              body: pages,
+              body: pages.filter((page) => page.route.startsWith(ROUTE)),
             },
           },
         },
