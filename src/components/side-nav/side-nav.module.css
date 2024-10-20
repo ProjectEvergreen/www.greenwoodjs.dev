@@ -60,9 +60,7 @@
   & a {
     font-family: var(--font-primary-bold);
   }
-}
 
-.compactMenuSectionHeading {
   & a.active,
   & a:hover {
     text-decoration: underline;

@@ -9,20 +9,22 @@
   font-size: var(--font-size-1);
 }
 
-.heading {
+/* consolidated below */
+/* .heading {
   font-family: var(--font-primary-bold);
   font-size: var(--font-size-6);
-}
+} */
 
 .container {
   padding: var(--size-fluid-2);
 }
 
-.sections {
+/* consolidated below */
+/* .sections {
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-gray) transparent;
-}
+} */
 
 .section {
   display: inline-block;
@@ -91,6 +93,8 @@
   border-top: 1px solid var(--color-accent);
   border-bottom: 1px solid var(--color-accent);
   margin: var(--font-size-1) 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray) transparent;
 }
 
 .sections-list {
