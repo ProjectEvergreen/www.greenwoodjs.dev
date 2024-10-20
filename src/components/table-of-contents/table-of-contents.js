@@ -1,4 +1,4 @@
-import { getContent } from "@greenwood/cli/src/data/queries.js";
+import { getContent } from "@greenwood/cli/src/data/client.js";
 import styles from "./table-of-contents.module.css";
 
 export default class TableOfContents extends HTMLElement {
@@ -20,7 +20,7 @@ export default class TableOfContents extends HTMLElement {
             const { content, slug } = item;
 
             return `
-              <li class="${styles.compactMenuSectionListItem}">
+              <li>
                 <a href="#${slug}">${content}</a>
               </li>
             `;

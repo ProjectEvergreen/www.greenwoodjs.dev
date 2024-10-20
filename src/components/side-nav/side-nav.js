@@ -1,4 +1,4 @@
-import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
+import { getContentByRoute } from "@greenwood/cli/src/data/client.js";
 import styles from "./side-nav.module.css";
 
 export default class SideNav extends HTMLElement {
