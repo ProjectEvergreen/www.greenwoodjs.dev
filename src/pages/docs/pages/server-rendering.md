@@ -53,7 +53,7 @@ async function getFrontmatter(compilation, route, label, id) {
 export { getFrontmatter, getBody, getLayout };
 ```
 
-> _None of these options will ship any JavaScript to the client._
+> None of these options will ship any JavaScript to the client.
 
 ## API
 
@@ -184,7 +184,7 @@ export async function getFrontmatter(compilation, route) {
 }
 ```
 
-> _For defining custom dynamic based metadata, like for `<meta>` tags, use `getLayout` and define those tags right in your HTML._
+> For defining custom dynamic based metadata, like for `<meta>` tags, use `getLayout` and define those tags right in your HTML.
 
 ## Options
 
