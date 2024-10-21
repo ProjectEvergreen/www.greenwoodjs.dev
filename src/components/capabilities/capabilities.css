@@ -42,8 +42,8 @@
   border: 2px dotted var(--color-accent);
 }
 
-.section:hover strong,
-.active strong {
+.active strong,
+.section:hover strong {
   font-family: var(--font-primary-bold);
   color: var(--color-white);
 }
