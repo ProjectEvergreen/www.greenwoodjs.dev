@@ -6,8 +6,7 @@ tocHeading: 2
 
 # Raw Import
 
-A Greenwood plugin to use ESM (`import`) syntax to load file contents as a string exported.  Inspired by **webpack**'s [raw loader](https://v4.webpack.js.org/loaders/raw-loader/).  See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw) for complete usage information.
-
+A Greenwood plugin to use ESM (`import`) syntax to load files as a module with a `default export` of the file contents as a string. Inspired by **webpack**'s [raw loader](https://v4.webpack.js.org/loaders/raw-loader/). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw) for complete usage information.
 
 ## Installation
 
@@ -21,19 +20,16 @@ npm i -D @greenwood/plugin-import-raw
 yarn add @greenwood/plugin-import-raw --dev
 ```
 
-
 Then add this plugin to your _greenwood.config.js_:
 
 ```js
-import { greenwoodPluginImportRaw } from '@greenwood/plugin-import-raw';
+import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 
 export default {
   // ...
 
-  plugins: [
-    greenwoodPluginImportRaw()
-  ]
-}
+  plugins: [greenwoodPluginImportRaw()],
+};
 ```
 
 ## Usage
@@ -43,13 +39,13 @@ This will then allow you to use ESM syntax to include any file a string exported
 This can be useful for inlining CSS:
 
 ```js
-import css from '../path/to/styles.css?type=raw';
+import css from "../path/to/styles.css?type=raw";
 
 const template = document.createElement("template");
 
 export default class Header extends HTMLElement {
   connectedCallback() {
-    template.innerHTML `
+    template.innerHTML`
       <styles>
         ${css}
       </styles>
@@ -61,13 +57,13 @@ export default class Header extends HTMLElement {
   }
 }
 
-customElements.define('app-header', Header);
+customElements.define("app-header", Header);
 ```
 
 Or perfect for embedding SVGs into HTML:
 
 ```js
-import logo from '../images/logo.svg?type=raw';
+import logo from "../images/logo.svg?type=raw";
 
 export default class Header extends HTMLElement {
   connectedCallback() {
@@ -80,5 +76,5 @@ export default class Header extends HTMLElement {
   }
 }
 
-customElements.define('app-header', Header);
+customElements.define("app-header", Header);
 ```
