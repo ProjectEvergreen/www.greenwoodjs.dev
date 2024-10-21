@@ -6,7 +6,7 @@ tocHeading: 2
 
 # TypeScript
 
-Greenwood has plugin for authoring in [**TypeScript**](https://www.typescriptlang.org/).  See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-typescript) for complete usage information.
+Greenwood has plugin for authoring in [**TypeScript**](https://www.typescriptlang.org/). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-typescript) for complete usage information.
 
 ## Installation
 
@@ -23,14 +23,12 @@ yarn add @greenwood/plugin-typescript --dev
 And then add the plugin to your _greenwood.config.js_.
 
 ```javascript
-import { greenwoodPluginTypeScript } from '@greenwood/plugin-typescript';
+import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
 
 export default {
   // ...
 
-  plugins: [
-    greenwoodPluginTypeScript()
-  ]
+  plugins: [greenwoodPluginTypeScript()],
 };
 ```
 
@@ -39,14 +37,18 @@ export default {
 Now you can write some TypeScript!
 
 ```ts
-import { html, css, LitElement, customElement, property } from 'lit-element';
+import { html, css, LitElement, customElement, property } from "lit-element";
 
-@customElement('app-greeting')
+@customElement("app-greeting")
 export class GreetingComponent extends LitElement {
-  static styles = css`p { color: blue }`;
+  static styles = css`
+    p {
+      color: blue;
+    }
+  `;
 
   @property()
-  name = 'Somebody';
+  name = "Somebody";
 
   render() {
     return html`<p>Hello, ${this.name}!</p>`;
@@ -55,6 +57,7 @@ export class GreetingComponent extends LitElement {
 ```
 
 And use it in your project like you would use a _.js_ file!
+
 ```html
 <script type="module" src="/components/greeting.ts"></script>
 ```
@@ -62,16 +65,16 @@ And use it in your project like you would use a _.js_ file!
 This is also supported for pages with an additional option.
 
 ```js
-import { greenwoodPluginTypeScript } from '@greenwood/plugin-typescript';
+import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
 
 export default {
   // ...
 
   plugins: [
     greenwoodPluginTypeScript({
-      servePage: false
-    })
-  ]
+      servePage: false,
+    }),
+  ],
 };
 ```
 
