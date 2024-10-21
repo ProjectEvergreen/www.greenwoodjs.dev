@@ -9,22 +9,9 @@
   font-size: var(--font-size-1);
 }
 
-/* consolidated below */
-/* .heading {
-  font-family: var(--font-primary-bold);
-  font-size: var(--font-size-6);
-} */
-
 .container {
   padding: var(--size-fluid-2);
 }
-
-/* consolidated below */
-/* .sections {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-gray) transparent;
-} */
 
 .section {
   display: inline-block;
