@@ -281,7 +281,7 @@ components/
 
 #### _Content as Data_ Stories
 
-When a component requires a `fetch` request for data, the story will need to mock this request before being able to render within the Storybook. 
+When a component requires a `fetch` request for data, the story will need to mock this request before being able to render within the Storybook.
 
 To mock `fetch`, create a `parameter` within the story export object named `fetchMock`. This object contains a `mocks` array with a `matcher` for the localhost network request URL. The `matcher.response` object represents the mocked data to use with the story.
 
