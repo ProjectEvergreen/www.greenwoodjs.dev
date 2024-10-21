@@ -65,7 +65,7 @@ class HeaderComponent extends HTMLElement {
 customElements.define("x-header", HeaderComponent);
 ```
 
-> _We are looking to improve the developer experience around using `new URL` + `import.meta.url` as part of an overall isomorphic asset bundling strategy. You can visit this [GitHub issue](https://github.com/ProjectEvergreen/greenwood/issues/1163) to follow along._
+> We are looking to improve the developer experience around using `new URL` + `import.meta.url` as part of an overall isomorphic asset bundling strategy. You can visit this [GitHub issue](https://github.com/ProjectEvergreen/greenwood/issues/1163) to follow along.
 
 ## Meta Files
 

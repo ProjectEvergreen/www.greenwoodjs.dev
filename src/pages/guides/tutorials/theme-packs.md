@@ -270,7 +270,7 @@ For users, they would just need to do the following:
 
 Success! 🥳
 
-> _Don't forget, user's can also [include additional CSS / JS files in their frontmatter](/docs/front-matter/#imports), to further extend, customize, and override your layouts!_
+> Don't forget, user's can also [include additional CSS / JS files in their frontmatter](/docs/front-matter/#imports), to further extend, customize, and override your layouts!
 
 ## FAQ
 

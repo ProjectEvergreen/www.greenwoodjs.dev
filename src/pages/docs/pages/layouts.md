@@ -29,7 +29,7 @@ src/
     blog.html
 ```
 
-> _**Note:** You can use either relative (`../`) or absolute (`/`) paths in your layouts since using `../` will allow for IDE autocomplete on your filesystem, but is marginally slower than using `/`._
+> **Note:** You can use either relative (`../`) or absolute (`/`) paths in your layouts since using `../` will allow for IDE autocomplete on your filesystem, but is marginally slower than using `/`.
 
 ## Pages
 
