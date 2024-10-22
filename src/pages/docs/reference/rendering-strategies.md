@@ -38,52 +38,59 @@ Prerendering is a feature of Greenwood by which custom element definitions (be i
 
 For example, take a list of blog posts rendered based on the project's pages directory
 
+<!-- Prettier has a hard time indenting lists with code fences I guess... :/ -->
+<!-- https://github.com/prettier/prettier/issues/3459 -->
+<!-- prettier-ignore-start -->
 1. Add the `prerender` config to _greenwood.config.js_
-   ```js
-   export default {
-     prerender: true,
-   };
-   ```
+
+  ```js
+  export default {
+    prerender: true,
+  };
+  ```
+
 1. Create a data fetching component
 
-   ```js
-   import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
+  ```js
+  import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
 
-   export default class BlogPostsList extends HTMLElement {
-     async connectedCallback() {
-       const posts = await getContentByRoute("/blog/");
+  export default class BlogPostsList extends HTMLElement {
+    async connectedCallback() {
+      const posts = await getContentByRoute("/blog/");
 
-       this.innerHTML = `
-         ${posts
-           .map((post) => {
-             return `
-         <a href="${post.route}">
-           ${post.title}
-         </a>
-       `;
-           })
-           .join("")}
-       `;
-     }
-   }
+      this.innerHTML = `
+        ${posts
+          .map((post) => {
+            return `
+              <a href="${post.route}">
+                ${post.title}
+              </a>
+            `;
+          })
+          .join("")}
+      `;
+    }
+  }
 
-   customElements.define("blog-posts-list", BlogPostsList);
-   ```
+  customElements.define("blog-posts-list", BlogPostsList);
+  ```
 
 1. Add it to your HTML page with the [**static** optimization attribute](/docs/reference/configuration/#optimizations)
-   ```html
-   <!doctype html>
-   <html>
-     <head>
-       <title>Blog</title>
-       <script type="module" src="./components/blog-posts-list.js" data-gwd-opt="static"></script>
-     </head>
-     <body>
-       <h1>All Blog Posts</h1>
-       <blog-posts-list></blog-posts-list>
-     </body>
-   </html>
-   ```
+
+  ```html
+  <!doctype html>
+  <html>
+    <head>
+      <title>Blog</title>
+      <script type="module" src="./components/blog-posts-list.js" data-gwd-opt="static"></script>
+    </head>
+    <body>
+      <h1>All Blog Posts</h1>
+      <blog-posts-list></blog-posts-list>
+    </body>
+  </html>
+  ```
+<!-- prettier-ignore-end -->
 
 ### SSR
 
