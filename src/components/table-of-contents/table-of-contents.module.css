@@ -75,6 +75,7 @@
   padding: 0 12px;
   width: 100%;
   text-align: right;
+  color: var(--color-black);
 }
 
 @media (min-width: 1200px) {
