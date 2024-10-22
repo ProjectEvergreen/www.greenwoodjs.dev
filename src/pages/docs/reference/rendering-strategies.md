@@ -57,10 +57,10 @@ For example, take a list of blog posts rendered based on the project's pages dir
          ${posts
            .map((post) => {
              return `
-            <a href="${post.route}">
-              ${post.title}
-            </a>
-          `;
+         <a href="${post.route}">
+           ${post.title}
+         </a>
+       `;
            })
            .join("")}
        `;
