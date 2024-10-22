@@ -16,14 +16,14 @@ Each plugin must return a function that has the following three properties:
 
 - `name`: A string to give your plugin a name and used for error handling and logging output
 - `type`: A string to specify to Greenwood the type of plugin. Right now the current supported plugin types are:
-  - **adapter**
-  - **context**
-  - **copy**
-  - **renderer**
-  - **resource**
-  - **rollup**
-  - **server**
-  - **source**
+  - **Adapter**
+  - **Context**
+  - **Copy**
+  - **Renderer**
+  - **Resource**
+  - **Rollup**
+  - **Server**
+  - **Source**
 - `provider`: A function that will be invoked by Greenwood that can accept a [**compilation**](/docs/reference/appendix/#compilation) param to provide read-only access to Greenwood's state and configuration.
 
 Here is an example of creating a plugin in a _greenwood.config.js_:
@@ -173,7 +173,7 @@ By providing paths to directories of layouts, plugin authors can share complete 
 
 ```md
 ---
-layout: "acme-theme-blog-layout"
+layout: acme-theme-blog-layout
 ---
 
 ## Welcome to my blog!
@@ -435,7 +435,7 @@ import { normalizePathnameForWindows } from "@greenwood/cli/src/lib/resource-uti
 import postcss from "postcss";
 
 async function getConfig() {
-  /* ... */
+  // ...
 }
 
 class PostCssResource extends ResourceInterface {
@@ -521,7 +521,7 @@ Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergr
 import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
 function bundleCss() {
-  /*... */
+  // ..
 }
 
 class StandardCssResource extends ResourceInterface {
@@ -538,7 +538,7 @@ class StandardCssResource extends ResourceInterface {
 
   async optimize(url, response) {
     const body = await response.text();
-    const optimizedBody = bundleCss(body /* ... */);
+    const optimizedBody = bundleCss(body);
 
     return new Response(optimizedBody);
   }
