@@ -65,22 +65,9 @@ import { Foo } from "./foo.js";
 import { Foo } from "foo";
 ```
 
-## Import Attributes
+## Node Modules
 
-Greenwood supports [Import Attributes](https://github.com/tc39/proposal-import-attributes) on the client and the [the server](/docs/pages/server-rendering/#custom-imports) seamlessly, supporting both CSS and JSON module out of the box.
-
-```js
-import sheet from "./styles.css" with { type: "css" };
-import data from "./data.json" with { type: "json" };
-
-console.log({ sheet, data });
-```
-
-> ⚠️ _Although Import Attributes are not baseline yet, Greenwood supports polyfilling them with a [configuration flag](/docs/reference.configuration/#polyfills)._
-
-## NPM
-
-Packages from [**npm**](https://www.npmjs.com/) can be used by installing them with your favorite package manager. In the browser, Greenwood will automatically build up an import map from any packages defined in the `dependencies` property of your _package.json_.
+Packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. In the browser, Greenwood will automatically build up an import map from any packages defined in the `dependencies` property of your _package.json_.
 
 Below are some examples:
 
@@ -102,7 +89,7 @@ export class SimpleGreeting extends LitElement {
 customElements.define("simple-greeting", SimpleGreeting);
 ```
 
-You can reference the **node_modules** directly from a `<script>` tag by starting the path with `/node_modules`:
+You can reference **node_modules** directly from a `<script>` tag by starting the path with `/node_modules`:
 
 ```html
 <html>
