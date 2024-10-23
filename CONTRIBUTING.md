@@ -186,15 +186,15 @@ components/
 
 Each component will require a DOM-like environment in order to be queried for the custom element and, thus assert on the component details.
 
-The following is an example of a spec file, with imports, a global mock (`fetch`), and the `describe`/`it` blocks.
+The following is an example of a spec file, with imports and a set of `describe`/`it` blocks. In this case, we import the `add` method from the `math.js` file, and assert that it provides an expected result.
 
 ```js
 import { expect } from "@esm-bundle/chai";
-import "./my-custom-element.js";
+import { add } from "./math.js";
 
-describe("Components/My Custom Element", () => {
+describe("Add Function", () => {
   it("should do something expected", () => {
-    expect("something").equal("some" + "thing");
+    expect(add(1, 2)).equal(3);
   });
 });
 ```
