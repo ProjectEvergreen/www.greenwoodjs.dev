@@ -173,13 +173,99 @@ This would emit the following generated HTML
 
 ### Testing
 
-For each component, a testing file should be included to test basic functionality, living alongside the component in its directory.
+For each component, a testing file ("spec") should be included to test basic functionality, living alongside the component in its directory.
 
 ```sh
 components/
   my-component/
     my-component.js
     my-component.spec.js
+```
+
+#### Spec File Setup
+
+Each component will require a DOM-like environment in order to be queried for the custom element and, thus assert on the component details.
+
+The following is an example of a spec file, with imports and a set of `describe`/`it` blocks. In this case, we import the `add` method from the `math.js` file, and assert that it provides an expected result.
+
+```js
+import { expect } from "@esm-bundle/chai";
+import { add } from "./math.js";
+
+describe("Add Function", () => {
+  it("should do something expected", () => {
+    expect(add(1, 2)).equal(3);
+  });
+});
+```
+
+#### Testing the Component
+
+With the spec file foundation, the custom element can now be created and applied to the mock DOM environment. To do this, we use the Web Test Runner (WTR) framework which provides the scaffolding to test Web Componets in a browser environment.
+
+The WTR and the full setup is covered in greater detail within [the GreenwoodJS test runner docs](https://www.greenwood.dev/guides/ecosystem/web-test-runner/). In an attempt to not duplicate those docs, an outline has been provided here, but please refer to those docs for a full user guide.
+
+1. **[Setup](https://www.greenwood.dev/guides/ecosystem/web-test-runner/#setup)**
+
+   Install dependencies and configure WTR. This project has that covered already! ✅ (Let's chat if there becomes a need to reconfigure the current setup.)
+
+1. **[Usage](https://www.greenwood.dev/guides/ecosystem/web-test-runner/#usage)**
+
+   Within a traditional `before` block, create the custom element, and append to the DOM. See the example below. 👇
+
+1. **[Static Assets](https://www.greenwood.dev/guides/ecosystem/web-test-runner/#static-assets)**
+
+   If experiencing a 404 for a missing asset, a simple middleware can help mock that request. Otherwise, you can skip this section.
+
+1. **[Install Resource Plugins](https://www.greenwood.dev/guides/ecosystem/web-test-runner/#resource-plugins)**
+
+   If using a Greenwood resource plugin, you'll need to provide that info to stub out the signiture.
+
+1. **[Mock Data Requests](https://www.greenwood.dev/guides/ecosystem/web-test-runner/#content-as-data)**
+
+   If using Greenwood's Content as Data feature, mocking `fetch` with mock data is necessary.
+
+#### Examples
+
+With the test setup complete, we can now create the block necessary to put the custom element under test.
+
+Populating the previous example, we include the `before` block and create, customtize, and append the element using the Browser API.
+
+```js
+import { expect } from "@esm-bundle/chai";
+import "./my-custom-element.js";
+
+// ...mocks truncated....
+
+describe("Components/My Custom Element", () => {
+  let myElement;
+
+  before(async () => {
+    // create.
+    myElement = document.createElement("app-my-element"); // the tagname as it appears in the browser
+
+    // customize.
+    myElement.addAttribute("route", "/some/path/to/a/page");
+
+    // append.
+    document.body.appendChild(myElement);
+
+    // all ready.
+    await myElement.updateComplete;
+  });
+
+  after(() => {
+    // cleanup.
+    myElement.remove();
+    myElement = null;
+  });
+
+  it("should do something expected", () => {
+    expect("something").equal("some" + "thing");
+  });
+
+  // ...it()...
+});
 ```
 
 ### Storybook
@@ -191,6 +277,38 @@ components/
   my-component/
     my-component.js
     my-component.stories.js
+```
+
+#### _Content as Data_ Stories
+
+When a component requires a `fetch` request for data, the story will need to mock this request before being able to render within the Storybook.
+
+To mock `fetch`, create a `parameter` within the story export object named `fetchMock`. This object contains a `mocks` array with a `matcher` for the localhost network request URL. The `matcher.response` object represents the mocked data to use with the story.
+
+Checkout [the `blog-posts-list.stories.js` story](https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/components/blog-posts-list/blog-posts-list.stories.js) as an example.
+
+```js
+import "./my-custom-element.js";
+import pages from "../../stories/mocks/graph.json";
+
+export default {
+  title: "Components/My Custom Element",
+  parameters: {
+    // ...other parameters, if necessary...
+    fetchMock: {
+      mocks: [
+        {
+          matcher: {
+            url: "http://localhost:1985/graph.json",
+            response: {
+              body: pages,
+            },
+          },
+        },
+      ],
+    },
+  },
+};
 ```
 
 ## Hosting and Deployment
