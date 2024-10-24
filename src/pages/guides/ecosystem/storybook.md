@@ -237,7 +237,7 @@ If you are using any of Greenwood's [content as data](/docs/content-as-data/) fe
          mocks: [
            {
              matcher: {
-               url: "http://localhost:1985/graph.json",
+               url: "http://localhost:1984/___graph.json",
                response: {
                  body: pages,
                },
