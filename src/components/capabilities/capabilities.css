@@ -9,19 +9,8 @@
   font-size: var(--font-size-1);
 }
 
-.heading {
-  font-family: var(--font-primary-bold);
-  font-size: var(--font-size-6);
-}
-
 .container {
   padding: var(--size-fluid-2);
-}
-
-.sections {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-gray) transparent;
 }
 
 .section {
@@ -40,8 +29,8 @@
   border: 2px dotted var(--color-accent);
 }
 
-.section:hover strong,
-.active strong {
+.active strong,
+.section:hover strong {
   font-family: var(--font-primary-bold);
   color: var(--color-white);
 }
@@ -91,6 +80,8 @@
   border-top: 1px solid var(--color-accent);
   border-bottom: 1px solid var(--color-accent);
   margin: var(--font-size-1) 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray) transparent;
 }
 
 .sections-list {
