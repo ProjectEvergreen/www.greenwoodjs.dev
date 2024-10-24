@@ -29,6 +29,10 @@ export default class SideNav extends HTMLElement {
       }
     });
 
+    if (sections.length === 0) {
+      return;
+    }
+
     this.innerHTML = `
       <div class="${styles.fullMenu}" data-full>
         ${sections
