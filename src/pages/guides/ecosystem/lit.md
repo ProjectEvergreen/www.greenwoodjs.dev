@@ -17,17 +17,17 @@ As with most libraries, just install **lit** with your favorite package manager 
 
 <app-ctc-block variant="script">
 
-  ```shell
-  npm i lit
-  ```
+```shell
+npm i lit
+```
 
-  ```shell
-  yarn add lit
-  ```
+```shell
+yarn add lit
+```
 
-  ```shell
-  pnpm i lit
-  ```
+```shell
+pnpm i lit
+```
 
 </app-ctc-block>
 
