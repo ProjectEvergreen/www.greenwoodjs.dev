@@ -18,7 +18,7 @@ export default class CopyToClipboardBlock extends HTMLElement {
     super();
     this.blockConfigs = [];
     this.selectCommandRunnerIdx = 0;
-    this.snippetContents = '';
+    this.snippetContents = "";
   }
 
   connectedCallback() {
@@ -70,11 +70,9 @@ export default class CopyToClipboardBlock extends HTMLElement {
             </span>
           </div>
         `;
-      } else if (variant === 'snippet') {
-        const heading = this.getAttribute('heading');
-        const headingHtml = heading
-          ? `<span class="heading">${heading}</span>`
-          : '';
+      } else if (variant === "snippet") {
+        const heading = this.getAttribute("heading");
+        const headingHtml = heading ? `<span class="heading">${heading}</span>` : "";
 
         this.snippetContents = this.textContent;
         template.innerHTML = `
@@ -94,15 +92,15 @@ export default class CopyToClipboardBlock extends HTMLElement {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
 
       switch (variant) {
-        case 'runner':
+        case "runner":
           this.shadowRoot
-          .querySelectorAll(".command-runner")
-          .forEach((item) => item.addEventListener("click", this.selectCommandRunner.bind(this)));
-        this.shadowRoot
-          .querySelector(".copy-icon")
-          .addEventListener("click", this.copyCommandToClipboard.bind(this));
+            .querySelectorAll(".command-runner")
+            .forEach((item) => item.addEventListener("click", this.selectCommandRunner.bind(this)));
+          this.shadowRoot
+            .querySelector(".copy-icon")
+            .addEventListener("click", this.copyCommandToClipboard.bind(this));
           break;
-        case 'snippet':
+        case "snippet":
           this.shadowRoot
             .querySelector(".copy-icon")
             .addEventListener("click", this.copySnippetToClipboard.bind(this));
