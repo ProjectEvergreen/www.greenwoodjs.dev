@@ -15,9 +15,17 @@ tocHeading: 2
 
 As with most libraries, just install **lit** with your favorite package manager as a dependency.
 
-```shell
-npm i lit
-```
+<app-ctc-block variant="script">
+
+  ```shell
+  npm i lit
+  ```
+
+  ```shell
+  yarn add lit
+  ```
+
+</app-ctc-block>
 
 Now you can start writing Lit based Web Components!
 
