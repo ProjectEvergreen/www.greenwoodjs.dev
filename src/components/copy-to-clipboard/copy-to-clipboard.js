@@ -9,19 +9,20 @@ template.innerHTML = `
 
 export default class CopyToClipboard extends HTMLElement {
   connectedCallback() {
-    if (!this.shadowRoot) {
+    // bail of out of SSR entirely
+    if (!this.shadowRoot && typeof window !== "undefined") {
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+      this.shadowRoot.adoptedStyleSheets = [sheet];
+
+      this.shadowRoot.getElementById("icon")?.addEventListener("click", () => {
+        const contents = this.getAttribute("content") ?? undefined;
+
+        navigator.clipboard.writeText(contents);
+        console.log("copying the following contents to your clipboard =>", contents);
+      });
     }
-
-    this.shadowRoot.adoptedStyleSheets = [sheet];
-
-    this.shadowRoot.getElementById("icon")?.addEventListener("click", () => {
-      const contents = this.getAttribute("content") ?? undefined;
-
-      navigator.clipboard.writeText(contents);
-      console.log("copying the following contents to your clipboard =>", contents);
-    });
   }
 }
 

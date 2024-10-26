@@ -25,49 +25,52 @@ export default class Capabilities extends HTMLElement {
   }
 
   connectedCallback() {
-    this.contentItems = globalThis.document?.querySelectorAll(".capabilities-content") || [];
+    // bail of out of SSR entirely
+    if (typeof window !== "undefined") {
+      this.contentItems = globalThis.document?.querySelectorAll(".capabilities-content") || [];
 
-    if (this.contentItems.length > 0) {
-      template.innerHTML = `
-        <div class="capabilities">
-          <div class="container">
-            <h2 class="heading">Go from zero to fullstack with web standards</h2>
+      if (this.contentItems.length > 0) {
+        template.innerHTML = `
+          <div class="capabilities">
+            <div class="container">
+              <h2 class="heading">Go from zero to fullstack with web standards</h2>
 
-            <nav class="sections">
-              <ul class="sections-list">
-                ${Array.from(this.contentItems)
-                  .map((item, idx) => {
-                    const title = item.querySelector("span").innerHTML;
-                    const icon = item.querySelector("i").textContent;
-                    const isActiveClass = idx === this.index ? " active" : "";
+              <nav class="sections">
+                <ul class="sections-list">
+                  ${Array.from(this.contentItems)
+                    .map((item, idx) => {
+                      const title = item.querySelector("span").innerHTML;
+                      const icon = item.querySelector("i").textContent;
+                      const isActiveClass = idx === this.index ? " active" : "";
 
-                    return `
-                      <li class="section${isActiveClass}" data-idx="${idx}">
-                        <h3 class="capability-heading">
-                          ${availableIconSVGs[icon]}
-                          <span>${title}</span>
-                        </h3>
-                      </li>
-                    `;
-                  })
-                  .join("")}
-              </ul>
-            </nav>
+                      return `
+                        <li class="section${isActiveClass}" data-idx="${idx}">
+                          <h3 class="capability-heading">
+                            ${availableIconSVGs[icon]}
+                            <span>${title}</span>
+                          </h3>
+                        </li>
+                      `;
+                    })
+                    .join("")}
+                </ul>
+              </nav>
 
-            <p class="content">${this.contentItems[this.index].querySelector("p").innerHTML}</p>
-            <div class="snippet">${this.contentItems[this.index].querySelector("pre").outerHTML}</div>
+              <p class="content">${this.contentItems[this.index].querySelector("p").innerHTML}</p>
+              <div class="snippet">${this.contentItems[this.index].querySelector("pre").outerHTML}</div>
+            </div>
           </div>
-        </div>
-      `;
+        `;
 
-      this.attachShadow({ mode: "open" });
-      this.shadowRoot.appendChild(template.content.cloneNode(true));
-      this.shadowRoot.adoptedStyleSheets = [themeSheet, sheet];
-      this.shadowRoot
-        .querySelectorAll(".section")
-        .forEach((item) => item.addEventListener("click", this.selectItem.bind(this)));
-    } else {
-      console.debug("no capabilities content sections detected");
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+        this.shadowRoot.adoptedStyleSheets = [themeSheet, sheet];
+        this.shadowRoot
+          .querySelectorAll(".section")
+          .forEach((item) => item.addEventListener("click", this.selectItem.bind(this)));
+      } else {
+        console.debug("no capabilities content sections detected");
+      }
     }
   }
 
