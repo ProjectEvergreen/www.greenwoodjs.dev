@@ -223,7 +223,7 @@ The WTR and the full setup is covered in greater detail within [the GreenwoodJS 
 
 1. **[Mock Data Requests](https://www.greenwood.dev/guides/ecosystem/web-test-runner/#content-as-data)**
 
-   If using Greenwood's Content as Data feature, mocking `fetch` with mock data is necessary.
+   If using one of Greenwood's Content as Data [Client APIs](/docs/content-as-data/data-client/), mocking `fetch` with mock data is necessary.
 
 #### Examples
 
@@ -279,37 +279,25 @@ components/
     my-component.stories.js
 ```
 
-#### _Content as Data_ Stories
-
-When a component requires a `fetch` request for data, the story will need to mock this request before being able to render within the Storybook.
-
-To mock `fetch`, create a `parameter` within the story export object named `fetchMock`. This object contains a `mocks` array with a `matcher` for the localhost network request URL. The `matcher.response` object represents the mocked data to use with the story.
-
-Checkout [the `blog-posts-list.stories.js` story](https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/components/blog-posts-list/blog-posts-list.stories.js) as an example.
+Below is an example of a basic Storybook file:
 
 ```js
-import "./my-custom-element.js";
-import pages from "../../stories/mocks/graph.json";
+import "./header.js";
 
 export default {
-  title: "Components/My Custom Element",
-  parameters: {
-    // ...other parameters, if necessary...
-    fetchMock: {
-      mocks: [
-        {
-          matcher: {
-            url: "http://localhost:1985/graph.json",
-            response: {
-              body: pages,
-            },
-          },
-        },
-      ],
-    },
-  },
+  title: "Components/Header",
 };
+
+const Template = () => "<app-header></app-header>";
+
+export const Primary = Template.bind({});
 ```
+
+#### Content as Data
+
+When a component implements one of Greenwood's Content as Data [Client APIs](/docs/content-as-data/data-client/), the story will need to mock this request before being able to render within the Storybook.
+
+See the [Greenwood Storybook docs](/guides/ecosystem/storybook/#content-as-data) for more information and [the _blog-posts-list.stories.js_ story](https://github.com/ProjectEvergreen/www.greenwoodjs.dev/blob/main/src/components/blog-posts-list/blog-posts-list.stories.js) for an example in this project.
 
 ## Hosting and Deployment
 

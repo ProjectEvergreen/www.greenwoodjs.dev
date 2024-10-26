@@ -192,7 +192,9 @@ export default {
 
 ## Content as Data
 
-If you are using any of Greenwood's [content as data](/docs/content-as-data/) features, you'll want to have your tests handle mocking of `fetch` calls. This can be done with a simple override of `window.fetch`
+If you are using any of Greenwood's Content as Data [Client APIs](/docs/content-as-data/data-client/), you'll want to have your tests handle mocking of `fetch` calls.
+
+This can be done by overriding `window.fetch` and providing the desired response needed based on the API being called:
 
 ```js
 import { expect } from "@esm-bundle/chai";
@@ -202,7 +204,8 @@ import "./blog-posts-list.js";
 // override fetch to return a promise that resolves to our mock data
 window.fetch = function () {
   return new Promise((resolve) => {
-    resolve(new Response(JSON.stringify(graph)));
+    // this is an example of mocking out getContentByRoute
+    resolve(new Response(JSON.stringify(graph.filter((page) => page.route.startsWith("/blog/")))));
   });
 };
 

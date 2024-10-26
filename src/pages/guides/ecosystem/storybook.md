@@ -201,9 +201,11 @@ export default defineConfig({
 
 ## Content as Data
 
-If you are using any of Greenwood's [content as data](/docs/content-as-data/) features, you'll want to configure Storybook for mocking `fetch` calls in your stories.
+If you are using any of Greenwood's Content as Data [Client APIs](/docs/content-as-data/data-client/), you'll want to configure Storybook to mock the HTTP calls Greenwood's data client makes, and provide the desired response needed based on the API being called.
 
-1. First, install the [**storybook-addon-fetch-mock**](https://storybook.js.org/addons/storybook-addon-fetch-mock) addon
+This can be accomplished with the [**storybook-addon-fetch-mock**](https://storybook.js.org/addons/storybook-addon-fetch-mock) addon and configuring it with the right `matcher.url` and `matcher.response`
+
+1. First, install the **storybook-addon-fetch-mock** addon
    ```shell
    $ npm i -D storybook-addon-fetch-mock
    ```
@@ -239,7 +241,8 @@ If you are using any of Greenwood's [content as data](/docs/content-as-data/) fe
              matcher: {
                url: "http://localhost:1984/___graph.json",
                response: {
-                 body: pages,
+                 // this is an example of mocking out getContentByRoute
+                 body: pages.filter((page) => page.route.startsWith("/blog/")),
                },
              },
            },
