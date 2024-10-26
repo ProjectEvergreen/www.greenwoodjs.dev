@@ -1,17 +1,17 @@
-import theme from '../../styles/theme.css' with { type: "css" };
+import theme from "../../styles/theme.css" with { type: "css" };
 import sheet from "./ctc-block.css" with { type: "css" };
-import npmLogo from '../../assets/npm.svg?type=raw';
-import pnpmLogo from '../../assets/pnpm.svg?type=raw';
-import yarnLogo from '../../assets/yarn.svg?type=raw';
-import copyIcon from '../../assets/copy-button.svg?type=raw';
+import npmLogo from "../../assets/npm.svg?type=raw";
+import pnpmLogo from "../../assets/pnpm.svg?type=raw";
+import yarnLogo from "../../assets/yarn.svg?type=raw";
+import copyIcon from "../../assets/copy-button.svg?type=raw";
 
 const template = document.createElement("template");
 
 const scriptRunnerLogoMapper = {
   npm: npmLogo,
   yarn: yarnLogo,
-  pnpm: pnpmLogo
-}
+  pnpm: pnpmLogo,
+};
 
 export default class CopyToClipboardBlock extends HTMLElement {
   constructor() {
@@ -21,41 +21,45 @@ export default class CopyToClipboardBlock extends HTMLElement {
   }
 
   connectedCallback() {
-    const variant = this.getAttribute('variant');
+    const variant = this.getAttribute("variant");
     const supportedScriptRunners = Object.keys(scriptRunnerLogoMapper);
 
-    if (!this.shadowRoot && typeof window !== 'undefined') {
-      if (variant === 'script') {
-        const contents = document.createElement('template');
+    if (!this.shadowRoot && typeof window !== "undefined") {
+      if (variant === "script") {
+        const contents = document.createElement("template");
         contents.innerHTML = this.innerHTML;
 
-        const nodes = Array.from(contents.content.childNodes).filter(node => node.nodeName !== '#text');
+        const nodes = Array.from(contents.content.childNodes).filter(
+          (node) => node.nodeName !== "#text",
+        );
 
         supportedScriptRunners.map((runner) => {
           nodes.forEach((node) => {
-            if(node.textContent.startsWith(runner)) {
+            if (node.textContent.startsWith(runner)) {
               this.blockConfigs.push({
                 runner,
                 html: node.outerHTML.replace(runner, `$ ${runner}`),
-                pasteContents: node.textContent.trim()
-              })
+                pasteContents: node.textContent.trim(),
+              });
             }
-          })
+          });
         });
 
         template.innerHTML = `
           <div class="container">
             <ul>
-              ${this.blockConfigs.map((config, idx) => {
-                const { runner } = config;
-                const isActive = idx === this.selectCommandRunnerIdx ? ' active' : '';
+              ${this.blockConfigs
+                .map((config, idx) => {
+                  const { runner } = config;
+                  const isActive = idx === this.selectCommandRunnerIdx ? " active" : "";
 
-                return `
+                  return `
                   <li class="command-runner${isActive}" data-runner="${runner}">
                     ${scriptRunnerLogoMapper[runner]}
                   </li>
                 `;
-              }).join('')}
+                })
+                .join("")}
             </ul>
             <div class="snippet">
               ${this.blockConfigs[this.selectCommandRunnerIdx].html}
@@ -67,7 +71,6 @@ export default class CopyToClipboardBlock extends HTMLElement {
         `;
       }
 
-
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
 
@@ -77,26 +80,26 @@ export default class CopyToClipboardBlock extends HTMLElement {
       this.shadowRoot
         .querySelector(".copy-icon")
         .addEventListener("click", this.copyCommandToClipboard.bind(this));
-    
-      this.shadowRoot.adoptedStyleSheets = [ theme, sheet ];
+
+      this.shadowRoot.adoptedStyleSheets = [theme, sheet];
     }
   }
 
   selectCommandRunner(event) {
-    const runners = this.shadowRoot.querySelectorAll('.command-runner');
+    const runners = this.shadowRoot.querySelectorAll(".command-runner");
     const selectedRunner = event.currentTarget.dataset.runner;
-    const config = this.blockConfigs.find((config) =>  config.runner === selectedRunner);
+    const config = this.blockConfigs.find((config) => config.runner === selectedRunner);
 
     runners.forEach((runner, idx) => {
-      runner.classList.remove('active');
+      runner.classList.remove("active");
 
       if (runner.dataset.runner === selectedRunner) {
-        runner.classList.add('active');
+        runner.classList.add("active");
         this.selectCommandRunnerIdx = idx;
       }
     });
 
-    this.shadowRoot.querySelector('.snippet').innerHTML = config.html;
+    this.shadowRoot.querySelector(".snippet").innerHTML = config.html;
   }
 
   copyCommandToClipboard() {
