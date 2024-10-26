@@ -1,6 +1,7 @@
 import theme from '../../styles/theme.css' with { type: "css" };
 import sheet from "./ctc-block.css" with { type: "css" };
 import npmLogo from '../../assets/npm.svg?type=raw';
+import pnpmLogo from '../../assets/pnpm.svg?type=raw';
 import yarnLogo from '../../assets/yarn.svg?type=raw';
 import copyIcon from '../../assets/copy-button.svg?type=raw';
 
@@ -8,7 +9,8 @@ const template = document.createElement("template");
 
 const scriptRunnerLogoMapper = {
   npm: npmLogo,
-  yarn: yarnLogo
+  yarn: yarnLogo,
+  pnpm: pnpmLogo
 }
 
 export default class CopyToClipboardBlock extends HTMLElement {
@@ -20,7 +22,7 @@ export default class CopyToClipboardBlock extends HTMLElement {
 
   connectedCallback() {
     const variant = this.getAttribute('variant');
-    const supportedScriptRunners = ['npm', 'yarn'];
+    const supportedScriptRunners = Object.keys(scriptRunnerLogoMapper);
 
     if (!this.shadowRoot && typeof window !== 'undefined') {
       if (variant === 'script') {
