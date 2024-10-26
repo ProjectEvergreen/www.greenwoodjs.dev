@@ -55,10 +55,10 @@ export default class CopyToClipboardBlock extends HTMLElement {
                   const isActive = idx === this.selectCommandRunnerIdx ? " active" : "";
 
                   return `
-                  <li class="command-runner${isActive}" data-runner="${runner}">
-                    ${scriptRunnerLogoMapper[runner]}
-                  </li>
-                `;
+                    <li class="command-runner${isActive}" data-runner="${runner}">
+                      ${scriptRunnerLogoMapper[runner]}
+                    </li>
+                  `;
                 })
                 .join("")}
             </ul>
@@ -92,7 +92,7 @@ export default class CopyToClipboardBlock extends HTMLElement {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
 
       switch (variant) {
-        case "runner":
+        case "runners":
           this.shadowRoot
             .querySelectorAll(".command-runner")
             .forEach((item) => item.addEventListener("click", this.selectCommandRunner.bind(this)));
