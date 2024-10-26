@@ -14,7 +14,7 @@ const ROUTE = "/guides/";
 const HEADING = "Guides";
 const CURRENT_ROUTE = "/guides/getting-started/key-concepts/";
 
-describe.only("Components/Side Nav", () => {
+describe("Components/Side Nav", () => {
   let nav;
   let expectedGuidesContent = [];
   let expectedHeadingsContent = [];
