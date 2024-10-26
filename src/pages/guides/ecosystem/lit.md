@@ -25,6 +25,10 @@ As with most libraries, just install **lit** with your favorite package manager 
   yarn add lit
   ```
 
+  ```shell
+  pnpm i lit
+  ```
+
 </app-ctc-block>
 
 Now you can start writing Lit based Web Components!

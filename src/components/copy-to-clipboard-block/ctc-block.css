@@ -13,10 +13,11 @@ li {
   float: left;
   cursor: pointer;
   width: var(--size-fluid-5);
-  margin: var(--size-4) var(--size-4) var(--size-1) var(--size-2);
+  margin: var(--size-4) var(--size-2) var(--size-1) var(--size-2);
   border-bottom: 2px solid transparent;
   padding: var(--size-1);
   display: flex;
+  justify-content: center;
 
   & svg {
     max-height: var(--size-4);
@@ -53,5 +54,9 @@ pre {
 @media (min-width: 768px) {
   .copy-icon {
     top: -110px;
+  }
+
+  li {
+    margin: var(--size-4) var(--size-4) var(--size-1) var(--size-2);
   }
 }
