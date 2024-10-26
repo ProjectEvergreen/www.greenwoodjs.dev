@@ -51,6 +51,49 @@
   }
 }
 
+.snippet-container {
+  & .copy-icon {
+    background-color: var(--color-white);
+    padding: 0;
+    border-radius: var(--radius-2);
+    position: relative;
+    top: 60px;
+    float: right;
+    right: 10px;
+    width: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  & .copy-icon svg {
+    width: 40px;
+    vertical-align: middle;
+  }
+
+  & .heading {
+    display: inline-block;
+    background-color: var(--color-prism-bg);
+    color: var(--color-white);
+    padding: 10px;
+    font-size: var(--size-2);
+    border-radius: var(--radius-2) var(--radius-2) 0 0;
+    font-family: "Geist-Mono";
+    font-style: italic;
+    text-decoration: underline;
+  }
+
+  & pre {
+    margin: 0;
+    border-radius: 0 var(--radius-2) var(--radius-2) var(--radius-2);
+  }
+}
+
+.snippet-container:has(.heading) {
+  & .copy-icon {
+    top: 80px;
+  }
+}
+
 @media (min-width: 768px) {
   .runner-container {
     & li {
@@ -59,6 +102,12 @@
 
     & .copy-icon {
       top: -110px;
+    }
+  }
+
+  .snippet-container {
+    & .heading {
+      font-size: var(--size-3);
     }
   }
 }

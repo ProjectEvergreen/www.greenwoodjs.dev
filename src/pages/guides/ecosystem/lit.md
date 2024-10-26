@@ -15,60 +15,70 @@ tocHeading: 2
 
 As with most libraries, just install **lit** with your favorite package manager as a dependency.
 
-<app-ctc-block variant="script">
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
 
-```shell
-npm i lit
-```
+  ```shell
+  npm i lit
+  ```
 
-```shell
-yarn add lit
-```
+  ```shell
+  yarn add lit
+  ```
 
-```shell
-pnpm i lit
-```
+  ```shell
+  pnpm i lit
+  ```
 
 </app-ctc-block>
 
+<!-- prettier-ignore-end -->
+
 Now you can start writing Lit based Web Components!
 
-```html
-<html>
-  <head>
-    <script type="module">
-      import { html, css, LitElement } from "lit";
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="snippet" heading="src/components/greeting.js">
 
-      export class SimpleGreeting extends LitElement {
-        static styles = css`
-          p {
-            color: blue;
+  ```html
+  <html>
+    <head>
+      <script type="module">
+        import { html, css, LitElement } from "lit";
+
+        export class SimpleGreeting extends LitElement {
+          static styles = css`
+            p {
+              color: blue;
+            }
+          `;
+
+          static properties = {
+            name: { type: String },
+          };
+
+          constructor() {
+            super();
+            this.name = "Somebody";
           }
-        `;
 
-        static properties = {
-          name: { type: String },
-        };
-
-        constructor() {
-          super();
-          this.name = "Somebody";
+          render() {
+            return html`<p>Hello, ${this.name}!</p>`;
+          }
         }
+        customElements.define("simple-greeting", SimpleGreeting);
+      </script>
+    </head>
 
-        render() {
-          return html`<p>Hello, ${this.name}!</p>`;
-        }
-      }
-      customElements.define("simple-greeting", SimpleGreeting);
-    </script>
-  </head>
+    <body>
+      <simple-greeting></simple-greeting>
+      <simple-greeting name="Greenwood"></simple-greeting>
+    </body>
+  </html>
+  ```
 
-  <body>
-    <simple-greeting></simple-greeting>
-    <simple-greeting name="Greenwood"></simple-greeting>
-  </body>
-</html>
-```
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 That's it!
 
