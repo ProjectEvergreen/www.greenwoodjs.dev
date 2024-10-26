@@ -46,7 +46,7 @@ export default class CopyToClipboardBlock extends HTMLElement {
         });
 
         template.innerHTML = `
-          <div class="container">
+          <div class="runner-container">
             <ul>
               ${this.blockConfigs
                 .map((config, idx) => {
@@ -69,6 +69,8 @@ export default class CopyToClipboardBlock extends HTMLElement {
             </span>
           </div>
         `;
+      } else if (variant === 'snippet') {
+        console.log(this.innerHTML);
       }
 
       this.attachShadow({ mode: "open" });
