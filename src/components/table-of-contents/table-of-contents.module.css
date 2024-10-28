@@ -38,9 +38,11 @@
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-3);
 
-  & #indicator {
-    display: inline-block;
-    transition: transform 1s ease;
+  @media (prefers-reduced-motion: no-preference) {
+    & #indicator {
+      display: inline-block;
+      transition: transform 1s ease;
+    }
   }
 }
 
