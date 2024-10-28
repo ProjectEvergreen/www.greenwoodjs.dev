@@ -50,7 +50,8 @@
   text-decoration: none;
 }
 
-.navBarMenuItem a:hover {
+.navBarMenuItem a:hover,
+.navBarMenuItem a:focus {
   text-decoration: underline;
 }
 

@@ -89,7 +89,8 @@
       font-size: var(--font-size-1);
     }
 
-    & a:hover {
+    & a:hover,
+    & a:focus {
       opacity: 0.7;
     }
   }

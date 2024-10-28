@@ -20,7 +20,8 @@
   text-decoration: none;
 }
 
-.postsListItemContentLink:hover {
+.postsListItemContentLink:hover,
+.postsListItemContentLink:focus {
   text-decoration: none;
 }
 
