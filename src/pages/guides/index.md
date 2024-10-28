@@ -1,6 +1,8 @@
 ---
 title: Guides
 layout: guides
+collection: nav
+order: 2
 ---
 
 <app-heading-box heading="Guides">

@@ -1,36 +1,29 @@
 import { expect } from "@esm-bundle/chai";
 import "./header.js";
+import pages from "../../stories/mocks/graph.json" with { type: "json" };
+
+const ICONS = [
+  {
+    link: "https://github.com/ProjectEvergreen/greenwood",
+    title: "GitHub",
+  },
+  {
+    link: "https://discord.gg/bsy9jvWh",
+    title: "Discord",
+  },
+  {
+    link: "https://twitter.com/PrjEvergreen",
+    title: "Twitter",
+  },
+];
+
+window.fetch = function () {
+  return new Promise((resolve) => {
+    resolve(new Response(JSON.stringify(pages)));
+  });
+};
 
 describe("Components/Header", () => {
-  const NAV = [
-    {
-      title: "Documentation",
-      label: "Docs",
-    },
-    {
-      title: "Guides",
-      label: "Guides",
-    },
-    {
-      title: "Blog",
-      label: "Blog",
-    },
-  ];
-  const ICONS = [
-    {
-      link: "https://github.com/ProjectEvergreen/greenwood",
-      title: "GitHub",
-    },
-    {
-      link: "https://discord.gg/bsy9jvWh",
-      title: "Discord",
-    },
-    {
-      link: "https://twitter.com/PrjEvergreen",
-      title: "Twitter",
-    },
-  ];
-
   let header;
 
   before(async () => {
@@ -63,12 +56,11 @@ describe("Components/Header", () => {
     it("should have the expected desktop navigation links", () => {
       const links = header.querySelectorAll("nav[aria-label='Main'] ul li a");
 
-      Array.from(links).forEach((link) => {
-        const navItem = NAV.find(
-          (nav) => `/${nav.label.toLowerCase()}/` === link.getAttribute("href"),
-        );
+      Array.from(links).forEach((link, idx) => {
+        const navItem = pages.find((nav) => nav.route === link.getAttribute("href"));
 
         expect(navItem).to.not.equal(undefined);
+        expect(navItem.data.order).to.equal((idx += 1));
         expect(link.textContent).to.equal(navItem.label);
         expect(link.getAttribute("title")).to.equal(navItem.title);
       });
@@ -122,12 +114,11 @@ describe("Components/Header", () => {
     it("should have the expected navigation links", () => {
       const links = header.querySelectorAll("nav[aria-label='Mobile'] ul li a");
 
-      Array.from(links).forEach((link) => {
-        const navItem = NAV.find(
-          (nav) => `/${nav.label.toLowerCase()}/` === link.getAttribute("href"),
-        );
+      Array.from(links).forEach((link, idx) => {
+        const navItem = pages.find((nav) => nav.route === link.getAttribute("href"));
 
         expect(navItem).to.not.equal(undefined);
+        expect(navItem.data.order).to.equal((idx += 1));
         expect(link.textContent).to.equal(navItem.label);
         expect(link.getAttribute("title")).to.equal(navItem.title);
       });
