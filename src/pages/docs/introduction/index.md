@@ -3,8 +3,8 @@ layout: docs
 order: 1
 ---
 
-<app-heading-box heading="Welcome to Greenwood!">
-  <p>Thank you for checking out Greenwood.  As enthusiasts of the web, we hope to provide an authentic and pragmatic option for web development inspired by the web itself.</p>
+<app-heading-box heading="Welcome to Greenwood">
+  <p>As enthusiasts of the web, we hope to provide an authentic, hands-on, and unbiased option for web development, inspired by the web itself.  Whether you roll your own or build with friends, we can all win when we bet on the web.</p>
 </app-heading-box>
 
 This introductory section is great for first time users of Greenwood, and covers the following topics:

@@ -8,7 +8,7 @@ tocHeading: 2
 
 # PostCSS
 
-A Greenwood plugin for loading [**PostCSS**](https://postcss.org/) configuration and plugins and applying it to your CSS. See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-postcss) for complete usage information.
+A plugin for loading [**PostCSS**](https://postcss.org/) configuration and plugins and applying it to your CSS. See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-postcss) for complete usage information.
 
 ## Installation
 

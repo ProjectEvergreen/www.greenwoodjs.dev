@@ -8,7 +8,7 @@ tocHeading: 2
 
 # CSS Modules ™️
 
-A Greenwood plugin for authoring [**CSS Modules ™️**](https://github.com/css-modules/css-modules), that is a modest implementation of [the specification](https://github.com/css-modules/icss). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-css-modules) for complete usage information.
+A plugin for authoring [**CSS Modules ™️**](https://github.com/css-modules/css-modules), that is a modest implementation of [the specification](https://github.com/css-modules/icss). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-css-modules) for complete usage information.
 
 > This is NOT to be confused with [CSS Module _Scripts_](https://web.dev/articles/css-module-scripts), which Greenwood already supports.
 

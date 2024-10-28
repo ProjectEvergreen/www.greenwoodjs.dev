@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Data Client
 
-To fetch content as data, there are three pre-made APIs you can use, based on your use case. These are isomorphic in that it will consume live data during development, and statically build out each query at build time to its own JSON file and fetched client side.
+To access your content as data with Greenwood, there are three pre-made APIs you can use, based on your use case. These are isomorphic in that they will consume live data during development, and statically build out each query at build time to its own JSON file that can be fetched client side independently.
 
 This way, you can serialize and / or hydrate from this data as needed based on your application's needs.
 
@@ -30,7 +30,7 @@ pages.forEach((page) => console.log(page.title));
 
 To narrow down a set of pages by an entire route, you can call `getContentByRoute` and pass the route as the first argument.
 
-Below is an example of generating a list of all pages starting with a route of `/blog/`:
+Below is an example of generating a list of all pages starting with a route of _/blog/_:
 
 ```js
 import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";

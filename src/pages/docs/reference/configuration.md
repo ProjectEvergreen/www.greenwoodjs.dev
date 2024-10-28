@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Configuration
 
-This section details all the supported configuration options available in **Greenwood**, which you can define in a _greenwood.config.js_ file at root of your project.
+This section details all the supported configuration options available with **Greenwood**, which you can define in a _greenwood.config.js_ file at root of your project.
 
 The below is a _greenwood.config.js_ file reflecting default values:
 
@@ -54,7 +54,7 @@ export default {
 
 There are cases where an application might be deployed and hosted from a "sub" pathname that acts as the relative "web root". (GitHub Pages is an example of this)
 
-So with a URL of `http://www.example.com/app-a/`, the `basePath` could be set as such:
+So with a URL of _http://www.example.com/app-a/_, the \*_basePath_ would be set as follows:
 
 ```js
 export default {
@@ -62,13 +62,13 @@ export default {
 };
 ```
 
-This would then configure Greenwood's routing and `<script>` and `<link>` tags to reference this segment automatically:
+This would then configure Greenwood's routing and `<script>` / `<link>` tags to reference this segment automatically:
 
 ```html
 <script type="module" src="/app-a/some-script.a243dccss.js"></script>
 ```
 
-For convenience, the value of `basePath` will also be made available as a global variable in the `<head>` of your pages:
+For convenience, the value of **basePath** will also be made available as a global variable in the `<head>` of your pages:
 
 ```html
 <script data-gwd="base-path">
@@ -82,10 +82,10 @@ For convenience, the value of `basePath` will also be made available as a global
 
 Configuration for Greenwood's development server is available using the `devServer` option, including the following options:
 
-- `extensions`: Provide an array of extensions to watch for changes and reload the live server with. By default, Greenwood will already watch all "standard" web assets (HTML, CSS, JS, etc) it supports by default, as well as any extensions set by [resource plugins](/docs/reference/plugins/#resource) you are using in your _greenwood.config.js_.
-- `hud`: The HUD option ([_head-up display_](https://en.wikipedia.org/wiki/Head-up_display)) is some additional HTML added to your site's page when Greenwood wants to help provide information to you in the browser. For example, if your HTML is detected as malformed, which could break the parser. Set this to `false` if you would like to turn it off.
-- `port`: Pick a different port when starting the dev server
-- `proxy`: A set of paths to match and re-route to other hosts. Highest specificity should go at the end.
+- **extensions**: Provide an array of extensions to watch for changes and reload the live server with. By default, Greenwood will already watch all "standard" web assets (HTML, CSS, JS, etc) it supports by default, as well as any extensions set by [resource plugins](/docs/reference/plugins-api/#resource) you are using in your _greenwood.config.js_.
+- **hud**: The HUD option ([_head-up display_](https://en.wikipedia.org/wiki/Head-up_display)) is some additional HTML added to your site's page when Greenwood wants to help provide information to you in the browser. For example, if your HTML is detected as malformed, which could break the parser. Set this to `false` if you would like to turn it off.
+- **port**: Pick a different port when starting the dev server
+- **proxy**: A set of paths to match and re-route to other hosts. Highest specificity should go at the end.
 
 Below is an example configuration:
 
@@ -167,7 +167,7 @@ Greenwood provides a number of different ways to send hints to Greenwood as to h
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `default` | Will add a `<link rel="..." src="..." as="..."></link>` tag for every `<script>` or `<link>` tag in the `<head>` of your HTML using `preload` for styles and `modulepreload` for scripts. This setting will also minify all your JS and CSS files. | General purpose.                                                                                                                                                                                                            |
 | `inline`  | Using this setting, all your `<script>` and `<link>` tags will get inlined right into your HTML.                                                                                                                                                   | For sites with smaller payloads, this could work best as with inlining, you do so at the expense of long-term caching.                                                                                                      |
-| `none`    | With this setting, _none_ of your JS or CSS will be minified or hinted at all.                                                                                                                                                                     | The best choice if you want to handle everything yourself through custom [Resource plugins](/docs/reference/plugins#resource).                                                                                              |
+| `none`    | With this setting, _none_ of your JS or CSS will be minified or hinted at all.                                                                                                                                                                     | The best choice if you want to handle everything yourself through custom [Resource plugins](/docs/reference/plugins-api/#resource).                                                                                         |
 | `static`  | Only for `<script>` tags, but this setting will remove `<script>` tags from your HTML.                                                                                                                                                             | If your Web Components only need a single render just to emit some static HTML, or are otherwise not dynamic or needed at runtime, this will really speed up your site's performance by dropping unnecessary HTTP requests. |
 
 > These settings are currently considered experimental. Additional improvements and considerations include adding [`none` override support](https://github.com/ProjectEvergreen/greenwood/discussions/545#discussioncomment-957320), [SSR + hydration](https://github.com/ProjectEvergreen/greenwood/discussions/576), and [side effect free layouts and pages](https://github.com/ProjectEvergreen/greenwood/discussions/644).
@@ -207,7 +207,7 @@ export default {
 
 ## Plugins
 
-This takes an array of plugins either [created already](/docs/plugins/) by the Greenwood team, or one you [made yourself](/docs/reference/plugins/).
+This takes an array of plugins either [created already](/docs/plugins/) by the Greenwood team, or one you [made yourself](/docs/reference/plugins-api/).
 
 ```js
 import { greenwoodCssModulesPlugin } from "@greenwood/plugin-css-modules";

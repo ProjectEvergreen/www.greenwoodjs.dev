@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Raw Import
 
-A Greenwood plugin to use ESM (`import`) syntax to load files as a module with a `default export` of the file contents as a string. Inspired by **webpack**'s [raw loader](https://v4.webpack.js.org/loaders/raw-loader/). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw) for complete usage information.
+A plugin that allows usage of ESM syntax to load a file's contents as a string. Inspired by **webpack**'s [raw loader](https://v4.webpack.js.org/loaders/raw-loader/). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw) for complete usage information.
 
 ## Installation
 
@@ -34,7 +34,7 @@ export default {
 
 ## Usage
 
-This will then allow you to use ESM syntax to include any file a string exported as a module.
+This will then allow you to `import` any text file as a string.
 
 This can be useful for inlining CSS:
 
@@ -60,7 +60,7 @@ export default class Header extends HTMLElement {
 customElements.define("app-header", Header);
 ```
 
-Or perfect for embedding SVGs into HTML:
+Or perfect for statically embedding SVGs into HTML:
 
 ```js
 import logo from "../images/logo.svg?type=raw";

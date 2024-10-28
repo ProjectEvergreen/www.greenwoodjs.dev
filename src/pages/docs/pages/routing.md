@@ -6,7 +6,7 @@ tocHeading: 2
 
 # File-Based Routing
 
-Greenwood supports file-based routing, which means that filenames in the _pages/_ directory of your project's workspace will mapped to URLs that you can visit in your browser.
+Greenwood supports file-based routing, which means that filenames in the _pages/_ directory of your project's workspace will be mapped to URLs that you can visit in your browser.
 
 ## Static Pages
 
@@ -33,7 +33,7 @@ The following routes will be accessible from the browser:
 
 ## SSR
 
-Greenwood supports the intermingling of static pages like HTML and markdown with dynamic pages. Taking the example above, if we wanted a server rendered route (like a "Products" page), we can simply create a JavaScript file following the same naming convention.
+Greenwood supports the intermingling of static pages like HTML and markdown with dynamic pages. Taking the example above, if we wanted a server rendered route, like a "Products" page, we can simply create a JavaScript file following the same naming convention.
 
 ```shell
 src/

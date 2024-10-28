@@ -30,9 +30,10 @@ export default {
 
 Although Greenwood does not provide any syntax highlighting by default, you can add support for [**Prism**](https://prismjs.com/), for example.
 
-Just install `@mapbox/rehype-prism` via **npm**, pass it as a [markdown plugin](/docs/reference/configuration/#markdown) in your configuration file:
+Just install `@mapbox/rehype-prism` via **npm** and pass it as a [markdown plugin](/docs/reference/configuration/#markdown) in your configuration file:
 
 ```js
+// greenwood.config.js
 export default {
   markdown: {
     plugins: ["@mapbox/rehype-prism"],
@@ -40,7 +41,7 @@ export default {
 };
 ```
 
-And then include a [Prism theme](https://prismjs.com/examples.html) from a CSS file into your project:
+And then include a [Prism theme](https://prismjs.com/examples.html) from a CSS file in your project:
 
 ```css
 /* src/theme.css */
@@ -93,7 +94,7 @@ label: "My Blog Post from 3/5/2020"
 
 ### Title
 
-To set the `<title>` for a given page, you can customize the `title` variable. Otherwise, the `<title>` will be inferred from the file name.
+To set the `<title>` for a given page, you can customize the **title** variable. Otherwise, the `<title>` will be inferred from the file name.
 
 ```md
 ---
@@ -105,7 +106,7 @@ title: My Blog Post
 The is a markdown file with the title defined in frontmatter.
 ```
 
-In this example, the `<title>` tag will be the value of `title`.
+In this example, the `<title>` tag will be the value of **title**.
 
 ```html
 <title>My Blog Post</title>
@@ -148,11 +149,11 @@ This is my first blog post, I hope you like it!
 
 In this example, _src/layouts/blog.html_ will be used to wrap the content of this markdown page.
 
-> **Note:** By default, Greenwood will look for and use `src/layouts/page.html` for all pages by default.
+> **Note:** By default, Greenwood will look for and use _src/layouts/page.html_ for all pages by default.
 
 ### Custom Data
 
-You can also define any custom frontmatter property you want and that will be made available on the `data` property of [the page object](/docs/content-as-data/).
+You can also define any custom frontmatter property you want and that will be made available on the `data` property of [the page object](/docs/content-as-data/pages-data/).
 
 ```md
 ---

@@ -1,4 +1,6 @@
 ---
+title: TypeScript
+label: TypeScript
 layout: docs
 order: 1
 tocHeading: 2
@@ -6,7 +8,7 @@ tocHeading: 2
 
 # TypeScript
 
-Greenwood has plugin for authoring in [**TypeScript**](https://www.typescriptlang.org/). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-typescript) for complete usage information.
+A plugin for authoring in [**TypeScript**](https://www.typescriptlang.org/). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-typescript) for complete usage information.
 
 ## Installation
 
@@ -62,7 +64,7 @@ And use it in your project like you would use a _.js_ file!
 <script type="module" src="/components/greeting.ts"></script>
 ```
 
-This is also supported for pages with an additional option.
+This is also supported for pages with an additional option":
 
 ```js
 import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";

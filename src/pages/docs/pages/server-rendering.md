@@ -22,7 +22,7 @@ The above would serve content in a browser at the path `/users/`.
 
 In your page file, Greenwood supports the following functions that you can `export` for providing server rendered content and [frontmatter](/docs/resources/markdown/):
 
-- **default**: Use the custom element API (recommended) to render out your page content, aka **Web (Server) Components**
+- **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**
 - **getBody**: Return a string of HTML for the contents of the page
 - **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#page-layouts)
 - **getFrontmatter**: Provide an object of [frontmatter](/docs/resources/markdown/#frontmatter) properties. Useful in conjunction with [content as data](/docs/content-as-data/), or otherwise setting static configuration / metadata through SSR.
@@ -88,12 +88,12 @@ export default class UsersPage extends HTMLElement {
 
 A couple of notes:
 
-- WSCs run only on the server, thus you have full access to any APIs of the runtime, with the ability to perform one time `async` operations for [data loading](/docs/server-rendering/#data-loading) in `connectedCallback`.
+- WSCs run only on the server, thus you have full access to any APIs of the runtime, with the ability to perform one time `async` operations for [data loading](/docs/pages/server-rendering/#request-data) in `connectedCallback`.
 - Keep in mind that for these "page" components, you will likely want to _avoid_ rendering into a shadow root so as to avoid wrapping your static content in a `<template>` tag.
 
 ### Body
 
-To return just the body of the page, you can use the `getBody` API.
+To return just the body of the page, you can use the `getBody` API. You will get access the [compilation](/docs/reference/appendix/#compilation), page specific data, and the incoming request.
 
 In this example, we return a list of users from an API as HTML:
 
@@ -136,7 +136,7 @@ export async function getBody(compilation, page, request) {
 
 For creating a [layout](/docs/pages/layouts) dynamically, you can provide a `getLayout` function and return the HTML you need.
 
-You can pull in data from Greenwood's compilation object as well as the specific route:
+You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#compilation) object as well as the specific route:
 
 ```js
 export async function getLayout(compilation, route) {
@@ -188,21 +188,21 @@ export async function getFrontmatter(compilation, route) {
 
 ## Options
 
-### Prerender
+### `Prerender
 
-To export server routes as just static HTML (no request time handling), you can export a `prerender` option from your page, set to `true`.
+To export server routes as just static HTML (no request time handling), you can export a **prerender** option from your page, set to `true`.
 
 ```js
 export const prerender = true;
 ```
 
-So for example, `/pages/artist.js` would render out as `/artists/index.html` and would work with standard static hosting.
+So for example, _/pages/artist.js_ would render out as _/artists/index.html_ and would work with standard static hosting.
 
 > You can enable this for all pages using the [prerender configuration](/docs/reference/configuration/#prerender) option.
 
 ### Isolation
 
-To execute an SSR page in its own request context when running `greenwood serve`, you can export an `isolation` option from your page, set to `true`.
+To execute an SSR page in its own request context when running `greenwood serve`, you can export an **isolation** option from your page, set to `true`.
 
 ```js
 export const isolation = true;
@@ -212,7 +212,7 @@ export const isolation = true;
 
 ## Request Data
 
-For request handling, Greenwood will pass a native `Request` object and a Greenwood compilation as "constructor props" to your Web Server Component's `constructor` function, or as the third parameter to the other SSR APIs. For `async` work, use an `async connectedCallback`.
+For request handling, Greenwood will pass a native `Request` object and a Greenwood [compilation](/docs/reference/appendix/#compilation) as "constructor props" to your Web Server Component's `constructor` function, or as the third parameter to the other SSR APIs. For `async` work, use an `async connectedCallback`.
 
 ```js
 export default class PostPage extends HTMLElement {

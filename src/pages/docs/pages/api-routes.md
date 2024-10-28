@@ -8,13 +8,13 @@ tocHeading: 2
 
 # API Routes
 
-Greenwood has support for API routes, which are just functions that run on the server, and take in a [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request) and return a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response). Each API route must export an `async` function called **handler**.
+Greenwood has support for API routes, which are just functions that run on the server, and take in a [**Request**](https://developer.mozilla.org/en-US/docs/Web/API/Request) and return a [**Response**](https://developer.mozilla.org/en-US/docs/Web/API/Response). Each API route must export an `async` function called **handler**.
 
 ## Usage
 
 API routes follow a file-based routing convention, within the [pages directory](/docs/pages/routing/).
 
-So this structure will yield an endpoint available at `/api/greeting` in the browser:
+So this structure will yield an endpoint available at _/api/greeting_ in the browser:
 
 ```shell
 src/
@@ -23,7 +23,7 @@ src/
       greeting.js
 ```
 
-Here is an example of that API Route, which reads a query parameter of `name` and returns a JSON response:
+Here is an example of that API Route, which reads a query parameter of **name** and returns a JSON response:
 
 ```js
 // src/pages/api/greeting.js
@@ -90,11 +90,11 @@ export async function handler(request) {
         const { title, thumbnail } = item;
 
         return `
-        <app-card
-          title="${title}"
-          thumbnail="${thumbnail}"
-        ></app-card>
-      `;
+          <app-card
+            title="${title}"
+            thumbnail="${thumbnail}"
+          ></app-card>
+        `;
       })
       .join("")}
   `,
@@ -109,11 +109,11 @@ export async function handler(request) {
 }
 ```
 
-> See our complete tutorial, [Full-Stack Web Components](/guides/tutorials/full-stack-web-components/), for a more complete example.
+> To learn more about this pattern, checkout our [Full-Stack Web Components tutorial](/guides/tutorials/full-stack-web-components/) for a more complete example.
 
-## Isolation
+## Isolation Mode
 
-To execute an API route in its own isolated request context when running `greenwood serve`, you can export an `isolation` option from your page, set to `true`.
+To execute an API route in its own isolated request context when running `greenwood serve`, you can export an **isolation** option from your page, set to `true`.
 
 ```js
 export const isolation = true;

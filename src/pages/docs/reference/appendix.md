@@ -83,7 +83,7 @@ Here are some of the most useful paths available on **context**, all of which ar
 
 By default, Greenwood handles server rendering with [**WCC (Web Components Compiler)**](https://github.com/ProjectEvergreen/wcc), which brings with it a minimal DOM Shim that emulates a minimal amount of DOM and Web APIs, most as no-ops for the benefit of making SSR and prerendering a bit more ergonomic for development.
 
-It is fine-tuned for creating Light and Shadow DOM based custom elements. Highlights include:
+It is fine-tuned for creating Light and Shadow DOM based custom elements. The full list is documented [here](https://merry-caramel-524e61.netlify.app/#key-features), with some key features being:
 
 - `customElements.define`
 - `attachShadow`
@@ -94,6 +94,50 @@ It is fine-tuned for creating Light and Shadow DOM based custom elements. Highli
 - `CSSStyleSheet` (all methods act as no-ops on the server)
 - TypeScript
 
-The full list is documented [here](https://merry-caramel-524e61.netlify.app/#key-features).
-
 > You can also customize the renderer using a plugin like our [Lit SSR renderer plugin](/docs/plugins/lit-ssr/) for Lit based projects, or [create your own renderer plugin](/docs/reference/plugins-api/#renderer).
+
+### SSR Escape Hatch
+
+If you want to opt an entire `connectedCallback` from being run during build or SSR (say a component completely dependent on a live DOM), you can do a `typeof` check for `window`.
+
+This can be useful when components are very DOM heavy, like querying the DOM and setting up event handlers:
+
+```js
+import sheet from "./copy-to-clipboard.css" with { type: "css" };
+
+const template = document.createElement("template");
+
+export default class CopyToClipboard extends HTMLElement {
+  connectedCallback() {
+    if (!this.shadowRoot && typeof window !== "undefined") {
+      template.innerHTML = `
+        <button id="icon" title="Copy to clipboard">Copy to clipboard</button>
+      `;
+
+      this.attachShadow({ mode: "open" });
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+      this.shadowRoot.adoptedStyleSheets = [sheet];
+
+      this.shadowRoot.getElementById("icon")?.addEventListener("click", () => {
+        const contents = this.getAttribute("content") ?? undefined;
+
+        navigator.clipboard.writeText(contents);
+        console.log("copying the following contents to your clipboard =>", contents);
+      });
+    }
+  }
+}
+
+customElements.define("x-ctc", CopyToClipboard);
+```
+
+## Environment Variables
+
+When a command is run through the Greenwood CLI, Greenwood will set an environment variable called `process.env.__GWD_COMMAND__` that will be the value of the command run.
+
+It can be one of these three values:
+
+- **develop**
+- **build**
+- **serve**

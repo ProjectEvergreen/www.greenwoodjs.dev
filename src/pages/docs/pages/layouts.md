@@ -29,11 +29,11 @@ src/
     blog.html
 ```
 
-> **Note:** You can use either relative (`../`) or absolute (`/`) paths in your layouts since using `../` will allow for IDE autocomplete on your filesystem, but is marginally slower than using `/`.
+> **Note:** You can use either relative (_../_) or absolute (_/_) paths in your layouts since using _../_ will allow for IDE autocomplete on your filesystem, but is marginally slower than using _/_.
 
 ## Pages
 
-Pages in your project will generally want a layout so you can control the output of the HTML and include all your own custom components and styles to wrap them. By default all pages will default to looking for a _page.html_ in _layouts/_ directory within your workspace. A placeholder of `<content-outlet></content-outlet>` can be used to position where the processed content from the incoming page will go.
+Pages in your project will generally want a layout so you can control the output of the HTML and include all your own custom components and styles to wrap the content. By default all pages will default to looking for a _page.html_ in _layouts/_ directory within your workspace. A placeholder of `<content-outlet></content-outlet>` can be used to position where the processed content from the incoming page will go.
 
 Below is an example of a _page.html_ layout:
 
@@ -67,7 +67,7 @@ You can create more layouts and use them for pages with the following steps:
 
 ## App
 
-To customize the outer most wrapping HTML of your pages, create an _app.html_ file. Like a page layout, this will just be another HTML document and a `<page-outlet></page-outlet>` placeholder that can be used to position where the content from the processed page layout will appear.
+To customize the outer most wrapping HTML of your layouts, create an _app.html_ file. Like a page layout, this will just be another HTML document and a `<page-outlet></page-outlet>` placeholder that can be used to position where the content from the processed page layout will appear.
 
 As with Page layouts, App layouts are just HTML:
 

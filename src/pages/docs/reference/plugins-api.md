@@ -6,7 +6,7 @@ order: 2
 tocHeading: 2
 ---
 
-# Plugins
+# Plugins API
 
 Below are the various plugin types you can use to extend and further customize Greenwood.
 
@@ -14,8 +14,8 @@ Below are the various plugin types you can use to extend and further customize G
 
 Each plugin must return a function that has the following three properties:
 
-- `name`: A string to give your plugin a name and used for error handling and logging output
-- `type`: A string to specify to Greenwood the type of plugin. Right now the current supported plugin types are:
+- **name**: A string to give your plugin a name and used for error handling and logging output
+- **type**: A string to specify to Greenwood the type of plugin. Right now the current supported plugin types are:
   - **Adapter**
   - **Context**
   - **Copy**
@@ -24,7 +24,7 @@ Each plugin must return a function that has the following three properties:
   - **Rollup**
   - **Server**
   - **Source**
-- `provider`: A function that will be invoked by Greenwood that can accept a [**compilation**](/docs/reference/appendix/#compilation) param to provide read-only access to Greenwood's state and configuration.
+- **provider**: A function that will be invoked by Greenwood that can accept a [**compilation**](/docs/reference/appendix/#compilation) param to provide read-only access to Greenwood's state and configuration.
 
 Here is an example of creating a plugin in a _greenwood.config.js_:
 
@@ -50,7 +50,7 @@ export default {
 
 <!-- eslint-enable -->
 
-The `provider` function takes a Greenwood [`compilation` object](/docs/reference/appendix/#compilation) consisting of the following properties:
+The **provider** function takes a Greenwood [**compilation** object](/docs/reference/appendix/#compilation) consisting of the following properties:
 
 - **config** - Current values for of Greenwood's [configuration](/docs/reference/configuration/) settings
 - **graph** - All the pages in your project per Greenwood's [Content as Data page schema](/docs/content-as-data/page-data/)

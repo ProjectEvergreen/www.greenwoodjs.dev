@@ -4,10 +4,10 @@ order: 5
 ---
 
 <app-heading-box heading="Content As Data">
-  <p>Having to repeat things when programming is no fun, and that's why (web) component based development is so useful!  As websites start to grow, there comes a point where being able to have access to the content and structure of your site's layout programmatically becomes incredibly useful.</p>
+  <p>Having to repeat things when programming is no fun, and that's why (web) component based development is so useful!  As websites start to grow, there comes a point where being able to have access to the content and structure of your site's layout programmatically becomes incredibly useful for generating repetitive HTML.</p>
 </app-heading-box>
 
-If you are developing a blog site, like in our [Getting Started](/getting-started/) guide, having to manually list a couple of blog posts by hand isn't so bad.
+If you are developing a blog site, like in our [Getting Started](/guides/getting-started/) guide, having to manually list a couple of blog posts by hand isn't so bad.
 
 ```html
 <ul>
