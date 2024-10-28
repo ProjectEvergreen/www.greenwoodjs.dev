@@ -28,7 +28,7 @@
   box-shadow: var(--shadow-3);
   color: var(--color-black);
 
-  @media (prefers-reduced-motion) {
+  @media (prefers-reduced-motion: no-preference) {
     & #indicator {
       display: inline-block;
       transition: transform 1s ease;
