@@ -8,6 +8,7 @@ import styles from "./header.module.css";
 
 export default class Header extends HTMLElement {
   async connectedCallback() {
+    const currentRoute = this.getAttribute("current-route") ?? "";
     const navItems = (await getContentByCollection("nav")).sort((a, b) =>
       a.data.order > b.data.order ? 1 : -1,
     );
@@ -24,12 +25,13 @@ export default class Header extends HTMLElement {
               ${navItems
                 .map((item) => {
                   const { route, label } = item;
+                  const isActiveClass = currentRoute.startsWith(item.route) ? 'class="active"' : "";
 
                   return `
-                  <li class="${styles.navBarMenuItem}">
-                    <a href="${route}" title="${label}">${label}</a>
-                  </li>
-                `;
+                    <li class="${styles.navBarMenuItem}">
+                      <a href="${route}" ${isActiveClass} title="${label}">${label}</a>
+                    </li>
+                  `;
                 })
                 .join("")}
             </ul>
@@ -74,12 +76,15 @@ export default class Header extends HTMLElement {
                 ${navItems
                   .map((item) => {
                     const { route, label } = item;
+                    const isActiveClass = currentRoute.startsWith(item.route)
+                      ? 'class="active"'
+                      : "";
 
                     return `
-                    <li class="${styles.mobileMenuListItem}">
-                      <a href="${route}" title="${label}">${label}</a>
-                    </li>
-                  `;
+                      <li class="${styles.mobileMenuListItem}">
+                        <a href="${route}" ${isActiveClass} title="${label}">${label}</a>
+                      </li>
+                    `;
                   })
                   .join("")}
               </ul>

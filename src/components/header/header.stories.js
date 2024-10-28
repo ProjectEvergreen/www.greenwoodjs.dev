@@ -19,6 +19,6 @@ export default {
   },
 };
 
-const Template = () => "<app-header></app-header>";
+const Template = () => "<app-header current-route='/guides/'></app-header>";
 
 export const Primary = Template.bind({});

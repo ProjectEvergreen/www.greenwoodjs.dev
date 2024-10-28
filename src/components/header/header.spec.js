@@ -2,6 +2,7 @@ import { expect } from "@esm-bundle/chai";
 import "./header.js";
 import pages from "../../stories/mocks/graph.json" with { type: "json" };
 
+const CURRENT_ROUTE = "/guides/";
 const ICONS = [
   {
     link: "https://github.com/ProjectEvergreen/greenwood",
@@ -28,6 +29,8 @@ describe("Components/Header", () => {
 
   before(async () => {
     header = document.createElement("app-header");
+    header.setAttribute("current-route", CURRENT_ROUTE);
+
     document.body.appendChild(header);
 
     await header.updateComplete;
@@ -55,6 +58,7 @@ describe("Components/Header", () => {
 
     it("should have the expected desktop navigation links", () => {
       const links = header.querySelectorAll("nav[aria-label='Main'] ul li a");
+      let activeRoute = undefined;
 
       Array.from(links).forEach((link, idx) => {
         const navItem = pages.find((nav) => nav.route === link.getAttribute("href"));
@@ -63,6 +67,13 @@ describe("Components/Header", () => {
         expect(navItem.data.order).to.equal((idx += 1));
         expect(link.textContent).to.equal(navItem.label);
         expect(link.getAttribute("title")).to.equal(navItem.title);
+
+        // current route should display as active
+        if (navItem.route === CURRENT_ROUTE && link.getAttribute("class").includes("active")) {
+          activeRoute = navItem;
+        }
+
+        expect(activeRoute.route).to.equal(CURRENT_ROUTE);
       });
     });
 
@@ -113,6 +124,7 @@ describe("Components/Header", () => {
 
     it("should have the expected navigation links", () => {
       const links = header.querySelectorAll("nav[aria-label='Mobile'] ul li a");
+      let activeRoute = undefined;
 
       Array.from(links).forEach((link, idx) => {
         const navItem = pages.find((nav) => nav.route === link.getAttribute("href"));
@@ -121,7 +133,14 @@ describe("Components/Header", () => {
         expect(navItem.data.order).to.equal((idx += 1));
         expect(link.textContent).to.equal(navItem.label);
         expect(link.getAttribute("title")).to.equal(navItem.title);
+
+        // current route should display as active
+        if (navItem.route === CURRENT_ROUTE && link.getAttribute("class").includes("active")) {
+          activeRoute = navItem;
+        }
       });
+
+      expect(activeRoute.route).to.equal(CURRENT_ROUTE);
     });
   });
 
