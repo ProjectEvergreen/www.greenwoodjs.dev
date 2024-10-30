@@ -50,11 +50,11 @@
 }
 
 @media (min-width: 1440px) {
-  .icons {
-    max-width: 90%;
+  .container {
+    padding: var(--size-9) var(--size-11);
   }
 
-  .container {
-    padding: var(--size-px-10) var(--size-px-13);
+  .icons {
+    max-width: 90%;
   }
 }

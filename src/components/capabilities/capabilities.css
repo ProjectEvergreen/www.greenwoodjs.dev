@@ -106,7 +106,7 @@ pre {
 
 @media (min-width: 768px) {
   .container {
-    padding: var(--size-fluid-4);
+    padding: var(--size-fluid-2);
     margin: 0 auto;
   }
 
@@ -127,7 +127,7 @@ pre {
 
 @media (min-width: 1025px) {
   .container {
-    width: 80%;
+    width: 90%;
     display: block;
     margin: 0 auto;
   }
