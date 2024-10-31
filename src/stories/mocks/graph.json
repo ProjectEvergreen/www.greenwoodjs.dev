@@ -1,17 +1,25 @@
 [
   {
+    "id": "blog-index",
     "label": "Blog",
-    "title": null,
+    "title": "Blog",
     "route": "/blog/",
     "layout": null,
-    "data": {
-      "tocHeading": 0,
-      "tableOfContents": []
-    },
+    "data": { "collection": "nav", "order": 3, "tocHeading": 0, "tableOfContents": [] },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/index.html",
-    "outputPath": "/blog/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/blog-posts-list/blog-posts-list.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1494238925.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/index.html",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -19,6 +27,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-15-0",
     "label": "V0 15 0",
     "title": "Release - v0.15.0",
     "route": "/blog/release/v0-15-0/",
@@ -30,9 +39,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-15-0.md",
-    "outputPath": "/blog/release/v0-15-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-15-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-15-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -40,6 +58,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-18-0",
     "label": "V0 18 0",
     "title": "Release - v0.18.0",
     "route": "/blog/release/v0-18-0/",
@@ -51,9 +70,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-18-0.md",
-    "outputPath": "/blog/release/v0-18-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-18-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-18-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -61,6 +89,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-19-0",
     "label": "V0 19 0",
     "title": "Release -  v0.19.0",
     "route": "/blog/release/v0-19-0/",
@@ -72,9 +101,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-19-0.md",
-    "outputPath": "/blog/release/v0-19-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-19-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-19-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -82,6 +120,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-20-0",
     "label": "V0 20 0",
     "title": "Release - v0.20.0",
     "route": "/blog/release/v0-20-0/",
@@ -94,9 +133,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-20-0.md",
-    "outputPath": "/blog/release/v0-20-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-20-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-20-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -104,6 +152,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-21-0",
     "label": "V0 21 0",
     "title": "Release - v0.21.0",
     "route": "/blog/release/v0-21-0/",
@@ -115,9 +164,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-21-0.md",
-    "outputPath": "/blog/release/v0-21-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-21-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-21-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -125,6 +183,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-23-0",
     "label": "V0 23 0",
     "title": "Release - v0.23.0",
     "route": "/blog/release/v0-23-0/",
@@ -136,9 +195,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-23-0.md",
-    "outputPath": "/blog/release/v0-23-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-23-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-23-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -146,6 +214,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-24-0",
     "label": "V0 24 0",
     "title": "Release - v0.24.0",
     "route": "/blog/release/v0-24-0/",
@@ -157,9 +226,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-24-0.md",
-    "outputPath": "/blog/release/v0-24-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-24-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-24-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -167,6 +245,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-26-0",
     "label": "V0 26 0",
     "title": "Release -  v0.26.0",
     "route": "/blog/release/v0-26-0/",
@@ -179,9 +258,19 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-26-0.md",
-    "outputPath": "/blog/release/v0-26-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/339602163.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-26-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-26-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -189,6 +278,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-27-0",
     "label": "V0 27 0",
     "title": "Release - v0.27.0",
     "route": "/blog/release/v0-27-0/",
@@ -201,9 +291,19 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-27-0.md",
-    "outputPath": "/blog/release/v0-27-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/865966005.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-27-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-27-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -211,6 +311,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-28-0",
     "label": "V0 28 0",
     "title": "Release - v0.28.0",
     "route": "/blog/release/v0-28-0/",
@@ -223,9 +324,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-28-0.md",
-    "outputPath": "/blog/release/v0-28-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-28-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-28-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -233,6 +343,7 @@
     "servePage": null
   },
   {
+    "id": "blog-release-v0-29-0",
     "label": "V0 29 0",
     "title": "Release - v0.29.0",
     "route": "/blog/release/v0-29-0/",
@@ -245,9 +356,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/release/v0-29-0.md",
-    "outputPath": "/blog/release/v0-29-0/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/release/v0-29-0.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/release/v0-29-0/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -255,6 +375,7 @@
     "servePage": null
   },
   {
+    "id": "blog-state-of-greenwood-2022",
     "label": "State Of Greenwood 2022",
     "title": "State of Greenwood (2022)",
     "route": "/blog/state-of-greenwood-2022/",
@@ -267,9 +388,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/state-of-greenwood-2022.md",
-    "outputPath": "/blog/state-of-greenwood-2022/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/state-of-greenwood-2022.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/state-of-greenwood-2022/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -277,6 +407,7 @@
     "servePage": null
   },
   {
+    "id": "blog-state-of-greenwood-2023",
     "label": "State Of Greenwood 2023",
     "title": "State of Greenwood (2023)",
     "route": "/blog/state-of-greenwood-2023/",
@@ -289,9 +420,18 @@
       "tableOfContents": []
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./blog/state-of-greenwood-2023.md",
-    "outputPath": "/blog/state-of-greenwood-2023/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/blog.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/blog/state-of-greenwood-2023.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/blog/state-of-greenwood-2023/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -299,6 +439,1231 @@
     "servePage": null
   },
   {
+    "id": "docs-content-as-data-active-frontmatter",
+    "label": "Active Frontmatter",
+    "title": null,
+    "route": "/docs/content-as-data/active-frontmatter/",
+    "layout": "docs",
+    "data": {
+      "order": 4,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Data Client", "slug": "data-client", "lvl": 2, "i": 2, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/content-as-data/active-frontmatter.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/content-as-data/active-frontmatter/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-content-as-data-collections",
+    "label": "Collections",
+    "title": null,
+    "route": "/docs/content-as-data/collections/",
+    "layout": "docs",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [{ "content": "Usage", "slug": "usage", "lvl": 2, "i": 1, "seen": 0 }]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/content-as-data/collections.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/content-as-data/collections/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-content-as-data-data-client",
+    "label": "Data Client",
+    "title": null,
+    "route": "/docs/content-as-data/data-client/",
+    "layout": "docs",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Content", "slug": "content", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Content By Route", "slug": "content-by-route", "lvl": 2, "i": 2, "seen": 0 },
+        {
+          "content": "Content By Collection",
+          "slug": "content-by-collection",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        { "content": "Integrations", "slug": "integrations", "lvl": 2, "i": 4, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/content-as-data/data-client.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/content-as-data/data-client/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-content-as-data-graph-ql",
+    "label": "GraphQL",
+    "title": "GraphQL",
+    "route": "/docs/content-as-data/graph-ql/",
+    "layout": "docs",
+    "data": { "order": 5, "tocHeading": 2, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/content-as-data/graph-ql.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/content-as-data/graph-ql/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-content-as-data-index",
+    "label": "Content As Data",
+    "title": null,
+    "route": "/docs/content-as-data/",
+    "layout": "docs",
+    "data": { "order": 5, "tocHeading": 0, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/content-as-data/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/content-as-data/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-content-as-data-pages-data",
+    "label": "Pages Data",
+    "title": null,
+    "route": "/docs/content-as-data/pages-data/",
+    "layout": "docs",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Schema", "slug": "schema", "lvl": 2, "i": 1, "seen": 0 },
+        {
+          "content": "Table of Contents",
+          "slug": "table-of-contents",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        { "content": "External Content", "slug": "external-content", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/content-as-data/pages-data.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/content-as-data/pages-data/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-index",
+    "label": "Docs",
+    "title": "Docs",
+    "route": "/docs/",
+    "layout": "docs",
+    "data": { "collection": "nav", "order": 1, "tocHeading": 0, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-introduction-about",
+    "label": "About",
+    "title": null,
+    "route": "/docs/introduction/about/",
+    "layout": "docs",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Features", "slug": "features", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Goals", "slug": "goals", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Roadmap", "slug": "roadmap", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/introduction/about.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/introduction/about/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-introduction-index",
+    "label": "Introduction",
+    "title": null,
+    "route": "/docs/introduction/",
+    "layout": "docs",
+    "data": { "order": 1, "tocHeading": 0, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/introduction/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/introduction/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-introduction-setup",
+    "label": "Setup",
+    "title": null,
+    "route": "/docs/introduction/setup/",
+    "layout": "docs",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Init", "slug": "init", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Install", "slug": "install", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Commands", "slug": "commands", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/introduction/setup.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/introduction/setup/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-introduction-web-standards",
+    "label": "Web Standards",
+    "title": null,
+    "route": "/docs/introduction/web-standards/",
+    "layout": "docs",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Import Attributes",
+          "slug": "import-attributes",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        { "content": "Web Components", "slug": "web-components", "lvl": 2, "i": 2, "seen": 0 },
+        {
+          "content": "Fetch (and Friends)",
+          "slug": "fetch-and-friends",
+          "lvl": 2,
+          "i": 3,
+          "seen": 0
+        },
+        { "content": "Import Maps", "slug": "import-maps", "lvl": 2, "i": 4, "seen": 0 },
+        { "content": "URL", "slug": "url", "lvl": 2, "i": 5, "seen": 0 },
+        { "content": "FormData", "slug": "formdata", "lvl": 2, "i": 6, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/introduction/web-standards.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/introduction/web-standards/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-pages-api-routes",
+    "label": "API Routes",
+    "title": "API Routes",
+    "route": "/docs/pages/api-routes/",
+    "layout": "docs",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Hypermedia", "slug": "hypermedia", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Isolation Mode", "slug": "isolation-mode", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/pages/api-routes.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/pages/api-routes/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-pages-index",
+    "label": "Pages",
+    "title": null,
+    "route": "/docs/pages/",
+    "layout": "docs",
+    "data": { "order": 2, "tocHeading": 0, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/pages/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/pages/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-pages-layouts",
+    "label": "Layouts",
+    "title": null,
+    "route": "/docs/pages/layouts/",
+    "layout": "docs",
+    "data": {
+      "order": 4,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Pages", "slug": "pages", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "App", "slug": "app", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/pages/layouts.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/pages/layouts/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-pages-routing",
+    "label": "Routing",
+    "title": null,
+    "route": "/docs/pages/routing/",
+    "layout": "docs",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Static Pages", "slug": "static-pages", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "SSR", "slug": "ssr", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "APIs", "slug": "apis", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "SPA", "slug": "spa", "lvl": 2, "i": 4, "seen": 0 },
+        { "content": "Not Found", "slug": "not-found", "lvl": 2, "i": 5, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/pages/routing.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/pages/routing/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-pages-server-rendering",
+    "label": "Server Rendering",
+    "title": null,
+    "route": "/docs/pages/server-rendering/",
+    "layout": "docs",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "API", "slug": "api", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Options", "slug": "options", "lvl": 2, "i": 7, "seen": 0 },
+        { "content": "Request Data", "slug": "request-data", "lvl": 2, "i": 10, "seen": 0 },
+        { "content": "Custom Imports", "slug": "custom-imports", "lvl": 2, "i": 11, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/pages/server-rendering.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/pages/server-rendering/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-plugins-css-modules",
+    "label": "CSS Modules",
+    "title": "CSS Modules",
+    "route": "/docs/plugins/css-modules/",
+    "layout": "docs",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 2, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/plugins/css-modules.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/plugins/css-modules/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-plugins-index",
+    "label": "Plugins",
+    "title": null,
+    "route": "/docs/plugins/",
+    "layout": "docs",
+    "data": { "order": 4, "tocHeading": 0, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/plugins/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/plugins/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-plugins-lit-ssr",
+    "label": "Lit SSR",
+    "title": "Lit SSR",
+    "route": "/docs/plugins/lit-ssr/",
+    "layout": "docs",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Prerequisite", "slug": "prerequisite", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/plugins/lit-ssr.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/plugins/lit-ssr/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-plugins-postcss",
+    "label": "PostCSS",
+    "title": "PostCSS",
+    "route": "/docs/plugins/postcss/",
+    "layout": "docs",
+    "data": {
+      "order": 5,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 2, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/plugins/postcss.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/plugins/postcss/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-plugins-raw",
+    "label": "Raw",
+    "title": null,
+    "route": "/docs/plugins/raw/",
+    "layout": "docs",
+    "data": {
+      "order": 4,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 2, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/plugins/raw.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/plugins/raw/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-plugins-typescript",
+    "label": "TypeScript",
+    "title": "TypeScript",
+    "route": "/docs/plugins/typescript/",
+    "layout": "docs",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 2, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/plugins/typescript.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/plugins/typescript/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-reference-appendix",
+    "label": "Appendix",
+    "title": null,
+    "route": "/docs/reference/appendix/",
+    "layout": "docs",
+    "data": {
+      "order": 5,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Build Output", "slug": "build-output", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Compilation", "slug": "compilation", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "DOM Emulation", "slug": "dom-emulation", "lvl": 2, "i": 6, "seen": 0 },
+        {
+          "content": "Environment Variables",
+          "slug": "environment-variables",
+          "lvl": 2,
+          "i": 8,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/reference/appendix.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/reference/appendix/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-reference-configuration",
+    "label": "Configuration",
+    "title": null,
+    "route": "/docs/reference/configuration/",
+    "layout": "docs",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Active Content", "slug": "active-content", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Base Path", "slug": "base-path", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Dev Server", "slug": "dev-server", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "Isolation Mode", "slug": "isolation-mode", "lvl": 2, "i": 4, "seen": 0 },
+        {
+          "content": "Layouts Directory",
+          "slug": "layouts-directory",
+          "lvl": 2,
+          "i": 5,
+          "seen": 0
+        },
+        { "content": "Markdown", "slug": "markdown", "lvl": 2, "i": 6, "seen": 0 },
+        { "content": "Optimization", "slug": "optimization", "lvl": 2, "i": 7, "seen": 0 },
+        { "content": "Pages Directory", "slug": "pages-directory", "lvl": 2, "i": 9, "seen": 0 },
+        { "content": "Plugins", "slug": "plugins", "lvl": 2, "i": 10, "seen": 0 },
+        { "content": "Polyfills", "slug": "polyfills", "lvl": 2, "i": 11, "seen": 0 },
+        { "content": "Port", "slug": "port", "lvl": 2, "i": 14, "seen": 0 },
+        { "content": "Prerender", "slug": "prerender", "lvl": 2, "i": 15, "seen": 0 },
+        { "content": "Static Router", "slug": "static-router", "lvl": 2, "i": 16, "seen": 0 },
+        { "content": "Workspace", "slug": "workspace", "lvl": 2, "i": 17, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/reference/configuration.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/reference/configuration/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-reference-index",
+    "label": "Reference",
+    "title": null,
+    "route": "/docs/reference/",
+    "layout": "docs",
+    "data": { "order": 6, "tocHeading": 0, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/reference/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/reference/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-reference-plugins-api",
+    "label": "Plugins API",
+    "title": "Plugins API",
+    "route": "/docs/reference/plugins-api/",
+    "layout": "docs",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Overview", "slug": "overview", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Adapter", "slug": "adapter", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Context", "slug": "context", "lvl": 2, "i": 5, "seen": 0 },
+        { "content": "Copy", "slug": "copy", "lvl": 2, "i": 8, "seen": 0 },
+        { "content": "Renderer", "slug": "renderer", "lvl": 2, "i": 10, "seen": 0 },
+        { "content": "Resource", "slug": "resource", "lvl": 2, "i": 16, "seen": 0 },
+        { "content": "Rollup", "slug": "rollup", "lvl": 2, "i": 24, "seen": 0 },
+        { "content": "Server", "slug": "server", "lvl": 2, "i": 25, "seen": 0 },
+        { "content": "Source", "slug": "source", "lvl": 2, "i": 28, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/reference/plugins-api.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/reference/plugins-api/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-reference-rendering-strategies",
+    "label": "Rendering Strategies",
+    "title": null,
+    "route": "/docs/reference/rendering-strategies/",
+    "layout": "docs",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "CSR", "slug": "csr", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "SSG", "slug": "ssg", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "SSR", "slug": "ssr", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "Prerendering", "slug": "prerendering", "lvl": 2, "i": 4, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/reference/rendering-strategies.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/reference/rendering-strategies/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-resources-assets",
+    "label": "Assets",
+    "title": null,
+    "route": "/docs/resources/assets/",
+    "layout": "docs",
+    "data": {
+      "order": 3,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Directory", "slug": "directory", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "URL", "slug": "url", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Meta Files", "slug": "meta-files", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/resources/assets.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/resources/assets/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-resources-index",
+    "label": "Resources",
+    "title": null,
+    "route": "/docs/resources/",
+    "layout": "docs",
+    "data": { "order": 3, "tocHeading": 0, "tableOfContents": [] },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/resources/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/resources/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-resources-markdown",
+    "label": "Markdown",
+    "title": null,
+    "route": "/docs/resources/markdown/",
+    "layout": "docs",
+    "data": {
+      "order": 4,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Plugins", "slug": "plugins", "lvl": 2, "i": 1, "seen": 0 },
+        {
+          "content": "Syntax Highlighting",
+          "slug": "syntax-highlighting",
+          "lvl": 2,
+          "i": 2,
+          "seen": 0
+        },
+        { "content": "Frontmatter", "slug": "frontmatter", "lvl": 2, "i": 3, "seen": 0 },
+        {
+          "content": "Active Frontmatter",
+          "slug": "active-frontmatter",
+          "lvl": 2,
+          "i": 9,
+          "seen": 0
+        }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/resources/markdown.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/resources/markdown/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-resources-scripts",
+    "label": "Scripts",
+    "title": null,
+    "route": "/docs/resources/scripts/",
+    "layout": "docs",
+    "data": {
+      "order": 1,
+      "tocHeading": 2,
+      "tableOfContents": [
+        { "content": "Script Tags", "slug": "script-tags", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Modules (ESM)", "slug": "modules-esm", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Node Modules", "slug": "node-modules", "lvl": 2, "i": 3, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/resources/scripts.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/resources/scripts/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "docs-resources-styles",
+    "label": "Styles",
+    "title": null,
+    "route": "/docs/resources/styles/",
+    "layout": "docs",
+    "data": {
+      "order": 2,
+      "tocHeading": 2,
+      "tableOfContents": [
+        {
+          "content": "Style and Link Tags",
+          "slug": "style-and-link-tags",
+          "lvl": 2,
+          "i": 1,
+          "seen": 0
+        },
+        { "content": "NPM", "slug": "npm", "lvl": 2, "i": 2, "seen": 0 }
+      ]
+    },
+    "imports": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/docs/resources/styles.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/docs/resources/styles/index.html",
+    "isSSR": false,
+    "prerender": true,
+    "isolation": false,
+    "hydration": false,
+    "servePage": null
+  },
+  {
+    "id": "guides-ecosystem-htmx",
     "label": "htmx",
     "title": "htmx",
     "route": "/guides/ecosystem/htmx/",
@@ -307,26 +1672,27 @@
       "order": 2,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Installation",
-          "slug": "installation",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Example",
-          "slug": "example",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        }
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Example", "slug": "example", "lvl": 2, "i": 2, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/ecosystem/htmx.md",
-    "outputPath": "/guides/ecosystem/htmx/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/ecosystem/htmx.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/ecosystem/htmx/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -334,19 +1700,29 @@
     "servePage": null
   },
   {
+    "id": "guides-ecosystem-index",
     "label": "Ecosystem",
     "title": null,
     "route": "/guides/ecosystem/",
     "layout": "guides",
-    "data": {
-      "order": 3,
-      "tocHeading": 0,
-      "tableOfContents": []
-    },
+    "data": { "order": 3, "tocHeading": 0, "tableOfContents": [] },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/ecosystem/index.md",
-    "outputPath": "/guides/ecosystem/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/ecosystem/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/ecosystem/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -354,6 +1730,7 @@
     "servePage": null
   },
   {
+    "id": "guides-ecosystem-lit",
     "label": "Lit",
     "title": "Lit",
     "route": "/guides/ecosystem/lit/",
@@ -362,26 +1739,27 @@
       "order": 1,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Installation",
-          "slug": "installation",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "SSR",
-          "slug": "ssr",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        }
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "SSR", "slug": "ssr", "lvl": 2, "i": 2, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/ecosystem/lit.md",
-    "outputPath": "/guides/ecosystem/lit/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/ecosystem/lit.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/ecosystem/lit/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -389,6 +1767,7 @@
     "servePage": null
   },
   {
+    "id": "guides-ecosystem-storybook",
     "label": "Storybook",
     "title": null,
     "route": "/guides/ecosystem/storybook/",
@@ -397,40 +1776,37 @@
       "order": 4,
       "tocHeading": 2,
       "tableOfContents": [
+        { "content": "Setup", "slug": "setup", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Static Assets", "slug": "static-assets", "lvl": 2, "i": 3, "seen": 0 },
         {
-          "content": "Installation",
-          "slug": "installation",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Vite Config",
-          "slug": "vite-config",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Custom Resources",
-          "slug": "custom-resources",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        },
-        {
-          "content": "Usage",
-          "slug": "usage",
+          "content": "Import Attributes",
+          "slug": "import-attributes",
           "lvl": 2,
           "i": 4,
           "seen": 0
-        }
+        },
+        { "content": "Resource Plugins", "slug": "resource-plugins", "lvl": 2, "i": 5, "seen": 0 },
+        { "content": "Content as Data", "slug": "content-as-data", "lvl": 2, "i": 6, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/ecosystem/storybook.md",
-    "outputPath": "/guides/ecosystem/storybook/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/ecosystem/storybook.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/ecosystem/storybook/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -438,6 +1814,7 @@
     "servePage": null
   },
   {
+    "id": "guides-ecosystem-tailwind",
     "label": "Tailwind",
     "title": null,
     "route": "/guides/ecosystem/tailwind/",
@@ -446,26 +1823,27 @@
       "order": 3,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Installation",
-          "slug": "installation",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Usage",
-          "slug": "usage",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        }
+        { "content": "Installation", "slug": "installation", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 2, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/ecosystem/tailwind.md",
-    "outputPath": "/guides/ecosystem/tailwind/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/ecosystem/tailwind.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/ecosystem/tailwind/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -473,6 +1851,7 @@
     "servePage": null
   },
   {
+    "id": "guides-ecosystem-web-test-runner",
     "label": "Web Test Runner",
     "title": null,
     "route": "/guides/ecosystem/web-test-runner/",
@@ -481,33 +1860,30 @@
       "order": 5,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Installation",
-          "slug": "installation",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Custom Resources",
-          "slug": "custom-resources",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Usage",
-          "slug": "usage",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        }
+        { "content": "Setup", "slug": "setup", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Usage", "slug": "usage", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Static Assets", "slug": "static-assets", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "Resource Plugins", "slug": "resource-plugins", "lvl": 2, "i": 4, "seen": 0 },
+        { "content": "Content as Data", "slug": "content-as-data", "lvl": 2, "i": 5, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/ecosystem/web-test-runner.md",
-    "outputPath": "/guides/ecosystem/web-test-runner/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/ecosystem/web-test-runner.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/ecosystem/web-test-runner/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -515,6 +1891,7 @@
     "servePage": null
   },
   {
+    "id": "guides-getting-started-going-further",
     "label": "Going Further",
     "title": null,
     "route": "/guides/getting-started/going-further/",
@@ -523,47 +1900,29 @@
       "order": 3,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Prerendering",
-          "slug": "prerendering",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Light vs Shadow DOM",
-          "slug": "light-vs-shadow-dom",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Content as Data",
-          "slug": "content-as-data",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        },
-        {
-          "content": "Plugins",
-          "slug": "plugins",
-          "lvl": 2,
-          "i": 4,
-          "seen": 0
-        },
-        {
-          "content": "Next Section",
-          "slug": "next-section",
-          "lvl": 2,
-          "i": 5,
-          "seen": 0
-        }
+        { "content": "Prerendering", "slug": "prerendering", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Light DOM", "slug": "light-dom", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Content as Data", "slug": "content-as-data", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "Next Section", "slug": "next-section", "lvl": 2, "i": 4, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/getting-started/going-further.md",
-    "outputPath": "/guides/getting-started/going-further/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/getting-started/going-further.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/getting-started/going-further/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -571,6 +1930,7 @@
     "servePage": null
   },
   {
+    "id": "guides-getting-started-index",
     "label": "Getting Started",
     "title": null,
     "route": "/guides/getting-started/",
@@ -579,47 +1939,29 @@
       "order": 1,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "What to Expect",
-          "slug": "what-to-expect",
-          "lvl": 2,
-          "i": 0,
-          "seen": 0
-        },
-        {
-          "content": "Prerequisites",
-          "slug": "prerequisites",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Setup",
-          "slug": "setup",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Jump Right In",
-          "slug": "jump-right-in",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        },
-        {
-          "content": "Next Section",
-          "slug": "next-section",
-          "lvl": 2,
-          "i": 4,
-          "seen": 0
-        }
+        { "content": "Prerequisites", "slug": "prerequisites", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Setup", "slug": "setup", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Jump Right In", "slug": "jump-right-in", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "Next Section", "slug": "next-section", "lvl": 2, "i": 4, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/getting-started/index.md",
-    "outputPath": "/guides/getting-started/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/getting-started/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/getting-started/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -627,6 +1969,7 @@
     "servePage": null
   },
   {
+    "id": "guides-getting-started-key-concepts",
     "label": "Key Concepts",
     "title": "Key Concepts",
     "route": "/guides/getting-started/key-concepts/",
@@ -642,13 +1985,7 @@
           "i": 1,
           "seen": 0
         },
-        {
-          "content": "Pages",
-          "slug": "pages",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
+        { "content": "Pages", "slug": "pages", "lvl": 2, "i": 2, "seen": 0 },
         {
           "content": "Scripts and Styles",
           "slug": "scripts-and-styles",
@@ -656,13 +1993,7 @@
           "i": 3,
           "seen": 0
         },
-        {
-          "content": "Layouts",
-          "slug": "layouts",
-          "lvl": 2,
-          "i": 4,
-          "seen": 0
-        },
+        { "content": "Layouts", "slug": "layouts", "lvl": 2, "i": 4, "seen": 0 },
         {
           "content": "Markdown and Frontmatter",
           "slug": "markdown-and-frontmatter",
@@ -670,19 +2001,26 @@
           "i": 5,
           "seen": 0
         },
-        {
-          "content": "Next Section",
-          "slug": "next-section",
-          "lvl": 2,
-          "i": 6,
-          "seen": 0
-        }
+        { "content": "Next Section", "slug": "next-section", "lvl": 2, "i": 6, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/getting-started/key-concepts.md",
-    "outputPath": "/guides/getting-started/key-concepts/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/getting-started/key-concepts.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/getting-started/key-concepts/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -690,19 +2028,29 @@
     "servePage": null
   },
   {
+    "id": "guides-getting-started-next-steps",
     "label": "Next Steps",
     "title": null,
     "route": "/guides/getting-started/next-steps/",
     "layout": "guides",
-    "data": {
-      "order": 4,
-      "tocHeading": 2,
-      "tableOfContents": []
-    },
+    "data": { "order": 4, "tocHeading": 2, "tableOfContents": [] },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/getting-started/next-steps.md",
-    "outputPath": "/guides/getting-started/next-steps/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/getting-started/next-steps.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/getting-started/next-steps/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -710,6 +2058,7 @@
     "servePage": null
   },
   {
+    "id": "guides-getting-started-walkthrough",
     "label": "Walkthrough",
     "title": null,
     "route": "/guides/getting-started/walkthrough/",
@@ -725,47 +2074,30 @@
           "i": 1,
           "seen": 0
         },
-        {
-          "content": "Creating Content",
-          "slug": "creating-content",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Styling",
-          "slug": "styling",
-          "lvl": 2,
-          "i": 7,
-          "seen": 0
-        },
-        {
-          "content": "Components",
-          "slug": "components",
-          "lvl": 2,
-          "i": 8,
-          "seen": 0
-        },
-        {
-          "content": "Final Build",
-          "slug": "final-build",
-          "lvl": 2,
-          "i": 9,
-          "seen": 0
-        },
-        {
-          "content": "Next Section",
-          "slug": "next-section",
-          "lvl": 2,
-          "i": 10,
-          "seen": 0
-        }
+        { "content": "Creating Content", "slug": "creating-content", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Styling", "slug": "styling", "lvl": 2, "i": 7, "seen": 0 },
+        { "content": "Components", "slug": "components", "lvl": 2, "i": 8, "seen": 0 },
+        { "content": "Final Build", "slug": "final-build", "lvl": 2, "i": 9, "seen": 0 },
+        { "content": "Next Section", "slug": "next-section", "lvl": 2, "i": 10, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/getting-started/walkthrough.md",
-    "outputPath": "/guides/getting-started/walkthrough/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/getting-started/walkthrough.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/getting-started/walkthrough/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -773,6 +2105,7 @@
     "servePage": null
   },
   {
+    "id": "guides-hosting-aws",
     "label": "AWS",
     "title": "AWS",
     "route": "/guides/hosting/aws/",
@@ -781,33 +2114,28 @@
       "order": 3,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Static Hosting",
-          "slug": "static-hosting",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Serverless",
-          "slug": "serverless",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "GitHub Actions",
-          "slug": "github-actions",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        }
+        { "content": "Static Hosting", "slug": "static-hosting", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Serverless", "slug": "serverless", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "GitHub Actions", "slug": "github-actions", "lvl": 2, "i": 3, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/hosting/aws.md",
-    "outputPath": "/guides/hosting/aws/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/hosting/aws.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/hosting/aws/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -815,6 +2143,7 @@
     "servePage": null
   },
   {
+    "id": "guides-hosting-cloudflare",
     "label": "Cloudflare",
     "title": "Cloudflare",
     "route": "/guides/hosting/cloudflare/",
@@ -823,26 +2152,27 @@
       "order": 4,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Pages",
-          "slug": "pages",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Workers",
-          "slug": "workers",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        }
+        { "content": "Pages", "slug": "pages", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Workers", "slug": "workers", "lvl": 2, "i": 2, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/hosting/cloudflare.md",
-    "outputPath": "/guides/hosting/cloudflare/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/hosting/cloudflare.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/hosting/cloudflare/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -850,6 +2180,7 @@
     "servePage": null
   },
   {
+    "id": "guides-hosting-github",
     "label": "GitHub",
     "title": "GitHub",
     "route": "/guides/hosting/github/",
@@ -858,33 +2189,28 @@
       "order": 5,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Prerequisites",
-          "slug": "prerequisites",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Setup",
-          "slug": "setup",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Next Steps",
-          "slug": "next-steps",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        }
+        { "content": "Prerequisites", "slug": "prerequisites", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Setup", "slug": "setup", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Next Steps", "slug": "next-steps", "lvl": 2, "i": 3, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/hosting/github.md",
-    "outputPath": "/guides/hosting/github/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/hosting/github.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/hosting/github/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -892,6 +2218,7 @@
     "servePage": null
   },
   {
+    "id": "guides-hosting-index",
     "label": "Hosting",
     "title": null,
     "route": "/guides/hosting/",
@@ -900,47 +2227,29 @@
       "order": 2,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Building",
-          "slug": "building",
-          "lvl": 2,
-          "i": 0,
-          "seen": 0
-        },
-        {
-          "content": "Static Hosting",
-          "slug": "static-hosting",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Self Hosting",
-          "slug": "self-hosting",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Serverless",
-          "slug": "serverless",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        },
-        {
-          "content": "Docker",
-          "slug": "docker",
-          "lvl": 2,
-          "i": 4,
-          "seen": 0
-        }
+        { "content": "Static Hosting", "slug": "static-hosting", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Self Hosting", "slug": "self-hosting", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Serverless", "slug": "serverless", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "Docker", "slug": "docker", "lvl": 2, "i": 4, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/hosting/index.md",
-    "outputPath": "/guides/hosting/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/hosting/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/hosting/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -948,6 +2257,7 @@
     "servePage": null
   },
   {
+    "id": "guides-hosting-netlify",
     "label": "Netlify",
     "title": "Netlify",
     "route": "/guides/hosting/netlify/",
@@ -956,26 +2266,27 @@
       "order": 1,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Static Hosting",
-          "slug": "static-hosting",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Serverless",
-          "slug": "serverless",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        }
+        { "content": "Static Hosting", "slug": "static-hosting", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Serverless", "slug": "serverless", "lvl": 2, "i": 2, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/hosting/netlify.md",
-    "outputPath": "/guides/hosting/netlify/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/hosting/netlify.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/hosting/netlify/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -983,6 +2294,7 @@
     "servePage": null
   },
   {
+    "id": "guides-hosting-vercel",
     "label": "Vercel",
     "title": "Vercel",
     "route": "/guides/hosting/vercel/",
@@ -991,26 +2303,27 @@
       "order": 2,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Static Hosting",
-          "slug": "static-hosting",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Serverless",
-          "slug": "serverless",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        }
+        { "content": "Static Hosting", "slug": "static-hosting", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Serverless", "slug": "serverless", "lvl": 2, "i": 2, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/hosting/vercel.md",
-    "outputPath": "/guides/hosting/vercel/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/hosting/vercel.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/hosting/vercel/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -1018,18 +2331,29 @@
     "servePage": null
   },
   {
+    "id": "guides-index",
     "label": "Guides",
     "title": "Guides",
     "route": "/guides/",
     "layout": "guides",
-    "data": {
-      "tocHeading": 0,
-      "tableOfContents": []
-    },
+    "data": { "collection": "nav", "order": 2, "tocHeading": 0, "tableOfContents": [] },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/index.md",
-    "outputPath": "/guides/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -1037,6 +2361,7 @@
     "servePage": null
   },
   {
+    "id": "guides-tutorials-full-stack-web-components",
     "label": "Full Stack Web Components",
     "title": null,
     "route": "/guides/tutorials/full-stack-web-components/",
@@ -1045,61 +2370,32 @@
       "order": 1,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Objective",
-          "slug": "objective",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Card Component",
-          "slug": "card-component",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Search API",
-          "slug": "search-api",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        },
-        {
-          "content": "Search Page",
-          "slug": "search-page",
-          "lvl": 2,
-          "i": 4,
-          "seen": 0
-        },
-        {
-          "content": "Products Page",
-          "slug": "products-page",
-          "lvl": 2,
-          "i": 5,
-          "seen": 0
-        },
-        {
-          "content": "App Layout",
-          "slug": "app-layout",
-          "lvl": 2,
-          "i": 6,
-          "seen": 0
-        },
-        {
-          "content": "Conclusion",
-          "slug": "conclusion",
-          "lvl": 2,
-          "i": 7,
-          "seen": 0
-        }
+        { "content": "Objective", "slug": "objective", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Card Component", "slug": "card-component", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Search API", "slug": "search-api", "lvl": 2, "i": 3, "seen": 0 },
+        { "content": "Search Page", "slug": "search-page", "lvl": 2, "i": 4, "seen": 0 },
+        { "content": "Products Page", "slug": "products-page", "lvl": 2, "i": 5, "seen": 0 },
+        { "content": "App Layout", "slug": "app-layout", "lvl": 2, "i": 6, "seen": 0 },
+        { "content": "Conclusion", "slug": "conclusion", "lvl": 2, "i": 7, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/tutorials/full-stack-web-components.md",
-    "outputPath": "/guides/tutorials/full-stack-web-components/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/tutorials/full-stack-web-components.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/tutorials/full-stack-web-components/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -1107,19 +2403,29 @@
     "servePage": null
   },
   {
+    "id": "guides-tutorials-index",
     "label": "Tutorials",
     "title": null,
     "route": "/guides/tutorials/",
     "layout": "guides",
-    "data": {
-      "order": 4,
-      "tocHeading": 0,
-      "tableOfContents": []
-    },
+    "data": { "order": 4, "tocHeading": 0, "tableOfContents": [] },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/tutorials/index.md",
-    "outputPath": "/guides/tutorials/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/tutorials/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/tutorials/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -1127,6 +2433,7 @@
     "servePage": null
   },
   {
+    "id": "guides-tutorials-theme-packs",
     "label": "Theme Packs",
     "title": "Creating a Theme Pack",
     "route": "/guides/tutorials/theme-packs/",
@@ -1135,27 +2442,9 @@
       "order": 2,
       "tocHeading": 2,
       "tableOfContents": [
-        {
-          "content": "Prerequisites",
-          "slug": "prerequisites",
-          "lvl": 2,
-          "i": 1,
-          "seen": 0
-        },
-        {
-          "content": "Project Setup",
-          "slug": "project-setup",
-          "lvl": 2,
-          "i": 2,
-          "seen": 0
-        },
-        {
-          "content": "Development",
-          "slug": "development",
-          "lvl": 2,
-          "i": 3,
-          "seen": 0
-        },
+        { "content": "Prerequisites", "slug": "prerequisites", "lvl": 2, "i": 1, "seen": 0 },
+        { "content": "Project Setup", "slug": "project-setup", "lvl": 2, "i": 2, "seen": 0 },
+        { "content": "Development", "slug": "development", "lvl": 2, "i": 3, "seen": 0 },
         {
           "content": "Production Testing",
           "slug": "production-testing",
@@ -1163,13 +2452,7 @@
           "i": 4,
           "seen": 0
         },
-        {
-          "content": "Publishing",
-          "slug": "publishing",
-          "lvl": 2,
-          "i": 5,
-          "seen": 0
-        },
+        { "content": "Publishing", "slug": "publishing", "lvl": 2, "i": 5, "seen": 0 },
         {
           "content": "Installation and Usage for Users",
           "slug": "installation-and-usage-for-users",
@@ -1177,19 +2460,26 @@
           "i": 6,
           "seen": 0
         },
-        {
-          "content": "FAQ",
-          "slug": "faq",
-          "lvl": 2,
-          "i": 7,
-          "seen": 0
-        }
+        { "content": "FAQ", "slug": "faq", "lvl": 2, "i": 7, "seen": 0 }
       ]
     },
     "imports": [],
-    "resources": [],
-    "pagePath": "./guides/tutorials/theme-packs.md",
-    "outputPath": "/guides/tutorials/theme-packs/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/heading-box/heading-box.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/side-nav/side-nav.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/table-of-contents/table-of-contents.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/edit-on-github/edit-on-github.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/docs.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/guides/tutorials/theme-packs.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/guides/tutorials/theme-packs/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -1197,11 +2487,22 @@
     "servePage": null
   },
   {
+    "id": "index",
     "label": "Home",
     "title": null,
     "route": "/",
     "layout": "page",
     "data": {
+      "imports": [
+        "../components/latest-post/latest-post.js data-gwd-opt=\"static\" type=\"module\"",
+        "../components/hero-banner/hero-banner.js data-gwd-opt=\"static\" type=\"module\"",
+        "../components/capabilities/capabilities.js type=\"module\"",
+        "../components/why-greenwood/why-greenwood.js data-gwd-opt=\"static\" type=\"module\"",
+        "../components/run-anywhere/run-anywhere.js data-gwd-opt=\"static\" type=\"module\"",
+        "../components/build-with-friends/build-with-friends.js data-gwd-opt=\"static\" type=\"module\"",
+        "../components/get-started/get-started.js data-gwd-opt=\"static\" type=\"module\"",
+        "../styles/home.css"
+      ],
       "tocHeading": 0,
       "tableOfContents": []
     },
@@ -1213,12 +2514,27 @@
       "../components/run-anywhere/run-anywhere.js data-gwd-opt=\"static\" type=\"module\"",
       "../components/build-with-friends/build-with-friends.js data-gwd-opt=\"static\" type=\"module\"",
       "../components/get-started/get-started.js data-gwd-opt=\"static\" type=\"module\"",
-      "../components/edit-on-github/edit-on-github.js data-gwd-opt=\"static\" type=\"module\"",
       "../styles/home.css"
     ],
-    "resources": [],
-    "pagePath": "./index.md",
-    "outputPath": "/index.html",
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/latest-post/latest-post.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/hero-banner/hero-banner.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/capabilities/capabilities.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/why-greenwood/why-greenwood.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/run-anywhere/run-anywhere.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/build-with-friends/build-with-friends.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/get-started/get-started.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/home.css"
+    ],
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/index.md",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/index.html",
     "isSSR": false,
     "prerender": true,
     "isolation": false,
@@ -1226,16 +2542,26 @@
     "servePage": null
   },
   {
-    "outputPath": "/404.html",
-    "pagePath": "./src/404.html",
+    "id": "404",
+    "outputHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/public/404.html",
     "route": "/404/",
     "label": "Not Found",
     "title": "Page Not Found",
     "data": {},
     "imports": [],
-    "resources": [],
+    "resources": [
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1943356585.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/758806547.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/footer/footer.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/header/header.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/components/copy-to-clipboard/copy-to-clipboard.js",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/1107222808.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/.greenwood/557264141.css",
+      "/Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/styles/theme.css"
+    ],
     "prerender": true,
     "isolation": false,
+    "pageHref": "file:///Users/owenbuckley/Workspace/project-evergreen/www.greenwoodjs.dev/src/pages/404.html",
     "path": "404.html"
   }
 ]

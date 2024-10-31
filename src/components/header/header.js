@@ -1,3 +1,4 @@
+import { getContentByCollection } from "@greenwood/cli/src/data/client.js";
 import discordIcon from "../../assets/discord.svg?type=raw";
 import githubIcon from "../../assets/github.svg?type=raw";
 import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
@@ -6,7 +7,12 @@ import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
 import styles from "./header.module.css";
 
 export default class Header extends HTMLElement {
-  connectedCallback() {
+  async connectedCallback() {
+    const currentRoute = this.getAttribute("current-route") ?? "";
+    const navItems = (await getContentByCollection("nav")).sort((a, b) =>
+      a.data.order > b.data.order ? 1 : -1,
+    );
+
     this.innerHTML = `
       <header class="${styles.container}">
         <a href="/" title="Greenwood Home Page" class="${styles.logoLink}">
@@ -16,15 +22,18 @@ export default class Header extends HTMLElement {
         <div class="${styles.navBar}">
           <nav role="navigation" aria-label="Main">
             <ul class="${styles.navBarMenu}">
-              <li class="${styles.navBarMenuItem}">
-                <a href="/docs/" title="Documentation">Docs</a>
-              </li>
-              <li class="${styles.navBarMenuItem}">
-                <a href="/guides/" title="Guides">Guides</a>
-              </li>
-              <li class="${styles.navBarMenuItem}">
-                <a href="/blog/" title="Blog">Blog</a>
-              </li>
+              ${navItems
+                .map((item) => {
+                  const { route, label } = item;
+                  const isActiveClass = currentRoute.startsWith(item.route) ? 'class="active"' : "";
+
+                  return `
+                    <li class="${styles.navBarMenuItem}">
+                      <a href="${route}" ${isActiveClass} title="${label}">${label}</a>
+                    </li>
+                  `;
+                })
+                .join("")}
             </ul>
           </nav>
 
@@ -64,15 +73,20 @@ export default class Header extends HTMLElement {
             
             <nav role="navigation" aria-label="Mobile">
               <ul class="${styles.mobileMenuList}">
-                <li class="${styles.mobileMenuListItem}">
-                  <a href="/docs/" title="Documentation">Docs</a>
-                </li>
-                <li class="${styles.mobileMenuListItem}">
-                  <a href="/guides/" title="Guides">Guides</a>
-                </li>
-                <li class="${styles.mobileMenuListItem}">
-                  <a href="/blog/" title="Blog">Blog</a>
-                </li>
+                ${navItems
+                  .map((item) => {
+                    const { route, label } = item;
+                    const isActiveClass = currentRoute.startsWith(item.route)
+                      ? 'class="active"'
+                      : "";
+
+                    return `
+                      <li class="${styles.mobileMenuListItem}">
+                        <a href="${route}" ${isActiveClass} title="${label}">${label}</a>
+                      </li>
+                    `;
+                  })
+                  .join("")}
               </ul>
             </nav>
           </div>

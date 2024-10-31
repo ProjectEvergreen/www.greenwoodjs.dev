@@ -1,6 +1,8 @@
 ---
 title: Docs
 layout: docs
+collection: nav
+order: 1
 ---
 
 <app-heading-box heading="Docs">
