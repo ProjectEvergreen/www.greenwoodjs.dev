@@ -20,7 +20,7 @@ const ICONS = [
 
 window.fetch = function () {
   return new Promise((resolve) => {
-    resolve(new Response(JSON.stringify(pages)));
+    resolve(new Response(JSON.stringify(pages.filter((page) => page.data.collection === "nav"))));
   });
 };
 
@@ -72,9 +72,9 @@ describe("Components/Header", () => {
         if (navItem.route === CURRENT_ROUTE && link.getAttribute("class").includes("active")) {
           activeRoute = navItem;
         }
-
-        expect(activeRoute.route).to.equal(CURRENT_ROUTE);
       });
+
+      expect(activeRoute.route).to.equal(CURRENT_ROUTE);
     });
 
     it("should have the expected social link icons", () => {

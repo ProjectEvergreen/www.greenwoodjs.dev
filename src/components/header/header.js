@@ -1,4 +1,4 @@
-import { getContentByCollection } from "@greenwood/cli/src/data/queries.js";
+import { getContentByCollection } from "@greenwood/cli/src/data/client.js";
 import discordIcon from "../../assets/discord.svg?type=raw";
 import githubIcon from "../../assets/github.svg?type=raw";
 import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
