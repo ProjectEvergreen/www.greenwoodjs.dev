@@ -14,8 +14,6 @@ class ActiveFrontmatterDocsTitleRestorerResource extends ResourceInterface {
   }
 
   async shouldIntercept(url, request, response) {
-    console.log(url, response.headers);
-
     return response.headers.get("Content-Type")?.indexOf(this.contentType) >= 0;
   }
 
