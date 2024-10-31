@@ -9,7 +9,7 @@ class ActiveFrontmatterDocsTitleRestorerResource extends ResourceInterface {
     super();
     this.extensions = ["html"];
     this.contentType = "text/html";
-    this.matches = ["My Blog - null", "My Site - null"];
+    this.matches = ["My Blog - Active Frontmatter", "My Site - Going Further"];
     this.replacer = "${globalThis.page.title}";
   }
 
@@ -22,9 +22,11 @@ class ActiveFrontmatterDocsTitleRestorerResource extends ResourceInterface {
 
     this.matches.forEach((match) => {
       if (body.indexOf(match) > 0) {
+        const titleParts = match.split("-");
+
         body = body.replace(
           new RegExp(String.raw`${match}`, "g"),
-          match.replace("null", this.replacer),
+          `${titleParts[0]}- ${this.replacer}`,
         );
       }
     });
