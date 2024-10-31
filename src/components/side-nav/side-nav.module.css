@@ -61,7 +61,7 @@
     padding: 0 var(--size-2);
     min-width: 200px;
     display: inline-block;
-    box-shadow: var(--shadow-3);
+    box-shadow: var(--shadow-2);
     margin-left: -16px;
   }
 }
