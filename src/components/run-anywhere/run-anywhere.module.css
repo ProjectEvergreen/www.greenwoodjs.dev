@@ -61,7 +61,8 @@
   color: var(--color-white);
 }
 
-.platformBox a:hover {
+.platformBox a:hover,
+.platformBox a:focus {
   color: var(--color-black);
   background-color: var(--color-white);
   text-decoration: none;

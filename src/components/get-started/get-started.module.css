@@ -62,13 +62,15 @@
   text-decoration: none;
 }
 
-.buttonBlitz:hover {
+.buttonBlitz:hover,
+.buttonBlitz:focus {
   background-color: var(--color-gray);
   text-decoration: none;
   color: var(--color-black) !important;
 }
 
-.buttonStarted:hover {
+.buttonStarted:hover,
+.buttonStarted:focus {
   background-color: var(--color-accent);
   text-decoration: none;
   color: var(--color-black) !important;

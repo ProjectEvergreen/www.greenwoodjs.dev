@@ -25,12 +25,14 @@
   stroke: var(--color-gray);
 }
 
-.section:hover {
+.section:hover,
+.section:focus {
   border: 2px dotted var(--color-accent);
 }
 
 .active strong,
-.section:hover strong {
+.section:hover strong,
+.section:focus strong {
   font-family: var(--font-primary-bold);
   color: var(--color-white);
 }
@@ -117,7 +119,8 @@ pre {
     margin-right: var(--size-px-4);
   }
 
-  .section:hover {
+  .section:hover,
+  .section:focus {
     padding: var(--size-px-2);
   }
 }

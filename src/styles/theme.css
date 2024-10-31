@@ -55,7 +55,8 @@ a:visited {
   color: var(--color-primary);
 }
 
-a:hover {
+a:hover,
+a:focus {
   text-decoration: underline;
   background-color: transparent;
 }
@@ -120,8 +121,11 @@ h4 > a > span.icon {
 }
 
 h2:hover > a > span.icon,
+h2:focus > a > span.icon,
 h3:hover > a > span.icon,
-h4:hover > a > span.icon {
+h3:focus > a > span.icon,
+h4:hover > a > span.icon,
+h4:focus > a > span.icon {
   opacity: 1;
 }
 
