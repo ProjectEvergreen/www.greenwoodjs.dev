@@ -161,7 +161,7 @@ And access these values through HTML, like in a layout file:
     <app-blog-post
       title="${globalThis.page.title}"
       author="${globalThis.page.data.author}"
-      published="${globalThis.page.published}"
+      published="${globalThis.page.data.published}"
     >
       <content-outlet></content-outlet>
     </app-blog-post>

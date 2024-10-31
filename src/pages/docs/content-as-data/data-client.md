@@ -71,7 +71,7 @@ customElements.define("blog-posts-list", BlogPostsList);
 
 To get access to [**Collections**](/docs/content-as-data/collections/), you can use `getContentByCollection` and pass the collection name as the first argument.
 
-Below is an example of using a collection to generate the navigation items for a header menu:
+Below is an example of using a collection to generate the navigation items for a header menu, using a custom frontmatter to define the **order**:
 
 ```js
 import { getContentByCollection } from "@greenwood/cli/src/data/client.js";

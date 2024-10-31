@@ -46,7 +46,7 @@ It can be accessed and substituted statically in either markdown:
 ```md
 # My Blog Post
 
-Published: ${globalThis.page.published}
+Published: ${globalThis.page.data.published}
 
 Lorum Ipsum.
 ```
@@ -58,7 +58,7 @@ Or HTML:
   <head>
     <title>My Blog - ${globalThis.page.title}</title>
     <meta name="author" content="${globalThis.page.data.author}" />
-    <meta property="og:title" content="My Blog -  ${globalThis.page.title}" />
+    <meta property="og:title" content="My Blog - ${globalThis.page.title}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.myblog.dev" />
     <meta property="og:image" content="https://www.myblog.dev/${globalThis.page.data.image}" />

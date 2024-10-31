@@ -17,6 +17,7 @@ To define a collections, just add a **collection** property to the frontmatter o
 ```md
 ---
 collection: nav
+order: 2
 ---
 
 # About Page
