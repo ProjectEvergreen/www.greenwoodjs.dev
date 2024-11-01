@@ -20,6 +20,7 @@
   }
 
   & li svg {
+    min-height: 30px;
     max-height: var(--size-4);
     display: inline;
   }
