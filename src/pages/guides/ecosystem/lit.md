@@ -39,41 +39,29 @@ Now you can start writing Lit based Web Components!
 <!-- prettier-ignore-start -->
 <app-ctc-block variant="snippet" heading="src/components/greeting.js">
 
-  ```html
-  <html>
-    <head>
-      <script type="module">
-        import { html, css, LitElement } from "lit";
+  ```js
+  import { html, css, LitElement } from "lit";
 
-        export class SimpleGreeting extends LitElement {
-          static styles = css`
-            p {
-              color: blue;
-            }
-          `;
+  export class SimpleGreeting extends LitElement {
+    static styles = css`
+      p {
+        color: blue;
+      }
+    `;
 
-          static properties = {
-            name: { type: String },
-          };
+    static properties = {
+      name: { type: String },
+    };
 
-          constructor() {
-            super();
-            this.name = "Somebody";
-          }
+    constructor() {
+      super();
+      this.name = "Somebody";
+    }
 
-          render() {
-            return html`<p>Hello, ${this.name}!</p>`;
-          }
-        }
-        customElements.define("simple-greeting", SimpleGreeting);
-      </script>
-    </head>
-
-    <body>
-      <simple-greeting></simple-greeting>
-      <simple-greeting name="Greenwood"></simple-greeting>
-    </body>
-  </html>
+    render() {
+      return html`<p>Hello, ${this.name}!</p>`;
+    }
+  }
   ```
 
 </app-ctc-block>
