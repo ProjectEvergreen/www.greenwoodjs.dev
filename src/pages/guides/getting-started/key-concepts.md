@@ -27,10 +27,10 @@ src/
 
 Would yield the following routes:
 
-- `/` - mapped from _index.html_
-- `/blog/` - mapped from _blog/index.html_
-- `/blog/first-post/` - mapped from _blog/first-post.md_
-- `/blog/first-post/` - mapped from _blog/second-post.md_
+- **/** - mapped from _index.html_
+- **/blog/** - mapped from _blog/index.html_
+- **/blog/first-post/** - mapped from _blog/first-post.md_
+- **/blog/first-post/** - mapped from _blog/second-post.md_
 
 > Notice we can mix and match HTML and markdown authored content in our filesystem. You can of course create dynamic server rendered pages (SSR), API routes, and more, with all your static and dynamic content happily living side-by-side. 👀
 

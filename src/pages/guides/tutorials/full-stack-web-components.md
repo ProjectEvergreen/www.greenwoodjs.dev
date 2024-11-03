@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Full Stack Web Components
 
-This guide will walk through some of the patterns demonstrated in our Vercel adapter repo, in which we server render a web component on the server through a "fragments" API with WCC generating HTML, while also re-using that same custom elements definition on the client so we can use it for interactivity too. All through the power of web standards. 💯
+This guide will walk through an application in which we server render Web Component through a "fragments" API with WCC generating the HTML, while also re-using that same custom elements definition on the client so we can re-use it for interactivity too. All through the power of web standards! 💯
 
 ![full-stack-web-components](/assets/guides/full-stack-web-components.webp)
 
@@ -84,7 +84,7 @@ customElements.define("app-card", Card);
 
 ## Search API
 
-Next we'll make a "fragments" based API route that we'll call to on the Search page. When the user submits the `<form>` on the Search page for a product, a request from the client will be made to this endpoint to filter through the products and if there are any matches, will return the response as an HTML payload by server rendering all the products out to card components.
+Next we'll make a "fragments" based API route that we'll call to on the Search page. When the user submits the `<form>` on the Search page for a product, a request from the client will be made to this endpoint to filter through the products and if there are any matches, will return the response as an HTML payload by server rendering Web Components.
 
 ```js
 // src/pages/api/search.js

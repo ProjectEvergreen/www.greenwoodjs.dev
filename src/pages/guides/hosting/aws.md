@@ -22,7 +22,7 @@ In this section, we'll share the steps for up S3 and Cloudfront together for sta
 
 > Keep an eye out for prompts from AWS to enable IAM rules for your function and make sure to invalidate the Cloudfront distribution between tests, since error pages / responses will get cached.
 
-You should now be able to access your site at `http://<your-dist>.cloudfront.net/`! 🏆
+You should now be able to access your site at _http://<your-dist>.cloudfront.net/_! 🏆
 
 Now at this point, if you have any routes like `/search/`, you'll notice they are not working unless _index.html_ is appended to the path. To enable routing (URL rewriting) for cleaner URLs, follow the _Configure Trigger_ section of [this guide](https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/) to attach the Lambda as a [**Lambda@Edge**](https://aws.amazon.com/lambda/edge/) function that will run on every incoming request.
 

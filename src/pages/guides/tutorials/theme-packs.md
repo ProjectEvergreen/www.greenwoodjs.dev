@@ -19,9 +19,8 @@ To try and focus on just the theme pack aspects, this guide assumes a couple thi
 
 1. You are already familiar with [setting up](/guides/getting-started/) a Greenwood project.
 1. You are familiar with [publishing packages to npm](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages).
-1. Assumes a Unix "like" environment (in regards to commands and file path examples used), though the same can definitely be done on Windows.
 
-We encourage using Greenwood to develop your theme pack mainly so that you can ensure a seamless experience when publishing to npm knowing that things should just work. ™️
+> We encourage using Greenwood to develop your theme pack mainly so that you can ensure a seamless experience when publishing to npm knowing that things should just work. ™️
 
 ## Project Setup
 
@@ -219,7 +218,7 @@ You can also use Greenwood to test your theme pack using a production build so t
 
 When it comes to publishing, it should be fairly straightforward, and you'll just want to do the following:
 
-1. Add _dist/_ to _.gitignore_ (or whatever `files` location you want to use for publishing)
+1. Add _dist/_ to _.gitignore_ (or whatever **files** location you want to use for publishing)
 1. Add a `prepublish` script to your _package.json_ to create the _dist/_ directory with all the needed _layouts_ (layouts) /_ and \_styles/_
    ```json
    {

@@ -8,7 +8,7 @@ tocHeading: 2
 
 Now that we have covered some of the [basics](/guides/getting-started/key-concepts/) and have our project [ready to go](/guides/getting-started/#setup), let's start building!
 
-In this section, we'll walk through developing a site with Greenwood and making some content. We'll provide all the code so you can just follow along if you want. By the end, you'll have a simple website that you can build and deploy to any web server you like. What you do from there, is all up to you!
+In this section, we'll walk through developing a site with Greenwood and making some content. We'll provide all the code so you can just follow along if you want. By the end, you'll have a simple website that you can build and deploy to any web server or hosting provider you like. What you do from there, is all up to you!
 
 > Feel free to follow along with our [companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) as you work through this section.
 
@@ -55,7 +55,7 @@ Our home page will be simple landing page with links to our blog post pages:
 </html>
 ```
 
-For the blog post pages, let's create a folder called _blog/_ in our pages directory and then create two markdown files called _first-post.md_ and _second-post.md_.
+For the blog post pages, let's create a folder called _blog/_ in our pages directory and then create two markdown files called _first-post.md_ and _second-post.md_:
 
 ```md
 # My First Blog Post
