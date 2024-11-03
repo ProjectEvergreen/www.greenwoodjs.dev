@@ -6,13 +6,13 @@ tocHeading: 2
 
 # Collections
 
-Collections are a feature in Greenwood by which you can use [frontmatter](/docs/resources/markdown/#frontmatter) to group pages that can the be referenced through [JavaScript](/docs/content-as-data/data-client/) or [active frontmatter](/docs/content-as-data/active-frontmatter/).
+Collections are a feature in Greenwood by which you can use [frontmatter](/docs/resources/markdown/#frontmatter) to group pages that can then be referenced through [JavaScript](/docs/content-as-data/data-client/) or [active frontmatter](/docs/content-as-data/active-frontmatter/).
 
 This can be a useful way to group pages for things like navigation menus based on the content in your pages directory.
 
 ## Usage
 
-To define a collections, just add a **collection** property to the frontmatter of any static file:
+To define a collection, just add a **collection** property to the frontmatter of any static file:
 
 ```md
 ---
@@ -23,7 +23,7 @@ order: 2
 # About Page
 ```
 
-You can now a reference to that collection either in HTML using [`activeFrontmatter`](/docs/content-as-data/active-frontmatter/):
+You can now a reference to that collection either in HTML using [**activeFrontmatter**](/docs/content-as-data/active-frontmatter/):
 
 ```html
 <html>

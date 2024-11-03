@@ -6,10 +6,10 @@ tocHeading: 2
 
 # Layouts
 
-Greenwood defines two types of layouts to help layout your pages with common HTML
+Greenwood defines two types of layouts that can be used to wrap your pages with common HTML
 
 - _App Layout_: The ["app shell"](https://developers.google.com/web/fundamentals/architecture/app-shell) that will wrap all pages.
-- _Page Layouts_: Layouts that can be re-used across multiple pages using [frontmatter](/docs/resources/markdown/#frontmatter).
+- _Page Layouts_: Layouts that can be re-used across multiple pages and defined using [frontmatter](/docs/resources/markdown/#frontmatter).
 
 Greenwood will handle merging the `<body>` and `<head>` tag contents when building up your pages and layouts.
 
@@ -33,7 +33,7 @@ src/
 
 ## Pages
 
-Pages in your project will generally want a layout so you can control the output of the HTML and include all your own custom components and styles to wrap the content. By default all pages will default to looking for a _page.html_ in _layouts/_ directory within your workspace. A placeholder of `<content-outlet></content-outlet>` can be used to position where the processed content from the incoming page will go.
+Pages in your project will generally want a layout so you can control the output of the HTML and include all your own custom components and styles to wrap the content. By default all pages will default to looking for a _page.html_ in the _layouts/_ directory. A placeholder of `<content-outlet></content-outlet>` can be used to position where the processed content from the incoming page will go.
 
 Below is an example of a _page.html_ layout:
 

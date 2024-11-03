@@ -40,11 +40,9 @@ Or HTML:
 
 ## URL
 
-In your JavaScript, you can also use a combination of [`new URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) and [`import.meta.url`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta) which means you can put the file anywhere in your project and it will will be resolved automatically.
+In your JavaScript, you can also use a combination of [`new URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) and [`import.meta.url`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta) which means you can put the file anywhere in your project and it will will be resolved automatically. For production builds, Greenwood will generate a unique filename for the asset as well, e.g. _logo-83bc009f.svg_.
 
-For production builds, Greenwood will generate a unique filename for the asset as well, e.g. _logo-83bc009f.svg_.
-
-Here is an example for reference:
+Below is an example for reference:
 
 ```js
 // src/components/header.js

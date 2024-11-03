@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Web Standards
 
-Throughout our docs we make heavy use of, and reference, some of the following Web APIs, either indirectly or as part of the core surface area of Greenwood itself. This section is an general introduction to them with relevant links and resources.
+Throughout our docs we make heavy use of, and reference to, some of the following Web APIs, either indirectly or as part of the core surface area of Greenwood itself. This section is a general introduction to them with relevant links and resources.
 
 ## Import Attributes
 
@@ -42,10 +42,13 @@ A simple example putting it all together might look like this:
 ```js
 import sheet from "./card.css" with { type: "css" };
 
+// create a template element
+// to be populated with dynamic HTML
 const template = document.createElement("template");
 
 export default class Card extends HTMLElement {
   connectedCallback() {
+    // this block can be SSR'd and thus wont need to be re-run on the client
     if (!this.shadowRoot) {
       const thumbnail = this.getAttribute("thumbnail");
       const title = this.getAttribute("title");
@@ -57,34 +60,43 @@ export default class Card extends HTMLElement {
         </div>
       `;
 
+      // attach our template to our Shadow root
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
+    // adopt our CSS Module Script
     this.shadowRoot.adoptedStyleSheets = [sheet];
   }
 }
 
+// defining the HTML tag that will invoke this definition
 customElements.define("x-card", Card);
+```
+
+And would be used like this:
+
+```html
+<x-card title="My Title" thumbnail="/path/to/image.png"></x-card>
 ```
 
 > Greenwood promotes Web Components not only as a great way to add sprinkles of JavaScript to an otherwise static site, but also for [static templating through prerendering](docs/reference/rendering-strategies/#prerendering) with all the power and expressiveness of JavaScript as well as completely [full-stack web components](/guides/tutorials/full-stack-web-components/).
 
 ## Fetch (and Friends)
 
-[**Fetch**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is a web standard for making HTTP requests and is supported both on the client and the server. It also bring along "companion" APIs like [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request), [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response), and [`Headers`](https://developer.mozilla.org/en-US/docs/Web/API/Headers).
+[**Fetch**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is a web standard for making HTTP requests and is supported both on the client and the server. It also brings along "companion" APIs like [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request), [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response), and [`Headers`](https://developer.mozilla.org/en-US/docs/Web/API/Headers).
 
-This suite of APIs is featured prominently in our API Route handlers:
+This suite of APIs is featured prominently in our API Route examples:
 
 ```js
+// a standard request object is passed in
+// and a standard response object should be returned
 export async function handler(request) {
-  const params = new URLSearchParams(request.url.slice(request.url.indexOf("?")));
-  const name = params.has("name") ? params.get("name") : "World";
-  const body = { message: `Hello ${name}! 👋` };
+  console.log("endpoint visited", request.url);
 
-  return new Response(JSON.stringify(body), {
+  return new Response("...", {
     headers: new Headers({
-      "Content-Type": "application/json",
+      /* ... */
     }),
   });
 }
@@ -92,9 +104,7 @@ export async function handler(request) {
 
 ## Import Maps
 
-During local development, Greenwood loads all assets from your browser unbundled, serving the content right off disk, or through any additional plugins defined for the project in a _greenwood.config.js_. Combined with live reloading and `E-Tag` cache tag headers, [**import maps**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) allow bare specifiers typically found when referencing packages from npm, to work natively in the browser without having to load all of _node_modules_ up front. All pages and assets are only requested on load.
-
-When installing a package as a `dependency` in your _package.json_, Greenwood will walk your dependencies and all their transitive dependencies, to build up a map to be injected in the `<head>` of your HTML.
+During local development, Greenwood loads all assets from your browser unbundled, serving the content right off disk. [**Import maps**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) allow bare specifiers typically found when referencing packages from npm, to work natively in the browser. When installing a package as a **dependency** in your _package.json_, Greenwood will walk your dependencies and all their dependencies, to build up a map to be injected into the `<head>` of your HTML.
 
 This is a sample of an import map that would be generated after having installed the **lit** package:
 
@@ -122,16 +132,19 @@ This is a sample of an import map that would be generated after having installed
 
 The [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) constructor provides an elegant way for referencing [static assets](/docs/resources/assets/) on the client and on the server, and it works great when combined with [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) for easily interacting with search params in a request.
 
-Here is an example of some of these APIs in action in an API Route handler:
+Below is an example used in an API Route handler:
 
 ```js
 export async function handler(request) {
   const params = new URLSearchParams(request.url.slice(request.url.indexOf("?")));
   const name = params.has("name") ? params.get("name") : "World";
+  const msg = `Hello, ${name}! `;
 
-  console.log({ name });
-
-  // ...
+  return new Response(JSON.stringify({ msg }), {
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  });
 }
 ```
 

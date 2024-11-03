@@ -12,23 +12,7 @@ Really useful for passing page content or collections as attributes to a custom 
 
 ## Usage
 
-Say for instance we want to
-
-```html
-<!-- src/pages/index.html -->
-<html>
-  <head>
-    <title>Home Page</title>
-    <script type="module" src="../components/navigation.js"></script>
-  </head>
-
-  <body>
-    <app-navigation items="${globalThis.collection.nav}">
-  </body>
-</html>
-```
-
-Or given some frontmatter in a markdown file:
+Given some frontmatter in a markdown file:
 
 ```md
 ---
@@ -72,7 +56,7 @@ Or HTML:
 
 ## Data Client
 
-You can also access this content using our data client.
+You can also access this content using our data client:
 
 ```js
 import { getContentByCollection } from "@greenwood/cli/src/data/client.js";

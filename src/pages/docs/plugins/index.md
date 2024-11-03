@@ -4,12 +4,12 @@ order: 4
 ---
 
 <app-heading-box heading="Plugins">
-  <p>Greenwood provides some first-party plugins allowing you to extend Greenwood to support capabilities not already supported by web standards.  The full list is below, with some of our featured plugins on the left side nav.  You can also <a href="/docs/reference/plugins-api/">create your own</a>.</p>
+  <p>Greenwood provides some first-party plugins allowing you to extend Greenwood through resource transformations, custom renderers, and more.  The full list is below, with some of our featured plugins on the left side-nav.  You can also <a href="/docs/reference/plugins-api/">create your own</a>.</p>
 </app-heading-box>
 
-Below is the official list of supported first-party plugins available by the Greenwood team with links to the plugin specific README for full installation and usage documentation.
-
 > When installing plugins with **npm**, make sure to add the `--legacy-peer-deps` flag, or add an _.npmrc_ file in the root of your project with `legacy-peer-deps=true` set.
+
+Below is the official list of supported first-party plugins available by the Greenwood team with links to the plugin specific README for full installation and usage documentation.
 
 <br>
 

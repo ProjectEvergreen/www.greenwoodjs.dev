@@ -38,7 +38,7 @@ export default {
 
 ## Usage
 
-Now you can create a CSS file that ends in _.module.css_
+Now you can create a CSS file that ends in _.module.css_:
 
 ```css
 /* header.module.css */
@@ -65,7 +65,7 @@ Now you can create a CSS file that ends in _.module.css_
 }
 ```
 
-And reference that in your (Light DOM) HTML based Web Component
+And reference that in your (Light DOM) HTML based Web Component:
 
 ```js
 // header.js

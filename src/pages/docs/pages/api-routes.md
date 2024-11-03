@@ -8,7 +8,7 @@ tocHeading: 2
 
 # API Routes
 
-Greenwood has support for API routes, which are just functions that run on the server, and take in a [**Request**](https://developer.mozilla.org/en-US/docs/Web/API/Request) and return a [**Response**](https://developer.mozilla.org/en-US/docs/Web/API/Response). Each API route must export an `async` function called **handler**.
+Greenwood has support for API routes, which are just functions that run on the server, and take in a [**Request**](https://developer.mozilla.org/en-US/docs/Web/API/Request) and return a [**Response**](https://developer.mozilla.org/en-US/docs/Web/API/Response). Each API route must export an async function called **handler**.
 
 ## Usage
 
@@ -47,7 +47,7 @@ Inspired by [**Doug Parker's**](https://blog.dwac.dev/) blog post [_A Simpler HT
 An example of rendering a "card" component in an API Route might look like look this:
 
 ```js
-// component/card.js
+// src/component/card.js
 export default class Card extends HTMLElement {
   connectedCallback() {
     if (!this.shadowRoot) {
@@ -74,7 +74,10 @@ export default class Card extends HTMLElement {
 customElements.define("x-card", Card);
 ```
 
+And here is it being used in an API Route handler:
+
 ```js
+// src/pages/api/search.js
 import { renderFromHTML } from "wc-compiler";
 import { getProducts } from "../../db/products.js";
 
@@ -98,7 +101,7 @@ export async function handler(request) {
       })
       .join("")}
   `,
-    [new URL("../path/to/card.js", import.meta.url)],
+    [new URL("../../components/card.js", import.meta.url)],
   );
 
   return new Response(html, {
@@ -113,7 +116,7 @@ export async function handler(request) {
 
 ## Isolation Mode
 
-To execute an API route in its own isolated request context when running `greenwood serve`, you can export an **isolation** option from your page, set to `true`.
+To execute an API route in its own isolated rendering context, you can export an **isolation** option from your page, set to `true`.
 
 ```js
 export const isolation = true;

@@ -33,7 +33,7 @@ The following routes will be accessible from the browser:
 
 ## SSR
 
-Greenwood supports the intermingling of static pages like HTML and markdown with dynamic pages. Taking the example above, if we wanted a server rendered route, like a "Products" page, we can simply create a JavaScript file following the same naming convention.
+Greenwood supports the intermingling of static pages with dynamic pages. Taking the example above, if we wanted a server rendered route, like a "Products" page, we can simply create a JavaScript file following the same naming convention.
 
 ```shell
 src/
@@ -67,9 +67,9 @@ Now the route _/api/search_ will be available to return a Web API `Response`.
 
 ## SPA
 
-If you would like to opt-out of all file-based routing, like a **Single Page Application (SPA)**, you can opt-out of pages routing entirely and go full client-side only mode by just putting an _index.html_ at the root of your workspace.
+You can opt-out of all file-based routing, like for a **Single Page Application (SPA)**, and go full client-side only mode by just putting an _index.html_ at the root of your workspace. (e.g. **no** _pages/_ directory).
 
-Below is an example project structure of a typical SPA (no _pages/_ directory):
+Below is an example project structure for a typical SPA:
 
 ```shell
 src/
@@ -86,7 +86,7 @@ src/
 
 ## Not Found
 
-As is a [common convention with most hosting providers](https://docs.netlify.com/routing/redirects/redirect-options/#custom-404-page-handling) and web servers, you can create a `404` page in your _pages/_ directory which will be used as the default Not Found page for your site.
+As is a [common convention with most hosting providers](https://docs.netlify.com/routing/redirects/redirect-options/#custom-404-page-handling) and web servers, you can create a `404` page in your _pages/_ directory which will be used as the default **Not Found** page for your site.
 
 ```shell
 src/

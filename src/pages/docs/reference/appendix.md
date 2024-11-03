@@ -8,7 +8,7 @@ tocHeading: 2
 
 ## Build Output
 
-Greenwood produces a consistent build output that typically mirrors the source directory as it persists all file naming, albeit typically with hashed filenames. For static content, this can be used by static hosting sites with no additional configuration, on serverless hosting with our adapters, or self-hosted with Greenwood's `serve` command on your own server or in a Docker container.
+Greenwood produces a consistent build output that typically mirrors the source directory as it persists all file naming, albeit with hashes included. For static content, this can be used by static hosting sites with no additional configuration, on serverless hosting with our adapters, or self-hosted.
 
 The type of output you may see from Greenwood in the output directory, depending on what features you are using, includes:
 
@@ -49,7 +49,7 @@ public/
 
 ## Compilation
 
-In some of Greenwood's docs, like plugins and server rendering, Greenwood makes available its **compilation**, which is a representation of the internal build and configuration state
+In some of Greenwood's docs, like plugins and server rendering, Greenwood makes available its **compilation**, which is a representation of the internal build and configuration state:
 
 ```json
 {
