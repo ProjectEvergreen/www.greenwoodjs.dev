@@ -7,7 +7,7 @@ tocHeading: 2
 
 # Creating a Theme Pack
 
-Introduced as a concept in the [Context Plugin docs](/docs/plugins/api/#context), a theme pack is what Greenwood uses to refer to a plugin that aims to provide a set of reusable layouts, pages and more to a user (think of [**CSS Zen Garden**](http://www.csszengarden.com/)). A good example (and the one this guide is based on) is [**greenwood-starter-presentation**](https://github.com/thescientist13/greenwood-starter-presentation), which provides the starting point for creating a [slide deck entirely from markdown](https://github.com/thescientist13/knowing-your-tco), using Greenwood!
+Introduced as a concept in the [Context Plugin docs](/docs/reference/plugins-api/#context), a theme pack is what Greenwood uses to refer to a plugin that aims to provide a set of reusable layouts, pages and more to a user (think of [**CSS Zen Garden**](http://www.csszengarden.com/)). A good example (and the one this guide is based on) is [**greenwood-starter-presentation**](https://github.com/thescientist13/greenwood-starter-presentation), which provides the starting point for creating a [slide deck entirely from markdown](https://github.com/thescientist13/knowing-your-tco), using Greenwood!
 
 ![greenwood-starter-presentation](/assets/guides/greenwood-starter-presentation.png)
 
@@ -147,7 +147,7 @@ const myThemePackPlugin = (options = {}) => [
 export { myThemePackPlugin };
 ```
 
-And our final _greenwood.config.js_ would look like this, which adds a "one-off" [resource plugin](/plugins/resource/) to tell Greenwood to route requests to your theme pack files away from \_node_modules+ and to the location of your projects files for development.
+And our final _greenwood.config.js_ would look like this, which adds a "one-off" [resource plugin](/docs/reference/plugins-api/#resource) to tell Greenwood to route requests to your theme pack files away from _node_modules_ and to the location of your projects files for development.
 
 Additionally, we make sure to pass the flag from above for `__isDevelopment` to our plugin.
 
@@ -270,7 +270,7 @@ For users, they would just need to do the following:
 
 Success! 🥳
 
-> Don't forget, user's can also [include additional CSS / JS files in their frontmatter](/docs/front-matter/#imports), to further extend, customize, and override your layouts!
+> Don't forget, user's can also [include additional CSS / JS files in their frontmatter](/docs/resources/markdown/#frontmatter), to further extend, customize, and override your layouts!
 
 ## FAQ
 

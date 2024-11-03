@@ -119,4 +119,4 @@ To execute an API route in its own isolated request context when running `greenw
 export const isolation = true;
 ```
 
-> For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation) docs.
+> For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation-mode) docs.

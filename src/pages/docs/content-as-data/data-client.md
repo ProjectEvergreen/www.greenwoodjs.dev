@@ -10,7 +10,7 @@ To access your content as data with Greenwood, there are three pre-made APIs you
 
 This way, you can serialize and / or hydrate from this data as needed based on your application's needs.
 
-> These features works best when used for build time templating combining our [**prerender**](/docs/configuration/#prerender) and [**static** optimization](/docs/configuration/#optimization) configurations.
+> These features works best when used for build time templating combining our [**prerender**](/docs/reference/configuration/#prerender) and [**static** optimization](/docs/reference/configuration/#optimization) configurations.
 
 ## Content
 

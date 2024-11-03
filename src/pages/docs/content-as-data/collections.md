@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Collections
 
-Collections are a feature in Greenwood by which you can use [frontmatter](/docs/resources/markdown#frontmatter) to group pages that can the be referenced through JavaScript or [`activeFrontmatter`](/docs/configuration/#active-frontmatter).
+Collections are a feature in Greenwood by which you can use [frontmatter](/docs/resources/markdown/#frontmatter) to group pages that can the be referenced through [JavaScript](/docs/content-as-data/data-client/) or [active frontmatter](/docs/content-as-data/active-frontmatter/).
 
 This can be a useful way to group pages for things like navigation menus based on the content in your pages directory.
 

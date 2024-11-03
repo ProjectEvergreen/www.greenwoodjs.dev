@@ -53,12 +53,12 @@ export default {
 The **provider** function takes a Greenwood [**compilation** object](/docs/reference/appendix/#compilation) consisting of the following properties:
 
 - **config** - Current values for of Greenwood's [configuration](/docs/reference/configuration/) settings
-- **graph** - All the pages in your project per Greenwood's [Content as Data page schema](/docs/content-as-data/page-data/)
+- **graph** - All the pages in your project per Greenwood's [Content as Data page schema](/docs/content-as-data/pages-data/)
 - **context** - Access to relevant build directories like project workspace, output directory, etc
 
 ## Adapter
 
-Adapter plugins are designed with the intent to be able to post-process the Greenwood standard build output. For example, moving [build output files](/docs/reference/appendix#build-output/) around into the desired location for a specific hosting provider, like Vercel or AWS.
+Adapter plugins are designed with the intent to be able to post-process the Greenwood standard build output. For example, moving [build output files](/docs/reference/appendix/#build-output) around into the desired location for a specific hosting provider, like Vercel or AWS.
 
 ### Usage
 
@@ -157,7 +157,7 @@ Context plugins allow users to extend where Greenwood can look for certain files
 
 Similar in spirit to [**CSS Zen Garden**](http://www.csszengarden.com/)
 
-> 🔎 For more information on developing and publishing a Theme Pack, check out [our guide on theme packs](/guides/theme-packs/).
+> 🔎 For more information on developing and publishing a Theme Pack, check out [our guide on theme packs](/guides/tutorials/theme-packs/).
 
 ### API
 
@@ -279,7 +279,7 @@ This plugin type supports the following options:
 
 - `executeModuleUrl` (recommended) - `URL` to the location of a file with the SSR rendering implementation
 - `customUrl` - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecyle of a Greenwood build, and running the provided `callback` function
-- `prerender` (optional) - Flag can be used to indicate if this custom renderer should be used to statically [prerender](/docs/configuration/#prerender) pages too.
+- `prerender` (optional) - Flag can be used to indicate if this custom renderer should be used to statically [prerender](/docs/reference/configuration/#prerender) pages too.
 
 ### Examples
 
@@ -645,7 +645,7 @@ The source plugin allows users to include external content as pages that will be
 
 ### API
 
-This plugin supports providing an array of "page" objects that will be added as nodes in [the graph](/docs/data/).
+This plugin supports providing an array of "page" objects that will be added as nodes in [the graph](/docs/content-as-data/).
 
 ```js
 // my-source-plugin.js

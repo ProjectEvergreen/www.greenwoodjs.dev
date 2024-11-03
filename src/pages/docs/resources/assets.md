@@ -84,4 +84,4 @@ src/
   sitemap.xml
 ```
 
-> If you need support for more custom copying of static files like this, please check out our docs on creating your own [copy plugin](/docs/reference/plugins/#copy).
+> If you need support for more custom copying of static files like this, please check out our docs on creating your own [copy plugin](/docs/reference/plugins-api/#copy).

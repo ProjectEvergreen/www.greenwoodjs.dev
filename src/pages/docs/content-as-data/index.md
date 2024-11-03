@@ -20,6 +20,6 @@ But what happens over time, when that list grows to 10, 50, 100+ posts? Imagine 
 
 To assist with this, Greenwood provides a set of "content as data" capabilities on the left sidebar you can take advantage of.
 
-> First thing though, make sure you've set the [`activeContent`](/docs/configuration/#active-content) flag to `true` in your _greenwood.config.js_.
+> First thing though, make sure you've set the [`activeContent`](/docs/reference/configuration/#active-content) flag to `true` in your _greenwood.config.js_.
 >
-> These features works best when used for build time templating combining our [**prerender**](/docs/configuration/#prerender) and [**static** optimization](/docs/configuration/#optimization) configurations.
+> These features works best when used for build time templating combining our [**prerender**](/docs/reference/configuration/#prerender) and [**static** optimization](/docs/reference/configuration/#optimization) configurations.

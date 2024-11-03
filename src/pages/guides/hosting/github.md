@@ -17,7 +17,7 @@ Greenwood can easily be configured to work with [GitHub Pages](https://pages.git
 Following the steps [outlined here](https://pages.github.com/), first make sure you have already:
 
 1. Created a repo in the format `<username>.github.io` or `<username>.github.io/<repo-name>`
-1. If using `<username>.github.io/<repo-name>`, make sure to set Greenwood's [base path](/docs/configuration/#base-peth) configuration to match
+1. If using `<username>.github.io/<repo-name>`, make sure to set Greenwood's [base path](/docs/reference/configuration/#base-path) configuration to match
    ```js
    export default {
      basePath: "/repo-name",

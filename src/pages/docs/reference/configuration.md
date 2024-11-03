@@ -54,7 +54,7 @@ export default {
 
 There are cases where an application might be deployed and hosted from a "sub" pathname that acts as the relative "web root". (GitHub Pages is an example of this)
 
-So with a URL of _http://www.example.com/app-a/_, the \*_basePath_ would be set as follows:
+So with a URL of _http://www.example.com/app-a/_, the _basePath_ would be set as follows:
 
 ```js
 export default {

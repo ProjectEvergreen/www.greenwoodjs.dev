@@ -64,7 +64,7 @@ And use it in your project like you would use a _.js_ file!
 <script type="module" src="/components/greeting.ts"></script>
 ```
 
-This is also supported for pages with an additional option":
+This is also supported for pages with the **servePage** option that you can pass:
 
 ```js
 import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";

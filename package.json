@@ -28,6 +28,7 @@
     "lint:ls": "ls-lint",
     "lint:js": "eslint",
     "lint:css": "stylelint \"./src/**/*.css\"",
+    "lint:links": "npm run build && node ./link-checker.js",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "prepare": "husky install"

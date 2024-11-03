@@ -48,7 +48,7 @@ export default {
 
 ## Usage
 
-Now, you can author [SSR pages](/docs/server-rendering/) using Lit templates using Greenwood's [`getBody` API](https://www.greenwoodjs.io/docs/server-rendering/#usage) or prerender components included via `<script>` tags.
+Now, you can author [SSR pages](/docs/pages/server-rendering/) using Lit templates using Greenwood's [`getBody` API](https://www.greenwoodjs.io/docs/server-rendering/#usage) or prerender components included via `<script>` tags.
 
 Below is an example of generating a page of LitElement based Web Components:
 

@@ -75,7 +75,7 @@ For example, take a list of blog posts rendered based on the project's pages dir
   customElements.define("blog-posts-list", BlogPostsList);
   ```
 
-1. Add it to your HTML page with the [**static** optimization attribute](/docs/reference/configuration/#optimizations)
+1. Add it to your HTML page with the [**static** optimization attribute](/docs/reference/configuration/#optimization)
 
   ```html
   <!doctype html>

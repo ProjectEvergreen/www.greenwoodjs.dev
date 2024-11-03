@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Server Rendering
 
-Greenwood provides a couple of mechanisms for server-side rendering, building on top of our [file-based routing](/docs/routing/) convention.
+Greenwood provides a couple of mechanisms for server-side rendering, building on top of our [file-based routing](/docs/pages/) convention.
 
 To create a dynamic server route, just create a JavaScript file in the _pages/_ directory, and that's it!
 
@@ -24,7 +24,7 @@ In your page file, Greenwood supports the following functions that you can `expo
 
 - **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**
 - **getBody**: Return a string of HTML for the contents of the page
-- **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#page-layouts)
+- **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#pages)
 - **getFrontmatter**: Provide an object of [frontmatter](/docs/resources/markdown/#frontmatter) properties. Useful in conjunction with [content as data](/docs/content-as-data/), or otherwise setting static configuration / metadata through SSR.
 
 <!-- eslint-disable no-unused-vars -->
@@ -134,7 +134,7 @@ export async function getBody(compilation, page, request) {
 
 ### Layouts
 
-For creating a [layout](/docs/pages/layouts) dynamically, you can provide a `getLayout` function and return the HTML you need.
+For creating a [layout](/docs/pages/layouts/) dynamically, you can provide a `getLayout` function and return the HTML you need.
 
 You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#compilation) object as well as the specific route:
 
@@ -208,7 +208,7 @@ To execute an SSR page in its own request context when running `greenwood serve`
 export const isolation = true;
 ```
 
-> For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation) docs.
+> For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation-mode) docs.
 
 ## Request Data
 
