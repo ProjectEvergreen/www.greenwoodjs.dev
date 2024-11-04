@@ -14,6 +14,10 @@ app-hero-banner {
     width: 94%;
     margin: 0 auto;
   }
+
+  app-hero-banner {
+    padding-bottom: var(--size-2);
+  }
 }
 
 @media (min-width: 1300px) {
@@ -27,7 +31,7 @@ app-hero-banner {
 @media (min-width: 1440px) {
   app-latest-post,
   app-hero-banner {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
   }
 }

@@ -49,6 +49,13 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .container {
+    padding: var(--size-4) var(--size-8);
+    margin: 0 auto;
+  }
+}
+
 @media (min-width: 1440px) {
   .container {
     padding: var(--size-9) var(--size-11);

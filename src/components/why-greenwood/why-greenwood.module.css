@@ -102,6 +102,10 @@
 }
 
 @media (min-width: 1440px) {
+  .container {
+    padding: var(--size-9) var(--size-10);
+  }
+
   .subHeading {
     width: 70%;
   }

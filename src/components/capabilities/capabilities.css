@@ -125,11 +125,11 @@ pre {
   }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   .container {
-    width: 90%;
     display: block;
     margin: 0 auto;
+    padding: var(--size-4) var(--size-8);
   }
 
   .content,
@@ -153,5 +153,11 @@ pre {
   100% {
     opacity: 1;
     transform: translate(0px, 0px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    padding: var(--size-9) var(--size-11);
   }
 }
