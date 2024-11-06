@@ -98,17 +98,16 @@ While not all DOM APIs are supported, in general you can still use them and comb
 
 ```js
 export default class HeroBanner extends HTMLElement {
-  clickButton(el) {
+  clickButton() {
     // ...
   }
 
   connectedCallback() {
     // ...
 
-    this.shadowRoot.querySelectorAll?.("button") ||
-      [].forEach((button) => {
-        button.addEventListener("click", () => this.clickButton(button));
-      });
+    this.shadowRoot.querySelectorAll?.("button").forEach((button) => {
+      button.addEventListener("click", () => this.clickButton(button));
+    });
   }
 }
 
