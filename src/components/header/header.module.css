@@ -79,7 +79,7 @@
   width: fit-content;
   border: var(--border-size-1) solid #4d4d4d45;
   border-radius: var(--radius-6);
-  padding: var(--size-1);
+  padding: 0 var(--size-1);
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -128,12 +128,6 @@
   }
 }
 
-@media screen and (min-width: 600px) {
-  .logoLink svg.greenwood-logo-full {
-    width: 100%;
-  }
-}
-
 @media (max-width: 600px) {
   .navBar {
     display: flex;
@@ -162,15 +156,16 @@
   }
 
   .socialTray {
-    padding: var(--size-1) var(--size-2);
+    padding: 0 var(--size-2);
   }
+
   .logoLink svg.greenwood-logo-full {
     width: 70%;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1440px) {
   .logoLink svg.greenwood-logo-full {
-    width: 100%;
+    width: 80%;
   }
 }

@@ -4,26 +4,33 @@ app-hero-banner {
   margin: var(--size-2) auto;
 }
 
-app-latest-post {
-  width: 92%;
-  margin: 0 auto;
-}
-
 .capabilities-content {
   display: none;
 }
 
-@media (min-width: 768px) {
-  app-hero-banner,
-  app-latest-post {
-    padding: var(--size-2);
+@media (min-width: 1024px) {
+  app-latest-post,
+  app-hero-banner {
+    width: 94%;
+    margin: 0 auto;
+  }
+
+  app-hero-banner {
+    padding-bottom: var(--size-2);
+  }
+}
+
+@media (min-width: 1300px) {
+  app-latest-post,
+  app-hero-banner {
+    width: 88%;
+    margin: 0 auto;
   }
 }
 
 @media (min-width: 1440px) {
-  app-hero-banner,
-  app-latest-post {
-    width: 80%;
-    padding-left: 0;
+  app-latest-post,
+  app-hero-banner {
+    width: 85%;
   }
 }

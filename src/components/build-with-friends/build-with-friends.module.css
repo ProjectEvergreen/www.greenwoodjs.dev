@@ -49,12 +49,19 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .container {
+    padding: var(--size-4) var(--size-8);
+    margin: 0 auto;
+  }
+}
+
 @media (min-width: 1440px) {
-  .icons {
-    max-width: 90%;
+  .container {
+    padding: var(--size-9) var(--size-11);
   }
 
-  .container {
-    padding: var(--size-px-10) var(--size-px-13);
+  .icons {
+    max-width: 90%;
   }
 }

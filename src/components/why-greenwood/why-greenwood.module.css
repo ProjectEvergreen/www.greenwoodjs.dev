@@ -62,7 +62,8 @@
 
 @media (min-width: 1024px) {
   .subHeading {
-    width: 80%;
+    width: 90%;
+    text-align: center;
   }
 
   .cardContainer {
@@ -81,6 +82,10 @@
 }
 
 @media (min-width: 1280px) {
+  .subHeading {
+    width: 80%;
+  }
+
   .cardContainer {
     width: 100%;
   }
@@ -97,6 +102,14 @@
 }
 
 @media (min-width: 1440px) {
+  .container {
+    padding: var(--size-9) var(--size-10);
+  }
+
+  .subHeading {
+    width: 70%;
+  }
+
   .card {
     min-height: 440px;
     height: fit-content;
