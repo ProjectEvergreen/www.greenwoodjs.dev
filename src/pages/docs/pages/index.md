@@ -7,7 +7,7 @@ order: 2
   <p>Greenwood supports hybrid, file-based routing, to easily create routes for your project based on the file contents of your pages directory.</p>
 </app-heading-box>
 
-This section will cover the various aspects of creating static and dynamic content for your project, covering:
+This section will cover the various aspects of creating static and dynamic content for your project:
 
 - [Routing Conventions](/docs/pages/routing/)
 - [Server Side Rendering (SSR)](/docs/pages/server-rendering/)

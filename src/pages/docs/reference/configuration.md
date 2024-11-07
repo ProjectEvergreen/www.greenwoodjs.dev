@@ -52,9 +52,9 @@ export default {
 
 ## Base Path
 
-There are cases where an application might be deployed and hosted from a "sub" pathname that acts as the relative "web root". (GitHub Pages is an example of this)
+There are cases where an application might be deployed and hosted from a "sub" path that acts as the relative "web root". (GitHub Pages is an example of this)
 
-So with a URL of _http://www.example.com/app-a/_, the \*_basePath_ would be set as follows:
+So with a URL of _http://www.example.com/app-a/_, the _basePath_ would be set as follows:
 
 ```js
 export default {
@@ -80,7 +80,7 @@ For convenience, the value of **basePath** will also be made available as a glob
 
 ## Dev Server
 
-Configuration for Greenwood's development server is available using the `devServer` option, including the following options:
+Configuration for Greenwood's development server is available using the `devServer` object, including the following options:
 
 - **extensions**: Provide an array of extensions to watch for changes and reload the live server with. By default, Greenwood will already watch all "standard" web assets (HTML, CSS, JS, etc) it supports by default, as well as any extensions set by [resource plugins](/docs/reference/plugins-api/#resource) you are using in your _greenwood.config.js_.
 - **hud**: The HUD option ([_head-up display_](https://en.wikipedia.org/wiki/Head-up_display)) is some additional HTML added to your site's page when Greenwood wants to help provide information to you in the browser. For example, if your HTML is detected as malformed, which could break the parser. Set this to `false` if you would like to turn it off.
@@ -136,7 +136,7 @@ export const isolation = true;
 
 ## Layouts Directory
 
-By default the directory Greenwood will use to look for your layouts is in _layouts/_. It is relative to your [user workspace](/docs/reference/configuration/#workspace) setting, e.g. `${userWorkspace}/${layoutsDirectory}`.
+By default the directory Greenwood will use to look for your layouts is in _layouts/_. It is relative to your [user workspace](/docs/reference/configuration/#workspace) setting, just like the _pages/_ directory.
 
 ```js
 export default {
@@ -146,7 +146,7 @@ export default {
 
 ## Markdown
 
-You can install and provide custom **unifiedjs** [presets](https://github.com/unifiedjs/unified#preset) and [plugins](https://github.com/unifiedjs/unified#plugin) to further customize and process your markdown past what Greenwood does by default.
+You can install and provide custom **unifiedjs** [presets](https://github.com/unifiedjs/unified#preset) and [plugins](https://github.com/unifiedjs/unified#plugin) to further customize and process [your markdown](/docs/resources/markdown/) past what Greenwood does by default.
 
 For plugins, after installing their packages, you can provide their names to Greenwood:
 
@@ -163,14 +163,14 @@ export default {
 
 Greenwood provides a number of different ways to send hints to Greenwood as to how JavaScript and CSS tags in your HTML should get loaded by the browser. Greenwood supplements, and builds up on top of existing [resource "hints" like `preload` and `prefetch`](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content).
 
-| Option    | Description                                                                                                                                                                                                                                        | Use Cases                                                                                                                                                                                                                   |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `default` | Will add a `<link rel="..." src="..." as="..."></link>` tag for every `<script>` or `<link>` tag in the `<head>` of your HTML using `preload` for styles and `modulepreload` for scripts. This setting will also minify all your JS and CSS files. | General purpose.                                                                                                                                                                                                            |
-| `inline`  | Using this setting, all your `<script>` and `<link>` tags will get inlined right into your HTML.                                                                                                                                                   | For sites with smaller payloads, this could work best as with inlining, you do so at the expense of long-term caching.                                                                                                      |
-| `none`    | With this setting, _none_ of your JS or CSS will be minified or hinted at all.                                                                                                                                                                     | The best choice if you want to handle everything yourself through custom [Resource plugins](/docs/reference/plugins-api/#resource).                                                                                         |
-| `static`  | Only for `<script>` tags, but this setting will remove `<script>` tags from your HTML.                                                                                                                                                             | If your Web Components only need a single render just to emit some static HTML, or are otherwise not dynamic or needed at runtime, this will really speed up your site's performance by dropping unnecessary HTTP requests. |
+| Option      | Description                                                                                                                                                                                                                                           | Use Cases                                                                                                                                                                                    |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **default** | Will add a preload **link** tag for every **script** or **link** tag in the **head** of your HTML, setting the `preload` attribute for styles and the `modulepreload` attribute for scripts. This setting will also minify all your JS and CSS files. | General purpose.                                                                                                                                                                             |
+| **inline**  | Using this setting, all your **script** and **link** tags will get inlined right into your HTML.                                                                                                                                                      | For sites with smaller payloads, this could work best as with inlining, you do so at the expense of long-term caching.                                                                       |
+| **none**    | With this setting, _none_ of your JS or CSS will be minified at all.                                                                                                                                                                                  | The best choice if you want to handle everything yourself through custom [Resource plugins](/docs/reference/plugins-api/#resource).                                                          |
+| **static**  | Only for **script** tags, but this setting will remove **script** tags from your HTML.                                                                                                                                                                | If your Web Components only need a single render just to emit some static HTML, or are otherwise not dynamic or needed at runtime, this will help ship unnecessary JavaScript to the client. |
 
-> These settings are currently considered experimental. Additional improvements and considerations include adding [`none` override support](https://github.com/ProjectEvergreen/greenwood/discussions/545#discussioncomment-957320), [SSR + hydration](https://github.com/ProjectEvergreen/greenwood/discussions/576), and [side effect free layouts and pages](https://github.com/ProjectEvergreen/greenwood/discussions/644).
+> Additional improvements and considerations include adding [**none** override support](https://github.com/ProjectEvergreen/greenwood/discussions/545#discussioncomment-957320), [SSR + hydration](https://github.com/ProjectEvergreen/greenwood/discussions/576), and [side effect free layouts and pages](https://github.com/ProjectEvergreen/greenwood/discussions/644).
 
 Here is an example of setting the **inline** setting:
 
@@ -193,15 +193,13 @@ Additionally, you can apply overrides on a per `<link>` or `<script>` tag basis 
 <link rel="stylesheet" href="/path/to/file1.css" data-gwd-opt="inline" />
 ```
 
-> Just be mindful that style encapsulation provided by ShadowDOM (e.g. `:host`) for custom elements will now have their styles inlined in the `<head>` and mixed with all other global styles, and thus may collide and [be susceptible to the cascade](https://github.com/ProjectEvergreen/greenwood/pull/645#issuecomment-873125192) depending on their degree of specificity. Increasing specificity of selectors or using only global styles will help resolve this.
-
 ## Pages Directory
 
-By default the directory Greenwood will use to look for your local content is _pages/_. It is relative to your [user workspace](/docs/reference/configuration/#workspace) setting, e.g. `${userWorkspace}/${pagesDirectory}`.
+By default the directory Greenwood will use to look for your local content is _pages/_. It is relative to your [user workspace](/docs/reference/configuration/#workspace) setting.
 
 ```js
 export default {
-  pagesDirectory: "docs", // Greenwood will look for pages at src/docs/
+  pagesDirectory: "docs", // Greenwood will look for pages at ./src/docs/
 };
 ```
 
@@ -300,7 +298,7 @@ export default {
 
 ## Prerender
 
-When set to `true` [Greenwood will prerender](/docs/reference/rendering-strategies/) your application using [**WCC**](https://github.com/ProjectEvergreen/wcc) and generate HTML from any Web Components you include in your pages and layouts as part of the final static HTML build output.
+When set to `true` [Greenwood will prerender](/docs/reference/rendering-strategies/) your site using [**WCC**](https://github.com/ProjectEvergreen/wcc) and generate HTML from any Web Components you include in your pages and layouts as part of the final static HTML build output.
 
 ```js
 export default {

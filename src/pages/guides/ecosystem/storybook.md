@@ -157,7 +157,7 @@ Phew, should be all set now.
 
 If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need a _vite.config.js_ so we can create a custom transformation plugin that can leverage Greenwood's plugins to automatically handle custom transformations.
 
-For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to add a Vite plugin to handle this transformation.
+For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to create a wrapping Vite plugin to handle this transformation.
 
 ```js
 import { defineConfig } from "vite";

@@ -10,7 +10,7 @@ Greenwood has a few options for getting a new project started. You can also chec
 
 ## Init
 
-The recommended way to start a new Greenwood project, our **init** CLI will scaffold out a starter project for you. Just run a single command, and then just follow the prompts.
+The recommended way to start a new Greenwood project, our **init** CLI will scaffold out a starter project for you. Just run a single command and then follow the prompts.
 
 To scaffold into the _current_ directory, run:
 

@@ -154,7 +154,7 @@ And Greenwood will statically generate this
 
 ### Interpolate Frontmatter
 
-When setting the [`interpolateFrontmatter`](/docs/configuration/#interpolate-frontmatter) flag in your _greenwood.config.js_, frontmatter in your markdown will be available in your HTML or markdown similar to how variable interpolation works in JavaScript. Great for `<meta>` tags!
+When setting the [`interpolateFrontmatter`](/docs/reference/configuration/#interpolate-frontmatter) flag in your _greenwood.config.js_, frontmatter in your markdown will be available in your HTML or markdown similar to how variable interpolation works in JavaScript. Great for `<meta>` tags!
 
 #### How It Works
 

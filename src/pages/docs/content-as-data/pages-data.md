@@ -16,7 +16,7 @@ Each page will return data in the following schema:
 - **title** (customizable) - inferred title based on the filename
 - **label** (customizable) - inferred from the **title** if not configured
 - **route** - the filename converted into a path as per file based routing
-- **data** (customizable) - any custom frontmatter keys you've added to your page
+- **data** (customizable) - any custom frontmatter keys you've defined for your page
 
 So for a page at _src/pages/blog/first-post.md_, this is the data you would get back:
 
@@ -46,7 +46,7 @@ This is my first post.
 
 ## Table of Contents
 
-Additionally for markdown pages, you can add a frontmatter property called `tocHeading` that will read all the HTML heading tags that match that number, and provide a subset of data, useful for generated a table of contents.
+Additionally for markdown pages, you can add a frontmatter property called `tocHeading` that will read all the HTML heading tags that match that number, and provide that as a subset of the data object. This is most useful for generating the table of contents for a page.
 
 Taking our previous example, if we were to configure this for `<h2>` tags:
 

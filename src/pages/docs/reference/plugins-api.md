@@ -53,12 +53,12 @@ export default {
 The **provider** function takes a Greenwood [**compilation** object](/docs/reference/appendix/#compilation) consisting of the following properties:
 
 - **config** - Current values for of Greenwood's [configuration](/docs/reference/configuration/) settings
-- **graph** - All the pages in your project per Greenwood's [Content as Data page schema](/docs/content-as-data/page-data/)
+- **graph** - All the pages in your project per Greenwood's [Content as Data page schema](/docs/content-as-data/pages-data/)
 - **context** - Access to relevant build directories like project workspace, output directory, etc
 
 ## Adapter
 
-Adapter plugins are designed with the intent to be able to post-process the Greenwood standard build output. For example, moving [build output files](/docs/reference/appendix#build-output/) around into the desired location for a specific hosting provider, like Vercel or AWS.
+Adapter plugins are designed with the intent to be able to post-process the Greenwood standard build output. For example, moving [build output files](/docs/reference/appendix/#build-output) around into the desired location for a specific hosting provider, like Vercel or AWS.
 
 ### Usage
 
@@ -149,7 +149,7 @@ const greenwoodPluginAdapterGeneric = (options = {}) => [
 export { greenwoodPluginAdapterGeneric };
 ```
 
-> **Note**: Check out [Vercel adapter plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-vercel) for a more complete example.
+> **Note**: Check our [Vercel adapter plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-vercel) for a more complete example.
 
 ## Context
 
@@ -157,7 +157,7 @@ Context plugins allow users to extend where Greenwood can look for certain files
 
 Similar in spirit to [**CSS Zen Garden**](http://www.csszengarden.com/)
 
-> 🔎 For more information on developing and publishing a Theme Pack, check out [our guide on theme packs](/guides/theme-packs/).
+> 🔎 For more information on developing and publishing a Theme Pack, check out [our guide on theme packs](/guides/tutorials/theme-packs/).
 
 ### API
 
@@ -250,7 +250,7 @@ export function myCopyPlugin() {
 
 ## Renderer
 
-Renderer plugins allow users to customize how Greenwood server renders (and prerenders) your project. By default, Greenwood supports using [**WCC** or (template) strings](/docs/pages/server-rendering/) to return static HTML for the content and template of your server side routes. With this plugin for example, you can use [Lit's SSR](https://github.com/lit/lit/tree/main/packages/labs/ssr) to render your Lit Web Components on the server side instead.
+Renderer plugins allow users to customize how Greenwood server renders (and prerenders) your project. By default, Greenwood supports using [**WCC** or (template) strings](/docs/pages/server-rendering/) to return static HTML for the content and template of your server side routes. With this plugin for example, you can use [Lit's SSR](https://github.com/lit/lit/tree/main/packages/labs/ssr) to render your Lit Web Components on the server side instead. (but don't do that one specifically, we already have [a plugin](/docs/plugins/lit-ssr/) for Lit 😊)
 
 ### API
 
@@ -277,9 +277,9 @@ export { greenwoodPluginMyCustomRenderer };
 
 This plugin type supports the following options:
 
-- `executeModuleUrl` (recommended) - `URL` to the location of a file with the SSR rendering implementation
-- `customUrl` - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecyle of a Greenwood build, and running the provided `callback` function
-- `prerender` (optional) - Flag can be used to indicate if this custom renderer should be used to statically [prerender](/docs/configuration/#prerender) pages too.
+- **executeModuleUrl** (recommended) - `URL` to the location of a file with the SSR rendering implementation
+- **customUrl** - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecyle of a Greenwood build, and running the provided callback function
+- **prerender** (optional) - Flag can be used to indicate if this custom renderer should be used to statically [prerender](/docs/reference/configuration/#prerender) pages too.
 
 ### Examples
 
@@ -333,23 +333,23 @@ export function myResourcePlugin(options = {}) {
 }
 ```
 
-> Note: Using `servePage` with the `'dynamic'` setting requires enabling [custom imports](/docs/pages/server-rendering/#custom-imports).
+> Note: Using `servePage` with the **'dynamic'** setting requires enabling [custom imports](/docs/pages/server-rendering/#custom-imports).
 
 ### Lifecycles
 
 A resource plugin in Greenwood has access to four lifecycles, in this order:
 
-1. `resolve` - Where the resource is located, e.g. on disk
-1. `serve` - What are the contents of a resource
-1. `preIntercept` - transforming the response of a _served_ resource before Greenwood can `intercept` it
-1. `intercept` - transforming the response of a _served_ resource
-1. `optimize` - transforming the response of resource after `intercept` lifecycle has run (only runs at build time)
+1. **resolve** - Where the resource is located, e.g. on disk
+1. **serve** - What are the contents of a resource
+1. **preIntercept** - transforming the response of a _served_ resource before Greenwood can **intercept** it
+1. **intercept** - transforming the response of a _served_ resource
+1. **optimize** - transforming the response of resource after **intercept** lifecycle has run (only runs at build time)
 
-Each lifecycle also supports a corresponding predicate function, e.g. `shouldResolve` that should return a boolean of `true|false` if this plugin's lifecycle should be invoked for the given resource.
+Each lifecycle also supports a corresponding predicate function, e.g. **shouldResolve** that should return a boolean of `true|false` if this plugin's lifecycle should be invoked for the given resource.
 
 #### Resolve
 
-When requesting a resource like a file, such as `/main.js`, Greenwood needs to know _where_ this resource is located. This is the first lifecycle that is run and takes in a `URL` and `Request` as parameters, and should return a `Request` object. Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/plugins/resource/plugin-user-workspace.js).
+When requesting a resource like a file, such as _/main.js_, Greenwood needs to know _where_ this resource is located. This is the first lifecycle that is run and takes in a `URL` and `Request` as parameters, and should return a `Request` object. Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/plugins/resource/plugin-user-workspace.js).
 
 <!-- eslint-disable no-unused-vars -->
 
@@ -386,9 +386,9 @@ class UserWorkspaceResource extends ResourceInterface {
 
 #### Serve
 
-When requesting a file and after knowing where to resolve it, such as `/path/to/user-workspace/main/scripts/main.js`, Greenwood needs to return the contents of that resource so can be served to a browser or bundled appropriately. This is done by passing an instance of `URL` and `Request` and returning an instance of `Response`. For example, Greenwood uses this lifecycle extensively to serve all the standard web content types like HTML, JS, CSS, images, fonts, etc and also providing the appropriate `Content-Type` header.
+When requesting a file and after knowing where to resolve it, such as _/path/to/user-workspace/main/scripts/main.js_, Greenwood needs to return the contents of that resource so can be served to a browser or bundled appropriately. This is done by passing an instance of `URL` and `Request` and returning an instance of `Response`. For example, Greenwood uses this lifecycle extensively to serve all the standard web content types like HTML, JS, CSS, images, fonts, etc and also providing the appropriate `Content-Type` header.
 
-If you are supporting _non standard_ file formats, like TypeScript (`.ts`) or JSX (`.jsx`), this is where you would want to handle providing the contents of this file transformed into something a browser could understand; like compiling the TypeScript to JavaScript.
+If you are supporting _non standard_ file formats, like TypeScript (_.ts_) or JSX (_.jsx_), this is where you would want to handle providing the contents of this file transformed into something a browser could understand; like compiling the TypeScript to JavaScript.
 
 Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/plugins/resource/plugin-standard-javascript.js) for serving JavaScript files.
 
@@ -421,11 +421,11 @@ class StandardJavaScriptResource extends ResourceInterface {
 
 #### Pre Intercept
 
-After the `serve` lifecycle comes the `preIntercept` lifecycle. This lifecycle is useful for transforming an already served resource _Greenwood_ or any other plugins try and `intercept` it the contents. It takes in as parameters an instance of `URL`, `Request`, and `Response`.
+After the **serve** lifecycle comes the **preIntercept** lifecycle. This lifecycle is useful for transforming an already served resource before _Greenwood_ runs its own **intercept** lifecycles, since Greenwood assumes all content to be "web safe" by the intercept lifecycle. It takes as parameters an instance of `URL`, `Request`, and `Response`.
 
 This lifecycle is useful for augmenting _standard_ web formats prior to Greenwood operating on them. A good example of this is wanting to run pre-processors like Babel, ESBuild, or PostCSS to "downlevel" non-standard syntax _into_ standard syntax before other plugins can operate on it.
 
-Below is an example of Greenwood's PostCSS plugin using `preIntercept` on CSS files.
+Below is an example of Greenwood's [**PostCSS** plugin](/docs/plugins/postcss/) using **preIntercept** on CSS files.
 
 <!-- eslint-disable no-unused-vars -->
 
@@ -467,7 +467,7 @@ class PostCssResource extends ResourceInterface {
 
 #### Intercept
 
-After the `preIntercept` lifecycle comes the `intercept` lifecycle. This lifecycle is useful for transforming already served resources and returning an instance of a `Response` with the new transformation. It takes in as parameters an instance of `URL`, `Request`, and `Response`.
+After the **preIntercept** lifecycle comes the **intercept** lifecycle. This lifecycle is useful for transforming already served resources and returning an instance of a `Response` with the new transformation. It takes in as parameters an instance of `URL`, `Request`, and `Response`.
 
 This lifecycle is useful for augmenting _standard_ web formats, where Greenwood can handle resolving and serving the standard contents, allowing plugins to handle any one-off transformations.
 
@@ -511,7 +511,7 @@ class ImportRawResource extends ResourceInterface {
 
 #### Optimize
 
-This lifecycle is only run during a build (`greenwood build`) and after the `intercept` lifecycle, and as the name implies is a way to do any final production ready optimizations or transformations. It takes as parameters an instance of `URL` and `Response` and should return an instance of `Response`.
+This lifecycle is only run during a build (`greenwood build`) and after the **intercept** lifecycle, and as the name implies is a way to do any final production ready optimizations or transformations. It takes as parameters an instance of `URL` and `Response` and should return an instance of `Response`.
 
 Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-import-css/src/index.js) for minifying CSS. (The actual function for minifying has been omitted for brevity)
 
@@ -588,8 +588,8 @@ These lifecycles provide the ability to do things like:
 
 Although JavaScript is loosely typed, a [server "interface"](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/cli/src/lib/server-interface.js) has been provided by Greenwood that you can use to start building your own server plugins. Effectively you just have to provide two methods:
 
-- `start` - function to run to start your server
-- `stop` - function to run to stop / teardown your server
+- **start** - function to run to start your server
+- **stop** - function to run to stop / teardown your server
 
 They can be used in a _greenwood.config.js_ just like any other plugin type.
 
@@ -645,7 +645,7 @@ The source plugin allows users to include external content as pages that will be
 
 ### API
 
-This plugin supports providing an array of "page" objects that will be added as nodes in [the graph](/docs/data/).
+This plugin supports providing an array of "page" objects that will be added as nodes in [the graph](/docs/content-as-data/).
 
 ```js
 // my-source-plugin.js
@@ -692,6 +692,6 @@ public/
 
 And accessible at the following routes in the browser:
 
-- `/artists/<name1>/`
-- `/artists/<name2>/`
-- `/artists/<nameN>/`
+- _/artists/<name1>/_
+- _/artists/<name2>/_
+- _/artists/<nameN>/_

@@ -16,8 +16,8 @@ Greenwood can easily be configured to work with [GitHub Pages](https://pages.git
 
 Following the steps [outlined here](https://pages.github.com/), first make sure you have already:
 
-1. Created a repo in the format `<username>.github.io` or `<username>.github.io/<repo-name>`
-1. If using `<username>.github.io/<repo-name>`, make sure to set Greenwood's [base path](/docs/configuration/#base-peth) configuration to match
+1. Created a repo in the format **{username}.github.io** or **{username}.github.io/{repo-name}**
+1. If using **{username}.github.io/{repo-name}**, make sure to set Greenwood's [base path](/docs/reference/configuration/#base-path) configuration to match
    ```js
    export default {
      basePath: "/repo-name",
@@ -79,7 +79,7 @@ Following the steps [outlined here](https://pages.github.com/), first make sure 
 
 1. Now `git` commit that and push it to your repo!
 
-If all was successful, you should now see a [`gh-pages` branch](https://github.com/ProjectEvergreen/projectevergreen.github.io/tree/gh-pages) in your repo with the output of the _public/_ directory committed to it.
+If all was successful, you should now see a [**gh-pages** branch](https://github.com/ProjectEvergreen/projectevergreen.github.io/tree/gh-pages) in your repo with the output of the _public/_ directory committed to it.
 
 ![github pages branch](/assets/guides/gh-pages-branch.png)
 
@@ -91,7 +91,7 @@ Now, configure your repository by going to your [repo's _Settings -> Pages_](htt
 
 ## Next Steps
 
-Now, everything should be setup so that on future pushes to the branch specified in the GitHub Actions workflow, GitHub pages should automatically build from the `gh-pages` branch and publish that. 🏆
+Now, everything should be setup so that on future pushes to the branch specified in the GitHub Actions workflow, GitHub pages should automatically build from the **gh-pages** branch and publish that. 🏆
 
 ![github pages branch](/assets/guides/gh-pages-branch-commits.png)
 

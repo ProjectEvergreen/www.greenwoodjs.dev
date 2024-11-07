@@ -7,7 +7,7 @@
 .container a:active,
 .container a:focus,
 .container a:visited {
-  padding: calc(var(--size-1) + var(--size-2));
+  padding: calc(var(--size-1) + var(--size-1));
   border-radius: var(--size-px-2);
   background-color: var(--color-prism-bg);
   color: var(--color-accent);
@@ -17,4 +17,13 @@
 
 .container a:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .container a,
+  .container a:active,
+  .container a:focus,
+  .container a:visited {
+    padding: calc(var(--size-1) + var(--size-2));
+  }
 }

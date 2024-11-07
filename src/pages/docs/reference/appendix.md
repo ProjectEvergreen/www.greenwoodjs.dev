@@ -8,7 +8,7 @@ tocHeading: 2
 
 ## Build Output
 
-Greenwood produces a consistent build output that typically mirrors the source directory as it persists all file naming, albeit typically with hashed filenames. For static content, this can be used by static hosting sites with no additional configuration, on serverless hosting with our adapters, or self-hosted with Greenwood's `serve` command on your own server or in a Docker container.
+Greenwood produces a consistent build output that typically mirrors the source directory as it persists all file naming, albeit with hashes included. For static content, this can be used by static hosting sites with no additional configuration, on serverless hosting with our adapters, or self-hosted.
 
 The type of output you may see from Greenwood in the output directory, depending on what features you are using, includes:
 
@@ -49,7 +49,7 @@ public/
 
 ## Compilation
 
-In some of Greenwood's docs, like plugins and server rendering, Greenwood makes available its **compilation**, which is a representation of the internal build and configuration state
+In some of Greenwood's docs, like plugins and server rendering, Greenwood makes available its **compilation**, which is a representation of the internal build and configuration state:
 
 ```json
 {
@@ -94,11 +94,31 @@ It is fine-tuned for creating Light and Shadow DOM based custom elements. The fu
 - `CSSStyleSheet` (all methods act as no-ops on the server)
 - TypeScript
 
+While not all DOM APIs are supported, in general you can still use them and combine their usage with [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) for a quick "no-op".
+
+```js
+export default class HeroBanner extends HTMLElement {
+  clickButton() {
+    // ...
+  }
+
+  connectedCallback() {
+    // ...
+
+    this.shadowRoot.querySelectorAll?.("button").forEach((button) => {
+      button.addEventListener("click", () => this.clickButton(button));
+    });
+  }
+}
+
+customElements.define("app-hero", HeroBanner);
+```
+
 > You can also customize the renderer using a plugin like our [Lit SSR renderer plugin](/docs/plugins/lit-ssr/) for Lit based projects, or [create your own renderer plugin](/docs/reference/plugins-api/#renderer).
 
 ### SSR Escape Hatch
 
-If you want to opt an entire `connectedCallback` from being run during build or SSR (say a component completely dependent on a live DOM), you can do a `typeof` check for `window`.
+If you want to opt-out an entire `connectedCallback` from being run during build or SSR (say a component completely dependent on a live DOM), you can do a `typeof` check for `window`.
 
 This can be useful when components are very DOM heavy, like querying the DOM and setting up event handlers:
 

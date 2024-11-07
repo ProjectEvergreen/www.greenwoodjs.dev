@@ -8,7 +8,7 @@ tocHeading: 2
 
 [**Tailwind**](https://tailwindcss.com/) is a CSS utility library providing all the modern features and capabilities of CSS in a compact, composable, and efficient way.
 
-> You can see an example in this [demonstration repo](https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv).
+> You can see an example in this [repo](https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv).
 
 ## Installation
 

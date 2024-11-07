@@ -14,7 +14,7 @@ Greenwood's goal is to bring the power of the modern web right to your fingertip
 
 Some of Greenwood's feature include:
 
-- Unbundled local development workflow, using `E-Tags` headers for efficient caching and live reloads
+- Unbundled local development workflow, using `ETag` headers for efficient caching and live reloads
 - Out of the box support for ESM and Web APIs, on both the client and server
 - Server Side Rendering of Web Components (Light and Shadow DOM)
 - File-based routing, including API Routes
@@ -28,7 +28,7 @@ Greenwood aims to be a low point of friction as part of a general purpose web de
 
 > We would be remiss if we didn't call out what are probably some obvious influences; in particular **Next.js**, **SvelteKit**, and of course, **Gatsby**. We are in debt to amazing tools like **Rollup**, **parse5**, and **acorn**. 🙇
 >
-> The JavaScript ecosystem is great, and we're very happy to be a part of it. 💚
+> The JavaScript ecosystem is amazing, and we're very happy to be a part of it. 💚
 
 ## Goals
 

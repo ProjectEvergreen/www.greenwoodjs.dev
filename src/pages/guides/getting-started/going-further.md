@@ -12,7 +12,7 @@ Now that we've had a chance to introduce some of the [basics](/guides/getting-st
 
 A fair observation from the walkthrough might be that the header and footer are really just producing static content. While the footer calculates a year, that really only needs to be done once at build time. Since Greenwood can easily server render Web Components leaning on [DOM based hydration techniques](https://web.dev/articles/declarative-shadow-dom#component_hydration), we can make a couple useful optimizations here.
 
-First, we can enable the [`prerender`](/docs/config/#prerender) flag in a _greenwood.config.js_ file which will do a one-time server render for any custom element tags in our HTML.
+First, we can enable the [`prerender`](/docs/reference/configuration/#prerender) flag in a _greenwood.config.js_ file which will do a one-time server render for any custom element tags in our HTML:
 
 ```js
 export default {
@@ -129,7 +129,7 @@ customElements.define("app-picture-frame", PictureFrame);
 
 ## Content as Data
 
-Greenwood also provides some general purpose helpers for more static driven sites (e.g. SSG) through our [content as data](/docs/content-as-data/) features, including a programmatic `Fetch` based API. When combined with [`activeFrontmatter`](/docs/config/) this enables HTML-first templating which can then be used to initialize attributes for custom element tags on a per page basis. Very useful for creating navigation menus and other sorts of collections of content, even with active link highlighting, no runtime JS needed! 💯
+Greenwood also provides some general purpose helpers for more static driven sites (e.g. SSG) through our [content as data](/docs/content-as-data/) features, including a programmatic **Fetch** based API. When combined with [**active frontmatter**](/docs/reference/configuration/), this enables HTML-first templating which can then be used to initialize attributes for custom element tags on a per page basis. Very useful for creating navigation menus and other sorts of collections of content, even with active link highlighting, and no runtime JS needed! 💯
 
 For example, we can define some frontmatter in a markdown file:
 

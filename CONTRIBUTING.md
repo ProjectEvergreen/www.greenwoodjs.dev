@@ -35,6 +35,17 @@ Where `issue-xxx` is the corresponding issue in the GreenwoodJS project.
 
 General changes to the website can be made by submitting a PR directly to the main branch. This includes typos, style changes, and general enhancements to the website as a whole.
 
+### Link Checker
+
+There is a **npm** script that you can run that will check all relative links and hashes (except for blog pages) to check that links aren't broken. Running the command will build the site for production automatically and generate a report.
+
+```sh
+$ npm run lint:links
+#...
+
+✅ all links checked successfully and no broken links found
+```
+
 ## Development
 
 ### Styling

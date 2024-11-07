@@ -10,7 +10,7 @@ In this section we'll cover some of the Markdown related feature of **Greenwood*
 
 ## Plugins
 
-Using your _greenwood.config.js_ you can have additional [markdown customizations and configurations](/docs/configuration#markdown) using unified presets and plugins.
+Using your _greenwood.config.js_ you can have additional [markdown customizations and configurations](/docs/reference/configuration/#markdown) using unified presets and plugins.
 
 For example, to use the [**remark-github**](https://github.com/remarkjs/remark-github) plugin:
 
@@ -70,7 +70,7 @@ console.log(hello);
 
 ## Frontmatter
 
-Frontmatter is a [YAML](https://yaml.org/) block at the top of any markdown file. It gives you the ability to define variables that are made available to Greenwood's [build process and then your HTML](/docs/content-as-data). You can also use it to `import` additional files.
+Frontmatter is a [YAML](https://yaml.org/) block at the top of any markdown file. It gives you the ability to define variables that are made available to Greenwood's [build process and then your HTML](/docs/content-as-data/). You can also use it to `import` additional files.
 
 The following options are available:
 

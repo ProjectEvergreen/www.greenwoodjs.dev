@@ -88,7 +88,7 @@ code,
 pre {
   background-color: var(--color-prism-bg);
   color: var(--color-white);
-  padding: var(--size-1) var(--size-2);
+  padding: 0px 4px;
   display: inline-block;
   border-radius: var(--radius-2);
 }

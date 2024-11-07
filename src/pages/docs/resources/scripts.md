@@ -31,7 +31,7 @@ Script tags can be done in any standards compliant way that will work in a brows
 
 ## Modules (ESM)
 
-Greenwood also supports (and recommends) usage of ECMAScript Modules (ESM) with the `type="module"` attribute, like in the example below:
+Greenwood is ECMAScript Modules (ESM) first, as shown with the usage of the `type="module"` attribute in the example below:
 
 ```html
 <!doctype html>
@@ -62,18 +62,17 @@ import { Foo } from "./foo.js";
 
 ```js
 // sad panda
-import { Foo } from "foo";
+import { Foo } from "./foo";
 ```
 
 ## Node Modules
 
-Packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. In the browser, Greenwood will automatically build up an import map from any packages defined in the `dependencies` property of your _package.json_.
+Packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. In the browser, Greenwood will automatically build up an import map from any packages defined in the **dependencies** property of your _package.json_.
 
 Below are some examples:
 
 ```js
 // after having installed Lit
-// npm i lit
 import { html, LitElement } from "lit";
 
 export class SimpleGreeting extends LitElement {
@@ -109,5 +108,5 @@ You can reference **node_modules** directly from a `<script>` tag by starting th
 
 The rule of thumb is:
 
-- If it's a package from npm, you can use bare specifiers and no extension
+- If it's a package from npm installed in **dependencies**, you can use bare specifiers and no extension
 - Otherwise, you will need to use a relative path and the extension

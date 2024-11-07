@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Server Rendering
 
-Greenwood provides a couple of mechanisms for server-side rendering, building on top of our [file-based routing](/docs/routing/) convention.
+Greenwood provides a couple of mechanisms for server-side rendering, building on top of our [file-based routing](/docs/pages/) convention.
 
 To create a dynamic server route, just create a JavaScript file in the _pages/_ directory, and that's it!
 
@@ -16,7 +16,7 @@ src/
     users.js
 ```
 
-The above would serve content in a browser at the path `/users/`.
+The above would serve content in a browser at the path _/users/_.
 
 ## Usage
 
@@ -24,7 +24,7 @@ In your page file, Greenwood supports the following functions that you can `expo
 
 - **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**
 - **getBody**: Return a string of HTML for the contents of the page
-- **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#page-layouts)
+- **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#pages)
 - **getFrontmatter**: Provide an object of [frontmatter](/docs/resources/markdown/#frontmatter) properties. Useful in conjunction with [content as data](/docs/content-as-data/), or otherwise setting static configuration / metadata through SSR.
 
 <!-- eslint-disable no-unused-vars -->
@@ -59,7 +59,7 @@ export { getFrontmatter, getBody, getLayout };
 
 ### Web (Server) Components
 
-Everyone else gets to use their component model for authoring pages, so why not Web Components! When using `export default`, Greenwood supports providing a custom element as the export for your page content, which Greenwood refers to as **Web Server Components (WSCs)** and uses [**WCC**](https://github.com/ProjectEvergreen/wcc) as the default renderer.
+Everyone else gets to use their component model for authoring pages, so why not Web Components!? When using `export default`, Greenwood supports providing a custom element as the export for your page content, which Greenwood refers to as **Web Server Components (WSCs)** and uses [**WCC**](https://github.com/ProjectEvergreen/wcc) as the default renderer.
 
 This is the recommended pattern for SSR in Greenwood:
 
@@ -89,7 +89,7 @@ export default class UsersPage extends HTMLElement {
 A couple of notes:
 
 - WSCs run only on the server, thus you have full access to any APIs of the runtime, with the ability to perform one time `async` operations for [data loading](/docs/pages/server-rendering/#request-data) in `connectedCallback`.
-- Keep in mind that for these "page" components, you will likely want to _avoid_ rendering into a shadow root so as to avoid wrapping your static content in a `<template>` tag.
+- Keep in mind that for these "page" components, you will likely want to _avoid_ rendering into a shadow root, as then your content and styles will be encapsulated.
 
 ### Body
 
@@ -134,7 +134,7 @@ export async function getBody(compilation, page, request) {
 
 ### Layouts
 
-For creating a [layout](/docs/pages/layouts) dynamically, you can provide a `getLayout` function and return the HTML you need.
+For creating a [layout](/docs/pages/layouts/) dynamically, you can provide a `getLayout` function and return the HTML you need.
 
 You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#compilation) object as well as the specific route:
 
@@ -188,7 +188,7 @@ export async function getFrontmatter(compilation, route) {
 
 ## Options
 
-### `Prerender
+### Prerender
 
 To export server routes as just static HTML (no request time handling), you can export a **prerender** option from your page, set to `true`.
 
@@ -200,19 +200,19 @@ So for example, _/pages/artist.js_ would render out as _/artists/index.html_ and
 
 > You can enable this for all pages using the [prerender configuration](/docs/reference/configuration/#prerender) option.
 
-### Isolation
+### Isolation Mode
 
-To execute an SSR page in its own request context when running `greenwood serve`, you can export an **isolation** option from your page, set to `true`.
+To execute an SSR page in its own isolated rendering context, you can export an **isolation** option from your page, set to `true`.
 
 ```js
 export const isolation = true;
 ```
 
-> For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation) docs.
+> For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation-mode) docs.
 
 ## Request Data
 
-For request handling, Greenwood will pass a native `Request` object and a Greenwood [compilation](/docs/reference/appendix/#compilation) as "constructor props" to your Web Server Component's `constructor` function, or as the third parameter to the other SSR APIs. For `async` work, use an `async connectedCallback`.
+For request handling, Greenwood will pass a native `Request` object and a Greenwood [compilation](/docs/reference/appendix/#compilation) as "constructor props" to your Web Server Component's `constructor` function, or as the third parameter to the other SSR APIs. For async work, use an `async connectedCallback`.
 
 ```js
 export default class PostPage extends HTMLElement {
