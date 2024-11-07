@@ -84,7 +84,7 @@ body:has(#compact-menu:popover-open) {
 }
 
 app-edit-on-github {
-  display: block;
+  display: none;
   padding: var(--size-3) 0;
   position: sticky;
   bottom: 0;
@@ -120,6 +120,12 @@ app-toc {
 
 app-side-nav {
   padding: 0 0 0 var(--size-4);
+}
+
+@media (min-width: 1024px) {
+  app-edit-on-github {
+    display: block;
+  }
 }
 
 @media (min-width: 1200px) {
