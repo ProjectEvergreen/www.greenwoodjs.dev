@@ -185,6 +185,10 @@
     margin: 0;
   }
 
+  .heading {
+    margin: var(--size-3) 0;
+  }
+
   .headingSub {
     width: 75%;
   }
