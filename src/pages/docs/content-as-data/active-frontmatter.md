@@ -56,7 +56,7 @@ Or HTML:
 
 ## Data Client
 
-You can also access this content using our data client:
+You can also access this content using our [data client](/docs/content-as-data/data-client/):
 
 ```js
 import { getContentByCollection } from "@greenwood/cli/src/data/client.js";
