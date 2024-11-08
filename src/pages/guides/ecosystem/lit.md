@@ -27,7 +27,7 @@ As with most libraries, just install **lit** with your favorite package manager 
   ```
 
   ```shell
-  pnpm i lit
+  pnpm add lit
   ```
 
 </app-ctc-block>
