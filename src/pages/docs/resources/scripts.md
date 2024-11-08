@@ -113,7 +113,7 @@ The rule of thumb is:
 
 ## Prerendering
 
-If you are doing [prerendering](/docs/reference/configuration/#prerender) and using Greenwood's default [renderer (WCC)](/docs/reference/appendix/#dom-emulation), make sure that any custom elements you want prerendered have a `default` export for their `class` definition.
+If you have enabled [prerendering](/docs/reference/configuration/#prerender) and using Greenwood's default [renderer (WCC)](/docs/reference/appendix/#dom-emulation), make sure that any custom elements you want prerendered have a `default` export for their `class` definition.
 
 ```js
 export default class Card extends HTMLElement {
