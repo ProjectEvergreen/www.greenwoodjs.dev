@@ -31,7 +31,8 @@
     "lint:links": "npm run build && node ./link-checker.js",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "geist": "^1.2.0",
@@ -69,6 +70,7 @@
     "lint-staged": "^15.2.2",
     "lit": "^3.1.2",
     "node-html-parser": "^6.1.13",
+    "patch-package": "^8.0.0",
     "prettier": "^3.2.5",
     "rehype-autolink-headings": "^4.0.0",
     "rehype-slug": "^3.0.0",
