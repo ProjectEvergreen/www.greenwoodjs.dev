@@ -91,6 +91,8 @@ pre {
   padding: 0px 4px;
   display: inline-block;
   border-radius: var(--radius-2);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray) transparent;
 }
 
 [popover] {
