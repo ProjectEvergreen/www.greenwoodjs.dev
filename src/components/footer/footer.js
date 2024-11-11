@@ -19,7 +19,7 @@ export default class Footer extends HTMLElement {
           </li>
 
           <li class="${styles.socialIcon}">
-            <a href="https://discord.gg/bsy9jvWh" title="Discord">
+            <a href="https://discord.gg/Rkb7VTvk" title="Discord">
               ${discordIcon}
             </a>
           </li>
