@@ -35,7 +35,12 @@ $ npm i -D @greenwood/cli@latest
 
 # yarn
 $ yarn add @greenwood/cli@latest --save-dev
+
+# pnpm
+$ pnpm add -D @greenwood/cli@latest
 ```
+
+> For pnpm, it is currently required to create a _.npmrc_ file at the root of your project with the [**shamefully-hoist**](https://pnpm.io/blog/2020/10/17/node-modules-configuration-options-with-pnpm#the-worst-case---hoisting-to-the-root) flag set to `true`.
 
 ## Commands
 

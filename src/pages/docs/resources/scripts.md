@@ -75,7 +75,7 @@ Below are some examples:
 // after having installed Lit
 import { html, LitElement } from "lit";
 
-export class SimpleGreeting extends LitElement {
+class SimpleGreeting extends LitElement {
   static properties = {
     name: { type: String },
   };
@@ -110,3 +110,19 @@ The rule of thumb is:
 
 - If it's a package from npm installed in **dependencies**, you can use bare specifiers and no extension
 - Otherwise, you will need to use a relative path and the extension
+
+## Prerendering
+
+If you have enabled [prerendering](/docs/reference/configuration/#prerender) and using Greenwood's default [renderer (WCC)](/docs/reference/appendix/#dom-emulation), make sure that any custom elements you want prerendered have a `default` export for their `class` definition.
+
+```js
+export default class Card extends HTMLElement {
+  connectedCallback() {
+    if (!this.shadowRoot) {
+      // ...
+    }
+  }
+}
+
+customElements.define("x-card", Card);
+```

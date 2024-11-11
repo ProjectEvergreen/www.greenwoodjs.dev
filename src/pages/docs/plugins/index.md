@@ -1,6 +1,7 @@
 ---
 layout: docs
 order: 4
+tocHeading: 2
 ---
 
 <app-heading-box heading="Plugins">
@@ -8,6 +9,16 @@ order: 4
 </app-heading-box>
 
 > When installing plugins with **npm**, make sure to add the `--legacy-peer-deps` flag, or add an _.npmrc_ file in the root of your project with `legacy-peer-deps=true` set.
+
+## Featured
+
+- [Lit SSR](/docs/plugins/lit-ssr/) - For Lit users, a custom renderer plugin to support Lit+SSR
+- [TypeScript](/docs/plugins/typescript/) - A plugin for transforming files written in TypeScript
+- [PostCSS](/docs/plugins/postcss/) - Leverage PostCSS plugins, like [Tailwind](/guides/ecosystem/tailwind/)
+- [CSS Modules](/docs/plugins/css-modules/) - Support for [CSS Modules](https://github.com/css-modules/css-modules) ™️ syntax
+- [Raw Loader](/docs/plugins/raw/) - Import arbitrary text files as ESM
+
+## All Plugins
 
 Below is the official list of supported first-party plugins available by the Greenwood team with links to the plugin specific README for full installation and usage documentation.
 

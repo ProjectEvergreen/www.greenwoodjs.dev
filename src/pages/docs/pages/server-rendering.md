@@ -244,7 +244,7 @@ export default class PostPage extends HTMLElement {
 To use custom imports on the server side for prerendering or SSR use cases (ex. CSS, JSON), you will need to invoke Greenwood using **NodeJS** from the CLI and pass it the `--loaders` flag along with the path to Greenwood's provided loader function.
 
 ```shell
-$ node --loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/.bin/greenwood <command>
+$ node --loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js <command>
 ```
 
 Then you will be able to run this, or for any custom format you want using a plugin.

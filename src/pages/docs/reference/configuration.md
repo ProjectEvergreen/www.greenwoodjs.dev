@@ -8,7 +8,7 @@ tocHeading: 2
 
 This section details all the supported configuration options available with **Greenwood**, which you can define in a _greenwood.config.js_ file at root of your project.
 
-The below is a _greenwood.config.js_ file reflecting default values:
+Below is a _greenwood.config.js_ file reflecting default values:
 
 ```js
 export default {

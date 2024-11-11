@@ -18,7 +18,12 @@ If you are developing a blog site, like in our [Getting Started](/guides/getting
 
 But what happens over time, when that list grows to 10, 50, 100+ posts? Imagine maintaining that list each time, over and over again? Or just remembering to update that list each time you publish a new post? Not only that, but wouldn't it also be great to sort, search, filter, and organize those posts to make them easier for users to navigate and find?
 
-To assist with this, Greenwood provides a set of "content as data" capabilities on the left sidebar you can take advantage of.
+To assist with this, Greenwood provides a set of "content as data" capabilities:
+
+- [Pages Data](/docs/content-as-data/pages-data/) - Learn about the data schema available for your content
+- [Data Client](/docs/content-as-data/data-client/) - Utilities for getting your content as data
+- [Collections](/docs/content-as-data/collections/) - Frontmatter based configuration for grouping related content
+- [Active Frontmatter](/docs/content-as-data/active-frontmatter/) - Interpolate your page's frontmatter in your HTML
 
 > First thing though, make sure you've set the [`activeContent`](/docs/reference/configuration/#active-content) flag to `true` in your _greenwood.config.js_.
 >
