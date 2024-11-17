@@ -692,6 +692,6 @@ public/
 
 And accessible at the following routes in the browser:
 
-- _/artists/<name1>/_
-- _/artists/<name2>/_
-- _/artists/<nameN>/_
+- _/artists/&lt;name1&gt;/_
+- _/artists/&lt;name2&gt;/_
+- _/artists/&lt;nameN&gt;/_
