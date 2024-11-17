@@ -80,7 +80,7 @@ And would be used like this:
 <x-card title="My Title" thumbnail="/path/to/image.png"></x-card>
 ```
 
-> Greenwood promotes Web Components not only as a great way to add sprinkles of JavaScript to an otherwise static site, but also for [static templating through prerendering](docs/reference/rendering-strategies/#prerendering) with all the power and expressiveness of JavaScript as well as completely [full-stack web components](/guides/tutorials/full-stack-web-components/).
+> Greenwood promotes Web Components not only as a great way to add sprinkles of JavaScript to an otherwise static site, but also for [static templating through prerendering](/docs/reference/rendering-strategies/#prerendering) with all the power and expressiveness of JavaScript as well as completely [full-stack web components](/guides/tutorials/full-stack-web-components/).
 
 ## Fetch (and Friends)
 
