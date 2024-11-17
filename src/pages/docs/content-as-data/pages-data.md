@@ -89,7 +89,7 @@ We would get this additional content as data out:
       },
       {
         "content": "First Point",
-        "slug": "first-post"
+        "slug": "first-point"
       }
     ]
   }
