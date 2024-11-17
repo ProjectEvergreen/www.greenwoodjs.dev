@@ -101,4 +101,4 @@ You can emit SSR pages as pure HTML on an opt-in basis by setting the `prerender
 export const prerender = true;
 ```
 
-> If you need more robust support for executing JavaScript at build time, you can consider using our [Puppeteer plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-puppeteer), or [create your own custom implementation](http://localhost:1984/docs/reference/plugins-api/#custom-implementation), say for using JSDOM instead.
+> If you need more robust support for executing JavaScript at build time, you can consider using our [Puppeteer plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-puppeteer), or [create your own custom implementation](/docs/reference/plugins-api/#custom-implementation), say for using JSDOM instead.
