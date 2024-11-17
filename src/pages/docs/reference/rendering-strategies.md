@@ -8,7 +8,7 @@ tocHeading: 2
 
 Greenwood is very flexible in the types of rendering strategies you can use. Below is a brief overview of each of them and some general guidelines and recommendations.
 
-As always, sometimes it makes sense to mix and match, so as with any generalized technology advice, [_**YMMY**_](https://en.wiktionary.org/wiki/your_mileage_may_vary).
+As always, sometimes it makes sense to mix and match, so as with any generalized technology advice, [_**YMMV**_](https://en.wiktionary.org/wiki/your_mileage_may_vary).
 
 ## CSR
 
