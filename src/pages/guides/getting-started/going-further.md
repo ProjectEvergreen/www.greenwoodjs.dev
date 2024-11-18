@@ -37,7 +37,7 @@ Now if we look in the HTML output for any of our pages, we will see pre-rendered
 </app-footer>
 ```
 
-We can go one step further and instruct Greenwood to strip out the `<script>` tags for these components by adding the `data-gwd-opt="static"` attribute to them, since we have no need for any interactivity on these components.
+We can go one step further and instruct Greenwood to strip out the `<script>` tags for these components by adding the `data-gwd-opt='static'` attribute to them, since we have no need for any interactivity on these components.
 
 ```html
 <script type="module" src="../components/footer/footer.js" data-gwd-opt="static"></script>
