@@ -15,4 +15,4 @@ To continue your Greenwood journey, here are some links we think you may want to
 - [Hosting](/guides/hosting/) - Guides on building and deploying your static, serverless, or serverfull application
 - [Tutorials](/guides/tutorials/) - Additional walkthroughs and patterns using Greenwood
 
-And of course feel free to join us on [Discord](https://discord.gg/Rkb7VTvk) and get involved with us in [GitHub](https://github.com/ProjectEvergreen/greenwood). ✌️
+And of course feel free to join us on [Discord](https://discord.gg/dmDmjFCKuH) and get involved with us in [GitHub](https://github.com/ProjectEvergreen/greenwood). ✌️
