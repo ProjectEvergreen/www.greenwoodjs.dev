@@ -46,7 +46,7 @@ export default class Header extends HTMLElement {
               </li>
 
               <li class="${styles.socialIcon}">
-                <a href="https://discord.gg/Rkb7VTvk" title="Discord">
+                <a href="https://discord.gg/dmDmjFCKuH" title="Discord">
                   ${discordIcon}
                 </a>
               </li>
