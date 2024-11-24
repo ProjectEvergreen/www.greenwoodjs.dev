@@ -4,10 +4,11 @@ export default class LatestPost extends HTMLElement {
   connectedCallback() {
     const link = this.getAttribute("link");
     const title = this.getAttribute("title");
+    const icon = this.getAttribute("icon") ?? "🎉";
 
     this.innerHTML = `
       <div class="${styles.pill}">
-        <span class="new">🎉 New</span>
+        <span class="new">${icon} New</span>
         <a href="${link}" title="Read our latest post">${title} &#8594</a>
       </div>
     `;
