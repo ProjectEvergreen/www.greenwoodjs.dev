@@ -158,6 +158,12 @@ Outside of Node version upgrades to keep up with the current LTS schedule, we al
 
 Based on our initial testing so far, we anticipate most of the work to focus on handling support for [custom imports](/docs/pages/server-rendering/#custom-imports) and compatibility with [NodeJS built-ins and _node_modules_ resolution](https://github.com/ProjectEvergreen/greenwood/issues/1324).
 
+### TypeScript
+
+While Greenwood already has a plugin for transforming TypeScript, we would like to explore making more of Greenwood itself [TypeScript compatible](https://github.com/ProjectEvergreen/greenwood/issues/1250), covering Greenwood's configuration file, Plugin APIs, and Content as Data capabilities. This will probably take the shape of JS Docs integrated directly into the project, allowing for the convenience of JavaScript based development for developing Greenwood while surfacing useful type hints and feedback to users in their IDE when using TypeScript.
+
+Along with this, we'll aim to [refresh the default configuration and recommendations](https://github.com/ProjectEvergreen/greenwood/issues/1327) for the TypeScript plugin itself.
+
 ---
 
 We hope to complete this effort over the next few months with the hope to spend the rest of our time in 2025 burning down our [1.0 milestone](https://github.com/ProjectEvergreen/greenwood/milestone/3).
