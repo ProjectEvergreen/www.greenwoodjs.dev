@@ -33,7 +33,7 @@ describe("Components/Footer", () => {
     });
 
     it("should have the Greenwood logo", () => {
-      const logo = footer.querySelectorAll("div svg");
+      const logo = footer.querySelectorAll("div > svg");
 
       expect(logo.length).equal(1);
       expect(logo[0]).not.equal(undefined);
