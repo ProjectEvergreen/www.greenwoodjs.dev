@@ -21,7 +21,7 @@ layout: blog
 
 As the year comes to a close, the Greenwood team would like to take a moment to reflect on its accomplishments and share with you what our plans look like going into the next one. First and foremost, you might have noticed we not only have a new domain name, but we also have a brand new website! A big part of our year was spent working on designing and developing this new website and, aside from the new look and feel, a considerable amount of effort was put into rethinking the home page and how we can best demonstrate what Greenwood can do, and do for you. In addition, we re-worked the information architecture of the site to make finding the content you need as easy possible. It's all [open source](https://github.com/ProjectEvergreen/www.greenwoodjs.dev), so please feel free to contribute and give us any feedback.
 
-Outside of the project, the Greenwood team and its work was featured in a couple of outlets. Towards the start of the year, we were invited on the [**JavaScript Jabber** podcast](https://topenddevs.com/podcasts/javascript-jabber/episodes/embracing-web-standards-with-owen-buckley-jsj-626) to talk about web standards, Greenwood, and our vision of the web and the project as whole. It was a great conversation with the panel, sharing our fondness for simplicity in web development, and Greenwood's place as your workbench for the web. Most recently, our project [**WCC** (Web Components Compiler)](https://github.com/ProjectEvergreen/wcc) was featured in an installment of the [**Modern Web Weekly** newsletter](https://modern-web-weekly.ghost.io/modern-web-weekly-38/), showcasing its features and capabilities for easily server-rendering native Web Components, as well as opening the door to some useful suggestions and contributions which we are very excited to collaborate on. 🙌
+Outside of the project, the Greenwood team and its work was featured in a couple of outlets. Towards the start of the year, we were invited on the [**JavaScript Jabber** podcast](https://topenddevs.com/podcasts/javascript-jabber/episodes/embracing-web-standards-with-owen-buckley-jsj-626) to talk about web standards, Greenwood, and our vision of the web and the project as a whole. It was a great conversation with the panel, sharing our fondness for simplicity in web development and Greenwood's place as your _workbench for the web_. Most recently, our project [**WCC** (Web Components Compiler)](https://github.com/ProjectEvergreen/wcc) was featured in an installment of the [**Modern Web Weekly** newsletter](https://modern-web-weekly.ghost.io/modern-web-weekly-38/), showcasing its features and capabilities for easily server-rendering native Web Components, as well as opening the door to some useful suggestions and contributions which we are very excited to collaborate on. 🙌
 
 We encourage you to check out those links and please stayed tuned as we'll have a full case study detailing in depth how the new Greenwood website was created.
 
@@ -97,7 +97,7 @@ customElements.define("x-header", Header);
 
 ## HTML Web Components
 
-As detailed in this excellent [blog post](https://blog.jim-nielsen.com/2023/html-web-components/), HTML Web Components are a strategy for leaning more into a less JavaScript dependent flavor of custom elements. Instead of (or in addition to) setting attributes, which would require JavaScript to do anything meaningful with from a content perspective, this option favors nesting the content as HTML. In this way, the custom element can be a nice styling wrapper or progressively enhanced experience on top. This also provides the benefit of playing nicely with CSS, which is global by default, as styling is not restricted by the encapsulation of the Shadow DOM.
+As detailed in this [blog post](https://blog.jim-nielsen.com/2023/html-web-components/), HTML Web Components are a strategy for leaning more into a less JavaScript dependent flavor of custom elements. Instead of (or in addition to) setting attributes, which would require JavaScript to do anything meaningful with from a content perspective, this option favors nesting the content as HTML. In this way, the custom element can be a nice styling wrapper or progressively enhanced experience on top of your static HTML content. This also provides the benefit of playing nicely with CSS, which is global by default, as styling is not restricted by the encapsulation of the Shadow DOM.
 
 So instead of setting attributes:
 
@@ -135,11 +135,11 @@ customElements.define("picture-frame", PictureFrame);
 
 Now that we've got our new website launch behind us, the Greenwood team is very eager to get back to improving the features and capabilities of Greenwood and our ongoing march towards a 1.0 release.
 
-In support of that effort, our [next phase of work](https://github.com/orgs/ProjectEvergreen/projects/7) is going to focus heavily on ensuring solid ecosystem compatibility with all popular libraries and tools you've come to expect from the web ecosystem.
+In support of that effort, our [next phase of work](https://github.com/orgs/ProjectEvergreen/projects/7) is going to focus heavily on ensuring solid ecosystem compatibility with all the popular libraries and tools you've come to expect from the web ecosystem.
 
 ### Libraries
 
-As Greenwood leverages the dependencies defined in your _package.json_ to build up an [import map](/docs/introduction/web-standards/#import-maps) for resolving your client side _node_modules_ dependencies from the browser, there are some gaps in our support for the [full exports specification](https://nodejs.org/api/packages.html#package-entry-points) that we want to resolve. We're actively working with current users of Greenwood to ensure the libraries they want to use, like [**Shoelace**](https://shoelace.style/) and [**Adobe Spectrum Web Components**](https://opensource.adobe.com/spectrum-web-components/) work great with Greenwood. In addition, with the introduction of Import Attributes support, we want to open up our imports maps generation to also [accommodate non-JavaScript resources and specifiers](https://github.com/ProjectEvergreen/greenwood/issues/1310).
+As Greenwood leverages the dependencies defined in your _package.json_ to build up an [import map](/docs/introduction/web-standards/#import-maps) for resolving your client side _node_modules_ dependencies from the browser, there are some gaps in our support for the [full exports specification](https://nodejs.org/api/packages.html#package-entry-points) that we would like to address. We're actively working with current users of Greenwood to ensure the libraries they want to use, like [**Shoelace**](https://shoelace.style/) and [**Adobe Spectrum Web Components**](https://opensource.adobe.com/spectrum-web-components/) work great with Greenwood. In addition, with the introduction of Import Attributes support, we want to open up our imports maps generation to also accommodate [non-JavaScript resources and specifiers](https://github.com/ProjectEvergreen/greenwood/issues/1310).
 
 > As a companion to this work, we've identified refactoring opportunities that will provide a much smoother experience for [users of PNPM](https://github.com/ProjectEvergreen/greenwood/issues/1313) without having to resort to the `shamefully-hoist` flag. 🏋️
 
@@ -147,8 +147,8 @@ As Greenwood leverages the dependencies defined in your _package.json_ to build 
 
 While Netlify and Vercel are both great options for serverless hosting of your Greenwood application, we know how important choice of hosting is when building your site. The Greenwood team is committed to expanding this list of options for hosting dynamic content through SSR pages and API routes:
 
-- [**AWS (Lambda)**](https://github.com/ProjectEvergreen/greenwood/issues/1142) - We are actively exploring options for AWS Serverless hosting, with an initial eye on [**SST**](https://sst.dev/)
 - [**Cloudflare (Workers)**](https://github.com/ProjectEvergreen/greenwood/issues/1143) - Cloudflare is a great platform and we are eager to take advantage of the Workers runtime
+- [**AWS (Lambda)**](https://github.com/ProjectEvergreen/greenwood/issues/1142) - We are actively exploring options for AWS Serverless hosting, with an initial eye on [**SST**](https://sst.dev/)
 
 Please follow along with these issue and share your thoughts and preferences.
 
@@ -166,7 +166,7 @@ Along with this, we'll aim to [refresh the default configuration and recommendat
 
 ---
 
-We hope to complete this effort over the next few months with the hope to spend the rest of our time in 2025 burning down our [1.0 milestone](https://github.com/ProjectEvergreen/greenwood/milestone/3).
+We hope to complete this effort over the next couple of months with the hope to spend the rest of our time in 2025 burning down our [1.0 milestone](https://github.com/ProjectEvergreen/greenwood/milestone/3).
 
 ## In Closing
 
