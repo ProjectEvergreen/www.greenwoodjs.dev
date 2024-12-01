@@ -1,14 +1,14 @@
 ---
 title: State of Greenwood (2024)
-abstract: Come learn what the Greenwood team has been up to over the past year and our plans for the next one!
-published: 2024-12-12
+abstract: The Greenwood team is back for another annual roundup of what we've been up to over the past year, and what our plans are for the next one.
+published: 2024-12-02
 coverImage: /assets/greenwood-logo-g.svg
 layout: blog
 ---
 
 # State of Greenwood (2024)
 
-<span class="publishDate">Published: Dec 12, 2024<span>
+<span class="publishDate">Published: Dec 2, 2024<span>
 
 <img
   src="/assets/blog/greenwood-logo-300w.webp"
