@@ -85,7 +85,7 @@
 
   .postsListItemCoverImage {
     margin: 0 var(--size-1);
-    max-width: 12%;
+    max-width: 22%;
     max-height: var(--size-9);
     min-height: var(--size-9);
   }
