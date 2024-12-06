@@ -179,3 +179,15 @@ author: Project Evergreen
 
 Authored By: ${globalThis.page.data.author}
 ```
+
+## Web Components
+
+Web Components work great with markdown, and can be used to mix markdown authored content as initial HTML to be "projected" into a custom element definition. Perfect for documentation sites when combined with [prerendering](/docs/reference/configuration/#prerender) and [static optimization](/docs/reference/configuration/#optimization) configuration options.
+
+```md
+<app-heading-box heading="Plugins">
+  <p>Some content about plugins./p>
+</app-heading-box>
+```
+
+> There are some known issues and conventions we cover in [this discussion](https://github.com/ProjectEvergreen/greenwood/discussions/1267).
