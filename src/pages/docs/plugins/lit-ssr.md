@@ -8,7 +8,7 @@ tocHeading: 2
 
 # Lit SSR
 
-A plugin for using [**Lit**'s SSR capabilities](https://github.com/lit/lit/tree/main/packages/labs/ssr) as a custom server-side renderer _instead_ of Greenwood's default renderer (WCC), which means **_you will need to use `LitElement` as your base class in all instances_** when using this plugin. This plugin also gives the ability to statically generate entire pages and layouts to output completely static sites (SSG). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit) for complete usage information and additional [usage caveats](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit#caveats).
+A plugin for using [**Lit**'s SSR capabilities](https://github.com/lit/lit/tree/main/packages/labs/ssr) as a custom server-side renderer _instead_ of Greenwood's default renderer (WCC), which means **_you will need to use `LitElement` as your base class in all instances where you are pre-rendering or using SSR_**. This plugin also gives the ability to statically generate entire pages and layouts to output completely static sites (SSG). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit) for complete usage information and additional [usage caveats](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit#caveats).
 
 ## Prerequisite
 
