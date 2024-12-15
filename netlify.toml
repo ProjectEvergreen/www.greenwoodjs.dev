@@ -11,7 +11,3 @@
 [[redirects]]
   from = "/docs/tech-stack/"
   to = "/about/tech-stack/"
-
-[[redirects]]
-  from = "/discord/"
-  to = "/api/discord/"
