@@ -1,5 +1,6 @@
 import { greenwoodPluginCssModules } from "@greenwood/plugin-css-modules";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { greenwoodPluginAdapterNetlify } from "@greenwood/plugin-adapter-netlify";
 import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
 // TODO would be nice to find a better way to solve this problem
@@ -52,6 +53,7 @@ export default {
       type: "resource",
       provider: (compilation) => new ActiveFrontmatterDocsTitleRestorerResource(compilation),
     },
+    greenwoodPluginAdapterNetlify(),
   ],
 
   polyfills: {

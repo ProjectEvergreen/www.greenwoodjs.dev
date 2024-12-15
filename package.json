@@ -48,6 +48,7 @@
     "@eslint/markdown": "^6.2.0",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@greenwood/cli": "^0.30.1",
+    "@greenwood/plugin-adapter-netlify": "^0.30.1",
     "@greenwood/plugin-css-modules": "^0.30.1",
     "@greenwood/plugin-import-raw": "^0.30.1",
     "@ls-lint/ls-lint": "^1.10.0",

@@ -42,4 +42,4 @@ If we did our job well, the only docs you should need are [MDN](https://develope
 
 The Greenwood team are working hard towards a [1.0 release](https://github.com/ProjectEvergreen/greenwood/milestone/3) and are eager to get there quickly and provide a stable foundation to expand Greenwood's features and capabilities. We want to make sure Greenwood is the best experience it can be, for users and developers. If you have [any issues](https://github.com/ProjectEvergreen/greenwood/issues) or are curious to see what we're [working on next](https://github.com/ProjectEvergreen/greenwood/projects), please feel free to checkout our [GitHub repo](https://github.com/ProjectEvergreen/greenwood) and poke around.
 
-We are also [on Discord](https://discord.gg/dmDmjFCKuH), so feel free to join us there to chat. 👋
+We are also [on Discord](/discord/), so feel free to join us there to chat. 👋
