@@ -7,7 +7,7 @@ const ICONS = [
     title: "GitHub",
   },
   {
-    link: "https://discord.gg/dmDmjFCKuH",
+    link: "/discord/",
     title: "Discord",
   },
   {
