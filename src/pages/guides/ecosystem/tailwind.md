@@ -26,18 +26,10 @@ As Tailwind is a PostCSS plugin, you'll need to take a couple of extra steps to 
    npx tailwindcss init
    ```
 
-1. Create _**two**_ PostCSS configuration files (two files are needed in Greenwood to support ESM / CJS interop)
+1. Create a [PostCSS configuration file](/docs/plugins/postcss/#installation) in the root of your project with needed Tailwind plugins
 
    ```js
-   // postcss.config.cjs (CJS)
-   module.exports = {
-     plugins: {
-       tailwindcss: {},
-       autoprefixer: {},
-     },
-   };
-
-   // postcss.config.mjs (ESM)
+   // postcss.config.js
    export default {
      plugins: [(await import("tailwindcss")).default, (await import("autoprefixer")).default],
    };
