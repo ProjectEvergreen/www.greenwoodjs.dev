@@ -51,32 +51,15 @@ Then add this plugin to your _greenwood.config.js_.
 
 <!-- prettier-ignore-end -->
 
-To use your own PostCSS configuration, you'll need to create _two (2)_ config files in the root of your project, by which you can provide your own custom plugins / settings that you've installed.
-
-- _postcss.config.js_
-- _postcss.config.mjs_
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet" heading="postcss.config.mjs">
-
-  ```js
-  export default {
-    plugins: [(await import("autoprefixer")).default],
-  };
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
+To use your own PostCSS configuration, just create a _postcss.config.js_ file at the root of your project, by which you can provide your own custom plugins / settings that you've installed.
 
 <!-- prettier-ignore-start -->
 
 <app-ctc-block variant="snippet" heading="postcss.config.js">
 
   ```js
-  module.exports = {
-    plugins: [require("autoprefixer")],
+  export default {
+    plugins: [(await import("autoprefixer")).default],
   };
   ```
 
@@ -101,6 +84,7 @@ Now you can write CSS
   .image {
     background-image: url(image@1x.png);
   }
+
   @media (min-resolution: 2dppx) {
     .image {
       background-image: url(image@2x.png);
