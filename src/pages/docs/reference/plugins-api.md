@@ -250,11 +250,15 @@ export function myCopyPlugin() {
 
 ## Renderer
 
-Renderer plugins allow users to customize how Greenwood server renders (and prerenders) your project. By default, Greenwood supports using [**WCC** or (template) strings](/docs/pages/server-rendering/) to return static HTML for the content and template of your server side routes. With this plugin for example, you can use [Lit's SSR](https://github.com/lit/lit/tree/main/packages/labs/ssr) to render your Lit Web Components on the server side instead. (but don't do that one specifically, we already have [a plugin](/docs/plugins/lit-ssr/) for Lit 😊)
+Renderer plugins allow users to customize how Greenwood server renders (and prerenders) your project. By default, Greenwood supports using [**WCC** or (template) strings](/docs/pages/server-rendering/) to return static HTML for the content and template of your server side routes. For example, you can use [Lit's SSR capabilities](https://github.com/lit/lit/tree/main/packages/labs/ssr) to render your Lit Web Components on the server side instead. (but don't do that one specifically, we already have [a plugin](/docs/plugins/lit-ssr/) for Lit 😊)
+
+> Note: Only **one** renderer plugin can be used at a time.
 
 ### API
 
 This plugin expects to be given a path to a module that exports a function to execute the SSR content of a page by being given its HTML and related scripts. For local development Greenwood will run this in a `Worker` thread for live reloading, and use it standalone for production bundling and serving.
+
+<!-- eslint-disable no-unused-vars -->
 
 ```js
 const greenwoodPluginMyCustomRenderer = (options = {}) => {
@@ -264,7 +268,6 @@ const greenwoodPluginMyCustomRenderer = (options = {}) => {
     provider: () => {
       return {
         executeModuleUrl: new URL("./execute-route-module.js", import.meta.url),
-        prerender: options.prerender,
       };
     },
   };
@@ -273,13 +276,14 @@ const greenwoodPluginMyCustomRenderer = (options = {}) => {
 export { greenwoodPluginMyCustomRenderer };
 ```
 
+<!-- eslint-enable no-unused-vars -->
+
 #### Options
 
 This plugin type supports the following options:
 
 - **executeModuleUrl** (recommended) - `URL` to the location of a file with the SSR rendering implementation
 - **customUrl** - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecyle of a Greenwood build, and running the provided callback function
-- **prerender** (optional) - Flag can be used to indicate if this custom renderer should be used to statically [prerender](/docs/reference/configuration/#prerender) pages too.
 
 ### Examples
 
