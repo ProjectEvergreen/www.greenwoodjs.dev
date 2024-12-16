@@ -9,7 +9,7 @@ tocHeading: 2
 
 [**Lit**](https://lit.dev/) builds on top of the Web Components standards, adding additional developer experience ergonomics like reactivity, declarative templates and reducing boilerplate. Lit also has support for SSR (server-side rendering), which Greenwood supports through a plugin.
 
-> You can see a complete hybrid project example in this [demonstration repo](https://github.com/thescientist13/greenwood-lit-ssr).
+> You can see a complete hybrid project example in this [demonstration repo](https://github.com/thescientist13/greenwood-lit-ssr) as well as [demos](https://github.com/thescientist13/greenwood-lit-ssr/pulls?q=is%3Apr+is%3Aopen+label%3Ademo) of using Lit based component libraries like [**Shoelace**](https://shoelace.style/) and [**Spectrum Web Components**](https://opensource.adobe.com/spectrum-web-components/) with Greenwood.
 
 ## Installation
 

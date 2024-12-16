@@ -37,7 +37,7 @@ Greenwood is ECMAScript Modules (ESM) first, as shown with the usage of the `typ
 <!doctype html>
 <html lang="en" prefix="og:http://ogp.me/ns#">
   <head>
-    <script type="module" src="./path/to/script.js"></script>
+    <script type="module" src="../path/to/script.js"></script>
   </head>
 
   <body>
@@ -46,9 +46,9 @@ Greenwood is ECMAScript Modules (ESM) first, as shown with the usage of the `typ
 </html>
 ```
 
-Keep in mind that the specification dictates the following conventions when referencing ESM files:
+Keep in mind that [the specification](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#module_specifier_resolution) dictates the following requirements when referencing ESM files:
 
-1. It must be a relative path
+1. It must be a relative specifier (starts with a `./`, `../`, or `/`)
 1. It must have an extension
 
 <!-- eslint-disable no-unused-vars -->
@@ -67,9 +67,9 @@ import { Foo } from "./foo";
 
 ## Node Modules
 
-Packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. In the browser, Greenwood will automatically build up an import map from any packages defined in the **dependencies** property of your _package.json_.
+Packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. In the browser, Greenwood will automatically build up an [import map](/docs/introduction/web-standards/#import-maps) so that you can use [bare specifiers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#module_specifier_resolution).
 
-Below are some examples:
+Below is an example of using a bare specifier in a JavaScript file:
 
 ```js
 // after having installed Lit
@@ -88,7 +88,7 @@ class SimpleGreeting extends LitElement {
 customElements.define("simple-greeting", SimpleGreeting);
 ```
 
-You can reference **node_modules** directly from a `<script>` tag by starting the path with `/node_modules`:
+You can reference **node_modules** directly from a `<script>` tag by starting the path with a "shortcut" alias of **/node_modules/**, which will signal to Greenwood to use `import.meta.resolve` to automatically resolve the full path for you:
 
 ```html
 <html>
@@ -106,10 +106,8 @@ You can reference **node_modules** directly from a `<script>` tag by starting th
 </html>
 ```
 
-The rule of thumb is:
-
-- If it's a package from npm installed in **dependencies**, you can use bare specifiers and no extension
-- Otherwise, you will need to use a relative path and the extension
+> Relative paths will also work in this context if you are comfortable resolving the full path to _node_modules_ on your own, e.g.
+> `<script src="../../node_modules/htmx.org/dist/htmx.js"></script>`
 
 ## Prerendering
 
