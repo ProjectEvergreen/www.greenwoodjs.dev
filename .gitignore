@@ -4,7 +4,6 @@
 .nyc_output/
 .vscode/
 coverage/
-netlify/
 node_modules/
 public/
 reports/
