@@ -11,3 +11,8 @@
 [[redirects]]
   from = "/docs/tech-stack/"
   to = "/about/tech-stack/"
+
+[[redirects]]
+  status = 302
+  from = "/discord/"
+  to = "https://discord.gg/dmDmjFCKuH"

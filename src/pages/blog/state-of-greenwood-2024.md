@@ -172,4 +172,4 @@ We hope to complete this effort over the next couple of months with the hope to 
 
 Greenwood wants to be there every step of the way to help you get the most out of the web and ensure you have full ownership of your code and content. From SPA to SSG to SSR and everything in between, building vanilla or with friends, we want Greenwood to run wherever the web can run so the choice can always be yours.
 
-Please come join us on [GitHub](https://github.com/ProjectEvergreen/greenwood) and [Discord](https://discord.gg/dmDmjFCKuH) and we can't wait to see what you build with Greenwood! <img style="width: 15px; display: inline-block; margin: 0;" src="/assets/blog/evergreen.svg" alt="Project Evergreen logo"/>
+Please come join us on [GitHub](https://github.com/ProjectEvergreen/greenwood) and [Discord](/discord/) and we can't wait to see what you build with Greenwood! <img style="width: 15px; display: inline-block; margin: 0;" src="/assets/blog/evergreen.svg" alt="Project Evergreen logo"/>

@@ -313,3 +313,5 @@ See the [Greenwood Storybook docs](/guides/ecosystem/storybook/#content-as-data)
 ## Hosting and Deployment
 
 This project is hosted on Netlify and automatically deploys on each merge into main. Release branches will be curated over the course of a Greenwood release cycle and then merged at the time the new Greenwood release is published to NPM.
+
+For links to `/discord/`, a redirect is configured in _netlify.toml_ to redirect these requests to the project's Discord server.
