@@ -1,0 +1,30 @@
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+index 332586d..80ce25b 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-css.js
+@@ -81,6 +81,7 @@ function bundleCss(body, sourceUrl, compilation, workingUrl) {
+                 ? new URL(`./${value.replace(/\.\.\//g, '').replace('./', '')}`, userWorkspace)
+                 : new URL(`${urlPrefix}${value}`, sourceUrl);
+ 
++        // console.log({ value, resolvedUrl, workingUrl })
+         if (fs.existsSync(resolvedUrl)) {
+           const isDev = process.env.__GWD_COMMAND__ === 'develop'; // eslint-disable-line no-underscore-dangle
+           let finalValue = '';
+@@ -91,6 +92,9 @@ function bundleCss(body, sourceUrl, compilation, workingUrl) {
+           } else if (value.startsWith('/node_modules/')) {
+             // if it's a node modules shortcut alias, just use that
+             finalValue = value;
++          } else if (value.indexOf('../node_modules/') >= 0) {
++            // if it's a relative modules path, resolve to current / working file
++            finalValue = `/${value.replace(/\.\.\//g, '').replace('./', '')}`;
+           } else if (resolvedUrl.href.indexOf('/node_modules/') >= 0) {
+             // if we are deep in node_modules land, use resolution logic to figure out the specifier
+             const resolvedRoot = derivePackageRoot(resolvedUrl.href);
+@@ -99,6 +103,7 @@ function bundleCss(body, sourceUrl, compilation, workingUrl) {
+ 
+             finalValue = `/node_modules/${specifier}/${value.replace(/\.\.\//g, '').replace('./', '')}`;
+           }
++          // console.log({ finalValue })
+ 
+           if (!isDev) {
+             const hash = hashString(fs.readFileSync(resolvedUrl, 'utf-8'));
