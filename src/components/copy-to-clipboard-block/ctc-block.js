@@ -74,7 +74,7 @@ export default class CopyToClipboardBlock extends HTMLElement {
         const heading = this.getAttribute("heading");
         const headingHtml = heading ? `<span class="heading">${heading}</span>` : "";
 
-        this.snippetContents = this.textContent;
+        this.snippetContents = this.textContent.trim();
         template.innerHTML = `
           <div class="snippet-container">
             <div class="snippet">
