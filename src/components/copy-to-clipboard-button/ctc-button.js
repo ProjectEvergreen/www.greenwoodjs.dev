@@ -1,5 +1,5 @@
 import copy from "../../assets/copy-button.svg?type=raw";
-import sheet from "./copy-to-clipboard.css" with { type: "css" };
+import sheet from "./ctc-button.css" with { type: "css" };
 
 const template = document.createElement("template");
 
@@ -7,7 +7,7 @@ template.innerHTML = `
   <button id="icon" title="Copy to clipboard">${copy}</button>
 `;
 
-export default class CopyToClipboard extends HTMLElement {
+export default class CopyToClipboardButton extends HTMLElement {
   connectedCallback() {
     // bail of out of SSR entirely
     if (!this.shadowRoot && typeof window !== "undefined") {
@@ -26,4 +26,4 @@ export default class CopyToClipboard extends HTMLElement {
   }
 }
 
-customElements.define("app-ctc", CopyToClipboard);
+customElements.define("app-ctc-button", CopyToClipboardButton);
