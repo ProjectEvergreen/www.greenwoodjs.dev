@@ -86,6 +86,26 @@ const config = {
 export default config;
 ```
 
+## PostCSS
+
+If you are using Greenwood's [PostCSS plugin](/docs/plugins/postcss/), you'll need to create a secondary CommonJS compatible configuration file for Storybook.
+
+So if your current _postcss.config.js_ looks like this:
+
+```js
+export default {
+  plugins: [(await import("tailwindcss")).default, (await import("autoprefixer")).default],
+};
+```
+
+You'll want to create a _.postcssrc.js_ file using CJS syntax:
+
+```js
+module.exports = {
+  plugins: [require("tailwindcss"), require("autoprefixer")],
+};
+```
+
 ## Import Attributes
 
 As [Vite does not support Import Attributes](https://github.com/vitejs/vite/issues/14674), we will need to create a _vite.config.js_ and write a [custom plugin](https://vitejs.dev/guide/api-plugin) to work around this.
