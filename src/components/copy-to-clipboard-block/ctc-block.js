@@ -39,7 +39,10 @@ export default class CopyToClipboardBlock extends HTMLElement {
             if (node.textContent.startsWith(runner)) {
               this.blockConfigs.push({
                 runner,
-                html: node.outerHTML.replace(runner, `$ ${runner}`),
+                html: node.outerHTML.replace(
+                  runner,
+                  `<span style="color: var(--color-white)">$</span> ${runner}`,
+                ),
                 pasteContents: node.textContent.trim(),
               });
             }
