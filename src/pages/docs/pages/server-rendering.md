@@ -241,17 +241,26 @@ export default class PostPage extends HTMLElement {
 
 ## Custom Imports
 
-To use custom imports on the server side for prerendering or SSR use cases (ex. CSS, JSON), you will need to invoke Greenwood using **NodeJS** from the CLI and pass it the `--loaders` flag along with the path to Greenwood's provided loader function.
+To use custom imports (non JavaScript resources) on the server side for prerendering or SSR use cases, you will need to invoke Greenwood using **NodeJS** from the CLI and pass the `--imports` flag along with the path to Greenwood's provided register function. _**This feature requires NodeJS version `>=21.10.0`**_.
 
 ```shell
-$ node --loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js <command>
+$ node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js <command>
 ```
 
-Then you will be able to run this, or for any custom format you want using a plugin.
+Or most commonly as an npm script in your _package.json_
+
+```json
+{
+  "scripts": {
+    "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js build"
+  }
+}
+```
+
+Now any custom resource plugins will operate on the server side, enabling compatibility with non-JavaScript resources not supported by NodeJS, like CSS Module Scripts.
 
 ```js
 import sheet from "./styles.css" with { type: "css" };
-import data from "./data.json" with { type: "json" };
 
-console.log({ sheet, data });
+console.log({ sheet });
 ```
