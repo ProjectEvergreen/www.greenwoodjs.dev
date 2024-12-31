@@ -10,7 +10,7 @@ In this section we'll cover some of the Markdown related feature of **Greenwood*
 
 ## Plugins
 
-Using your _greenwood.config.js_ you can have additional [markdown customizations and configurations](/docs/reference/configuration/#markdown) using unified presets and plugins.
+Using your _greenwood.config.js_ you can have additional [markdown customizations and configurations](/docs/reference/configuration/#markdown).
 
 For example, to use the [**remark-github**](https://github.com/remarkjs/remark-github) plugin:
 
@@ -18,9 +18,6 @@ For example, to use the [**remark-github**](https://github.com/remarkjs/remark-g
 // npm i -D remark-github
 export default {
   markdown: {
-    settings: {
-      /* whatever you need */
-    },
     plugins: ["remark-github"],
   },
 };
