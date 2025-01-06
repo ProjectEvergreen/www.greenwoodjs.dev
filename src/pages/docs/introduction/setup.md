@@ -14,33 +14,53 @@ The recommended way to start a new Greenwood project, our **init** CLI will scaf
 
 To scaffold into the _current_ directory, run:
 
-```shell
-$ npx @greenwood/init@latest
-```
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest">
+
+  ```shell
+  npx @greenwood/init@latest
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 To scaffold into a _custom_ directory, run:
 
-```shell
-# initialize a new directory called my-app for your Greenwood project
-$ npx @greenwood/init@latest my-app
-```
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest my-app">
+
+  ```shell
+  # initialize a new directory called my-app for your Greenwood project
+  $ npx @greenwood/init@latest my-app
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Install
 
 You can install the Greenwood CLI manually through your preferred package manager:
 
-```shell
-# npm
-$ npm i -D @greenwood/cli@latest
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
 
-# yarn
-$ yarn add @greenwood/cli@latest --save-dev
+  ```shell
+  npm i -D @greenwood/cli@latest
+  ```
 
-# pnpm
-$ pnpm add -D @greenwood/cli@latest
-```
+  ```shell
+  yarn add @greenwood/cli@latest --save-dev
+  ```
 
-> For pnpm, it is currently required to create a _.npmrc_ file at the root of your project with the [**shamefully-hoist**](https://pnpm.io/blog/2020/10/17/node-modules-configuration-options-with-pnpm#the-worst-case---hoisting-to-the-root) flag set to `true`.
+  ```shell
+  pnpm add -D @greenwood/cli@latest
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Commands
 
@@ -50,13 +70,20 @@ The CLI supports three commands, that can be easily mapped to npm scripts in you
 - **build** - Build a Greenwood project for production
 - **serve** - Start a production server for self-hosting a Greenwood build
 
-```json
-{
-  "type": "module",
-  "scripts": {
-    "dev": "greenwood develop",
-    "build": "greenwood build",
-    "serve": "greenwood serve"
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="snippet" heading="package.json">
+
+  ```json
+  {
+    "type": "module",
+    "scripts": {
+      "dev": "greenwood develop",
+      "build": "greenwood build",
+      "serve": "greenwood serve"
+    }
   }
-}
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->

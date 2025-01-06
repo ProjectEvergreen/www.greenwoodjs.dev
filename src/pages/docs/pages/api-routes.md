@@ -25,20 +25,27 @@ src/
 
 Here is an example of that API Route, which reads a query parameter of **name** and returns a JSON response:
 
-```js
-// src/pages/api/greeting.js
-export async function handler(request) {
-  const params = new URLSearchParams(request.url.slice(request.url.indexOf("?")));
-  const name = params.has("name") ? params.get("name") : "World";
-  const body = { message: `Hello ${name}! 👋` };
+<!-- prettier-ignore-start -->
 
-  return new Response(JSON.stringify(body), {
-    headers: new Headers({
-      "Content-Type": "application/json",
-    }),
-  });
-}
-```
+<app-ctc-block variant="snippet" heading="src/pages/api/greeting.js">
+
+  ```js
+  export async function handler(request) {
+    const params = new URLSearchParams(request.url.slice(request.url.indexOf("?")));
+    const name = params.has("name") ? params.get("name") : "World";
+    const body = { message: `Hello ${name}! 👋` };
+
+    return new Response(JSON.stringify(body), {
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    });
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Hypermedia
 
@@ -46,71 +53,84 @@ Inspired by [**Doug Parker's**](https://blog.dwac.dev/) blog post [_A Simpler HT
 
 An example of rendering a "card" component in an API Route might look like look this:
 
-```js
-// src/component/card.js
-export default class Card extends HTMLElement {
-  connectedCallback() {
-    if (!this.shadowRoot) {
-      const title = this.getAttribute("title");
-      const thumbnail = this.getAttribute("thumbnail");
-      const template = document.createElement("template");
+<!-- prettier-ignore-start -->
 
-      template.innerHTML = `
-        <style>
-          /* ... */
-        </style>
-        <div>
-          <h3>${title}</h3>
-          <img src="${thumbnail}" alt="${title}" loading="lazy">
-        </div>
-      `;
+<app-ctc-block variant="snippet" heading="src/component/card.js">
 
-      this.attachShadow({ mode: "open" });
-      this.shadowRoot.appendChild(template.content.cloneNode(true));
+  ```js
+  export default class Card extends HTMLElement {
+    connectedCallback() {
+      if (!this.shadowRoot) {
+        const title = this.getAttribute("title");
+        const thumbnail = this.getAttribute("thumbnail");
+        const template = document.createElement("template");
+
+        template.innerHTML = `
+          <style>
+            /* ... */
+          </style>
+          <div>
+            <h3>${title}</h3>
+            <img src="${thumbnail}" alt="${title}" loading="lazy">
+          </div>
+        `;
+
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+      }
     }
   }
-}
 
-customElements.define("x-card", Card);
-```
+  customElements.define("x-card", Card);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 And here is it being used in an API Route handler:
 
-```js
-// src/pages/api/search.js
-import { renderFromHTML } from "wc-compiler";
-import { getProducts } from "../../db/products.js";
+<!-- prettier-ignore-start -->
 
-export async function handler(request) {
-  // use the web standard FormData to get the incoming form submission
-  const formData = await request.formData();
-  const term = formData.has("term") ? formData.get("term") : "";
-  const products = await getProducts(term);
-  const { html } = await renderFromHTML(
-    `
-    ${products
-      .map((item) => {
-        const { title, thumbnail } = item;
+<app-ctc-block variant="snippet" heading="src/pages/api/search.js">
 
-        return `
-          <app-card
-            title="${title}"
-            thumbnail="${thumbnail}"
-          ></app-card>
-        `;
-      })
-      .join("")}
-  `,
-    [new URL("../../components/card.js", import.meta.url)],
-  );
+  ```js
+  import { renderFromHTML } from "wc-compiler";
+  import { getProducts } from "../../db/products.js";
 
-  return new Response(html, {
-    headers: new Headers({
-      "Content-Type": "text/html",
-    }),
-  });
-}
-```
+  export async function handler(request) {
+    // use the web standard FormData to get the incoming form submission
+    const formData = await request.formData();
+    const term = formData.has("term") ? formData.get("term") : "";
+    const products = await getProducts(term);
+    const { html } = await renderFromHTML(
+      `
+      ${products
+        .map((item) => {
+          const { title, thumbnail } = item;
+
+          return `
+            <x-card
+              title="${title}"
+              thumbnail="${thumbnail}"
+            ></x-card>
+          `;
+        })
+        .join("")}
+    `,
+      [new URL("../../components/card.js", import.meta.url)],
+    );
+
+    return new Response(html, {
+      headers: new Headers({
+        "Content-Type": "text/html",
+      }),
+    });
+  }
+  ```
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > To learn more about this pattern, checkout our [Full-Stack Web Components tutorial](/guides/tutorials/full-stack-web-components/) for a more complete example.
 
@@ -118,8 +138,16 @@ export async function handler(request) {
 
 To execute an API route in its own isolated rendering context, you can export an **isolation** option from your page, set to `true`.
 
-```js
-export const isolation = true;
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation-mode) docs.
