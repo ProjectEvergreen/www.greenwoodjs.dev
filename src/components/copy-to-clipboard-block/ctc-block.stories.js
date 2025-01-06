@@ -39,5 +39,15 @@ const RunnerTemplate = () => `
   </app-ctc-block>
 `;
 
+const ShellScriptTemplate = () => `
+  <app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest my-app">
+    <pre class="language-shell"><code class="language-shell">
+    <span class="token comment"># initialize a new directory called my-app for your Greenwood project</span>
+    $ npx @greenwood/init@latest my-app
+    </code></pre>
+  </app-ctc-block>
+`;
+
 export const Snippet = SnippetTemplate.bind({});
 export const Runner = RunnerTemplate.bind({});
+export const ShellScript = ShellScriptTemplate.bind({});

@@ -89,6 +89,35 @@
   }
 }
 
+.shell-container {
+  border: 1px solid var(--color-prism-bg);
+  background-color: var(--color-prism-bg);
+  padding: 0 var(--size-2);
+  border-radius: var(--radius-2);
+
+  & pre {
+    border: 2px solid var(--color-white);
+  }
+
+  & .copy-icon {
+    background-color: var(--color-white);
+    padding: 0;
+    border-radius: var(--radius-2);
+    position: relative;
+    top: 60px;
+    float: right;
+    right: 10px;
+    width: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  & .copy-icon svg {
+    width: 40px;
+    vertical-align: middle;
+  }
+}
+
 .snippet-container:has(.heading) {
   & .copy-icon {
     top: 80px;

@@ -89,6 +89,18 @@ export default class CopyToClipboardBlock extends HTMLElement {
             </div>
           </div>
         `;
+      } else if (variant === "shell") {
+        this.snippetContents = this.textContent.trim();
+        template.innerHTML = `
+          <div class="shell-container">
+            <span class="copy-icon">
+              ${copyIcon}
+            </span>
+            ${this.innerHTML}
+          </div>
+        `;
+      } else {
+        console.warn(`Unknown variant provided => ${variant}`);
       }
 
       this.attachShadow({ mode: "open" });
@@ -107,6 +119,11 @@ export default class CopyToClipboardBlock extends HTMLElement {
           this.shadowRoot
             .querySelector(".copy-icon")
             .addEventListener("click", this.copySnippetToClipboard.bind(this));
+          break;
+        case "shell":
+          this.shadowRoot
+            .querySelector(".copy-icon")
+            .addEventListener("click", this.copyShellScriptToClipboard.bind(this));
           break;
       }
 
@@ -141,6 +158,13 @@ export default class CopyToClipboardBlock extends HTMLElement {
 
   copySnippetToClipboard() {
     const contents = this.snippetContents;
+
+    navigator.clipboard.writeText(contents);
+    console.log("copying the following contents to your clipboard =>", contents);
+  }
+
+  copyShellScriptToClipboard() {
+    const contents = this.getAttribute("paste-contents").trim();
 
     navigator.clipboard.writeText(contents);
     console.log("copying the following contents to your clipboard =>", contents);
