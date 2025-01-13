@@ -11,12 +11,9 @@
     "Project Evergreen",
     "Documentation"
   ],
-  "engines": {
-    "node": "^18.20.0"
-  },
   "scripts": {
     "clean": "rimraf public .greenwood storybook-static",
-    "build": "node --loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js build",
+    "build": "node --import @greenwood/cli/src/register.js ./node_modules/@greenwood/cli/src/index.js build",
     "dev": "greenwood develop",
     "serve": "npm run clean && npm run build && greenwood serve",
     "story:dev": "storybook dev -p 6006",
@@ -31,8 +28,7 @@
     "lint:links": "npm run build && node ./link-checker.js",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "prepare": "husky install",
-    "postinstall": "patch-package"
+    "prepare": "husky install"
   },
   "dependencies": {
     "geist": "^1.2.0",
@@ -48,9 +44,9 @@
     "@eslint/json": "^0.5.0",
     "@eslint/markdown": "^6.2.0",
     "@esm-bundle/chai": "^4.3.4-fix.0",
-    "@greenwood/cli": "~0.31.0-alpha.2",
-    "@greenwood/plugin-css-modules": "~0.31.0-alpha.2",
-    "@greenwood/plugin-import-raw": "~0.31.0-alpha.2",
+    "@greenwood/cli": "~0.31.0-alpha.3",
+    "@greenwood/plugin-css-modules": "~0.31.0-alpha.3",
+    "@greenwood/plugin-import-raw": "~0.31.0-alpha.3",
     "@ls-lint/ls-lint": "^1.10.0",
     "@mapbox/rehype-prism": "^0.9.0",
     "@storybook/addon-essentials": "^8.0.6",
@@ -70,12 +66,11 @@
     "lint-staged": "^15.2.2",
     "lit": "^3.1.2",
     "node-html-parser": "^6.1.13",
-    "patch-package": "^8.0.0",
     "prettier": "^3.2.5",
     "rehype-autolink-headings": "^4.0.0",
     "rehype-slug": "^3.0.0",
     "remark-github": "^10.0.1",
-    "rimraf": "^5.0.5",
+    "rimraf": "^6.0.1",
     "storybook": "^8.0.6",
     "storybook-addon-fetch-mock": "^2.0.1",
     "stylelint": "^16.10.0",
