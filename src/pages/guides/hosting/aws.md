@@ -68,14 +68,14 @@ If you're using GitHub, you can use GitHub Actions to automate the pushing of bu
 
    jobs:
      build:
-       runs-on: ubuntu-20.04
+       runs-on: ubuntu-latest
 
        # match to your version of NodeJS
        steps:
-         - uses: actions/checkout@v2
-         - uses: actions/setup-node@v3
+         - uses: actions/checkout@v4
+         - uses: actions/setup-node@v4
            with:
-             node-version: 18.20.2
+             node-version: 22
 
          - name: Install Dependencies
            run: |

@@ -49,14 +49,14 @@ Following the steps [outlined here](https://pages.github.com/), first make sure 
 
    jobs:
      build-and-deploy:
-       runs-on: ubuntu-20.04
+       runs-on: ubuntu-latest
 
        # match to your version of NodeJS
        steps:
-         - uses: actions/checkout@v2
-         - uses: actions/setup-node@v3
+         - uses: actions/checkout@v4
+         - uses: actions/setup-node@v4
            with:
-             node-version: 18.20.2
+             node-version: 22
 
          # or replace with yarn, pnpm, etc
          - name: Install Dependencies
