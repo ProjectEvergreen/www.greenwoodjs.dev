@@ -14,70 +14,109 @@ A plugin for authoring in [**TypeScript**](https://www.typescriptlang.org/). See
 
 You can use your favorite JavaScript package manager to install this plugin:
 
-```bash
-# npm
-npm i -D @greenwood/plugin-typescript
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
 
-# yarn
-yarn add @greenwood/plugin-typescript --dev
-```
+  ```shell
+  npm i -D @greenwood/plugin-typescript
+  ```
+
+  ```shell
+  yarn add @greenwood/plugin-typescript --save-dev
+  ```
+
+  ```shell
+  pnpm add -D @greenwood/plugin-typescript
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 And then add the plugin to your _greenwood.config.js_.
 
-```javascript
-import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
+<!-- prettier-ignore-start -->
 
-export default {
-  // ...
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
 
-  plugins: [greenwoodPluginTypeScript()],
-};
-```
+  ```js
+  import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
+
+  export default {
+    plugins: [greenwoodPluginTypeScript()],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Usage
 
 Now you can write some TypeScript!
 
-```ts
-import { html, css, LitElement, customElement, property } from "lit-element";
+<!-- prettier-ignore-start -->
 
-@customElement("app-greeting")
-export class GreetingComponent extends LitElement {
-  static styles = css`
-    p {
-      color: blue;
+<app-ctc-block variant="snippet">
+
+  ```ts
+  import { html, css, LitElement, customElement, property } from "lit-element";
+
+  @customElement("app-greeting")
+  export class GreetingComponent extends LitElement {
+    static styles = css`
+      p {
+        color: blue;
+      }
+    `;
+
+    @property()
+    name = "Somebody";
+
+    render() {
+      return html`<p>Hello, ${this.name}!</p>`;
     }
-  `;
-
-  @property()
-  name = "Somebody";
-
-  render() {
-    return html`<p>Hello, ${this.name}!</p>`;
   }
-}
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 And use it in your project like you would use a _.js_ file!
 
-```html
-<script type="module" src="/components/greeting.ts"></script>
-```
+<!-- prettier-ignore-start -->
 
-This is also supported for pages with the **servePage** option that you can pass:
+<app-ctc-block variant="snippet">
 
-```js
-import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
+  ```html
+  <script type="module" src="/components/greeting.ts"></script>
+  ```
 
-export default {
-  // ...
+</app-ctc-block>
 
-  plugins: [
-    greenwoodPluginTypeScript({
-      servePage: false,
-    }),
-  ],
-};
-```
+<!-- prettier-ignore-end -->
+
+This is can also support SSR pages by passing the **servePage** option:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
+
+  ```js
+  import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
+
+  export default {
+    plugins: [
+      greenwoodPluginTypeScript({
+        servePage: false,
+      }),
+    ],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > For server and pre-rendering use cases, make sure to enable [custom imports](/docs/pages/server-rendering/#custom-imports).

@@ -12,39 +12,68 @@ A plugin for using [**Lit**'s SSR capabilities](https://github.com/lit/lit/tree/
 
 ## Prerequisite
 
-This packages depends on the Lit 3.x package as a `peerDependency`. This means you must have Lit already installed in your project.
+This packages depends on the Lit as a `peerDependency`. This means you must have Lit already installed in your project.
 
-```shell
-# npm
-$ npm i lit
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
 
-# yarn
-$ yarn add lit
-```
+  ```shell
+  npm i lit
+  ```
+
+  ```shell
+  yarn add lit
+  ```
+
+  ```shell
+  pnpm add lit
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Installation
 
 You can use your favorite JavaScript package manager to install this plugin.
 
-```bash
-# npm
-npm i -D @greenwood/plugin-renderer-lit
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
 
-# yarn
-yarn add @greenwood/plugin-renderer-lit --dev
-```
+  ```shell
+  npm i -D @greenwood/plugin-renderer-lit
+  ```
+
+  ```shell
+  yarn add @greenwood/plugin-renderer-lit --dev
+  ```
+
+  ```shell
+  pnpm add -D @greenwood/plugin-renderer-lit
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Then add this plugin to your _greenwood.config.js_.
 
-```js
-import { greenwoodPluginRendererLit } from "@greenwood/plugin-renderer-lit";
+<!-- prettier-ignore-start -->
 
-export default {
-  // ...
-  prerender: true, // add this if you want SSR at build time
-  plugins: [greenwoodPluginRendererLit()],
-};
-```
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
+
+  ```js
+  import { greenwoodPluginRendererLit } from "@greenwood/plugin-renderer-lit";
+
+  export default {
+    prerender: true, // add this if you want SSR at build time
+    plugins: [greenwoodPluginRendererLit()],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Usage
 
@@ -52,23 +81,30 @@ Now, you can author [SSR pages](/docs/pages/server-rendering/) using Lit templat
 
 Below is an example of generating a page of LitElement based Web Components:
 
-```js
-// src/pages/products.js
-import { html } from "lit";
-import { getProducts } from "../db/product.js";
-import "../components/card.js";
+<!-- prettier-ignore-start -->
 
-export async function getBody() {
-  const products = await getProducts();
+<app-ctc-block variant="snippet" heading="src/pages/products.js">
 
-  return html`
-    ${products.map((product, idx) => {
-      const { title, thumbnail } = product;
+  ```js
+  import { html } from "lit";
+  import { getProducts } from "../db/product.js";
+  import "../components/card.js";
 
-      return html` <app-card title="${idx + 1}) ${title}" thumbnail="${thumbnail}"></app-card> `;
-    })}
-  `;
-}
-```
+  export async function getBody() {
+    const products = await getProducts();
+
+    return html`
+      ${products.map((product, idx) => {
+        const { title, thumbnail } = product;
+
+        return html` <app-card title="${idx + 1}) ${title}" thumbnail="${thumbnail}"></app-card> `;
+      })}
+    `;
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > Keep in mind you will need to make sure your Lit Web Components are isomorphic and [properly leveraging `LitElement`'s lifecycles](https://github.com/lit/lit/tree/main/packages/labs/ssr#notes-and-limitations) and browser / Node APIs accordingly for maximum compatibility and portability.
