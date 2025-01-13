@@ -28,27 +28,30 @@ Each plugin must return a function that has the following three properties:
 
 Here is an example of creating a plugin in a _greenwood.config.js_:
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```javascript
-export default {
-  // ...
+<app-ctc-block variant="snippet">
 
-  plugins: [
-    (options) => {
-      return {
-        name: "my-plugin",
-        type: "resource",
-        provider: (compilation) => {
-          // do stuff here
-        },
-      };
-    },
-  ],
-};
-```
+  ```js
+  export default {
+    plugins: [
+      (options) => {
+        return {
+          name: "my-plugin",
+          type: "resource",
+          provider: (compilation) => {
+            // do stuff here
+            console.log({ options, compilation })
+          },
+        };
+      },
+    ],
+  };
+  ```
 
-<!-- eslint-enable -->
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 The **provider** function takes a Greenwood [**compilation** object](/docs/reference/appendix/#compilation) consisting of the following properties:
 
@@ -64,23 +67,29 @@ Adapter plugins are designed with the intent to be able to post-process the Gree
 
 An adapter plugin is simply an `async` function that gets invoked by the Greenwood CLI after all assets, API routes, and SSR pages have been built and optimized. With access to the compilation, you can also process all these files to meet any additional format / output targets.
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-const greenwoodPluginMyPlatformAdapter = (options = {}) => {
-  return {
-    type: "adapter",
-    name: "plugin-adapter-my-platform",
-    provider: (compilation) => {
-      return async () => {
-        // run your code here....
-      };
-    },
+<app-ctc-block variant="snippet">
+
+  ```js
+  const greenwoodPluginMyPlatformAdapter = () => {
+    return {
+      type: "adapter",
+      name: "plugin-adapter-my-platform",
+      provider: () => {
+        return async () => {
+          // run your code here....
+        };
+      },
+    };
   };
-};
 
-export { greenwoodPluginMyPlatformAdapter };
-```
+  export { greenwoodPluginMyPlatformAdapter };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ### Example
 
@@ -88,66 +97,74 @@ The most common use case is to "shim" in a hosting platform handler function in 
 
 Here is an example of the "generic adapter" created for Greenwood's own internal test suite.
 
-```js
-import fs from "fs/promises";
-import { checkResourceExists } from "../../../../cli/src/lib/resource-utils.js";
+<!-- prettier-ignore-start -->
 
-function generateOutputFormat(id, type) {
-  const path = type === "page" ? `/${id}.route` : `/api/${id}`;
-  const ref = id.replace(/-/g, "").replace(/\//g, "");
+<app-ctc-block variant="snippet" heading="my-resource-plugin.js">
 
-  return `
-    import { handler as ${ref} } from '../public${path}.js';
+  ```js
+  import fs from "fs/promises";
+  import { checkResourceExists } from "../../../../cli/src/lib/resource-utils.js";
 
-    export async function handler (request) {
-      const { url, headers } = request;
-      const req = new Request(new URL(url, \`http://\${headers.host}\`), {
-        headers: new Headers(headers)
-      });
+  function generateOutputFormat(id, type) {
+    const path = type === "page" ? `/${id}.route` : `/api/${id}`;
+    const ref = id.replace(/-/g, "").replace(/\//g, "");
 
-      return await ${ref}(req);
+    return `
+      import { handler as ${ref} } from '../public${path}.js';
+
+      export async function handler (request) {
+        const { url, headers } = request;
+        const req = new Request(new URL(url, \`http://\${headers.host}\`), {
+          headers: new Headers(headers)
+        });
+
+        return await ${ref}(req);
+      }
+    `;
+  }
+
+  async function genericAdapter(compilation) {
+    const adapterOutputUrl = new URL("./adapter-output/", compilation.context.projectDirectory);
+    const ssrPages = compilation.graph.filter((page) => page.isSSR);
+    const apiRoutes = compilation.manifest.apis;
+
+    if (!(await checkResourceExists(adapterOutputUrl))) {
+      await fs.mkdir(adapterOutputUrl);
     }
-  `;
-}
 
-async function genericAdapter(compilation) {
-  const adapterOutputUrl = new URL("./adapter-output/", compilation.context.projectDirectory);
-  const ssrPages = compilation.graph.filter((page) => page.isSSR);
-  const apiRoutes = compilation.manifest.apis;
+    for (const page of ssrPages) {
+      const { id } = page;
+      const outputFormat = generateOutputFormat(id, "page");
 
-  if (!(await checkResourceExists(adapterOutputUrl))) {
-    await fs.mkdir(adapterOutputUrl);
+      await fs.writeFile(new URL(`./${id}.js`, adapterOutputUrl), outputFormat);
+    }
+
+    for (const [key] of apiRoutes) {
+      const { id } = apiRoutes.get(key);
+      const outputFormat = generateOutputFormat(id, "api");
+
+      await fs.writeFile(new URL(`./api-${id}.js`, adapterOutputUrl), outputFormat);
+    }
   }
 
-  for (const page of ssrPages) {
-    const { id } = page;
-    const outputFormat = generateOutputFormat(id, "page");
-
-    await fs.writeFile(new URL(`./${id}.js`, adapterOutputUrl), outputFormat);
-  }
-
-  for (const [key] of apiRoutes) {
-    const { id } = apiRoutes.get(key);
-    const outputFormat = generateOutputFormat(id, "api");
-
-    await fs.writeFile(new URL(`./api-${id}.js`, adapterOutputUrl), outputFormat);
-  }
-}
-
-const greenwoodPluginAdapterGeneric = (options = {}) => [
-  {
-    type: "adapter",
-    name: "plugin-adapter-generic",
-    provider: (compilation) => {
-      return async () => {
-        await genericAdapter(compilation, options);
-      };
+  const greenwoodPluginAdapterGeneric = (options = {}) => [
+    {
+      type: "adapter",
+      name: "plugin-adapter-generic",
+      provider: (compilation) => {
+        return async () => {
+          await genericAdapter(compilation, options);
+        };
+      },
     },
-  },
-];
+  ];
 
-export { greenwoodPluginAdapterGeneric };
-```
+  export { greenwoodPluginAdapterGeneric };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > **Note**: Check our [Vercel adapter plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-vercel) for a more complete example.
 
@@ -171,45 +188,61 @@ At present, Greenwood allows for configuring the following locations as array of
 
 By providing paths to directories of layouts, plugin authors can share complete pages, themes, and UI complete with JavaScript and CSS to Greenwood users, and all a user has to do (besides installing the plugin), is specify a layout filename in their frontmatter.
 
-```md
----
-layout: acme-theme-blog-layout
----
+<!-- prettier-ignore-start -->
 
-## Welcome to my blog!
-```
+<app-ctc-block variant="snippet">
+
+  ```md
+  ---
+  layout: acme-theme-blog-layout
+  ---
+
+  ## Welcome to my blog!
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Your plugin might look like this:
 
-```js
-/*
- * For context, when your plugin is installed via npm or Yarn, import.meta.url will be /path/to/node_modules/<your-package-name>/
- *
- * You can then choose how to organize and publish your files.  In this case, we have published the layout under a _dist/_ folder, which was specified in the package.json `files` field.
- *
- * node_modules/
- *   acme-theme-pack/
- *     dist/
- *       layouts/
- *         acme-theme-blog-layout.html
- *     acme-theme-pack.js
- *     package.json
- */
-export function myContextPlugin() {
-  return {
-    type: "context",
-    name: "acme-theme-pack:context",
-    provider: () => {
-      return {
-        layouts: [
-          // when the plugin is installed import.meta.url will be /path/to/node_modules/<your-package>/
-          new URL("./dist/layouts/", import.meta.url),
-        ],
-      };
-    },
-  };
-}
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="my-context-plugin.js">
+
+  ```js
+  /*
+  * For context, when your plugin is installed via npm or Yarn, import.meta.url will be /path/to/node_modules/<your-package-name>/
+  *
+  * You can then choose how to organize and publish your files.  In this case, we have published the layout under a _dist/_ folder, which was specified in the package.json `files` field.
+  *
+  * node_modules/
+  *   acme-theme-pack/
+  *     dist/
+  *       layouts/
+  *         acme-theme-blog-layout.html
+  *     acme-theme-pack.js
+  *     package.json
+  */
+  export function myContextPlugin() {
+    return {
+      type: "context",
+      name: "acme-theme-pack:context",
+      provider: () => {
+        return {
+          layouts: [
+            // when the plugin is installed import.meta.url will be /path/to/node_modules/<your-package>/
+            new URL("./dist/layouts/", import.meta.url),
+          ],
+        };
+      },
+    };
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > Additionally, you can provide the default _app.html_ and _page.html_ layouts this way as well!
 
@@ -221,30 +254,38 @@ The copy plugin allows users to copy files around as part of the Greenwood `buil
 
 This plugin supports providing an array of "paired" URL objects that can either be files or directories, by providing a `from` and `to` location as instances of `URL`s:
 
-```js
-export function myCopyPlugin() {
-  return {
-    type: "copy",
-    name: "plugin-copy-some-files",
-    provider: (compilation) => {
-      const { context } = compilation;
+<!-- prettier-ignore-start -->
 
-      return [
-        {
-          // copy a file
-          from: new URL("./robots.txt", context.userWorkspace),
-          to: new URL("./robots.txt", context.outputDir),
-        },
-        {
-          // copy a directory (notice the trailing /)
-          from: new URL("./pdfs/", context.userWorkspace),
-          to: new URL("./pdfs/", context.outputDir),
-        },
-      ];
-    },
-  };
-}
-```
+<app-ctc-block variant="snippet" heading="my-copy-plugin.js">
+
+  ```js
+  export function myCopyPlugin() {
+    return {
+      type: "copy",
+      name: "plugin-copy-some-files",
+      provider: (compilation) => {
+        const { context } = compilation;
+
+        return [
+          {
+            // copy a file
+            from: new URL("./robots.txt", context.userWorkspace),
+            to: new URL("./robots.txt", context.outputDir),
+          },
+          {
+            // copy a directory (notice the trailing /)
+            from: new URL("./pdfs/", context.userWorkspace),
+            to: new URL("./pdfs/", context.outputDir),
+          },
+        ];
+      },
+    };
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > You can see more examples in the [Greenwood repo](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/cli/src/plugins/copy).
 
@@ -256,22 +297,30 @@ Renderer plugins allow users to customize how Greenwood server renders (and prer
 
 This plugin expects to be given a path to a module that exports a function to execute the SSR content of a page by being given its HTML and related scripts. For local development Greenwood will run this in a `Worker` thread for live reloading, and use it standalone for production bundling and serving.
 
-```js
-const greenwoodPluginMyCustomRenderer = (options = {}) => {
-  return {
-    type: "renderer",
-    name: "plugin-renderer-custom",
-    provider: () => {
-      return {
-        executeModuleUrl: new URL("./execute-route-module.js", import.meta.url),
-        prerender: options.prerender,
-      };
-    },
-  };
-};
+<!-- prettier-ignore-start -->
 
-export { greenwoodPluginMyCustomRenderer };
-```
+<app-ctc-block variant="snippet" heading="my-renderer-plugin.js">
+
+  ```js
+  const greenwoodPluginMyCustomRenderer = (options = {}) => {
+    return {
+      type: "renderer",
+      name: "plugin-renderer-custom",
+      provider: () => {
+        return {
+          executeModuleUrl: new URL("./execute-route-module.js", import.meta.url),
+          prerender: options.prerender,
+        };
+      },
+    };
+  };
+
+  export { greenwoodPluginMyCustomRenderer };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 #### Options
 
@@ -308,30 +357,38 @@ It uses standard Web APIs for facilitating these transformations such as [`URL`]
 
 A [resource "interface"](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/cli/src/lib/resource-interface.js) has been provided by Greenwood that you can use to start building your own resource plugins with.
 
-```javascript
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+<!-- prettier-ignore-start -->
 
-class ExampleResource extends ResourceInterface {
-  constructor(compilation, options = {}) {
-    super();
+<app-ctc-block variant="snippet" heading="my-resource-plugin.js">
 
-    this.compilation = compilation; // Greenwood's compilation object
-    this.options = options; // any optional configuration provided by the user of your plugin
-    this.extensions = ["foo", "bar"]; // add custom extensions for file watching + live reload here, ex. ts for TypeScript
-    this.servePage = `static|dynamic`; // optionally opt-in to Greenwood using the plugin's serve lifecycle for processing static pages ('static') or SSR pages and API routes ('dynamic')
+  ```js
+  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+
+  class ExampleResource extends ResourceInterface {
+    constructor(compilation, options = {}) {
+      super();
+
+      this.compilation = compilation; // Greenwood's compilation object
+      this.options = options; // any optional configuration provided by the user of your plugin
+      this.extensions = ["foo", "bar"]; // add custom extensions for file watching + live reload here, ex. ts for TypeScript
+      this.servePage = `static|dynamic`; // optionally opt-in to Greenwood using the plugin's serve lifecycle for processing static pages ('static') or SSR pages and API routes ('dynamic')
+    }
+
+    // lifecycles go here
   }
 
-  // lifecycles go here
-}
+  export function myExampleResourcePlugin(options = {}) {
+    return {
+      type: "resource",
+      name: "my-example-resource-plugin",
+      provider: (compilation) => new ExampleResource(compilation, options),
+    };
+  }
+  ```
 
-export function myResourcePlugin(options = {}) {
-  return {
-    type: "resource",
-    name: "my-resource-plugin",
-    provider: (compilation) => new ExampleResource(compilation, options),
-  };
-}
-```
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > Note: Using `servePage` with the **'dynamic'** setting requires enabling [custom imports](/docs/pages/server-rendering/#custom-imports).
 
@@ -351,36 +408,48 @@ Each lifecycle also supports a corresponding predicate function, e.g. **shouldRe
 
 When requesting a resource like a file, such as _/main.js_, Greenwood needs to know _where_ this resource is located. This is the first lifecycle that is run and takes in a `URL` and `Request` as parameters, and should return a `Request` object. Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/plugins/resource/plugin-user-workspace.js).
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-import fs from "fs";
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+<app-ctc-block variant="snippet">
 
-class UserWorkspaceResource extends ResourceInterface {
-  async shouldResolve(url, request) {
-    const { pathname } = url;
-    const { userWorkspace } = this.compilation.context;
-    const hasExtension = !["", "/"].includes(pathname.split(".").pop());
+  ```js
+  import fs from "fs";
+  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
-    return (
-      hasExtension &&
-      !pathname.startsWith("/node_modules") &&
-      fs.existsSync(new URL(`.${pathname}`, userWorkspace).pathname)
-    );
+  class UserWorkspaceResource extends ResourceInterface {
+    async shouldResolve(url) {
+      const { pathname } = url;
+      const { userWorkspace } = this.compilation.context;
+      const hasExtension = !["", "/"].includes(pathname.split(".").pop());
+
+      return (
+        hasExtension &&
+        !pathname.startsWith("/node_modules") &&
+        fs.existsSync(new URL(`.${pathname}`, userWorkspace).pathname)
+      );
+    }
+
+    async resolve(url) {
+      const { pathname } = url;
+      const { userWorkspace } = this.compilation.context;
+      const workspaceUrl = new URL(`.${pathname}`, userWorkspace);
+
+      return new Request(workspaceUrl);
+    }
   }
 
-  async resolve(url, request) {
-    const { pathname } = url;
-    const { userWorkspace } = this.compilation.context;
-    const workspaceUrl = new URL(`.${pathname}`, userWorkspace);
-
-    return new Request(workspaceUrl);
+  export function myWorkspaceResourcePlugin(options = {}) {
+    return {
+      type: "resource",
+      name: "my-workspace-resource-plugin",
+      provider: (compilation) => new UserWorkspaceResource(compilation, options),
+    };
   }
-}
-```
+  ```
 
-<!-- eslint-enable no-unused-vars -->
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > For most cases, you will not need to use this lifecycle as by default Greenwood will first check if it can resolve a request to a file either in the current workspace or _/node_modules/_. If it finds a match, it will transform the request into a `file://` protocol with the full local path, otherwise the request will remain as the default of `http://`.
 
@@ -392,30 +461,42 @@ If you are supporting _non standard_ file formats, like TypeScript (_.ts_) or JS
 
 Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/plugins/resource/plugin-standard-javascript.js) for serving JavaScript files.
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-import fs from "fs";
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+<app-ctc-block variant="snippet">
 
-class StandardJavaScriptResource extends ResourceInterface {
-  async shouldServe(url, request) {
-    return url.protocol === "file:" && url.pathname.split(".").pop() === "js";
+  ```js
+  import fs from "fs";
+  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+
+  class StandardJavaScriptResource extends ResourceInterface {
+    async shouldServe(url) {
+      return url.protocol === "file:" && url.pathname.split(".").pop() === "js";
+    }
+
+    async serve(url) {
+      const body = await fs.promises.readFile(url, "utf-8");
+
+      return new Response(body, {
+        headers: {
+          "Content-Type": "text/javascript",
+        },
+      });
+    }
   }
 
-  async serve(url, request) {
-    const body = await fs.promises.readFile(url, "utf-8");
-
-    return new Response(body, {
-      headers: {
-        "Content-Type": "text/javascript",
-      },
-    });
+  export function myJavaScriptResourcePlugin(options = {}) {
+    return {
+      type: "resource",
+      name: "my-javascript-resource-plugin",
+      provider: (compilation) => new StandardJavaScriptResource(compilation, options),
+    };
   }
-}
-```
+  ```
 
-<!-- eslint-enable no-unused-vars -->
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > If this was a TypeScript file, this would be the lifecycle where you would run `tsc`.
 
@@ -427,43 +508,55 @@ This lifecycle is useful for augmenting _standard_ web formats prior to Greenwoo
 
 Below is an example of Greenwood's [**PostCSS** plugin](/docs/plugins/postcss/) using **preIntercept** on CSS files.
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
-import { normalizePathnameForWindows } from "@greenwood/cli/src/lib/resource-utils.js";
-import postcss from "postcss";
+<app-ctc-block variant="snippet">
 
-async function getConfig() {
-  // ...
-}
+  ```js
+  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+  import { normalizePathnameForWindows } from "@greenwood/cli/src/lib/resource-utils.js";
+  import postcss from "postcss";
 
-class PostCssResource extends ResourceInterface {
-  constructor(compilation, options) {
-    super(compilation, options);
-    this.extensions = ["css"];
-    this.contentType = "text/css";
+  async function getConfig() {
+    // ...
   }
 
-  async shouldPreIntercept(url) {
-    return url.protocol === "file:" && url.pathname.split(".").pop() === this.extensions[0];
+  class PostCssResource extends ResourceInterface {
+    constructor(compilation, options) {
+      super(compilation, options);
+      this.extensions = ["css"];
+      this.contentType = "text/css";
+    }
+
+    async shouldPreIntercept(url) {
+      return url.protocol === "file:" && url.pathname.split(".").pop() === this.extensions[0];
+    }
+
+    async preIntercept(url, request, response) {
+      const config = await getConfig(this.compilation, this.options.extendConfig);
+      const plugins = config.plugins || [];
+      const body = await response.text();
+      const css =
+        plugins.length > 0
+          ? (await postcss(plugins).process(body, { from: normalizePathnameForWindows(url) })).css
+          : body;
+
+      return new Response(css, { headers: { "Content-Type": this.contentType } });
+    }
   }
 
-  async preIntercept(url, request, response) {
-    const config = await getConfig(this.compilation, this.options.extendConfig);
-    const plugins = config.plugins || [];
-    const body = await response.text();
-    const css =
-      plugins.length > 0
-        ? (await postcss(plugins).process(body, { from: normalizePathnameForWindows(url) })).css
-        : body;
-
-    return new Response(css, { headers: { "Content-Type": this.contentType } });
+  export function myPostCssResourcePlugin(options = {}) {
+    return {
+      type: "resource",
+      name: "my-postcss-resource-plugin",
+      provider: (compilation) => new PostCssResource(compilation, options),
+    };
   }
-}
-```
+  ```
 
-<!-- eslint-enable no-unused-vars -->
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 #### Intercept
 
@@ -479,35 +572,47 @@ A good example of this is [Greenwood's "raw" plugin](https://github.com/ProjectE
 import styles from "./hero.css?type=raw";
 ```
 
-<!-- eslint-enable no-unused-vars -->
+<!-- eslint-enable -->
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+<app-ctc-block variant="snippet">
 
-class ImportRawResource extends ResourceInterface {
-  async shouldIntercept(url) {
-    const { protocol, searchParams } = url;
-    const type = searchParams.get("type");
+  ```js
+  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
-    return protocol === "file:" && type === "raw";
+  class ImportRawResource extends ResourceInterface {
+    async shouldIntercept(url) {
+      const { protocol, searchParams } = url;
+      const type = searchParams.get("type");
+
+      return protocol === "file:" && type === "raw";
+    }
+
+    async intercept(url, request, response) {
+      const body = await response.text();
+      const contents = `const raw = \`${body.replace(/\r?\n|\r/g, " ").replace(/\\/g, "\\\\")}\`;\nexport default raw;`;
+
+      return new Response(contents, {
+        headers: new Headers({
+          "Content-Type": "text/javascript",
+        }),
+      });
+    }
   }
 
-  async intercept(url, request, response) {
-    const body = await response.text();
-    const contents = `const raw = \`${body.replace(/\r?\n|\r/g, " ").replace(/\\/g, "\\\\")}\`;\nexport default raw;`;
-
-    return new Response(contents, {
-      headers: new Headers({
-        "Content-Type": "text/javascript",
-      }),
-    });
+  export function myRawImportResourcePlugin(options = {}) {
+    return {
+      type: "resource",
+      name: "my-raw-import-resource-plugin",
+      provider: (compilation) => new ImportRawResource(compilation, options),
+    };
   }
-}
-```
+  ```
 
-<!-- eslint-enable no-unused-vars -->
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 #### Optimize
 
@@ -515,37 +620,49 @@ This lifecycle is only run during a build (`greenwood build`) and after the **in
 
 Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-import-css/src/index.js) for minifying CSS. (The actual function for minifying has been omitted for brevity)
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+<app-ctc-block variant="snippet" heading="my-resource-plugin.js">
 
-function bundleCss() {
-  // ..
-}
+  ```js
+  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
-class StandardCssResource extends ResourceInterface {
-  async shouldOptimize(url, response) {
-    const { protocol, pathname } = url;
-
-    return (
-      this.compilation.config.optimization !== "none" &&
-      protocol === "file:" &&
-      pathname.split(".").pop() === "css" &&
-      response.headers.get("Content-Type").indexOf("text/css") >= 0
-    );
+  function bundleCss() {
+    // ..
   }
 
-  async optimize(url, response) {
-    const body = await response.text();
-    const optimizedBody = bundleCss(body);
+  class StandardCssResource extends ResourceInterface {
+    async shouldOptimize(url, response) {
+      const { protocol, pathname } = url;
 
-    return new Response(optimizedBody);
+      return (
+        this.compilation.config.optimization !== "none" &&
+        protocol === "file:" &&
+        pathname.split(".").pop() === "css" &&
+        response.headers.get("Content-Type").indexOf("text/css") >= 0
+      );
+    }
+
+    async optimize(url, response) {
+      const body = await response.text();
+      const optimizedBody = bundleCss(body);
+
+      return new Response(optimizedBody);
+    }
   }
-}
-```
 
-<!-- eslint-enable no-unused-vars -->
+  export function myCssResourcePlugin(options = {}) {
+    return {
+      type: "resource",
+      name: "my-css-resource-plugin",
+      provider: (compilation) => new StandardCssResource(compilation, options),
+    };
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > You can see [more in-depth examples of resource plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/cli/src/plugins/resource/) by reviewing the default plugins maintained in Greenwood's CLI package.
 
@@ -555,24 +672,32 @@ Though rare, there may be cases for tapping into the bundling process for Greenw
 
 Simply use the `provider` method to return an array of Rollup plugins:
 
-```js
-import bannerRollup from "rollup-plugin-banner";
-import fs from "fs";
+<!-- prettier-ignore-start -->
 
-const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
+<app-ctc-block variant="snippet" heading="my-rollup-plugin.js">
 
-export function myRollupPlugin() {
-  const now = new Date().now();
+  ```js
+  import bannerRollup from "rollup-plugin-banner";
+  import fs from "fs";
 
-  return {
-    type: "rollup",
-    name: "plugin-something-something",
-    provider: () => [
-      bannerRollup(`/* ${packageJson.name} v${packageJson.version} - built at ${now}. */`),
-    ],
-  };
-}
-```
+  const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
+
+  export function myRollupPlugin() {
+    const now = new Date().now();
+
+    return {
+      type: "rollup",
+      name: "plugin-something-something",
+      provider: () => [
+        bannerRollup(`/* ${packageJson.name} v${packageJson.version} - built at ${now}. */`),
+      ],
+    };
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Server
 
@@ -593,51 +718,65 @@ Although JavaScript is loosely typed, a [server "interface"](https://github.com/
 
 They can be used in a _greenwood.config.js_ just like any other plugin type.
 
-```javascript
-import { myServerPlugin } from "./my-server-plugin.js";
+<!-- prettier-ignore-start -->
 
-export default {
-  // ...
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
 
-  plugins: [myServerPlugin()],
-};
-```
+  ```javascript
+  import { myServerPlugin } from "./my-server-plugin.js";
+
+  export default {
+    plugins: [myServerPlugin()],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ### Example
 
 The below is an excerpt of [Greenwood's internal LiveReload server](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/cli/src/plugins/server/plugin-livereload.js) plugin.
 
-```javascript
-import { ServerInterface } from "@greenwood/cli/src/lib/server-interface.js";
-import livereload from "livereload";
+<!-- prettier-ignore-start -->
 
-class LiveReloadServer extends ServerInterface {
-  constructor(compilation, options = {}) {
-    super(compilation, options);
+<app-ctc-block variant="snippet" heading="my-server-plugin.js">
 
-    this.liveReloadServer = livereload.createServer({
-      /* options */
-    });
+  ```js
+  import { ServerInterface } from "@greenwood/cli/src/lib/server-interface.js";
+  import livereload from "livereload";
+
+  class LiveReloadServer extends ServerInterface {
+    constructor(compilation, options = {}) {
+      super(compilation, options);
+
+      this.liveReloadServer = livereload.createServer({
+        /* options */
+      });
+    }
+
+    async start() {
+      const { userWorkspace } = this.compilation.context;
+
+      return this.liveReloadServer.watch(userWorkspace, () => {
+        console.info(`Now watching directory "${userWorkspace}" for changes.`);
+        return Promise.resolve(true);
+      });
+    }
   }
 
-  async start() {
-    const { userWorkspace } = this.compilation.context;
-
-    return this.liveReloadServer.watch(userWorkspace, () => {
-      console.info(`Now watching directory "${userWorkspace}" for changes.`);
-      return Promise.resolve(true);
-    });
+  export function myServerPlugin(options = {}) {
+    return {
+      type: "server",
+      name: "plugin-livereload",
+      provider: (compilation) => new LiveReloadServer(compilation, options),
+    };
   }
-}
+  ```
 
-export function myServerPlugin(options = {}) {
-  return {
-    type: "server",
-    name: "plugin-livereload",
-    provider: (compilation) => new LiveReloadServer(compilation, options),
-  };
-}
-```
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Source
 
@@ -647,38 +786,45 @@ The source plugin allows users to include external content as pages that will be
 
 This plugin supports providing an array of "page" objects that will be added as nodes in [the graph](/docs/content-as-data/).
 
-```js
-// my-source-plugin.js
-export const customExternalSourcesPlugin = () => {
-  return {
-    type: "source",
-    name: "source-plugin-myapi",
-    provider: () => {
-      return async function () {
-        // this could just as easily come from an API, DB, Headless CMS, etc
-        const artists = await fetch("http://www.myapi.com/...").then((resp) => resp.json());
+<!-- prettier-ignore-start -->
 
-        return artists.map((artist) => {
-          const { bio, id, imageUrl, name } = artist;
-          const route = `/artists/${name.toLowerCase().replace(/ /g, "-")}/`;
+<app-ctc-block variant="snippet" heading="my-source-plugin.js">
 
-          return {
-            title: name,
-            body: `
-              <h1>${name}</h1>
-              <p>${bio}</p>
-              <img src='${imageUrl}'/>
-            `,
-            route,
-            id,
-            label: name,
-          };
-        });
-      };
-    },
+  ```js
+  export const customExternalSourcesPlugin = () => {
+    return {
+      type: "source",
+      name: "source-plugin-myapi",
+      provider: () => {
+        return async function () {
+          // this could just as easily come from an API, DB, Headless CMS, etc
+          const artists = await fetch("http://www.myapi.com/...").then((resp) => resp.json());
+
+          return artists.map((artist) => {
+            const { bio, id, imageUrl, name } = artist;
+            const route = `/artists/${name.toLowerCase().replace(/ /g, "-")}/`;
+
+            return {
+              title: name,
+              body: `
+                <h1>${name}</h1>
+                <p>${bio}</p>
+                <img src='${imageUrl}'/>
+              `,
+              route,
+              id,
+              label: name,
+            };
+          });
+        };
+      },
+    };
   };
-};
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 In the above example, you would have the following statically generated in the output directory:
 

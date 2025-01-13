@@ -16,79 +16,110 @@ A plugin for authoring [**CSS Modules ™️**](https://github.com/css-modules/c
 
 You can use your favorite JavaScript package manager to install this package.
 
-```bash
-# npm
-npm i -D @greenwood/plugin-css-modules
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
 
-# yarn
-yarn add @greenwood/plugin-css-modules --dev
-```
+  ```shell
+  npm i -D @greenwood/plugin-css-modules
+  ```
+
+  ```shell
+  yarn add @greenwood/plugin-css-modules --dev
+  ```
+
+  ```shell
+  pnpm add -D @greenwood/plugin-css-modules
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Then add this plugin to your _greenwood.config.js_.
 
-```javascript
-import { greenwoodPluginCssModules } from "@greenwood/plugin-css-modules";
+<!-- prettier-ignore-start -->
 
-export default {
-  // ...
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
 
-  plugins: [greenwoodPluginCssModules()],
-};
-```
+  ```js
+  import { greenwoodPluginCssModules } from "@greenwood/plugin-css-modules";
+
+  export default {
+    plugins: [greenwoodPluginCssModules()],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Usage
 
 Now you can create a CSS file that ends in _.module.css_:
 
-```css
-/* header.module.css */
-.container {
-  display: flex;
-  justify-content: space-between;
-}
+<!-- prettier-ignore-start -->
 
-.navBarMenu {
-  border: 1px solid #020202;
-}
+<app-ctc-block variant="snippet" heading="header.module.css">
 
-.navBarMenuItem {
-  & a {
-    text-decoration: none;
-    color: #020202;
-  }
-}
-
-@media screen and (min-width: 768px) {
+  ```css
   .container {
-    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
   }
-}
-```
+
+  .navBarMenu {
+    border: 1px solid #020202;
+  }
+
+  .navBarMenuItem {
+    & a {
+      text-decoration: none;
+      color: #020202;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .container {
+      padding: 10px 20px;
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 And reference that in your (Light DOM) HTML based Web Component:
 
-```js
-// header.js
-import styles from "./header.module.css";
+<!-- prettier-ignore-start -->
 
-export default class Header extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <header class="${styles.container}">
-        <ul class="${styles.navBarMenu}">
-          <li class="${styles.navBarMenuItem}">
-            <a href="/about/" title="Documentation">About</a>
-          </li>
-          <li class="${styles.navBarMenuItem}">
-            <a href="/contact/" title="Guides">Contact</a>
-          </li>
-        </ul>
-      </header>
-    `;
+<app-ctc-block variant="snippet" heading="header.js">
+
+  ```js
+  import styles from "./header.module.css";
+
+  export default class Header extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+        <header class="${styles.container}">
+          <ul class="${styles.navBarMenu}">
+            <li class="${styles.navBarMenuItem}">
+              <a href="/about/" title="Documentation">About</a>
+            </li>
+            <li class="${styles.navBarMenuItem}">
+              <a href="/contact/" title="Guides">Contact</a>
+            </li>
+          </ul>
+        </header>
+      `;
+    }
   }
-}
 
-customElements.define("app-header", Header);
-```
+  customElements.define("app-header", Header);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 From there, Greenwood will scope your CSS class names by prefixing them with the filename and a hash of the contents, inline that into a `<style>` tag in the HTML, and then strip the reference to the _module.css_ file from your JavaScript file.
