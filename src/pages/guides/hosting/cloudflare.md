@@ -19,12 +19,19 @@ For static hosting with [Cloudflare Pages](https://developers.cloudflare.com/pag
 
 You'll also want to add a _wrangler.toml_ file to the root of your project
 
-```toml
-# https://developers.cloudflare.com/pages/functions/wrangler-configuration/
-name = "<your-project-name>"
-pages_build_output_dir = "./public"
-compatibility_date = "2023-10-12"
-```
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="snippet" heading="wrangler.toml">
+
+  ```toml
+  # https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+  name = "<your-project-name>"
+  pages_build_output_dir = "./public"
+  compatibility_date = "2023-10-12"
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 That's it! That's all you should need to get started deploying Greenwood to Cloudflare Pages. ☁️
 

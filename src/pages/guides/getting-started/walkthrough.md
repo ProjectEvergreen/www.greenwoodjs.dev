@@ -16,9 +16,24 @@ In this section, we'll walk through developing a site with Greenwood and making 
 
 First let's get the development server running. We can open this in our browser and get instant live reloading as we making changes, so we can see our work come alive in real-time.
 
-```shell
-$ npm run dev
-```
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
+
+  ```shell
+  npm run dev
+  ```
+
+  ```shell
+  yarn dev
+  ```
+
+  ```shell
+  pnpm dev
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Congrats, you should have your first **Greenwood** site running at `http://localhost:1984`, though it will be quite empty at first.
 
@@ -39,35 +54,59 @@ Let's scaffold out a couple pages to get things going. For this guide, we'll wan
 
 Our home page will be simple landing page with links to our blog post pages:
 
-```html
-<html>
-  <body>
-    <h1>Welcome</h1>
+<!-- prettier-ignore-start -->
 
-    <p>Thanks for visiting my site, I hope you like it!</p>
+<app-ctc-block variant="snippet" heading="src/pages/index.html">
 
-    <h2>My Posts</h2>
-    <ul>
-      <li><a href="/blog/first-post/">My First Post</a></li>
-      <li><a href="/blog/second-post/">My Second Post</a></li>
-    </ul>
-  </body>
-</html>
-```
+  ```html
+  <html>
+    <body>
+      <h1>Welcome</h1>
+
+      <p>Thanks for visiting my site, I hope you like it!</p>
+
+      <h2>My Posts</h2>
+      <ul>
+        <li><a href="/blog/first-post/">My First Post</a></li>
+        <li><a href="/blog/second-post/">My Second Post</a></li>
+      </ul>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 For the blog post pages, let's create a folder called _blog/_ in our pages directory and then create two markdown files called _first-post.md_ and _second-post.md_:
 
-```md
-# My First Blog Post
+<!-- prettier-ignore-start -->
 
-Lorem Ipsum...
-```
+<app-ctc-block variant="snippet" heading="src/pages/blog/first-post.md">
 
-```md
-# My Second Blog Post
+  ```md
+  # My First Blog Post
 
-Sed ut perspiciatis...
-```
+  Lorem Ipsum...
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/blog/second-post.md">
+
+  ```md
+  # My Second Blog Post
+
+  Sed ut perspiciatis...
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ### Layouts
 
@@ -80,22 +119,30 @@ Now that we have some pages, let's think about how we want organize the layout o
 
 To provide a wrapper to put all our common styles and components in, let's create a _src/layouts/app.html_ file with this starting HTML. We'll include a basic `<title>` and `<meta>` and the `<page-outlet>` tag as a placeholder for where the page contents will go.
 
-```html
-<html>
-  <head>
-    <title>My Blog</title>
-    <meta name="description" content="My personal blog built with Greenwood." />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <main>
-      <page-outlet></page-outlet>
-    </main>
-  </body>
-</html>
-```
+<app-ctc-block variant="snippet" heading="src/layouts/app.html">
+
+  ```html
+  <html>
+    <head>
+      <title>My Blog</title>
+      <meta name="description" content="My personal blog built with Greenwood." />
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+
+    <body>
+      <main>
+        <page-outlet></page-outlet>
+      </main>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 #### Blog Posts Layout
 
@@ -103,25 +150,33 @@ For the individual blog posts, we're going to want a custom layout for those pag
 
 Create a _src/layouts/blog.html_ file, including our `<content-outlet>` placeholder tag for our markdown content, and some links to help with navigating our site:
 
-```html
-<html>
-  <body>
-    <article>
-      <content-outlet></content-outlet>
-    </article>
+<!-- prettier-ignore-start -->
 
-    <hr />
+<app-ctc-block variant="snippet" heading="src/layouts/blog.html">
 
-    <h3>More Posts</h3>
-    <nav>
-      <ul>
-        <li><a href="/blog/first-post/">My First Post</a></li>
-        <li><a href="/blog/second-post/">My Second Post</a></li>
-      </ul>
-    </nav>
-  </body>
-</html>
-```
+  ```html
+  <html>
+    <body>
+      <article>
+        <content-outlet></content-outlet>
+      </article>
+
+      <hr />
+
+      <h3>More Posts</h3>
+      <nav>
+        <ul>
+          <li><a href="/blog/first-post/">My First Post</a></li>
+          <li><a href="/blog/second-post/">My Second Post</a></li>
+        </ul>
+      </nav>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > In case you don't see the layout effects taking place for the blog pages, you may need to restart the dev server for [frontmatter changes to take effect](https://github.com/ProjectEvergreen/greenwood/issues/1278).
 
@@ -131,55 +186,70 @@ OK, so we've made some content which you should see reflected in your browser, b
 
 Let's make a _src/styles/theme.css_ for our global styles and variables, which we can then reference in any of our layouts, pages, or components.
 
-```css
-@import url("//fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
+<!-- prettier-ignore-start -->
 
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  box-sizing: border-box;
-}
+<app-ctc-block variant="snippet" heading="src/styles/theme.css">
 
-body {
-  font-family: "Source Sans Pro", sans-serif;
-  line-height: 1.4;
-}
+  ```css
+  @import url("//fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
 
-:root {
-  --color-accent: #016341;
-  --color-link: #1d337a;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
 
-h2 {
-  color: var(--color-accent);
-  font-size: 2rem;
-  margin: 5px 0;
-}
+  body {
+    font-family: "Source Sans Pro", sans-serif;
+    line-height: 1.4;
+  }
 
-a {
-  color: var(--color-link);
-}
-```
+  :root {
+    --color-accent: #016341;
+    --color-link: #1d337a;
+  }
+
+  h2 {
+    color: var(--color-accent);
+    font-size: 2rem;
+    margin: 5px 0;
+  }
+
+  a {
+    color: var(--color-link);
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Now we can add a `<link>` tag pointing to this CSS file into our _app.html_ layout. Easy! 💥
 
-```html
-<!-- src/layouts/app.html -->
-<html>
-  <head>
-    <title>My Blog</title>
-    <meta name="description" content="My personal blog built with Greenwood." />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../styles/theme.css" />
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <!-- ... -->
-  </body>
-</html>
-```
+<app-ctc-block variant="snippet" heading="src/layouts/app.html">
+
+  ```html
+  <html>
+    <head>
+      <title>My Blog</title>
+      <meta name="description" content="My personal blog built with Greenwood." />
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../styles/theme.css" />
+    </head>
+
+    <body>
+      <!-- ... -->
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > Referencing the [companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started), go ahead and create a CSS file each for the home page and blog styles and `<link>` those up in their respective HTML files.
 
@@ -191,52 +261,60 @@ Combined with [Declarative Shadow DOM](https://web.dev/articles/declarative-shad
 
 Let's use the footer component for this guide as an example:
 
-```javascript
-const template = document.createElement("template");
+<!-- prettier-ignore-start -->
 
-export default class FooterComponent extends HTMLElement {
-  connectedCallback() {
-    const year = new Date().getFullYear();
+<app-ctc-block variant="snippet" heading="src/components/footer/footer.js">
 
-    if (!this.shadowRoot) {
-      template.innerHTML = `
-        <style>
-          .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: var(--color-bg);
-            min-height: 30px;
-            padding-top: 10px;
+  ```js
+  const template = document.createElement("template");
 
-            & a {
-              color: #efefef;
-              text-decoration: none;
+  export default class FooterComponent extends HTMLElement {
+    connectedCallback() {
+      const year = new Date().getFullYear();
+
+      if (!this.shadowRoot) {
+        template.innerHTML = `
+          <style>
+            .footer {
+              position: fixed;
+              bottom: 0;
+              width: 100%;
+              background-color: var(--color-bg);
+              min-height: 30px;
+              padding-top: 10px;
+
+              & a {
+                color: #efefef;
+                text-decoration: none;
+              }
+
+              & h4 {
+                width: 90%;
+                margin: 0 auto;
+                padding: 0;
+                text-align: center;
+              }
             }
+          </style>
+          <footer class="footer">
+            <h4>
+              <a href="https://www.greenwoodjs.io/">My Blog &copy;${year} &#9672 Built with GreenwoodJS</a>
+            </h4>
+          </footer>
+        `;
 
-            & h4 {
-              width: 90%;
-              margin: 0 auto;
-              padding: 0;
-              text-align: center;
-            }
-          }
-        </style>
-        <footer class="footer">
-          <h4>
-            <a href="https://www.greenwoodjs.io/">My Blog &copy;${year} &#9672 Built with GreenwoodJS</a>
-          </h4>
-        </footer>
-      `;
-
-      this.attachShadow({ mode: "open" });
-      this.shadowRoot.appendChild(template.content.cloneNode(true));
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+      }
     }
   }
-}
 
-customElements.define("app-footer", FooterComponent);
-```
+  customElements.define("app-footer", FooterComponent);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 What we've done is:
 
@@ -248,26 +326,34 @@ What we've done is:
 
 From there, we can reference this in our App layout with a `<script>` tag and then add the `<app-footer>` tag to the bottom of the layout:
 
-```html
-<html>
-  <head>
-    <title>My Blog</title>
-    <meta name="description" content="My personal blog built with Greenwood." />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../styles/theme.css" />
-    <script type="module" src="../components/footer.js"></script>
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <main>
-      <page-outlet></page-outlet>
-    </main>
+<app-ctc-block variant="snippet" heading="src/layouts/app.html">
 
-    <app-footer></app-footer>
-  </body>
-</html>
-```
+  ```html
+  <html>
+    <head>
+      <title>My Blog</title>
+      <meta name="description" content="My personal blog built with Greenwood." />
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../styles/theme.css" />
+      <script type="module" src="../components/footer.js"></script>
+    </head>
+
+    <body>
+      <main>
+        <page-outlet></page-outlet>
+      </main>
+
+      <app-footer></app-footer>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > Now you can do the same for an `<app-header>`. See the [companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started/) for a complete working example. Voila! All our pages now have a header and footer! 🎉
 
@@ -275,10 +361,24 @@ From there, we can reference this in our App layout with a `<script>` tag and th
 
 Now that we have all our content everything we developed working, we should generate a production build and verify that output locally. For that, we just need to run Greenwood's `build` command, followed by its `serve` command:
 
-```shell
-$ npm run build
-$ npm run serve
-```
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
+
+  ```shell
+  npm run build && npm run serve
+  ```
+
+  ```shell
+  yarn build && yarn serve
+  ```
+
+  ```shell
+  pnpm build && pnpm serve
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 If all goes well, you should be able to open `http://localhost:8080` in your browser and see a result similar to this:
 ![greenwood-getting-started-styled](/assets/guides/getting-started-repo-styled.webp)

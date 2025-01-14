@@ -28,19 +28,27 @@ Now at this point, if you have any routes like `/search/`, you'll notice they ar
 
 Below is a sample Edge function for doing the rewrites:
 
-```js
-export const handler = async (event, context, callback) => {
-  const { request } = event.Records[0].cf;
+<!-- prettier-ignore-start -->
 
-  // re-write "clean" URLs to have index.html appended
-  // to support routing for Cloudfront <> S3
-  if (request.uri.endsWith("/")) {
-    request.uri = `${request.uri}index.html`;
-  }
+<app-ctc-block variant="snippet">
 
-  callback(null, request);
-};
-```
+  ```js
+  export const handler = async (event, context, callback) => {
+    const { request } = event.Records[0].cf;
+
+    // re-write "clean" URLs to have index.html appended
+    // to support routing for Cloudfront <> S3
+    if (request.uri.endsWith("/")) {
+      request.uri = `${request.uri}index.html`;
+    }
+
+    callback(null, request);
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > At this point, you'll probably want to use Route 53 to [put your domain in front of your Cloudfront distribution](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html).
 
@@ -58,44 +66,51 @@ If you're using GitHub, you can use GitHub Actions to automate the pushing of bu
 1. We also recommend adding your bucket name as secret too, e.g. `AWS_BUCKET_NAME`
 1. At the root of your repo add a GitHub Action called _.github/workflows/publish.yml_ and adapt as needed for your own branch, build commands, and package manager.
 
-   ```yml
-   name: Upload Website to S3
+  <!-- prettier-ignore-start -->
+  <app-ctc-block variant="snippet" heading=".github/workflows/publish.yml">
 
-   on:
-     push:
-       branches:
-         - main
+    ```yml
+    name: Upload Website to S3
 
-   jobs:
-     build:
-       runs-on: ubuntu-20.04
+    on:
+      push:
+        branches:
+          - main
 
-       # match to your version of NodeJS
-       steps:
-         - uses: actions/checkout@v2
-         - uses: actions/setup-node@v3
-           with:
-             node-version: 18.20.2
+    jobs:
+      build:
+        runs-on: ubuntu-20.04
 
-         - name: Install Dependencies
-           run: |
-             npm ci
+        # match to your version of NodeJS
+        steps:
+          - uses: actions/checkout@v2
+          - uses: actions/setup-node@v3
+            with:
+              node-version: 18.20.2
 
-         # use your greenwood build script
-         - name: Run Build
-           run: |
-             npm run build
+          - name: Install Dependencies
+            run: |
+              npm ci
 
-         - name: Upload to S3 and invalidate CDN
-           uses: opspresso/action-s3-sync@master
-           env:
-             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-             # make sure this matches your bucket's region
-             AWS_REGION: "us-east-1"
-             FROM_PATH: "./public"
-             # your target s3 bucket name goes here
-             DEST_PATH: s3://${{ secrets.AWS_BUCKET_NAME }}
-   ```
+          # use your greenwood build script
+          - name: Run Build
+            run: |
+              npm run build
+
+          - name: Upload to S3 and invalidate CDN
+            uses: opspresso/action-s3-sync@master
+            env:
+              AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+              AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              # make sure this matches your bucket's region
+              AWS_REGION: "us-east-1"
+              FROM_PATH: "./public"
+              # your target s3 bucket name goes here
+              DEST_PATH: s3://${{ secrets.AWS_BUCKET_NAME }}
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
 
 Now when you push changes to your repo, the action will run an the build files will automatically be uploaded.
