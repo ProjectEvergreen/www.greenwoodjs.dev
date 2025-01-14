@@ -60,6 +60,8 @@ You can install the Greenwood CLI manually through your preferred package manage
 
 </app-ctc-block>
 
+> For PNPM users, you'll want to add `public-hoist-pattern[]=wc-compiler` to your _.npmrc_ file if using Greenwood's default server-rendering solution.
+
 <!-- prettier-ignore-end -->
 
 ## Commands
