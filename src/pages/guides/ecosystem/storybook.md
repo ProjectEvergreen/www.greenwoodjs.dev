@@ -14,9 +14,17 @@ tocHeading: 2
 
 We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/instal) to setup a project from scratch:
 
-```shell
-npx storybook@latest init
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="shell" paste-contents="npx storybook@latest init">
+
+  ```shell
+  npx storybook@latest init
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 As part of the prompts, we suggest the following answers to project type (**web_components**) and builder (**Vite**):
 
@@ -43,48 +51,68 @@ We were not able to detect the right builder for your project. Please select one
 
 You should now be good to start writing your first story! 📚
 
-```js
-// src/components/footer/footer.js
-export default class Footer extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <footer>
-        <h4>Greenwood</h4>
-        <img src="/assets/my-logo.webp" />
-      </footer>
-    `;
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/components/footer/footer.js">
+
+  ```js
+  export default class Footer extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+        <footer>
+          <h4>Greenwood</h4>
+          <img src="/assets/my-logo.webp" />
+        </footer>
+      `;
+    }
   }
-}
 
-customElements.define("app-footer", Footer);
-```
+  customElements.define("app-footer", Footer);
+  ```
 
-```js
-// src/components/footer/footer.stories.js
-import "./footer.js";
+</app-ctc-block>
 
-export default {
-  title: "Components/Footer",
-};
+<!-- prettier-ignore-end -->
 
-const Template = () => "<app-footer></app-footer>";
+<!-- prettier-ignore-start -->
 
-export const Primary = Template.bind({});
-```
+<app-ctc-block variant="snippet" heading="src/components/footer/footer.stories.js">
+
+  ```js
+  import "./footer.js";
+
+  export default {
+    title: "Components/Footer",
+  };
+
+  const Template = () => "<app-footer></app-footer>";
+
+  export const Primary = Template.bind({});
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Static Assets
 
 To help with resolving any static assets used in your stories, you can configure [`staticDirs`](https://storybook.js.org/docs/api/main-config/main-config-static-dirs) to point to your Greenwood workspace.
 
-```js
-const config = {
-  //...
+<!-- prettier-ignore-start -->
 
-  staticDirs: ["../src"],
-};
+<app-ctc-block variant="snippet" heading=".storybook/main.js">
 
-export default config;
-```
+  ```js
+  const config = {
+    staticDirs: ["../src"],
+  };
+
+  export default config;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Import Attributes
 
@@ -92,64 +120,72 @@ As [Vite does not support Import Attributes](https://github.com/vitejs/vite/issu
 
 In this example we are handling for CSS Module scripts:
 
-```js
-import { defineConfig } from "vite";
-import fs from "fs/promises";
-import path from "path";
-// 1) import the greenwood plugin and lifecycle helpers
-import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
-import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
-import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
+<!-- prettier-ignore-start -->
 
-// 2) initialize Greenwood lifecycles
-const config = await readAndMergeConfig();
-const context = await initContext({ config });
-const compilation = { context, config };
+<app-ctc-block variant="snippet" heading="vite.config.js">
 
-// 3) initialize the plugin
-const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
+  ```js
+  import { defineConfig } from "vite";
+  import fs from "fs/promises";
+  import path from "path";
+  // 1) import the greenwood plugin and lifecycle helpers
+  import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
+  import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+  import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 
-// 4) customize Vite
-function transformConstructableStylesheetsPlugin() {
-  return {
-    name: "transform-constructable-stylesheets",
-    enforce: "pre",
-    resolveId: (id, importer) => {
-      if (
-        // you'll need to configure this `importer` line to the location of your own components
-        importer?.indexOf("/src/components/") >= 0 &&
-        id.endsWith(".css") &&
-        !id.endsWith(".module.css")
-      ) {
-        // add .type so Constructable Stylesheets  are not precessed by Vite's default pipeline
-        return path.join(path.dirname(importer), `${id}.type`);
-      }
-    },
-    load: async (id) => {
-      if (id.endsWith(".css.type")) {
-        const filename = id.slice(0, -5);
-        const contents = await fs.readFile(filename, "utf-8");
-        const url = new URL(`file://${id.replace(".type", "")}`);
-        // "coerce" native constructable stylesheets into inline JS so Vite / Rollup do not complain
-        const request = new Request(url, {
-          headers: {
-            Accept: "text/javascript",
-          },
-        });
-        const response = await standardCssResource.intercept(url, request, new Response(contents));
-        const body = await response.text();
+  // 2) initialize Greenwood lifecycles
+  const config = await readAndMergeConfig();
+  const context = await initContext({ config });
+  const compilation = { context, config };
 
-        return body;
-      }
-    },
-  };
-}
+  // 3) initialize the plugin
+  const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
 
-export default defineConfig({
-  // 5) add it the plugins option
-  plugins: [transformConstructableStylesheetsPlugin()],
-});
-```
+  // 4) customize Vite
+  function transformConstructableStylesheetsPlugin() {
+    return {
+      name: "transform-constructable-stylesheets",
+      enforce: "pre",
+      resolveId: (id, importer) => {
+        if (
+          // you'll need to configure this `importer` line to the location of your own components
+          importer?.indexOf("/src/components/") >= 0 &&
+          id.endsWith(".css") &&
+          !id.endsWith(".module.css")
+        ) {
+          // add .type so Constructable Stylesheets  are not precessed by Vite's default pipeline
+          return path.join(path.dirname(importer), `${id}.type`);
+        }
+      },
+      load: async (id) => {
+        if (id.endsWith(".css.type")) {
+          const filename = id.slice(0, -5);
+          const contents = await fs.readFile(filename, "utf-8");
+          const url = new URL(`file://${id.replace(".type", "")}`);
+          // "coerce" native constructable stylesheets into inline JS so Vite / Rollup do not complain
+          const request = new Request(url, {
+            headers: {
+              Accept: "text/javascript",
+            },
+          });
+          const response = await standardCssResource.intercept(url, request, new Response(contents));
+          const body = await response.text();
+
+          return body;
+        }
+      },
+    };
+  }
+
+  export default defineConfig({
+    // 5) add it the plugins option
+    plugins: [transformConstructableStylesheetsPlugin()],
+  });
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Phew, should be all set now.
 
@@ -159,45 +195,53 @@ If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll ne
 
 For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to create a wrapping Vite plugin to handle this transformation.
 
-```js
-import { defineConfig } from "vite";
-import fs from "fs/promises";
-// 1) import the greenwood plugin and lifecycle helpers
-import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
-import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
-import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
+<!-- prettier-ignore-start -->
 
-// 2) initialize Greenwood lifecycles
-const config = await readAndMergeConfig();
-const context = await initContext({ config });
-const compilation = { context, config };
+<app-ctc-block variant="snippet" heading="vite.config.js">
 
-// 3) initialize the plugin
-const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
+  ```js
+  import { defineConfig } from "vite";
+  import fs from "fs/promises";
+  // 1) import the greenwood plugin and lifecycle helpers
+  import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+  import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+  import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 
-// 4) customize Vite
-function transformRawImports() {
-  return {
-    name: "transform-raw-imports",
-    enforce: "pre",
-    load: async (id) => {
-      if (id.endsWith("?type=raw")) {
-        const filename = id.slice(0, -9);
-        const contents = await fs.readFile(filename, "utf-8");
-        const response = await rawResource.intercept(null, null, new Response(contents));
-        const body = await response.text();
+  // 2) initialize Greenwood lifecycles
+  const config = await readAndMergeConfig();
+  const context = await initContext({ config });
+  const compilation = { context, config };
 
-        return body;
-      }
-    },
-  };
-}
+  // 3) initialize the plugin
+  const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
-export default defineConfig({
-  // 5) add it the plugins option
-  plugins: [transformRawImports()],
-});
-```
+  // 4) customize Vite
+  function transformRawImports() {
+    return {
+      name: "transform-raw-imports",
+      enforce: "pre",
+      load: async (id) => {
+        if (id.endsWith("?type=raw")) {
+          const filename = id.slice(0, -9);
+          const contents = await fs.readFile(filename, "utf-8");
+          const response = await rawResource.intercept(null, null, new Response(contents));
+          const body = await response.text();
+
+          return body;
+        }
+      },
+    };
+  }
+
+  export default defineConfig({
+    // 5) add it the plugins option
+    plugins: [transformRawImports()],
+  });
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Content as Data
 
@@ -206,54 +250,82 @@ If you are using any of Greenwood's Content as Data [Client APIs](/docs/content-
 This can be accomplished with the [**storybook-addon-fetch-mock**](https://storybook.js.org/addons/storybook-addon-fetch-mock) addon and configuring it with the right `matcher.url` and `matcher.response`
 
 1. First, install the **storybook-addon-fetch-mock** addon
-   ```shell
-   $ npm i -D storybook-addon-fetch-mock
-   ```
+
+  <!-- prettier-ignore-start -->
+
+  <app-ctc-block variant="runners">
+
+    ```shell
+    npm i -D storybook-addon-fetch-mock
+    ```
+
+    ```shell
+    yarn add storybook-addon-fetch-mock --save-dev
+    ```
+
+    ```shell
+    pnpm add -D storybook-addon-fetch-mock
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
+
 1. Then add it to your _.storybook/main.js_ configuration file as an **addon**
 
-   ```js
-   const config = {
-     // ...
+  <!-- prettier-ignore-start -->
 
-     addons: [
-       // your plugins here...
-       "storybook-addon-fetch-mock",
-     ],
-   };
+  <app-ctc-block variant="snippet" heading=".storybook/main.js">
 
-   export default config;
-   ```
+    ```js
+    const config = {
+      addons: [
+        "storybook-addon-fetch-mock",
+      ],
+    };
+
+    export default config;
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
 
 1. Then in your story files, configure your Story to return mock data
 
-   ```js
-   import "./blog-posts-list.js";
-   import pages from "../../stories/mocks/graph.json";
+  <!-- prettier-ignore-start -->
 
-   export default {
-     // ...
+  <app-ctc-block variant="snippet" heading="blog-posts-list.stories.js">
 
-     // configure fetchMock
-     parameters: {
-       fetchMock: {
-         mocks: [
-           {
-             matcher: {
-               url: "http://localhost:1984/___graph.json",
-               response: {
-                 // this is an example of mocking out getContentByRoute
-                 body: pages.filter((page) => page.route.startsWith("/blog/")),
-               },
-             },
-           },
-         ],
-       },
-     },
-   };
+    ```js
+    import "./blog-posts-list.js";
+    import pages from "../../stories/mocks/graph.json";
 
-   const Template = () => "<app-blog-posts-list></app-blog-posts-list>";
+    export default {
+      parameters: {
+        fetchMock: {
+          mocks: [
+            {
+              matcher: {
+                url: "http://localhost:1984/___graph.json",
+                response: {
+                  // this is an example of mocking out getContentByRoute
+                  body: pages.filter((page) => page.route.startsWith("/blog/")),
+                },
+              },
+            },
+          ],
+        },
+      },
+    };
 
-   export const Primary = Template.bind({});
-   ```
+    const Template = () => "<app-blog-posts-list></app-blog-posts-list>";
+
+    export const Primary = Template.bind({});
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
 
 > To quickly get a "mock" graph to use in your stories, you can run `greenwood build` and copy the _graph.json_ file from the build output directory.

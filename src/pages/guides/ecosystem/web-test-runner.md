@@ -16,100 +16,155 @@ For the sake of this guide, we will be covering a minimal setup but you are free
 
 1. First, let's install WTR and the JUnit Reporter. You can use your favorite package manager
 
-   ```shell
-   npm i -D @web/test-runner @web/test-runner-junit-reporter
-   ```
+  <!-- prettier-ignore-start -->
+
+  <app-ctc-block variant="runners">
+
+    ```shell
+    npm i -D @web/test-runner @web/test-runner-junit-reporter
+    ```
+
+    ```shell
+    yarn add @web/test-runner @web/test-runner-junit-reporter --save-dev
+    ```
+
+    ```shell
+    pnpm add -D @web/test-runner @web/test-runner-junit-reporter
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
 
 1. You'll also want something like [**chai**](https://www.chaijs.com/) to write your assertions with
 
-   ```shell
-   npm i -D @esm-bundle/chai
-   ```
+  <!-- prettier-ignore-start -->
+
+  <app-ctc-block variant="runners">
+
+    ```shell
+    npm i -D @esm-bundle/chai
+    ```
+
+    ```shell
+    yarn add @esm-bundle/chai --save-dev
+    ```
+
+    ```shell
+    pnpm add -D @esm-bundle/chai
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
 
 1. Next, create a basic _web-test-runner.config.js_ configuration file
 
-   ```js
-   import { defaultReporter } from "@web/test-runner";
-   import { junitReporter } from "@web/test-runner-junit-reporter";
+  <!-- prettier-ignore-start -->
 
-   export default {
-     // customize your spec pattern here
-     files: "./src/**/*.spec.js",
-     // enable this if you're using npm / node_modules
-     nodeResolve: true,
-     // optionally configure reporters and coverage
-     reporters: [
-       defaultReporter({ reportTestResults: true, reportTestProgress: true }),
-       junitReporter({
-         outputPath: "./reports/test-results.xml",
-       }),
-     ],
-     coverage: true,
-     coverageConfig: {
-       reportDir: "./reports",
-     },
-   };
-   ```
+  <app-ctc-block variant="snippet" heading="web-test-runner.config.js">
+
+    ```js
+    import { defaultReporter } from "@web/test-runner";
+    import { junitReporter } from "@web/test-runner-junit-reporter";
+
+    export default {
+      // customize your spec pattern here
+      files: "./src/**/*.spec.js",
+      // enable this if you're using npm / node_modules
+      nodeResolve: true,
+      // optionally configure reporters and coverage
+      reporters: [
+        defaultReporter({ reportTestResults: true, reportTestProgress: true }),
+        junitReporter({
+          outputPath: "./reports/test-results.xml",
+        }),
+      ],
+      coverage: true,
+      coverageConfig: {
+        reportDir: "./reports",
+      },
+    };
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
 
 ## Usage
 
 With everything install and configured, you should now be good to start writing your tests! 🏆
 
-```js
-// src/components/footer/footer.js
-export default class Footer extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <footer>
-        <h4 class="heading">Greenwood</h4>
-        <img src="/assets/my-logo.webp" />
-      </footer>
-    `;
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/components/footer/footer.js">
+
+  ```js
+  // src/components/footer/footer.js
+  export default class Footer extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+        <footer>
+          <h4 class="heading">Greenwood</h4>
+          <img src="/assets/my-logo.webp" />
+        </footer>
+      `;
+    }
   }
-}
 
-customElements.define("app-footer", Footer);
-```
+  customElements.define("app-footer", Footer);
+  ```
 
-```js
-// src/components/footer/footer.spec.js
-describe("Components/Footer", () => {
-  let footer;
+</app-ctc-block>
 
-  before(async () => {
-    footer = document.createElement("app-footer");
-    document.body.appendChild(footer);
+<!-- prettier-ignore-end -->
 
-    await footer.updateComplete;
-  });
+<!-- prettier-ignore-start -->
 
-  describe("Default Behavior", () => {
-    it("should not be null", () => {
-      expect(footer).not.equal(undefined);
-      expect(footer.querySelectorAll("footer").length).equal(1);
+<app-ctc-block variant="snippet" heading="src/components/footer/footer.spec.js">
+
+  ```js
+  describe("Components/Footer", () => {
+    let footer;
+
+    before(async () => {
+      footer = document.createElement("app-footer");
+      document.body.appendChild(footer);
+
+      await footer.updateComplete;
     });
 
-    it("should have the expected heading", () => {
-      const header = footer.querySelectorAll("footer .heading");
+    describe("Default Behavior", () => {
+      it("should not be null", () => {
+        expect(footer).not.equal(undefined);
+        expect(footer.querySelectorAll("footer").length).equal(1);
+      });
 
-      expect(header.length).equal(1);
-      expect(header[0].textContent).to.equal("Greenwood");
+      it("should have the expected heading", () => {
+        const header = footer.querySelectorAll("footer .heading");
+
+        expect(header.length).equal(1);
+        expect(header[0].textContent).to.equal("Greenwood");
+      });
+
+      it("should have the expected logo image", () => {
+        const logo = footer.querySelectorAll("footer img[src]");
+
+        expect(logo.length).equal(1);
+        expect(logo[0]).not.equal(undefined);
+      });
     });
 
-    it("should have the expected logo image", () => {
-      const logo = footer.querySelectorAll("footer img[src]");
-
-      expect(logo.length).equal(1);
-      expect(logo[0]).not.equal(undefined);
+    after(() => {
+      footer.remove();
+      footer = null;
     });
   });
+  ```
 
-  after(() => {
-    footer.remove();
-    footer = null;
-  });
-});
-```
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Static Assets
 
@@ -122,26 +177,31 @@ If you are seeing logging about static assets returning 404
 
 You can create a custom middleware in your _web-test-runner.config.js_ to resolve these requests to your local workspace:
 
-```js
-import path from "path";
-// ...
+<!-- prettier-ignore-start -->
 
-export default {
-  // ...
+<app-ctc-block variant="snippet" heading="web-test-runner.config.js">
 
-  middleware: [
-    function resolveAssets(context, next) {
-      const { url } = context.request;
+  ```js
+  import path from "path";
 
-      if (url.startsWith("/assets")) {
-        context.request.url = path.join(process.cwd(), "src", url);
-      }
+  export default {
+    middleware: [
+      function resolveAssets(context, next) {
+        const { url } = context.request;
 
-      return next();
-    },
-  ],
-};
-```
+        if (url.startsWith("/assets")) {
+          context.request.url = path.join(process.cwd(), "src", url);
+        }
+
+        return next();
+      },
+    ],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Resource Plugins
 
@@ -149,46 +209,52 @@ If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll ne
 
 For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to create a wrapping WTR plugin to handle this transformation.
 
-```js
-import fs from "fs/promises";
-// 1) import the greenwood plugin and lifecycle helpers
-import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
-import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
-import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
+<!-- prettier-ignore-start -->
 
-// 2) initialize Greenwood lifecycles
-const config = await readAndMergeConfig();
-const context = await initContext({ config });
-const compilation = { context, config };
+<app-ctc-block variant="snippet" heading="web-test-runner.config.js">
 
-// 3) initialize the plugin
-const rawResourcePlugin = greenwoodPluginImportRaw()[0].provider(compilation);
+  ```js
+  import fs from "fs/promises";
+  // 1) import the greenwood plugin and lifecycle helpers
+  import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+  import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+  import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 
-export default {
-  // ...
+  // 2) initialize Greenwood lifecycles
+  const config = await readAndMergeConfig();
+  const context = await initContext({ config });
+  const compilation = { context, config };
 
-  // 4) add it the plugins option
-  plugins: [
-    {
-      name: "import-raw",
-      async transform(context) {
-        const { url } = context.request;
+  // 3) initialize the plugin
+  const rawResourcePlugin = greenwoodPluginImportRaw()[0].provider(compilation);
 
-        if (url.endsWith("?type=raw")) {
-          const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
-          const response = await rawResourcePlugin.intercept(null, null, new Response(contents));
-          const body = await response.text();
+  export default {
+    // 4) add it the plugins option
+    plugins: [
+      {
+        name: "import-raw",
+        async transform(context) {
+          const { url } = context.request;
 
-          return {
-            body,
-            headers: { "Content-Type": "application/javascript" },
-          };
-        }
+          if (url.endsWith("?type=raw")) {
+            const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
+            const response = await rawResourcePlugin.intercept(null, null, new Response(contents));
+            const body = await response.text();
+
+            return {
+              body,
+              headers: { "Content-Type": "application/javascript" },
+            };
+          }
+        },
       },
-    },
-  ],
-};
-```
+    ],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Content as Data
 
@@ -196,48 +262,56 @@ If you are using any of Greenwood's Content as Data [Client APIs](/docs/content-
 
 This can be done by overriding `window.fetch` and providing the desired response needed based on the API being called:
 
-```js
-import { expect } from "@esm-bundle/chai";
-import graph from "../../stories/mocks/graph.json" with { type: "json" };
-import "./blog-posts-list.js";
+<!-- prettier-ignore-start -->
 
-// override fetch to return a promise that resolves to our mock data
-window.fetch = function () {
-  return new Promise((resolve) => {
-    // this is an example of mocking out getContentByRoute
-    resolve(new Response(JSON.stringify(graph.filter((page) => page.route.startsWith("/blog/")))));
-  });
-};
+<app-ctc-block variant="snippet" heading="web-test-runner.config.js">
 
-// now we can test components as normal
-describe("Components/Blog Posts List", () => {
-  let list;
+  ```js
+  import { expect } from "@esm-bundle/chai";
+  import graph from "../../stories/mocks/graph.json" with { type: "json" };
+  import "./blog-posts-list.js";
 
-  before(async () => {
-    list = document.createElement("app-blog-posts-list");
-    document.body.appendChild(list);
+  // override fetch to return a promise that resolves to our mock data
+  window.fetch = function () {
+    return new Promise((resolve) => {
+      // this is an example of mocking out getContentByRoute
+      resolve(new Response(JSON.stringify(graph.filter((page) => page.route.startsWith("/blog/")))));
+    });
+  };
 
-    await list.updateComplete;
-  });
+  // now we can test components as normal
+  describe("Components/Blog Posts List", () => {
+    let list;
 
-  describe("Default Behavior", () => {
-    it("should not be null", () => {
-      expect(list).not.equal(undefined);
+    before(async () => {
+      list = document.createElement("app-blog-posts-list");
+      document.body.appendChild(list);
+
+      await list.updateComplete;
     });
 
-    it("should render list items for all our blog posts", () => {
-      expect(list.querySelectorAll("ul").length).to.be.equal(1);
-      expect(list.querySelectorAll("ul li").length).to.be.greaterThan(1);
+    describe("Default Behavior", () => {
+      it("should not be null", () => {
+        expect(list).not.equal(undefined);
+      });
+
+      it("should render list items for all our blog posts", () => {
+        expect(list.querySelectorAll("ul").length).to.be.equal(1);
+        expect(list.querySelectorAll("ul li").length).to.be.greaterThan(1);
+      });
+
+      // ...
     });
 
-    // ...
+    after(() => {
+      list.remove();
+      list = null;
+    });
   });
+  ```
 
-  after(() => {
-    list.remove();
-    list = null;
-  });
-});
-```
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > To quickly get a "mock" graph to use in your stories, you can run `greenwood build` and copy the _graph.json_ file from the build output directory.
