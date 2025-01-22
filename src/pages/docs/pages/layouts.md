@@ -91,3 +91,33 @@ As with Page layouts, App layouts are just HTML:
 ```
 
 > When an app layout is present, Greenwood will merge the `<head>` and `<body>` tags for both app and page layouts into one HTML document structure for you.
+
+## Server Rendering
+
+Server rendered layouts can also be authored using Web Components:
+
+```js
+// src/layouts/app.js
+export default class AppLayout extends HTMLElement {
+  async connectedCallback() {
+    const year = new Date().getFullYear();
+
+    this.innerHTML = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>My App</title>
+        </head>
+
+        <body>
+          <h1>My App</h1>
+          <page-outlet></page-outlet>
+          <footer>&copy; ${year}</footer>
+        </body>
+      </html>
+    `;
+  }
+}
+```
+
+> ⚠ This function is _only run once at build time_. Dynamic "runtime" layouts are [planned](https://github.com/ProjectEvergreen/greenwood/issues/1248).
