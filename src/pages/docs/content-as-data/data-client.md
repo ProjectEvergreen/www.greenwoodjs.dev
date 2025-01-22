@@ -33,7 +33,7 @@ To narrow down a set of pages by an entire route, you can call `getContentByRout
 Below is an example of generating a list of all pages starting with a route of _/blog/_:
 
 ```js
-import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
+import { getContentByRoute } from "@greenwood/cli/src/data/client.js";
 
 export default class BlogPostsList extends HTMLElement {
   async connectedCallback() {
