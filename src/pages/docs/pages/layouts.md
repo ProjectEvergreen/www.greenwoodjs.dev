@@ -120,4 +120,4 @@ export default class AppLayout extends HTMLElement {
 }
 ```
 
-> ⚠ This function is _only run once at build time_. Dynamic "runtime" layouts are [planned](https://github.com/ProjectEvergreen/greenwood/issues/1248).
+> ⚠ This layout component will _only run once at build time_. Dynamic "runtime" layouts are [planned](https://github.com/ProjectEvergreen/greenwood/issues/1248).
