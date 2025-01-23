@@ -128,7 +128,7 @@ This is a sample of an import map that would be generated after having installed
 </html>
 ```
 
-To generate this map, Greenwood first checks for package's [**exports**](https://nodejs.org/api/packages.html#package-entry-points) field, then looks for a **module** field, and finally a **main** field. For **exports**, Greenwood resolves the following [conditions](https://nodejs.org/api/packages.html#conditional-exports) in this priority order:
+To generate this map, Greenwood first checks for a package's [**exports**](https://nodejs.org/api/packages.html#package-entry-points) field, then looks for a **module** field, and finally a **main** field. For **exports**, Greenwood resolves the following [conditions](https://nodejs.org/api/packages.html#conditional-exports) in this priority order:
 
 1. **import**
 1. **module-sync**
@@ -136,14 +136,14 @@ To generate this map, Greenwood first checks for package's [**exports**](https:/
 
 ### Compatibility
 
-It should be noted that not all packages are created equal, and Greenwood depends on packages following the standard conventions of the NodeJS entry point specification when looking up their location using `import.meta.resolve`. This means there are packages that may not behave as expected, though Greenwood will do its best to make them work. In these exceptional cases, Greenwood will output some diagnostic information that can be used when reaching out for help. Ideally, package authors would accept patches to correct any such issues.
+It should be noted that not all packages are created equal, and Greenwood depends on packages following the standard conventions of the NodeJS entry point specification when looking up their location using [`import.meta.resolve`](https://nodejs.org/api/esm.html#importmetaresolvespecifier). In these cases, like when having installed server-side packages in the `dependencies` field of your _package.json_ that _aren't_ intended to be used on the client side, Greenwood will output some diagnostic information that can be used when reaching out for help.
 
 Some known issues / examples observed so far include:
 
-- `ERR_MODULE_NOT_FOUND` - Observed with packages like [**@types/trusted-types**](https://github.com/DefinitelyTyped/DefinitelyTyped), which has an [empty string](https://unpkg.com/browse/@types/trusted-types@2.0.7/package.json) for the **main** field, and [**font-awesome**](https://fontawesome.com/), which has [no entry point](https://unpkg.com/browse/font-awesome@4.7.0/package.json) at all, at least as of `v4.x`.
-- `ERR_PACKAGE_PATH_NOT_EXPORTED` - Encountered with the [**geist-font** package](https://vercel.com/font), which has [no default export](https://github.com/vercel/geist-font/issues/150) in its exports map
+- `ERR_MODULE_NOT_FOUND` - Observed with packages like [**@types/trusted-types**](https://github.com/DefinitelyTyped/DefinitelyTyped) which has an [empty string](https://unpkg.com/browse/@types/trusted-types@2.0.7/package.json) for the **main** field, or [**font-awesome**](https://fontawesome.com/), which has [no entry point](https://unpkg.com/browse/font-awesome@4.7.0/package.json) at all, at least as of `v4.x`. This is also a fairly common issue with packages that primarily deal with shipping types since they will likely only define a `types` field in their _package.json_.
+- `ERR_PACKAGE_PATH_NOT_EXPORTED` - Encountered with packages like [**geist-font**](https://github.com/vercel/geist-font/issues/150) or [**@libsql/core**](https://github.com/thescientist13/import-meta-resolve-demo?tab=readme-ov-file#no-main-exports-map-entry-point-err_package_path_not_exported), which has [no default export](https://github.com/vercel/geist-font/issues/150) in their exports map, which is assumed by the NodeJS resolver algorithm.
 
-In these cases where Greenwood cannot resolve these dependencies, it will fallback to assuming packages are located in a _node_modules_ folder at the root of your project. Depending on your package manager, you may need to ["hoist"](https://pnpm.io/npmrc#dependency-hoisting-settings) these dependencies, as might be the case when using PNPM.
+> If you have any issues or questions, please reach out in our discussion on the topic here - https://github.com/ProjectEvergreen/greenwood/discussions/1396.
 
 ## URL
 
