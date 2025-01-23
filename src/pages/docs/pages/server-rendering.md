@@ -20,9 +20,9 @@ The above would serve content in a browser at the path _/users/_.
 
 ## Usage
 
-In your page file, Greenwood supports the following functions that you can `export` for providing server rendered content and [frontmatter](/docs/resources/markdown/):
+In your page file, Greenwood supports the following functions that you can `export` for providing server rendered content and [frontmatter](/docs/resources/markdown/) to produce the `<body><body>` content for your page.
 
-- **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**
+- **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**. _This will take precedence over `getBody`_ and will also automatically track your custom element dependencies (in place of having to define frontmatter imports in `getFrontmatter`).
 - **getBody**: Return a string of HTML for the contents of the page
 - **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#pages)
 - **getFrontmatter**: Provide an object of [frontmatter](/docs/resources/markdown/#frontmatter) properties. Useful in conjunction with [content as data](/docs/content-as-data/), or otherwise setting static configuration / metadata through SSR.
@@ -81,7 +81,12 @@ export default class UsersPage extends HTMLElement {
       })
       .join("");
 
-    this.innerHTML = html;
+    this.innerHTML = `
+      <body>
+        <h1>Friends List</h1>
+        ${html}
+      </body>
+    `;
   }
 }
 ```
@@ -134,7 +139,7 @@ export async function getBody(compilation, page, request) {
 
 ### Layouts
 
-For creating a [layout](/docs/pages/layouts/) dynamically, you can provide a `getLayout` function and return the HTML you need.
+Although global [layouts](/docs/pages/layouts/) exist, you can provide a `getLayout` function on a per page basis to override or set the layout for the given page.
 
 You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#compilation) object as well as the specific route:
 
@@ -164,6 +169,8 @@ export async function getLayout(compilation, route) {
   `;
 }
 ```
+
+> ⚠ This function is _only run once at build time_. Dynamic "runtime" layouts are [planned](https://github.com/ProjectEvergreen/greenwood/issues/1248).
 
 ### Frontmatter
 
