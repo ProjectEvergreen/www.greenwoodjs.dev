@@ -48,7 +48,7 @@ Here is an example of using relative and shortcut paths in a CSS file:
 ```css
 /* after having installed Open Props */
 /* npm i open-props */
-@import "../../]node_modules/open-props/borders.min.css";
+@import "../../node_modules/open-props/borders.min.css";
 @import "../../node_modules/open-props/fonts.min.css";
 
 /* this would also work */
