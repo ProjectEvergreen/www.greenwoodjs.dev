@@ -250,7 +250,7 @@ export function myCopyPlugin() {
 
 ## Renderer
 
-Renderer plugins allow users to customize how Greenwood server renders (and prerenders) your project. By default, Greenwood supports using [**WCC** or (template) strings](/docs/pages/server-rendering/) to return static HTML for the content and template of your server side routes. For example, you can use [Lit's SSR capabilities](https://github.com/lit/lit/tree/main/packages/labs/ssr) to render your Lit Web Components on the server side instead. (but don't do that one specifically, we already have [a plugin](/docs/plugins/lit-ssr/) for Lit 😊)
+Renderer plugins are the way to customize how Greenwood server renders (and prerenders) your project. By default, Greenwood supports using [**WCC** or (template) strings](/docs/pages/server-rendering/) to return static HTML for the content and layouts of your server side routes. For example, you can use [Lit's SSR capabilities](https://github.com/lit/lit/tree/main/packages/labs/ssr) to render your Lit Web Components on the server side instead. (but don't do that one specifically, we already have [a plugin](/docs/plugins/lit-ssr/) for Lit 😊)
 
 > Note: Only **one** renderer plugin can be used at a time.
 
@@ -283,7 +283,7 @@ export { greenwoodPluginMyCustomRenderer };
 This plugin type supports the following options:
 
 - **executeModuleUrl** (recommended) - `URL` to the location of a file with the SSR rendering implementation
-- **customUrl** - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecyle of a Greenwood build, and running the provided callback function
+- **customUrl** - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecycle of a Greenwood build, and running the provided callback function
 
 ### Examples
 
