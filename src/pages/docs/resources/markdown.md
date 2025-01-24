@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Markdown
 
-In this section we'll cover some of the Markdown related feature of **Greenwood**, which by default supports the [CommonMark](https://commonmark.org/help/) specification and [**unifiedjs**](https://unifiedjs.com/) as the markdown / content framework.
+In this section we'll cover some of the Markdown related features of **Greenwood**, which by default supports the [CommonMark](https://commonmark.org/help/) specification and [**unifiedjs**](https://unifiedjs.com/) as the markdown / content framework.
 
 ## Plugins
 
@@ -179,3 +179,55 @@ author: Project Evergreen
 
 Authored By: ${globalThis.page.data.author}
 ```
+
+## Web Components
+
+Web Components work great with markdown, and can be used to mix markdown authored content as HTML to be "projected" into a custom element definition. We make extensive use of the [HTML Web Components pattern](/guides/getting-started/going-further/#light-dom) in this documentation site, which allows us to encapsulate styles and layout around generic, page specific content; for example to create our ["section headers"](https://raw.githubusercontent.com/ProjectEvergreen/www.greenwoodjs.dev/refs/heads/main/src/pages/docs/introduction/index.md).
+
+Perfect for documentation sites when combined with [prerendering](/docs/reference/configuration/#prerender) and [static optimization](/docs/reference/configuration/#optimization) configuration options, to get zero runtime templating. Works great with syntax highlighting too! ✨
+
+The example below mixes static content and attributes, leveraging our (optional) [CSS Modules plugin](/docs/plugins/css-modules/):
+
+```js
+import styles from "./heading-box.module.css";
+
+export default class HeadingBox extends HTMLElement {
+  connectedCallback() {
+    const heading = this.getAttribute("heading");
+
+    this.innerHTML = `
+      <div class="${styles.container}">
+        <h1 class="${styles.heading}" role="heading">${heading}</h1>
+        <div class="${styles.slotted}" role="details">
+          ${this.innerHTML}
+        </div>
+      </div>
+    `;
+  }
+}
+
+customElements.define("app-heading-box", HeadingBox);
+```
+
+And then anywhere in our pages we can use it with any custom content:
+
+```md
+<app-heading-box heading="Plugins">
+  <p>Some content about plugins.</p>
+</app-heading-box>
+```
+
+This would produce the following HTML output:
+
+```html
+<app-heading-box heading="Plugins">
+  <div class="heading-box-1843513151-container">
+    <h1 class="heading-box-1843513151-heading" role="heading">Plugins</h1>
+    <div class="heading-box-1843513151-slotted" role="details">
+      <p>Some content about plugins.</p>
+    </div>
+  </div>
+</app-heading-box>
+```
+
+> There are some known issues and conventions around mixing Web Components and markdown to be aware of that we cover in [this discussion](https://github.com/ProjectEvergreen/greenwood/discussions/1267).
