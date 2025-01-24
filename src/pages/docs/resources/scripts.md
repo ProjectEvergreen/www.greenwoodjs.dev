@@ -12,39 +12,55 @@ The page covers usage of JavaScript in Greenwood using all the standard browser 
 
 Script tags can be done in any standards compliant way that will work in a browser. So just as in HTML, you can do anything you need, like below:
 
-```html
-<!doctype html>
-<html lang="en" prefix="og:http://ogp.me/ns#">
-  <head>
-    <script>
-      alert("hello!");
-    </script>
-    <script src="../path/to/script.js"></script>
-    <script src="https://unpkg.com/...."></script>
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <!-- content goes here -->
-  </body>
-</html>
-```
+<app-ctc-block variant="snippet">
+
+  ```html
+  <!doctype html>
+  <html lang="en" prefix="og:http://ogp.me/ns#">
+    <head>
+      <script>
+        alert("hello!");
+      </script>
+      <script src="../path/to/script.js"></script>
+      <script src="https://unpkg.com/...."></script>
+    </head>
+
+    <body>
+      <!-- content goes here -->
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Modules (ESM)
 
 Greenwood is ECMAScript Modules (ESM) first, as shown with the usage of the `type="module"` attribute in the example below:
 
-```html
-<!doctype html>
-<html lang="en" prefix="og:http://ogp.me/ns#">
-  <head>
-    <script type="module" src="./path/to/script.js"></script>
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <!-- content goes here -->
-  </body>
-</html>
-```
+<app-ctc-block variant="snippet">
+
+  ```html
+  <!doctype html>
+  <html lang="en" prefix="og:http://ogp.me/ns#">
+    <head>
+      <script type="module" src="./path/to/script.js"></script>
+    </head>
+
+    <body>
+      <!-- content goes here -->
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Keep in mind that the specification dictates the following conventions when referencing ESM files:
 
@@ -71,40 +87,56 @@ Packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can 
 
 Below are some examples:
 
-```js
-// after having installed Lit
-import { html, LitElement } from "lit";
+<!-- prettier-ignore-start -->
 
-class SimpleGreeting extends LitElement {
-  static properties = {
-    name: { type: String },
-  };
+<app-ctc-block variant="snippet">
 
-  render() {
-    return html`<p>Hello, ${this.name ?? "World"}!</p>`;
+  ```js
+  // after having installed Lit
+  import { html, LitElement } from "lit";
+
+  class SimpleGreeting extends LitElement {
+    static properties = {
+      name: { type: String },
+    };
+
+    render() {
+      return html`<p>Hello, ${this.name ?? "World"}!</p>`;
+    }
   }
-}
 
-customElements.define("simple-greeting", SimpleGreeting);
-```
+  customElements.define("simple-greeting", SimpleGreeting);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 You can reference **node_modules** directly from a `<script>` tag by starting the path with `/node_modules`:
 
-```html
-<html>
-  <head>
-    <!-- after having installed HTMX -->
-    <!-- npm i htmx.org -->
-    <script src="/node_modules/htmx.org/dist/htmx.js"></script>
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <form hx-post="/api/greeting" hx-target="#greeting-output">
-      <!-- ... -->
-    </form>
-  </body>
-</html>
-```
+<app-ctc-block variant="snippet">
+
+  ```html
+  <html>
+    <head>
+      <!-- after having installed HTMX -->
+      <!-- npm i htmx.org -->
+      <script src="/node_modules/htmx.org/dist/htmx.js"></script>
+    </head>
+
+    <body>
+      <form hx-post="/api/greeting" hx-target="#greeting-output">
+        <!-- ... -->
+      </form>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 The rule of thumb is:
 
@@ -115,14 +147,22 @@ The rule of thumb is:
 
 If you have enabled [prerendering](/docs/reference/configuration/#prerender) and using Greenwood's default [renderer (WCC)](/docs/reference/appendix/#dom-emulation), make sure that any custom elements you want prerendered have a `default` export for their `class` definition.
 
-```js
-export default class Card extends HTMLElement {
-  connectedCallback() {
-    if (!this.shadowRoot) {
-      // ...
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default class Card extends HTMLElement {
+    connectedCallback() {
+      if (!this.shadowRoot) {
+        // ...
+      }
     }
   }
-}
 
-customElements.define("x-card", Card);
-```
+  customElements.define("x-card", Card);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->

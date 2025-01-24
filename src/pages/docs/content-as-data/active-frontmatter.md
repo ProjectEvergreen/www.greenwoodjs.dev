@@ -14,72 +14,104 @@ Really useful for passing page content or collections as attributes to a custom 
 
 Given some frontmatter in a markdown file:
 
-```md
----
-layout: post
-title: Git Explorer
-published: 04.07.2020
-description: Local git repository viewer
-author: Owen Buckley
-image: /assets/blog-post-images/git.png
----
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```md
+  ---
+  layout: post
+  title: Git Explorer
+  published: 04.07.2020
+  description: Local git repository viewer
+  author: Owen Buckley
+  image: /assets/blog-post-images/git.png
+  ---
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 It can be accessed and substituted statically in either markdown:
 
-```md
-# My Blog Post
+<!-- prettier-ignore-start -->
 
-Published: ${globalThis.page.data.published}
+<app-ctc-block variant="snippet">
 
-Lorum Ipsum.
-```
+  ```md
+  # My Blog Post
+
+  Published: ${globalThis.page.data.published}
+
+  Lorum Ipsum.
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Or HTML:
 
-```html
-<html>
-  <head>
-    <title>My Blog - ${globalThis.page.title}</title>
-    <meta name="author" content="${globalThis.page.data.author}" />
-    <meta property="og:title" content="My Blog - ${globalThis.page.title}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.myblog.dev" />
-    <meta property="og:image" content="https://www.myblog.dev/${globalThis.page.data.image}" />
-    <meta property="og:description" content="My Blog - ${globalThis.page.data.description}" />
-  </head>
-  <body>
-    <!-- ... -->
-  </body>
-</html>
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```html
+  <html>
+    <head>
+      <title>My Blog - ${globalThis.page.title}</title>
+      <meta name="author" content="${globalThis.page.data.author}" />
+      <meta property="og:title" content="My Blog - ${globalThis.page.title}" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.myblog.dev" />
+      <meta property="og:image" content="https://www.myblog.dev/${globalThis.page.data.image}" />
+      <meta property="og:description" content="My Blog - ${globalThis.page.data.description}" />
+    </head>
+    <body>
+      <!-- ... -->
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Data Client
 
 You can also access this content using our [data client](/docs/content-as-data/data-client/):
 
-```js
-import { getContentByCollection } from "@greenwood/cli/src/data/client.js";
+<!-- prettier-ignore-start -->
 
-export default class Navigation extends HTMLElement {
-  async connectedCallback() {
-    const items = await getContentByCollection("nav");
+<app-ctc-block variant="snippet">
 
-    this.innerHTML = `
-      <nav role="main navigation">
-        <ul>
-          ${items.maps((item) => {
-            const { label, route } = item;
+  ```js
+  import { getContentByCollection } from "@greenwood/cli/src/data/client.js";
 
-            return `
+  export default class Navigation extends HTMLElement {
+    async connectedCallback() {
+      const items = await getContentByCollection("nav");
+
+      this.innerHTML = `
+        <nav role="main navigation">
+          <ul>
+            ${items.maps((item) => {
+              const { label, route } = item;
+
+              return `
                 <li>
                   <a href="${route}">${label}</a>
                 </li>
               `;
-          })}
-        </ul>
-      </nav>
-    `;
+            })}
+          </ul>
+        </nav>
+      `;
+    }
   }
-}
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->

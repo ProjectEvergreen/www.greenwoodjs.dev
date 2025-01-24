@@ -41,54 +41,65 @@ For example, creating a list of blog posts for a blog landing page, based on all
 <!-- prettier-ignore-start -->
 1. Add the `prerender` config to _greenwood.config.js_
 
-  ```js
-  export default {
-    prerender: true,
-  };
-  ```
+  <app-ctc-block variant="snippet" heading="greenwood.config.js">
+
+    ```js
+    export default {
+      prerender: true,
+    };
+    ```
+
+  </app-ctc-block>
 
 1. Create a content fetching component
 
-  ```js
-  import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
+  <app-ctc-block variant="snippet">
 
-  export default class BlogPostsList extends HTMLElement {
-    async connectedCallback() {
-      const posts = await getContentByRoute("/blog/");
+    ```js
+    import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
 
-      this.innerHTML = `
-        ${posts
-          .map((post) => {
-            return `
-              <a href="${post.route}">
-                ${post.title}
-              </a>
-            `;
-          })
-          .join("")}
-      `;
+    export default class BlogPostsList extends HTMLElement {
+      async connectedCallback() {
+        const posts = await getContentByRoute("/blog/");
+
+        this.innerHTML = `
+          ${posts
+            .map((post) => {
+              return `
+                <a href="${post.route}">
+                  ${post.title}
+                </a>
+              `;
+            })
+            .join("")}
+        `;
+      }
     }
-  }
 
-  customElements.define("blog-posts-list", BlogPostsList);
-  ```
+    customElements.define("blog-posts-list", BlogPostsList);
+    ```
+
+  </app-ctc-block>
 
 1. Add it to your HTML page with the [**static** optimization attribute](/docs/reference/configuration/#optimization), as well as the custom element definition
 
-  ```html
-  <!doctype html>
-  <html>
-    <head>
-      <title>Blog</title>
-      <script type="module" src="./components/blog-posts-list.js" data-gwd-opt="static"></script>
-    </head>
-    <body>
-      <h1>All Blog Posts</h1>
-      <blog-posts-list></blog-posts-list>
-    </body>
-  </html>
-  ```
-<!-- prettier-ignore-end -->
+  <app-ctc-block variant="snippet">
+
+    ```html
+    <!doctype html>
+    <html>
+      <head>
+        <title>Blog</title>
+        <script type="module" src="./components/blog-posts-list.js" data-gwd-opt="static"></script>
+      </head>
+      <body>
+        <h1>All Blog Posts</h1>
+        <blog-posts-list></blog-posts-list>
+      </body>
+    </html>
+    ```
+
+  </app-ctc-block>
 
 Now you will have list of all your blog posts, automatically generated and formatted from your own content, kept up to date with every change. All with no runtime JavaScript!
 
@@ -96,9 +107,16 @@ Now you will have list of all your blog posts, automatically generated and forma
 
 You can emit SSR pages as pure HTML on an opt-in basis by setting the `prerender` flag in the file (or for all pages in your _greenwood.config.js_):
 
-```js
-// src/pages/artists.js
-export const prerender = true;
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const prerender = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > If you need more robust support for executing JavaScript at build time, you can consider using our [Puppeteer plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-puppeteer), or [create your own custom implementation](/docs/reference/plugins-api/#custom-implementation), say for using JSDOM instead.

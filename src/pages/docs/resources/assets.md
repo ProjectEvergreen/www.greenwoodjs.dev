@@ -31,12 +31,20 @@ Here is how you would reference it from markdown:
 
 Or HTML:
 
-```html
-<header>
-  <h1>Welcome to My Site!</h1>
-  <a href="/assets/download.pdf">Download our product catalog</a>
-</header>
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```html
+  <header>
+    <h1>Welcome to My Site!</h1>
+    <a href="/assets/download.pdf">Download our product catalog</a>
+  </header>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## URL
 
@@ -44,24 +52,31 @@ In your JavaScript, you can also use a combination of [`new URL`](https://develo
 
 Below is an example for reference:
 
-```js
-// src/components/header.js
-const logo = new URL("./banner.png", import.meta.url);
+<!-- prettier-ignore-start -->
 
-class HeaderComponent extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <header>
-        <h1>Welcome to My Site!</h1>
-        <!-- handles nested routes / deeplinking, e.g. https://www.mysite.com/some/page/ -->
-        <img src="${logo.pathname.replace(window.location.pathname, "/")}" alt="Greenwood logo"/>
-      </header>
-    `;
+<app-ctc-block variant="snippet">
+
+  ```js
+  const logo = new URL("./banner.png", import.meta.url);
+
+  class HeaderComponent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+        <header>
+          <h1>Welcome to My Site!</h1>
+          <!-- handles nested routes / deeplinking, e.g. https://www.mysite.com/some/page/ -->
+          <img src="${logo.pathname.replace(window.location.pathname, "/")}" alt="Greenwood logo"/>
+        </header>
+      `;
+    }
   }
-}
 
-customElements.define("x-header", HeaderComponent);
-```
+  customElements.define("x-header", HeaderComponent);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > We are looking to improve the developer experience around using `new URL` + `import.meta.url` as part of an overall isomorphic asset bundling strategy. You can visit this [GitHub issue](https://github.com/ProjectEvergreen/greenwood/issues/1163) to follow along.
 

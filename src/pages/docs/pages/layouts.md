@@ -37,33 +37,49 @@ Pages in your project will generally want a layout so you can control the output
 
 Below is an example of a _page.html_ layout:
 
-```html
-<!doctype html>
-<html lang="en" prefix="og:http://ogp.me/ns#">
-  <body>
-    <header>
-      <h1>Welcome to my site!</h1>
-    </header>
+<!-- prettier-ignore-start -->
 
-    <content-outlet></content-outlet>
-  </body>
-</html>
-```
+<app-ctc-block variant="snippet">
+
+  ```html
+  <!doctype html>
+  <html lang="en" prefix="og:http://ogp.me/ns#">
+    <body>
+      <header>
+        <h1>Welcome to my site!</h1>
+      </header>
+
+      <content-outlet></content-outlet>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 You can create more layouts and use them for pages with the following steps:
+
+<!-- prettier-ignore-start -->
 
 1. Create a new layout, e.g. _layouts/blog.html_
 1. In your frontmatter, specify that layout's filename
 
-   ```md
-   ---
-   layout: blog
-   ---
+   <app-ctc-block variant="snippet">
 
-   ## My First Post
+    ```md
+    ---
+    layout: blog
+    ---
 
-   Lorum Ipsum
-   ```
+    ## My First Post
+
+    Lorum Ipsum
+    ```
+
+   </app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## App
 
@@ -71,24 +87,32 @@ To customize the outer most wrapping HTML of your layouts, create an _app.html_ 
 
 As with Page layouts, App layouts are just HTML:
 
-```html
-<!doctype html>
-<html lang="en" prefix="og:http://ogp.me/ns#">
-  <body>
-    <header>
-      <h1>Welcome to My Site!</h1>
-    </header>
+<!-- prettier-ignore-start -->
 
-    <section>
-      <page-outlet></page-outlet>
-    </section>
+<app-ctc-block variant="snippet">
 
-    <footer>
-      <h4>&copy; My Site</h4>
-    </footer>
-  </body>
-</html>
-```
+  ```html
+  <!doctype html>
+  <html lang="en" prefix="og:http://ogp.me/ns#">
+    <body>
+      <header>
+        <h1>Welcome to My Site!</h1>
+      </header>
+
+      <section>
+        <page-outlet></page-outlet>
+      </section>
+
+      <footer>
+        <h4>&copy; My Site</h4>
+      </footer>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > When an app layout is present, Greenwood will merge the `<head>` and `<body>` tags for both app and page layouts into one HTML document structure for you.
 

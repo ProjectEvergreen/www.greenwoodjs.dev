@@ -23,8 +23,8 @@ export default class HeroBanner extends HTMLElement {
           <div class="${styles.snippetContainer}">
             <div class="${styles.snippet}">
               <pre>&dollar; ${code}</pre>
-              <app-ctc content="${code}">
-              </app-ctc>
+              <app-ctc-button content="${code}">
+              </app-ctc-button>
             </div>
             <span class="${styles.emphasisCorner}">
               ${emphasis}

@@ -41,78 +41,108 @@ my-theme-pack.js
 greenwood.config.js
 ```
 
-_package.json_
+<!-- prettier-ignore-start -->
 
-```json
-{
-  "name": "my-theme-pack",
-  "version": "0.1.0",
-  "description": "My Custom Greenwood Theme Pack",
-  "main": "my-theme-pack.js",
-  "type": "module",
-  "files": ["dist/"]
-}
-```
+<app-ctc-block variant="snippet" heading="package.json">
 
-_my-theme-pack.js_
-
-```js
-const myThemePack = () => [
+  ```json
   {
-    type: "context",
-    name: "my-theme-pack:context",
-    provider: () => {
-      return {
-        layouts: [
-          // import.meta.url will be located at _node_modules/your-package/_
-          // when your plugin is run in a user's project
-          new URL("./dist/my-layouts/", import.meta.url),
-        ],
-      };
+    "name": "my-theme-pack",
+    "version": "0.1.0",
+    "description": "My Custom Greenwood Theme Pack",
+    "main": "my-theme-pack.js",
+    "type": "module",
+    "files": ["dist/"]
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="my-theme-pack.js">
+
+  ```js
+  const myThemePack = () => [
+    {
+      type: "context",
+      name: "my-theme-pack:context",
+      provider: () => {
+        return {
+          layouts: [
+            // import.meta.url will be located at _node_modules/your-package/_
+            // when your plugin is run in a user's project
+            new URL("./dist/my-layouts/", import.meta.url),
+          ],
+        };
+      },
     },
-  },
-];
+  ];
 
-export { myThemePack };
-```
+  export { myThemePack };
+  ```
 
-_src/layouts/blog-post.html_
+</app-ctc-block>
 
-```html
-<html>
-  <!-- we're using the npm publishing paths here which will come up again in the development section -->
+<!-- prettier-ignore-end -->
 
-  <head>
-    <!-- reference JS or assets/ too! -->
-    <link rel="stylesheet" href="/node_modules/my-theme-pack/dist/styles/theme.css" />
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <!-- whatever else you want to add to the page for the user! -->
-    <content-outlet></content-outlet>
-  </body>
-</html>
-```
+<app-ctc-block variant="snippet" heading="src/layouts/blog-post.html">
 
-_src/styles/theme.css_
+  ```html
+  <html>
+    <!-- we're using the npm publishing paths here which will come up again in the development section -->
 
-```css
-* {
-  color: red;
-}
-```
+    <head>
+      <!-- reference JS or assets/ too! -->
+      <link rel="stylesheet" href="/node_modules/my-theme-pack/dist/styles/theme.css" />
+    </head>
 
-_src/pages/index.md_
+    <body>
+      <!-- whatever else you want to add to the page for the user! -->
+      <content-outlet></content-outlet>
+    </body>
+  </html>
+  ```
 
-```md
----
-layout: "blog-post"
----
+</app-ctc-block>
 
-# Title of blog post
+<!-- prettier-ignore-end -->
 
-Lorum Ipsum, this is a test.
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/styles/theme.css">
+
+  ```css
+  * {
+    color: red;
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/index.md">
+
+  ```md
+  ---
+  layout: "blog-post"
+  ---
+
+  # Title of blog post
+
+  Lorum Ipsum, this is a test.
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Development
 
@@ -125,75 +155,90 @@ So using our current example, our final _my-theme-pack.js_ would look like this:
 
 <!-- eslint-disable no-underscore-dangle -->
 
-```js
-const myThemePackPlugin = (options = {}) => [
-  {
-    type: "context",
-    name: "my-theme-pack:context",
-    provider: (compilation) => {
-      // you can use other directory names besides layouts/ this way!
-      const layoutLocation = options.__isDevelopment
-        ? new URL("./layouts/", compilation.context.userWorkspace)
-        : new URL("dist/layouts/", import.meta.url);
+<!-- prettier-ignore-start -->
 
-      return {
-        layouts: [layoutLocation],
-      };
+<app-ctc-block variant="snippet" heading="my-theme-package-plugin.js">
+
+  ```js
+  const myThemePackPlugin = (options = {}) => [
+    {
+      type: "context",
+      name: "my-theme-pack:context",
+      provider: (compilation) => {
+        // you can use other directory names besides layouts/ this way!
+        const layoutLocation = options.__isDevelopment
+          ? new URL("./layouts/", compilation.context.userWorkspace)
+          : new URL("dist/layouts/", import.meta.url);
+
+        return {
+          layouts: [layoutLocation],
+        };
+      },
     },
-  },
-];
+  ];
 
-export { myThemePackPlugin };
-```
+  export { myThemePackPlugin };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 And our final _greenwood.config.js_ would look like this, which adds a "one-off" [resource plugin](/docs/reference/plugins-api/#resource) to tell Greenwood to route requests to your theme pack files away from _node_modules_ and to the location of your projects files for development.
 
 Additionally, we make sure to pass the flag from above for `__isDevelopment` to our plugin.
 
-```js
-// shared from another test
-import fs from "fs";
-import { myThemePackPlugin } from "./my-theme-pack.js";
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+<!-- prettier-ignore-start -->
 
-const packageName = JSON.parse(fs.readFileSync("./package.json", "utf-8")).name;
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
 
-class MyThemePackDevelopmentResource extends ResourceInterface {
-  constructor(compilation, options) {
-    super(compilation, options);
-    this.extensions = ["*"];
+  ```js
+  import fs from "fs";
+  import { myThemePackPlugin } from "./my-theme-pack.js";
+  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
+
+  const packageName = JSON.parse(fs.readFileSync("./package.json", "utf-8")).name;
+
+  class MyThemePackDevelopmentResource extends ResourceInterface {
+    constructor(compilation, options) {
+      super(compilation, options);
+      this.extensions = ["*"];
+    }
+
+    async shouldResolve(url) {
+      return (
+        process.env.__GWD_COMMAND__ === "develop" &&
+        url.pathname.indexOf(`/node_modules/${packageName}/`) >= 0
+      );
+    }
+
+    async resolve(url) {
+      const { userWorkspace } = this.compilation.context;
+      const { pathname, searchParams } = url;
+      const workspaceUrl = pathname.split(`/node_modules/${packageName}/dist/`)[1];
+      const params = searchParams.size > 0 ? `?${searchParams.toString()}` : "";
+
+      return new Request(new URL(`./${workspaceUrl}${params}`, userWorkspace));
+    }
   }
 
-  async shouldResolve(url) {
-    return (
-      process.env.__GWD_COMMAND__ === "develop" &&
-      url.pathname.indexOf(`/node_modules/${packageName}/`) >= 0
-    );
-  }
+  export default {
+    plugins: [
+      ...myThemePackPlugin({
+        __isDevelopment: true,
+      }),
+      {
+        type: "resource",
+        name: "my-theme-pack:resource",
+        provider: (compilation, options) => new MyThemePackDevelopmentResource(compilation, options),
+      },
+    ],
+  };
+  ```
 
-  async resolve(url) {
-    const { userWorkspace } = this.compilation.context;
-    const { pathname, searchParams } = url;
-    const workspaceUrl = pathname.split(`/node_modules/${packageName}/dist/`)[1];
-    const params = searchParams.size > 0 ? `?${searchParams.toString()}` : "";
+</app-ctc-block>
 
-    return new Request(new URL(`./${workspaceUrl}${params}`, userWorkspace));
-  }
-}
-
-export default {
-  plugins: [
-    ...myThemePackPlugin({
-      __isDevelopment: true,
-    }),
-    {
-      type: "resource",
-      name: "my-theme-pack:resource",
-      provider: (compilation, options) => new MyThemePackDevelopmentResource(compilation, options),
-    },
-  ],
-};
-```
+<!-- prettier-ignore-end -->
 
 You should then be able to run `yarn develop` and load `/` in your browser and the color of the text should be red.
 
@@ -203,36 +248,54 @@ You're all ready for development now! 🙌
 
 You can also use Greenwood to test your theme pack using a production build so that you can run `greenwood build` or `greenwood serve` to validate your work. To do so requires just one additional script to your _package.json_ to put your theme pack files in the _node_modules_ where Greenwood would assume them to be. Just call this before `build` or `serve`.
 
-```json
-{
-  "scripts": {
-    "build:pre": "mkdir -pv ./node_modules/greenwood-starter-presentation/dist && rsync -rv --exclude 'pages/' ./src/ ./node_modules/greenwood-starter-presentation/dist",
+<!-- prettier-ignore-start -->
 
-    "build": "npm run build:pre && greenwood build",
-    "serve": "npm run build:pre && greenwood serve"
+<app-ctc-block variant="snippet" heading="package.json">
+
+  ```json
+  {
+    "scripts": {
+      "build:pre": "mkdir -pv ./node_modules/greenwood-starter-presentation/dist && rsync -rv --exclude 'pages/' ./src/ ./node_modules/greenwood-starter-presentation/dist",
+
+      "build": "npm run build:pre && greenwood build",
+      "serve": "npm run build:pre && greenwood serve"
+    }
   }
-}
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Publishing
 
 When it comes to publishing, it should be fairly straightforward, and you'll just want to do the following:
 
 1. Add _dist/_ to _.gitignore_ (or whatever **files** location you want to use for publishing)
-1. Add a `prepublish` script to your _package.json_ to create the _dist/_ directory with all the needed _layouts_ (layouts) /_ and \_styles/_
-   ```json
-   {
-     "name": "my-theme-pack",
-     "version": "0.1.0",
-     "description": "My Custom Greenwood Theme Pack",
-     "main": "my-theme-pack.js",
-     "type": "module",
-     "files": ["dist/"],
-     "scripts": {
-       "prepublish": "rm -rf dist/ && mkdir dist/ && rsync -rv --exclude 'pages/' src/ dist"
-     }
-   }
-   ```
+1. Add a `prepublish` script to your _package.json_ to create the _dist/_ directory with all the needed layouts and styles
+
+  <!-- prettier-ignore-start -->
+
+  <app-ctc-block variant="snippet" heading="package.json">
+
+    ```json
+    {
+      "name": "my-theme-pack",
+      "version": "0.1.0",
+      "description": "My Custom Greenwood Theme Pack",
+      "main": "my-theme-pack.js",
+      "type": "module",
+      "files": ["dist/"],
+      "scripts": {
+        "prepublish": "rm -rf dist/ && mkdir dist/ && rsync -rv --exclude 'pages/' src/ dist"
+      }
+    }
+    ```
+
+  </app-ctc-block>
+
+  <!-- prettier-ignore-end -->
+
 1. Now, when you run `npm publish` a fresh _dist/_ folder will be made and [included in your package](https://unpkg.com/browse/greenwood-starter-presentation/)
 
 ## Installation and Usage for Users
@@ -244,7 +307,7 @@ For users, they would just need to do the following:
 1. Install the plugin from npm
 
    ```shell
-   $ npm install my-theme-pack --save-dev
+   $ npm i -D my-theme-pack
    ```
 
 1. Add the plugin to their _greenwood.config.js_
@@ -295,7 +358,7 @@ ex.
   </head>
 
   <body>
-    ...
+    <!-- ... -->
   </body>
 </html>
 ```

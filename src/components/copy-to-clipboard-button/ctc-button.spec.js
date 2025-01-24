@@ -1,12 +1,12 @@
 import { expect } from "@esm-bundle/chai";
-import "./copy-to-clipboard.js";
+import "./ctc-button.js";
 
-describe("Components/Copy To Clipboard", () => {
+describe("Components/Copy To Clipboard (Button)", () => {
   const content = "npx @greenwood/init@latest my-app";
   let ctc;
 
   before(async () => {
-    ctc = document.createElement("app-ctc");
+    ctc = document.createElement("app-ctc-button");
 
     ctc.setAttribute("content", content);
     document.body.appendChild(ctc);

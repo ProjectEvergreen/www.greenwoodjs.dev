@@ -18,18 +18,28 @@ Each page will return data in the following schema:
 - **route** - the filename converted into a path as per file based routing
 - **data** (customizable) - any custom frontmatter keys you've defined for your page
 
-So for a page at _src/pages/blog/first-post.md_, this is the data you would get back:
+So for a page at _src/pages/blog/first-post.md_:
 
-```md
----
-author: Project Evergreen
-published: 2024-01-01
----
+<!-- prettier-ignore-start -->
 
-# First Post
+<app-ctc-block variant="snippet" heading="src/pages/blog/first-post.md">
 
-This is my first post.
-```
+  ```md
+  ---
+  author: Project Evergreen
+  published: 2024-01-01
+  ---
+
+  # First Post
+
+  This is my first post.
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+This is the data you would get back:
 
 ```json
 {
@@ -50,25 +60,33 @@ Additionally for markdown pages, you can add a frontmatter property called `tocH
 
 Taking our previous example, if we were to configure this for `<h2>` tags:
 
-```md
----
-author: Project Evergreen
-published: 2024-01-01
-tocHeading: 2
----
+<!-- prettier-ignore-start -->
 
-# First Post
+<app-ctc-block variant="snippet" heading="src/pages/blog/first-post.md">
 
-This is my first post.
+  ```md
+  ---
+  author: Project Evergreen
+  published: 2024-01-01
+  tocHeading: 2
+  ---
 
-## Overview
+  # First Post
 
-Lorum Ipsum
+  This is my first post.
 
-## First Point
+  ## Overview
 
-Something something...
-```
+  Lorum Ipsum
+
+  ## First Point
+
+  Something something...
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 We would get this additional content as data out:
 

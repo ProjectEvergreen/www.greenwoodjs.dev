@@ -6,6 +6,8 @@ tocHeading: 2
 
 # Server Rendering
 
+<!-- eslint-disable no-unused-vars -->
+
 Greenwood provides a couple of mechanisms for server-side rendering, building on top of our [file-based routing](/docs/pages/) convention.
 
 To create a dynamic server route, just create a JavaScript file in the _pages/_ directory, and that's it!
@@ -63,33 +65,41 @@ Everyone else gets to use their component model for authoring pages, so why not 
 
 This is the recommended pattern for SSR in Greenwood:
 
-```js
-import "../components/card/card.js"; // <wc-card></wc-card>
+<!-- prettier-ignore-start -->
 
-export default class UsersPage extends HTMLElement {
-  async connectedCallback() {
-    const users = await fetch("https://www.example.com/api/users").then((resp) => resp.json());
-    const html = users
-      .map((user) => {
-        const { name, imageUrl } = user;
-        return `
-          <wc-card>
-            <h2 slot="title">${name}</h2>
-            <img slot="image" src="${imageUrl}" alt="${name}"/>
-          </wc-card>
-        `;
-      })
-      .join("");
+<app-ctc-block variant="snippet" heading="src/pages/api/greeting.js">
 
-    this.innerHTML = `
-      <body>
-        <h1>Friends List</h1>
-        ${html}
-      </body>
-    `;
+  ```js
+  import "../components/card/card.js"; // <x-card></x-card>
+
+  export default class UsersPage extends HTMLElement {
+    async connectedCallback() {
+      const users = await fetch("https://www.example.com/api/users").then((resp) => resp.json());
+      const html = users
+        .map((user) => {
+          const { name, imageUrl } = user;
+          return `
+            <x-card>
+              <h2 slot="title">${name}</h2>
+              <img slot="image" src="${imageUrl}" alt="${name}"/>
+            </x-card>
+          `;
+        })
+        .join("");
+
+      this.innerHTML = `
+        <body>
+          <h1>Friends List</h1>
+          ${html}
+        </body>
+      `;
+    }
   }
-}
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 A couple of notes:
 
@@ -102,40 +112,44 @@ To return just the body of the page, you can use the `getBody` API. You will get
 
 In this example, we return a list of users from an API as HTML:
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-export async function getBody(compilation, page, request) {
-  const users = await fetch("http://www.example.com/api/users").then((resp) => resp.json());
-  const timestamp = new Date().getTime();
-  const usersListItems = users.map((user) => {
-    const { name, imageUrl } = user;
+<app-ctc-block variant="snippet">
+
+  ```js
+  export async function getBody(/* compilation, page, request */) {
+    const users = await fetch("http://www.example.com/api/users").then((resp) => resp.json());
+    const timestamp = new Date().getTime();
+    const usersListItems = users.map((user) => {
+      const { name, imageUrl } = user;
+
+      return `
+          <tr>
+            <td>${name}</td>
+            <td><img src="${imageUrl}"/></td>
+          </tr>
+        `;
+    });
 
     return `
-        <tr>
-          <td>${name}</td>
-          <td><img src="${imageUrl}"/></td>
-        </tr>
-      `;
-  });
+      <body>
+        <h1>Hello from the server rendered users page! 👋</h1>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+          </tr>
+          ${usersListItems.join("")}
+        </table>
+        <h6>Last Updated: ${timestamp}</h6>
+      </body>
+    `;
+  }
+  ```
 
-  return `
-    <body>
-      <h1>Hello from the server rendered users page! 👋</h1>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Image</th>
-        </tr>
-        ${usersListItems.join("")}
-      </table>
-      <h6>Last Updated: ${timestamp}</h6>
-    </body>
-  `;
-}
-```
+</app-ctc-block>
 
-<!-- eslint-enable no-unused-vars -->
+<!-- prettier-ignore-end -->
 
 ### Layouts
 
@@ -143,32 +157,40 @@ Although global [layouts](/docs/pages/layouts/) exist, you can provide a `getLay
 
 You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#compilation) object as well as the specific route:
 
-```js
-export async function getLayout(compilation, route) {
-  return `
-    <html>
-      <head>
-        <style>
-          * {
-            color: blue;
-          }
+<!-- prettier-ignore-start -->
 
-          h1 {
-            width: 50%;
-            margin: 0 auto;
-            text-align: center;
-            color: red;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>This heading was rendered server side for route ${route}!</h1>
-        <content-outlet></content-outlet>
-      </body>
-    </html>
-  `;
-}
-```
+<app-ctc-block variant="snippet">
+
+  ```js
+  export async function getLayout(compilation, route) {
+    return `
+      <html>
+        <head>
+          <style>
+            * {
+              color: blue;
+            }
+
+            h1 {
+              width: 50%;
+              margin: 0 auto;
+              text-align: center;
+              color: red;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>This heading was rendered server side for route ${route}!</h1>
+          <content-outlet></content-outlet>
+        </body>
+      </html>
+    `;
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > ⚠ This function is _only run once at build time_. Dynamic "runtime" layouts are [planned](https://github.com/ProjectEvergreen/greenwood/issues/1248).
 
@@ -176,20 +198,28 @@ export async function getLayout(compilation, route) {
 
 Any Greenwood supported frontmatter can be returned here. _This is only run once when the server is started_ to populate pages metadata, which is helpful if you want your dynamic route to show up in a collection with other static pages. You can even define a `layout` and reuse all your existing [layouts](/docs/pages/layouts/), even for server routes!
 
-```js
-export async function getFrontmatter(compilation, route) {
-  return {
-    layout: "user",
-    collection: "header",
-    order: 1,
-    title: `The ${route} page`,
-    imports: ["/components/user.js"],
-    data: {
-      /* ... */
-    },
-  };
-}
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export async function getFrontmatter(compilation, route) {
+    return {
+      layout: "user",
+      collection: "header",
+      order: 1,
+      title: `The ${route} page`,
+      imports: ["/components/user.js"],
+      data: {
+        /* ... */
+      },
+    };
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > For defining custom dynamic based metadata, like for `<meta>` tags, use `getLayout` and define those tags right in your HTML.
 
@@ -199,9 +229,17 @@ export async function getFrontmatter(compilation, route) {
 
 To export server routes as just static HTML (no request time handling), you can export a **prerender** option from your page, set to `true`.
 
-```js
-export const prerender = true;
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const prerender = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 So for example, _/pages/artist.js_ would render out as _/artists/index.html_ and would work with standard static hosting.
 
@@ -211,9 +249,17 @@ So for example, _/pages/artist.js_ would render out as _/artists/index.html_ and
 
 To execute an SSR page in its own isolated rendering context, you can export an **isolation** option from your page, set to `true`.
 
-```js
-export const isolation = true;
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > For more information and how you can enable this for all pages, please see the [isolation configuration](/docs/reference/configuration/#isolation-mode) docs.
 
@@ -221,38 +267,53 @@ export const isolation = true;
 
 For request handling, Greenwood will pass a native `Request` object and a Greenwood [compilation](/docs/reference/appendix/#compilation) as "constructor props" to your Web Server Component's `constructor` function, or as the third parameter to the other SSR APIs. For async work, use an `async connectedCallback`.
 
-```js
-export default class PostPage extends HTMLElement {
-  constructor(request) {
-    super();
+<!-- prettier-ignore-start -->
 
-    const params = new URLSearchParams(request.url.slice(request.url.indexOf("?")));
-    this.postId = params.get("id");
+<app-ctc-block variant="snippet" heading="src/pages/post.js">
+
+  ```js
+  export default class PostPage extends HTMLElement {
+    constructor(request) {
+      super();
+
+      const params = new URLSearchParams(request.url.slice(request.url.indexOf("?")));
+      this.postId = params.get("id");
+    }
+
+    async connectedCallback() {
+      const { postId } = this;
+      const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then((resp) =>
+        resp.json(),
+      );
+      const { id, title, body } = post;
+
+      this.innerHTML = `
+        <h1>Fetched Post ID: ${id}</h1>
+        <h2>${title}</h2>
+        <p>${body}</p>
+      `;
+    }
   }
+  ```
 
-  async connectedCallback() {
-    const { postId } = this;
-    const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then((resp) =>
-      resp.json(),
-    );
-    const { id, title, body } = post;
+</app-ctc-block>
 
-    this.innerHTML = `
-      <h1>Fetched Post ID: ${id}</h1>
-      <h2>${title}</h2>
-      <p>${body}</p>
-    `;
-  }
-}
-```
+<!-- prettier-ignore-end -->
 
 ## Custom Imports
 
 To use custom imports on the server side for prerendering or SSR use cases (ex. CSS, JSON), you will need to invoke Greenwood using **NodeJS** from the CLI and pass it the `--loaders` flag along with the path to Greenwood's provided loader function.
 
-```shell
-$ node --loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js <command>
-```
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="shell" paste-contents="node --loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js <command>">
+
+  ```shell
+  $ node --loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js <command>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Then you will be able to run this, or for any custom format you want using a plugin.
 

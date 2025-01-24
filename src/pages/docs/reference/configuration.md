@@ -44,11 +44,19 @@ export default {
 
 To enable support for Greenwood's [Content as Data](/docs/content-as-data/) capabilities, set the `activeContent` flag to `true`.
 
-```js
-export default {
-  activeContent: true,
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    activeContent: true,
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Base Path
 
@@ -56,25 +64,49 @@ There are cases where an application might be deployed and hosted from a "sub" p
 
 So with a URL of _http://www.example.com/app-a/_, the _basePath_ would be set as follows:
 
-```js
-export default {
-  basePath: "/app-a",
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    basePath: "/app-a",
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 This would then configure Greenwood's routing and `<script>` / `<link>` tags to reference this segment automatically:
 
-```html
-<script type="module" src="/app-a/some-script.a243dccss.js"></script>
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```html
+  <script type="module" src="/app-a/some-script.a243dccss.js"></script>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 For convenience, the value of **basePath** will also be made available as a global variable in the `<head>` of your pages:
 
-```html
-<script data-gwd="base-path">
-  globalThis.__GWD_BASE_PATH__ = "/app-a";
-</script>
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```html
+  <script data-gwd="base-path">
+    globalThis.__GWD_BASE_PATH__ = "/app-a";
+  </script>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > User content, like `<a>` and `<img>` tags will still require manually prefixing the `basePath` in your application code.
 
@@ -89,18 +121,26 @@ Configuration for Greenwood's development server is available using the `devServ
 
 Below is an example configuration:
 
-```js
-export default {
-  devServer: {
-    extensions: ["txt"],
-    port: 3000,
-    proxy: {
-      "/api": "https://stage.myapp.com",
-      "/api/foo": "https://foo.otherdomain.net",
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    devServer: {
+      extensions: ["txt"],
+      port: 3000,
+      proxy: {
+        "/api": "https://stage.myapp.com",
+        "/api/foo": "https://foo.otherdomain.net",
+      },
     },
-  },
-};
-```
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Isolation Mode
 
@@ -120,29 +160,51 @@ As servers have to support multiple clients (as opposed to a browser tab only se
 
 To configure an entire project for this, simply set the flag in your _greenwood.config.js_:
 
-```js
-export default {
-  isolation: true, // default value is false
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    isolation: true, // default value is false
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Optionally, you can opt-in on a per SSR page / API route basis by exporting an `isolation` option:
 
-```js
-// src/pages/products.js
+<!-- prettier-ignore-start -->
 
-export const isolation = true;
-```
+<app-ctc-block variant="snippet" heading="src/pages/products.js">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Layouts Directory
 
 By default the directory Greenwood will use to look for your layouts is in _layouts/_. It is relative to your [user workspace](/docs/reference/configuration/#workspace) setting, just like the _pages/_ directory.
 
-```js
-export default {
-  layoutsDirectory: "layouts", // Greenwood will look for layouts at src/layouts/
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    layoutsDirectory: "layouts", // Greenwood will look for layouts at src/layouts/
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Markdown
 
@@ -150,14 +212,22 @@ You can install and provide custom **unifiedjs** [presets](https://github.com/un
 
 For plugins, after installing their packages, you can provide their names to Greenwood:
 
-```js
-export default {
-  markdown: {
-    settings: { commonmark: true },
-    plugins: ["rehype-slug", "rehype-autolink-headings"],
-  },
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    markdown: {
+      settings: { commonmark: true },
+      plugins: ["rehype-slug", "rehype-autolink-headings"],
+    },
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Optimization
 
@@ -174,46 +244,78 @@ Greenwood provides a number of different ways to send hints to Greenwood as to h
 
 Here is an example of setting the **inline** setting:
 
-```js
-export default {
-  optimization: "inline",
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    optimization: "inline",
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ### Overrides
 
 Additionally, you can apply overrides on a per `<link>` or `<script>` tag basis by adding a custom `data-gwd-opt` attribute to your HTML. The following is supported for JavaScript and CSS.
 
-```html
-<!-- Javascript -->
-<script type="module" src="/path/to/file1.js" data-gwd-opt="static"></script>
-<script type="module" src="/path/to/file2.js" data-gwd-opt="inline"></script>
+<!-- prettier-ignore-start -->
 
-<!-- CSS -->
-<link rel="stylesheet" href="/path/to/file1.css" data-gwd-opt="inline" />
-```
+<app-ctc-block variant="snippet">
+
+  ```html
+  <!-- Javascript -->
+  <script type="module" src="/path/to/file1.js" data-gwd-opt="static"></script>
+  <script type="module" src="/path/to/file2.js" data-gwd-opt="inline"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/path/to/file1.css" data-gwd-opt="inline" />
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Pages Directory
 
 By default the directory Greenwood will use to look for your local content is _pages/_. It is relative to your [user workspace](/docs/reference/configuration/#workspace) setting.
 
-```js
-export default {
-  pagesDirectory: "docs", // Greenwood will look for pages at ./src/docs/
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    pagesDirectory: "docs", // Greenwood will look for pages at ./src/docs/
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Plugins
 
 This takes an array of plugins either [created already](/docs/plugins/) by the Greenwood team, or one you [made yourself](/docs/reference/plugins-api/).
 
-```js
-import { greenwoodCssModulesPlugin } from "@greenwood/plugin-css-modules";
+<!-- prettier-ignore-start -->
 
-export default {
-  plugins: [greenwoodCssModulesPlugin()],
-};
-```
+<app-ctc-block variant="snippet">
+
+  ```js
+  import { greenwoodCssModulesPlugin } from "@greenwood/plugin-css-modules";
+
+  export default {
+    plugins: [greenwoodCssModulesPlugin()],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Polyfills
 
@@ -225,25 +327,41 @@ Greenwood provides polyfills for a few Web APIs out of the box.
 
 If you are developing with Greenwood in a browser that doesn't support [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap#browser_compatibility), with this flag enabled, Greenwood will add the [**ES Module Shims**](https://github.com/guybedford/es-module-shims) polyfill to provide support for import maps.
 
-```js
-export default {
-  polyfills: {
-    importMaps: true,
-  },
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    polyfills: {
+      importMaps: true,
+    },
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ### Import Attributes
 
 [Import Attributes](https://github.com/tc39/proposal-import-attributes), which are the underlying mechanism for supporting [CSS](https://web.dev/articles/css-module-scripts) and [JSON](https://github.com/tc39/proposal-json-modules) module scripts, are not widely supported in [all browsers yet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#browser_compatibility). Greenwood can enable this in a browser compatible why by specifying which attributes you want handled. In both cases, Greenwood bundles these as ES Modules and will strip the attributes syntax.
 
-```js
-export default {
-  polyfills: {
-    importAttributes: ["css", "json"],
-  },
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    polyfills: {
+      importAttributes: ["css", "json"],
+    },
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 In the case of CSS, Greenwood will inline and export your CSS as a [Constructable Stylesheet](https://web.dev/articles/constructable-stylesheets)
 
@@ -290,21 +408,37 @@ export default {
 
 Unlike the port option for `devServer` configuration, this option allows you to configure the port that your production server will run on when running `greenwood serve`.
 
-```js
-export default {
-  port: 8181,
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    port: 8181,
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Prerender
 
 When set to `true` [Greenwood will prerender](/docs/reference/rendering-strategies/) your site using [**WCC**](https://github.com/ProjectEvergreen/wcc) and generate HTML from any Web Components you include in your pages and layouts as part of the final static HTML build output.
 
-```js
-export default {
-  prerender: true,
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    prerender: true,
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > You can combine this with ["static" components](/docs/reference/configuration/#optimization) so that you can just do single pass rendering of your Web Components and get their output as static HTML and CSS at build time without having to ship any runtime JavaScript!
 
@@ -314,11 +448,19 @@ export default {
 
 Setting the `staticRouter` option to `true` will add a small router runtime in production for static pages to prevent needing full page reloads when navigation between pages that share a layout. For example, the Greenwood website is entirely static, outputting an HTML file per page however, if you navigate from the _Docs_ page to the _Getting Started_ page, you will notice the site does not require a full page load. Instead, the router will just swap out the content of the page much like client-side SPA router would. This technique is similar to how projects like [**pjax**](https://github.com/defunkt/jquery-pjax) and [**Turbolinks**](https://github.com/turbolinks/turbolinks) work, and like what you can see on websites like GitHub.
 
-```js
-export default {
-  staticRouter: true,
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    staticRouter: true,
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Workspace
 
@@ -326,10 +468,18 @@ Path to where all your project files will be located, provided a valid `URL`. De
 
 For example, to change the workspace to be _www/_:
 
-```js
-export default {
-  workspace: new URL("./www/", import.meta.url),
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    workspace: new URL("./www/", import.meta.url),
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 > Please note the trailing `/` here as for ESM, as paths must end in a `/` for directories.
