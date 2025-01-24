@@ -24,7 +24,7 @@ yarn add @greenwood/plugin-postcss --dev
 
 Then add this plugin to your _greenwood.config.js_.
 
-```javascript
+```js
 import { greenwoodPluginPostCss } from "@greenwood/plugin-postcss";
 
 export default {
@@ -34,22 +34,11 @@ export default {
 };
 ```
 
-To use your own PostCSS configuration, you'll need to create _two (2)_ config files in the root of your project, by which you can provide your own custom plugins / settings that you've installed.
-
-- _postcss.config.js_
-- _postcss.config.mjs_
+To use your own PostCSS configuration, just create a _postcss.config.js_ file at the root of your project, by which you can provide your own custom plugins / settings that you've installed.
 
 ```js
-// postcss.config.mjs
 export default {
   plugins: [(await import("autoprefixer")).default],
-};
-```
-
-```js
-// postcss.config.js
-module.exports = {
-  plugins: [require("autoprefixer")],
 };
 ```
 
@@ -66,6 +55,7 @@ Now you can write the CSS and see the results of the plugin in the generated sty
 .image {
   background-image: url(image@1x.png);
 }
+
 @media (min-resolution: 2dppx) {
   .image {
     background-image: url(image@2x.png);
@@ -86,6 +76,7 @@ Now you can write the CSS and see the results of the plugin in the generated sty
 .image {
   background-image: url(image@1x.png);
 }
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   .image {
     background-image: url(image@2x.png);
