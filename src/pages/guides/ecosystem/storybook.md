@@ -126,7 +126,7 @@ export default {
 };
 ```
 
-You'll want to create a CommonJS version called with the following name, depending on which version of Storybook you are using:
+You'll want to create a CommonJS version with the following name, depending on which version of Storybook you are using:
 
 - Storybook >= 8 - _postcss.config.js_
 - Storybook <= 7 - _.postcssrc.js_
