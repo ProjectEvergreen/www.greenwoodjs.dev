@@ -1,21 +1,6 @@
 import { expect } from "@esm-bundle/chai";
 import "./footer.js";
 
-const ICONS = [
-  {
-    link: "https://github.com/ProjectEvergreen/greenwood",
-    title: "GitHub",
-  },
-  {
-    link: "/discord/",
-    title: "Discord",
-  },
-  {
-    link: "https://twitter.com/PrjEvergreen",
-    title: "Twitter",
-  },
-];
-
 describe("Components/Footer", () => {
   let footer;
 
@@ -39,21 +24,13 @@ describe("Components/Footer", () => {
       expect(logo[0]).not.equal(undefined);
     });
 
-    it("should have the expected social link icons", () => {
-      const links = footer.querySelectorAll("ul li a");
-      const icons = footer.querySelectorAll("ul li a svg");
+    it("should have the social tray component", () => {
+      const tray = footer.querySelectorAll("app-social-tray");
 
-      expect(links.length).to.equal(3);
-      expect(icons.length).to.equal(3);
-
-      Array.from(links).forEach((link) => {
-        const iconItem = ICONS.find((icon) => icon.title === link.getAttribute("title"));
-
-        expect(iconItem).to.not.equal(undefined);
-        expect(link.getAttribute("href")).to.equal(iconItem.link);
-      });
+      expect(tray.length).to.equal(1);
     });
   });
+
   after(() => {
     footer.remove();
     footer = null;
