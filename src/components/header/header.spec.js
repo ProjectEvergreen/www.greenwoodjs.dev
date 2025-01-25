@@ -3,20 +3,6 @@ import "./header.js";
 import pages from "../../stories/mocks/graph.json" with { type: "json" };
 
 const CURRENT_ROUTE = "/guides/";
-const ICONS = [
-  {
-    link: "https://github.com/ProjectEvergreen/greenwood",
-    title: "GitHub",
-  },
-  {
-    link: "/discord/",
-    title: "Discord",
-  },
-  {
-    link: "https://twitter.com/PrjEvergreen",
-    title: "Twitter",
-  },
-];
 
 window.fetch = function () {
   return new Promise((resolve) => {
@@ -77,19 +63,10 @@ describe("Components/Header", () => {
       expect(activeRoute.route).to.equal(CURRENT_ROUTE);
     });
 
-    it("should have the expected social link icons", () => {
-      const links = header.querySelectorAll("nav[aria-label='Social'] ul li a");
-      const icons = header.querySelectorAll("nav[aria-label='Social'] ul li a svg");
+    it("should have the social tray component", () => {
+      const tray = header.querySelectorAll("app-social-tray");
 
-      expect(links.length).to.equal(3);
-      expect(icons.length).to.equal(3);
-
-      Array.from(links).forEach((link) => {
-        const iconItem = ICONS.find((icon) => icon.title === link.getAttribute("title"));
-
-        expect(iconItem).to.not.equal(undefined);
-        expect(link.getAttribute("href")).to.equal(iconItem.link);
-      });
+      expect(tray.length).to.equal(1);
     });
   });
 
