@@ -35,9 +35,9 @@ npm i open-props
 ```html
 <html>
   <head>
-    <link ref="stylesheet" href="/node_modules/open-props/src/props.fonts.css" />
-    <link ref="stylesheet" href="/node_modules/open-props/src/props.shadows.css" />
-    <link ref="stylesheet" href="/node_modules/open-props/src/props.sizes.css" />
+    <link ref="stylesheet" href="/node_modules/open-props/fonts.min.css" />
+    <link ref="stylesheet" href="/node_modules/open-props/shadows.min.css" />
+    <link ref="stylesheet" href="/node_modules/open-props/sizes.min.css" />
 
     <style>
       h1 {
