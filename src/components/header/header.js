@@ -35,7 +35,9 @@ export default class Header extends HTMLElement {
             </ul>
           </nav>
 
-          <app-social-tray></app-social-tray>
+          <nav role="navigation" aria-label="Social">
+            <app-social-tray></app-social-tray>
+          </nav>
 
           <button class="${styles.mobileMenuIcon}" popovertarget="mobile-menu" aria-label="Mobile Menu Icon Button">
             ${mobileMenuIcon}

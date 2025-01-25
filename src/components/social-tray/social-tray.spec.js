@@ -30,12 +30,12 @@ describe("Components/Social Tray", () => {
   describe("Default Behavior", () => {
     it("should not be null", () => {
       expect(tray).not.equal(undefined);
-      expect(tray.querySelectorAll("nav").length).equal(1);
+      expect(tray.querySelectorAll("ul").length).equal(1);
     });
 
     it("should have the expected social link icons", () => {
-      const links = tray.querySelectorAll("nav[aria-label='Social'] ul li a");
-      const icons = tray.querySelectorAll("nav[aria-label='Social'] ul li a svg");
+      const links = tray.querySelectorAll("ul li a");
+      const icons = tray.querySelectorAll("ul li a svg");
 
       expect(links.length).to.equal(3);
       expect(icons.length).to.equal(3);
