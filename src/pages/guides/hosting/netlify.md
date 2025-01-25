@@ -27,7 +27,7 @@ For static hosting, nothing is needed other than connecting your repository and 
     skip_processing = true
 
   [build.environment]
-    NODE_VERSION = "18.x"
+    NODE_VERSION = "22.x"
   ```
 
 </app-ctc-block>
