@@ -289,20 +289,18 @@ This plugin supports providing an array of "paired" URL objects that can either 
 
 If you need to copy files out of _node_modules_, you can use some of Greenwood's helper utilities for locating npm packages on disk and copying them to the output directory. For [example](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-polyfills/src/index.js):
 
-<!-- eslint-disable no-unused-vars -->
+<!-- prettier-ignore-start -->
 
-```js
-import {
-  derivePackageRoot,
-  resolveBareSpecifier,
-} from "@greenwood/cli/src/lib/walker-package-ranger.js";
+<app-ctc-block variant="snippet" heading="src/pages/index.html">
 
-const greenwoodPluginPolyfills = (options = {}) => {
-  return [
-    {
-      // ...
-    },
-    {
+  ```js
+  import {
+    derivePackageRoot,
+    resolveBareSpecifier,
+  } from "@greenwood/cli/src/lib/walker-package-ranger.js";
+
+  const greenwoodPluginPolyfills = () => {
+    return [{
       type: "copy",
       name: "plugin-copy-polyfills",
       provider: async (compilation) => {
@@ -310,7 +308,7 @@ const greenwoodPluginPolyfills = (options = {}) => {
         const polyfillsResolved = resolveBareSpecifier("@webcomponents/webcomponentsjs");
         const polyfillsRoot = derivePackageRoot(polyfillsResolved);
 
-        const standardPolyfills = [
+        return [
           {
             from: new URL("./webcomponents-loader.js", polyfillsRoot),
             to: new URL("./webcomponents-loader.js", outputDir),
@@ -320,15 +318,16 @@ const greenwoodPluginPolyfills = (options = {}) => {
             to: new URL("./bundles/", outputDir),
           },
         ];
-
-        // ...
       },
-    },
-  ];
-};
-```
+    }];
+  };
 
-<!-- eslint-enable no-unused-vars -->
+  export { greenwoodPluginPolyfills }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Renderer
 
