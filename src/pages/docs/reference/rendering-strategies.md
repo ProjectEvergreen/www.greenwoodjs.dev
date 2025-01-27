@@ -72,10 +72,10 @@ For example, creating a list of blog posts for a blog landing page, based on all
          ${posts
            .map((post) => {
              return `
-            <a href="${post.route}">
-              ${post.title}
-            </a>
-          `;
+           <a href="${post.route}">
+             ${post.title}
+           </a>
+         `;
            })
            .join("")}
        `;
