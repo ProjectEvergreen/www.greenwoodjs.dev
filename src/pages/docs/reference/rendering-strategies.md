@@ -38,10 +38,8 @@ For example, creating a list of blog posts for a blog landing page, based on all
 
 <!-- Prettier has a hard time indenting lists with code fences I guess... :/ -->
 <!-- https://github.com/prettier/prettier/issues/3459 -->
-
+<!-- prettier-ignore-start -->
 1. Add the `prerender` config to _greenwood.config.js_
-
-   <!-- prettier-ignore-start -->
 
    <app-ctc-block variant="snippet" heading="greenwood.config.js">
 
@@ -53,11 +51,7 @@ For example, creating a list of blog posts for a blog landing page, based on all
 
    </app-ctc-block>
 
-   <!-- prettier-ignore-end -->
-
 1. Create a content fetching component
-
-   <!-- prettier-ignore-start -->
 
    <app-ctc-block variant="snippet">
 
@@ -71,11 +65,11 @@ For example, creating a list of blog posts for a blog landing page, based on all
        this.innerHTML = `
          ${posts
            .map((post) => {
-             return `
-           <a href="${post.route}">
-             ${post.title}
-           </a>
-         `;
+              return `
+                <a href="${post.route}">
+                  ${post.title}
+                </a>
+              `;
            })
            .join("")}
        `;
@@ -87,11 +81,7 @@ For example, creating a list of blog posts for a blog landing page, based on all
 
    </app-ctc-block>
 
-   <!-- prettier-ignore-end -->
-
 1. Add it to your HTML page with the [**static** optimization attribute](/docs/reference/configuration/#optimization), as well as the custom element definition
-
-   <!-- prettier-ignore-start -->
 
    <app-ctc-block variant="snippet">
 
@@ -111,7 +101,7 @@ For example, creating a list of blog posts for a blog landing page, based on all
 
    </app-ctc-block>
 
-   <!-- prettier-ignore-end -->
+<!-- prettier-ignore-end -->
 
 Now you will have list of all your blog posts, automatically generated and formatted from your own content, kept up to date with every change. All with no runtime JavaScript!
 
