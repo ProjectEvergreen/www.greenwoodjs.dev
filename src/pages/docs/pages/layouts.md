@@ -60,26 +60,26 @@ Below is an example of a _page.html_ layout:
 
 You can create more layouts and use them for pages with the following steps:
 
-<!-- prettier-ignore-start -->
-
 1. Create a new layout, e.g. _layouts/blog.html_
 1. In your frontmatter, specify that layout's filename
 
+   <!-- prettier-ignore-start -->
+
    <app-ctc-block variant="snippet">
 
-    ```md
-    ---
-    layout: blog
-    ---
+   ```md
+   ---
+   layout: blog
+   ---
 
-    ## My First Post
+   ## My First Post
 
-    Lorum Ipsum
-    ```
+   Lorum Ipsum
+   ```
 
    </app-ctc-block>
 
-<!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 ## App
 

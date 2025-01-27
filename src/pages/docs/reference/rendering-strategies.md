@@ -38,68 +38,80 @@ For example, creating a list of blog posts for a blog landing page, based on all
 
 <!-- Prettier has a hard time indenting lists with code fences I guess... :/ -->
 <!-- https://github.com/prettier/prettier/issues/3459 -->
-<!-- prettier-ignore-start -->
+
 1. Add the `prerender` config to _greenwood.config.js_
 
-  <app-ctc-block variant="snippet" heading="greenwood.config.js">
+   <!-- prettier-ignore-start -->
 
-    ```js
-    export default {
-      prerender: true,
-    };
-    ```
+   <app-ctc-block variant="snippet" heading="greenwood.config.js">
 
-  </app-ctc-block>
+   ```js
+   export default {
+     prerender: true,
+   };
+   ```
+
+   </app-ctc-block>
+
+   <!-- prettier-ignore-end -->
 
 1. Create a content fetching component
 
-  <app-ctc-block variant="snippet">
+   <!-- prettier-ignore-start -->
 
-    ```js
-    import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
+   <app-ctc-block variant="snippet">
 
-    export default class BlogPostsList extends HTMLElement {
-      async connectedCallback() {
-        const posts = await getContentByRoute("/blog/");
+   ```js
+   import { getContentByRoute } from "@greenwood/cli/src/data/queries.js";
 
-        this.innerHTML = `
-          ${posts
-            .map((post) => {
-              return `
-                <a href="${post.route}">
-                  ${post.title}
-                </a>
-              `;
-            })
-            .join("")}
-        `;
-      }
-    }
+   export default class BlogPostsList extends HTMLElement {
+     async connectedCallback() {
+       const posts = await getContentByRoute("/blog/");
 
-    customElements.define("blog-posts-list", BlogPostsList);
-    ```
+       this.innerHTML = `
+         ${posts
+           .map((post) => {
+             return `
+            <a href="${post.route}">
+              ${post.title}
+            </a>
+          `;
+           })
+           .join("")}
+       `;
+     }
+   }
 
-  </app-ctc-block>
+   customElements.define("blog-posts-list", BlogPostsList);
+   ```
+
+   </app-ctc-block>
+
+   <!-- prettier-ignore-end -->
 
 1. Add it to your HTML page with the [**static** optimization attribute](/docs/reference/configuration/#optimization), as well as the custom element definition
 
-  <app-ctc-block variant="snippet">
+   <!-- prettier-ignore-start -->
 
-    ```html
-    <!doctype html>
-    <html>
-      <head>
-        <title>Blog</title>
-        <script type="module" src="./components/blog-posts-list.js" data-gwd-opt="static"></script>
-      </head>
-      <body>
-        <h1>All Blog Posts</h1>
-        <blog-posts-list></blog-posts-list>
-      </body>
-    </html>
-    ```
+   <app-ctc-block variant="snippet">
 
-  </app-ctc-block>
+   ```html
+   <!doctype html>
+   <html>
+     <head>
+       <title>Blog</title>
+       <script type="module" src="./components/blog-posts-list.js" data-gwd-opt="static"></script>
+     </head>
+     <body>
+       <h1>All Blog Posts</h1>
+       <blog-posts-list></blog-posts-list>
+     </body>
+   </html>
+   ```
+
+   </app-ctc-block>
+
+   <!-- prettier-ignore-end -->
 
 Now you will have list of all your blog posts, automatically generated and formatted from your own content, kept up to date with every change. All with no runtime JavaScript!
 

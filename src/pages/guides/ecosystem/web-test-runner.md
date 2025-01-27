@@ -16,80 +16,80 @@ For the sake of this guide, we will be covering a minimal setup but you are free
 
 1. First, let's install WTR and the JUnit Reporter. You can use your favorite package manager
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="runners">
+   <app-ctc-block variant="runners">
 
-    ```shell
-    npm i -D @web/test-runner @web/test-runner-junit-reporter
-    ```
+   ```shell
+   npm i -D @web/test-runner @web/test-runner-junit-reporter
+   ```
 
-    ```shell
-    yarn add @web/test-runner @web/test-runner-junit-reporter --save-dev
-    ```
+   ```shell
+   yarn add @web/test-runner @web/test-runner-junit-reporter --save-dev
+   ```
 
-    ```shell
-    pnpm add -D @web/test-runner @web/test-runner-junit-reporter
-    ```
+   ```shell
+   pnpm add -D @web/test-runner @web/test-runner-junit-reporter
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. You'll also want something like [**chai**](https://www.chaijs.com/) to write your assertions with
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="runners">
+   <app-ctc-block variant="runners">
 
-    ```shell
-    npm i -D @esm-bundle/chai
-    ```
+   ```shell
+   npm i -D @esm-bundle/chai
+   ```
 
-    ```shell
-    yarn add @esm-bundle/chai --save-dev
-    ```
+   ```shell
+   yarn add @esm-bundle/chai --save-dev
+   ```
 
-    ```shell
-    pnpm add -D @esm-bundle/chai
-    ```
+   ```shell
+   pnpm add -D @esm-bundle/chai
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Next, create a basic _web-test-runner.config.js_ configuration file
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="web-test-runner.config.js">
+   <app-ctc-block variant="snippet" heading="web-test-runner.config.js">
 
-    ```js
-    import { defaultReporter } from "@web/test-runner";
-    import { junitReporter } from "@web/test-runner-junit-reporter";
+   ```js
+   import { defaultReporter } from "@web/test-runner";
+   import { junitReporter } from "@web/test-runner-junit-reporter";
 
-    export default {
-      // customize your spec pattern here
-      files: "./src/**/*.spec.js",
-      // enable this if you're using npm / node_modules
-      nodeResolve: true,
-      // optionally configure reporters and coverage
-      reporters: [
-        defaultReporter({ reportTestResults: true, reportTestProgress: true }),
-        junitReporter({
-          outputPath: "./reports/test-results.xml",
-        }),
-      ],
-      coverage: true,
-      coverageConfig: {
-        reportDir: "./reports",
-      },
-    };
-    ```
+   export default {
+     // customize your spec pattern here
+     files: "./src/**/*.spec.js",
+     // enable this if you're using npm / node_modules
+     nodeResolve: true,
+     // optionally configure reporters and coverage
+     reporters: [
+       defaultReporter({ reportTestResults: true, reportTestProgress: true }),
+       junitReporter({
+         outputPath: "./reports/test-results.xml",
+       }),
+     ],
+     coverage: true,
+     coverageConfig: {
+       reportDir: "./reports",
+     },
+   };
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 ## Usage
 

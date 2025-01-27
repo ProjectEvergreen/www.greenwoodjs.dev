@@ -16,134 +16,131 @@ As Tailwind is a PostCSS plugin, you'll need to take a couple of extra steps to 
 
 1. Let's install Tailwind and needed dependencies into our project, including Greenwood's [PostCSS plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-postcss)
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="runners">
+   <app-ctc-block variant="runners">
 
-    ```shell
-    npm i -D @greenwood/plugin-postcss tailwindcss autoprefixer
-    ```
+   ```shell
+   npm i -D @greenwood/plugin-postcss tailwindcss autoprefixer
+   ```
 
-    ```shell
-    yarn add @greenwood/plugin-postcss tailwindcss autoprefixer --save-dev
-    ```
+   ```shell
+   yarn add @greenwood/plugin-postcss tailwindcss autoprefixer --save-dev
+   ```
 
-    ```shell
-    pnpm add -D @greenwood/plugin-postcss tailwindcss autoprefixer
-    ```
+   ```shell
+   pnpm add -D @greenwood/plugin-postcss tailwindcss autoprefixer
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Now run the Tailwind CLI to initialize our project with Tailwind
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="shell" paste-contents="npx tailwindcss init">
+   <app-ctc-block variant="shell" paste-contents="npx tailwindcss init">
 
-    ```shell
-    $ npx tailwindcss init
-    ```
+   ```shell
+   $ npx tailwindcss init
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Create a [PostCSS configuration file](/docs/plugins/postcss/#installation) in the root of your project with needed Tailwind plugins
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="postcss.config.js">
+   <app-ctc-block variant="snippet" heading="postcss.config.js">
 
-    ```js
-    export default {
-      plugins: [
-        (await import("tailwindcss")).default,
-        (await import("autoprefixer")).default
-      ],
-    };
-    ```
+   ```js
+   export default {
+     plugins: [(await import("tailwindcss")).default, (await import("autoprefixer")).default],
+   };
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Create a _tailwind.config.js_ file and configure accordingly for your project
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="tailwind.config.js">
+   <app-ctc-block variant="snippet" heading="tailwind.config.js">
 
-    ```js
-    /** @type {import('tailwindcss').Config} */
-    export default {
-      content: ["./src/**/*.{html,js}"],
-      theme: {},
-      plugins: [],
-    };
-    ```
+   ```js
+   /** @type {import('tailwindcss').Config} */
+   export default {
+     content: ["./src/**/*.{html,js}"],
+     theme: {},
+     plugins: [],
+   };
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Add the PostCSS plugin to your _greenwood.config.js_
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="greenwood.config.js">
+   <app-ctc-block variant="snippet" heading="greenwood.config.js">
 
-    ```js
-    import { greenwoodPluginPostCss } from "@greenwood/plugin-postcss";
+   ```js
+   import { greenwoodPluginPostCss } from "@greenwood/plugin-postcss";
 
-    export default {
-      plugins: [greenwoodPluginPostCss()],
-    };
-    ```
+   export default {
+     plugins: [greenwoodPluginPostCss()],
+   };
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 ## Usage
 
 1. Now you'll want to create an "entry" point CSS file to include the initial Tailwind `@import`s.
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="src/styles/main.css">
+   <app-ctc-block variant="snippet" heading="src/styles/main.css">
 
-    ```css
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-    ```
+   ```css
+   @tailwind base;
+   @tailwind components;
+   @tailwind utilities;
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. And include that in your layouts or pages
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="src/pages/index.html">
+   <app-ctc-block variant="snippet" heading="src/pages/index.html">
 
-    ```html
-    <html>
-      <head>
-        <link rel="stylesheet" href="../styles/main.css" />
-      </head>
-      <body>
-        <!-- ... -->
-      </body>
-    </html>
-    ```
+   ```html
+   <html>
+     <head>
+       <link rel="stylesheet" href="../styles/main.css" />
+     </head>
+     <body>
+       <!-- ... -->
+     </body>
+   </html>
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 Now you're ready to start using Tailwind! 🎯
 
