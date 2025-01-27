@@ -38,6 +38,18 @@ Would yield the following routes:
 
 For the sake of this guide, pages can just be HTML, using just... normal HTML! You can include any `<script>`, `<style>`, `<link>`, etc tags you need.
 
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 ```html
 <!-- src/index.html -->
 <!doctype html>
@@ -64,6 +76,18 @@ For the sake of this guide, pages can just be HTML, using just... normal HTML! Y
 As demonstrated above, we can create an inline `<style>` tag for our page instead, As your application grows, you'll probably want to put JavaScript and CSS content in their own files.
 
 This includes the `<script>` tag for our custom element tag `<app-header>`:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ```html
 <!-- src/pages/index.html -->
@@ -108,6 +132,18 @@ One thing to notice from our _index.html_ example above is that we were includin
 
 In this case, we can create an _app.html_ which Greenwood will use to wrap all pages. We can use `<page-outlet></page-outlet>` to specify where we want the content's of each page to appear.
 
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 ```html
 <!-- src/layouts/app.html -->
 <!doctype html>
@@ -128,6 +164,18 @@ In this case, we can create an _app.html_ which Greenwood will use to wrap all p
 ```
 
 And now our _index.html_ can just be this:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ```html
 <!-- src/pages/index.html -->
@@ -163,6 +211,18 @@ Although it can be used in HTML files too, frontmatter is a YAML powered set of 
 
 So if wanted a layout to specifically wrap our blog posts, we can specify the name of a layout file in our markdown files:
 
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 <!-- prettier formats the frontmatter fences to ## :/ -->
 <!-- prettier-ignore-start -->
 ```md
@@ -179,6 +239,18 @@ This is my first post, I hope you like it!
 <!-- prettier-ignore-end -->
 
 And now we can create a layout just for these particular pages, which themselves will get wrapped by the _app.html_ layout, if applicable.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export const isolation = true;
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ```html
 <!-- src/layouts/blog.html -->

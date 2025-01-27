@@ -94,7 +94,7 @@
   vertical-align: middle;
 }
 
-.snippet app-ctc {
+.snippet app-ctc-button {
   display: none;
 }
 
@@ -136,7 +136,7 @@
     vertical-align: text-top;
   }
 
-  .snippet app-ctc {
+  .snippet app-ctc-button {
     display: inline-block;
   }
 }

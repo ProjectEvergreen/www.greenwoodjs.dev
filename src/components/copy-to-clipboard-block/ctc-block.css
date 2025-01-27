@@ -1,0 +1,148 @@
+.runner-container {
+  border: 1px solid var(--color-prism-bg);
+  background-color: var(--color-prism-bg);
+  padding: 0 var(--size-2);
+  border-radius: var(--radius-2);
+
+  & ul {
+    list-style-type: none;
+  }
+
+  & li {
+    float: left;
+    cursor: pointer;
+    width: var(--size-fluid-5);
+    margin: var(--size-4) var(--size-2) var(--size-1) var(--size-2);
+    border-bottom: 2px solid transparent;
+    padding: var(--size-1);
+    display: flex;
+    justify-content: center;
+  }
+
+  & li svg {
+    min-height: 30px;
+    max-height: var(--size-4);
+    display: inline;
+  }
+
+  & li.active {
+    border-bottom: 2px solid var(--color-white);
+  }
+
+  & pre {
+    border: 2px solid var(--color-white);
+  }
+
+  & .copy-icon {
+    background-color: var(--color-white);
+    padding: 0;
+    border-radius: var(--radius-2);
+    position: relative;
+    top: -70px;
+    float: right;
+    right: 10px;
+    width: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  & .copy-icon svg {
+    width: 40px;
+    vertical-align: middle;
+  }
+}
+
+.snippet-container {
+  & .copy-icon {
+    background-color: var(--color-white);
+    padding: 0;
+    border-radius: var(--radius-2);
+    position: relative;
+    top: 40px;
+    float: right;
+    right: 10px;
+    width: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  & .copy-icon svg {
+    width: 40px;
+    vertical-align: middle;
+  }
+
+  & .heading {
+    display: inline-block;
+    background-color: var(--color-prism-bg);
+    color: var(--color-white);
+    padding: 10px;
+    font-size: var(--size-2);
+    border-radius: var(--radius-2) var(--radius-2) 0 0;
+    font-family: "Geist-Mono", monospace;
+    font-style: italic;
+    text-decoration: underline;
+  }
+
+  & pre {
+    margin: 0;
+    border-radius: 0 var(--radius-2) var(--radius-2) var(--radius-2);
+  }
+}
+
+.shell-container {
+  background-color: var(--color-prism-bg);
+  padding: 0 var(--size-2);
+  border-radius: var(--radius-2);
+
+  & pre {
+    border: 2px solid var(--color-white);
+  }
+
+  & .copy-icon {
+    background-color: var(--color-white);
+    padding: 0;
+    border-radius: var(--radius-2);
+    position: relative;
+    top: 10px;
+    float: right;
+    right: 10px;
+    width: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  & .copy-icon svg {
+    width: 40px;
+    vertical-align: middle;
+  }
+}
+
+.snippet-container:has(.heading) {
+  & .copy-icon {
+    top: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .runner-container {
+    & li {
+      margin: var(--size-4) var(--size-4) var(--size-1) var(--size-2);
+    }
+
+    & .copy-icon {
+      top: -170px;
+    }
+  }
+
+  .snippet-container {
+    & .heading {
+      font-size: var(--size-4);
+    }
+  }
+
+  .snippet-container:has(.heading) {
+    & .copy-icon {
+      top: 60px;
+    }
+  }
+}

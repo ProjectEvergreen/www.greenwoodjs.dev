@@ -16,9 +16,24 @@ tocHeading: 2
 
 As with most libraries, just install **htmx.org** as a dependency using your favorite package manager:
 
-```shell
-npm i htmx.org
-```
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
+
+  ```shell
+  npm i htmx.org
+  ```
+
+  ```shell
+  yarn add htmx.org
+  ```
+
+  ```shell
+  pnpm add htmx.org
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Example
 
@@ -28,43 +43,57 @@ As a basic example, let's create a `<form>` in the client side that can send a r
 
 First we'll create our frontend including htmx in a `<script>` tag and adding a `<form>` to the page:
 
-```html
-<!-- src/pages/index.html -->
-<html>
-  <head>
-    <script src="/node_modules/htmx.org/dist/htmx.js"></script>
-  </head>
+<!-- prettier-ignore-start -->
 
-  <body>
-    <form hx-post="/api/greeting" hx-target="#greeting-output">
-      <label>
-        <input type="text" name="name" placeholder="your name..." required />
-      </label>
-      <button type="submit">Click me for a greeting!</button>
-    </form>
+<app-ctc-block variant="snippet" heading="src/pages/index.html">
 
-    <h2 id="greeting-output"></h2>
-  </body>
-</html>
-```
+  ```html
+  <html>
+    <head>
+      <script src="/node_modules/htmx.org/dist/htmx.js"></script>
+    </head>
+
+    <body>
+      <form hx-post="/api/greeting" hx-target="#greeting-output">
+        <label>
+          <input type="text" name="name" placeholder="your name..." required />
+        </label>
+        <button type="submit">Click me for a greeting!</button>
+      </form>
+
+      <h2 id="greeting-output"></h2>
+    </body>
+  </html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ### Backend
 
 Now let's add our API endpoint:
 
-```js
-// src/pages/api/greeting.js
-export async function handler(request) {
-  const formData = await request.formData();
-  const name = formData.has("name") ? formData.get("name") : "Greenwood";
-  const body = `Hello ${name}! 👋`;
+<!-- prettier-ignore-start -->
 
-  return new Response(body, {
-    headers: new Headers({
-      "Content-Type": "text/html",
-    }),
-  });
-}
-```
+<app-ctc-block variant="snippet" heading="src/pages/api/greeting.js">
+
+  ```js
+  export async function handler(request) {
+    const formData = await request.formData();
+    const name = formData.has("name") ? formData.get("name") : "Greenwood";
+    const body = `Hello ${name}! 👋`;
+
+    return new Response(body, {
+      headers: new Headers({
+        "Content-Type": "text/html",
+      }),
+    });
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Now when the form is submitted, htmx will make a request to our backend API and output the returned HTML to the page. 🎯

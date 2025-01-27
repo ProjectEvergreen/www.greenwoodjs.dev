@@ -37,16 +37,23 @@ $ npm -v
 
 With NodeJS installed, you'll want to prepare a workspace for your project and use our `init` package to scaffold out a new project into a directory of your choosing:
 
-```shell
-# initialize a new Greenwood project into the my-app directory
-$ npx @greenwood/init@latest my-app
-$ cd my-app
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest">
 
-# clean up the src/ directory
-$ rm -rf src/
-```
+  ```shell
+  # initialize a new Greenwood project into the my-app directory
+  $ npx @greenwood/init@latest my-app
+  $ cd my-app
 
-Or you can also initialize a repository manually by installing the Greenwood CLI yourself, like so:
+  # clean up the src/ directory
+  $ rm -rf src/
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+Or you can also manually initialize a repository setting up and installing the Greenwood CLI yourself, like so:
 
 ```shell
 # make and change into your workspace directory
@@ -62,16 +69,24 @@ $ npm i -D @greenwood/cli@latest
 
 Then setup some npm scripts in your _package.json_ for running Greenwood and make sure to set the `type` to **module**:
 
-```json
-{
-  "type": "module",
-  "scripts": {
-    "dev": "greenwood develop",
-    "build": "greenwood build",
-    "serve": "greenwood serve"
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="package.json">
+
+  ```json
+  {
+    "type": "module",
+    "scripts": {
+      "dev": "greenwood develop",
+      "build": "greenwood build",
+      "serve": "greenwood serve"
+    }
   }
-}
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Jump Right In
 

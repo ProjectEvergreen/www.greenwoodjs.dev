@@ -96,23 +96,31 @@ It is fine-tuned for creating Light and Shadow DOM based custom elements. The fu
 
 While not all DOM APIs are supported, in general you can still use them and combine their usage with [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) for a quick "no-op".
 
-```js
-export default class HeroBanner extends HTMLElement {
-  clickButton() {
-    // ...
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default class HeroBanner extends HTMLElement {
+    clickButton() {
+      // ...
+    }
+
+    connectedCallback() {
+      // ...
+
+      this.shadowRoot.querySelectorAll?.("button").forEach((button) => {
+        button.addEventListener("click", () => this.clickButton(button));
+      });
+    }
   }
 
-  connectedCallback() {
-    // ...
+  customElements.define("app-hero", HeroBanner);
+  ```
 
-    this.shadowRoot.querySelectorAll?.("button").forEach((button) => {
-      button.addEventListener("click", () => this.clickButton(button));
-    });
-  }
-}
+</app-ctc-block>
 
-customElements.define("app-hero", HeroBanner);
-```
+<!-- prettier-ignore-end -->
 
 > You can also customize the renderer using a plugin like our [Lit SSR renderer plugin](/docs/plugins/lit-ssr/) for Lit based projects, or [create your own renderer plugin](/docs/reference/plugins-api/#renderer).
 
@@ -122,35 +130,43 @@ If you want to opt-out an entire `connectedCallback` from being run during build
 
 This can be useful when components are very DOM heavy, like querying the DOM and setting up event handlers:
 
-```js
-import sheet from "./copy-to-clipboard.css" with { type: "css" };
+<!-- prettier-ignore-start -->
 
-const template = document.createElement("template");
+<app-ctc-block variant="snippet">
 
-export default class CopyToClipboard extends HTMLElement {
-  connectedCallback() {
-    if (!this.shadowRoot && typeof window !== "undefined") {
-      template.innerHTML = `
-        <button id="icon" title="Copy to clipboard">Copy to clipboard</button>
-      `;
+  ```js
+  import sheet from "./copy-to-clipboard.css" with { type: "css" };
 
-      this.attachShadow({ mode: "open" });
-      this.shadowRoot.appendChild(template.content.cloneNode(true));
+  const template = document.createElement("template");
 
-      this.shadowRoot.adoptedStyleSheets = [sheet];
+  export default class CopyToClipboard extends HTMLElement {
+    connectedCallback() {
+      if (!this.shadowRoot && typeof window !== "undefined") {
+        template.innerHTML = `
+          <button id="icon" title="Copy to clipboard">Copy to clipboard</button>
+        `;
 
-      this.shadowRoot.getElementById("icon")?.addEventListener("click", () => {
-        const contents = this.getAttribute("content") ?? undefined;
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        navigator.clipboard.writeText(contents);
-        console.log("copying the following contents to your clipboard =>", contents);
-      });
+        this.shadowRoot.adoptedStyleSheets = [sheet];
+
+        this.shadowRoot.getElementById("icon")?.addEventListener("click", () => {
+          const contents = this.getAttribute("content") ?? undefined;
+
+          navigator.clipboard.writeText(contents);
+          console.log("copying the following contents to your clipboard =>", contents);
+        });
+      }
     }
   }
-}
 
-customElements.define("x-ctc", CopyToClipboard);
-```
+  customElements.define("x-ctc", CopyToClipboard);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Environment Variables
 

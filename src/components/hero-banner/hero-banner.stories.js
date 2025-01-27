@@ -1,4 +1,4 @@
-import "../copy-to-clipboard/copy-to-clipboard.js";
+import "../copy-to-clipboard-button/ctc-button.js";
 import "./hero-banner.js";
 
 export default {

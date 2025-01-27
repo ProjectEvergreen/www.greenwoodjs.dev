@@ -10,8 +10,8 @@ export default class GetStarted extends HTMLElement {
 
         <div class="${styles.snippet}">
           <pre>&dollar; ${code}</pre>
-          <app-ctc content="${code}">
-          </app-ctc>
+          <app-ctc-button content="${code}">
+          </app-ctc-button>
         </div>
 
         <div>
