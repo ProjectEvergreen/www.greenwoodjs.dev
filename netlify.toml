@@ -6,11 +6,7 @@
   skip_processing = true
 
 [build.environment]
-  NODE_VERSION = "20.18.1"
-
-[[redirects]]
-  from = "/docs/tech-stack/"
-  to = "/about/tech-stack/"
+  NODE_VERSION = "22.13.0"
 
 [[redirects]]
   status = 302
