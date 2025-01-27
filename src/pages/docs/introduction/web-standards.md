@@ -104,7 +104,7 @@ export async function handler(request) {
 
 ## Import Maps
 
-During local development, Greenwood serves all resources to your browser unbundled right off disk using efficient [E-Tag caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag). [**Import Maps**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) allow bare specifiers, typically found when referencing packages from npm, to work natively in the browser. When Greenwood sees a package in the **dependency** field of your _package.json_, Greenwood will walk all your dependencies and build up an import map to be injected into the `<head>` of your HTML automatically, in conjunction with Greenwood's dev server.
+During local development, Greenwood serves all resources to your browser unbundled right off disk using efficient [E-Tag caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag). [**Import Maps**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) allow bare specifiers for ESM compatible packages installed from npm to work natively in the browser. When Greenwood sees a package in the **dependency** field of your _package.json_, Greenwood will walk all your dependencies and build up an import map to be injected into the `<head>` of your HTML automatically, in conjunction with Greenwood's dev server.
 
 Below is a sample of an import map that would be generated after having installed the **lit** package:
 
