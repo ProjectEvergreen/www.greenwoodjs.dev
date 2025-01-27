@@ -131,11 +131,19 @@ You'll want to create a CommonJS version with the following name, depending on w
 - Storybook >= 8 - _postcss.config.cjs_
 - Storybook <= 7 - _.postcssrc.js_
 
-```js
-module.exports = {
-  plugins: [require("tailwindcss"), require("autoprefixer")],
-};
-```
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  module.exports = {
+    plugins: [require("tailwindcss"), require("autoprefixer")],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Import Attributes
 
