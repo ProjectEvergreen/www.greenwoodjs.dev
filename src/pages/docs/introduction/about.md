@@ -14,7 +14,7 @@ Greenwood's goal is to bring the power of the modern web right to your fingertip
 
 Some of Greenwood's feature include:
 
-- Unbundled local development workflow, using `ETag` headers for efficient caching and live reloads
+- Unbundled local development workflow, using `ETag` cache headers for efficient caching and live reloads
 - Out of the box support for ESM and Web APIs, on both the client and server
 - Server Side Rendering of Web Components (Light and Shadow DOM)
 - File-based routing, including API Routes

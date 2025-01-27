@@ -47,11 +47,11 @@ Styles can be done in any standards compliant way that will work in a browser. S
 
 <!-- prettier-ignore-end -->
 
-## NPM
+## Node Modules
 
-Packages from [**npm**](https://www.npmjs.com/) can be used by installing them with your favorite package manager.
+Like [with scripts](/docs/resources/scripts/#node-modules), packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. Similar conventions apply in regards to using the **/node_modules/** "shortcut" alias to let Greenwood resolve the location using `import.meta.resolve`, or you can provide the full relative path yourself.
 
-In a CSS file, you can use relative paths to resolve to _node_modules_:
+Here is an example of using relative and shortcut paths in a CSS file:
 
 <!-- prettier-ignore-start -->
 
@@ -60,17 +60,19 @@ In a CSS file, you can use relative paths to resolve to _node_modules_:
   ```css
   /* after having installed Open Props */
   /* npm i open-props */
-  @import "../../node_modules/open-props/src/props.borders.css";
-  @import "../../node_modules/open-props/src/props.fonts.css";
-  @import "../../node_modules/open-props/src/props.shadows.css";
-  @import "../../node_modules/open-props/src/props.sizes.css";
+  @import "../../node_modules/open-props/borders.min.css";
+  @import "../../node_modules/open-props/fonts.min.css";
+
+  /* this would also work */
+  @import "/node_modules/open-props/borders.min.css";
+  @import "/node_modules/open-props/fonts.min.css";
   ```
 
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
 
-From an HTML file, you can reference **node_modules** by starting the path with _node_modules_:
+The same can be done from an HTML file with a `<link>` tag:
 
 <!-- prettier-ignore-start -->
 
@@ -93,3 +95,12 @@ From an HTML file, you can reference **node_modules** by starting the path with 
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+These conventions are also compatible with [**Import Attributes**](/docs/introduction/web-standards/#import-attributes) and CSS Module Scripts. For example, since [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/) expose its CSS through an exports map, bare CSS specifiers also work in Greenwood.
+
+```js
+import SpectrumCard from "@spectrum-css/card" with { type: "css" };
+import SpectrumTokens from "@spectrum-css/tokens" with { type: "css" };
+
+console.log({ SpectrumCard, SpectrumTokens });
+```

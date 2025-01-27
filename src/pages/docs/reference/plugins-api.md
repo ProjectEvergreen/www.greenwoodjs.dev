@@ -287,7 +287,47 @@ This plugin supports providing an array of "paired" URL objects that can either 
 
 <!-- prettier-ignore-end -->
 
-> You can see more examples in the [Greenwood repo](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/cli/src/plugins/copy).
+If you need to copy files out of _node_modules_, you can use some of Greenwood's helper utilities for locating npm packages on disk and copying them to the output directory. For [example](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-polyfills/src/index.js):
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/index.html">
+
+  ```js
+  import {
+    derivePackageRoot,
+    resolveBareSpecifier,
+  } from "@greenwood/cli/src/lib/walker-package-ranger.js";
+
+  const greenwoodPluginPolyfills = () => {
+    return [{
+      type: "copy",
+      name: "plugin-copy-polyfills",
+      provider: async (compilation) => {
+        const { outputDir } = compilation.context;
+        const polyfillsResolved = resolveBareSpecifier("@webcomponents/webcomponentsjs");
+        const polyfillsRoot = derivePackageRoot(polyfillsResolved);
+
+        return [
+          {
+            from: new URL("./webcomponents-loader.js", polyfillsRoot),
+            to: new URL("./webcomponents-loader.js", outputDir),
+          },
+          {
+            from: new URL("./bundles/", polyfillsRoot),
+            to: new URL("./bundles/", outputDir),
+          },
+        ];
+      },
+    }];
+  };
+
+  export { greenwoodPluginPolyfills }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## Renderer
 
@@ -457,7 +497,7 @@ When requesting a resource like a file, such as _/main.js_, Greenwood needs to k
 
 When requesting a file and after knowing where to resolve it, such as _/path/to/user-workspace/main/scripts/main.js_, Greenwood needs to return the contents of that resource so can be served to a browser or bundled appropriately. This is done by passing an instance of `URL` and `Request` and returning an instance of `Response`. For example, Greenwood uses this lifecycle extensively to serve all the standard web content types like HTML, JS, CSS, images, fonts, etc and also providing the appropriate `Content-Type` header.
 
-If you are supporting _non standard_ file formats, like TypeScript (_.ts_) or JSX (_.jsx_), this is where you would want to handle providing the contents of this file transformed into something a browser could understand; like compiling the TypeScript to JavaScript.
+If you are supporting _non standard_ file formats, like TypeScript (_.ts_) or JSX (_.jsx_), this is where you would want to handle providing the contents of this file transformed into something a browser could understand; like compiling the TypeScript to JavaScript. This lifecycle is the right place to evaluate a predicate based on a file's extension.
 
 Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/plugins/resource/plugin-standard-javascript.js) for serving JavaScript files.
 

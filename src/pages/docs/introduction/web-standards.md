@@ -104,9 +104,9 @@ export async function handler(request) {
 
 ## Import Maps
 
-During local development, Greenwood loads all assets from your browser unbundled, serving the content right off disk. [**Import maps**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) allow bare specifiers typically found when referencing packages from npm, to work natively in the browser. When installing a package as a **dependency** in your _package.json_, Greenwood will walk your dependencies and all their dependencies, to build up a map to be injected into the `<head>` of your HTML.
+During local development, Greenwood serves all resources to your browser unbundled right off disk using efficient [E-Tag caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag). [**Import Maps**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) allow bare specifiers for ESM compatible packages installed from npm to work natively in the browser. When Greenwood sees a package in the **dependency** field of your _package.json_, Greenwood will walk all your dependencies and build up an import map to be injected into the `<head>` of your HTML automatically, in conjunction with Greenwood's dev server.
 
-This is a sample of an import map that would be generated after having installed the **lit** package:
+Below is a sample of an import map that would be generated after having installed the **lit** package:
 
 ```html
 <html>
@@ -127,6 +127,25 @@ This is a sample of an import map that would be generated after having installed
   </body>
 </html>
 ```
+
+To generate this map, Greenwood first checks each package's [**exports**](https://nodejs.org/api/packages.html#package-entry-points) field, then looks for a **module** field, and finally a **main** field. If none of these fields are found, Greenwood will log some diagnostics information. For **exports** field, Greenwood supports the following [conditions](https://nodejs.org/api/packages.html#conditional-exports) in this priority order:
+
+1. **import**
+1. **module-sync**
+1. **default**
+
+### Compatibility
+
+However in the land of _node_modules_, not all packages are created equal. Greenwood depends on packages following the standard conventions of the NodeJS entry point specification when resolving the location of dependencies on disk using [`import.meta.resolve`](https://nodejs.org/api/esm.html#importmetaresolvespecifier). For server-side only packages, this is is usually not an issue. Greenwood will output some diagnostic information that can be used when reaching out for help in case something ends up not working as expected, but if it works, it works!
+
+Some known issues / examples observed so far include:
+
+- `ERR_MODULE_NOT_FOUND` - Observed with packages like [**@types/trusted-types**](https://github.com/DefinitelyTyped/DefinitelyTyped) which has an [empty string](https://unpkg.com/browse/@types/trusted-types@2.0.7/package.json) for the **main** field, or [**font-awesome**](https://fontawesome.com/), which has [no entry point](https://unpkg.com/browse/font-awesome@4.7.0/package.json) at all, at least as of `v4.x`. This is also a fairly common issue with packages that primarily deal with shipping types since they will likely only define a `types` field in their _package.json_.
+- `ERR_PACKAGE_PATH_NOT_EXPORTED` - Encountered with packages like [**geist-font**](https://github.com/vercel/geist-font/issues/150) or [**@libsql/core**](https://github.com/thescientist13/import-meta-resolve-demo?tab=readme-ov-file#no-main-exports-map-entry-point-err_package_path_not_exported), which has [no default export](https://github.com/vercel/geist-font/issues/150) in their exports map, which is assumed by the NodeJS resolver algorithm.
+
+> In almost all of our observed diagnostic cases, they would all go away if [this feature](https://github.com/nodejs/node/issues/49445) was added to NodeJS, so please add an up-vote to that issue! 👍
+>
+> If you have any issues or questions, please reach out in our [discussion on the topic](https://github.com/ProjectEvergreen/greenwood/discussions/1396).
 
 ## URL
 
