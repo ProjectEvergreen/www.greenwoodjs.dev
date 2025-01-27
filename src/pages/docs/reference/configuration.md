@@ -24,7 +24,6 @@ export default {
   layoutsDirectory: "layouts", // e.g. ./src/layouts
   markdown: {
     plugins: [],
-    settings: {},
   },
   optimization: "default",
   pagesDirectory: "pages", // e.g. ./src/pages
@@ -208,9 +207,9 @@ By default the directory Greenwood will use to look for your layouts is in _layo
 
 ## Markdown
 
-You can install and provide custom **unifiedjs** [presets](https://github.com/unifiedjs/unified#preset) and [plugins](https://github.com/unifiedjs/unified#plugin) to further customize and process [your markdown](/docs/resources/markdown/) past what Greenwood does by default.
+You can install [**remark**](https://remark.js.org/) or [**rehype**](https://github.com/rehypejs/rehype) compatible plugins to extend Greenwood's markdown rendering and transformation capabilities by passing them as an array to the `markdown` setting.
 
-For plugins, after installing their packages, you can provide their names to Greenwood:
+After installing the package, pass the plugin name as a string:
 
 <!-- prettier-ignore-start -->
 
@@ -219,8 +218,7 @@ For plugins, after installing their packages, you can provide their names to Gre
   ```js
   export default {
     markdown: {
-      settings: { commonmark: true },
-      plugins: ["rehype-slug", "rehype-autolink-headings"],
+      plugins: ["rehype-slug", "remark-gfm"],
     },
   };
   ```
