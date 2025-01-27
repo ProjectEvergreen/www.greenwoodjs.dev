@@ -82,32 +82,32 @@ If you're using GitHub, you can use GitHub Actions to automate the pushing of bu
       build:
         runs-on: ubuntu-latest
 
-      # match to your version of NodeJS
-      steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-node@v4
-          with:
-            node-version: 22
+        # match to your version of NodeJS
+        steps:
+          - uses: actions/checkout@v4
+          - uses: actions/setup-node@v4
+            with:
+              node-version: 22
 
-      - name: Install Dependencies
-        run: |
-          npm ci
+        - name: Install Dependencies
+          run: |
+            npm ci
 
-      # use your greenwood build script
-      - name: Run Build
-        run: |
-          npm run build
+        # use your greenwood build script
+        - name: Run Build
+          run: |
+            npm run build
 
-      - name: Upload to S3 and invalidate CDN
-        uses: opspresso/action-s3-sync@master
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # make sure this matches your bucket's region
-          AWS_REGION: "us-east-1"
-          FROM_PATH: "./public"
-          # your target s3 bucket name goes here
-          DEST_PATH: s3://${{ secrets.AWS_BUCKET_NAME }}
+        - name: Upload to S3 and invalidate CDN
+          uses: opspresso/action-s3-sync@master
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            # make sure this matches your bucket's region
+            AWS_REGION: "us-east-1"
+            FROM_PATH: "./public"
+            # your target s3 bucket name goes here
+            DEST_PATH: s3://${{ secrets.AWS_BUCKET_NAME }}
     ```
 
   </app-ctc-block>
