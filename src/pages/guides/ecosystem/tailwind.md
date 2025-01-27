@@ -50,28 +50,11 @@ As Tailwind is a PostCSS plugin, you'll need to take a couple of extra steps to 
 
   <!-- prettier-ignore-end -->
 
-1. Create _**two**_ PostCSS configuration files (two files are needed in Greenwood to support ESM / CJS interop)
+1. Create a [PostCSS configuration file](/docs/plugins/postcss/#installation) in the root of your project with needed Tailwind plugins
 
   <!-- prettier-ignore-start -->
 
   <app-ctc-block variant="snippet" heading="postcss.config.js">
-
-    ```js
-    module.exports = {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    };
-    ```
-
-  </app-ctc-block>
-
-  <!-- prettier-ignore-end -->
-
-  <!-- prettier-ignore-start -->
-
-  <app-ctc-block variant="snippet" heading="postcss.config.mjs">
 
     ```js
     export default {
