@@ -282,81 +282,79 @@ This can be accomplished with the [**storybook-addon-fetch-mock**](https://story
 
 1. First, install the **storybook-addon-fetch-mock** addon
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="runners">
+   <app-ctc-block variant="runners">
 
-    ```shell
-    npm i -D storybook-addon-fetch-mock
-    ```
+   ```shell
+   npm i -D storybook-addon-fetch-mock
+   ```
 
-    ```shell
-    yarn add storybook-addon-fetch-mock --save-dev
-    ```
+   ```shell
+   yarn add storybook-addon-fetch-mock --save-dev
+   ```
 
-    ```shell
-    pnpm add -D storybook-addon-fetch-mock
-    ```
+   ```shell
+   pnpm add -D storybook-addon-fetch-mock
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Then add it to your _.storybook/main.js_ configuration file as an **addon**
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading=".storybook/main.js">
+   <app-ctc-block variant="snippet" heading=".storybook/main.js">
 
-    ```js
-    const config = {
-      addons: [
-        "storybook-addon-fetch-mock",
-      ],
-    };
+   ```js
+   const config = {
+     addons: ["storybook-addon-fetch-mock"],
+   };
 
-    export default config;
-    ```
+   export default config;
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Then in your story files, configure your Story to return mock data
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="blog-posts-list.stories.js">
+   <app-ctc-block variant="snippet" heading="blog-posts-list.stories.js">
 
-    ```js
-    import "./blog-posts-list.js";
-    import pages from "../../stories/mocks/graph.json";
+   ```js
+   import "./blog-posts-list.js";
+   import pages from "../../stories/mocks/graph.json";
 
-    export default {
-      parameters: {
-        fetchMock: {
-          mocks: [
-            {
-              matcher: {
-                url: "http://localhost:1984/___graph.json",
-                response: {
-                  // this is an example of mocking out getContentByRoute
-                  body: pages.filter((page) => page.route.startsWith("/blog/")),
-                },
-              },
-            },
-          ],
-        },
-      },
-    };
+   export default {
+     parameters: {
+       fetchMock: {
+         mocks: [
+           {
+             matcher: {
+               url: "http://localhost:1984/___graph.json",
+               response: {
+                 // this is an example of mocking out getContentByRoute
+                 body: pages.filter((page) => page.route.startsWith("/blog/")),
+               },
+             },
+           },
+         ],
+       },
+     },
+   };
 
-    const Template = () => "<app-blog-posts-list></app-blog-posts-list>";
+   const Template = () => "<app-blog-posts-list></app-blog-posts-list>";
 
-    export const Primary = Template.bind({});
-    ```
+   export const Primary = Template.bind({});
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 > To quickly get a "mock" graph to use in your stories, you can run `greenwood build` and copy the _graph.json_ file from the build output directory.

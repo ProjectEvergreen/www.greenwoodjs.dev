@@ -274,27 +274,27 @@ When it comes to publishing, it should be fairly straightforward, and you'll jus
 1. Add _dist/_ to _.gitignore_ (or whatever **files** location you want to use for publishing)
 1. Add a `prepublish` script to your _package.json_ to create the _dist/_ directory with all the needed layouts and styles
 
-  <!-- prettier-ignore-start -->
+   <!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="package.json">
+   <app-ctc-block variant="snippet" heading="package.json">
 
-    ```json
-    {
-      "name": "my-theme-pack",
-      "version": "0.1.0",
-      "description": "My Custom Greenwood Theme Pack",
-      "main": "my-theme-pack.js",
-      "type": "module",
-      "files": ["dist/"],
-      "scripts": {
-        "prepublish": "rm -rf dist/ && mkdir dist/ && rsync -rv --exclude 'pages/' src/ dist"
-      }
-    }
-    ```
+   ```json
+   {
+     "name": "my-theme-pack",
+     "version": "0.1.0",
+     "description": "My Custom Greenwood Theme Pack",
+     "main": "my-theme-pack.js",
+     "type": "module",
+     "files": ["dist/"],
+     "scripts": {
+       "prepublish": "rm -rf dist/ && mkdir dist/ && rsync -rv --exclude 'pages/' src/ dist"
+     }
+   }
+   ```
 
-  </app-ctc-block>
+   </app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+   <!-- prettier-ignore-end -->
 
 1. Now, when you run `npm publish` a fresh _dist/_ folder will be made and [included in your package](https://unpkg.com/browse/greenwood-starter-presentation/)
 
