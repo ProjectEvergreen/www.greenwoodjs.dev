@@ -26,7 +26,7 @@
   border: none;
   padding: var(--size-2);
   border-radius: var(--radius-2);
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--shadow-1);
   color: var(--color-black);
 
   @media (prefers-reduced-motion: no-preference) {

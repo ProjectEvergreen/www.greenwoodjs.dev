@@ -50,7 +50,7 @@
   background-color: var(--color-primary);
   width: 100%;
   color: var(--color-white) !important;
-  box-shadow: var(--shadow-4);
+  box-shadow: var(--shadow-3);
   margin-top: var(--size-fluid-1);
   height: fit-content;
   text-decoration: none;
@@ -77,7 +77,7 @@
 .snippet {
   border-radius: var(--radius-4);
   border: var(--radius-1) solid #c1d3cd;
-  box-shadow: var(--shadow-4);
+  box-shadow: var(--shadow-2);
   margin: var(--size-px-2) 0;
   text-align: center;
   padding: var(--size-1);
@@ -86,9 +86,9 @@
 
 .snippet pre {
   font-size: 16px;
-  height: 46px;
+  height: 50px;
   align-content: center;
-  display: inline;
+  display: inline-block;
   background-color: transparent;
   color: var(--color-black);
   vertical-align: middle;
@@ -134,6 +134,7 @@
   .snippet pre {
     padding: 0 10px;
     vertical-align: text-top;
+    display: inline;
   }
 
   .snippet app-ctc-button {
