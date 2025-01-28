@@ -9,8 +9,8 @@ const template = document.createElement("template");
 
 const scriptRunnerLogoMapper = {
   npm: npmLogo,
-  yarn: yarnLogo,
   pnpm: pnpmLogo,
+  yarn: yarnLogo,
 };
 
 export default class CopyToClipboardBlock extends HTMLElement {
