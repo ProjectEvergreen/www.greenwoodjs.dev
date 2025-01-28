@@ -68,9 +68,13 @@ body:has(#compact-menu:popover-open) {
     padding-left: var(--size-4);
   }
 
-  & li,
-  & code {
+  & li {
     overflow-wrap: break-word;
+
+    & code {
+      width: 100%;
+      overflow: break-word;
+    }
   }
 
   & img {
