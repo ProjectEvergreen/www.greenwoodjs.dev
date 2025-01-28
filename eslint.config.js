@@ -1,5 +1,4 @@
 import eslintConfigPrettier from "eslint-config-prettier";
-import babelParser from "@babel/eslint-parser";
 import markdown from "@eslint/markdown";
 import json from "@eslint/json";
 import js from "@eslint/js";
@@ -20,14 +19,8 @@ export default [
   },
   {
     languageOptions: {
-      parser: babelParser,
       parserOptions: {
-        ecmaVersion: 2022,
-        sourceType: "module",
-        requireConfigFile: false,
-        babelOptions: {
-          plugins: ["@babel/plugin-syntax-import-assertions"],
-        },
+        ecmaVersion: "latest",
       },
       globals: {
         ...globals.browser,
