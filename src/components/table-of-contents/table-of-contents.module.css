@@ -26,7 +26,7 @@
   min-height: 250px;
   margin: 0 var(--size-2);
   border: 1px solid var(--color-gray);
-  box-shadow: var(--shadow-4);
+  box-shadow: var(--shadow-3);
   padding: var(--size-2);
 }
 
@@ -36,7 +36,7 @@
   border: none;
   padding: var(--size-2);
   border-radius: var(--radius-2);
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--shadow-2);
 
   @media (prefers-reduced-motion: no-preference) {
     & #indicator {

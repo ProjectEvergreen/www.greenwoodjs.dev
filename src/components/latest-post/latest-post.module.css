@@ -3,7 +3,7 @@
   border-radius: var(--radius-4);
   padding: var(--size-2);
   border: var(--radius-1) solid var(--color-gray-background);
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--shadow-1);
   text-align: left;
 
   & .new {
