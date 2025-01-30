@@ -23,24 +23,16 @@
   fill: var(--color-white);
 }
 
-.socialTray {
-  display: flex;
-  gap: var(--size-2);
-  list-style-type: none;
-  background-color: var(--color-secondary);
+.footer app-social-tray {
   border: var(--border-size-1) solid var(--color-black);
   border-radius: var(--radius-6);
-  padding: var(--size-2) var(--size-3);
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
+  padding: var(--size-2);
 
-.socialIcon {
-  display: flex;
-  align-items: center;
-}
+  & ul {
+    background-color: var(--color-secondary);
+  }
 
-.socialIcon svg {
-  fill: var(--color-gray);
+  & svg {
+    fill: var(--color-white);
+  }
 }

@@ -1,10 +1,8 @@
 import { getContentByCollection } from "@greenwood/cli/src/data/client.js";
-import discordIcon from "../../assets/discord.svg?type=raw";
-import githubIcon from "../../assets/github.svg?type=raw";
-import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
 import mobileMenuIcon from "../../assets/tile.svg?type=raw";
 import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
 import styles from "./header.module.css";
+import "../social-tray/social-tray.js";
 
 export default class Header extends HTMLElement {
   async connectedCallback() {
@@ -38,25 +36,7 @@ export default class Header extends HTMLElement {
           </nav>
 
           <nav role="navigation" aria-label="Social">
-            <ul class="${styles.socialTray}">
-              <li class="${styles.socialIcon}">
-                <a href="https://github.com/ProjectEvergreen/greenwood" title="GitHub">
-                  ${githubIcon}
-                </a>
-              </li>
-
-              <li class="${styles.socialIcon}">
-                <a href="/discord/" title="Discord">
-                  ${discordIcon}
-                </a>
-              </li>
-
-              <li class="${styles.socialIcon}">
-                <a href="https://twitter.com/PrjEvergreen" title="Twitter">
-                  ${twitterIcon}
-                </a>
-              </li>
-            </ul>
+            <app-social-tray></app-social-tray>
           </nav>
 
           <button class="${styles.mobileMenuIcon}" popovertarget="mobile-menu" aria-label="Mobile Menu Icon Button">
