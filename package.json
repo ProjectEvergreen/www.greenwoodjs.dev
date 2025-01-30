@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "clean": "rimraf public .greenwood storybook-static",
-    "build": "node --import @greenwood/cli/src/register.js ./node_modules/@greenwood/cli/src/index.js build",
+    "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js build",
     "dev": "greenwood develop",
     "serve": "npm run clean && npm run build && greenwood serve",
     "story:dev": "storybook dev -p 6006",
