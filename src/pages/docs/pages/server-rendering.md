@@ -305,7 +305,7 @@ For request handling, Greenwood will pass a native `Request` object and a Greenw
 
 ## Custom Imports
 
-To use custom imports (non JavaScript resources) on the server side for prerendering or SSR use cases, you will need to invoke Greenwood using **NodeJS** from the CLI and pass the `--imports` flag along with the path to Greenwood's provided register function. _**This feature requires NodeJS version `>=21.10.0`**_.
+To use custom imports (non JavaScript resources) on the server side for prerendering or SSR use cases, you will need to invoke Greenwood using **NodeJS** from the CLI and pass the [`--import` flag](https://nodejs.org/api/module.html#enabling) to NodeJS along with the path to Greenwood's provided register function. _**This feature requires NodeJS version `>=21.10.0`**_.
 
 <!-- prettier-ignore-start -->
 
@@ -331,7 +331,25 @@ Or most commonly as an npm script in your _package.json_
       "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js build"
     }
   }
-```
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+Alternatively, you can pass `--import` as a `NODE_OPTION`, which doesn't require having to specify the full path to the Greenwood CLI in your _node_modules_.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="package.json">
+
+  ```json
+  {
+    "scripts": {
+      "build": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood build"
+    }
+  }
+  ```
 
 </app-ctc-block>
 
