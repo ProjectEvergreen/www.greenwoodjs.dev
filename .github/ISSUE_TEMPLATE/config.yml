@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: GitHub Discussions
+    url: https://github.com/ProjectEvergreen/greenwood/discussions
+    about: Have ideas or questions for the website, or creating showcases and templates for Greenwood? Start a conversation!
+  - name: Discord
+    url: https://www.greenwoodjs.dev/discord/
+    about: Chat about Greenwood and join the community!
+  - name: Greenwood GitHub
+    url: https://github.com/ProjectEvergreen/greenwood
+    about: Visit the Greenwood repo if you have an issue or question about Greenwood itself.
