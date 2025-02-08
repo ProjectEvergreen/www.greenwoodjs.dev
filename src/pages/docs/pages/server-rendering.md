@@ -196,7 +196,7 @@ You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#co
 
 ### Frontmatter
 
-Any Greenwood supported frontmatter can be returned here. _This is only run once when the server is started_ to populate pages metadata, which is helpful if you want your dynamic route to show up in a collection with other static pages. You can even define a `layout` and reuse all your existing [layouts](/docs/pages/layouts/), even for server routes!
+Any Greenwood [supported frontmatter](/docs/resources/markdown/#frontmatter) can be returned here. _This is only run once when the server is started_ to populate pages metadata, which is helpful if you want your dynamic route to show up in a collection with other static pages. You can even define a `layout` and reuse all your existing [layouts](/docs/pages/layouts/), even for server routes!
 
 <!-- prettier-ignore-start -->
 
