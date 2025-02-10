@@ -17,6 +17,9 @@
   align-items: center;
   line-height: 100%;
 }
+.blueskySocialIcon {
+  transform: scale(1.7) translateY(-2px);
+}
 
 .socialIcon svg {
   fill: var(--color-secondary);
