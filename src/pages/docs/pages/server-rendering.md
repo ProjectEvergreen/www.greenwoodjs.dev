@@ -24,7 +24,7 @@ The above would serve content in a browser at the path _/users/_.
 
 In your page file, Greenwood supports the following functions that you can `export` for providing server rendered content and [frontmatter](/docs/resources/markdown/) to produce the `<body><body>` content for your page.
 
-- **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**. _This will take precedence over `getBody`_ and will also automatically track your custom element dependencies (in place of having to define frontmatter imports in `getFrontmatter`).
+- **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**. This rendering is only done server-side (and thus needs to be SSR compatible). To have client side imports, use the imports field in `getFrontmatter` or add them as `<script>` or `<link>` tags in a layout. _Using this option will take precedence over `getBody`_.
 - **getBody**: Return a string of HTML for the contents of the page
 - **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#pages)
 - **getFrontmatter**: Provide an object of [frontmatter](/docs/resources/markdown/#frontmatter) properties. Useful in conjunction with [content as data](/docs/content-as-data/), or otherwise setting static configuration / metadata through SSR.
@@ -196,7 +196,7 @@ You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#co
 
 ### Frontmatter
 
-Any Greenwood supported frontmatter can be returned here. _This is only run once when the server is started_ to populate pages metadata, which is helpful if you want your dynamic route to show up in a collection with other static pages. You can even define a `layout` and reuse all your existing [layouts](/docs/pages/layouts/), even for server routes!
+Any Greenwood [supported frontmatter](/docs/resources/markdown/#frontmatter) can be returned here. _This is only run once when the server is started_ to populate pages metadata, which is helpful if you want your dynamic route to show up in a collection with other static pages. You can even define a `layout` and reuse all your existing [layouts](/docs/pages/layouts/), even for server routes!
 
 <!-- prettier-ignore-start -->
 
@@ -209,7 +209,10 @@ Any Greenwood supported frontmatter can be returned here. _This is only run once
       collection: "header",
       order: 1,
       title: `The ${route} page`,
-      imports: ["/components/user.js"],
+      imports: [
+        "/components/user.js",
+        "/components/otherItem.js type=module"
+      ],
       data: {
         /* ... */
       },
