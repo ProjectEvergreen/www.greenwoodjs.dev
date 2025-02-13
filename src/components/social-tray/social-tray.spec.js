@@ -11,6 +11,10 @@ const ICONS = [
     title: "Discord",
   },
   {
+    link: "https://bsky.app/profile/projectevergreen.bsky.social",
+    title: "BlueSky",
+  },
+  {
     link: "https://twitter.com/PrjEvergreen",
     title: "Twitter",
   },
@@ -37,8 +41,8 @@ describe("Components/Social Tray", () => {
       const links = tray.querySelectorAll("ul li a");
       const icons = tray.querySelectorAll("ul li a svg");
 
-      expect(links.length).to.equal(3);
-      expect(icons.length).to.equal(3);
+      expect(links.length).to.equal(4);
+      expect(icons.length).to.equal(4);
 
       Array.from(links).forEach((link) => {
         const iconItem = ICONS.find((icon) => icon.title === link.getAttribute("title"));
