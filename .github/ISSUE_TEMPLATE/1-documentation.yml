@@ -1,0 +1,32 @@
+name: 📚 Documentation and Guides
+description: Documentation or Guide's related content.
+title: "Document feature x of Greenwood..."
+labels: ["docs", "guides"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping out to improve the Greenwood website!
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Please provide a summary of the documentation changes needed.
+      placeholder: Need to document new feature x added in the latest version of Greenwood.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-details
+    attributes:
+      label: Additional Details
+      description: Please provide any additional details, links, code snippets, or resources that may provide useful context.
+    validations:
+      required: false
+  - type: input
+    id: greenwood-issue
+    attributes:
+      label: Greenwood Issue
+      description: A link to a relevant Greenwood GitHub issue.
+      placeholder: ex. https://github.com/ProjectEvergreen/greenwood/1111
+    validations:
+      required: false

@@ -1,0 +1,24 @@
+name: ✍️ Content
+description: Submit a new blog post or content related change to the website.
+title: "Blog post about..."
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping out to improve the Greenwood website!
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Please provide a summary of the content changes desired.
+      placeholder: Need to write a blog post about the latest version of Greenwood.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-details
+    attributes:
+      label: Additional Details
+      description: Please provide any additional details, outline, or links to be considered.
+    validations:
+      required: false

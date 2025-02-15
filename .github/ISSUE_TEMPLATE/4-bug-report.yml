@@ -1,0 +1,43 @@
+name: 🐛 Bug
+description: Something isn't working with the website.
+title: "The social links in the header are broken"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping out to improve the Greenwood website!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Please provide a summary of the issue or error you are seeing, including error messages and screenshots
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to reproduce
+      description: Please provide a set of steps to reproduce the issue.
+      placeholder: |
+        1. I went to the home page
+        2. I clicked on ...
+        3. etc
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide details of the environment you're running in.
+      placeholder: Browser, operating system, etc
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Please provide any additional relevant details, screenshots, links, or resources that would be helpful.
+    validations:
+      required: false
