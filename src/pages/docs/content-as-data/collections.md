@@ -94,3 +94,23 @@ Or programmatically in your JavaScript using our [**Data Client**](/docs/content
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+You can also define an array of collections, so that you can map a page to multiple collections at once:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/index.md">
+
+  ```md
+  ---
+  collection:
+    - navigation
+    - footer
+  ---
+
+  # Home Page
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
