@@ -233,6 +233,7 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
   ```js
   import { defineConfig } from "vite";
   import fs from "fs/promises";
+  import path from 'path';
   // 1) import the greenwood plugin and lifecycle helpers
   import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
   import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
@@ -248,14 +249,25 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
 
   // 4) customize Vite
   function transformRawImports() {
+    const hint = "?type=raw";
+
     return {
       name: "transform-raw-imports",
       enforce: "pre",
+      resolveId: (id, importer) => {
+
+        if (
+          id.endsWith(hint)
+        ) {
+          // append .type so .css file paths so they are not precessed by Vite's default CSS pipeline
+          return path.join(path.dirname(importer), `${id.slice(0, id.indexOf(hint))}.type${hint}`);
+        }
+      },
       load: async (id) => {
-        if (id.endsWith("?type=raw")) {
-          const filename = id.slice(0, -9);
+        if (id.endsWith(hint)) {
+          const filename = id.slice(0, id.indexOf(`.type${hint}`));
           const contents = await fs.readFile(filename, "utf-8");
-          const response = await rawResource.intercept(null, null, new Response(contents));
+          const response = await rawResource.intercept(new URL(`file://${filename}`), null, new Response(contents));
           const body = await response.text();
 
           return body;
@@ -263,6 +275,7 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
       },
     };
   }
+
 
   export default defineConfig({
     // 5) add it the plugins option
