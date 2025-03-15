@@ -56,7 +56,20 @@ You can use your favorite JavaScript package manager to install this plugin.
 
 <!-- prettier-ignore-end -->
 
-> For PNPM users, you'll want to add `public-hoist-pattern[]=@lit-labs/*` to your _.npmrc_ file
+For PNPM users, you'll want to add these hoist patterns to your _.npmrc_ file
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading=".npmrc">
+
+  ```shell
+  public-hoist-pattern[]=@lit-labs/*
+  public-hoist-pattern[]=lit-html
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 Then add this plugin to your _greenwood.config.js_.
 
