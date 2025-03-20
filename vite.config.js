@@ -30,7 +30,7 @@ function transformConstructableStylesheetsPlugin() {
         id.endsWith(".css") &&
         !id.endsWith(".module.css")
       ) {
-        // add .type so Constructable Stylesheets  are not precessed by Vite's default pipeline
+        // add .type so Constructable Stylesheets are not precessed by Vite's default pipeline
         return path.join(path.dirname(importer), `${id}.type`);
       }
     },
@@ -39,7 +39,7 @@ function transformConstructableStylesheetsPlugin() {
         const filename = id.slice(0, -5);
         const contents = await fs.readFile(filename, "utf-8");
         const url = new URL(`file://${id.replace(".type", "")}`);
-        // "coerce" native conststructable stylesheets into inline JS so Vite / Rollup do not complain
+        // "coerce" native constructable stylesheets into inline JS so Vite / Rollup do not complain
         const request = new Request(url, {
           headers: {
             Accept: "text/javascript",
@@ -55,14 +55,26 @@ function transformConstructableStylesheetsPlugin() {
 }
 
 function transformRawImports() {
+  const hint = "?type=raw";
+
   return {
     name: "transform-raw-imports",
     enforce: "pre",
+    resolveId: (id, importer) => {
+      if (id.endsWith(hint)) {
+        // append .type so .css file paths so they are not precessed by Vite's default CSS pipeline
+        return path.join(path.dirname(importer), `${id.slice(0, id.indexOf(hint))}.type${hint}`);
+      }
+    },
     load: async (id) => {
-      if (id.endsWith("?type=raw")) {
-        const filename = id.slice(0, -9);
+      if (id.endsWith(hint)) {
+        const filename = id.slice(0, id.indexOf(`.type${hint}`));
         const contents = await fs.readFile(filename, "utf-8");
-        const response = await rawResource.intercept(null, null, new Response(contents));
+        const response = await rawResource.intercept(
+          new URL(`file://${filename}`),
+          null,
+          new Response(contents),
+        );
         const body = await response.text();
 
         return body;
