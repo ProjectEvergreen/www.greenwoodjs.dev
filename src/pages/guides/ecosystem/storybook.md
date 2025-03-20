@@ -184,7 +184,7 @@ In this example we are handling for CSS Module scripts:
           id.endsWith(".css") &&
           !id.endsWith(".module.css")
         ) {
-          // add .type so Constructable Stylesheets  are not precessed by Vite's default pipeline
+          // append .type to the end of Constructable Stylesheet file paths so that they are not automatically precessed by Vite's default pipeline
           return path.join(path.dirname(importer), `${id}.type`);
         }
       },
@@ -259,7 +259,7 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
         if (
           id.endsWith(hint)
         ) {
-          // append .type so .css file paths so they are not precessed by Vite's default CSS pipeline
+          // append .type to the end of .css file paths so they are not automatically precessed by Vite's default CSS pipeline
           return path.join(path.dirname(importer), `${id.slice(0, id.indexOf(hint))}.type${hint}`);
         }
       },
@@ -275,7 +275,6 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
       },
     };
   }
-
 
   export default defineConfig({
     // 5) add it the plugins option
