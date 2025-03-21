@@ -1,12 +1,11 @@
 import { greenwoodPluginCssModules } from "@greenwood/plugin-css-modules";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
-import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
 // TODO would be nice to find a better way to solve this problem
 // https://github.com/ProjectEvergreen/www.greenwoodjs.dev/issues/125
-class ActiveFrontmatterDocsTitleRestorerResource extends ResourceInterface {
+/** @type {import('@greenwood/cli').ResourcePlugin} */
+class ActiveFrontmatterDocsTitleRestorerResource {
   constructor() {
-    super();
     this.extensions = ["html"];
     this.contentType = "text/html";
     this.matches = ["My Blog - Active Frontmatter", "My Site - Going Further"];
@@ -35,6 +34,7 @@ class ActiveFrontmatterDocsTitleRestorerResource extends ResourceInterface {
   }
 }
 
+/** @type {import('@greenwood/cli').Config} */
 export default {
   activeContent: true,
 
