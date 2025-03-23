@@ -264,7 +264,7 @@ This can be done by overriding `window.fetch` and providing the desired response
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="web-test-runner.config.js">
+<app-ctc-block variant="snippet" heading="blog-posts-list.spec.js">
 
   ```js
   import { expect } from "@esm-bundle/chai";
