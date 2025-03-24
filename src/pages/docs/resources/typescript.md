@@ -2,7 +2,7 @@
 title: TypeScript
 label: TypeScript
 layout: docs
-order: 1
+order: 4
 tocHeading: 2
 ---
 

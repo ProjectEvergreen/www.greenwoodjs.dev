@@ -35,6 +35,7 @@ export default {
   port: 8080,
   prerender: false,
   staticRouter: false,
+  useTsc: false,
   workspace: new URL("./src/", import.meta.url),
 };
 ```
@@ -459,6 +460,26 @@ Setting the `staticRouter` option to `true` will add a small router runtime in p
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+## Use TypeScript Compiler
+
+Depending on the TypeScript features / JavaScript syntax you're using, you may need more then just Greenwood's default capability of only type _stripping_. For these cases where you want to use the full TypeScript compiler for transpilation, you'll want set the `useTsc` flag.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    useTsc: true,
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+> You will need to have installed the **typescript** package locally to your project for this feature. Learn more about what's supported in [using TypeScript with Greenwood docs](/docs/resources/typescript/).
 
 ## Workspace
 
