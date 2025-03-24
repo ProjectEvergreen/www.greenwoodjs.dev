@@ -1,21 +1,26 @@
 [
   {
-    "name": "Vercel",
+    "label": "Vercel",
     "icon": "vercel",
     "link": "/guides/hosting/vercel/"
   },
   {
-    "name": "Netlify",
+    "label": "Netlify",
     "icon": "netlify",
     "link": "/guides/hosting/netlify/"
   },
   {
-    "name": "NodeJS",
+    "label": "NodeJS",
     "icon": "nodejs",
     "link": "/guides/hosting/#self-hosting"
   },
   {
-    "name": "GitHub",
+    "label": "AWS",
+    "icon": "aws",
+    "link": "/guides/hosting/aws/"
+  },
+  {
+    "label": "GitHub",
     "icon": "github",
     "link": "/guides/hosting/github/"
   }
