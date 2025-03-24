@@ -8,115 +8,86 @@ tocHeading: 2
 
 # TypeScript
 
-A plugin for authoring in [**TypeScript**](https://www.typescriptlang.org/). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-typescript) for complete usage information.
+Greenwood provide built-in support for TypeScript, either through type-stripping (default behavior) or with the ability to fallback to [using the TypeScript compiler](/docs/reference/configuration/#use-typescript-compiler) if you're leveraging certain transformation based TypeScript features (like [`enums` and `namespaces`](https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/#the---erasablesyntaxonly-option)) or JavaScript syntax like Decorators. You can see an example repo [here](https://github.com/thescientist13/greenwood-native-typescript)
 
-## Installation
+> You can read [this guide](https://nodejs.org/en/learn/typescript/run-natively) to learn more about running TypeScript with NodeJS, including the [`--experimental-transform-types`](https://nodejs.org/docs/latest-v23.x/api/cli.html#--experimental-transform-types) flag.
 
-You can use your favorite JavaScript package manager to install this plugin:
+## Setup
 
-<!-- prettier-ignore-start -->
-<app-ctc-block variant="runners">
+The below steps will help you get up and running with TypeScript in your Greenwood project. The general recommendation is to use type-stripping during development for faster live reload, and then run TypeScript during CI (e.g. GitHub Actions) to check and enforce all types, e.g. `tsc --project tsconfig.json`.
 
-  ```shell
-  npm i -D @greenwood/plugin-typescript
-  ```
+1. You will need to use Node **>= 22.6.0** and set the `--experimental-strip-types` flag
+1. Install TypeScript into your project, e.g. `npm i typescript --save-dev`
+1. Create a _tsconfig.json_ file at the root of your project with these minimum configuration settings
 
-  ```shell
-  yarn add @greenwood/plugin-typescript --save-dev
-  ```
+  <!-- prettier-ignore-start -->
 
-  ```shell
-  pnpm add -D @greenwood/plugin-typescript
-  ```
+  <app-ctc-block variant="snippet" heading="tsconfig.json">
 
-</app-ctc-block>
+```json
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": false,
+    "noEmit": true
+  }
+}
+```
 
-<!-- prettier-ignore-end -->
+  </app-ctc-block>
 
-And then add the plugin to your _greenwood.config.js_.
+  <!-- prettier-ignore-end -->
 
-<!-- prettier-ignore-start -->
+> _If you're feeling adventurous, you can use **>=23.x** and omit the `--experimental-strip-types` flag_. Keep an eye on [this PR](https://github.com/nodejs/node/pull/57298) for when unflagged type-stripping support may come to Node LTS **22.x**. 👀
 
-<app-ctc-block variant="snippet" heading="greenwood.config.js">
+## Types
 
-  ```js
-  import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
+### Configuration
 
-  export default {
-    plugins: [greenwoodPluginTypeScript()],
-  };
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-## Usage
-
-Now you can write some TypeScript!
+In addition to be able to author your components, SSR pages, and API routes in TypeScript, you can also author your configuration file (and plugins) in TypeScript by using a _greenwood.config.ts_ file.
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet">
+<app-ctc-block variant="snippet" heading="greenwood.config.ts">
 
   ```ts
-  import { html, css, LitElement, customElement, property } from "lit-element";
+  import type { Config } from '@greenwood/cli';
 
-  @customElement("app-greeting")
-  export class GreetingComponent extends LitElement {
-    static styles = css`
-      p {
-        color: blue;
-      }
-    `;
+  const config: Config = {
+    // ...
+  }
 
-    @property()
-    name = "Somebody";
+  export default config;
+  ```
 
-    render() {
-      return html`<p>Hello, ${this.name}!</p>`;
-    }
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+### Import Attributes
+
+Currently TypeScript does not support types for standard [JSON and CSS Import Attributes](https://github.com/microsoft/TypeScript/issues/46135). You can use the below snippets as a reference for providing these types for your own project in the meantime.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="types.d.ts">
+
+  ```ts
+  declare module "*.css" {
+    const sheet: CSSStyleSheet;
+
+    export default sheet;
+  }
+
+  declare module "*.json" {
+    const data: object;
+
+    export default data;
   }
   ```
 
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
-
-And use it in your project like you would use a _.js_ file!
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet">
-
-  ```html
-  <script type="module" src="/components/greeting.ts"></script>
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-This is can also support SSR pages by passing the **servePage** option:
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet" heading="greenwood.config.js">
-
-  ```js
-  import { greenwoodPluginTypeScript } from "@greenwood/plugin-typescript";
-
-  export default {
-    plugins: [
-      greenwoodPluginTypeScript({
-        servePage: false,
-      }),
-    ],
-  };
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-> For server and pre-rendering use cases, make sure to enable [custom imports](/docs/pages/server-rendering/#custom-imports).
