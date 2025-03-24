@@ -15,6 +15,11 @@
     "link": "/guides/hosting/#self-hosting"
   },
   {
+    "label": "AWS",
+    "icon": "aws",
+    "link": "/guides/hosting/aws/"
+  },
+  {
     "label": "GitHub",
     "icon": "github",
     "link": "/guides/hosting/github/"
