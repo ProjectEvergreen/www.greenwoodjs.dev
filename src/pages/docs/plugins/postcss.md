@@ -2,7 +2,7 @@
 title: PostCSS
 label: PostCSS
 layout: docs
-order: 5
+order: 4
 tocHeading: 2
 ---
 
@@ -118,3 +118,31 @@ and see the results of the plugin in the generated styles
   }
 }
 ```
+
+## Types
+
+Types should automatically be inferred through this package's exports map, but can be referenced explicitly in both JavaScript (JSDoc) and TypeScript files if needed.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  /** @type {import('@greenwood/plugin-postcss').PostCssPlugin} */
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```ts
+  import type { PostCssPlugin } from '@greenwood/plugin-postcss';
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->

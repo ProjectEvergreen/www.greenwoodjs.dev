@@ -2,7 +2,7 @@
 title: Lit SSR
 label: Lit SSR
 layout: docs
-order: 2
+order: 1
 tocHeading: 2
 ---
 
@@ -123,3 +123,31 @@ Below is an example of generating a page of LitElement based Web Components:
 <!-- prettier-ignore-end -->
 
 > Keep in mind you will need to make sure your Lit Web Components are isomorphic and [properly leveraging `LitElement`'s lifecycles](https://github.com/lit/lit/tree/main/packages/labs/ssr#notes-and-limitations) and browser / Node APIs accordingly for maximum compatibility and portability.
+
+## Types
+
+Types should automatically be inferred through this package's exports map, but can be referenced explicitly in both JavaScript (JSDoc) and TypeScript files if needed.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  /** @type {import('@greenwood/plugin-renderer-lit').LitRendererPlugin} */
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```ts
+  import type { LitRendererPlugin } from '@greenwood/plugin-renderer-lit';
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->

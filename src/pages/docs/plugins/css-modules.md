@@ -2,7 +2,7 @@
 title: CSS Modules
 label: CSS Modules
 layout: docs
-order: 3
+order: 2
 tocHeading: 2
 ---
 
@@ -123,3 +123,46 @@ And reference that in your (Light DOM) HTML based Web Component:
 <!-- prettier-ignore-end -->
 
 From there, Greenwood will scope your CSS class names by prefixing them with the filename and a hash of the contents, inline that into a `<style>` tag in the HTML, and then strip the reference to the _module.css_ file from your JavaScript file.
+
+## Types
+
+Types should automatically be inferred through this package's exports map, but can be referenced explicitly in both JavaScript (JSDoc) and TypeScript files if needed.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  /** @type {import('@greenwood/plugin-css-modules').CssModulesPlugin} */
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```ts
+  import type { CssModulesPlugin } from '@greenwood/plugin-css-modules';
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+To support typing of `.module.css` imports, you can add this type definition to your project:
+
+<app-ctc-block variant="snippet" heading="types.d.ts">
+
+```ts
+declare module "*.module.css" {
+  const styles: { [className: string]: string };
+  export default styles;
+}
+```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->

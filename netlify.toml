@@ -12,3 +12,8 @@
   status = 302
   from = "/discord/"
   to = "https://discord.gg/dmDmjFCKuH"
+
+[[redirects]]
+  status = 301
+  from = "/docs/plugins/typescript/"
+  to = "/docs/resources/typescript/"
