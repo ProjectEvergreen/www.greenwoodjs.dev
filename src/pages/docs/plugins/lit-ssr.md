@@ -151,3 +151,5 @@ Types should automatically be inferred through this package's exports map, but c
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+> If you're using Lit with TypeScript, you'll most likely be using [their decorators](https://lit.dev/docs/components/decorators/#compiler-output-considerations), If so, make sure to enable the [`useTsc` option](/docs/reference/configuration/#use-typescript-compiler) in your Greenwood configuration file.
