@@ -207,14 +207,14 @@ Any Greenwood [supported frontmatter](/docs/resources/markdown/#frontmatter) can
     return {
       layout: "user",
       collection: "header",
-      order: 1,
       title: `The ${route} page`,
       imports: [
         "/components/user.js",
         "/components/otherItem.js type=module"
       ],
+      // any custom data
       data: {
-        /* ... */
+        order: 1,
       },
     };
   }
