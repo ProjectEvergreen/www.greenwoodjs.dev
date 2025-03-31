@@ -14,7 +14,7 @@ tocHeading: 2
 
 - [Lit SSR](/docs/plugins/lit-ssr/) - For Lit users, a custom renderer plugin to support Lit+SSR
 - [PostCSS](/docs/plugins/postcss/) - Leverage PostCSS plugins, like [Tailwind](/guides/ecosystem/tailwind/)
-- [CSS Modules](/docs/plugins/css-modules/) - Support for [CSS Modules](https://github.com/css-modules/css-modules) ™️ syntax
+- [CSS Modules](/docs/plugins/css-modules/) - Support for [CSS Modules ™](https://github.com/css-modules/css-modules) syntax
 - [Raw Loader](/docs/plugins/raw/) - Import arbitrary text files as ESM
 
 ## All Plugins
@@ -25,6 +25,7 @@ Below is the official list of supported first-party plugins available by the Gre
 
 | Name                                                                                                      | Description                                                                                                   |
 | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --- |
+| [AWS](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-aws)              | Deploy SSR pages and API routes to serverless functions on [**AWS**](https://aws.amazon.com/).                |
 | [Babel](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-babel)                  | Use [**Babel**](https://babeljs.io/) plugins, presets, and configuration in your project.                     |
 | [HTML Include](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-include-html)    | Inspired by the original [HTML Imports spec](https://www.html5rocks.com/en/tutorials/webcomponents/imports/). |
 | [Import Raw](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw)        | Enables usage of ESM syntax for loading arbitrary file contents as a string.                                  |
