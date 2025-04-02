@@ -92,7 +92,7 @@ It is fine-tuned for creating Light and Shadow DOM based custom elements. The fu
 - `<template>` / DocumentFragment
 - `addEventListener` (as a no-op)
 - `CSSStyleSheet` (all methods act as no-ops on the server)
-- TypeScript
+- TypeScript (type stripping)
 
 While not all DOM APIs are supported, in general you can still use them and combine their usage with [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) for a quick "no-op".
 
