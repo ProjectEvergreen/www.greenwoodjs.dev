@@ -195,13 +195,13 @@ Additionally, we make sure to pass the flag from above for `__isDevelopment` to 
   ```js
   import fs from "fs";
   import { myThemePackPlugin } from "./my-theme-pack.js";
-  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
   const packageName = JSON.parse(fs.readFileSync("./package.json", "utf-8")).name;
 
-  class MyThemePackDevelopmentResource extends ResourceInterface {
+  class MyThemePackDevelopmentResource {
     constructor(compilation, options) {
-      super(compilation, options);
+      this.compilation = compilation;
+      this.options = options;
       this.extensions = ["*"];
     }
 

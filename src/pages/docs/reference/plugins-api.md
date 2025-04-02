@@ -404,11 +404,8 @@ A [resource "interface"](https://github.com/ProjectEvergreen/greenwood/tree/mast
 <app-ctc-block variant="snippet" heading="my-resource-plugin.js">
 
   ```js
-  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
-
-  class ExampleResource extends ResourceInterface {
+  class ExampleResource {
     constructor(compilation, options = {}) {
-      super();
 
       this.compilation = compilation; // Greenwood's compilation object
       this.options = options; // any optional configuration provided by the user of your plugin
@@ -456,9 +453,8 @@ When requesting a resource like a file, such as _/main.js_, Greenwood needs to k
 
   ```js
   import fs from "fs";
-  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
-  class UserWorkspaceResource extends ResourceInterface {
+  class UserWorkspaceResource {
     async shouldResolve(url) {
       const { pathname } = url;
       const { userWorkspace } = this.compilation.context;
@@ -509,9 +505,8 @@ Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergr
 
   ```js
   import fs from "fs";
-  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
 
-  class StandardJavaScriptResource extends ResourceInterface {
+  class StandardJavaScriptResource {
     async shouldServe(url) {
       return url.protocol === "file:" && url.pathname.split(".").pop() === "js";
     }
@@ -555,7 +550,6 @@ Below is an example of Greenwood's [**PostCSS** plugin](/docs/plugins/postcss/) 
 <app-ctc-block variant="snippet">
 
   ```js
-  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
   import { normalizePathnameForWindows } from "@greenwood/cli/src/lib/resource-utils.js";
   import postcss from "postcss";
 
@@ -563,9 +557,10 @@ Below is an example of Greenwood's [**PostCSS** plugin](/docs/plugins/postcss/) 
     // ...
   }
 
-  class PostCssResource extends ResourceInterface {
+  class PostCssResource {
     constructor(compilation, options) {
-      super(compilation, options);
+      this.compilation = compilation;
+      this.options = options;
       this.extensions = ["css"];
       this.contentType = "text/css";
     }
@@ -621,9 +616,7 @@ import styles from "./hero.css?type=raw";
 <app-ctc-block variant="snippet">
 
   ```js
-  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
-
-  class ImportRawResource extends ResourceInterface {
+  class ImportRawResource {
     async shouldIntercept(url) {
       const { protocol, searchParams } = url;
       const type = searchParams.get("type");
@@ -667,13 +660,11 @@ Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergr
 <app-ctc-block variant="snippet" heading="my-resource-plugin.js">
 
   ```js
-  import { ResourceInterface } from "@greenwood/cli/src/lib/resource-interface.js";
-
   function bundleCss() {
     // ..
   }
 
-  class StandardCssResource extends ResourceInterface {
+  class StandardCssResource {
     async shouldOptimize(url, response) {
       const { protocol, pathname } = url;
 
@@ -785,12 +776,12 @@ The below is an excerpt of [Greenwood's internal LiveReload server](https://gith
 <app-ctc-block variant="snippet" heading="my-server-plugin.js">
 
   ```js
-  import { ServerInterface } from "@greenwood/cli/src/lib/server-interface.js";
   import livereload from "livereload";
 
-  class LiveReloadServer extends ServerInterface {
+  class LiveReloadServer {
     constructor(compilation, options = {}) {
-      super(compilation, options);
+      this.compilation = compilation;
+      this.options = options;
 
       this.liveReloadServer = livereload.createServer({
         /* options */
