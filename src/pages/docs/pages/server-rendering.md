@@ -108,7 +108,7 @@ A couple of notes:
 
 ### Body
 
-To return just the body of the page, you can use the `getBody` API. You will get access to the [compilation](/docs/reference/appendix/#compilation), page specific data, and the incoming request.
+To return just the body of the page, you can use the `getBody` API. You will get access the [compilation](/docs/reference/appendix/#compilation), page specific data, and the incoming request.
 
 In this example, we return a list of users from an API as HTML:
 
