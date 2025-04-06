@@ -22,10 +22,6 @@
   fill: var(--color-secondary);
 }
 
-.blueskySocialIcon {
-  /* transform: scale(1.7) translateY(-2px); */
-}
-
 @media screen and (min-width: 768px) {
   .socialTray {
     padding: 0 var(--size-2);
