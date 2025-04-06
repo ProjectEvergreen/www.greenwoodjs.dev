@@ -17,10 +17,7 @@
 
 .logo svg {
   width: 150px;
-}
-
-.logo svg g.letters {
-  fill: var(--color-white);
+  fill: var(--color-gray);
 }
 
 .footer app-social-tray {
