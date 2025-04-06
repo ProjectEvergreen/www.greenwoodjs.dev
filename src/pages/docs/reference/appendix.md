@@ -1,10 +1,26 @@
 ---
 layout: docs
-order: 5
+order: 4
 tocHeading: 2
 ---
 
 # Appendix
+
+## Types
+
+In addition to [supporting TypeScript](/docs/resources/typescript/) out of the box, Greenwood also exports a number of useful types that you can use if authoring your configuration files, plugins, etc as TypeScript. You can find all available types for the CLI [here](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/types/index.d.ts) including types for configuration, content as data APIs, graph and compilation objects, plugins, and more. Each of Greenwood's plugin will also provide their own set of types within their package at _src/types/index.d.ts_.
+
+For example, here is how to author a TypeScript based configuration file:
+
+```ts
+import type { Config } from "@greenwood/cli";
+
+const config: Config = {
+  prerender: true,
+};
+
+export default config;
+```
 
 ## Build Output
 
@@ -88,7 +104,7 @@ It is fine-tuned for creating Light and Shadow DOM based custom elements. The fu
 - `customElements.define`
 - `attachShadow`
 - `innerHTML`
-- ` [get|set|has]Attribute`
+- `[get|set|has]Attribute`
 - `<template>` / DocumentFragment
 - `addEventListener` (as a no-op)
 - `CSSStyleSheet` (all methods act as no-ops on the server)

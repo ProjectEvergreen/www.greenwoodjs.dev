@@ -11,6 +11,7 @@ This section details all the supported configuration options available with **Gr
 Below is a _greenwood.config.js_ file reflecting default values:
 
 ```js
+/** @type {import('@greenwood/cli').Config} */
 export default {
   activeContent: false,
   basePath: "",
