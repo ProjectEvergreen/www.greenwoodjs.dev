@@ -20,11 +20,11 @@ export default class SocialTray extends HTMLElement {
           </a>
         </li>
 		
-	<li class="${styles.socialIcon}">
-	  <a href="https://bsky.app/profile/projectevergreen.bsky.social" title="BlueSky" class="${styles.blueskySocialIcon}">
-		${blueskyIcon}
-	  </a>
-	</li>
+        <li class="${styles.socialIcon}">
+          <a href="https://bsky.app/profile/projectevergreen.bsky.social" title="BlueSky" class="${styles.blueskySocialIcon}">
+          ${blueskyIcon}
+          </a>
+        </li>
 
         <li class="${styles.socialIcon}">
           <a href="https://twitter.com/PrjEvergreen" title="Twitter">
