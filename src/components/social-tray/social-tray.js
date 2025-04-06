@@ -2,6 +2,7 @@ import styles from "./social-tray.module.css";
 import discordIcon from "../../assets/discord.svg?type=raw";
 import githubIcon from "../../assets/github.svg?type=raw";
 import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
+import blueskyIcon from "../../assets/bluesky.svg?type=raw";
 
 export default class SocialTray extends HTMLElement {
   connectedCallback() {
@@ -16,6 +17,12 @@ export default class SocialTray extends HTMLElement {
         <li class="${styles.socialIcon}">
           <a href="/discord/" title="Discord">
             ${discordIcon}
+          </a>
+        </li>
+		
+        <li class="${styles.socialIcon}">
+          <a href="https://bsky.app/profile/projectevergreen.bsky.social" title="BlueSky">
+            ${blueskyIcon}
           </a>
         </li>
 
