@@ -203,6 +203,70 @@ You can create a custom middleware in your _web-test-runner.config.js_ to resolv
 
 <!-- prettier-ignore-end -->
 
+## TypeScript
+
+If leveraging's Greenwood's [built-in TypeScript support](/docs/resources/typescript/), there are a couple options for integrating your TS based source files with WTR for testing.
+
+### esbuild
+
+WTR has an [**esbuild** plugin](https://modern-web.dev/guides/test-runner/typescript/) that can be configured to handle basic type stripping.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="web-test-runner.config.js">
+
+  ```js
+  import { esbuildPlugin } from "@web/dev-server-esbuild";
+
+  export default {
+    plugins: [
+      esbuildPlugin({ ts: true }),
+    ],
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+### `tsc`
+
+If you need the full power of the TypeScript compiler, you can leverage `tsc` directly along with your _tsconfig.json_ `compilerOptions` to transform all _.ts_ files.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="web-test-runner.config.js">
+
+  ```js
+  import fs from "fs/promises";
+  import tsc from "typescript";
+
+  const compilerOptions = ((await import(new URL("./tsconfig.json", import.meta.url), { with: { type: "json" } })).default).compilerOptions;
+
+  export default {
+    plugins: [{
+      name: "transpile-typescript",
+      async transform(context) {
+        const { url } = context.request;
+
+        if (url.endsWith(".ts")) {
+          const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
+          const body = tsc.transpileModule(contents, { compilerOptions }).outputText;
+
+          return {
+            body,
+            type: "js"
+          };
+        }
+      }
+    }]
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 ## Resource Plugins
 
 If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need to customize WTR manually through [its plugins option](https://modern-web.dev/docs/test-runner/plugins/) so it can leverage the Greenwood plugins your using to automatically handle these custom transformations.
