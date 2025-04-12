@@ -140,9 +140,9 @@ Types should automatically be inferred through this package's exports map, but c
 
 <!-- prettier-ignore-end -->
 
-To support typing of `.module.css` imports, you can add this type definition to your project:
+To support typing of raw file imports, you can add this type definition to your project:
 
-<app-ctc-block variant="snippet" heading="types.d.ts">
+<app-ctc-block variant="snippet" heading="src/types.d.ts">
 
 ```ts
 declare module "*?type=raw" {

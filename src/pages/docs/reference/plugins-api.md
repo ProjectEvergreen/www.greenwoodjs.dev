@@ -74,7 +74,7 @@ An adapter plugin is simply an `async` function that gets invoked by the Greenwo
 <app-ctc-block variant="snippet">
 
   ```js
-  /** @type {import("@greenwood/cll").AdapterPlugin} */
+  /** @type {import("@greenwood/cli").AdapterPlugin} */
   const greenwoodPluginMyPlatformAdapter = () => {
     return {
       type: "adapter",
@@ -227,7 +227,7 @@ Your plugin might look like this:
   *     acme-theme-pack.js
   *     package.json
   */
-  /** @type {import("@greenwood/cll").ContextPlugin} */
+  /** @type {import("@greenwood/cli").ContextPlugin} */
   export function myContextPlugin() {
     return {
       type: "context",
@@ -263,7 +263,7 @@ This plugin supports providing an array of "paired" URL objects that can either 
 <app-ctc-block variant="snippet" heading="my-copy-plugin.js">
 
   ```js
-  /** @type {import("@greenwood/cll").CopyPlugin} */
+  /** @type {import("@greenwood/cli").CopyPlugin} */
   export function myCopyPlugin() {
     return {
       type: "copy",
@@ -349,7 +349,7 @@ This plugin expects to be given a path to a module that exports a function to ex
 <app-ctc-block variant="snippet" heading="my-renderer-plugin.js">
 
   ```js
-  /** @type {import("@greenwood/cll").RendererPlugin} */
+  /** @type {import("@greenwood/cli").RendererPlugin} */
   const greenwoodPluginMyCustomRenderer = () => {
     return {
       type: "renderer",
@@ -422,7 +422,7 @@ A [resource "interface"](https://github.com/ProjectEvergreen/greenwood/tree/mast
     // lifecycles go here
   }
 
-  /** @type {import("@greenwood/cll").ResourcePlugin} */
+  /** @type {import("@greenwood/cli").ResourcePlugin} */
   export function myExampleResourcePlugin(options = {}) {
     return {
       type: "resource",
@@ -722,7 +722,7 @@ Simply use the `provider` method to return an array of Rollup plugins:
 
   const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
 
-  /** @type {import("@greenwood/cll").RollupPlugin} */
+  /** @type {import("@greenwood/cli").RollupPlugin} */
   export function myRollupPlugin() {
     const now = new Date().now();
 
@@ -806,7 +806,7 @@ The below is an excerpt of [Greenwood's internal LiveReload server](https://gith
     }
   }
 
-  /** @type {import("@greenwood/cll").ServerPlugin} */
+  /** @type {import("@greenwood/cli").ServerPlugin} */
   export function myServerPlugin(options = {}) {
     return {
       type: "server",
@@ -833,7 +833,7 @@ This plugin supports providing an array of "page" objects that will be added as 
 <app-ctc-block variant="snippet" heading="my-source-plugin.js">
 
   ```js
-  /** @type {import("@greenwood/cll").SourcePlugin} */
+  /** @type {import("@greenwood/cli").SourcePlugin} */
   export const customExternalSourcesPlugin = () => {
     return {
       type: "source",

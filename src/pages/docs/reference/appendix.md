@@ -8,7 +8,7 @@ tocHeading: 2
 
 ## Types
 
-In addition to [supporting TypeScript](/docs/resources/typescript/) out of the box, Greenwood also exports a number of useful types that you can use if authoring your configuration files, plugins, etc as TypeScript. You can find all available types for the CLI [here](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/types/index.d.ts) including types for configuration, content as data APIs, graph and compilation objects, plugins, and more. Each of Greenwood's plugin will also provide their own set of types within their package at _src/types/index.d.ts_.
+In addition to [supporting TypeScript](/docs/resources/typescript/) out of the box, Greenwood also exports a number of useful types that you can use when authoring your configuration files, plugins, data clients, etc as TypeScript. You can find all available types for the CLI [here](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/types/index.d.ts) including types for configuration, content as data APIs, graph and compilation objects, plugins, and more. Each of Greenwood's plugin will also provide their own set of types within their package at _src/types/index.d.ts_.
 
 For example, here is how to author a TypeScript based configuration file:
 
@@ -20,6 +20,40 @@ const config: Config = {
 };
 
 export default config;
+```
+
+Here's an example of authoring with Greenwood's Collection capability.
+
+```ts
+import { getContentByRoute } from "@greenwood/cli/src/data/client.js";
+import type { Page } from "@greenwood/cli";
+
+type BlogPost = Page & {
+  data: {
+    author: string;
+  };
+};
+
+export default class BlogPostsList extends HTMLElement {
+  async connectedCallback() {
+    const posts: BlogPost[] = await getContentByRoute("/blog/");
+
+    this.innerHTML = `
+      <div>
+        ${posts
+          .reverse()
+          .map((post) => {
+            return `
+              <li><a href="${post.route}">"${post.title}"</a><span>by: ${post.data.author}</span></li>
+            `;
+          })
+          .join("")}
+      </div>
+    `;
+  }
+}
+
+customElements.define("blog-posts-list", BlogPostsList);
 ```
 
 ## Build Output

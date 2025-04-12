@@ -154,7 +154,7 @@ Types should automatically be inferred through this package's exports map, but c
 
 To support typing of `.module.css` imports, you can add this type definition to your project:
 
-<app-ctc-block variant="snippet" heading="types.d.ts">
+<app-ctc-block variant="snippet" heading="src/types.d.ts">
 
 ```ts
 declare module "*.module.css" {

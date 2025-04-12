@@ -8,9 +8,9 @@ tocHeading: 2
 
 # TypeScript
 
-Greenwood provide built-in support for TypeScript, either through type-stripping (default behavior) or with the ability to fallback to [using the TypeScript compiler](/docs/reference/configuration/#use-typescript-compiler) if you're leveraging certain transformation based TypeScript features (like [`enums` and `namespaces`](https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/#the---erasablesyntaxonly-option)) or JavaScript syntax like Decorators. You can see an example repo [here](https://github.com/thescientist13/greenwood-native-typescript)
+Greenwood provides built-in support for TypeScript, either through type-stripping (default behavior) or with the ability to fallback to [using the TypeScript compiler](/docs/reference/configuration/#use-typescript-compiler) if you're leveraging certain transformation based TypeScript features (like [`enums` and `namespaces`](https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/#the---erasablesyntaxonly-option)) or JavaScript syntax like Decorators. If you need these additional capabilities, you can set the [`useTsc` option](/docs/reference/configuration/#use-typescript-compiler) in your Greenwood configuration file.
 
-> You can read [this guide](https://nodejs.org/en/learn/typescript/run-natively) to learn more about running TypeScript with NodeJS, including the [`--experimental-transform-types`](https://nodejs.org/docs/latest-v23.x/api/cli.html#--experimental-transform-types) flag.
+> You can read [this guide](https://nodejs.org/en/learn/typescript/run-natively) to learn more about running TypeScript with NodeJS, including the [`--experimental-transform-types`](https://nodejs.org/docs/latest-v23.x/api/cli.html#--experimental-transform-types) flag. You can see an example Greenwood TypeScript repo [here](https://github.com/thescientist13/greenwood-native-typescript).
 
 ## Setup
 
@@ -18,7 +18,7 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 
 1. You will need to use Node **>= 22.6.0** and set the `--experimental-strip-types` flag
 1. Install TypeScript into your project, e.g. `npm i typescript --save-dev`
-1. Create a _tsconfig.json_ file at the root of your project with these minimum configuration settings
+1. Create a _tsconfig.json_ file at the root of your project with these minimum configuration settings. We recommend adding the [`erasableSyntaxOnly` setting](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly)
 
   <!-- prettier-ignore-start -->
 
@@ -46,7 +46,7 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 
 ### Configuration
 
-In addition to be able to author your components, SSR pages, and API routes in TypeScript, you can also author your configuration file (and plugins) in TypeScript by using a _greenwood.config.ts_ file.
+In addition to being able to author your components, SSR pages, and API routes in TypeScript, you can also author your configuration file (and plugins) in TypeScript by using a _greenwood.config.ts_ file.
 
 <!-- prettier-ignore-start -->
 
@@ -66,13 +66,15 @@ In addition to be able to author your components, SSR pages, and API routes in T
 
 <!-- prettier-ignore-end -->
 
+See our [reference docs on Greenwood's available types](/docs/reference/appendix/#types) for more information on authoring with TypeScript.
+
 ### Import Attributes
 
 Currently TypeScript does not support types for standard [JSON and CSS Import Attributes](https://github.com/microsoft/TypeScript/issues/46135). You can use the below snippets as a reference for providing these types for your own project in the meantime.
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="types.d.ts">
+<app-ctc-block variant="snippet" heading="src/types.d.ts">
 
   ```ts
   declare module "*.css" {
