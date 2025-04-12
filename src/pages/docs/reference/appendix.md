@@ -44,7 +44,7 @@ export default class BlogPostsList extends HTMLElement {
           .reverse()
           .map((post) => {
             return `
-              <li><a href="${post.route}">"${post.title}"</a><span>by: ${post.data.author}</span></li>
+              <li><a href="${post.route}">${post.title}</a><span>by: ${post.data.author}</span></li>
             `;
           })
           .join("")}
