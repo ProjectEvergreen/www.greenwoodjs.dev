@@ -8,7 +8,7 @@ tocHeading: 2
 
 # AWS
 
-Greenwood projects can be deployed to [**AWS**](https://aws.amazon.com/) for static hosting ([**S3**](https://aws.amazon.com/s3/) / [**CloudFront**](https://aws.amazon.com/cloudfront/)) and dynamic serverless hosting of SSR pages and API routes (on [**Lambda**](https://aws.amazon.com/lambda/)). Although static hosting is fairly trivial, for full-stack applications and when leveraging additional AWS services to compliment your application, we recommend leveraging [IaC (Infrastructure as Code)](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools, as we will demonstrate later in this guide.
+Greenwood projects can be deployed to [**AWS**](https://aws.amazon.com/) for static hosting ([**S3**](https://aws.amazon.com/s3/) / [**CloudFront**](https://aws.amazon.com/cloudfront/)) and dynamic serverless hosting of SSR pages and API routes ([**Lambda**](https://aws.amazon.com/lambda/)). Although static hosting is fairly simple, for full-stack applications and when leveraging additional AWS services to compliment your application, we recommend leveraging [IaC (Infrastructure as Code)](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools, as we will demonstrate later in this guide.
 
 > You can see a complete hybrid project example in our [demonstration repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws).
 
@@ -50,11 +50,11 @@ Below is a sample Edge function for doing the rewrites:
 
 <!-- prettier-ignore-end -->
 
-> At this point, you'll probably want to use Route 53 to [put your domain in front of your CloudFront distribution](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html).
+> At this point, you'll probably want to use Route 53 to [put a domain in front of your CloudFront distribution](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html).
 
 ## Serverless
 
-If your Greenwood project has SSR pages and / or API routes that you would like to deploy to AWS Lambda functions, our recommendation is to install [our adapter plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-aws) and then add it to your _greenwood.config.js_, which at build time will generate Lambda compatible function code for all your dynamic pages and routes.
+If your Greenwood project has SSR pages and / or API routes that you would like to deploy as AWS Lambda functions, our recommendation is to install [our AWS adapter plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-aws) and then add it to your _greenwood.config.js_. At build time it will generate Lambda compatible function code for all your dynamic pages and routes.
 
 <!-- prettier-ignore-start -->
 
@@ -78,10 +78,10 @@ Just like Greenwood has its own [standard build output](/docs/reference/appendix
 
 The adapted functions will be output to a folder called _.aws-output_ with the following two folders:
 
-- `api/` - All API routes will be in this folder, with one folder per route
-- `routes/` - All SSR pages will be in this folder, with one folder per route
+- _api/_ - All API routes will be in this folder, with one folder per endpoint
+- _routes/_ - All SSR pages will be in this folder, with one folder per route
 
-Here is an example from a directory listing perspective of what the structure of this folder looks like:
+Here is an example directory listing of what the structure of this folder might look like:
 
 ```shell
 .aws-output/
@@ -102,20 +102,22 @@ Here is an example from a directory listing perspective of what the structure of
       products.route.js
 ```
 
-For **_each_** of the folders in the `api` or `routes` directories, it would be as simple as just creating a zip file for each folder / route, or just pointing your IaC tooling to those output folders, as we'll get into in the next section.
+For **_each_** of the folders in the _api/_ or _routes/_ directories, it would be as simple as just creating a zip file for each folder / route and uploading them, or just pointing your IaC tooling to those output folders, as we'll get into in the next section.
 
-### SST (IaC) Example
+### IaC Example (SST)
 
 Given the nature of AWS hosting and the plethora of related services that you can use to compliment your application, the Greenwood AWS adapter is specifically designed to output purely compatible Lambda functions, one per folder, that can be plugging into any IaC tool. (or zipped up and deployed manually, if you prefer)
 
-While there are many options for IaC tooling, [**SST**](https://sst.dev/) is a very powerful tool which let's you entirely define your AWS infrastructure with TypeScript, combining as few or as many AWS service as you may need. Below is a simple
+While there are many options for IaC tooling, [**SST**](https://sst.dev/) is a very powerful option which let's you entirely define your AWS infrastructure programmatically with TypeScript, combining as few or as many AWS service as you may need.
+
+Let's look at the below example:
 
 <!-- prettier-ignore-start -->
 
 <app-ctc-block variant="snippet" heading="sst.config.ts">
 
   ```ts
-  // 1) Configure SSR pages and API routes in API Gateway
+  // 1) Configure an API Gateway for routing SSR pages and API routes
   const api = new sst.aws.ApiGatewayV2("MyApi");
 
   // products page
@@ -138,7 +140,7 @@ While there are many options for IaC tooling, [**SST**](https://sst.dev/) is a v
     },
   })
 
-  // 3) Configure CloudFront router with SSR pages, API routes, and static content
+  // 3) Configure a CloudFront distribution with behaviors for SSR pages, API routes, and static content
   const router = new sst.aws.Router("MyRouter", {
     routes: {
       "/api/*": api.url,
@@ -154,7 +156,7 @@ While there are many options for IaC tooling, [**SST**](https://sst.dev/) is a v
     invalidation: true,
   });
 
-  // 4) Configure SST app
+  // 4) Configure the SST app
   export default $config({
     app(input) {
       return {
@@ -174,7 +176,7 @@ While there are many options for IaC tooling, [**SST**](https://sst.dev/) is a v
 
 <!-- prettier-ignore-end -->
 
-Although the above example is hardcoded, you'll want use the build output manifest from Greenwood by following the [complete example repo we have](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws) for deploying a full-stack Greenwood application.
+Although the above example is hardcoded, you'll want to use the build output manifest from Greenwood by following the [complete example repo we have](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws) for deploying a full-stack Greenwood application.
 
 > We also have an [**Architect**](https://arc.codes/) example [for reference](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws/tree/feature/arc-adapter) as well.
 
@@ -217,6 +219,7 @@ If you're using GitHub, you can use GitHub Actions to automate the pushing of bu
            run: |
              npm run build
 
+         # or run your IaC tool for adapter based builds
          - name: Upload to S3 and invalidate CDN
            uses: opspresso/action-s3-sync@master
            env:
@@ -233,4 +236,4 @@ If you're using GitHub, you can use GitHub Actions to automate the pushing of bu
 
    <!-- prettier-ignore-end -->
 
-Now when you push changes to your repo, the action will run an the build files will automatically be uploaded.
+Now when you push changes to your repo, the action will run and your build will automatically be deployed to your AWS account.
