@@ -6,7 +6,9 @@ tocHeading: 2
 
 # Data Client
 
-To access your content as data with Greenwood, there are three pre-made APIs you can use, based on your use case. These are isomorphic in that they will consume live data during development, and statically build out each query at build time to its own JSON file that will be fetched client side without needing a. This way, you can serialize and / or hydrate from this data as needed based on your needs.
+To access your content as data with Greenwood, there are three pre-made APIs you can use, based on your use case. These are isomorphic in that they will consume live data during development, and statically build out each query at build time to its own JSON file that will be fetched client side without needing a server. This way, you can serialize and / or hydrate from this data as needed based on your needs.
+
+See our [reference docs on Greenwood's available types](/docs/reference/appendix/#types) for more information on authoring with TypeScript.
 
 > This feature works best when used for build time templating when combined with the [**static** optimization](/docs/reference/configuration/#optimization) setting.
 

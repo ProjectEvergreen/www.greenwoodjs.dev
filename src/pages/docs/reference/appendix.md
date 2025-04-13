@@ -1,10 +1,60 @@
 ---
 layout: docs
-order: 5
+order: 4
 tocHeading: 2
 ---
 
 # Appendix
+
+## Types
+
+In addition to [supporting TypeScript](/docs/resources/typescript/) out of the box, Greenwood also exports a number of useful types that you can use when authoring your configuration files, plugins, data clients, etc as TypeScript. You can find all available types for the CLI [here](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/types/index.d.ts) including types for configuration, content as data APIs, graph and compilation objects, plugins, and more. Each of Greenwood's plugin will also provide their own set of types within their package at _src/types/index.d.ts_.
+
+For example, here is how to author a TypeScript based configuration file:
+
+```ts
+import type { Config } from "@greenwood/cli";
+
+const config: Config = {
+  prerender: true,
+};
+
+export default config;
+```
+
+Here's an example of authoring with Greenwood's Collection capability.
+
+```ts
+import { getContentByRoute } from "@greenwood/cli/src/data/client.js";
+import type { Page } from "@greenwood/cli";
+
+type BlogPost = Page & {
+  data: {
+    author: string;
+  };
+};
+
+export default class BlogPostsList extends HTMLElement {
+  async connectedCallback() {
+    const posts: BlogPost[] = await getContentByRoute("/blog/");
+
+    this.innerHTML = `
+      <div>
+        ${posts
+          .reverse()
+          .map((post) => {
+            return `
+              <li><a href="${post.route}">${post.title}</a><span>by: ${post.data.author}</span></li>
+            `;
+          })
+          .join("")}
+      </div>
+    `;
+  }
+}
+
+customElements.define("blog-posts-list", BlogPostsList);
+```
 
 ## Build Output
 
@@ -88,11 +138,11 @@ It is fine-tuned for creating Light and Shadow DOM based custom elements. The fu
 - `customElements.define`
 - `attachShadow`
 - `innerHTML`
-- ` [get|set|has]Attribute`
+- `[get|set|has]Attribute`
 - `<template>` / DocumentFragment
 - `addEventListener` (as a no-op)
 - `CSSStyleSheet` (all methods act as no-ops on the server)
-- TypeScript
+- TypeScript (type stripping)
 
 While not all DOM APIs are supported, in general you can still use them and combine their usage with [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) for a quick "no-op".
 

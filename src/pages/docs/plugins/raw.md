@@ -1,6 +1,6 @@
 ---
 layout: docs
-order: 4
+order: 3
 tocHeading: 2
 ---
 
@@ -107,6 +107,49 @@ Or perfect for statically embedding SVGs into HTML:
 
   customElements.define("app-header", Header);
   ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+## Types
+
+Types should automatically be inferred through this package's exports map, but can be referenced explicitly in both JavaScript (JSDoc) and TypeScript files if needed.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  /** @type {import('@greenwood/plugin-import-raw').ImportRawPlugin} */
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```ts
+  import type { ImportRawPlugin } from '@greenwood/plugin-import-raw';
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+To support typing of raw file imports, you can add this type definition to your project:
+
+<app-ctc-block variant="snippet" heading="src/types.d.ts">
+
+```ts
+declare module "*?type=raw" {
+  const content: string;
+  export default content;
+}
+```
 
 </app-ctc-block>
 
