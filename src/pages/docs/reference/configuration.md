@@ -229,6 +229,33 @@ After installing the package, pass the plugin name as a string:
 
 <!-- prettier-ignore-end -->
 
+If you need to pass options to a markdown plugin, you can use object syntax with the plugin name and the options it takes.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  export default {
+    markdown: {
+      plugins: [
+        "rehype-slug",
+        "remark-gfm",
+        {
+          name: "rehype-autolink-headings",
+          options: {
+            behavior: "append"
+          },
+        },
+      ],
+    },
+  };
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 ## Optimization
 
 Greenwood provides a number of different ways to send hints to Greenwood as to how JavaScript and CSS tags in your HTML should get loaded by the browser. Greenwood supplements, and builds up on top of existing [resource "hints" like `preload` and `prefetch`](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content).
