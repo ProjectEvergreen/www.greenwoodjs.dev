@@ -24,7 +24,7 @@ Below is the official list of supported first-party plugins available by the Gre
 <br>
 
 | Name                                                                                                      | Description                                                                                                   |
-| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --- |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | [AWS](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-aws)              | Deploy SSR pages and API routes to serverless functions on [**AWS**](https://aws.amazon.com/).                |
 | [Babel](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-babel)                  | Use [**Babel**](https://babeljs.io/) plugins, presets, and configuration in your project.                     |
 | [HTML Include](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-include-html)    | Inspired by the original [HTML Imports spec](https://www.html5rocks.com/en/tutorials/webcomponents/imports/). |
@@ -35,4 +35,4 @@ Below is the official list of supported first-party plugins available by the Gre
 | [Polyfills](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-polyfills)          | Web Component related polyfills for older browsers.                                                           |
 | [PostCSS](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-postcss)              | Allows usage of [**PostCSS**](https://postcss.org/) plugins and configuration in your project.                |
 | [Puppeteer](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-puppeteer) | A rendering plugin to support prerendering a Greenwood project using Puppeteer.                               |
-| [Vercel](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-vercel)        | Deploy serverless and edge functions with [**Vercel**](https://vercel.com/).                                  |     |
+| [Vercel](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-vercel)        | Deploy serverless and edge functions with [**Vercel**](https://vercel.com/).                                  |
