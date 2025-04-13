@@ -1,4 +1,5 @@
 import platforms from "./platforms.json" with { type: "json" };
+import awsLogo from "../../assets/aws.svg?type=raw";
 import githubLogo from "../../assets/github.svg?type=raw";
 import netlifyLogo from "../../assets/netlify.svg?type=raw";
 import nodejsLogo from "../../assets/nodejs.svg?type=raw";
@@ -6,6 +7,7 @@ import vercelLogo from "../../assets/vercel.svg?type=raw";
 import styles from "./run-anywhere.module.css";
 
 const platformImageMapper = {
+  aws: awsLogo,
   github: githubLogo,
   netlify: netlifyLogo,
   nodejs: nodejsLogo,
