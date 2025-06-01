@@ -109,9 +109,4 @@
   .subHeading {
     width: 70%;
   }
-
-  .card {
-    min-height: 440px;
-    height: fit-content;
-  }
 }
