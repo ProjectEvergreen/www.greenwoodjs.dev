@@ -109,4 +109,14 @@
   .subHeading {
     width: 70%;
   }
+
+  .card {
+    height: 540px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .card {
+    height: 440px;
+  }
 }
