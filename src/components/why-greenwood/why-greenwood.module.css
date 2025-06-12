@@ -111,7 +111,12 @@
   }
 
   .card {
-    min-height: 440px;
-    height: fit-content;
+    height: 540px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .card {
+    height: 440px;
   }
 }
