@@ -372,7 +372,7 @@ If you are developing with Greenwood in a browser that doesn't support [import m
 
 ### Import Attributes
 
-[Import Attributes](https://github.com/tc39/proposal-import-attributes), which are the underlying mechanism for supporting [CSS](https://web.dev/articles/css-module-scripts) and [JSON](https://github.com/tc39/proposal-json-modules) module scripts, are not widely supported in [all browsers yet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#browser_compatibility). Greenwood can enable this in a browser compatible why by specifying which attributes you want handled. In both cases, Greenwood bundles these as ES Modules and will strip the attributes syntax.
+[Import Attributes](https://github.com/tc39/proposal-import-attributes), which are the underlying mechanism for supporting [CSS](https://web.dev/articles/css-module-scripts) and [JSON](https://github.com/tc39/proposal-json-modules) module scripts, are not widely supported in [all browsers yet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#browser_compatibility). Greenwood can enable this in a browser compatible way by specifying which attributes you want handled. In both cases, Greenwood bundles these as ES Modules and will strip the attributes syntax.
 
 <!-- prettier-ignore-start -->
 
