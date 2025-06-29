@@ -27,11 +27,13 @@
     "lint:links": "npm run build && node ./link-checker.js",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "geist": "^1.2.0",
     "open-props": "^1.7.4",
+    "patch-package": "^8.0.0",
     "prism-themes": "^1.9.0"
   },
   "devDependencies": {

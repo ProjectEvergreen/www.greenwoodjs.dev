@@ -1,0 +1,52 @@
+diff --git a/node_modules/@greenwood/cli/src/lib/layout-utils.js b/node_modules/@greenwood/cli/src/lib/layout-utils.js
+index 15ee561..d3ef38a 100644
+--- a/node_modules/@greenwood/cli/src/lib/layout-utils.js
++++ b/node_modules/@greenwood/cli/src/lib/layout-utils.js
+@@ -114,6 +114,7 @@ async function mergeContentIntoLayout(
+       });
+     let title;
+ 
++    console.log('1111?????', { hasActiveFrontmatterTitle, parentTitle: parentTitle?.rawText, childTitle: childTitle?.rawText });
+     if (hasActiveFrontmatterTitle) {
+       const text =
+         childTitle && childTitle.rawText.indexOf(activeFrontmatterTitleKey) >= 0
+@@ -121,15 +122,23 @@ async function mergeContentIntoLayout(
+           : parentTitle.rawText;
+       title = text.replace(activeFrontmatterTitleKey, matchingRoute.title || matchingRoute.label);
+     } else {
+-      title = matchingRoute.title
+-        ? matchingRoute.title
+-        : childTitle && childTitle.rawText
+-          ? childTitle.rawText
+-          : parentTitle && parentTitle.rawText
+-            ? parentTitle.rawText
++      title = childTitle && childTitle.rawText
++        ? childTitle.rawText
++        : parentTitle && parentTitle.rawText
++          ? parentTitle.rawText
++          : matchingRoute.title
++            ? matchingRoute.title
+             : "";
++      // title = matchingRoute.title
++      //   ? matchingRoute.title
++      //   : childTitle && childTitle.rawText
++      //     ? childTitle.rawText
++      //     : parentTitle && parentTitle.rawText
++      //       ? parentTitle.rawText
++      //       : "";
+     }
+ 
++    console.log('2222?????', { title });
+     const mergedHtml =
+       childRoot &&
+       childRoot.querySelector("html") &&
+@@ -246,6 +255,9 @@ async function mergeContentIntoLayout(
+     `;
+   }
+ 
++  // console.log({ mergedContents });
++  console.log('=====================')
++
+   return mergedContents;
+ }
+ 
