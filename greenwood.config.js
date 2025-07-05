@@ -47,6 +47,14 @@ export default {
       "rehype-autolink-headings",
       "remark-github",
       "remark-gfm",
+      {
+        name: "rehype-external-links",
+        options: {
+          // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#security_and_privacy
+          rel: ["nofollow", "noopener", "noreferrer"],
+          target: "_blank",
+        },
+      },
     ],
   },
 
