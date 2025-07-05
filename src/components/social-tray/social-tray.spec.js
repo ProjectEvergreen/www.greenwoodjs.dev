@@ -49,6 +49,7 @@ describe("Components/Social Tray", () => {
 
         expect(iconItem).to.not.equal(undefined);
         expect(link.getAttribute("href")).to.equal(iconItem.link);
+        expect(link.getAttribute("target")).equal("_blank");
       });
     });
   });
