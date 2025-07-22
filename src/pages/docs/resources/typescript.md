@@ -81,7 +81,7 @@ See our [reference docs on Greenwood's available types](/docs/reference/appendix
 
 ### Import Attributes
 
-Currently TypeScript does not support types for standard [JSON and CSS Import Attributes](https://github.com/microsoft/TypeScript/issues/46135). You can use the below snippets as a reference for providing these types for your own project in the meantime.
+Currently TypeScript only supports types for standard [JSON Import Attributes](https://devblogs.microsoft.com/typescript/announcing-typescript-5-4/#checked-import-attributes-and-assertions) as of TypeScript 5.4. There is an [open issue tracking CSS Module Scripts support](https://github.com/microsoft/TypeScript/issues/46689), so in the meantime you can use the below snippet as a reference for providing this type for yourself in your own project.
 
 <!-- prettier-ignore-start -->
 
@@ -92,12 +92,6 @@ Currently TypeScript does not support types for standard [JSON and CSS Import At
     const sheet: CSSStyleSheet;
 
     export default sheet;
-  }
-
-  declare module "*.json" {
-    const data: object;
-
-    export default data;
   }
   ```
 
