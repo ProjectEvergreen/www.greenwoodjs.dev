@@ -53,6 +53,8 @@ export default {
           // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#security_and_privacy
           rel: ["nofollow", "noopener", "noreferrer"],
           target: "_blank",
+          contentProperties: { className: ["no-show-screen-reader"] },
+          content: [{ type: "text", value: " (opens in a new window)" }],
         },
       },
     ],
