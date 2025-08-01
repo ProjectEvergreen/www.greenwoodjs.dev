@@ -55,6 +55,7 @@ export default {
           target: "_blank",
           contentProperties: { className: ["no-show-screen-reader"] },
           content: [{ type: "text", value: " (opens in a new window)" }],
+          properties: { className: ["external-link-icon"] },
         },
       },
     ],

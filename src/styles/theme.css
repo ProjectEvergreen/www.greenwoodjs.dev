@@ -145,6 +145,7 @@ li {
   }
 }
 
+/* external links styling */
 .no-show-screen-reader {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -153,4 +154,10 @@ li {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+.external-link-icon::after {
+  content: url(/assets/external-link.svg);
+  margin: 0 0 0 var(--size-1);
+  vertical-align: middle;
 }
