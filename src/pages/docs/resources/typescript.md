@@ -18,7 +18,7 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 
 1. You will need to use Node **>= 22.6.0** and set the `--experimental-strip-types` flag
 1. Install TypeScript into your project, e.g. `npm i typescript --save-dev`
-1. Create a _tsconfig.json_ file at the root of your project with these minimum configuration settings. We recommend adding the [`erasableSyntaxOnly` setting](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly)
+1. Create a _tsconfig.json_ file at the root of your project with these minimum configuration settings. We also recommend adding the [`erasableSyntaxOnly` setting](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly)
 
   <!-- prettier-ignore-start -->
 
@@ -27,6 +27,7 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 ```json
 {
   "compilerOptions": {
+    "target": "es2015",
     "module": "preserve",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
