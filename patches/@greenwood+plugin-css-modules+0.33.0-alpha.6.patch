@@ -1,5 +1,5 @@
 diff --git a/node_modules/@greenwood/plugin-css-modules/src/index.js b/node_modules/@greenwood/plugin-css-modules/src/index.js
-index e2f5928..075a350 100644
+index e2f5928..56ff4f2 100644
 --- a/node_modules/@greenwood/plugin-css-modules/src/index.js
 +++ b/node_modules/@greenwood/plugin-css-modules/src/index.js
 @@ -4,6 +4,7 @@
@@ -10,42 +10,33 @@ index e2f5928..075a350 100644
  import { parse as hparse } from "node-html-parser";
  import { parse, walk } from "css-tree";
  import * as acornWalk from "acorn-walk";
-@@ -11,7 +12,8 @@ import * as acorn from "acorn";
+@@ -11,24 +12,7 @@ import * as acorn from "acorn";
  import { hashString } from "@greenwood/cli/src/lib/hashing-utils.js";
  import { ACORN_OPTIONS } from "@greenwood/cli/src/lib/parsing-utils.js";
  
 -const MODULES_MAP_FILENAME = "__css-modules-map.json";
-+const MODULES_MAP_DIR_NAME = "__css-modules-map";
-+// const MODULES_MAP_FILENAME = "__css-modules-map.json";
- /*
-  * we have to write the modules map to a file to preserve the state between static and SSR / prerendering
-  * since if we try and do something like `globalThis.cssModulesMap = globalThis.cssModulesMap ?? {}`
-@@ -19,16 +21,16 @@ const MODULES_MAP_FILENAME = "__css-modules-map.json";
-  *
-  * https://github.com/ProjectEvergreen/greenwood/discussions/1117
-  */
+-/*
+- * we have to write the modules map to a file to preserve the state between static and SSR / prerendering
+- * since if we try and do something like `globalThis.cssModulesMap = globalThis.cssModulesMap ?? {}`
+- * it won't persist across Worker threads.  Maybe if we find a solution to this, we would handle this all in memory.
+- *
+- * https://github.com/ProjectEvergreen/greenwood/discussions/1117
+- */
 -function getCssModulesMap(compilation) {
 -  const locationUrl = new URL(`./${MODULES_MAP_FILENAME}`, compilation.context.scratchDir);
 -  let cssModulesMap = {};
-+// function getCssModulesMap(compilation) {
-+//   const locationUrl = new URL(`./${MODULES_MAP_FILENAME}`, compilation.context.scratchDir);
-+//   let cssModulesMap = {};
- 
+-
 -  if (fs.existsSync(locationUrl)) {
 -    cssModulesMap = JSON.parse(fs.readFileSync(locationUrl, "utf-8"));
 -  }
-+//   if (fs.existsSync(locationUrl)) {
-+//     cssModulesMap = JSON.parse(fs.readFileSync(locationUrl, "utf-8"));
-+//   }
- 
+-
 -  return cssModulesMap;
 -}
-+//   return cssModulesMap;
-+// }
++const MODULES_MAP_DIR_NAME = "__css-modules-map";
  
  async function getTransformedScriptContents(scriptUrl, compilation) {
    const resourcePlugins = compilation.config.plugins
-@@ -74,7 +76,7 @@ async function getTransformedScriptContents(scriptUrl, compilation) {
+@@ -74,7 +58,7 @@ async function getTransformedScriptContents(scriptUrl, compilation) {
    return await response.text();
  }
  
@@ -54,30 +45,36 @@ index e2f5928..075a350 100644
    const scriptContents = await getTransformedScriptContents(scriptUrl, compilation);
    const additionalScripts = [];
  
-@@ -140,20 +142,63 @@ async function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
+@@ -140,19 +124,34 @@ async function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
            },
          });
  
 -        const cssModulesMap = getCssModulesMap(compilation);
-+        // TODO better truncate name
-+        const ouputPathUrl = new URL(`./${MODULES_MAP_DIR_NAME}${scriptUrl.pathname}.json`, compilation.context.scratchDir);
++        const outputPathUrl = new URL(
++          `./${MODULES_MAP_DIR_NAME}/${hashString(scriptUrl.pathname)}.map.json`,
++          compilation.context.scratchDir,
++        );
 +
-+        // console.log({ ouputPathUrl })
-+        if (!fs.existsSync(ouputPathUrl)) {
-+          fs.mkdirSync(path.dirname(ouputPathUrl.pathname), { recursive: true });
++        if (!fs.existsSync(outputPathUrl)) {
++          fs.mkdirSync(path.dirname(scriptUrl.pathname), { recursive: true });
 +        }
 +
-+        cssModulesMap[ouputPathUrl] = {
++        const moduleContents = {
 +          module: classNameMap,
 +          contents: scopedCssContents,
 +          importer: scriptUrl,
 +          identifier,
-+        }
++        };
++
++        cssModulesMap[outputPathUrl] = moduleContents;
++
++        // output one file for transforming imports from CSS -> ESM
++        fs.writeFileSync(outputPathUrl, JSON.stringify(moduleContents));
  
++        // output one file for SSR / prerendering handling in loaders as ESM
          fs.writeFileSync(
 -          new URL(`./${MODULES_MAP_FILENAME}`, compilation.context.scratchDir),
-+          new URL(`./${MODULES_MAP_DIR_NAME}${cssModuleUrl.pathname}.json`, compilation.context.scratchDir),
-           JSON.stringify({
+-          JSON.stringify({
 -            ...cssModulesMap,
 -            [`${cssModuleUrl.href}`]: {
 -              module: classNameMap,
@@ -85,49 +82,16 @@ index e2f5928..075a350 100644
 -              importer: scriptUrl,
 -              identifier,
 -            },
-+            module: classNameMap,
-+            contents: scopedCssContents,
-+            importer: scriptUrl,
-+            identifier,
-+          }),
-+        )
-+
-+        fs.writeFileSync(
-+          ouputPathUrl,
-+          JSON.stringify({
-+            module: classNameMap,
-+            contents: scopedCssContents,
-+            importer: scriptUrl,
-+            identifier,
-           }),
+-          }),
++          new URL(
++            `./${MODULES_MAP_DIR_NAME}/${hashString(cssModuleUrl.pathname)}.module.json`,
++            compilation.context.scratchDir,
++          ),
++          JSON.stringify(moduleContents),
          );
-+
-+        fs.writeFileSync(
-+          ouputPathUrl,
-+          JSON.stringify({
-+            module: classNameMap,
-+            contents: scopedCssContents,
-+            importer: scriptUrl,
-+            identifier,
-+          }),
-+        );
-+
-+        // fs.writeFileSync(
-+        //   new URL(`./${MODULES_MAP_FILENAME}`, compilation.context.scratchDir),
-+        //   JSON.stringify({
-+        //     ...cssModulesMap,
-+        //     [`${cssModuleUrl.href}`]: {
-+        //       module: classNameMap,
-+        //       contents: scopedCssContents,
-+        //       importer: scriptUrl,
-+        //       identifier,
-+        //     },
-+        //   }),
-+        // );
        } else {
          const recursiveScriptUrl = new URL(value, scriptUrl);
- 
-@@ -165,8 +210,10 @@ async function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
+@@ -165,8 +164,10 @@ async function walkAllImportsForCssModules(scriptUrl, sheets, compilation) {
    });
  
    for (const script of additionalScripts) {
@@ -139,37 +103,29 @@ index e2f5928..075a350 100644
  }
  
  // this happens 'first' as the HTML is returned, to find viable references to CSS Modules
-@@ -179,34 +226,40 @@ class ScanForCssModulesResource {
+@@ -178,35 +179,28 @@ class ScanForCssModulesResource {
+     this.contentType = "text/javascript";
      const { scratchDir } = this.compilation.context;
  
-     if (
+-    if (
 -      fs.existsSync(scratchDir) &&
 -      !fs.existsSync(new URL(`./${MODULES_MAP_FILENAME}`, scratchDir))
-+      !fs.existsSync(new URL(`./${MODULES_MAP_DIR_NAME}/`, scratchDir))
-     ) {
+-    ) {
 -      fs.writeFileSync(new URL(`./${MODULES_MAP_FILENAME}`, scratchDir), JSON.stringify({}));
++    if (!fs.existsSync(new URL(`./${MODULES_MAP_DIR_NAME}/`, scratchDir))) {
 +      fs.mkdirSync(new URL(`./${MODULES_MAP_DIR_NAME}/`, scratchDir), { recursive: true });
      }
-+    // if (
-+    //   fs.existsSync(scratchDir) &&
-+    //   !fs.existsSync(new URL(`./${MODULES_MAP_FILENAME}`, scratchDir))
-+    // ) {
-+    //   fs.writeFileSync(new URL(`./${MODULES_MAP_FILENAME}`, scratchDir), JSON.stringify({}));
-+    // }
    }
  
    async shouldIntercept(url) {
      const { pathname, protocol } = url;
 -    const mapKey = `${protocol}//${pathname}`;
 -    const cssModulesMap = getCssModulesMap(this.compilation);
-+    // const mapKey = `${protocol}//${pathname}`;
-+    // const cssModulesMap = getCssModulesMap(this.compilation);
  
      return (
 -      url.pathname.endsWith("/") ||
 -      (protocol === "file:" && pathname.endsWith(this.extensions[0]) && cssModulesMap[mapKey])
-+      url.pathname.endsWith("/")
-+      || (protocol === "file:" && pathname.endsWith(this.extensions[0]))
++      url.pathname.endsWith("/") || (protocol === "file:" && pathname.endsWith(this.extensions[0]))
      );
    }
  
@@ -177,8 +133,6 @@ index e2f5928..075a350 100644
      const { pathname, protocol } = url;
 -    const mapKey = `${protocol}//${pathname}`;
 -    const cssModulesMap = getCssModulesMap(this.compilation);
-+    // const mapKey = `${protocol}//${pathname}`;
-+    // const cssModulesMap = getCssModulesMap(this.compilation);
  
      if (url.pathname.endsWith("/")) {
        const body = await response.text();
@@ -189,69 +143,68 @@ index e2f5928..075a350 100644
  
        for (const script of scripts) {
          const type = script.getAttribute("type") ?? "";
-@@ -219,12 +272,13 @@ class ScanForCssModulesResource {
+@@ -219,12 +213,15 @@ class ScanForCssModulesResource {
              this.compilation.context.userWorkspace,
            );
  
 -          await walkAllImportsForCssModules(scriptUrl, sheets, this.compilation);
-+          cssModulesMap = await walkAllImportsForCssModules(cssModulesMap, scriptUrl, sheets, this.compilation);
++          cssModulesMap = await walkAllImportsForCssModules(
++            cssModulesMap,
++            scriptUrl,
++            sheets,
++            this.compilation,
++          );
          }
        }
  
 -      const cssModulesMap = getCssModulesMap(this.compilation);
-+      // const cssModulesMap = getCssModulesMap(this.compilation);
- 
-+      // console.log('&&&&&', { cssModulesMap });
+-
        Object.keys(cssModulesMap).forEach((key) => {
          sheets.push(cssModulesMap[key].contents);
        });
-@@ -242,11 +296,14 @@ class ScanForCssModulesResource {
+@@ -240,13 +237,18 @@ class ScanForCssModulesResource {
+       );
+ 
        return new Response(newBody);
-     } else if (
-       protocol === "file:" &&
+-    } else if (
+-      protocol === "file:" &&
 -      pathname.endsWith(this.extensions[0]) &&
 -      cssModulesMap[mapKey]
-+      pathname.endsWith(this.extensions[0])
-     ) {
-+      console.log('herehehre?')
-+      const cssModulesMap = JSON.parse(fs.readFileSync(new URL(`./${MODULES_MAP_DIR_NAME}${url.pathname}.json`, this.compilation.context.scratchDir)));
-+      const { identifier, module } = cssModulesMap
-+
+-    ) {
++    } else if (protocol === "file:" && pathname.endsWith(this.extensions[0])) {
        // handle this primarily for SSR / prerendering use case
 -      const cssModule = `export default ${JSON.stringify(cssModulesMap[mapKey].module)}`;
++      const cssModulesMap = JSON.parse(
++        fs.readFileSync(
++          new URL(
++            `./${MODULES_MAP_DIR_NAME}/${hashString(url.pathname)}.module.json`,
++            this.compilation.context.scratchDir,
++          ),
++        ),
++      );
++      const { module } = cssModulesMap;
 +      const cssModule = `export default ${JSON.stringify(module)}`;
  
        return new Response(cssModule, {
          headers: {
-@@ -267,16 +324,21 @@ class StripCssModulesResource {
+@@ -267,13 +269,9 @@ class StripCssModulesResource {
    }
  
    async shouldIntercept(url) {
 -    const cssModulesMap = getCssModulesMap(this.compilation);
-+    // console.log('StripCssModulesResource intercept url => ??? ', { url });
-+    // console.log('??', new URL(`./${MODULES_MAP_DIR_NAME}${url.pathname}.json`, this.compilation.context.scratchDir));
- 
+-
 -    for (const [, value] of Object.entries(cssModulesMap)) {
 -      if (url.href === value.importer) {
 -        return true;
 -      }
 -    }
-+    return fs.existsSync(new URL(`./${MODULES_MAP_DIR_NAME}${url.pathname}.json`, this.compilation.context.scratchDir));
-+    // const cssModulesMap = getCssModulesMap(this.compilation);
-+
-+    // for (const [, value] of Object.entries(cssModulesMap)) {
-+    //   if (url.href === value.importer) {
-+    //     return true;
-+    //   }
-+    // }
++    return fs.existsSync(
++      new URL(`./${MODULES_MAP_DIR_NAME}/${hashString(url.pathname)}.map.json`, this.compilation.context.scratchDir),
++    );
    }
  
    async intercept(url, request, response) {
-+    // console.log('StripCssModulesResource intercept url $$$$ => ', url.pathname);
-     const { context } = this.compilation;
-     let contents = await response.text();
- 
-@@ -287,12 +349,13 @@ class StripCssModulesResource {
+@@ -287,26 +285,25 @@ class StripCssModulesResource {
  
          if (value.endsWith(".module.css") && specifiers.length === 1) {
            contents = `${contents.slice(0, start)} \n ${contents.slice(end)}`;
@@ -259,30 +212,41 @@ index e2f5928..075a350 100644
 -
 -          Object.values(cssModulesMap).forEach((value) => {
 -            const { importer, module, identifier } = value;
-+          const cssModulesMap = JSON.parse(fs.readFileSync(new URL(`./${MODULES_MAP_DIR_NAME}${url.pathname}.json`, context.scratchDir)));
-+          const { identifier, module } = cssModulesMap
-+          // console.log({cssModulesMap})
-+          // Object.values(cssModulesMap).forEach((value) => {
-+          //   const { importer, module, identifier } = value;
- 
+-
 -            if (importer === url.href) {
-+          //   if (importer === url.href) {
-               Object.keys(module).forEach((key) => {
-                 const literalUsageRegex = new RegExp(String.raw`\$\{${identifier}.${key}\}`, "g");
-                 // https://stackoverflow.com/a/20851557/417806
-@@ -307,12 +370,13 @@ class StripCssModulesResource {
-                   contents = contents.replace(expressionUsageRegex, `'${module[key]}'`);
-                 }
-               });
--            }
--          });
-+            // }
-+          // });
+-              Object.keys(module).forEach((key) => {
+-                const literalUsageRegex = new RegExp(String.raw`\$\{${identifier}.${key}\}`, "g");
+-                // https://stackoverflow.com/a/20851557/417806
+-                const expressionUsageRegex = new RegExp(
+-                  String.raw`(((?<![-\w\d\W])|(?<=[> \n\r\b]))${identifier}\.${key}((?![-\w\d\W])|(?=[ <.,:;!?\n\r\b])))`,
+-                  "g",
+-                );
+-
+-                if (literalUsageRegex.test(contents)) {
+-                  contents = contents.replace(literalUsageRegex, module[key]);
+-                } else if (expressionUsageRegex.test(contents)) {
+-                  contents = contents.replace(expressionUsageRegex, `'${module[key]}'`);
+-                }
+-              });
++          const cssModulesMap = JSON.parse(
++            fs.readFileSync(
++              new URL(`./${MODULES_MAP_DIR_NAME}/${hashString(url.pathname)}.map.json`, context.scratchDir),
++            ),
++          );
++          const { identifier, module } = cssModulesMap;
++
++          Object.keys(module).forEach((key) => {
++            const literalUsageRegex = new RegExp(String.raw`\$\{${identifier}.${key}\}`, "g");
++            // https://stackoverflow.com/a/20851557/417806
++            const expressionUsageRegex = new RegExp(
++              String.raw`(((?<![-\w\d\W])|(?<=[> \n\r\b]))${identifier}\.${key}((?![-\w\d\W])|(?=[ <.,:;!?\n\r\b])))`,
++              "g",
++            );
++
++            if (literalUsageRegex.test(contents)) {
++              contents = contents.replace(literalUsageRegex, module[key]);
++            } else if (expressionUsageRegex.test(contents)) {
++              contents = contents.replace(expressionUsageRegex, `'${module[key]}'`);
+             }
+           });
          }
-       },
-     });
- 
-+    // console.log('CONTENTS!!!!', { contents });
-     return new Response(contents);
-   }
- }
