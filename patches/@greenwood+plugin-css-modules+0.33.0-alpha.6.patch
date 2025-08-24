@@ -1,5 +1,5 @@
 diff --git a/node_modules/@greenwood/plugin-css-modules/src/index.js b/node_modules/@greenwood/plugin-css-modules/src/index.js
-index e2f5928..952d928 100644
+index e2f5928..075a350 100644
 --- a/node_modules/@greenwood/plugin-css-modules/src/index.js
 +++ b/node_modules/@greenwood/plugin-css-modules/src/index.js
 @@ -4,6 +4,7 @@
@@ -148,7 +148,7 @@ index e2f5928..952d928 100644
 +      !fs.existsSync(new URL(`./${MODULES_MAP_DIR_NAME}/`, scratchDir))
      ) {
 -      fs.writeFileSync(new URL(`./${MODULES_MAP_FILENAME}`, scratchDir), JSON.stringify({}));
-+      fs.mkdirSync(new URL(`./${MODULES_MAP_DIR_NAME}/`, scratchDir));
++      fs.mkdirSync(new URL(`./${MODULES_MAP_DIR_NAME}/`, scratchDir), { recursive: true });
      }
 +    // if (
 +    //   fs.existsSync(scratchDir) &&
