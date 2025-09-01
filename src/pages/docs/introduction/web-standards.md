@@ -143,6 +143,81 @@ Some known issues / examples observed so far include:
 - `ERR_MODULE_NOT_FOUND` - Observed with packages like [**@types/trusted-types**](https://github.com/DefinitelyTyped/DefinitelyTyped) which has an [empty string](https://unpkg.com/browse/@types/trusted-types@2.0.7/package.json) for the **main** field, or [**font-awesome**](https://fontawesome.com/), which has [no entry point](https://unpkg.com/browse/font-awesome@4.7.0/package.json) at all, at least as of `v4.x`. This is also a fairly common issue with packages that primarily deal with shipping types since they will likely only define a `types` field in their _package.json_.
 - `ERR_PACKAGE_PATH_NOT_EXPORTED` - Encountered with packages like [**geist-font**](https://github.com/vercel/geist-font/issues/150) or [**@libsql/core**](https://github.com/thescientist13/import-meta-resolve-demo?tab=readme-ov-file#no-main-exports-map-entry-point-err_package_path_not_exported), which has [no default export](https://github.com/vercel/geist-font/issues/150) in their exports map, which is assumed by the NodeJS resolver algorithm.
 
+---
+
+In cases where this issue prevents scripts from loading in the browser, you can create a [Resource plugin](/docs/reference/plugins-api/#resource) to automatically generate an import map for you.
+
+The example below demonstrates adding supplemental custom import map entries for [heroicons](https://heroicons.com/) SVG icons:
+
+```js
+import { mergeImportMap } from "@greenwood/cli/src/lib/node-modules-utils.js";
+import fs from "node:fs";
+
+const NODE_MODULES_LOCATION = new URL("./node_modules/", import.meta.url);
+const PACKAGE_NAME = "heroicons";
+
+let importMap;
+
+function generateImportMap() {
+  if (!importMap) {
+    importMap = new Map();
+
+    fs.globSync("**/**/*.svg", {
+      cwd: `${NODE_MODULES_LOCATION.pathname}/${PACKAGE_NAME}/`,
+    }).forEach((file) => {
+      const resolved = new URL(`./${PACKAGE_NAME}/${file}`, NODE_MODULES_LOCATION);
+
+      // add the query param for import raw plugin support
+      importMap.set(`${PACKAGE_NAME}/${file}?type=raw`, `/~${resolved.pathname}?type=raw`);
+    });
+  }
+
+  return Object.fromEntries(importMap);
+}
+
+class HeroiconsImportMap {
+  constructor(compilation) {
+    this.compilation = compilation;
+  }
+
+  async shouldIntercept(url, request) {
+    const { protocol, pathname } = url;
+    const hasMatchingPageRoute = this.compilation.graph.find((node) => node.route === pathname);
+
+    return (
+      process.env.__GWD_COMMAND__ === "develop" &&
+      protocol.startsWith("http") &&
+      hasMatchingPageRoute &&
+      request.headers.get("Accept").indexOf("text/html") >= 0
+    );
+  }
+
+  async intercept(url, request, response) {
+    const body = await response.text();
+    const newBody = mergeImportMap(body, generateImportMap());
+
+    return new Response(newBody);
+  }
+}
+
+// make sure to include this into your Greenwood config file
+export function heroiconsImportMapPlugin() {
+  return {
+    type: "resource",
+    name: "heroicons-import-map-plugin",
+    provider: (compilation) => new HeroiconsImportMap(compilation),
+  };
+}
+```
+
+This would allow usage of bare specifiers from a client-side JavaScript file:
+
+```js
+import pauseSvg from "heroicons/24/solid/pause.svg?type=raw";
+
+console.log({ pauseSvg });
+```
+
 > In almost all of our observed diagnostic cases, they would all go away if [this feature](https://github.com/nodejs/node/issues/49445) was added to NodeJS, so please add an up-vote to that issue! 👍
 >
 > If you have any issues or questions, please reach out in our [discussion on the topic](https://github.com/ProjectEvergreen/greenwood/discussions/1396).
