@@ -38,8 +38,9 @@ With NodeJS installed, you'll want to prepare a workspace for your project and u
 <app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest">
 
   ```shell
-  # initialize a new Greenwood project into the my-app directory
-  $ npx @greenwood/init@latest my-app
+  # initialize a new Greenwood project into the my-app directory (or any name you want)
+  # You can skip TypeScript for now, and select your package manager of choice
+  $ npx @greenwood/init@latest --name my-app
   $ cd my-app
 
   # clean up the src/ directory
@@ -50,7 +51,7 @@ With NodeJS installed, you'll want to prepare a workspace for your project and u
 
 <!-- prettier-ignore-end -->
 
-Or you can also manually initialize a repository setting up and installing the Greenwood CLI yourself, like so:
+Or you can also manually initialize a workspace by setting up and installing the Greenwood CLI yourself, like so:
 
 ```shell
 # make and change into your workspace directory
@@ -58,9 +59,9 @@ $ mkdir my-app
 $ cd my-app
 
 # initialize a package.json (you can accept all defaults)
-$ npm init
+$ npm init # or Yarn, or pnpm, etc...
 
-# install Greenwood as a devDependency
+# install Greenwood as a dev dependency
 $ npm i -D @greenwood/cli@latest
 ```
 
