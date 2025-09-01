@@ -25,25 +25,25 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 
 <app-ctc-block variant="snippet" heading="tsconfig.json">
 
-```json5
-{
-  compilerOptions: {
-    // minimum required configuration
-    target: "es2020",
-    module: "preserve",
-    moduleResolution: "bundler",
-    allowImportingTsExtensions: true,
-    noEmit: true,
+  ```json5
+  {
+    compilerOptions: {
+      // minimum required configuration
+      target: "es2020",
+      module: "preserve",
+      moduleResolution: "bundler",
+      allowImportingTsExtensions: true,
+      noEmit: true,
 
-    // additional recommended configuration
-    lib: ["ES2020", "DOM", "DOM.Iterable"],
-    verbatimModuleSyntax: true,
-    erasableSyntaxOnly: true,
-  },
+      // additional recommended configuration
+      lib: ["ES2020", "DOM", "DOM.Iterable"],
+      verbatimModuleSyntax: true,
+      erasableSyntaxOnly: true,
+    },
 
-  exclude: ["./public/", "./greenwood/", "node_modules"],
-}
-```
+    exclude: ["./public/", "./greenwood/", "node_modules"],
+  }
+  ```
 
 </app-ctc-block>
 
