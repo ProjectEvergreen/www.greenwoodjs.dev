@@ -8,6 +8,8 @@ tocHeading: 2
 
 Greenwood has a few options for getting a new project started. You can also check out our [_Getting Started_ guide](/guides/getting-started/) for a full walk-through of creating a simple blog site with Greenwood.
 
+Greenwood supports NodeJS LTS version >= 22.18.0.
+
 ## Init
 
 The recommended way to start a new Greenwood project, our **init** CLI will scaffold out a starter project for you. Just run a single command and then follow the prompts. Make sure you have the [latest LTS version of Node](https://nodejs.org/en/download) installed.
