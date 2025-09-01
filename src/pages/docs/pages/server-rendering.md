@@ -276,7 +276,8 @@ For request handling, Greenwood will pass a native `Request` object and a Greenw
 
   ```js
   export default class PostPage extends HTMLElement {
-    constructor(request) {
+    // compilation also available
+    constructor({ request }) { 
       super();
 
       const params = new URLSearchParams(request.url.slice(request.url.indexOf("?")));
