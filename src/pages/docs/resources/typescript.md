@@ -21,9 +21,9 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 1. Create a _tsconfig.json_ file at the root of your project with the below minimum configuration settings.
 1. We also recommend additional configurations like [`verbatimModuleSyntax`](https://www.typescriptlang.org/tsconfig/#verbatimModuleSyntax) and [`erasableSyntaxOnly` setting](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly)
 
-  <!-- prettier-ignore-start -->
+<!-- prettier-ignore-start -->
 
-  <app-ctc-block variant="snippet" heading="tsconfig.json">
+<app-ctc-block variant="snippet" heading="tsconfig.json">
 
 ```json5
 {
@@ -45,9 +45,9 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 }
 ```
 
-  </app-ctc-block>
+</app-ctc-block>
 
-  <!-- prettier-ignore-end -->
+<!-- prettier-ignore-end -->
 
 > _If you're feeling adventurous, you can use **>=23.x** and omit the `--experimental-strip-types` flag_. Keep an eye on [this PR](https://github.com/nodejs/node/pull/57298) for when unflagged type-stripping support may come to Node LTS **22.x**. 👀
 
