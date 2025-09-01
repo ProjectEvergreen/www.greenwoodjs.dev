@@ -1,6 +1,6 @@
 import graph from "./public/graph.json" with { type: "json" };
 import { parse } from "node-html-parser";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 
 const report = {};
 

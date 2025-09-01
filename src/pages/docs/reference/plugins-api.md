@@ -105,7 +105,7 @@ Here is an example of the "generic adapter" created for Greenwood's own internal
 <app-ctc-block variant="snippet" heading="my-resource-plugin.js">
 
   ```js
-  import fs from "fs/promises";
+  import fs from "node:fs/promises";
   import { checkResourceExists } from "../../../../cli/src/lib/resource-utils.js";
 
   function generateOutputFormat(id, type) {
@@ -459,7 +459,7 @@ When requesting a resource like a file, such as _/main.js_, Greenwood needs to k
 <app-ctc-block variant="snippet">
 
   ```js
-  import fs from "fs";
+  import fs from "node:fs";
 
   class UserWorkspaceResource {
     async shouldResolve(url) {
@@ -511,7 +511,7 @@ Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergr
 <app-ctc-block variant="snippet">
 
   ```js
-  import fs from "fs";
+  import fs from "node:fs";
 
   class StandardJavaScriptResource {
     async shouldServe(url) {
@@ -718,7 +718,7 @@ Simply use the `provider` method to return an array of Rollup plugins:
 
   ```js
   import bannerRollup from "rollup-plugin-banner";
-  import fs from "fs";
+  import fs from "node:fs";
 
   const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
 
