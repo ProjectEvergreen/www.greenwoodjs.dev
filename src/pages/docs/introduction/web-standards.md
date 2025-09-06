@@ -145,9 +145,10 @@ Some known issues / examples observed so far include:
 
 ---
 
-In cases where this issue prevents scripts from loading in the browser, you can create a [Resource plugin](/docs/reference/plugins-api/#resource) to automatically generate an import map for you.
+In cases where this issue prevents scripts from resolving in the browser, you can create an import programmatically and use a [Resource plugin](/docs/reference/plugins-api/#resource) to add it to your page
+s HTML.
 
-The example below demonstrates adding supplemental custom import map entries for [heroicons](https://heroicons.com/) SVG icons:
+The below example demonstrates adding supplemental custom import map entries for [**heroicons**](https://heroicons.com/) SVG icons.
 
 ```js
 import { mergeImportMap } from "@greenwood/cli/src/lib/node-modules-utils.js";
