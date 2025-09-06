@@ -6,30 +6,148 @@ tocHeading: 2
 
 # Markdown
 
-In this section we'll cover some of the Markdown related features of **Greenwood**, which by default supports the [CommonMark](https://commonmark.org/help/) specification and [**unifiedjs**](https://unifiedjs.com/) as the markdown / content framework.
+For authoring in markdown, Greenwood provides a plugin that you can install, which by default supports the [CommonMark](https://commonmark.org/help/) specification and uses [**unifiedjs**](https://unifiedjs.com/) as the markdown / content framework. See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-markdown) for additional information, like standalone usage.
 
-## Plugins
+## Installation
 
-Using your _greenwood.config.js_ you can have additional [markdown customizations and configurations](/docs/reference/configuration/#markdown).
+You can use your favorite JavaScript package manager to install this plugin:
 
-For example, to use the [**remark-github**](https://github.com/remarkjs/remark-github) plugin:
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="runners">
+
+  ```shell
+  npm i -D @greenwood/plugin-markdown
+  ```
+
+  ```shell
+  yarn add @greenwood/plugin-markdown --dev
+  ```
+
+  ```shell
+  pnpm add -D @greenwood/plugin-markdown
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+Then add this plugin to your _greenwood.config.js_.
 
 <!-- prettier-ignore-start -->
 
 <app-ctc-block variant="snippet" heading="greenwood.config.js">
 
   ```js
-  // npm i -D remark-github
+  import { greenwoodPluginMarkdown } from "@greenwood/plugin-markdown";
+
   export default {
-    markdown: {
-      plugins: ["remark-github"],
-    },
+    plugins: [greenwoodPluginMarkdown()],
   };
   ```
 
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+## Usage
+
+Now you can start authoring your pages in markdown:
+
+```shell
+src/
+  pages/
+    blog/
+      first-post.md
+      second-post.md
+    index.md
+```
+
+## Types
+
+Types should automatically be inferred through this package's exports map, but can be referenced explicitly in both JavaScript (JSDoc) and TypeScript files if needed.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  /** @type {import('@greenwood/plugin-markdown').MarkdownPlugin} */
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```ts
+  import type { MarkdownPlugin } from '@greenwood/plugin-markdown';
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+## Options
+
+### Plugins
+
+You can install **remark** or **rehype** compatible plugins to extend this plugin's markdown rendering and transformation capabilities by passing their names in as an array.
+
+For example, after installing something like **rehype-slug**, pass the name as a string when adding the plugin to your Greenwood config file:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
+
+  ```js
+  import { greenwoodPluginMarkdown } from '@greenwood/plugin-markdown';
+
+  export default {
+    plugins: [
+      greenwoodPluginMarkdown({
+        // npm i -D rehype-slug
+        plugins: [
+          "rehype-slug"
+        ],
+      })
+    ]
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+If you need to pass options to a markdown plugin, you can use object syntax with the plugin name and the options it takes.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="greenwood.config.js">
+
+  ```js
+  import { greenwoodPluginMarkdown } from '@greenwood/plugin-markdown';
+
+  export default {
+    plugins: [
+      greenwoodPluginMarkdown({
+        plugins: [
+          "rehype-slug",
+          {
+            name: "rehype-autolink-headings",
+            options: {
+              behavior: "append"
+            },
+          },
+        ],
+      })
+    ]
+  }
+  ```
+
+</app-ctc-block>
 
 ## Syntax Highlighting
 
