@@ -34,7 +34,7 @@ Commands:
 
 ## Usage
 
-For interactive usage, you can import the CLI and call the `run` function with either the **build**, **develop**, or **serve** commands.
+For programmatic usage, you can import the CLI and call the `run` function with either the **build**, **develop**, or **serve** commands.
 
 ```js
 import { run } from "@greenwood/cli/src/index.js";
