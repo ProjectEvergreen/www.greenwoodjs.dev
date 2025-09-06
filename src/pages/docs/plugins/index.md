@@ -12,6 +12,7 @@ tocHeading: 2
 
 ## Featured
 
+- [Markdown](/docs/plugins/markdown/) - Author your pages in markdown
 - [Lit SSR](/docs/plugins/lit-ssr/) - For Lit users, a custom renderer plugin to support Lit+SSR
 - [PostCSS](/docs/plugins/postcss/) - Leverage PostCSS plugins, like [Tailwind](/guides/ecosystem/tailwind/)
 - [CSS Modules](/docs/plugins/css-modules/) - Support for [CSS Modules ™](https://github.com/css-modules/css-modules) syntax
@@ -31,6 +32,7 @@ Below is the official list of supported first-party plugins available by the Gre
 | [Import Raw](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw)        | Enables usage of ESM syntax for loading arbitrary file contents as a string.                                  |
 | [JSX](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-jsx)               | Enables usage of ESM syntax for loading [**WCC**](https://github.com/ProjectEvergreen/wcc) compatible JSX.    |
 | [Lit SSR](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit)         | A server-side rendering plugin for Lit based Greenwood projects.                                              |
+| [Markdown](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-markdown)            | Author your pages in markdown using the [**unified**](https://unifiedjs.com/) ecosystem.                      |
 | [Netlify](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-adapter-netlify)      | Deploy serverless and edge functions to [**Netlify**](https://www.netlify.com/).                              |
 | [Polyfills](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-polyfills)          | Web Component related polyfills for older browsers.                                                           |
 | [PostCSS](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-postcss)              | Allows usage of [**PostCSS**](https://postcss.org/) plugins and configuration in your project.                |

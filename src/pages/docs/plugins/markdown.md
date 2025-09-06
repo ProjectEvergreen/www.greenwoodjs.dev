@@ -1,6 +1,6 @@
 ---
 layout: docs
-order: 5
+order: 1
 tocHeading: 2
 ---
 

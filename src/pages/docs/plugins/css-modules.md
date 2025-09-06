@@ -2,7 +2,7 @@
 title: CSS Modules
 label: CSS Modules
 layout: docs
-order: 2
+order: 3
 tocHeading: 2
 ---
 

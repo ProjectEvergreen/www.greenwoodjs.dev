@@ -2,7 +2,7 @@
 title: PostCSS
 label: PostCSS
 layout: docs
-order: 4
+order: 5
 tocHeading: 2
 ---
 
