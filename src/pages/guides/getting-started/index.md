@@ -20,8 +20,8 @@ This _Getting Started_ guide will walk you through creating a basic static conte
 
 You will need the following installed on your machine:
 
-1. Latest [**NodeJS LTS**](https://nodejs.org/en/download) (required) - We recommend using a Node version manager (like NVM) to install the latest stable version of Node
-1. [**Git**](https://git-scm.com/) (optional) - Can be useful for [cloning and inspecting](https://github.com/ProjectEvergreen/greenwood-getting-started) the companion repo for this guide, or otherwise managing your Greenwood project through version control
+1. Latest [**NodeJS LTS**](https://nodejs.org/en/download) version (required) - We recommend using a Node version manager (like [**NVM**](https://github.com/nvm-sh/nvm)) to manage local node installations.
+1. [**Git**](https://git-scm.com/) (optional) - Can be useful for [cloning and inspecting](https://github.com/ProjectEvergreen/greenwood-getting-started) the companion repo for this guide, or otherwise managing your Greenwood project through version control.
 
 You can verify that NodeJS has been installed correctly by checking its version from the command line:
 
