@@ -85,9 +85,11 @@ Then setup some npm scripts in your _package.json_ for running Greenwood and mak
 
 <!-- prettier-ignore-end -->
 
-## Jump Right In
+## Stackblitz
 
 If you want to jump to the final results right away, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with it directly in your browser on [Stackblitz](https://stackblitz.com/github/projectevergreen/greenwood-getting-started).
+
+> ⚠️ Currently Stackblitz does [not have support for Node `22.18.0`](https://github.com/stackblitz/webcontainer-core/issues/560#issuecomment-3263215295).
 
 <iframe class="stackblitz" src="https://stackblitz.com/github/projectevergreen/greenwood-getting-started?embed=1" loading="lazy"></iframe>
 
