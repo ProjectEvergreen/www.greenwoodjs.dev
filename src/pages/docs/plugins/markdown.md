@@ -6,7 +6,7 @@ tocHeading: 2
 
 # Markdown
 
-For authoring in markdown, Greenwood provides a plugin that you can install, which by default supports the [CommonMark](https://commonmark.org/help/) specification and uses [**unifiedjs**](https://unifiedjs.com/) as the markdown / content framework. See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-markdown) for additional information, like standalone usage.
+For authoring in markdown, Greenwood provides a plugin that you can install which by default supports the [CommonMark](https://commonmark.org/help/) specification and uses [**unifiedjs**](https://unifiedjs.com/) as the markdown / content framework. See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-markdown) for additional information, like standalone usage.
 
 ## Installation
 
@@ -350,6 +350,66 @@ You can also define any custom frontmatter property you want and that will be ma
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+## Table of Contents
+
+You can add a frontmatter property called `tocHeading` that will read all the HTML heading tags that match that number in your markdown, and provide that as a subset of the data object in your [pages data schema](/docs/content-as-data/pages-data/#schema). This is most useful for generating the table of contents for a page.
+
+For example:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/blog/first-post.md">
+
+  ```md
+  ---
+  author: Project Evergreen
+  published: 2024-01-01
+  tocHeading: 2
+  ---
+
+  # First Post
+
+  This is my first post.
+
+  ## Overview
+
+  Lorum Ipsum
+
+  ## First Point
+
+  Something something...
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+We would get this additional content as data:
+
+```json
+{
+  "id": "blog-first-post",
+  "title": "First Post",
+  "label": "First Post",
+  "route": "/blog/first-post/",
+  "data": {
+    "author": "Project Evergreen",
+    "published": "2024-01-01",
+    "tocHeading": 2,
+    "tableOfContents": [
+      {
+        "content": "Overview",
+        "slug": "overview"
+      },
+      {
+        "content": "First Point",
+        "slug": "first-point"
+      }
+    ]
+  }
+}
+```
 
 ## Active Frontmatter
 

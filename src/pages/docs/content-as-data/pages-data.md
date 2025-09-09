@@ -54,66 +54,6 @@ This is the data you would get back:
 }
 ```
 
-## Table of Contents
-
-Additionally for markdown pages, you can add a frontmatter property called `tocHeading` that will read all the HTML heading tags that match that number, and provide that as a subset of the data object. This is most useful for generating the table of contents for a page.
-
-Taking our previous example, if we were to configure this for `<h2>` tags:
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet" heading="src/pages/blog/first-post.md">
-
-  ```md
-  ---
-  author: Project Evergreen
-  published: 2024-01-01
-  tocHeading: 2
-  ---
-
-  # First Post
-
-  This is my first post.
-
-  ## Overview
-
-  Lorum Ipsum
-
-  ## First Point
-
-  Something something...
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-We would get this additional content as data out:
-
-```json
-{
-  "id": "blog-first-post",
-  "title": "First Post",
-  "label": "First Post",
-  "route": "/blog/first-post/",
-  "data": {
-    "author": "Project Evergreen",
-    "published": "2024-01-01",
-    "tocHeading": 2,
-    "tableOfContents": [
-      {
-        "content": "Overview",
-        "slug": "overview"
-      },
-      {
-        "content": "First Point",
-        "slug": "first-point"
-      }
-    ]
-  }
-}
-```
-
 ## External Content
 
 Using our [Source plugin](/docs/reference/plugins-api/#source), just as you can get your content as data _out_ of Greenwood, so can you provide your own sources of content (as data) _to_ Greenwood. This is great for pulling content from a headless CMS, database, or anything else you can imagine!
