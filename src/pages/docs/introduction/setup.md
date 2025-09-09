@@ -89,3 +89,32 @@ The CLI supports three commands, that can be easily mapped to npm scripts in you
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+## Troubleshooting
+
+### Rollup Linux x64 GNU
+
+<!-- if / when Greenwood bumps up Node 24, we can remove this message -->
+
+If using npm, depending on the version, if you see an error like this in GitHub Actions or any hosting provider:
+
+```shell
+Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+```
+
+Add [**@rollup/rollup-linux-x64-gnu**](https://www.npmjs.com/package/@rollup/rollup-linux-x64-gnu) as an [optional dependency to your _package.json_](https://stackoverflow.com/questions/79048814/github-action-is-failing-due-to-rollup-rollup-linux-x64-gnu):
+
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="snippet" heading="package.json">
+
+  ```json
+  {
+    "optionalDependencies": {
+      "@rollup/rollup-linux-x64-gnu": "^4.50.0"
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
