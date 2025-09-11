@@ -166,8 +166,9 @@ app-side-nav {
 }
 
 @media (min-width: 768px) {
-  .page-content {
+  .page-content .content-outlet {
     & iframe.stackblitz {
+      margin: 10px 0;
       width: 100%;
       height: 800px;
       display: block;
