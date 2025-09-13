@@ -8,7 +8,7 @@ tocHeading: 2
 
 [Frontmatter](https://www.npmjs.com/package/front-matter) is a [YAML](https://yaml.org/) block at the top of a file that gives you the ability to define variables that are made available to Greenwood's [build process and then your HTML](/docs/content-as-data/). You can also use it to import additional static assets like JS and CSS files.
 
-Greenwood defines the following properties that you can use in HTML or [markdown](/docs/plugins/markdown) out of the box:
+Greenwood defines the following properties that you can use in HTML or [markdown](/docs/plugins/markdown/) out of the box:
 
 - Label
 - Title

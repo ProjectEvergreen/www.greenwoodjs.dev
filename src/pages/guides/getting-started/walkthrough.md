@@ -78,7 +78,7 @@ Our home page will be simple landing page with links to our blog post pages:
 
 <!-- prettier-ignore-end -->
 
-For the blog post pages, we're going to use Greenwood's [markdown plugin](/docs/plugins/markdown) for authoring these pages.
+For the blog post pages, we're going to use Greenwood's [markdown plugin](/docs/plugins/markdown/) for authoring these pages.
 
 First, let's install the plugin:
 
@@ -101,7 +101,7 @@ First, let's install the plugin:
 
 <!-- prettier-ignore-end -->
 
-And then create a _greenwood.config.js_ file:
+Then create a _greenwood.config.js_ file and import the plugin:
 
 <!-- prettier-ignore-start -->
 
@@ -119,7 +119,7 @@ And then create a _greenwood.config.js_ file:
 
 <!-- prettier-ignore-end -->
 
-Now we create a folder called _blog/_ in our pages directory and then create two markdown files called _first-post.md_ and _second-post.md_:
+Now we can create a folder called _blog/_ in our pages directory and then create two markdown files called _first-post.md_ and _second-post.md_:
 
 <!-- prettier-ignore-start -->
 
