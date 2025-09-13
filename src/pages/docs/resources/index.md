@@ -12,4 +12,4 @@ In this section we'll cover common web formats and languages supported by Greenw
 - [JavaScript](/docs/resources/scripts/)
 - [CSS](/docs/resources/styles/)
 - [Assets](/docs/resources/assets/)
-- [Markdown](/docs/resources/markdown/)
+- [TypeScript](/docs/resources/typescript/)

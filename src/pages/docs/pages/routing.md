@@ -10,7 +10,7 @@ Greenwood supports file-based routing, which means that filenames in the _pages/
 
 ## Static Pages
 
-For static content, Greenwood support HTML and [markdown](/docs/resources/markdown/) as page formats.
+For static content, Greenwood supports HTML and markdown [(with a plugin)](/docs/plugins/markdown/) as page formats.
 
 For example, given the following folder structure:
 

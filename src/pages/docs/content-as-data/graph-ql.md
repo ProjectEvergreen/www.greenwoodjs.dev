@@ -2,7 +2,7 @@
 title: GraphQL
 label: GraphQL
 layout: docs
-order: 5
+order: 6
 tocHeading: 2
 ---
 

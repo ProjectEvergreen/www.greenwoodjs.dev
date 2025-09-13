@@ -332,7 +332,7 @@ For users, they would just need to do the following:
 
 Success! 🥳
 
-> Don't forget, user's can also [include additional CSS / JS files in their frontmatter](/docs/resources/markdown/#frontmatter), to further extend, customize, and override your layouts!
+> Don't forget, user's can also [include additional CSS / JS files in their frontmatter](/docs/content-as-data/frontmatter/#imports), to further extend, customize, and override your layouts!
 
 ## FAQ
 

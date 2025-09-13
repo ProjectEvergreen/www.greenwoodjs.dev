@@ -22,12 +22,12 @@ The above would serve content in a browser at the path _/users/_.
 
 ## Usage
 
-In your page file, Greenwood supports the following functions that you can `export` for providing server rendered content and [frontmatter](/docs/resources/markdown/) to produce the `<body><body>` content for your page.
+In your page file, Greenwood supports the following functions that you can `export` for providing server rendered content and frontmatter assist in producing the content for your pages.
 
 - **default** (recommended): Use the custom elements API to render out your page content, aka **Web (Server) Components**. This rendering is only done server-side (and thus needs to be SSR compatible). To have client side imports, use the imports field in `getFrontmatter` or add them as `<script>` or `<link>` tags in a layout. _Using this option will take precedence over `getBody`_.
 - **getBody**: Return a string of HTML for the contents of the page
 - **getLayout**: Return a string of HTML to act as the [page's layout](/docs/pages/layouts/#pages)
-- **getFrontmatter**: Provide an object of [frontmatter](/docs/resources/markdown/#frontmatter) properties. Useful in conjunction with [content as data](/docs/content-as-data/), or otherwise setting static configuration / metadata through SSR.
+- **getFrontmatter**: Provide an object of [frontmatter](/docs/content-as-data/frontmatter/) properties. Useful in conjunction with [content as data](/docs/content-as-data/), or otherwise setting static configuration / metadata through SSR.
 
 <!-- eslint-disable no-unused-vars -->
 
@@ -198,7 +198,7 @@ You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#co
 
 ### Frontmatter
 
-Any Greenwood [supported frontmatter](/docs/resources/markdown/#frontmatter) can be returned here, including the [collection key](/docs/content-as-data/collections/). _This is only run once when the server is started_ to populate pages metadata, which is helpful if you want your dynamic route to show up in a collection with other static pages. You can even define a `layout` and reuse all your existing [layouts](/docs/pages/layouts/), even for server routes!
+Any Greenwood [supported frontmatter](/docs/content-as-data/frontmatter/) can be returned here, including the [collection key](/docs/content-as-data/collections/). _This is only run once when the server is started_ to populate pages metadata, which is helpful if you want your dynamic route to show up in a collection with other static pages. You can even define a `layout` and reuse all your existing [layouts](/docs/pages/layouts/), even for server routes!
 
 <!-- prettier-ignore-start -->
 
