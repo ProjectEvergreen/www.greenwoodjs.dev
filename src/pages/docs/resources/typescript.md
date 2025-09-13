@@ -29,7 +29,7 @@ The below steps will help you get up and running with TypeScript in your Greenwo
   {
     "compilerOptions": {
       // minimum required configuration
-      "target": "es2020",
+      "target": "es2020", // needs to be at least >= es2015 for `class` support
       "module": "preserve",
       "moduleResolution": "bundler",
       "allowImportingTsExtensions": true,
@@ -74,6 +74,8 @@ In addition to being able to author your components, SSR pages, and API routes i
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+> We recommend putting the `type` on the outside of the braces to avoid [inadvertent bundling](https://github.com/ProjectEvergreen/greenwood/issues/1576) of the package your importing from.
 
 See our [reference docs on Greenwood's available types](/docs/reference/appendix/#types) for more information on authoring with TypeScript.
 
