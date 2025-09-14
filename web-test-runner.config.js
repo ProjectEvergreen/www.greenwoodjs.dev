@@ -1,10 +1,10 @@
 import { defaultReporter } from "@web/test-runner";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
 import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 import { junitReporter } from "@web/test-runner-junit-reporter";
-import path from "path";
+import path from "node:path";
 
 // bootstrap custom plugin transforms from Greenwood
 const config = await readAndMergeConfig();

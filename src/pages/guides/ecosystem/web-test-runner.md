@@ -182,7 +182,7 @@ You can create a custom middleware in your _web-test-runner.config.js_ to resolv
 <app-ctc-block variant="snippet" heading="web-test-runner.config.js">
 
   ```js
-  import path from "path";
+  import path from "node:path";
 
   export default {
     middleware: [
@@ -238,7 +238,7 @@ If you need the full power of the TypeScript compiler, you can leverage `tsc` di
 <app-ctc-block variant="snippet" heading="web-test-runner.config.js">
 
   ```js
-  import fs from "fs/promises";
+  import fs from "node:fs/promises";
   import tsc from "typescript";
 
   const compilerOptions = ((await import(new URL("./tsconfig.json", import.meta.url), { with: { type: "json" } })).default).compilerOptions;
@@ -278,7 +278,7 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
 <app-ctc-block variant="snippet" heading="web-test-runner.config.js">
 
   ```js
-  import fs from "fs/promises";
+  import fs from "node:fs/promises";
   // 1) import the greenwood plugin and lifecycle helpers
   import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
   import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";

@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";

@@ -193,7 +193,7 @@ Additionally, we make sure to pass the flag from above for `__isDevelopment` to 
 <app-ctc-block variant="snippet" heading="greenwood.config.js">
 
   ```js
-  import fs from "fs";
+  import fs from "node:fs";
   import { myThemePackPlugin } from "./my-theme-pack.js";
 
   const packageName = JSON.parse(fs.readFileSync("./package.json", "utf-8")).name;
