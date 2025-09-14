@@ -1,12 +1,12 @@
 ---
 layout: docs
-order: 4
+order: 5
 tocHeading: 2
 ---
 
 # Active Frontmatter
 
-Active Frontmatter enables the ability to apply static substitutions in your pages and layouts based on the frontmatter content of your pages, and inspired by JavaScript [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) syntax.
+Active Frontmatter enables the ability to apply static substitutions in your pages and layouts based on the [frontmatter](/docs/content-as-data/frontmatter/) content of your pages, and inspired by JavaScript [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) syntax.
 
 Really useful for passing page content or collections as attributes to a custom element.
 

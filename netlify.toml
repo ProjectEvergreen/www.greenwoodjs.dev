@@ -17,3 +17,8 @@
   status = 301
   from = "/docs/plugins/typescript/"
   to = "/docs/resources/typescript/"
+
+[[redirects]]
+  status = 301
+  from = "/docs/resources/markdown/"
+  to = "/docs/plugins/markdown/"

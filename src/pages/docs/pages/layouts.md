@@ -9,7 +9,7 @@ tocHeading: 2
 Greenwood defines two types of layouts that can be used to wrap your pages with common HTML
 
 - _App Layout_: The ["app shell"](https://developers.google.com/web/fundamentals/architecture/app-shell) that will wrap all pages.
-- _Page Layouts_: Layouts that can be re-used across multiple pages and defined using [frontmatter](/docs/resources/markdown/#frontmatter).
+- _Page Layouts_: Layouts that can be re-used across multiple pages and defined using [**frontmatter**](/docs/content-as-data/frontmatter/)
 
 Greenwood will handle merging the `<body>` and `<head>` tag contents when building up your pages and layouts.
 
@@ -74,7 +74,7 @@ You can create more layouts and use them for pages with the following steps:
    layout: blog
    ---
 
-   ## My First Post
+   # My First Post
 
    Lorum Ipsum
    ```
@@ -82,6 +82,29 @@ You can create more layouts and use them for pages with the following steps:
    </app-ctc-block>
 
    <!-- prettier-ignore-end -->
+
+Frontmatter is also supported for HTML files:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```html
+  ---
+  layout: blog
+  ---
+
+  <html>
+    <body>
+      <h1>My First Post</h1>
+      <p>Lorum Ipsum</p>
+    </body>
+  <html>
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
 
 ## App Layout
 

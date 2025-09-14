@@ -23,9 +23,6 @@ export default {
   },
   isolation: false,
   layoutsDirectory: "layouts", // e.g. ./src/layouts
-  markdown: {
-    plugins: [],
-  },
   optimization: "default",
   pagesDirectory: "pages", // e.g. ./src/pages
   plugins: [],
@@ -200,55 +197,6 @@ By default the directory Greenwood will use to look for your layouts is in _layo
   ```js
   export default {
     layoutsDirectory: "layouts", // Greenwood will look for layouts at src/layouts/
-  };
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-## Markdown
-
-You can install [**remark**](https://remark.js.org/) or [**rehype**](https://github.com/rehypejs/rehype) compatible plugins to extend Greenwood's markdown rendering and transformation capabilities by passing them as an array to the `markdown` setting.
-
-After installing the package, pass the plugin name as a string:
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet">
-
-  ```js
-  export default {
-    markdown: {
-      plugins: ["rehype-slug", "remark-gfm"],
-    },
-  };
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-If you need to pass options to a markdown plugin, you can use object syntax with the plugin name and the options it takes.
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet">
-
-  ```js
-  export default {
-    markdown: {
-      plugins: [
-        "rehype-slug",
-        "remark-gfm",
-        {
-          name: "rehype-autolink-headings",
-          options: {
-            behavior: "append"
-          },
-        },
-      ],
-    },
   };
   ```
 
