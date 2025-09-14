@@ -51,7 +51,7 @@ With NodeJS installed, you'll want to prepare a workspace for your project and u
 
 <!-- prettier-ignore-end -->
 
-Or you can also manually initialize a workspace by setting up and installing the Greenwood CLI yourself, like so:
+Or you can manually initialize a workspace and installing the Greenwood CLI yourself:
 
 ```shell
 # make and change into your workspace directory

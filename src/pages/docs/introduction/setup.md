@@ -12,7 +12,7 @@ Greenwood supports NodeJS LTS version >= 22.18.0.
 
 ## Init
 
-The recommended way to start a new Greenwood project is with our **init** CLI, which will scaffold out a new project for you. It will also prompt for setting up TypeScript, package manager selection, and more!
+The recommended way to start a new Greenwood project is with our **init** CLI, which will scaffold out a new project for you. It will also prompt you for setting up TypeScript, package manager selection, and more!
 
 Just run a single command and then follow the prompts:
 
