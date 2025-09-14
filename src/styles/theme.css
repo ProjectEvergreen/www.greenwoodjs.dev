@@ -1,8 +1,8 @@
-@import "../../node_modules/open-props/borders.min.css";
-@import "../../node_modules/open-props/fonts.min.css";
-@import "../../node_modules/open-props/shadows.min.css";
-@import "../../node_modules/open-props/sizes.min.css";
-@import "../../node_modules/prism-themes/themes/prism-nord.css";
+@import "open-props/borders";
+@import "open-props/fonts";
+@import "open-props/shadows";
+@import "open-props/sizes";
+@import "prism-themes/themes/prism-nord.css";
 
 @font-face {
   font-family: "Geist-Sans";

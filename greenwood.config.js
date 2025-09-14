@@ -1,5 +1,6 @@
 import { greenwoodPluginCssModules } from "@greenwood/plugin-css-modules";
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { greenwoodPluginMarkdown } from "@greenwood/plugin-markdown";
 
 // TODO would be nice to find a better way to solve this problem
 // https://github.com/ProjectEvergreen/www.greenwoodjs.dev/issues/125
@@ -38,30 +39,27 @@ class ActiveFrontmatterDocsTitleRestorerResource {
 export default {
   activeContent: true,
 
-  // would be nice if we could customize these plugins, like appending the autolink headings
-  // https://github.com/ProjectEvergreen/greenwood/issues/1247
-  markdown: {
-    plugins: [
-      "@mapbox/rehype-prism",
-      "rehype-slug",
-      "rehype-autolink-headings",
-      "remark-github",
-      "remark-gfm",
-      {
-        name: "rehype-external-links",
-        options: {
-          // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#security_and_privacy
-          rel: ["nofollow", "noopener", "noreferrer"],
-          target: "_blank",
-          contentProperties: { className: ["no-show-screen-reader"] },
-          content: [{ type: "text", value: " (opens in a new window)" }],
-          properties: { className: ["external-link-icon"] },
-        },
-      },
-    ],
-  },
-
   plugins: [
+    greenwoodPluginMarkdown({
+      plugins: [
+        "@mapbox/rehype-prism",
+        "rehype-slug",
+        "rehype-autolink-headings",
+        "remark-github",
+        "remark-gfm",
+        {
+          name: "rehype-external-links",
+          options: {
+            // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#security_and_privacy
+            rel: ["nofollow", "noopener", "noreferrer"],
+            target: "_blank",
+            contentProperties: { className: ["no-show-screen-reader"] },
+            content: [{ type: "text", value: " (opens in a new window)" }],
+            properties: { className: ["external-link-icon"] },
+          },
+        },
+      ],
+    }),
     greenwoodPluginCssModules(),
     greenwoodPluginImportRaw(),
     {
