@@ -67,7 +67,7 @@ This is the recommended pattern for SSR in Greenwood:
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="src/pages/api/greeting.js">
+<app-ctc-block variant="snippet" heading="src/pages/user.js">
 
   ```js
   import "../components/card/card.js"; // <x-card></x-card>
@@ -106,6 +106,8 @@ A couple of notes:
 - WSCs run only on the server, thus you have full access to any APIs of the runtime, with the ability to perform one time `async` operations for [data loading](/docs/pages/server-rendering/#request-data) in `connectedCallback`.
 - Keep in mind that for these "page" components, you will likely want to _avoid_ rendering into a shadow root, as then your content and styles will be encapsulated.
 
+> You can also author [dynamic layouts](/docs/pages/layouts/#server-rendering) in this way as well!
+
 ### Body
 
 To return just the body of the page, you can use the `getBody` API. You will get access to the [compilation](/docs/reference/appendix/#compilation), page specific data, and the incoming request.
@@ -114,7 +116,7 @@ In this example, we return a list of users from an API as HTML:
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet">
+<app-ctc-block variant="snippet" heading="src/pages/my-page.js">
 
   ```js
   export async function getBody(/* compilation, page, request */) {
@@ -124,11 +126,11 @@ In this example, we return a list of users from an API as HTML:
       const { name, imageUrl } = user;
 
       return `
-          <tr>
-            <td>${name}</td>
-            <td><img src="${imageUrl}"/></td>
-          </tr>
-        `;
+        <tr>
+          <td>${name}</td>
+          <td><img src="${imageUrl}"/></td>
+        </tr>
+      `;
     });
 
     return `
@@ -159,7 +161,7 @@ You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#co
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet">
+<app-ctc-block variant="snippet" heading="src/pages/my-page.js">
 
   ```js
   export async function getLayout(compilation, route) {
@@ -200,7 +202,7 @@ Any Greenwood [supported frontmatter](/docs/resources/markdown/#frontmatter) can
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet">
+<app-ctc-block variant="snippet" heading="src/pages/my-page.js">
 
   ```js
   export async function getFrontmatter(compilation, route) {

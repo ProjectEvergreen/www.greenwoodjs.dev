@@ -84,6 +84,8 @@ src/
   index.html
 ```
 
+> [SPA based projects](/docs/pages/routing/#spa) do **not** support layouts or (active) frontmatter.
+
 ## Not Found
 
 As is a [common convention with most hosting providers](https://docs.netlify.com/routing/redirects/redirect-options/#custom-404-page-handling) and web servers, you can create a `404` page in your _pages/_ directory which will be used as the default **Not Found** page for your site.
