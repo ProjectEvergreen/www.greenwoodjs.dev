@@ -145,8 +145,7 @@ Some known issues / examples observed so far include:
 
 ---
 
-In cases where this issue prevents scripts from resolving in the browser, you can create an import programmatically and use a [Resource plugin](/docs/reference/plugins-api/#resource) to add it to your page
-s HTML.
+In cases where this issu may prevent scripts from resolving in the browser, you can create an import map programmatically and use a [Resource plugin](/docs/reference/plugins-api/#resource) to add it to your page HTML.
 
 The below example demonstrates adding supplemental custom import map entries for [**heroicons**](https://heroicons.com/) SVG icons.
 
@@ -211,7 +210,7 @@ export function heroiconsImportMapPlugin() {
 }
 ```
 
-This would allow usage of bare specifiers from a client-side JavaScript file:
+This will now allow usage of bare specifiers from a client-side JavaScript file:
 
 ```js
 import pauseSvg from "heroicons/24/solid/pause.svg?type=raw";
