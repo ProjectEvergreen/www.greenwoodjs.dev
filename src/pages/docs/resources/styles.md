@@ -66,11 +66,17 @@ Here is an example of using relative and shortcut paths in a CSS file:
   /* this would also work */
   @import "/node_modules/open-props/borders.min.css";
   @import "/node_modules/open-props/fonts.min.css";
+
+  /* or for packages that support an exports map */
+  @import "open-props/borders";
+  @import "open-props/fonts";
   ```
 
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+> **Note**: The bare module specifier approach has limitations [in SSR scenarios](/docs/pages/server-rendering/#custom-imports) as [NodeJS custom loaders do not support `import.meta.resolve`](https://nodejs.org/api/esm.html#importmetaresolvespecifier). More information [here](https://github.com/ProjectEvergreen/greenwood/pull/1511#discussion_r2142771772).
 
 The same can be done from an HTML file with a `<link>` tag:
 
