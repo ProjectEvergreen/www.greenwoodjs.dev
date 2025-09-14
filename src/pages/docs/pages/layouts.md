@@ -85,7 +85,7 @@ You can create more layouts and use them for pages with the following steps:
 
 ## App Layout
 
-To customize the outer most wrapping HTML of _all_ your layouts, create an _app.html_ file. This is most useful for global page elements like headers, navigation, and footers. Like a page layout, this will just be another HTML document (or JS / TS file) with a `<page-outlet></page-outlet>` placeholder that can be used to position where the content from the processed page layout will appear.
+To customize the outer most wrapping HTML of _all_ your pages, create an _app.html_ file. This is most useful for global page elements like headers, navigation, and footers. Like a page layout, this will just be another HTML document (or JS / TS file) with a `<page-outlet></page-outlet>` placeholder that can be used to position where the content from the processed page layout will appear.
 
 Below is an HTML example of an app layout:
 
