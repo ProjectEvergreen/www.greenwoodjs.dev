@@ -310,10 +310,10 @@ To use custom imports (non JavaScript resources) on the server side for prerende
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="shell" paste-contents="node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js <command>">
+<app-ctc-block variant="shell" paste-contents="node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js <command>">
 
   ```shell
-  $ node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js <command>
+  $ node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js <command>
   ```
 
 </app-ctc-block>
@@ -329,7 +329,7 @@ Or most commonly as an npm script in your _package.json_
   ```json
   {
     "scripts": {
-      "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js build"
+      "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js build"
     }
   }
   ```
