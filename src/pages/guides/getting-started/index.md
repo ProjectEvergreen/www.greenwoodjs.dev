@@ -20,14 +20,14 @@ This _Getting Started_ guide will walk you through creating a basic static conte
 
 You will need the following installed on your machine:
 
-1. [**NodeJS LTS**](https://nodejs.org/en/download) (required) - We recommend using a Node version manager (like NVM) to install the latest stable version of Node
-1. [**Git**](https://git-scm.com/) (optional) - Can be useful for [cloning and inspecting](https://github.com/ProjectEvergreen/greenwood-getting-started) the companion repo for this guide, or otherwise managing your Greenwood project through version control
+1. Latest [**NodeJS LTS**](https://nodejs.org/en/download) version (required) - We recommend using a Node version manager (like [**NVM**](https://github.com/nvm-sh/nvm)) to manage local node installations.
+1. [**Git**](https://git-scm.com/) (optional) - Can be useful for [cloning and inspecting](https://github.com/ProjectEvergreen/greenwood-getting-started) the companion repo for this guide, or otherwise managing your Greenwood project through version control.
 
 You can verify that NodeJS has been installed correctly by checking its version from the command line:
 
 ```bash
 $ node -v
-v22.13.0
+v22.18.0
 ```
 
 ## Setup
@@ -85,11 +85,16 @@ Then setup some npm scripts in your _package.json_ for running Greenwood and mak
 
 <!-- prettier-ignore-end -->
 
-## Jump Right In
+<!-- Looking for Stackblitz alternatives -->
+<!-- https://github.com/ProjectEvergreen/www.greenwoodjs.dev/discussions/248 -->
+
+<!-- ## Jump Right In
 
 If you want to jump to the final results right away, you can browse [the companion repo](https://github.com/ProjectEvergreen/greenwood-getting-started) or play around with it directly in your browser on [Stackblitz](https://stackblitz.com/github/projectevergreen/greenwood-getting-started).
 
 <iframe class="stackblitz" src="https://stackblitz.com/github/projectevergreen/greenwood-getting-started?embed=1" loading="lazy"></iframe>
+
+-->
 
 ## Next Section
 

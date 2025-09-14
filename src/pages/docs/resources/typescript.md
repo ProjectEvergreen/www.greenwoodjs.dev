@@ -16,7 +16,6 @@ Greenwood provides built-in support for TypeScript, either through type-strippin
 
 The below steps will help you get up and running with TypeScript in your Greenwood project, and are the [same settings](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/init/src/template-base-ts/tsconfig.json) you'll get running [Greenwood's **init** package with TypeScript enabled](/docs/introduction/setup/#init). The general recommendation is to use type-stripping during development for faster live reload, and then run TypeScript during CI (e.g. GitHub Actions) to check and enforce all types, e.g. `tsc --project tsconfig.json`.
 
-1. You will need to use Node **>= 22.6.0** and set the `--experimental-strip-types` flag
 1. Install TypeScript into your project, e.g. `npm i typescript --save-dev`
 1. Create a _tsconfig.json_ file at the root of your project with the below minimum configuration settings.
 1. We also recommend additional configurations like [`verbatimModuleSyntax`](https://www.typescriptlang.org/tsconfig/#verbatimModuleSyntax) and [`erasableSyntaxOnly` setting](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly)
@@ -48,8 +47,6 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
-
-> _If you're feeling adventurous, you can use **>=23.x** and omit the `--experimental-strip-types` flag_. Keep an eye on [this PR](https://github.com/nodejs/node/pull/57298) for when unflagged type-stripping support may come to Node LTS **22.x**. 👀
 
 ## Types
 

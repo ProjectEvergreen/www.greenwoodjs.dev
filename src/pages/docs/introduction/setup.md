@@ -8,6 +8,8 @@ tocHeading: 2
 
 Greenwood has a few options for getting a new project started. You can also check out our [_Getting Started_ guide](/guides/getting-started/) for a full walk-through of creating a simple blog site with Greenwood.
 
+Greenwood supports NodeJS LTS version >= 22.18.0.
+
 ## Init
 
 The recommended way to start a new Greenwood project, our **init** CLI will scaffold out a starter project for you. Just run a single command and then follow the prompts. Make sure you have the [latest LTS version of Node](https://nodejs.org/en/download) installed.
@@ -80,6 +82,35 @@ The CLI supports three commands, that can be easily mapped to npm scripts in you
       "dev": "greenwood develop",
       "build": "greenwood build",
       "serve": "greenwood serve"
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+## Troubleshooting
+
+### Rollup Linux x64 GNU
+
+<!-- if / when Greenwood bumps up Node 24, we can remove this message -->
+
+If using npm, depending on the version, if you see an error like this in GitHub Actions or any hosting provider:
+
+```shell
+Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+```
+
+Add [**@rollup/rollup-linux-x64-gnu**](https://www.npmjs.com/package/@rollup/rollup-linux-x64-gnu) as an [optional dependency to your _package.json_](https://stackoverflow.com/questions/79048814/github-action-is-failing-due-to-rollup-rollup-linux-x64-gnu):
+
+<!-- prettier-ignore-start -->
+<app-ctc-block variant="snippet" heading="package.json">
+
+  ```json
+  {
+    "optionalDependencies": {
+      "@rollup/rollup-linux-x64-gnu": "^4.50.0"
     }
   }
   ```
