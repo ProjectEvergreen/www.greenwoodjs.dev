@@ -12,34 +12,35 @@ Greenwood supports NodeJS LTS version >= 22.18.0.
 
 ## Init
 
-The recommended way to start a new Greenwood project, our **init** CLI will scaffold out a starter project for you. Just run a single command and then follow the prompts. Make sure you have the [latest LTS version of Node](https://nodejs.org/en/download) installed.
+The recommended way to start a new Greenwood project is with our **init** CLI, which will scaffold out a new project for you. It will also prompt you for setting up TypeScript, package manager selection, and more!
 
-To scaffold into the _current_ directory, run:
+Just run a single command and then follow the prompts:
 
 <!-- prettier-ignore-start -->
+
 <app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest">
 
   ```shell
-  npx @greenwood/init@latest
+  $ npx @greenwood/init@latest
   ```
 
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
 
-To scaffold into a _custom_ directory, run:
+See the full list of all options by running with the `--help` command:
 
-<!-- prettier-ignore-start -->
-<app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest my-app">
+```shell
+Usage: @greenwood/init [options]
 
-  ```shell
-  # initialize a new directory called my-app for your Greenwood project
-  $ npx @greenwood/init@latest my-app
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
+Options:
+  -V, --version           output the version number
+  -y, --yes               Accept all default options
+  --name <name>           Name and directory location to scaffold your application with
+  --ts [choice]           Optionally configure your project with TypeScript (choices: "yes", "no")
+  -i, --install <choice>  Install dependencies with the package manager of your choice (choices: "npm", "pnpm", "yarn", "no")
+  -h, --help              display help for command
+```
 
 ## Install
 
