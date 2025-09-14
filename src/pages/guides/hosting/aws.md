@@ -134,10 +134,7 @@ Let's look at the below example:
 
   // 2) Setup hosting for static content
   const frontend = new sst.aws.StaticSite("MyStaticSite", {
-    path: "./",
-    build: {
-      output: "public"
-    },
+    path: "public",
   })
 
   // 3) Configure a CloudFront distribution with behaviors for SSR pages, API routes, and static content
@@ -176,9 +173,9 @@ Let's look at the below example:
 
 <!-- prettier-ignore-end -->
 
-Although the above example is hardcoded, you'll want to use the build output manifest from Greenwood by following the [complete example repo we have](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws) for deploying a full-stack Greenwood application.
+Although the above example is hardcoded, you'll want to use Greenwood's build output manifest to dynamically generate all your serverless configuration. We have a [complete example repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws) for deploying a full-stack Greenwood applications with AWS and SST you can use as a starting point.
 
-> We also have an [**Architect**](https://arc.codes/) example [for reference](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws/tree/feature/arc-adapter) as well.
+> We also have an [**Architect**](https://arc.codes/) example [you can reference](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws/tree/feature/arc-adapter) as well.
 
 ## GitHub Actions
 
