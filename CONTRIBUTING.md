@@ -315,3 +315,22 @@ See the [Greenwood Storybook docs](/guides/ecosystem/storybook/#content-as-data)
 This project is hosted on Netlify and automatically deploys on each merge into main. Release branches will be curated over the course of a Greenwood release cycle and then merged at the time the new Greenwood release is published to NPM.
 
 For links to `/discord/`, a redirect is configured in _netlify.toml_ to redirect these requests to the project's Discord server.
+
+## Pull Requests
+
+To best help facilitate contributions to the project, we have Conventional Commits configured for the project to walk you through preparing commits in the format of `<type>: #<issue> <summary-of-change>`, e.g. _bug: #123 fixed bug with the thing_.
+
+Make sure you have run `npm run lint`, `npm run format` and `npm run test` to prepare your commit. Then, after staging your files with `git add`, you can initiate the commit "wizard" by running:
+
+```sh
+$ npm run commit
+```
+
+The following will be required:
+
+- **type**
+- **issue reference** (can technically be empty)
+
+## Continuous Integration
+
+To test the CI build scripts locally, run the yarn commands mentioned in the _Workflows_ section of the README. (basically just make sure linting, formatting, and test tasks are all passing).
