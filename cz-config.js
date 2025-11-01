@@ -8,7 +8,7 @@ const types = [
   },
   { value: "fix", name: "fix:             🐛  A bug fix" },
   { value: "docs", name: "docs:            📚  Docs or guides content changes" },
-  { value: "content", name: "content:            📝  Copy only changes or blog posts" },
+  { value: "content", name: "content:         📝  Copy only changes or blog posts" },
   { value: "chore", name: "chore:           🛠   Other changes that don't modify src files" },
   { value: "revert", name: "revert:          🗑   Reverts a previous commit" },
 ];
