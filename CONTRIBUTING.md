@@ -318,15 +318,18 @@ For links to `/discord/`, a redirect is configured in _netlify.toml_ to redirect
 
 ## Pull Requests
 
-To best help facilitate contributions to the project, we have Conventional Commits configured for the project to walk you through preparing commits in the format of `<type>(<scope>): <summary of change>`, e.g. _bug(cli): fixed bug with the thing_. This workflow will also run your files through Prettier.
+To best help facilitate contributions to the project, we have Conventional Commits configured for the project to walk you through preparing commits in the format of `<type>: #<issue> <summary-of-change>`, e.g. _bug: #123 fixed bug with the thing_.
 
-After staging the files you ready to commit with git add, you can initiate the commit "wizard" by running:
+Make sure you have run `npm run lint`, `npm run format` and `npm run test` to prepare your commit. Then, after staging your files with `git add`, you can initiate the commit "wizard" by running:
 
 ```sh
 $ npm run commit
 ```
 
-The PR title should match the conventional commits format as well. If you make the PR after one commit, GitHub will automatically use the first commit as the.
+The following will be required:
+
+- **type**
+- **issue reference** (can technically be empty)
 
 ## Continuous Integration
 
