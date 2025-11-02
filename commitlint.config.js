@@ -5,7 +5,7 @@ export default {
     "type-enum": [
       2,
       "always",
-      ["feat", "enhancement", "fix", "chore", "content", "docs", "revert"],
+      ["feature", "enhancement", "fix", "chore", "content", "docs", "revert"],
     ],
     "type-empty": [2, "never"],
     "subject-case": [2, "always", "lower-case"],
