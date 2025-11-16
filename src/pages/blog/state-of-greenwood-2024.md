@@ -51,7 +51,7 @@ export default {
 
 > Check out the docs for our [Netlify](/guides/hosting/netlify/) and [Vercel](/guides/hosting/vercel/) adapters to learn more and see showcase demos for both of these providers.
 
-## Import Attributes
+### Import Attributes
 
 Although not implemented in [all browsers](https://github.com/web-platform-tests/interop/issues/733) (yet), **Import Attributes** are a [Stage 4 TC39 proposal](https://github.com/tc39/proposal-import-attributes) for extending ESM syntax to support additional module formats. [**CSS**](https://github.com/web-platform-tests/interop/issues/703) and [**JSON**](https://github.com/web-platform-tests/interop/issues/705) modules are already on the standards track, with [HTML Modules](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/html-modules-explainer.md) possible in the future. For Greenwood, we have made support for CSS and JSON possible out of the box, with a [polyfill config flag](/docs/reference/configuration/#polyfills) for providing fallback behavior in the interim.
 
@@ -95,7 +95,7 @@ customElements.define("x-header", Header);
 
 > In the case of CSS Module Scripts, Greenwood will handle linking any CSS files used in an Import Attribute and also used in a `<link>` tag in your HTML (like our _theme.css_ in the example above), ensuring a single source of truth for those contents across both your HTML and your JS.
 
-## HTML Web Components
+### HTML Web Components
 
 As detailed in this [blog post](https://blog.jim-nielsen.com/2023/html-web-components/), HTML Web Components are a strategy for leaning more into a less JavaScript dependent flavor of custom elements. Instead of (or in addition to) setting attributes, which would require JavaScript to do anything meaningful with from a content perspective, this option favors nesting the content as HTML. In this way, the custom element can be a nice styling wrapper or progressively enhanced experience on top of your static HTML content. This also provides the benefit of playing nicely with CSS, which is global by default, as styling is not restricted by the encapsulation of the Shadow DOM.
 
