@@ -112,7 +112,58 @@ Taking into consideration that there are many methods and options for deploying 
 
 ## The Year Ahead
 
-TODO:
+As the team looks to the coming year ahead, we're currently in progress on the next Greenwood release; [v0.34.0](https://github.com/ProjectEvergreen/greenwood/issues/1597), which we aim to release with a key feature being dynamic routes, which will allow file-system based routing like below, including for our serverless adapter plugins:
+
+```shell
+src/
+  pages/
+    blog/
+      [slug].js
+```
+
+Although dependent on compatibility and upstream needs on these platforms and runtimes, we are actively working on **Bun** runtime support as well as an official **Cloudflare** adapter. Both of these are in various stages of development and testing, and we hope to close out our current ecosystem milestone with by delivering on them in some capacity.
+
+Lastly, and already [supported in **WCC**](https://merry-caramel-524e61.netlify.app/docs/#tsx), TSX support will be coming to Greenwood for scripts and SSR pages, enabling JSX for templating through a custom `render` function, enabling **type-safe** HTML!
+
+```tsx
+export default class Card extends HTMLElement {
+  selectItem() {
+    alert(`selected item is => ${this.title}!`);
+  }
+
+  connectedCallback() {
+    if (!this.shadowRoot) {
+      this.thumbnail = this.getAttribute("thumbnail");
+      this.title = this.getAttribute("title");
+
+      this.attachShadow({ mode: "open" });
+      this.shadowRoot.adoptedStyleSheets = [sheet];
+
+      this.render();
+    }
+  }
+
+  render() {
+    const { thumbnail, title } = this;
+
+    return (
+      <div class="card">
+        <h3>{title}</h3>
+        <img src={thumbnail} alt={title} loading="lazy" width={200} height={200} />
+        <button onclick={this.selectItem}>View Item Details</button>
+      </div>
+    );
+  }
+}
+
+customElements.define("x-card", Card);
+```
+
+<video width="100%" controls>
+  <source src="//dzsbnrzvzfaq5.cloudfront.net/wcc-type-safe-html-demo.mov" type="video/mp4">
+</video>
+
+---
 
 The Greenwood team is very eager to wrap up our current efforts to release v0.34.0 and continue our ongoing march towards a [1.0 release](https://github.com/ProjectEvergreen/greenwood/milestone/3).
 
