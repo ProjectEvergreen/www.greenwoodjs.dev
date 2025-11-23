@@ -1,6 +1,6 @@
 ---
 title: State of Greenwood (2025)
-abstract: If you can believe, it's time for our annual year end roundup one again!
+abstract: If you can believe it, it's time for our annual year end review once again!
 published: 2025-12-02
 coverImage: /assets/greenwood-logo-g.svg
 layout: blog
@@ -8,7 +8,7 @@ layout: blog
 
 # State of Greenwood (2025)
 
-<span class="publishDate">Published: Dec XXX, 2025<span>
+<span class="publishDate">Published: Dec XX, 2025<span>
 
 <img
   src="/assets/blog/greenwood-logo-300w.webp"
@@ -19,18 +19,15 @@ layout: blog
           /assets/blog/greenwood-logo-1000w.webp 1000w,
           /assets/blog/greenwood-logo-1500w.webp 1500w"/>
 
-TODO:
+Looking back on the past year since our [previous end of year post for 2024](https://greenwoodjs.dev/blog/state-of-greenwood-2024/), the Greenwood team held true to its promise ensuring a broad set of ecosystem compatibility around import map generation, adapters, and package managers, as well as continuing our participation in related standards and community groups.
 
-<!--
-As the year comes to a close, the Greenwood team would like to take a moment to reflect on its accomplishments and share with you what our plans look like going into the next one. First and foremost, you might have noticed we not only have a new domain name, but we also have a brand new website! A big part of our year was spent working on designing and developing this new website and, aside from the new look and feel, a considerable amount of effort was put into rethinking the home page and how we can best demonstrate what Greenwood can do, and do for you. In addition, we re-worked the information architecture of the site to make finding the content you need as easy possible. It's all [open source](https://github.com/ProjectEvergreen/www.greenwoodjs.dev), so please feel free to contribute and give us any feedback.
+For component libraries, you can see demonstrations of using Greenwood with [**Spectrum Web Components**](https://github.com/thescientist13/greenwood-lit-ssr/tree/demo-spectrum), [the **USWDS**](https://github.com/thescientist13/greenwood-lit-ssr/tree/demo-uswds), and [**Web Awesome**](https://github.com/thescientist13/greenwood-lit-ssr/tree/web-awesome). All of these help further refine and validate Greenwood's capabilities for generating import maps, inlining and bundling CSS and package manager support; all in the pursuit of making sure you can always use your favorite library with Greenwood as simply as running `npm i`. In addition, we've created demonstration repos for using Greenwood with [**tRCP**](https://github.com/thescientist13/greenwood-trpc) and [**Lume**](https://github.com/thescientist13/greenwood-lume) (still dependent on upcoming changes in v0.34.0).
 
-Outside of the project, the Greenwood team and its work was featured in a couple of outlets. Towards the start of the year, we were invited on the [**JavaScript Jabber** podcast](https://topenddevs.com/podcasts/javascript-jabber/episodes/embracing-web-standards-with-owen-buckley-jsj-626) to talk about web standards, Greenwood, and our vision of the web and the project as a whole. It was a great conversation with the panel, sharing our fondness for simplicity in web development and Greenwood's place as your _workbench for the web_. Most recently, our project [**WCC** (Web Components Compiler)](https://github.com/ProjectEvergreen/wcc) was featured in an installment of the [**Modern Web Weekly** newsletter](https://modern-web-weekly.ghost.io/modern-web-weekly-38/), showcasing its features and capabilities for easily server-rendering native Web Components, as well as opening the door to some useful suggestions and contributions which we are very excited to collaborate on. 🙌
+On the community side, we were happy to see the WinterCG [graduate and become an official ECMA Technical Committee group](https://www.w3.org/community/wintercg/2025/01/10/goodbye-wintercg-welcome-wintertc/) as the [WinterTC(55)](https://ecma-international.org/technical-committees/tc55/). Promoting standards for both the web and sever-side JavaScript runtimes is a valuable and meaningful vision and effort for the Greenwood team, and are happy to participate and contribute to the WinterTC and the [WCCG (Web Components Community Group)](https://www.w3.org/community/webcomponents/).
 
-We encourage you to check out those links and please stayed tuned as we'll have a full case study detailing in depth how the new Greenwood website was created.
+We hope these initiatives and improvements over the past year have worked to make Greenwood even better for building websites so please feel free to share your thoughts and feedback with us.
 
-Now, on to the year in review. 👇
-
--->
+Now, on to the year in review! 👇
 
 ## The Year In Review
 
@@ -117,11 +114,7 @@ Taking into consideration that there are many methods and options for deploying 
 
 TODO:
 
-Now that we've got our new website launch behind us, the Greenwood team is very eager to wrap up our current efforts to release v0.34.0 and ongoing march towards a 1.0 release.
-
----
-
-We hope to complete this effort over the next couple of months with the hope to spend the rest of our time in 2025 burning down our [1.0 milestone](https://github.com/ProjectEvergreen/greenwood/milestone/3).
+The Greenwood team is very eager to wrap up our current efforts to release v0.34.0 and continue our ongoing march towards a [1.0 release](https://github.com/ProjectEvergreen/greenwood/milestone/3).
 
 ## In Closing
 
