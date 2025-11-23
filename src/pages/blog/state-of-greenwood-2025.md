@@ -163,6 +163,8 @@ customElements.define("x-card", Card);
   <source src="//dzsbnrzvzfaq5.cloudfront.net/wcc-type-safe-html-demo.mov" type="video/mp4">
 </video>
 
+> You can see a preview of this upcoming work in [this demonstration repo](https://github.com/thescientist13/greenwood-jsx).
+
 ---
 
 The Greenwood team is very eager to wrap up our current efforts to release v0.34.0 and continue our ongoing march towards a [1.0 release](https://github.com/ProjectEvergreen/greenwood/milestone/3).
