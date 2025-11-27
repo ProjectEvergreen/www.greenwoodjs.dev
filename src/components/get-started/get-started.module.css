@@ -36,7 +36,7 @@
   vertical-align: middle;
 }
 
-.buttonBlitz {
+.buttonSecondary {
   display: inline-block;
   border-radius: var(--radius-3);
   border: var(--border-size-1) solid var(--color-white);
@@ -49,7 +49,7 @@
   text-decoration: none;
 }
 
-.buttonStarted {
+.buttonPrimary {
   display: inline-block;
   border-radius: var(--radius-3);
   padding: var(--size-fluid-1) var(--size-fluid-2);
@@ -62,15 +62,15 @@
   text-decoration: none;
 }
 
-.buttonBlitz:hover,
-.buttonBlitz:focus {
+.buttonSecondary:hover,
+.buttonSecondary:focus {
   background-color: var(--color-gray);
   text-decoration: none;
   color: var(--color-black) !important;
 }
 
-.buttonStarted:hover,
-.buttonStarted:focus {
+.buttonPrimary:hover,
+.buttonPrimary:focus {
   background-color: var(--color-accent);
   text-decoration: none;
   color: var(--color-black) !important;
