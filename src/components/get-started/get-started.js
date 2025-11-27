@@ -15,12 +15,11 @@ export default class GetStarted extends HTMLElement {
         </div>
 
         <div>
-          <a href="https://stackblitz.com/github/projectevergreen/greenwood-getting-started" class="${styles.buttonBlitz}" target="_blank">
-            <span>View in Stackblitz</span>
-            <span class="no-show-screen-reader"> (opens in a new window)</span>
+          <a href="/docs/introduction/about/" class="${styles.buttonSecondary}">
+            <span>Learn More</span>
           </a>
           
-          <a href="/guides/getting-started/" class="${styles.buttonStarted}">
+          <a href="/guides/getting-started/" class="${styles.buttonPrimary}">
             <span>Get Started</span>
           </a>
         </div>
