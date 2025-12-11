@@ -43,7 +43,7 @@
     right: 10px;
     width: 40px;
     vertical-align: middle;
-    cursor: pointer;
+    cursor: copy;
   }
 
   & .copy-icon svg {
@@ -63,7 +63,7 @@
     right: 10px;
     width: 40px;
     vertical-align: middle;
-    cursor: pointer;
+    cursor: copy;
   }
 
   & .copy-icon svg {
@@ -109,7 +109,7 @@
     right: 10px;
     width: 40px;
     vertical-align: middle;
-    cursor: pointer;
+    cursor: copy;
   }
 
   & .copy-icon svg {
