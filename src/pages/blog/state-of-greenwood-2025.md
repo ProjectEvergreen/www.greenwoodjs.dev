@@ -1,7 +1,7 @@
 ---
 title: State of Greenwood (2025)
 abstract: If you can believe it, it's time for our annual year end review once again!
-published: 2025-12-02
+published: 2025-12-19
 coverImage: /assets/greenwood-logo-g.svg
 layout: blog
 ---
