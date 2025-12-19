@@ -8,7 +8,7 @@ layout: blog
 
 # State of Greenwood (2025)
 
-<span class="publishDate">Published: Dec XX, 2025<span>
+<span class="publishDate">Published: Dec 19, 2025<span>
 
 <img
   src="/assets/blog/greenwood-logo-300w.webp"
