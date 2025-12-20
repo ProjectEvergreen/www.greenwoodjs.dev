@@ -10,7 +10,7 @@ imports:
   - ../styles/home.css
 ---
 
-<app-latest-post link="/blog/release/v0-33-0/" title="We just released v0.33.0"></app-latest-post>
+<app-latest-post link="/blog/state-of-greenwood-2025/" icon="📚" title="Read the <em>State of Greenwood</em> 2025"></app-latest-post>
 
 <app-hero-banner></app-hero-banner>
 
