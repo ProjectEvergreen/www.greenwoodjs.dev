@@ -98,7 +98,7 @@ Currently TypeScript only supports types for standard [JSON Import Attributes](h
 
 ## Type Imports
 
-Due to a [known issue in NodeJS](https://github.com/nodejs/node/issues/58422), when doing `type` based imports for [Greenwood's types](https://github.com/ProjectEvergreen/greenwood/issues/1576), it will be required to _**not**_ use nested type imports.
+Due to a [known issue in NodeJS](https://github.com/nodejs/node/issues/58422), when doing `type` based imports for [Greenwood types](https://github.com/ProjectEvergreen/greenwood/issues/1576), it will be required to _**not**_ use nested type imports.
 
 Example:
 
