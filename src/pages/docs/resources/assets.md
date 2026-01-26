@@ -85,6 +85,7 @@ Below is an example for reference:
 By default, Greenwood will automatically detect these "meta" files from the top-level of your workspace and automatically copy them over to the root of the build output directory.
 
 - [_favicon.ico_](https://en.wikipedia.org/wiki/Favicon)
+- [_favicon.svg_](https://caniuse.com/link-icon-svg)
 - [_robots.txt_](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
 - [_sitemap.xml_](https://www.sitemaps.org/protocol.html)
 
