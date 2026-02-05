@@ -133,7 +133,7 @@ Here are some of the most useful paths available on **context**, all of which ar
 
 By default, Greenwood handles server rendering with [**WCC (Web Components Compiler)**](https://github.com/ProjectEvergreen/wcc), which brings with it a minimal DOM Shim that emulates a minimal amount of DOM and Web APIs, most as no-ops for the benefit of making SSR and prerendering a bit more ergonomic for development.
 
-It is fine-tuned for creating Light and Shadow DOM based custom elements. The full list is documented [here](https://merry-caramel-524e61.netlify.app/#key-features), with some key features being:
+It is fine-tuned for creating Light and Shadow DOM based custom elements. The full implementation can be seen [here](https://github.com/ProjectEvergreen/wcc/blob/master/src/dom-shim.js), with some key features being:
 
 - `customElements.define`
 - `attachShadow`
