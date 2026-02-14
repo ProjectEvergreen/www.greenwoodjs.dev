@@ -12,7 +12,7 @@ tocHeading: 2
 
 ## Setup
 
-We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/instal) to setup a project from scratch:
+We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/install) to setup a project from scratch:
 
 <!-- prettier-ignore-start -->
 
