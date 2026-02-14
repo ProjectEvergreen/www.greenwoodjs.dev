@@ -48,6 +48,22 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 
 <!-- prettier-ignore-end -->
 
+## Type Imports
+
+Due to how bundlers and other [type-aware tools interpret importing types](https://github.com/ProjectEvergreen/greenwood/issues/1576#issuecomment-3795821236), when doing any `type` based imports, you will need to make sure the type is on the _outside_.
+
+Example:
+
+```ts
+// ✅ DO THIS
+import type { Page } from "@greenwood/cli";
+
+// ❌ NOT THIS
+import { type Page } from "@greenwood/cli";
+```
+
+> There is a helpful [**typescript-eslint**](https://typescript-eslint.io/rules/no-import-type-side-effects/) rule for ensuring predictable behaviors around this syntax.
+
 ## Types
 
 ### Configuration
@@ -72,8 +88,6 @@ In addition to being able to author your components, SSR pages, and API routes i
 
 <!-- prettier-ignore-end -->
 
-> We recommend putting the `type` on the outside of the braces to avoid [inadvertent bundling](https://github.com/ProjectEvergreen/greenwood/issues/1576) of the package your importing from.
-
 See our [reference docs on Greenwood's available types](/docs/reference/appendix/#types) for more information on authoring with TypeScript.
 
 ### Import Attributes
@@ -95,17 +109,3 @@ Currently TypeScript only supports types for standard [JSON Import Attributes](h
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
-
-## Type Imports
-
-Due to a [known "issue" in NodeJS](https://github.com/nodejs/node/issues/58422), when doing `type` based imports for [Greenwood types](https://github.com/ProjectEvergreen/greenwood/issues/1576), it will be required to _**not**_ use nested type imports.
-
-Example:
-
-```ts
-// ✅ DO THIS
-import type { Page } from "@greenwood/cli";
-
-// ❌ NOT THIS
-import { type Page } from "@greenwood/cli";
-```
