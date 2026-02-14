@@ -47,7 +47,7 @@ We were not able to detect the right builder for your project. Please select one
     Webpack 5
 ```
 
-> See our Vitest docs to see additional configuration examples for [Import Attributes](/guides/ecosystem/vitest/#import-attributes) and [Greenwood resource plugins](/guides/ecosystem/vitest/#resource-plugins); updating your _vite.config.js_ file instead.
+> See our Vitest docs for additional configuration examples for [Import Attributes](/guides/ecosystem/vitest/#import-attributes) and [Greenwood resource plugins](/guides/ecosystem/vitest/#resource-plugins); updating your _vite.config.js_ file instead.
 
 ## Usage
 
