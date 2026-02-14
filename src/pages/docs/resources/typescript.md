@@ -48,22 +48,6 @@ The below steps will help you get up and running with TypeScript in your Greenwo
 
 <!-- prettier-ignore-end -->
 
-## Type Imports
-
-Due to how bundlers and other [type-aware tools interpret importing types](https://github.com/ProjectEvergreen/greenwood/issues/1576#issuecomment-3795821236), when doing any `type` based imports, you will need to make sure the type is on the _outside_.
-
-Example:
-
-```ts
-// ✅ DO THIS
-import type { Page } from "@greenwood/cli";
-
-// ❌ NOT THIS
-import { type Page } from "@greenwood/cli";
-```
-
-> There is a helpful [**typescript-eslint**](https://typescript-eslint.io/rules/no-import-type-side-effects/) rule for ensuring predictable behaviors around this syntax.
-
 ## Types
 
 ### Configuration
@@ -109,3 +93,19 @@ Currently TypeScript only supports types for standard [JSON Import Attributes](h
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+## Type Imports
+
+Due to how bundlers and other [type-aware tools handle type based imports](https://github.com/ProjectEvergreen/greenwood/issues/1576#issuecomment-3795821236), you will need to make sure the `type` is at the _**top level**_ of the import statement to prevent side-effect imports from being included in your bundles.
+
+Example:
+
+```ts
+// ✅ DO THIS
+import type { Page } from "@greenwood/cli";
+
+// ❌ NOT THIS
+import { type Page } from "@greenwood/cli";
+```
+
+> There is a helpful [**typescript-eslint** rule](https://typescript-eslint.io/rules/no-import-type-side-effects/) for ensuring predictable behaviors around this syntax.
