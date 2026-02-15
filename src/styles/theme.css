@@ -133,6 +133,7 @@ h4:focus > a > span.icon {
 
 li {
   margin: var(--size-2) 0;
+  margin-left: 20%;
 }
 
 .page-content {
