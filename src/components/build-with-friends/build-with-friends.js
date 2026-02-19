@@ -5,6 +5,7 @@ import openPropsIcon from "../../assets/open-props.svg?type=raw";
 import storybookIcon from "../../assets/storybook.svg?type=raw";
 import tailwindIcon from "../../assets/tailwind-logo.svg?type=raw";
 import typescriptIcon from "../../assets/typescript.svg?type=raw";
+import vitestIcon from "../../assets/vitest.svg?type=raw";
 import wccIcon from "../../assets/wcc.svg?type=raw";
 import wtrIcon from "../../assets/modern-web.svg?type=raw";
 
@@ -34,14 +35,19 @@ export default class BuildWithFriends extends HTMLElement {
           </span>
           <span class="${styles.icon}">
             <span>${wtrIcon}</span>
-            <span>Web Test Runner</span>
+            <span class="${styles.iconLabel}">Web Test Runner</span>
           </span>
           <span class="${styles.icon}">
-            ${wccIcon}
+            <span>${wccIcon}</span>
+            <span class="${styles.iconLabel}">WC Compiler</span>
           </span>
           <span class="${styles.icon}">
             <span>${openPropsIcon}</span>
-            <span>Open Props</span>
+            <span class="${styles.iconLabel}">Open Props</span>
+          </span>
+          <span class="${styles.icon}">
+            <span>${vitestIcon}</span>
+            <span class="${styles.iconLabel}">Vitest</span>
           </span>
         </div>
       </div>

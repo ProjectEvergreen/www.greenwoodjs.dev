@@ -47,6 +47,8 @@ We were not able to detect the right builder for your project. Please select one
     Webpack 5
 ```
 
+> See our Vitest docs for additional configuration examples to support [Import Attributes](/guides/ecosystem/vitest/#import-attributes) and [Greenwood resource plugins](/guides/ecosystem/vitest/#resource-plugins) usage in your components. For that guide, you'll be updating a _vite.config.js_ file instead.
+
 ## Usage
 
 You should now be good to start writing your first story! 📚
@@ -139,147 +141,6 @@ You'll want to create a CommonJS version with the following name, depending on w
   module.exports = {
     plugins: [require("tailwindcss"), require("autoprefixer")],
   };
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-## Import Attributes
-
-As [Vite does not support Import Attributes](https://github.com/vitejs/vite/issues/14674), we will need to create a _vite.config.js_ and write a [custom plugin](https://vitejs.dev/guide/api-plugin) to work around this.
-
-In this example we are handling for CSS Module scripts:
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet" heading="vite.config.js">
-
-  ```js
-  import { defineConfig } from "vite";
-  import fs from "node:fs/promises";
-  import path from "node:path";
-  // 1) import the greenwood plugin and lifecycle helpers
-  import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
-  import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
-  import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
-
-  // 2) initialize Greenwood lifecycles
-  const config = await readAndMergeConfig();
-  const context = await initContext({ config });
-  const compilation = { context, config };
-
-  // 3) initialize the plugin
-  const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
-
-  // 4) customize Vite
-  function transformConstructableStylesheetsPlugin() {
-    return {
-      name: "transform-constructable-stylesheets",
-      enforce: "pre",
-      resolveId: (id, importer) => {
-        if (
-          // you'll need to configure this `importer` line to the location of your own components
-          importer?.indexOf("/src/components/") >= 0 &&
-          id.endsWith(".css") &&
-          !id.endsWith(".module.css")
-        ) {
-          // append .type to the end of Constructable Stylesheet file paths so that they are not automatically precessed by Vite's default pipeline
-          return path.join(path.dirname(importer), `${id}.type`);
-        }
-      },
-      load: async (id) => {
-        if (id.endsWith(".css.type")) {
-          const filename = id.slice(0, -5);
-          const contents = await fs.readFile(filename, "utf-8");
-          const url = new URL(`file://${id.replace(".type", "")}`);
-          // "coerce" native constructable stylesheets into inline JS so Vite / Rollup do not complain
-          const request = new Request(url, {
-            headers: {
-              Accept: "text/javascript",
-            },
-          });
-          const response = await standardCssResource.intercept(url, request, new Response(contents));
-          const body = await response.text();
-
-          return body;
-        }
-      },
-    };
-  }
-
-  export default defineConfig({
-    // 5) add it the plugins option
-    plugins: [transformConstructableStylesheetsPlugin()],
-  });
-  ```
-
-</app-ctc-block>
-
-<!-- prettier-ignore-end -->
-
-Phew, should be all set now.
-
-## Resource Plugins
-
-If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll need a _vite.config.js_ so we can create a custom transformation plugin that can leverage Greenwood's plugins to automatically handle custom transformations.
-
-For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to create a wrapping Vite plugin to handle this transformation.
-
-<!-- prettier-ignore-start -->
-
-<app-ctc-block variant="snippet" heading="vite.config.js">
-
-  ```js
-  import { defineConfig } from "vite";
-  import fs from "node:fs/promises";
-  import path from 'node:path';
-  // 1) import the greenwood plugin and lifecycle helpers
-  import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
-  import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
-  import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
-
-  // 2) initialize Greenwood lifecycles
-  const config = await readAndMergeConfig();
-  const context = await initContext({ config });
-  const compilation = { context, config };
-
-  // 3) initialize the plugin
-  const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
-
-  // 4) customize Vite
-  function transformRawImports() {
-    const hint = "?type=raw";
-
-    return {
-      name: "transform-raw-imports",
-      enforce: "pre",
-      resolveId: (id, importer) => {
-
-        if (
-          id.endsWith(hint)
-        ) {
-          // append .type to the end of .css file paths so they are not automatically precessed by Vite's default CSS pipeline
-          return path.join(path.dirname(importer), `${id.slice(0, id.indexOf(hint))}.type${hint}`);
-        }
-      },
-      load: async (id) => {
-        if (id.endsWith(hint)) {
-          const filename = id.slice(0, id.indexOf(`.type${hint}`));
-          const contents = await fs.readFile(filename, "utf-8");
-          const response = await rawResource.intercept(new URL(`file://${filename}`), null, new Response(contents));
-          const body = await response.text();
-
-          return body;
-        }
-      },
-    };
-  }
-
-  export default defineConfig({
-    // 5) add it the plugins option
-    plugins: [transformRawImports()],
-  });
   ```
 
 </app-ctc-block>
