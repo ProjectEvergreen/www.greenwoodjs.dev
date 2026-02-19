@@ -335,7 +335,6 @@ For example, if you're using Greenwood's [Raw Plugin](https://github.com/Project
       name: "transform-raw-imports",
       enforce: "pre",
       resolveId: (id, importer) => {
-
         if (
           id.endsWith(hint)
         ) {
