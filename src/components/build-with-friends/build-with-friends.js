@@ -35,17 +35,19 @@ export default class BuildWithFriends extends HTMLElement {
           </span>
           <span class="${styles.icon}">
             <span>${wtrIcon}</span>
-            <span>Web Test Runner</span>
+            <span class="${styles.iconLabel}">Web Test Runner</span>
           </span>
           <span class="${styles.icon}">
-            ${wccIcon}
+            <span>${wccIcon}</span>
+            <span class="${styles.iconLabel}">WC Compiler</span>
           </span>
           <span class="${styles.icon}">
             <span>${openPropsIcon}</span>
-            <span>Open Props</span>
+            <span class="${styles.iconLabel}">Open Props</span>
           </span>
           <span class="${styles.icon}">
-            ${vitestIcon}
+            <span>${vitestIcon}</span>
+            <span class="${styles.iconLabel}">Vitest</span>
           </span>
         </div>
       </div>

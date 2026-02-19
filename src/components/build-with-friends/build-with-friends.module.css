@@ -35,6 +35,10 @@
   display: inline-block;
 }
 
+.iconLabel {
+  padding-left: var(--size-1);
+}
+
 @media (min-width: 600px) {
   .icon {
     display: inline-block;
