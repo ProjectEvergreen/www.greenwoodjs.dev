@@ -96,9 +96,7 @@ Currently TypeScript only supports types for standard [JSON Import Attributes](h
 
 ## Type Imports
 
-Due to how bundlers and other [type-aware tools handle type based imports](https://github.com/ProjectEvergreen/greenwood/issues/1576#issuecomment-3795821236), you will need to make sure the `type` is at the _**top level**_ of the import statement to prevent side-effect imports from being included in your bundles.
-
-Example:
+Due to how bundlers and other [type-aware tools handle `type` based imports](https://github.com/ProjectEvergreen/greenwood/issues/1576#issuecomment-3795821236), you will need to make sure the `type` qualifier is at the _**top level**_ of the import statement so as to prevent side-effectful import statements from being left behind and included in your bundles.
 
 ```ts
 // ✅ DO THIS
