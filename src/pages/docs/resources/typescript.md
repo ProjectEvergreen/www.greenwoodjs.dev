@@ -72,8 +72,6 @@ In addition to being able to author your components, SSR pages, and API routes i
 
 <!-- prettier-ignore-end -->
 
-> We recommend putting the `type` on the outside of the braces to avoid [inadvertent bundling](https://github.com/ProjectEvergreen/greenwood/issues/1576) of the package your importing from.
-
 See our [reference docs on Greenwood's available types](/docs/reference/appendix/#types) for more information on authoring with TypeScript.
 
 ### Import Attributes
@@ -95,3 +93,17 @@ Currently TypeScript only supports types for standard [JSON Import Attributes](h
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+## Type Imports
+
+Due to how bundlers and other [type-aware tools handle `type` based imports](https://github.com/ProjectEvergreen/greenwood/issues/1576#issuecomment-3795821236), you will need to make sure the `type` qualifier is at the _**top level**_ of the import statement so as to prevent side-effectful import statements from being left behind and included in your bundles.
+
+```ts
+// ✅ DO THIS
+import type { Page } from "@greenwood/cli";
+
+// ❌ NOT THIS
+import { type Page } from "@greenwood/cli";
+```
+
+> There is a helpful [**typescript-eslint** rule](https://typescript-eslint.io/rules/no-import-type-side-effects/) for ensuring predictable behaviors around this syntax.
