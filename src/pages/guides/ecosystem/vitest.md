@@ -1,6 +1,6 @@
 ---
 layout: guides
-order: 6
+order: 5
 tocHeading: 2
 ---
 

@@ -2,7 +2,7 @@
 title: htmx
 label: htmx
 layout: guides
-order: 2
+order: 1
 tocHeading: 2
 ---
 

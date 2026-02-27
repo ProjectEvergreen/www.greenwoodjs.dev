@@ -2,7 +2,7 @@
 title: GitHub
 label: GitHub
 layout: guides
-order: 5
+order: 3
 tocHeading: 2
 ---
 

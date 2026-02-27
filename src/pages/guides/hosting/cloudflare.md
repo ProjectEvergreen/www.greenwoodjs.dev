@@ -1,7 +1,7 @@
 ---
 title: Cloudflare
 layout: guides
-order: 4
+order: 2
 tocHeading: 2
 ---
 
