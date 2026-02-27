@@ -1,7 +1,7 @@
 ---
 title: Netlify
 layout: guides
-order: 1
+order: 4
 tocHeading: 2
 ---
 

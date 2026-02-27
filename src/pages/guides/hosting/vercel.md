@@ -1,7 +1,7 @@
 ---
 title: Vercel
 layout: guides
-order: 2
+order: 5
 tocHeading: 2
 ---
 
