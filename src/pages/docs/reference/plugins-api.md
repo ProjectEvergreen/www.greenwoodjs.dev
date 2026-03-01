@@ -708,7 +708,7 @@ Below is an example from [Greenwood's codebase](https://github.com/ProjectEvergr
 
 ## Rollup
 
-Though rare, there may be cases for tapping into the bundling process for Greenwood. If so, this plugin type allow users to tap into Greenwood's [**Rollup**](https://rollupjs.org/) configuration to provide any custom Rollup behaviors you may need.
+Though rare, there may be some cases for tapping into the bundling phase of Greenwood's build pipeline, like [externalizing dependencies](https://rollupjs.org/configuration-options/#external) (e.g. the AWS SDK) or [pre-fixing specifiers](https://docs.deno.com/runtime/fundamentals/node/) for certain runtimes (e.g. `npm:`, `node:`). For these kinds of use cases, this plugin type allow users to tap into Greenwood's [**Rollup**](https://rollupjs.org/) bundling configuration to provide any custom Rollup behaviors you may need.
 
 Simply use the `provider` method to return an array of Rollup plugins:
 
@@ -739,6 +739,8 @@ Simply use the `provider` method to return an array of Rollup plugins:
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+> Reminder: this plugin type will only to production builds, and _not_ during development. Resource plugins are the best way to handle transformations for development and production.
 
 ## Server
 
