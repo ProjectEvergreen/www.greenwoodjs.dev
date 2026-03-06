@@ -93,10 +93,6 @@ This would emit the following generated HTML
 
 For interactive components that would require client side interactivity, like event handlers, these components should be authored rendering into a Shadow Root using [Declarative Shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) and with Greenwood's [raw plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw).
 
-<details>
-  Ideally we would be using <a href="https://web.dev/articles/constructable-stylesheets">Constructable Stylesheets and Import Attributes</a> but CSS Import Attributes are <a href="https://github.com/ProjectEvergreen/www.greenwoodjs.dev/pull/57#issuecomment-2295349811">not baseline yet</a>. 😞
-</details>
-
 ```css
 /* card.css */
 .card {
