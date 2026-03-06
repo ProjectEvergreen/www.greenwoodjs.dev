@@ -8,43 +8,19 @@ The layout of the project is as follows:
 
 - _/assets/_ - Public assets like images and fonts used throughout the site
 - _/components/_ - Custom Element web components to be used throughout the project
+- _/layouts/_ - Page level layouts for various section of the website
 - _/pages/_ - File based routing as provided by Greenwood
-- _/stories/_ - General developer documentation about the project for developers
+- _/stories/_ - General documentation about the project for developers, hosted in Storybook
 - _/styles/_ - Global theme and styles
 
 > [!NOTE]  
 > Please review the documentation contained in this project's Storybook by running `npm run story:dev` and going through the content in the **Overview** section.
 
-## Documentation Changes
+## Pull Requests
 
-### Greenwood Features
+Generally, it's best to open an issue first before submitting a Pull Request. This is a good opportunity to validate the work first, and ask any questions.
 
-Documentation changes specific to an in progress / unreleased feature in Greenwood should be made to the corresponding feature branch in this repository aligning with that Greenwood release. This can be determined at the time of submitting your PR to Greenwood in coordination with the maintainers.
-
-For example, if the next release your feature is targeting for Greenwood is 1.1.0, the git workflow would be as follows:
-
-```sh
-$ git checkout release/1.1.0
-$ git pull origin release/1.1.0
-$ git checkout -b content/issue-xxx-the-feature
-```
-
-Where `issue-xxx` is the corresponding issue in the GreenwoodJS project.
-
-### Website
-
-General changes to the website can be made by submitting a PR directly to the main branch. This includes typos, style changes, and general enhancements to the website as a whole.
-
-### Link Checker
-
-There is a **npm** script that you can run that will check all relative links and hashes (except for blog pages) to check that links aren't broken. Running the command will build the site for production automatically and generate a report.
-
-```sh
-$ npm run lint:links
-#...
-
-✅ all links checked successfully and no broken links found
-```
+This project uses conventional commits when submitting pull requests in combination with Husky pre-commit hooks that runs linting and formatting scripts. When ready to commit code to submit a PR, run `npm run commit` and follow the prompts.
 
 ## Development
 
@@ -52,7 +28,7 @@ $ npm run lint:links
 
 All global theming and general styles should go in _src/styles/theme.css_, like font family and CSS custom properties to be used throughout the site.
 
-For anything that may not be easily "componentized" or is very general like for markdown based content, it should go in _src/styles/main.css_.
+For anything that may not be easily "componentized" or is very general, like for markdown based content, should go in _src/styles/main.css_.
 
 > [!NOTE]  
 > [Open Props](https://open-props.style/) are used in this project to provide a set of consistent and re-usable design system tokens. Please review these first before creating any new custom values or variables.
@@ -334,3 +310,14 @@ The following will be required:
 ## Continuous Integration
 
 To test the CI build scripts locally, run the yarn commands mentioned in the _Workflows_ section of the README. (basically just make sure linting, formatting, and test tasks are all passing).
+
+## Link Checker
+
+There is a **npm** script that you can run that will check all relative links and hashes (except for blog pages) to check that links aren't broken. Running the command will build the site for production automatically and generate a report.
+
+```sh
+$ npm run lint:links
+#...
+
+✅ all links checked successfully and no broken links found
+```
