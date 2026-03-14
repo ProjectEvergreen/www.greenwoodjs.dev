@@ -267,13 +267,13 @@ Below is an example of a basic Storybook file:
 ```js
 import "./header.js";
 
-export default {
+const meta = {
   title: "Components/Header",
 };
 
-const Template = () => "<app-header></app-header>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-header></app-header>";
 ```
 
 #### Content as Data
