@@ -12,40 +12,22 @@ tocHeading: 2
 
 ## Setup
 
-We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/install) to setup a project from scratch:
+> _This guide assumes Storybook v10+_
+
+We recommend using the [Storybook CLI](https://storybook.js.org/docs/get-started/install) to setup a project from scratch using the Web Components template:
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="shell" paste-contents="npx storybook@latest init">
+<app-ctc-block variant="shell" paste-contents="npm create storybook@latest -- --type web_components">
 
   ```shell
-  npx storybook@latest init
+  # npm requires a -- between arguments
+  $ npm create storybook@latest -- --type web_components
   ```
 
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
-
-As part of the prompts, we suggest the following answers to project type (**web_components**) and builder (**Vite**):
-
-```shell
-✔ Do you want to manually choose a Storybook project type to install? … yes
-? Please choose a project type from the following list: › - Use arrow-keys. Return to submit.
-  ↑ webpack_react
-    nextjs
-    vue3
-    angular
-    ember
-❯   web_components
-    html
-    qwik
-    preact
-  ↓ svelte
-
-We were not able to detect the right builder for your project. Please select one: › - Use arrow-keys. Return to submit.
-❯   Vite
-    Webpack 5
-```
 
 > See our Vitest docs for additional configuration examples to support [Import Attributes](/guides/ecosystem/vitest/#import-attributes) and [Greenwood resource plugins](/guides/ecosystem/vitest/#resource-plugins) usage in your components. For that guide, you'll be updating a _vite.config.js_ file instead.
 
@@ -81,15 +63,18 @@ You should now be good to start writing your first story! 📚
 <app-ctc-block variant="snippet" heading="src/components/footer/footer.stories.js">
 
   ```js
-  import "./footer.js";
+  import { html } from 'lit';
+  import './footer.js';
 
-  export default {
-    title: "Components/Footer",
+  const meta = {
+    title: 'Components/Footer',
   };
 
-  const Template = () => "<app-footer></app-footer>";
+  export default meta;
 
-  export const Primary = Template.bind({});
+  export const Primary = () => {
+    return html`<app-footer></app-footer>`;
+  };
   ```
 
 </app-ctc-block>
@@ -151,7 +136,9 @@ You'll want to create a CommonJS version with the following name, depending on w
 
 If you are using any of Greenwood's Content as Data [Client APIs](/docs/content-as-data/data-client/), you'll want to configure Storybook to mock the HTTP calls Greenwood's data client makes, and provide the desired response needed based on the API being called.
 
-This can be accomplished with the [**storybook-addon-fetch-mock**](https://storybook.js.org/addons/storybook-addon-fetch-mock) addon and configuring it with the right `matcher.url` and `matcher.response`
+This can be accomplished with the [**storybook-addon-fetch-mock**](https://storybook.js.org/addons/storybook-addon-fetch-mock) addon and configuring it with the right `matcher.url` and `matcher.response`.
+
+> Be aware of this [open issue](https://github.com/JohnAlbin/storybook-addon-fetch-mock/issues/32) with **storybook-addon-fetch-mock**.
 
 1. First, install the **storybook-addon-fetch-mock** addon
 
