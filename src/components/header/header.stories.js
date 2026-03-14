@@ -1,7 +1,7 @@
 import "./header.js";
-import pages from "../../stories/mocks/graph.json";
+import pages from "../../stories/mocks/graph.json" with { type: "json" };
 
-export default {
+const meta = {
   title: "Components/Header",
   parameters: {
     fetchMock: {
@@ -19,6 +19,8 @@ export default {
   },
 };
 
-const Template = () => "<app-header current-route='/guides/'></app-header>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => `
+  <app-header current-route="/guides/"></app-header>
+`;

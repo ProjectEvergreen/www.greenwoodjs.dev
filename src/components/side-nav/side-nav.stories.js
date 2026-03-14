@@ -1,9 +1,9 @@
 import "./side-nav.js";
-import pages from "../../stories/mocks/graph.json";
+import pages from "../../stories/mocks/graph.json" with { type: "json" };
 
 const ROUTE = "/guides/";
 
-export default {
+const meta = {
   title: "Components/Side Nav",
   parameters: {
     fetchMock: {
@@ -21,7 +21,9 @@ export default {
   },
 };
 
-const Template = () =>
-  `<app-side-nav route="${ROUTE}" heading="Guides" current-route="/guides/getting-started/key-concepts/"></app-side-nav>`;
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => `
+  <app-side-nav route="${ROUTE}" heading="Guides" current-route="/guides/getting-started/key-concepts/">
+  </app-side-nav>
+`;

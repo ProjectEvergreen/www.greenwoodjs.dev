@@ -1,13 +1,16 @@
 import "./heading-box.js";
 
-export default {
+const meta = {
   title: "Components/Heading Box",
 };
 
-const Template = () => `
+export default meta;
+
+export const Primary = () => `
   <app-heading-box heading="Heading goes here">
-    <p>This section of our Guides content will cover some of the hosting options you can use to deploy your Greenwood project.</p>
+    <p>
+      This section of our Guides content will cover some of the hosting options you can use to
+      deploy your Greenwood project.
+    </p>
   </app-heading-box>
 `;
-
-export const Primary = Template.bind({});

@@ -1,10 +1,10 @@
 import "../copy-to-clipboard-button/ctc-button.js";
 import "./hero-banner.js";
 
-export default {
+const meta = {
   title: "Components/Hero Banner",
 };
 
-const Template = () => "<app-hero-banner></app-hero-banner>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-hero-banner></app-hero-banner>";

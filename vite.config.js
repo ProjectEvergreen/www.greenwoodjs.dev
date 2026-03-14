@@ -5,6 +5,7 @@ import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/
 import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
 import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
 import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
+import { fileURLToPath } from "node:url";
 
 // bootstrap custom plugin transforms from Greenwood
 const config = await readAndMergeConfig();
@@ -84,5 +85,15 @@ function transformRawImports() {
 }
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      // storybook-addon-fetch-mock has not been updated to support storybook 9+
+      // the preview-api package as been merged into the main storybook package
+      // https://github.com/JohnAlbin/storybook-addon-fetch-mock/issues/32
+      "@storybook/preview-api": fileURLToPath(
+        new URL("./node_modules/storybook/dist/preview-api", import.meta.url),
+      ),
+    },
+  },
   plugins: [transformConstructableStylesheetsPlugin(), transformRawImports()],
 });

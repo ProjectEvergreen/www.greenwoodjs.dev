@@ -36,7 +36,7 @@ First, install Vite and Vitest:
 
 <!-- prettier-ignore-end -->
 
-Next, let's create a _vitest.config.js_ file and configure the location of our test cases:
+Next, let's create a _vite.config.js_ file and configure the location of our test cases:
 
 <!-- prettier-ignore-start -->
 
@@ -113,11 +113,11 @@ Then install Playwright:
 
 <!-- prettier-ignore-end -->
 
-Then in our _vitest.config.js_ file, let's add configuration for Playwright:
+Then in our _vite.config.js_ file, let's add configuration for Playwright:
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="vitest.config.js">
+<app-ctc-block variant="snippet" heading="vite.config.js">
 
   ```js
   import { defineConfig } from 'vitest/config';
@@ -225,13 +225,13 @@ You should now be good to start writing your first test! ⚡
 
 ## Import Attributes
 
-As [Vite does not support Import Attributes](https://github.com/vitejs/vite/issues/14674), you will need to update your _vitest.config.js_ file and write a [custom plugin](https://vitejs.dev/guide/api-plugin) to work around this.
+As [Vite does not support Import Attributes](https://github.com/vitejs/vite/issues/14674), you will need to update your _vite.config.js_ file and write a [custom plugin](https://vitejs.dev/guide/api-plugin) to work around this.
 
 In this example we are handling for CSS Module scripts:
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="vitest.config.js">
+<app-ctc-block variant="snippet" heading="vite.config.js">
 
   ```js
   import { defineConfig } from 'vitest/config';
@@ -302,13 +302,13 @@ Phew, should be all set now.
 
 ## Resource Plugins
 
-If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll want to update the _vitest.config.js_ file with a plugin that can leverage Greenwood's plugins to automatically handle custom transformations.
+If you're using one of Greenwood's [resource plugins](/docs/plugins/), you'll want to update the _vite.config.js_ file with a plugin that can leverage Greenwood's plugins to automatically handle custom transformations.
 
 For example, if you're using Greenwood's [Raw Plugin](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-raw), you'll need to create a wrapping Vite plugin to handle this transformation.
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="vitest.config.js">
+<app-ctc-block variant="snippet" heading="vite.config.js">
 
   ```js
   import { defineConfig } from "vitest/config";

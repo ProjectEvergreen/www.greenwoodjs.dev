@@ -1,12 +1,17 @@
 import "./ctc-block.js";
 
-export default {
+const meta = {
   title: "Components/Copy To Clipboard (Block)",
 };
 
-const SnippetTemplate = () => `
-  <app-ctc-block variant="snippet" heading="src/components/greeting.js">
-    <pre class="language-js"><code class="language-js"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> html<span class="token punctuation">,</span> css<span class="token punctuation">,</span> <span class="token maybe-class-name">LitElement</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
+export default meta;
+
+export const SnippetTemplate = () => {
+  return `
+    <app-ctc-block variant="snippet" heading="src/components/greeting.js">
+      <pre
+        class="language-js"
+      ><code class="language-js"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> html<span class="token punctuation">,</span> css<span class="token punctuation">,</span> <span class="token maybe-class-name">LitElement</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
 
 <span class="token keyword module">export</span> <span class="token keyword">class</span> <span class="token class-name">SimpleGreeting</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span>
   <span class="token keyword">static</span> styles <span class="token operator">=</span> css<span class="token template-string"><span class="token template-punctuation string">\`</span><span class="token css language-css">
@@ -28,26 +33,33 @@ const SnippetTemplate = () => `
     <span class="token keyword control-flow">return</span> html<span class="token template-string"><span class="token template-punctuation string">\`</span><span class="token html language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>p</span><span class="token punctuation">></span></span>Hello, <span class="token interpolation"><span class="token interpolation-punctuation punctuation">\${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span>!<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>p</span><span class="token punctuation">></span></span></span><span class="token template-punctuation string">\`</span></span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-  </app-ctc-block>
-`;
+    </app-ctc-block>
+  `;
+};
 
-const RunnerTemplate = () => `
-  <app-ctc-block variant="runners">
-    <pre class="language-shell"><code class="language-shell"><span class="token function">npm</span> i lit</code></pre>
-    <pre class="language-shell"><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> lit</code></pre>
-    <pre class="language-shell"><code class="language-shell"><span class="token function">pnpm</span> <span class="token function">add</span> lit</code></pre>
-  </app-ctc-block>
-`;
+export const RunnerTemplate = () => {
+  return `
+    <app-ctc-block variant="runners">
+      <pre
+        class="language-shell"
+      ><code class="language-shell"><span class="token function">npm</span> i lit</code></pre>
+      <pre
+        class="language-shell"
+      ><code class="language-shell"><span class="token function">yarn</span> <span class="token function">add</span> lit</code></pre>
+      <pre
+        class="language-shell"
+      ><code class="language-shell"><span class="token function">pnpm</span> <span class="token function">add</span> lit</code></pre>
+    </app-ctc-block>
+  `;
+};
 
-const ShellScriptTemplate = () => `
-  <app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest my-app">
-    <pre class="language-shell"><code class="language-shell">
-    <span class="token comment"># initialize a new directory called my-app for your Greenwood project</span>
-    $ npx @greenwood/init@latest my-app
-    </code></pre>
-  </app-ctc-block>
-`;
-
-export const Snippet = SnippetTemplate.bind({});
-export const Runner = RunnerTemplate.bind({});
-export const ShellScript = ShellScriptTemplate.bind({});
+export const ShellScriptTemplate = () => {
+  return `
+    <app-ctc-block variant="shell" paste-contents="npx @greenwood/init@latest my-app">
+      <pre class="language-shell"><code class="language-shell">
+      <span class="token comment"># initialize a new directory called my-app for your Greenwood project</span>
+      $ npx @greenwood/init@latest my-app
+      </code></pre>
+    </app-ctc-block>
+  `;
+};
