@@ -1,10 +1,11 @@
 import "./ctc-button.js";
 
-export default {
+const meta = {
   title: "Components/Copy To Clipboard (Button)",
 };
 
-const Template = () =>
-  "<app-ctc-button content='npx @greenwood/init@latest my-app'></app-ctc-button>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => `
+  <app-ctc-button content="npx @greenwood/init@latest my-app"></app-ctc-button>
+`;

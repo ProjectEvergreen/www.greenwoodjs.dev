@@ -1,9 +1,9 @@
 import "./build-with-friends.js";
 
-export default {
+const meta = {
   title: "Components/Build With Friends",
 };
 
-const Template = () => "<app-build-with-friends></app-build-with-friends>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-build-with-friends></app-build-with-friends>";

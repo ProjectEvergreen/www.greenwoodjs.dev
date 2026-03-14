@@ -1,9 +1,9 @@
 import "./blog-posts-list.js";
-import pages from "../../stories/mocks/graph.json";
+import pages from "../../stories/mocks/graph.json" with { type: "json" };
 
 const ROUTE = "/blog/";
 
-export default {
+const meta = {
   title: "Components/Blog Posts List",
   parameters: {
     fetchMock: {
@@ -21,6 +21,6 @@ export default {
   },
 };
 
-const Template = () => "<app-blog-posts-list></app-blog-posts-list>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-blog-posts-list></app-blog-posts-list>";
