@@ -8,8 +8,8 @@ export default class LatestPost extends HTMLElement {
 
     this.innerHTML = `
       <div class="${styles.pill}">
-        <span class="new">${icon} New</span>
-        <a href="${link}" title="Read our latest post">${title} &#8594</a>
+        <span class="${styles.new}">${icon} New</span>
+        <a class="${styles.link}" href="${link}" title="Read our latest post">${title} &#8594</a>
       </div>
     `;
   }
