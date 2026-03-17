@@ -5,6 +5,7 @@ import js from "@eslint/js";
 import globals from "globals";
 import noOnlyTests from "eslint-plugin-no-only-tests";
 import importPlugin from "eslint-plugin-import";
+import cssModules from "eslint-plugin-css-modules";
 
 export default [
   importPlugin.flatConfigs.recommended,
@@ -34,6 +35,7 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
+      ...cssModules.configs.recommended.rules,
       // turn this off for Prettier
       "no-irregular-whitespace": "off",
       "no-only-tests/no-only-tests": "error",
@@ -44,6 +46,7 @@ export default [
     },
     plugins: {
       "no-only-tests": noOnlyTests,
+      "css-modules": cssModules,
     },
   },
   {
