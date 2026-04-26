@@ -1,10 +1,10 @@
 import "../copy-to-clipboard-button/ctc-button.js";
 import "./get-started.js";
 
-export default {
+const meta = {
   title: "Components/Get Started",
 };
 
-const Template = () => "<app-get-started></app-get-started>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-get-started></app-get-started>";

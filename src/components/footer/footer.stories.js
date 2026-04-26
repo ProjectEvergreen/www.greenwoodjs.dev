@@ -1,9 +1,9 @@
 import "./footer.js";
 
-export default {
+const meta = {
   title: "Components/Footer",
 };
 
-const Template = () => "<app-footer></app-footer>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-footer></app-footer>";

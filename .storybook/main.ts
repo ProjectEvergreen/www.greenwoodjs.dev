@@ -1,21 +1,17 @@
 // had to add @rollup/rollup-linux-x64-gnu as an optional dep
 // https://github.com/vitejs/vite/discussions/15532
-/** @type { import('@storybook/web-components-vite').StorybookConfig } */
-const config = {
+import type { StorybookConfig } from "@storybook/web-components-vite";
+
+const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
     "@chromatic-com/storybook",
+    "@storybook/addon-a11y",
+    "@storybook/addon-docs",
+    "@storybook/addon-links",
     "storybook-addon-fetch-mock",
   ],
-  framework: {
-    name: "@storybook/web-components-vite",
-    options: {},
-  },
-  docs: {
-    autodocs: "tag",
-  },
+  framework: "@storybook/web-components-vite",
   staticDirs: ["../src"],
 };
 

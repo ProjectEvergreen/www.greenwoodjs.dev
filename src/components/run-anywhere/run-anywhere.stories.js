@@ -1,9 +1,9 @@
 import "./run-anywhere.js";
 
-export default {
+const meta = {
   title: "Components/Run Anywhere",
 };
 
-const Template = () => "<app-run-anywhere></app-run-anywhere>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-run-anywhere></app-run-anywhere>";

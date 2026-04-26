@@ -1,13 +1,17 @@
 import "../src/styles/theme.css";
+import "./reset.css";
+import type { Preview } from "@storybook/web-components-vite";
 
-/** @type { import('@storybook/web-components').Preview } */
-const preview = {
+const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    a11y: {
+      test: "error",
     },
   },
 };

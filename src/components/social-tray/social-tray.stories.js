@@ -1,9 +1,9 @@
 import "./social-tray.js";
 
-export default {
+const meta = {
   title: "Components/Social Tray",
 };
 
-const Template = () => "<app-social-tray></app-social-tray>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-social-tray></app-social-tray>";

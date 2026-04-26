@@ -1,7 +1,7 @@
 import "./table-of-contents.js";
-import pages from "../../stories/mocks/graph.json";
+import pages from "../../stories/mocks/graph.json" with { type: "json" };
 
-export default {
+const meta = {
   title: "Components/Table of Contents",
   parameters: {
     fetchMock: {
@@ -19,6 +19,8 @@ export default {
   },
 };
 
-const Template = () => "<app-toc route='/guides/getting-started/'></app-toc>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => `
+  <app-toc route='/guides/getting-started/'></app-toc>
+`;

@@ -1,9 +1,9 @@
 import "./why-greenwood.js";
 
-export default {
+const meta = {
   title: "Components/Why Greenwood",
 };
 
-const Template = () => "<app-why-greenwood></app-why-greenwood>";
+export default meta;
 
-export const Primary = Template.bind({});
+export const Primary = () => "<app-why-greenwood></app-why-greenwood>";
