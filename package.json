@@ -84,6 +84,7 @@
     "vite": "^7.3.1"
   },
   "optionalDependencies": {
+    "@oxc-parser/binding-linux-x64-gnu": "~0.133.0",
     "@rollup/rollup-linux-x64-gnu": "^4.17.2"
   }
 }
