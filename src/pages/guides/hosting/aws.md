@@ -8,7 +8,7 @@ tocHeading: 2
 
 # AWS
 
-Greenwood projects can be deployed to [**AWS**](https://aws.amazon.com/) for static hosting ([**S3**](https://aws.amazon.com/s3/) / [**CloudFront**](https://aws.amazon.com/cloudfront/)) and dynamic serverless hosting of SSR pages and API routes ([**Lambda**](https://aws.amazon.com/lambda/)). Although static hosting is fairly simple, for full-stack applications and when leveraging additional AWS services to compliment your application, we recommend leveraging [IaC (Infrastructure as Code)](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools, as we will demonstrate later in this guide.
+Greenwood projects can be deployed to [**AWS**](https://aws.amazon.com/) for static hosting ([**S3**](https://aws.amazon.com/s3/) / [**CloudFront**](https://aws.amazon.com/cloudfront/)) and serverless hosting of SSR pages and API routes ([**Lambda**](https://aws.amazon.com/lambda/)). Although static hosting is fairly simple, for full-stack applications and when leveraging additional AWS services to compliment your application, we recommend using [IaC (Infrastructure as Code)](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools, which we will demonstrate later in this guide.
 
 > You can see a complete hybrid project example in our [demonstration repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws).
 
@@ -102,13 +102,13 @@ Here is an example directory listing of what the structure of this folder might 
       products.route.js
 ```
 
-For **_each_** of the folders in the _api/_ or _routes/_ directories, it would be as simple as just creating a zip file for each folder / route and uploading them, or just pointing your IaC tooling to those output folders, as we'll get into in the next section.
+For **_each_** of the folders in the _api/_ or _routes/_ directories, it would just be a matter of creating a zip file for each folder / route and uploading them manually. Our recommended approach though is to use an IaC tool and configuring it to use those output folders and part of an automated build and deploy pipeline, which we'll demonstrate in the next section.
 
 ### IaC Example (SST)
 
-Given the nature of AWS hosting and the plethora of related services that you can use to compliment your application, the Greenwood AWS adapter is specifically designed to output purely compatible Lambda functions, one per folder, that can be plugging into any IaC tool. (or zipped up and deployed manually, if you prefer)
+Given the nature of AWS hosting and the plethora of related services that you can use to compliment your application, the Greenwood AWS adapter is specifically designed to output purely compatible Lambda functions, one per folder, that can then be integrated with any IaC tool of your choice.
 
-While there are many options for IaC tooling, [**SST**](https://sst.dev/) is a very powerful option which let's you entirely define your AWS infrastructure programmatically with TypeScript, combining as few or as many AWS service as you may need.
+While there are many options for IaC tooling, [**SST**](https://sst.dev/) is a very powerful option which lets you entirely define your AWS infrastructure programmatically with TypeScript, combining as few or as many AWS service as you may need.
 
 Let's look at the below example:
 
@@ -173,7 +173,7 @@ Let's look at the below example:
 
 <!-- prettier-ignore-end -->
 
-Although the above example is hardcoded, you'll want to use Greenwood's build output manifest to dynamically generate all your serverless configuration. We have a [complete example repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws) for deploying a full-stack Greenwood applications with AWS and SST you can use as a starting point.
+Although the above example is hardcoded, you'll want to use Greenwood's build output manifest to dynamically generate all your serverless configuration. We have a [complete example repo](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws) for deploying a full-stack Greenwood application with AWS and SST you can use as a starting point.
 
 > We also have an [**Architect**](https://arc.codes/) example [you can reference](https://github.com/ProjectEvergreen/greenwood-demo-adapter-aws/tree/feature/arc-adapter) as well.
 
