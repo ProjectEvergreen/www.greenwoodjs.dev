@@ -138,4 +138,4 @@ Types should automatically be inferred through this package's exports map, but c
 
 </app-ctc-block>
 
-> If using TypeScript to author your components, make sure to read [WCC's docs](https://wcc.dev/docs/#typescript) for using JSX + Typescript.
+> If using TypeScript to author your components, make sure to read [WCC's docs](https://wcc.dev/docs/#typescript) for using JSX + TypeScript.
