@@ -175,7 +175,7 @@ To provide a wrapper to put all our common styles and components in, let's creat
 
     <body>
       <main>
-        <page-outlet></page-outlet>
+        <output for="page"></output>
       </main>
     </body>
   </html>
@@ -199,7 +199,7 @@ Create a _src/layouts/blog.html_ file, including our `<content-outlet>` placehol
   <html>
     <body>
       <article>
-        <content-outlet></content-outlet>
+        <output for="content"></output>
       </article>
 
       <hr />
@@ -384,7 +384,7 @@ From there, we can reference this in our App layout with a `<script>` tag and th
 
     <body>
       <main>
-        <page-outlet></page-outlet>
+        <output for="page"></output>
       </main>
 
       <app-footer></app-footer>
