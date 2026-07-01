@@ -92,9 +92,81 @@ Then add this plugin to your _greenwood.config.js_.
 
 ## Usage
 
-Now, you can author [SSR pages](/docs/pages/server-rendering/) using Lit templates using Greenwood's [`getBody` API](https://www.greenwoodjs.io/docs/server-rendering/#usage) or prerender components included via `<script>` tags.
+Now, you can author [SSR pages](/docs/pages/server-rendering/) using Lit, including prerendering of components included via `<script>` tags.
 
-Below is an example of generating a page of LitElement based Web Components:
+This example uses `default export` to expose a page level custom element with support for dynamic routing:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/products.js">
+
+  ```js
+  import { LitElement, html } from "lit";
+
+  export default class ProductsPage extends LitElement {
+    connectedCallback() {
+      this.products = [{
+        id: 1,
+        name: "Product 1",
+      }, {
+        id: 2,
+        name: "Product 2",
+      }];
+    }
+
+    render() {
+      const { products } = this;
+
+      return html`
+        <h1>Products Page</h1>
+        <ul>
+          ${products.map((product) => {
+            const { id, name } = product;
+
+            return html`<li>${id}) ${name}</li>`;
+          })}
+        </ul>
+      `;
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+Or if you're using dynamic routing, map the incoming param to a `static` property:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/product/[id].js">
+
+  ```js
+  import { LitElement, html } from "lit";
+
+  export default class ProductDetailsPage extends LitElement {
+    static get properties() {
+      return {
+        id: { type: Number },
+      };
+    }
+
+    render() {
+      const { id } = this;
+
+      return html`
+        <h1>Product Details Page</h1>
+        <p>Product ID: ${id}</p>
+      `;
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+If you need to `async` operations (as Lit does not support async `connectedCallback`), use Greenwood's `getBody` API:
 
 <!-- prettier-ignore-start -->
 
