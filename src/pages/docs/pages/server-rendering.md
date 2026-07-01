@@ -228,11 +228,172 @@ Any Greenwood [supported frontmatter](/docs/content-as-data/frontmatter/) can be
 
 > For defining custom dynamic based metadata, like for `<meta>` tags, use `getLayout` and define those tags right in your HTML.
 
+## Dynamic Routing
+
+Greenwood supports dynamic routing for SSR pages, allowing a single file to serve multiple routes. This is achieved by wrapping the file name in brackets, e.g. `[slug].js`, with the value available in the params object of the constructor props passed in.
+
+The below example would serve all routes matching `/blog/<slug>/`:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/blog/[slug].js">
+
+  ```js
+  import { getPostBySlug } from '../../services/posts.js';
+
+  export default class BlogPostPage extends HTMLElement {
+    #slug;
+
+    constructor({ params }) {
+      super();
+      this.#slug = params.slug;
+    }
+
+    async connectedCallback() {
+      const post = await getPostBySlug(this.#slug);
+
+      this.innerHTML = `
+        <body>
+          <h1>${post.title}</h1>
+          <p>${post.content}</p>
+        </body>
+      `;
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+## Dynamic Prerendering
+
+Building on top of Dynamic Routing, you can opt to generate all your dynamic routes as static HTML instead, using `getStaticPaths` and optionally `getStaticParams`. For `getStaticPaths`, an array of objects must be returned with at least one property matching the value inside the brackets. `getStaticParams` can be used to augment the properties within the params object passed in via constructor props.
+
+See the following example, which will generate N number of static HTML files for each item returned by `getStaticPaths`:
+
+- _/products/1/index.html_
+- _/products/2/index.html_
+- _/products/3/index.html_
+- etc
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/product/[id].js">
+
+  ```js
+  import { getProducts } from '../../services/products.js'
+
+  export async function getStaticPaths() {
+    const products = await getProducts();
+
+    return products.map((product) => {
+      return {
+        // return as many other params as you want
+        params: {
+          id: product.id,
+          name: product.name,
+        },
+      };
+    });
+  }
+
+  export async function getStaticParams({ params }) {
+    const products = await getProducts();
+    const product = products.find((product) => product.id === params.id);
+
+    return { product };
+  }
+
+  // you also use getBody if you prefer
+  export default class BlogPostPage extends HTMLElement {
+    #product;
+
+    constructor({ params }) {
+      super();
+      this.#product = params.product;
+    }
+
+    connectedCallback() {
+      this.innerHTML = `
+        <body>
+          <h2>${this.#product.name}</h2>
+          <p>${this.#product.description}</p>
+        </body>
+      `;
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+If using TypeScript, Greenwood provides helpers for inferring the types of `getStaticPaths` and `getStaticParams`:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/blog/[slug].ts">
+
+  ```ts
+  import { getBlogPosts, getBlogPostBySlug } from "../../services/posts.ts";
+  import type { BlogPost } from "../../services/posts.ts";
+  import type {
+    GetStaticPaths,
+    GetStaticParams,
+    InferGetStaticParamsType,
+    InferGetStaticPropsType,
+  } from "@greenwood/cli";
+
+  type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+  type Props = InferGetStaticPropsType<typeof getStaticParams>;
+
+  export const getStaticPaths = async function () {
+    const posts = await getBlogPosts();
+
+    return posts.map((post) => {
+      return {
+        params: {
+          slug: post.slug,
+        },
+      };
+    });
+  } satisfies GetStaticPaths;
+
+  export const getStaticParams = async function ({ params }: { params: Params }) {
+    const post = await getBlogPostBySlug(params.slug);
+
+    return { post };
+  } satisfies GetStaticParams;
+
+  export default class BlogPostPage extends HTMLElement {
+    #post: BlogPost;
+
+    constructor({ params }: { params: Props }) {
+      super();
+      this.#post = params.post;
+    }
+
+    connectedCallback() {
+      this.innerHTML = `
+        <body>
+          <h2>${this.#post.title}</h2>
+          <p>${this.#post.content}</p>
+        </body>
+      `;
+    }
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 ## Options
 
 ### Prerender
 
-To export server routes as just static HTML (no request time handling), you can export a **prerender** option from your page, set to `true`.
+To export a single SSR route as just static HTML (no request time handling), you can export a **prerender** option from your page, set to `true`.
 
 <!-- prettier-ignore-start -->
 

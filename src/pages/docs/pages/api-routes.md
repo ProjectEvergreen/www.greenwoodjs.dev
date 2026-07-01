@@ -47,6 +47,34 @@ Here is an example of that API Route, which reads a query parameter of **name** 
 
 <!-- prettier-ignore-end -->
 
+## Dynamic Routing
+
+Greenwood supports dynamic routing for API routes, allowing a single file to serve multiple routes. This is achieved by wrapping the file name in brackets, e.g. `[id].js`m with the value available in the params object passed into the function handler.
+
+The below example would serve all routes matching `/api/products/<id>/`:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet" heading="src/pages/api/product/[id].js">
+
+  ```js
+  import { getProductById } from '../../services/posts.js';
+
+  export async function handler(request, { params }) {
+    const product = await getProductById(params.id);
+
+    return new Response(JSON.stringify(product), {
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 ## Hypermedia
 
 Inspired by [**Doug Parker's**](https://blog.dwac.dev/) blog post [_A Simpler HTML-over-the-Wire_](https://blog.dwac.dev/posts/html-fragments/) and tools like [**htmx**](/guides/ecosystem/htmx/), one useful pattern afforded by Greenwood is the ability to render the same custom element definition on the client _and_ the server. This "fragments" API approach can be used to server render Web Component definitions, such that as the HTML is added to the DOM from the response, these components will hydrate automatically and become instantly interactive if the same definition has also been loaded on the client via a `<script>` tag. (think of appending more items to a search results page or virtualized list.)
