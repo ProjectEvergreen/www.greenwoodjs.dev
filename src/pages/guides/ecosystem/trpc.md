@@ -112,6 +112,14 @@ Next, let's create our client, which we can then call from the frontend:
 
 The last step is to create our dynamic API endpoint using tRPC's [fetch adapter](https://trpc.io/docs/server/adapters/fetch), and wire up the router to it:
 
+> You can define the RPC endpoint and filename to be anything you want, it just has to be a dynamic route and match the url you define in the client. So any of the following would also work, for example:
+>
+> - _src/pages/api/[trpc].ts_
+> - _src/pages/api/trpc/[url].ts_
+> - _src/pages/api/trpc/[handler].ts_
+
+<br/>
+
 <!-- prettier-ignore-start -->
 
 <app-ctc-block variant="snippet" heading="src/pages/api/trpc/[trpc].ts">
@@ -148,7 +156,7 @@ Putting it all together we can now make calls with the client from anywhere with
 
   const planets = await client.planets.listPlanets.query();
 
-  planets.forEach((planet) => console.log({ planet }) );
+  planets.forEach((planet) => console.log({ planet }));
   ```
 
 </app-ctc-block>
