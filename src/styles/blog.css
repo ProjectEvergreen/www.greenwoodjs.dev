@@ -49,6 +49,10 @@
   padding: var(--size-1);
 }
 
+.page-content blockquote li {
+  padding: 0.5px 0;
+}
+
 .publishDate {
   font-size: var(--font-size-1);
   display: block;
