@@ -10,6 +10,8 @@ tocHeading: 2
 
 A plugin for using [**Lit**'s SSR capabilities](https://github.com/lit/lit/tree/main/packages/labs/ssr) as a custom server-side renderer _instead_ of Greenwood's default renderer (WCC), which means **_you will need to use `LitElement` as your base class in all instances where you are pre-rendering or using SSR_**. This plugin also gives the ability to statically generate entire pages and layouts to output completely static sites (SSG). See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit) for complete usage information and additional [usage caveats](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-renderer-lit#caveats).
 
+> You can see a complete hybrid project example in this [demonstration repo](https://github.com/thescientist13/greenwood-lit-ssr)
+
 ## Prerequisite
 
 This packages depends on the Lit as a `peerDependency`. This means you must have Lit already installed in your project.
@@ -94,7 +96,7 @@ Then add this plugin to your _greenwood.config.js_.
 
 Now, you can author [SSR pages](/docs/pages/server-rendering/) using Lit, including prerendering of components included via `<script>` tags.
 
-This example uses `default export` to expose a page level custom element with support for dynamic routing:
+This example uses a `default export` to expose a page level custom element with support for dynamic routing:
 
 <!-- prettier-ignore-start -->
 
@@ -166,7 +168,7 @@ Or if you're using dynamic routing, map the incoming param to a `static` propert
 
 <!-- prettier-ignore-end -->
 
-If you need to `async` operations (as Lit does not support async `connectedCallback`), use Greenwood's `getBody` API:
+If you need to do `async` operations (as Lit does not support async `connectedCallback`), you will need to use Greenwood's `getBody` API instead:
 
 <!-- prettier-ignore-start -->
 
