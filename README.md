@@ -32,6 +32,7 @@ $ npm run dev
 To build the site for production and view it locally, run:
 
 ```sh
+$ npm run build
 $ npm run serve
 ```
 
