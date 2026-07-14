@@ -49,7 +49,7 @@ Here is an example of that API Route, which reads a query parameter of **name** 
 
 ## Dynamic Routing
 
-Greenwood supports dynamic routing for API routes, allowing a single file to serve multiple routes. This is achieved by wrapping the file name in brackets, e.g. `[id].js`m with the value available in the params object passed into the function handler.
+Greenwood supports dynamic routing for API routes, allowing a single file to serve multiple routes. This is achieved by wrapping the file name in brackets, e.g. `[id].js`, with the value available in the params object passed into the function handler.
 
 The below example would serve all routes matching `/api/products/<id>`:
 
