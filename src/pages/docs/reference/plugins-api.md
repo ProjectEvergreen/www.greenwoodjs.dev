@@ -376,7 +376,10 @@ This plugin expects to be given a path to a module that exports a function to ex
 This plugin type supports the following options:
 
 - **executeModuleUrl** (recommended) - `URL` to the location of a file with the SSR rendering implementation
-- **customUrl** - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecycle of a Greenwood build, and running the provided callback function
+- **apiRouteWorkerUrl** (optional) - `URL` to the location of a file with the SSR rendering implementation for API Routes
+- **customUrl** - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecycle of a Greenwood build, and running the provided callback function. To be used instead of **executeModuleUrl** option.
+
+> At this time, **customUrl**s do not have support for Greenwood's [Dynamic Routing (or Prendering) capabilities](/docs/pages/server-rendering/#dynamic-routing), but if you find a need for this use case, please open a [discussion](https://github.com/ProjectEvergreen/greenwood/discussions) for this topic.
 
 ### Examples
 
@@ -384,7 +387,13 @@ This plugin type supports the following options:
 
 The recommended Greenwood API for executing server rendered code is in a function that is expected to implement any combination of [these APIs](/docs/pages/server-rendering/#api); `default export`, `getBody`, `getLayout`, and `getFrontmatter`. For efficient SSR, `contentOptions` are provided to signal to the implementation which content is being requested (one of frontmatter, body, or layout contents).
 
-You can follow the [WCC default implementation for Greenwood](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/lib/execute-route-module.js) as a reference, or our [Lit SSR plugin](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-renderer-lit/src/execute-route-module.js).
+> You can follow the [WCC based default implementation for Greenwood](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/lib/execute-route-module.js) as a reference, or our [Lit SSR plugin](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-renderer-lit/src/execute-route-module.js) for a more complete example.
+
+#### API Route Worker
+
+Like `executeModuleUrl`, the API Route Worker is an optional handler for providing an SSR context to support server rendering within API Routes, as demonstrated in the [_Full-Stack Web Components_ guide](/guides/tutorials/full-stack-web-components/). This a great option for providing ad-hoc server-rendered content with your existing custom element definitions to return fully-formed HTML as a response to API requests. If not present, API route handling will default to Greenwood's default implementation. This is needed because Greenwood's API Route handlers are context agnostic and so requires you to BYOB ("bring your own behavior").
+
+> You can follow the [Greenwood's default implementation](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/cli/src/lib/api-route-worker.js) as a reference, or our [Lit SSR plugin](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-renderer-lit/src/api-route-worker.js) for a more complete example.
 
 #### Custom Implementation
 
