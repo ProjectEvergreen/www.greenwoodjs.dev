@@ -183,7 +183,7 @@ You can pull in data from Greenwood's [compilation](/docs/reference/appendix/#co
         </head>
         <body>
           <h1>This heading was rendered server side for route ${route}!</h1>
-          <content-outlet></content-outlet>
+          <output for="content"></output>
         </body>
       </html>
     `;

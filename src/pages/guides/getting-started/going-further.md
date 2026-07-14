@@ -163,7 +163,7 @@ And access these values through HTML, like in a layout file:
       author="${globalThis.page.data.author}"
       published="${globalThis.page.data.published}"
     >
-      <content-outlet></content-outlet>
+      <output for="content"></output>
     </app-blog-post>
   </body>
 </html>

@@ -106,7 +106,7 @@ src/
 
 One thing to notice from our _index.html_ example above is that we were including a _theme.css_ and header component onto the page. However, you will probably want these kind of scripts and styles on _all_ your pages. To share HTML _across_ pages, Greenwood supports a _layouts/_ directory that will wrap pages in shared HTML.
 
-In this case, we can create an _app.html_ which Greenwood will use to wrap all pages. We can use `<page-outlet></page-outlet>` to specify where we want the content's of each page to appear.
+In this case, we can create an _app.html_ which Greenwood will use to wrap all pages. We can use `<output for="page"></output>` to specify where we want the content's of each page to appear.
 
 ```html
 <!-- src/layouts/app.html -->
@@ -121,7 +121,7 @@ In this case, we can create an _app.html_ which Greenwood will use to wrap all p
   <body>
     <app-header></app-header>
     <main>
-      <page-outlet></page-outlet>
+      <output for="page"></output>
     </main>
   </body>
 </html>
@@ -185,7 +185,7 @@ And now we can create a layout just for these particular pages, which themselves
 <html>
   <body>
     <!-- markdown content will get output here -->
-    <content-outlet></content-outlet>
+    <output for="content"></output>
 
     <a href="/blog/">&larr; Back to all blog posts</a>
   </body>

@@ -33,7 +33,7 @@ src/
 
 ## Page Layout
 
-Pages in your project will generally want a layout so you can control the output of the HTML and include all your own custom components and styles to wrap your content; think of a shared layout for all blog posts, which might be distinct from your home or docs pages. By default all pages will default to looking for a _page.html_ in the _layouts/_ directory. A placeholder of `<content-outlet></content-outlet>` can be used to position where the content from the incoming page will go.
+Pages in your project will generally want a layout so you can control the output of the HTML and include all your own custom components and styles to wrap your content; think of a shared layout for all blog posts, which might be distinct from your home or docs pages. By default all pages will default to looking for a _page.html_ in the _layouts/_ directory. A placeholder of `<output for="content"></output>` can be used to position where the content from the incoming page will go.
 
 > Dynamic layouts are [also supported](/docs/pages/server-rendering/#layouts).
 
@@ -51,7 +51,7 @@ Below is an example of a _page.html_ layout:
         <h1>Welcome to my site!</h1>
       </header>
 
-      <content-outlet></content-outlet>
+      <output for="content"></output>
     </body>
   </html>
   ```
@@ -108,7 +108,7 @@ Frontmatter is also supported for HTML files:
 
 ## App Layout
 
-To customize the outer most wrapping HTML of _all_ your pages, create an _app.html_ file. This is most useful for global page elements like headers, navigation, and footers. Like a page layout, this will just be another HTML document (or JS / TS file) with a `<page-outlet></page-outlet>` placeholder that can be used to position where the content from the processed page layout will appear.
+To customize the outer most wrapping HTML of _all_ your pages, create an _app.html_ file. This is most useful for global page elements like headers, navigation, and footers. Like a page layout, this will just be another HTML document (or JS / TS file) with a `<output for="page"></output>` placeholder that can be used to position where the content from the processed page layout will appear.
 
 Below is an HTML example of an app layout:
 
@@ -125,7 +125,7 @@ Below is an HTML example of an app layout:
       </header>
 
       <section>
-        <page-outlet></page-outlet>
+        <output for="page"></output>
       </section>
 
       <footer>
@@ -166,7 +166,7 @@ Server rendered layouts can also be authored using Web Components:
           <body>
             <h2>Page Layout for ${this.route}</h2>
             <span>Number of pages ${this.numPages}</span>
-            <content-outlet></content-outlet>
+            <output for="content"></output>
           </body>
         </html>
       `;

@@ -103,7 +103,7 @@ greenwood.config.js
 
     <body>
       <!-- whatever else you want to add to the page for the user! -->
-      <content-outlet></content-outlet>
+      <output for="content"></output>
     </body>
   </html>
   ```
