@@ -14,9 +14,9 @@ tocHeading: 2
 
 ## Installation
 
-> _This guide assumes tRPC v11.x and Zod 4.x+._
+> _This guide assumes tRPC v11.x and Zod 4.x._
 
-First, let's install tRPC client and server packages, as well as [**Zod**](https://zod.dev/); a TypeScript schema validation library.
+First, let's install the tRPC client and server packages, as well as [**Zod**](https://zod.dev/); a TypeScript schema validation library.
 
 <!-- prettier-ignore-start -->
 <app-ctc-block variant="runners">
@@ -39,7 +39,9 @@ First, let's install tRPC client and server packages, as well as [**Zod**](https
 
 ## Demo
 
-For this example, we have assume a backend data source (the demonstration uses SQLite with Node's `node:sqlite` client sourced from a JSON file), but you can use any data source you want. There are three key files:
+For this example, we assume an existing data source. The demonstration repo uses SQLite with Node's `node:sqlite` client sourced from a JSON file, but you can use any data source you want.
+
+There are three key files:
 
 - Greenwood [Dynamic API Route](/docs/pages/api-routes/#dynamic-routing) - Single endpoint for handling all tRPC requests
 - Client - For making API requests to the backend
@@ -114,15 +116,15 @@ The last step is to create our dynamic API endpoint using tRPC's [fetch adapter]
 
 > You can define the RPC endpoint and filename to be anything you want, it just has to be a dynamic route and match the url you define in the client. So any of the following would also work, for example:
 >
-> - _src/pages/api/[trpc].ts_
-> - _src/pages/api/trpc/[url].ts_
-> - _src/pages/api/trpc/[handler].ts_
+> - _src/pages/api/rpc/[rpc].ts_
+> - _src/pages/api/rpc/[url].ts_
+> - _src/pages/api/rpc/[handler].ts_
 
 <br/>
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="src/pages/api/trpc/[trpc].ts">
+<app-ctc-block variant="snippet" heading="src/pages/api/rpc/[rpc].ts">
 
   ```ts
   import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
@@ -130,7 +132,7 @@ The last step is to create our dynamic API endpoint using tRPC's [fetch adapter]
 
   export async function handler(request: Request): Promise<Response> {
     const response = await fetchRequestHandler({
-      endpoint: '/api/trpc',
+      endpoint: '/api/rpc',
       req: request,
       router: appRouter,
     });
