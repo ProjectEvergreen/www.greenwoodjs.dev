@@ -8,9 +8,7 @@ tocHeading: 2
 
 # TypeScript
 
-Greenwood provides built-in support for TypeScript, either through type-stripping (default behavior) or with the ability to fallback to [using the TypeScript compiler](/docs/reference/configuration/#use-typescript-compiler) if you're leveraging certain transformation based TypeScript features (like [`enums` and `namespaces`](https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/#the---erasablesyntaxonly-option)) or JavaScript syntax like Decorators. If you need these additional capabilities, you can set the [`useTsc` option](/docs/reference/configuration/#use-typescript-compiler) in your Greenwood configuration file.
-
-> You can read [this guide](https://nodejs.org/en/learn/typescript/run-natively) to learn more about running TypeScript with NodeJS, including the [`--experimental-transform-types`](https://nodejs.org/docs/latest-v23.x/api/cli.html#--experimental-transform-types) flag. You can see an example Greenwood TypeScript repo [here](https://github.com/thescientist13/greenwood-native-typescript).
+Greenwood provides built-in support for TypeScript, either through type-stripping (default behavior) or with the ability to fallback to [using the TypeScript compiler](/docs/reference/configuration/#use-typescript-compiler) if you're leveraging certain transformation based TypeScript features (like [`enums` and `namespaces`](https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/#the---erasablesyntaxonly-option)) or supported JavaScript syntax like Decorators. If you need these additional capabilities, you can set the [`useTsc` option](/docs/reference/configuration/#use-typescript-compiler) in your Greenwood configuration file.
 
 ## Setup
 
