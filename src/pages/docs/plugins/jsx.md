@@ -7,7 +7,7 @@ label: JSX
 
 # JSX
 
-A plugin that allows usage of WCC's experimental [JSX syntax](https://wcc.dev/docs/#jsx) when authoring native Web Components, including SSR pages. See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-jsx) for complete usage information, including (very!) experimental support for [using TC39 Signals for reactivity](http://localhost:1984/docs/#inferred-observability-signals).
+A plugin that allows usage of WCC's experimental [JSX syntax](https://wcc.dev/docs/#jsx) when authoring native Web Components, including SSR pages. See the [plugin's README](https://github.com/ProjectEvergreen/greenwood/tree/master/packages/plugin-import-jsx) for complete usage information, including (very!) experimental support for [using TC39 Signals for reactivity](https://wcc.dev/docs/#inferred-observability-signals).
 
 > You can see a demonstration repo [here](https://github.com/thescientist13/greenwood-jsx).
 
@@ -45,7 +45,9 @@ Then add this plugin to your _greenwood.config.js_:
   import { greenwoodPluginImportJsx } from "@greenwood/plugin-import-jsx";
 
   export default {
-    plugins: [greenwoodPluginImportJsx()],
+    plugins: [greenwoodPluginImportJsx({
+      inferredObservability: true, // add this to enable TC39 Signals based reactivity
+    })],
   };
   ```
 
