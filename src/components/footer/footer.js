@@ -6,11 +6,21 @@ export default class Footer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <footer class="${styles.footer}">
-        <div class="${styles.logo}">
-          ${greenwoodLogo}
-        </div>
+        <div class="${styles.flexContainer}">
+          <div class="${styles.logo}">
+            ${greenwoodLogo}
+          </div>
 
-        <app-social-tray></app-social-tray>
+          <div class="${styles.netlifyBanner}">
+            <a href="https://www.netlify.com/">This site is powered by Netlify</a>
+          </div>
+
+          <app-social-tray></app-social-tray>
+
+          <div class="${styles.netlifyBannerMobile}">
+            <a href="https://www.netlify.com/">This site is powered by Netlify</a>
+          </div>
+        </div>
       </footer>
     `;
   }
