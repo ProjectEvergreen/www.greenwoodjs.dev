@@ -51,14 +51,14 @@ Here is an example of that API Route, which reads a query parameter of **name** 
 
 Greenwood supports dynamic routing for API routes, allowing a single file to serve multiple routes. This is achieved by wrapping the file name in brackets, e.g. `[id].js`m with the value available in the params object passed into the function handler.
 
-The below example would serve all routes matching `/api/products/<id>/`:
+The below example would serve all routes matching `/api/products/<id>`:
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="src/pages/api/product/[id].js">
+<app-ctc-block variant="snippet" heading="src/pages/api/products/[id].js">
 
   ```js
-  import { getProductById } from '../../services/posts.js';
+  import { getProductById } from '../../services/products.js';
 
   export async function handler(request, { params }) {
     const product = await getProductById(params.id);

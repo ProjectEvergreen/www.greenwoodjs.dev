@@ -272,9 +272,9 @@ Building on top of Dynamic Routing, you can opt to generate all your dynamic rou
 
 See the following example, which will generate N number of static HTML files for each item returned by `getStaticPaths`:
 
-- _/products/1/index.html_
-- _/products/2/index.html_
-- _/products/3/index.html_
+- _/product/1/index.html_
+- _/product/2/index.html_
+- _/product/3/index.html_
 - etc
 
 <!-- prettier-ignore-start -->
@@ -306,7 +306,7 @@ See the following example, which will generate N number of static HTML files for
   }
 
   // you also use getBody if you prefer
-  export default class BlogPostPage extends HTMLElement {
+  export default class ProductDetailsPage extends HTMLElement {
     #product;
 
     constructor({ params }) {
