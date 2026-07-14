@@ -379,6 +379,8 @@ This plugin type supports the following options:
 - **apiRouteWorkerUrl** (optional) - `URL` to the location of a file with the SSR rendering implementation for API Routes
 - **customUrl** - `URL` to a file that has a `default export` of a function for handling the _prerendering_ lifecycle of a Greenwood build, and running the provided callback function. To be used instead of **executeModuleUrl** option.
 
+> At this time, **customUrl**s do not have support for Greenwood's [Dynamic Routing (or Prendering) capabilities](/docs/pages/server-rendering/#dynamic-routing), but if you find a need for this use case, please open a [discussion](https://github.com/ProjectEvergreen/greenwood/discussions) for this topic.
+
 ### Examples
 
 #### Execute Route Module
