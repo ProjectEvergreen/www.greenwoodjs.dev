@@ -141,3 +141,32 @@ You can also define any custom frontmatter property you want and that will be ma
 </app-ctc-block>
 
 <!-- prettier-ignore-end -->
+
+## Special Characters
+
+Values pass through to your HTML as written — a literal `%` needs no escaping:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```md
+  ---
+  title: 100% Complete
+  label: Save 20%
+  ---
+
+  # Progress Report
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+In this example, the `<title>` tag keeps the value verbatim:
+
+```html
+<title>100% Complete</title>
+```
+
+A value that is itself percent-encoded is decoded once, so `title: Caf%C3%A9` emits `Café`. These rules apply to **label**, **title**, and the page's generated **id**, for both filesystem pages and pages provided by a [source plugin](/docs/reference/plugins-api/#source).

@@ -389,6 +389,8 @@ If using TypeScript, Greenwood provides helpers for inferring the types of `getS
 
 <!-- prettier-ignore-end -->
 
+> **Note:** Param values round-trip decoded. A param may contain spaces, non-ASCII characters, or a literal `%` — it reaches `getStaticParams`, `getBody`, and your constructor exactly as returned from `getStaticPaths`. Only the emitted folder name is percent-encoded, so `params: { slug: "café" }` generates _/blog/caf%C3%A9/index.html_ while the page itself sees `café`.
+
 ## Options
 
 ### Prerender
