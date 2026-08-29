@@ -34,6 +34,7 @@ jobs:
       - name: Build Project
         run: |
           npm run build
+          npm run build:alt
       - name: Commitlint Check
         if: github.event_name == 'push'
         run: npm run commit:lint
