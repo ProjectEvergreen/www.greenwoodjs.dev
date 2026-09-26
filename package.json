@@ -13,7 +13,6 @@
   ],
   "scripts": {
     "build": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood build",
-    "build:alt": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js build",
     "dev": "greenwood develop",
     "serve": "greenwood serve",
     "story:dev": "storybook dev -p 6006",
