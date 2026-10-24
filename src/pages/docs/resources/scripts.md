@@ -112,7 +112,7 @@ Below is an example of using a bare specifier in a JavaScript file:
 
 <!-- prettier-ignore-end -->
 
-You can reference **node_modules** directly from a `<script>` tag by starting the path with a "shortcut" alias of **/node_modules/**, which will signal to Greenwood to use `import.meta.resolve` to automatically resolve the full path for you:
+You can reference a file inside an installed package from a `<script>` tag by starting the path with the **/node_modules/** shortcut. Greenwood locates the package from your project and appends the requested file path, including when the package is installed in a nested or linked location. This asset lookup does not require the package to expose a default module entry point:
 
 <!-- prettier-ignore-start -->
 
@@ -139,7 +139,12 @@ You can reference **node_modules** directly from a `<script>` tag by starting th
 <!-- prettier-ignore-end -->
 
 > Relative paths will also work in this context if you are comfortable resolving the full path to _node_modules_ on your own, e.g.
-> `<script src="../../node_modules/htmx.org/dist/htmx.js"></script>`
+>
+> ```html
+> <script src="../../node_modules/htmx.org/dist/htmx.js"></script>
+> ```
+
+Greenwood-generated URLs may instead start with `/~`. These identify an already resolved filesystem location, preserving the specific package installation selected by Greenwood or a plugin. Use `/node_modules/` when authoring a package asset shortcut; Greenwood generates `/~` URLs when it needs to retain a resolved location.
 
 ## Prerendering
 
