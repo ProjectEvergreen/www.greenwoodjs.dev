@@ -49,7 +49,7 @@ Styles can be done in any standards compliant way that will work in a browser. S
 
 ## Node Modules
 
-Like [with scripts](/docs/resources/scripts/#node-modules), packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. Similar conventions apply in regards to using the **/node_modules/** "shortcut" alias to let Greenwood resolve the location using `import.meta.resolve`, or you can provide the full relative path yourself.
+Like [with scripts](/docs/resources/scripts/#node-modules), packages from [**npm**](https://www.npmjs.com/) (and compatible registries) can be used by installing them with your favorite package manager. The **/node_modules/** shortcut locates a package from your project and references a file inside it. You can also provide the full relative path yourself.
 
 Here is an example of using relative and shortcut paths in a CSS file:
 
@@ -76,8 +76,6 @@ Here is an example of using relative and shortcut paths in a CSS file:
 
 <!-- prettier-ignore-end -->
 
-> **Note**: The bare module specifier approach has limitations [in SSR scenarios](/docs/pages/server-rendering/#custom-imports) as [NodeJS custom loaders do not support `import.meta.resolve`](https://nodejs.org/api/esm.html#importmetaresolvespecifier). More information [here](https://github.com/ProjectEvergreen/greenwood/pull/1511#discussion_r2142771772).
-
 The same can be done from an HTML file with a `<link>` tag:
 
 <!-- prettier-ignore-start -->
@@ -89,7 +87,7 @@ The same can be done from an HTML file with a `<link>` tag:
     <head>
       <!-- after having installed simpledotcss -->
       <!-- npm i simpledotcss -->
-      <link rel="stylesheet" src="/node_modules/simpledotcss/simple.css" />
+      <link rel="stylesheet" href="/node_modules/simpledotcss/simple.css" />
     </head>
 
     <body>
