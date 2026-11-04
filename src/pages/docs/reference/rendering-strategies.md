@@ -115,7 +115,7 @@ Now you will have list of all your blog posts, automatically generated and forma
 
 ---
 
-If you do retain a component's script for client-side behavior, its lifecycle callbacks can run again in the browser against the prerendered HTML. To avoid rendering the same content twice, check for existing rendered content before updating it, or use your renderer's hydration support, such as Lit's.
+If you do retain a component's script for client-side behavior, its lifecycle callbacks can run again in the browser against the prerendered HTML. To avoid rendering the same content twice, check for existing rendered content before updating it, or use your renderer's hydration support, such as [Lit's](/docs/plugins/lit-ssr/).
 
 ### SSR
 
