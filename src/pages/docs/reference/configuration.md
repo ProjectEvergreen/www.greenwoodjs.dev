@@ -399,7 +399,7 @@ Unlike the port option for `devServer` configuration, this option allows you to 
 
 ## Prerender
 
-When set to `true` [Greenwood will prerender](/docs/reference/rendering-strategies/) your site using [**WCC**](https://github.com/ProjectEvergreen/wcc) and generate HTML from any Web Components you include in your pages and layouts as part of the final static HTML build output.
+When set to `true` [Greenwood will prerender](/docs/reference/rendering-strategies/#prerendering) your site using [**WCC**](https://github.com/ProjectEvergreen/wcc), or your configured renderer plugin. This will execute any page scripts and capture the generated HTML to be included in the initial HTML for your pages and layouts.
 
 <!-- prettier-ignore-start -->
 
