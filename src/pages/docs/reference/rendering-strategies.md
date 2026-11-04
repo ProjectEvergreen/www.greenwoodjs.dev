@@ -30,9 +30,15 @@ If you are building an e-commerce shop or a catalog-like site, SSR would be a go
 
 ## Prerendering
 
-Prerendering is a feature of Greenwood by which custom element definitions (be it with WCC, Lit, or a custom renderer) can be executed and run once at build time through a "single pass" render. It can be combined with any of the above strategies. This makes custom elements a powerful, JavaScript based templating system, using the web standards you already know.
+Prerendering is a feature of Greenwood by which JavaScript (be it with WCC, Lit, or other [custom renderer](/docs/reference/plugins-api/#renderer)) can be executed on the server once and have those results included in the page's initial HTML output. It can be combined with any of the above strategies.
+
+### Runtime Compatibility
+
+Code that participates in prerendering should be isomorphic, supporting both the renderer's server environment and the browser during development and production builds. Use [`globalThis`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis) to access globals across these environments, for example `globalThis.document` instead of `window.document`. Check that the APIs your code requires are available before using them, using optional chaining or feature detection where appropriate.
 
 ### Static Optimization
+
+With prerendering, this makes custom elements a powerful, JavaScript based templating system for generating static HTML, using the web standards you already know!
 
 For example, creating a list of blog posts for a blog landing page, based on all the content in your project's pages directory:
 
@@ -104,6 +110,12 @@ For example, creating a list of blog posts for a blog landing page, based on all
 <!-- prettier-ignore-end -->
 
 Now you will have list of all your blog posts, automatically generated and formatted from your own content, kept up to date with every change. All with no runtime JavaScript!
+
+> [Static optimization](/docs/reference/configuration/#optimization) controls whether scripts are delivered to the browser after prerendering. It does not change which scripts execute during prerendering or make otherwise incompatible code suitable for the server environment.
+
+---
+
+If you do retain a component's script for client-side behavior, its lifecycle callbacks can run again in the browser against the prerendered HTML. To avoid rendering the same content twice, check for existing rendered content before updating it, or use your renderer's hydration support, such as [Lit's](/docs/plugins/lit-ssr/).
 
 ### SSR
 
