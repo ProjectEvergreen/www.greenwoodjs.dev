@@ -1,8 +1,8 @@
 import styles from "./social-tray.module.css";
-import discordIcon from "../../assets/discord.svg?type=raw";
-import githubIcon from "../../assets/github.svg?type=raw";
-import twitterIcon from "../../assets/twitter-logo.svg?type=raw";
-import blueskyIcon from "../../assets/bluesky.svg?type=raw";
+import discordIcon from "../../assets/discord.svg?type=text";
+import githubIcon from "../../assets/github.svg?type=text";
+import twitterIcon from "../../assets/twitter-logo.svg?type=text";
+import blueskyIcon from "../../assets/bluesky.svg?type=text";
 
 export default class SocialTray extends HTMLElement {
   connectedCallback() {

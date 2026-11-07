@@ -1,6 +1,6 @@
 import { defaultReporter } from "@web/test-runner";
 import fs from "node:fs/promises";
-import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { greenwoodPluginImportText } from "@greenwood/plugin-import-text";
 import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
 import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 import { junitReporter } from "@web/test-runner-junit-reporter";
@@ -10,7 +10,7 @@ import path from "node:path";
 const config = await readAndMergeConfig();
 const context = await initContext({ config });
 const compilation = { context, config };
-const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
+const textResource = greenwoodPluginImportText()[0].provider(compilation);
 
 export default {
   files: "./src/**/*.spec.js",
@@ -27,13 +27,13 @@ export default {
   },
   plugins: [
     {
-      name: "import-raw",
+      name: "import-text",
       async transform(context) {
         const { url } = context.request;
 
-        if (url.endsWith("?type=raw")) {
+        if (url.endsWith("?type=text")) {
           const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
-          const response = await rawResource.intercept(null, null, new Response(contents));
+          const response = await textResource.intercept(null, null, new Response(contents));
           const body = await response.text();
 
           return {

@@ -1,5 +1,5 @@
 import styles from "./footer.module.css";
-import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
+import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=text";
 import "../social-tray/social-tray.js";
 
 export default class Footer extends HTMLElement {

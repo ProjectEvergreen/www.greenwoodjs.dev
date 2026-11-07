@@ -1,9 +1,9 @@
 import sheet from "./capabilities.css" with { type: "css" };
 import themeSheet from "../../styles/theme.css" with { type: "css" };
-import ssg from "../../assets/build-ssg.svg?type=raw";
-import html from "../../assets/html.svg?type=raw";
-import webComponents from "../../assets/web-components.svg?type=raw";
-import json from "../../assets/json.svg?type=raw";
+import ssg from "../../assets/build-ssg.svg?type=text";
+import html from "../../assets/html.svg?type=text";
+import webComponents from "../../assets/web-components.svg?type=text";
+import json from "../../assets/json.svg?type=text";
 
 const template = document.createElement("template");
 
