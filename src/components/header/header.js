@@ -1,6 +1,6 @@
 import { getContentByCollection } from "@greenwood/cli/src/data/client.js";
-import mobileMenuIcon from "../../assets/tile.svg?type=raw";
-import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=raw";
+import mobileMenuIcon from "../../assets/tile.svg?type=text";
+import greenwoodLogo from "../../assets/greenwood-logo-full.svg?type=text";
 import styles from "./header.module.css";
 import "../social-tray/social-tray.js";
 

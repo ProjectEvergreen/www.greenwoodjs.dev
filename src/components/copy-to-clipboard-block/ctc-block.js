@@ -1,9 +1,9 @@
 import theme from "../../styles/theme.css" with { type: "css" };
 import sheet from "./ctc-block.css" with { type: "css" };
-import npmLogo from "../../assets/npm.svg?type=raw";
-import pnpmLogo from "../../assets/pnpm.svg?type=raw";
-import yarnLogo from "../../assets/yarn.svg?type=raw";
-import copyIcon from "../../assets/copy-button.svg?type=raw";
+import npmLogo from "../../assets/npm.svg?type=text";
+import pnpmLogo from "../../assets/pnpm.svg?type=text";
+import yarnLogo from "../../assets/yarn.svg?type=text";
+import copyIcon from "../../assets/copy-button.svg?type=text";
 
 const template = document.createElement("template");
 

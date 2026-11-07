@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { greenwoodPluginStandardCss } from "@greenwood/cli/src/plugins/resource/plugin-standard-css.js";
-import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { greenwoodPluginImportText } from "@greenwood/plugin-import-text";
 import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
 import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 import { fileURLToPath } from "node:url";
@@ -12,7 +12,7 @@ const config = await readAndMergeConfig();
 const context = await initContext({ config });
 const compilation = { context, config };
 const standardCssResource = greenwoodPluginStandardCss.provider(compilation);
-const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
+const textResource = greenwoodPluginImportText()[0].provider(compilation);
 
 // Vite doesn't support import attributes :/
 // https://github.com/vitejs/vite/pull/15654
@@ -55,11 +55,11 @@ function transformConstructableStylesheetsPlugin() {
   };
 }
 
-function transformRawImports() {
-  const hint = "?type=raw";
+function transformTextImports() {
+  const hint = "?type=text";
 
   return {
-    name: "transform-raw-imports",
+    name: "transform-text-imports",
     enforce: "pre",
     resolveId: (id, importer) => {
       if (id.endsWith(hint)) {
@@ -71,7 +71,7 @@ function transformRawImports() {
       if (id.endsWith(hint)) {
         const filename = id.slice(0, id.indexOf(`.type${hint}`));
         const contents = await fs.readFile(filename, "utf-8");
-        const response = await rawResource.intercept(
+        const response = await textResource.intercept(
           new URL(`file://${filename}`),
           null,
           new Response(contents),
@@ -95,5 +95,5 @@ export default defineConfig({
       ),
     },
   },
-  plugins: [transformConstructableStylesheetsPlugin(), transformRawImports()],
+  plugins: [transformConstructableStylesheetsPlugin(), transformTextImports()],
 });

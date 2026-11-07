@@ -1,4 +1,4 @@
-import copy from "../../assets/copy-button.svg?type=raw";
+import copy from "../../assets/copy-button.svg?type=text";
 import sheet from "./ctc-button.css" with { type: "css" };
 
 const template = document.createElement("template");

@@ -1,14 +1,14 @@
 import styles from "./build-with-friends.module.css";
-import htmxIcon from "../../assets/htmx.svg?type=raw";
-import litIcon from "../../assets/lit.svg?type=raw";
-import openPropsIcon from "../../assets/open-props.svg?type=raw";
-import storybookIcon from "../../assets/storybook.svg?type=raw";
-import tailwindIcon from "../../assets/tailwind-logo.svg?type=raw";
-import trpcIcon from "../../assets/trpc.svg?type=raw";
-import typescriptIcon from "../../assets/typescript.svg?type=raw";
-import vitestIcon from "../../assets/vitest.svg?type=raw";
-import wccIcon from "../../assets/wcc.svg?type=raw";
-import wtrIcon from "../../assets/modern-web.svg?type=raw";
+import htmxIcon from "../../assets/htmx.svg?type=text";
+import litIcon from "../../assets/lit.svg?type=text";
+import openPropsIcon from "../../assets/open-props.svg?type=text";
+import storybookIcon from "../../assets/storybook.svg?type=text";
+import tailwindIcon from "../../assets/tailwind-logo.svg?type=text";
+import trpcIcon from "../../assets/trpc.svg?type=text";
+import typescriptIcon from "../../assets/typescript.svg?type=text";
+import vitestIcon from "../../assets/vitest.svg?type=text";
+import wccIcon from "../../assets/wcc.svg?type=text";
+import wtrIcon from "../../assets/modern-web.svg?type=text";
 
 export default class BuildWithFriends extends HTMLElement {
   connectedCallback() {

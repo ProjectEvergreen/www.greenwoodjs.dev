@@ -1,5 +1,5 @@
 import { greenwoodPluginCssModules } from "@greenwood/plugin-css-modules";
-import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { greenwoodPluginImportText } from "@greenwood/plugin-import-text";
 import { greenwoodPluginMarkdown } from "@greenwood/plugin-markdown";
 
 // TODO would be nice to find a better way to solve this problem
@@ -61,7 +61,7 @@ export default {
       ],
     }),
     greenwoodPluginCssModules(),
-    greenwoodPluginImportRaw(),
+    greenwoodPluginImportText(),
     {
       name: "active-frontmatter-docs-title-restorer-resource",
       type: "resource",

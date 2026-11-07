@@ -1,9 +1,9 @@
 import platforms from "./platforms.json" with { type: "json" };
-import awsLogo from "../../assets/aws.svg?type=raw";
-import githubLogo from "../../assets/github.svg?type=raw";
-import netlifyLogo from "../../assets/netlify.svg?type=raw";
-import nodejsLogo from "../../assets/nodejs.svg?type=raw";
-import vercelLogo from "../../assets/vercel.svg?type=raw";
+import awsLogo from "../../assets/aws.svg?type=text";
+import githubLogo from "../../assets/github.svg?type=text";
+import netlifyLogo from "../../assets/netlify.svg?type=text";
+import nodejsLogo from "../../assets/nodejs.svg?type=text";
+import vercelLogo from "../../assets/vercel.svg?type=text";
 import styles from "./run-anywhere.module.css";
 
 const platformImageMapper = {

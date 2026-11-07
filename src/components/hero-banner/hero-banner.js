@@ -1,5 +1,5 @@
 import styles from "./hero-banner.module.css";
-import emphasis from "../../assets/emphasis-corner.svg?type=raw";
+import emphasis from "../../assets/emphasis-corner.svg?type=text";
 
 export default class HeroBanner extends HTMLElement {
   connectedCallback() {
