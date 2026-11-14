@@ -140,6 +140,46 @@ To generate this map, Greenwood first checks each package's [**exports**](https:
 1. **module-sync**
 1. **default**
 
+### Import Aliases
+
+During development, Greenwood also translates local project aliases from your project's **imports** field into browser import map entries. Production bundles resolve aliases through the bundler, while server-side code uses module resolution at runtime.
+
+For example, a project with its source files in _src/_ can declare these aliases in its root _package.json_:
+
+```json
+{
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*",
+    "#settings": "./src/settings.js"
+  }
+}
+```
+
+Your browser modules can then use those aliases:
+
+```js
+import "#/components/header.js";
+import settings from "#settings";
+
+console.log(settings);
+```
+
+Greenwood adds the following entries alongside the dependency mappings in your page's import map. Here, `/my-project/` represents the resolved project directory:
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "#/": "/~/my-project/src/",
+      "#settings": "/~/my-project/src/settings.js"
+    }
+  }
+</script>
+```
+
+> Conditional targets, package targets, arrays, and patterns that add or remove filename extensions are not translated and Greenwood reports a diagnostic in those situations. You can supply additional browser mappings yourself in HTML instead. Only aliases from the project's selected manifest are added, not private aliases declared by dependencies.
+
 ### Compatibility
 
 Packages need a supported JavaScript entry point to receive an automatic browser import mapping. Locating a package's directory for assets is a separate operation and does not require such an entry point. Greenwood reports diagnostics when it cannot create a mapping or resolve a dependency.

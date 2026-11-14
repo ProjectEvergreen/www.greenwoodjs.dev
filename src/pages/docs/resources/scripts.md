@@ -146,6 +146,24 @@ You can reference a file inside an installed package from a `<script>` tag by st
 
 Greenwood-generated URLs may instead start with `/~`. These identify an already resolved filesystem location, preserving the specific package installation selected by Greenwood or a plugin. Use `/node_modules/` when authoring a package asset shortcut; Greenwood generates `/~` URLs when it needs to retain a resolved location.
 
+## Import Aliases
+
+For local browser modules, you can declare aliases in your project's _package.json_ **imports** field:
+
+```json
+{
+  "imports": {
+    "#/*": "./src/*"
+  }
+}
+```
+
+```js
+import "#/components/header.js";
+```
+
+> See the [Import Aliases](/docs/introduction/web-standards/#import-aliases) docs for more information.
+
 ## Prerendering
 
 If you have enabled [prerendering](/docs/reference/configuration/#prerender) and using Greenwood's default [renderer (WCC)](/docs/reference/appendix/#dom-emulation), make sure that any custom elements you want prerendered have a `default` export for their `class` definition.
