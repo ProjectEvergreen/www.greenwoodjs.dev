@@ -61,6 +61,100 @@ The **provider** function takes a Greenwood [**compilation** object](/docs/refer
 - **graph** - All the pages in your project per Greenwood's [Content as Data page schema](/docs/content-as-data/pages-data/)
 - **context** - Access to relevant build directories like project workspace, output directory, etc
 
+## Package Resolution
+
+Package resolution has two parts: choosing where to resolve from, and locating the file you need.
+
+### Choose a Base
+
+Use the location of the code that owns the dependency:
+
+| Dependency owner   | Resolution base                        |
+| ------------------ | -------------------------------------- |
+| The running plugin | `import.meta.url`                      |
+| The user project   | `compilation.context.projectDirectory` |
+| Another package    | That package's manifest URL            |
+
+The configured source directory, `userWorkspace`, may differ from the project directory.
+
+### Locate Package Assets
+
+For files shipped inside your plugin, construct a URL relative to the plugin module. For assets inside another package, find its root directory first. This works even when the package has no JavaScript entry point.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  import { getPackageRoot } from "@greenwood/cli/src/lib/node-modules-utils.js";
+
+  // A file shipped with this plugin.
+  export const clientUrl = new URL("./client.js", import.meta.url);
+
+  // A file shipped with one of this plugin's dependencies.
+  const packageRoot = getPackageRoot("some-package", import.meta.url);
+  export const dependencyUrl = new URL("./dist/client.js", packageRoot);
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+### Resolve Module Entry Points
+
+Use the ESM resolver when you need a package's entry point selected through its export or import map. Supply an explicit file URL base and pass the returned URL to the runtime import, including on Windows.
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  import { resolve } from "@greenwood/cli/src/lib/vendor/import-meta-resolve.js";
+
+  export function loadExtension(compilation, specifier) {
+    const parent = compilation.context.projectDirectory;
+    const entryUrl = resolve(specifier, parent);
+
+    return import(entryUrl);
+  }
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
+This vendored resolver uses the node and import conditions. Custom loader hooks and runtime import maps are not applied during resolution.
+
+### Create Browser URLs
+
+Browser paths serve two purposes:
+
+- `/node_modules/` locates a package asset from the user project.
+- `/~` preserves a file location that Greenwood or a plugin has already resolved.
+
+Use the resource helpers to convert between file URLs and resolved browser paths:
+
+<!-- prettier-ignore-start -->
+
+<app-ctc-block variant="snippet">
+
+  ```js
+  import {
+    fileUrlToResolvedPrefixPath,
+    resourcePathToFileUrl,
+  } from "@greenwood/cli/src/lib/resource-utils.js";
+
+  const clientUrl = new URL("./client.js", import.meta.url);
+  const browserPath = fileUrlToResolvedPrefixPath(clientUrl);
+  const restoredUrl = resourcePathToFileUrl(browserPath);
+
+  console.log({ browserPath, restoredUrl });
+  ```
+
+</app-ctc-block>
+
+<!-- prettier-ignore-end -->
+
 ## Adapter
 
 Adapter plugins are designed with the intent to be able to post-process the Greenwood standard build output. For example, moving [build output files](/docs/reference/appendix/#build-output) around into the desired location for a specific hosting provider, like Vercel or AWS.
@@ -292,17 +386,14 @@ This plugin supports providing an array of "paired" URL objects that can either 
 
 <!-- prettier-ignore-end -->
 
-If you need to copy files out of _node_modules_, you can use some of Greenwood's helper utilities for locating npm packages on disk and copying them to the output directory. For [example](https://github.com/ProjectEvergreen/greenwood/blob/master/packages/plugin-polyfills/src/index.js):
+If you need to copy files from an installed package, use `getPackageRoot` with the appropriate resolution base. This example locates a dependency owned by the plugin using `import.meta.url`, then copies its assets to the output directory:
 
 <!-- prettier-ignore-start -->
 
-<app-ctc-block variant="snippet" heading="src/pages/index.html">
+<app-ctc-block variant="snippet" heading="my-copy-plugin.js">
 
   ```js
-  import {
-    derivePackageRoot,
-    resolveBareSpecifier,
-  } from "@greenwood/cli/src/lib/walker-package-ranger.js";
+  import { getPackageRoot } from "@greenwood/cli/src/lib/node-modules-utils.js";
 
   const greenwoodPluginPolyfills = () => {
     return [{
@@ -310,8 +401,7 @@ If you need to copy files out of _node_modules_, you can use some of Greenwood's
       name: "plugin-copy-polyfills",
       provider: async (compilation) => {
         const { outputDir } = compilation.context;
-        const polyfillsResolved = resolveBareSpecifier("@webcomponents/webcomponentsjs");
-        const polyfillsRoot = derivePackageRoot(polyfillsResolved);
+        const polyfillsRoot = getPackageRoot("@webcomponents/webcomponentsjs", import.meta.url);
 
         return [
           {
@@ -469,8 +559,13 @@ When requesting a resource like a file, such as _/main.js_, Greenwood needs to k
 
   ```js
   import fs from "node:fs";
+  import { isPackageResourcePath } from "@greenwood/cli/src/lib/node-modules-utils.js";
 
   class UserWorkspaceResource {
+    constructor(compilation) {
+      this.compilation = compilation;
+    }
+
     async shouldResolve(url) {
       const { pathname } = url;
       const { userWorkspace } = this.compilation.context;
@@ -478,8 +573,8 @@ When requesting a resource like a file, such as _/main.js_, Greenwood needs to k
 
       return (
         hasExtension &&
-        !pathname.startsWith("/node_modules") &&
-        fs.existsSync(new URL(`.${pathname}`, userWorkspace).pathname)
+        !isPackageResourcePath(pathname) &&
+        fs.existsSync(new URL(`.${pathname}`, userWorkspace))
       );
     }
 

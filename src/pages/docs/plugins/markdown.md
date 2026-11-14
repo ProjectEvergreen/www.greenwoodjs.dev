@@ -160,10 +160,10 @@ Just install `@mapbox/rehype-prism` via **npm** and pass it as a [markdown plugi
 <app-ctc-block variant="snippet" heading="greenwood.config.js">
 
   ```js
+  import { greenwoodPluginMarkdown } from "@greenwood/plugin-markdown";
+
   export default {
-    markdown: {
-      plugins: ["@mapbox/rehype-prism"],
-    },
+    plugins: [greenwoodPluginMarkdown({ plugins: ["@mapbox/rehype-prism"] })],
   };
   ```
 
@@ -178,7 +178,7 @@ And then include a [Prism theme](https://prismjs.com/examples.html) from a CSS f
 <app-ctc-block variant="snippet" heading="src/theme.css ">
 
   ```css
-  @import url("../node_modules/prismjs/themes/prism-tomorrow.css");
+  @import url("/node_modules/prismjs/themes/prism-tomorrow.css");
   ```
 
 </app-ctc-block>
