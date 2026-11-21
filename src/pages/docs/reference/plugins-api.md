@@ -256,7 +256,7 @@ The copy plugin allows users to copy files around as part of the Greenwood `buil
 
 ### API
 
-This plugin supports providing an array of "paired" URL objects that can either be files or directories, by providing a `from` and `to` location as instances of `URL`s:
+This plugin supports providing an array of "paired" URL objects that can either be files or directories, by providing a `from` and `to` location as instances of `URL`s. Multiple copy plugins in a Greenwood configuration file run in registration order, and each plugin's locations are copied in the order returned by its provider. If multiple copies target the same output file, Greenwood logs a warning and the last registered copy wins.
 
 <!-- prettier-ignore-start -->
 
